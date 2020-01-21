@@ -20,3 +20,15 @@ body {
 .portfolio-item {
   margin-bottom: 30px;
 }
+
+.img-navbar {
+  width: 100%;
+  height: 100%;
+}
+
+#img-navbar-container {
+  width: 5%;
+  height: 5%;
+}
+
+
