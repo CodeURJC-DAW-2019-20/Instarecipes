@@ -598,7 +598,43 @@ pre code {
   margin-right: -15px;
   margin-left: -15px;
 }
-
+/* Profile details*/
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+.profile-border{
+  border-right:3px solid rgba(255, 255, 255, 0.2);
+  height:50%
+}
+.profile-separator{
+  border:3px solid rgba(255, 255, 255, 0.2);
+}
+.profile-about-separator{
+  height: calc(3rem + 80px);
+}
+th, td {
+  padding: 0;
+}
+/** ---------------- */
+/* Publications section */
+.pub-date-text{
+  text-align: center;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.6);
+}
+.loadmore-button{
+  width: 3%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.5;
+}
+.loadmore-container{
+  width: 50%;
+  margin: auto;
+}
+/** ---------------- */
 .no-gutters {
   margin-right: 0;
   margin-left: 0;
@@ -9335,6 +9371,10 @@ button.bg-dark:focus {
   text-transform: capitalize !important;
 }
 
+.font-weight-lightest {
+  font-weight: 100 !important;
+}
+
 .font-weight-light {
   font-weight: 300 !important;
 }
@@ -9720,8 +9760,8 @@ a.text-dark:hover, a.text-dark:focus {
 
 @media (min-width: 992px) {
   .masthead {
-    padding-top: calc(6rem + 104px);
-    padding-bottom: 6rem;
+    padding-top: calc(6rem + 24px);
+    padding-bottom: 3rem;
   }
   .masthead .masthead-heading {
     font-size: 4rem;
@@ -9732,11 +9772,11 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
-.portfolio {
+.publications {
   margin-bottom: -30px;
 }
 
-.portfolio .portfolio-item {
+.publications .publications-item {
   cursor: pointer;
   position: relative;
   display: block;
@@ -9746,7 +9786,7 @@ a.text-dark:hover, a.text-dark:focus {
   overflow: hidden;
 }
 
-.portfolio .portfolio-item .portfolio-item-caption {
+.publications .publications-item .publications-item-caption {
   position: absolute;
   top: 0;
   left: 0;
@@ -9755,27 +9795,27 @@ a.text-dark:hover, a.text-dark:focus {
   background-color: rgba(26, 188, 156, 0.9);
 }
 
-.portfolio .portfolio-item .portfolio-item-caption:hover {
+.publications .publications-item .publications-item-caption:hover {
   opacity: 1;
 }
 
-.portfolio .portfolio-item .portfolio-item-caption .portfolio-item-caption-content {
+.publications .publications-item .publications-item-caption .publications-item-caption-content {
   font-size: 1.5rem;
 }
 
-.portfolio-modal .portfolio-modal-title {
+.publications-modal .publications-modal-title {
   font-size: 2.25rem;
   line-height: 2rem;
 }
 
 @media (min-width: 992px) {
-  .portfolio-modal .portfolio-modal-title {
+  .publications-modal .publications-modal-title {
     font-size: 3rem;
     line-height: 2.5rem;
   }
 }
 
-.portfolio-modal .close {
+.publications-modal .close {
   position: absolute;
   z-index: 1;
   right: 1.5rem;
