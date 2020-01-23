@@ -624,15 +624,29 @@ th, td {
   color: rgba(0, 0, 0, 0.6);
 }
 .loadmore-button{
-  width: 3%;
+  width: 5%;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 50px;
   opacity: 0.5;
 }
 .loadmore-container{
   width: 50%;
   margin: auto;
+}
+.bottom-text-image{
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  width: 95%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 /** ---------------- */
 .no-gutters {
@@ -989,7 +1003,7 @@ th, td {
   }
   .col-md-1 {
     flex: 0 0 8.33333%;
-    max-width: 8.33333%;
+    max-width: 100%;
   }
   .col-md-2 {
     flex: 0 0 16.66667%;
@@ -999,9 +1013,12 @@ th, td {
     flex: 0 0 25%;
     max-width: 25%;
   }
+  
   .col-md-4 {
     flex: 0 0 33.33333%;
     max-width: 33.33333%;
+    align-self: center;
+    justify-content: center;
   }
   .col-md-5 {
     flex: 0 0 41.66667%;
@@ -7735,7 +7752,7 @@ button.bg-dark:focus {
 
 .pt-5,
 .py-5 {
-  padding-top: 3rem !important;
+  padding-top: 2rem !important;
 }
 
 .pr-5,
@@ -7745,7 +7762,7 @@ button.bg-dark:focus {
 
 .pb-5,
 .py-5 {
-  padding-bottom: 3rem !important;
+  padding-bottom: 2rem !important;
 }
 
 .pl-5,

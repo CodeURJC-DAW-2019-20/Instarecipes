@@ -31,4 +31,10 @@ body {
   height: 5%;
 }
 
-
+.flotante {
+  position:fixed;
+  width:10%;
+	height:10%;
+	bottom:80px;
+  right:0px;
+}
