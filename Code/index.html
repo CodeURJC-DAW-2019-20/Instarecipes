@@ -234,10 +234,23 @@
       <img class="loadmore-button" src="images/icons/loadmore_unpressed.png" alt=""/>
     </div>
     
-    <div class='flotante'>
-      <a href='#' ><img src='images/icons/flotating_button.png' width="50%"/></a>
+    <div id="open-add-button" class='flotating-button'>
+      <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-add-button">
+        <img src='images/icons/flotating_button.png' width="50%"/>
+      </div>
     </div>
   </div>
+  
+    <!-- Add button pannel -->
+    <div class="publications-modal modal fade" id="opened-add-button" tabindex="-1" role="dialog" aria-labelledby="publicationsModal6Label" aria-hidden="true">
+      <div class="modal-dialog modal-xl" role="document">
+        <div id="close-add-button" class='flotating-button'>
+          <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-add-button">
+            <a href="#"><img src='images/icons/flotating_button.png' width="50%" class="rotate45"/></a>
+          </div>
+        </div>
+      </div>
+    </div>
   <!-- /.container -->
 
   <!-- Footer -->
@@ -248,6 +261,14 @@
     <!-- /.container -->
   </footer>
 
+  <!-- Test JS -->
+  <script>
+    var icon = document.getElementById("open-add-button");
+    icon.onclick = clickedAddButton(){
+      icon.style.display="none";
+
+    }
+  </script>
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

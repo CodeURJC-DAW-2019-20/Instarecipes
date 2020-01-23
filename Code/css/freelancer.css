@@ -648,6 +648,13 @@ th, td {
   color: aliceblue;
   background-color: rgba(0, 0, 0, 0.5);
 }
+.rotate45{
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
 /** ---------------- */
 .no-gutters {
   margin-right: 0;
