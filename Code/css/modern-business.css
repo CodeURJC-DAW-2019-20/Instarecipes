@@ -3,15 +3,51 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
  */
+.separador{
+  height:10px;
+}
+.separador1{
+  height:15px;
+}
+.categorias{
+  background-color:greenyellow;
+  border-style:solid;
+  border-radius: 20px;
+  text-aling:center;
+}
+.busqueda{
+  background-color:orange;
+  border-style:solid;
+  border-radius: 20px;
+  text-aling:center;
+
+}
+.pollo{
+  width: 100%;
+  display: block;
+  padding-top: 10px;
+}
 body {
+  background-image: url(images/plantilla_daw.jpg);
+  background-position:center center;
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+
   padding-top: 56px;
 }
+.blog-post{
 
+  }
 .carousel-item {
   height: 65vh;
-  min-height: 300px;
+  min-height: 500px;
   background: no-repeat center center scroll;
   -webkit-background-size: cover;
+  background-color: white;
+  border-style:solid;
+  padding:5px;
+  text-align: center;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
@@ -30,7 +66,14 @@ body {
   width: 5%;
   height: 5%;
 }
+.comentarios{
+  background-color:white;
+  border-style:solid;
+  border-radius: 20px;
+  text-aling:center;
+  padding:5px;
 
+}
 .flotating-button {
   position:fixed;
   width:10%;
