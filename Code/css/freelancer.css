@@ -605,7 +605,7 @@ table {
 }
 .profile-border{
   border-right:3px solid rgba(255, 255, 255, 0.2);
-  height:50%
+  height:80%
 }
 .profile-separator{
   border:3px solid rgba(255, 255, 255, 0.2);
@@ -616,12 +616,25 @@ table {
 th, td {
   padding: 0;
 }
+.underlined-text {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.scrolling{
+  border: 1px solid rgba(0, 0, 0, 0.1);;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-top-style: hidden;
+  border-radius: 0.5rem;
+  height: 100%;
+}
 /** ---------------- */
 /* Publications section */
 .pub-date-text{
   text-align: center;
   width: 100%;
   color: rgba(0, 0, 0, 0.6);
+  background-color: transparent;
 }
 .loadmore-button{
   width: 5%;
@@ -654,6 +667,18 @@ th, td {
   -o-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+.likes-comments{
+  position: absolute;
+  right: 0;
+  height: auto;
+  width: 50%;
+  background-color: rgb(255, 255, 255, 0.5);
+  border-bottom-left-radius: 0.8rem;
+}
+.icon-fluid {
+  max-width: 100%;
+  max-height: 100%;
 }
 /** ---------------- */
 .no-gutters {
@@ -5707,6 +5732,12 @@ a.close.disabled {
     max-width: 800px;
   }
 }
+@media (min-width: 992px) {
+  .modal-xm {
+    max-width: 500px;
+    height: 700px;
+  }
+}
 
 @media (min-width: 1200px) {
   .modal-xl {
@@ -9816,7 +9847,7 @@ a.text-dark:hover, a.text-dark:focus {
   left: 0;
   transition: all 0.2s ease-in-out;
   opacity: 0;
-  background-color: rgba(26, 188, 156, 0.9);
+  background-color: rgba(127, 197, 183, 0.8);
 }
 
 .publications .publications-item .publications-item-caption:hover {
