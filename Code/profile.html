@@ -54,10 +54,11 @@
     <div class="container d-flex align-items-center flex-column">
 
       <!-- Masthead Avatar Image -->
-      <img class="masthead-avatar mb-5" src="img/avataaars.svg" alt="">
+      <img class="masthead-avatar mb-5" src="img/avataaars.svg" alt="Show profile photo" data-toggle="modal" data-target="#showAvatar">
 
       <!-- Masthead Heading -->
       <h3 class="text-uppercase mb-0">Jhonny McConnor Soria</h3>
+      <h6>@jmsoria</h6>
 
       <!-- Icon Divider -->
       <div class="divider-custom divider-light">
@@ -126,7 +127,7 @@
               <div class="likes-comments">
                 <div class="row" style="margin-right: 0;margin-left: 0;">
                   <div class="col-3">
-                    <img class="icon-fluid" src="images/icons/like_unpressed.png" alt="">
+                    <img class="icon-fluid" src="images/icons/like_pressed.png" alt="">
                   </div>
                   <div class="col-3">
                     <p class="icon-fluid pub-date-text">24</p>
@@ -155,7 +156,7 @@
             <div class="likes-comments">
               <div class="row" style="margin-right: 0;margin-left: 0;">
                 <div class="col-3">
-                  <img class="icon-fluid" src="images/icons/like_unpressed.png" alt="">
+                  <img class="icon-fluid" src="images/icons/like_pressed.png" alt="">
                 </div>
                 <div class="col-3">
                   <p class="icon-fluid pub-date-text">67</p>
@@ -242,7 +243,7 @@
             <div class="likes-comments">
               <div class="row" style="margin-right: 0;margin-left: 0;">
                 <div class="col-3">
-                  <img class="icon-fluid" src="images/icons/like_unpressed.png" alt="">
+                  <img class="icon-fluid" src="images/icons/like_pressed.png" alt="">
                 </div>
                 <div class="col-3">
                   <p class="icon-fluid pub-date-text">14</p>
@@ -358,6 +359,24 @@
       <i class="fa fa-chevron-up"></i>
     </a>
   </div>
+
+<!-- Profile avatar -->
+<div class="publications-modal modal fade" id="showAvatar" tabindex="-1" role="dialog" aria-labelledby="publicationsModal1Label" aria-hidden="true">
+  <div class="modal-dialog modal-xm" role="document">
+    <div class="modal-content" style="background-color: rgba(0, 0, 0, 0.8);">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+          <i class="fas fa-times"></i>
+        </span>
+      </button>
+      <div class="modal-body text-center">
+        <div class="container">
+          <img class="img-fluid rounded mb-5" src="img/avataaars.svg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- user following -->
   <div class="publications-modal modal fade" id="following" tabindex="-1" role="dialog" 
@@ -710,8 +729,7 @@
                   </div>
                 </div>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  GO
-                  <i class="fas fa-times fa-fw"></i>
+                  <img class="img-fluid rounded" src="images/icons/go.png" alt="">
                 </button>
               </div>
             </div>
@@ -782,8 +800,7 @@
                   </div>
                 </div>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  GO
-                  <i class="fas fa-times fa-fw"></i>
+                  <img class="img-fluid rounded" src="images/icons/go.png" alt="">
                 </button>
               </div>
             </div>
@@ -856,8 +873,7 @@
                   </div>
                 </div>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  GO
-                  <i class="fas fa-times fa-fw"></i>
+                  <img class="img-fluid rounded" src="images/icons/go.png" alt="">
                 </button>
               </div>
             </div>
@@ -941,8 +957,7 @@
                   </div>
                 </div>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  GO
-                  <i class="fas fa-times fa-fw"></i>
+                  <img class="img-fluid rounded" src="images/icons/go.png" alt="">
                 </button>
               </div>
             </div>
@@ -1026,8 +1041,7 @@
                   </div>
                 </div>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  GO
-                  <i class="fas fa-times fa-fw"></i>
+                  <img class="img-fluid rounded" src="images/icons/go.png" alt="">
                 </button>
               </div>
             </div>
@@ -1111,8 +1125,7 @@
                   </div>
                 </div>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
-                  GO
-                  <i class="fas fa-times fa-fw"></i>
+                  <img class="img-fluid rounded" src="images/icons/go.png" alt="">
                 </button>
               </div>
             </div>

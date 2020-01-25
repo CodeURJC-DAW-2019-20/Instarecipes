@@ -623,11 +623,12 @@ th, td {
 .scrolling{
   border: 1px solid rgba(0, 0, 0, 0.1);;
   overflow-y: scroll;
-  overflow-x: hidden;
+  overflow-x: auto;
   border-top-style: hidden;
   border-radius: 0.5rem;
   height: 100%;
 }
+
 /** ---------------- */
 /* Publications section */
 .pub-date-text{
@@ -643,6 +644,7 @@ th, td {
   margin-right: auto;
   margin-bottom: 50px;
   opacity: 0.5;
+  cursor: pointer;
 }
 .loadmore-container{
   width: 50%;
@@ -2343,6 +2345,7 @@ fieldset:disabled a.btn {
   color: #fff;
   background-color: #1abc9c;
   border-color: #1abc9c;
+  cursor: pointer;
 }
 
 .btn-primary:hover {
@@ -7656,7 +7659,7 @@ button.bg-dark:focus {
 
 .mb-5,
 .my-5 {
-  margin-bottom: 3rem !important;
+  margin-bottom: 2rem !important;
 }
 
 .ml-5,
@@ -9811,6 +9814,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .masthead .masthead-avatar {
   width: 15rem;
+  cursor: pointer;
 }
 
 @media (min-width: 992px) {
