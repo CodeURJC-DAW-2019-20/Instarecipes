@@ -1,14 +1,14 @@
-
-function login()
-{
-document.getElementById("loginDiv").style.display = "block";
-document.getElementById("signupDiv").style.display = "none";
-
+var signUp = document.getElementById('signUp');
+var signIn = document.getElementById('signIn');
+var divSignUp = document.getElementById('signupDiv');
+var divSignIn = document.getElementById('loginDiv');
+signUp.onclick = function(){
+    divSignUp.style.display = "block";
+    divSignIn.style.display = "none";
+    return false;
 }
-
-function signup()
-{
-    document.querySelector("loginDiv").style.display = "none";
-    document.querySelector("signupDiv").style.display = "block";
-
+signIn.onclick = function(){
+    divSignUp.style.display = "none";
+    divSignIn.style.display = "block";
+    return false;
 }

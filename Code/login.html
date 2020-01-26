@@ -4,8 +4,6 @@
 	<title>Instarecipes • Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="js/login.js">
-	</script>
 	
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/chef.png"/>
@@ -33,13 +31,11 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	<script src="js/login.js"></script>
 	<div class="limiter">
 		<div class="container-login100" ><!--style="background-image:url('images/bg-01.jpg');"-->
            <!--Contenedor del login-->
 			<div class="wrap-login100 p-l-35 p-r-35 p-t-5 p-b-14" id="loginDiv">
 				<div class="login100 p-l p-r p-t-5 p-b-35 " >
-
 					<a href="index.html"><span style="font-size: 32px; margin-left: 98%; " class="fa fa-close"></a></span> 
 				</div>
 				<form class="login100-form validate-form" >
@@ -98,12 +94,11 @@
 						<span class="txt1 p-b-17">
 							Don't have an account yet?
 						</span>
-						<button onClick="JavaScript: signup()" class="login100-form-btn">
+						<button id="signUp" class="login100-form-btn">
 						<a class="txt2" style="color: black;">
 							Sign up
 						</a>
 						</button>
-
 					</div>
 				</form>
 				
@@ -111,7 +106,7 @@
 			<!--Contenedor del SignUp-->
 			<div class="wrap-login100 p-l-35 p-r-35 p-t-35 p-b-44" id="signupDiv">
 				<div class="login100 p-l p-r p-t-5 p-b-35 ">
-					<a href="login.html"<span style="font-size: 32px; display:contents; " class="fa fa-arrow-left"></a></span>
+					<a href="login.html"><span style="font-size: 32px; display:contents; " class="fa fa-arrow-left"></a></span>
 					<a href="login.html"><span style="font-size: 32px; float:right; margin-left: 50%;" class="fa fa-close"></a></span>
 				</div>
 				<form class="login100-form validate-form">
@@ -147,7 +142,7 @@
 						</div>
 					</div>	
 					<div class="flex-col-c">
-						<button onclick="login()" class="login100-form-btn">
+						<button id="signIn" class="login100-form-btn">
 						<a class="txt2" style="color: black;">
 							Back to login
 						</a>
@@ -162,8 +157,7 @@
 
 	<div id="dropDownSelect1"></div>
 	
-<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -177,6 +171,5 @@
 <!--===============================================================================================-->
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	
 </body>
 </html>
