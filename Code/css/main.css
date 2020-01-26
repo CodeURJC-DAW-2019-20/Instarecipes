@@ -374,6 +374,7 @@ iframe {
 }
 
 
+
 /*------------------------------------------------------------------
 [ Alert validate ]*/
 
@@ -475,3 +476,7 @@ iframe {
     padding-right: 15px;
   }
 } 
+
+#signupDiv{
+  display:none;
+}
