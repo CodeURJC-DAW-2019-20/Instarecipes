@@ -1,0 +1,134 @@
+/*!
+ * Start Bootstrap - Modern Business (https://startbootstrap.com/template-overviews/modern-business)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
+ */
+.recipe{
+    text-overline-color: aqua;
+    text-line-through-color: blue;
+    text-underline-color: orange;
+}
+
+.img1{
+    transition:all 0.5s ease;
+    width: 100%;
+    display: block;
+    border-style:solid;
+}
+.img1:hover{
+    transform: scale(1.5);
+}
+.img2{
+    transition:all 0.5s ease;
+    width: 100%;
+    display: block;
+    border-style:solid;
+}
+.img2:hover{
+    transform: scale(1.5);
+}
+.img3{
+    transition:all 0.5s ease;
+    width: 100%;
+    display: block;
+    border-style:solid;
+}
+.img3:hover{
+    transform: scale(1.5);
+}
+.img4{
+    transition:all 0.5s ease;
+    width: 100%;
+    display: block;
+    border-style:solid;
+}
+.img4:hover{
+    transform: scale(1.5);
+}
+.separador{
+    height:10px;
+}
+.separador1{
+    height:15px;
+}
+.separador3{
+    width:10px;
+}
+.categorias{
+    background-color:greenyellow;
+    border-style:solid;
+    border-radius: 20px;
+    text-aling:center;
+}
+.busqueda{
+    background-color:orange;
+    border-style:solid;
+    border-radius: 20px;
+    text-aling:center;
+
+}
+.ingredientes{
+    background-color:cornflowerblue;
+    border-style:solid;
+    border-radius: 20px;
+    text-aling:center;
+}
+.pollo{
+    width: 100%;
+    display: block;
+    padding-top: 10px;
+}
+body {
+    background-image: url(images/plantilla_daw.jpg);
+    background-position:center center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+
+    padding-top: 56px;
+}
+.blog-post{
+
+}
+.carousel-item {
+    height: 65vh;
+    min-height: 500px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    background-color: white;
+    border-style:solid;
+    padding:5px;
+    text-align: center;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.portfolio-item {
+    margin-bottom: 30px;
+}
+
+.img-navbar {
+    width: 100%;
+    height: 100%;
+}
+
+#img-navbar-container {
+    width: 5%;
+    height: 5%;
+}
+.comentarios{
+    background-color:white;
+    border-style:solid;
+    border-radius: 20px;
+    text-aling:center;
+    padding:5px;
+
+}
+.flotating-button {
+    position:fixed;
+    width:10%;
+    height:10%;
+    bottom:80px;
+    right:0px;
+}
