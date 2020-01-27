@@ -36,16 +36,18 @@
     background-color: rgba(173, 255, 47, 0.5);
     border-radius: 20px;
     text-align:center;
+    border: 3px solid rgba(0, 0, 0, 0.5);
 }
 .details{
     background-color: rgba(255, 166, 0, 0.5);
     border-radius: 20px;
     text-align:center;
-
+    border: 3px solid rgba(0, 0, 0, 0.5);
 }
 .ingredients{
     border-radius: 20px;
     text-align:center;
+    border: 3px solid rgba(0, 0, 0, 0.5);
     background-color: rgba(100, 149, 237, 0.5);
 }
 .chicken{
@@ -62,7 +64,12 @@ body {
 
     padding-top: 56px;
 }
+.userimg{
+    width: 50%;
+    justify-content: center;
+    align-self: center;
 
+}
 .carousel-item {
     height: 65vh;
     min-height: 500px;
