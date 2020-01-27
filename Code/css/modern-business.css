@@ -3,7 +3,7 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
  */
-body {
+ body {
   padding-top: 56px;
 }
 
@@ -36,5 +36,48 @@ body {
   width:10%;
 	height:10%;
 	bottom:80px;
-  right:0px;
+  right:-30px;
+}
+
+.search-button{
+  position:fixed;
+  /*transform: translate(-50%,-50%);*/
+  background: #2be964;
+  border-radius:40px;
+  padding: 10px;
+  bottom: 5px;
+  right: 35px;
+  height: 5%;
+}
+
+.search-button:hover > .search-txt{
+  width: 240px;
+  padding: 0 6px;
+} 
+
+.search-btn{
+  color: white;
+  float: right;
+  width: 40px;
+  height: 120px;
+  border-radius: 60%;
+  background:#2be964 ;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120%;
+}
+
+.search-txt{
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  border-radius: 10px;
+  padding: 0;
+  color: black;
+  font-size: 16px;
+  transition: 0.4s;
+  line-height: 25px;
+  width: 0;
 }
