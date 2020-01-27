@@ -15,6 +15,7 @@
 
   <!-- Custom styles for this template -->
   <link href="css/recipes.css" rel="stylesheet">
+  <link href="css/freelancer.css" rel="stylesheet">
 
 </head>
 
@@ -79,87 +80,205 @@
   </nav>
   <!-- Page Content -->
   <div class="container">
-
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">
-      <small>
-        <a href="#">User's recipe name</a>
-      </small>
-    </h1>
-
-
-
-    <div class="row">
-
-      <!-- Post Content Column -->
-      <div class="col-lg-8">
-        <!-- Preview Image -->
-        <img class="pollo"  src="images/pollo_patatas.jpg" alt="">
-
-
-          <!-- Related Projects Row -->
-          <h3 class="my-4">Added photos</h3>
-
-          <div class="row">
-
-              <div class="col-md-3 col-sm-6 mb-4">
-                  <a href="#">
-                      <img class="img1" src="images/pollo_h.jpg" alt="">
-                  </a>
+    <!-- Title -->
+    <div class="col-12">
+        <h1 class="mt-4 mb-3"
+        style="text-align: center;">Chicken with potatoes</h1>
+    </div>
+    <hr width="50%">
+    <!-- Top section -->
+    <section>
+      <div class="row">
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+          <!-- Preview image -->
+          <div id="carouselExampleIndicators" class="carousel slide">
+            <ol class="simple-recipe-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"><img class="prev-img" src="images/chicken.jpg" alt=""></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"><img class="prev-img" src="images/potatoes.jpg" alt=""></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"><img class="prev-img" src="images/chicken_potatoes.jpg" alt=""></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="3"><img class="prev-img" src="images/recipe_example_7.jpg" alt=""></li>
+            </ol>
+            <div class="carousel-inner" role="listbox" style="border-radius: 0.8rem;">
+              <!-- Slide One - Set the background image for this slide in the line below -->
+              <div class="carousel-item active" style="background-image: url('images/chicken.jpg')">
               </div>
-              <div class="separador3"></div>
-
-              <div class="col-md-3 col-sm-6 mb-4">
-                  <a href="#">
-                      <img class="img2" src="images/patatas.jpg" alt="">
-                  </a>
+              <!-- Slide Two - Set the background image for this slide in the line below -->
+              <div class="carousel-item" style="background-image: url('images/potatoes.jpg')">
               </div>
-              <div class="separador3"></div>
-
-              <div class="col-md-3 col-sm-6 mb-4">
-                  <a href="#">
-                      <img class="img3" src="http://placehold.it/500x300" alt="">
-                  </a>
+              <!-- Slide Three - Set the background image for this slide in the line below -->
+              <div class="carousel-item" style="background-image: url('images/chicken_potatoes.jpg')">
               </div>
-              <div class="separador3"></div>
-
-              <div class="col-md-3 col-sm-6 mb-4">
-                  <a href="#">
-                      <img class="img4" src="http://placehold.it/500x300" alt="">
-                  </a>
+              <!-- Slide Four - Set the background image for this slide in the line below -->
+              <div class="carousel-item" style="background-image: url('images/recipe_example_7.jpg')">
               </div>
-
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
-        <hr>
-
-        <!-- Date/Time -->
-        <p> POSTED ON JANUARY 1, 2017 AT 12:00 PM</p>
-
-        <hr>
-
+          <ol class="likes-comments-simple-recipe">
+            <li><h3 class="font-weight-light"> 132</h3></li>
+            <li style="cursor: pointer;"><img id="pressedLike" src="images/icons/like_pressed.png" height="80%" alt="" hidden> <img id="unpressedLike" src="images/icons/like_unpressed.png" height="80%" alt=""></li>
+            <li><h3 class="font-weight-light">4</h3></li>
+            <li><a class="js-scroll-trigger rounded" href="#comments-section"><img src="images/icons/dialogue.png" height="80%" alt=""></a></li>
+          </ol>
+        </div>
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+          <!-- Ingredients Widget -->
+          <div class="ingredients">
+              <h5 class="card-header">Ingredients</h5>
+              <div class="card-body">
+                <ul class="recipe-scrollbar">
+                  <li>3pcs. Potatoes</li>
+                  <li>1kg. Chicken</li>
+                  <li>1pc. Laurel</li>
+                  <li>200g. Olives</li>
+                  <li>3pcs. Potatoes</li>
+                  <li>1kg. Chicken</li>
+                  <li>1pc. Laurel</li>
+                  <li>200g. Olives</li>
+                  <li>3pcs. Potatoes</li>
+                  <li>1kg. Chicken</li>
+                  <li>1pc. Laurel</li>
+                  <li>200g. Olives</li>
+                  <li>3pcs. Potatoes</li>
+                  <li>1kg. Chicken</li>
+                  <li>1pc. Laurel</li>
+                  <li>200g. Olives</li>
+                  <li>3pcs. Potatoes</li>
+                  <li>1kg. Chicken</li>
+                  <li>1pc. Laurel</li>
+                  <li>200g. Olives</li>
+                </ul>
+              </div>
+          </div>
+          <hr width="50%">
+          <!-- Category Widget -->
+          <div class="category">
+            <h5 class="card-header">Category's</h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-6">
+                  <ul class="recipe-scrollbar list-unstyled mb-0" style="height: 100px;">
+                    <li>
+                      <a href="#">Mediterranean</a>
+                    </li>
+                    <li>
+                      <a href="#">Spanish</a>
+                    </li>
+                    <li>
+                        <a href="#">Mediterranean</a>
+                      </li>
+                      <li>
+                        <a href="#">Spanish</a>
+                      </li>
+                      <li>
+                          <a href="#">Mediterranean</a>
+                        </li>
+                        <li>
+                          <a href="#">Spanish</a>
+                        </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr width="50%">
+          <!-- Details Widget -->
+          <div class="details">
+            <table class="card-body">
+              <tr class="card-header">
+                <th><h5 class="text-uppercase mb-0 font-weight-light">Dificulty</h5></th>
+                <th><h5 class="text-uppercase mb-0 font-weight-light">Steps</h5></th>
+                <th><h5 class="text-uppercase mb-0 font-weight-light">Aprox. time</h5></th>
+              </tr>
+              <tr>
+                <td><div class="profile-border"><h3 class="font-weight-light">Medium</h3></div></td>
+                <td><div class="profile-border"><h3 class="font-weight-light">3</h3></div></td>
+                <td><div class="profile-border"><h3 class="font-weight-light">2 h.</h3></div></td>
+              </tr>
+              
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Center section -->
+    <section>
+      <!-- Date/Time -->
+      <p> POSTED ON JANUARY 1, 2017 AT 12:00 PM</p>
+      <hr>
+      <h1 class="mb-0 font-weight-normal">Introduction</h1>
+      <p class="mb-0 font-weight-normal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
+      <p class="mb-0 font-weight-normal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
+      <hr class="separator1">
+      <!-- STEPS sections -->
+      <section>
+        <h1>Step 1</h1>
         <!-- Post Content -->
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
-
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
-
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
-
-        <blockquote class="blockquote">
-          <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-          <footer class="blockquote-footer">Someone famous in
-            <cite title="Source Title">Source Title</cite>
-          </footer>
-        </blockquote>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
-
-        <hr>
-
-        <!-- Comments Form -->
-        <div class="comentarios">
-          <h5 class="card-header">Leave your opinion of the recipe:</h5>
+      </section>
+      <section>
+          <h1>Step 2</h1>
+          <!-- Post Content -->
+          <div class="row">
+            <div class="col-8">
+              <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <blockquote class="blockquote"></blockquote>
+                  <footer class="blockquote-footer">Someone famous in
+                    <cite title="Source Title">Source Title</cite>
+                  </footer>
+                </blockquote>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
+            </div>
+            <div class="col-4">
+                <img class="img-fluid rounded-lg prev-img" src="images/potatoes.jpg" alt="" style="cursor: pointer;">
+            </div>
+          </div>
+      </section>
+      <section>
+        <h1>Step 3</h1>
+        <!-- Post Content -->
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
+      </section>
+      <h4>Gallery</h4>
+      <hr>
+      <!-- Gallery section -->
+      <section>
+        <div class="row" style="text-align: center;">
+          <div class="col-md-3 col-sm-6 mb-4 centered-img" >
+            <img class="img-fluid rounded-lg prev-img" src="images/potatoes.jpg" alt="" style="cursor: pointer;">
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4 centered-img">
+            <img class="img-fluid rounded-lg prev-img" src="images/recipe_example_3.jpg" alt="" style="cursor: pointer;">
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4 centered-img">
+            <img class="img-fluid rounded-lg prev-img" src="images/recipe_example_7.jpg" alt="" style="cursor: pointer;">
+          </div>
+          <div class="col-md-3 col-sm-6 mb-4 centered-img">
+            <img class="img-fluid rounded-lg prev-img" src="images/recipe_example_2.jpg" alt="" style="cursor: pointer;">
+          </div>
+        </div>
+      </section>
+    </section>
+    <hr width="25%">
+    <!-- Bottom section -->
+    <section id="comments-section">
+      <!-- Comments Form -->
+      <div class="coments">
+          <h5 class="card-header">Leave your comment:</h5>
           <div class="card-body">
             <form>
               <div class="form-group">
@@ -169,107 +288,132 @@
             </form>
           </div>
         </div>
-          <div class="separador1"></div>
-        <!-- Single Comment -->
-        <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">Raul Martinez</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+      <!-- Single Comment -->
+      <div class="media mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Raul Martinez</h5>
+          <p class="mt-0">@raulMar</p>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
+          <div class="col-4" style="height: 100%;">
+            <p style="top: 0; align-self: center;"> 132</p>
+          </div>
+          <div class="col-4" style="cursor: pointer; height: 100%;">
+            <img src="images/icons/like_unpressed.png" height="100%" alt="">
+          </div>
+          <div class="col-4" style="height: 100%;">
+            <a href="#comments-section">
+              <img src="images/icons/dialogue.png" height="100%" alt="">
+            </a>
           </div>
         </div>
-
-        <!-- Comment with nested comments -->
-        <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-            <div class="media mt-4">
-              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-            </div>
-
-            <div class="media mt-4">
-              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-            </div>
-
-          </div>
-        </div>
-
       </div>
-
-      <!-- Sidebar Widgets Column -->
-      <div class="col-md-4">
-        <!-- Search Widget -->
-        <div class="busqueda">
-          <h5 class="card-header">Search</h5>
-          <div class="card-body">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Go!</button>
-              </span>
+      </div>
+      <!-- Comment with nested comments -->
+      <div class="media mb-4">
+        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+        <div class="media-body">
+          <h5 class="mt-0">Commenter Name</h5>
+          <p class="mt-0">@user12345</p>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
+            <div class="col-4" style="height: 100%;">
+              <p style="top: 0; align-self: center;">2</p>
+            </div>
+            <div class="col-4" style="cursor: pointer; height: 100%;">
+              <img src="images/icons/like_unpressed.png" height="100%" alt="">
+            </div>
+            <div class="col-4" style="height: 100%;">
+              <a href="#comments-section">
+                <img src="images/icons/dialogue.png" height="100%" alt="">
+              </a>
+            </div>
+          </div>
+          <!-- Subcomment -->
+          <div class="media mt-4">
+            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+            <div class="media-body">
+              <h5 class="mt-0">Commenter Name</h5>
+              <p class="mt-0">@user123</p>
+              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
+                <div class="col-4" style="height: 100%;">
+                  <p style="top: 0; align-self: center;"> 3</p>
+                </div>
+                <div class="col-4" style="cursor: pointer; height: 100%;">
+                  <img src="images/icons/like_unpressed.png" height="100%" alt="">
+                </div>
+                <div class="col-4" style="height: 100%;">
+                  <a href="#comments-section">
+                    <img src="images/icons/dialogue.png" height="100%" alt="">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Subcomment -->
+          <div class="media mt-4">
+            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+            <div class="media-body">
+              <h5 class="mt-0">Commenter Name</h5>
+              <p class="mt-0">@iamnotchillingdoingthis</p>
+              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
+                <div class="col-4" style="height: 100%;">
+                  <p style="top: 0; align-self: center;"> 1</p>
+                </div>
+                <div class="col-4" style="cursor: pointer; height: 100%;">
+                  <img src="images/icons/like_unpressed.png" height="100%" alt="">
+                </div>
+                <div class="col-4" style="height: 100%;">
+                  <a href="#comments-section">
+                    <img src="images/icons/dialogue.png" height="100%" alt="">
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-          <div class="separador"></div>
-
-          <div class="ingredientes">
-              <h5 class="card-header">Ingredients</h5>
-              <div class="card-body">
-                  <div class="row">
-                      <div class="col-lg-6">
-                          <ul class="list-unstyled mb-0">
-                              <li>
-                                  <a>Pollo</a>
-                              </li>
-                              <li>
-                                  <a>Patatas</a>
-                              </li>
-                          </ul>
-                      </div>
-
-                  </div>
-              </div>
-          </div>
-              <div class="separador"></div>
-
-              <!-- Categories Widget -->
-        <div class="categorias">
-          <h5 class="card-header">Categories</h5>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">Mediterranean</a>
-                  </li>
-                  <li>
-                    <a href="#">Spanish</a>
-                  </li>
-                </ul>
-              </div>
-
       </div>
-
-    </div>
-    <!-- /.row -->
-
+      <hr width="50%">
+      <!-- Ajax load more button -->
+      <div class="loadmore-container">
+        <img class="loadmore-button" src="images/icons/loadmore_unpressed.png" alt=""/>
+      </div>
+    </section>
   </div>
-  <!-- /.container -->
 
-  <!-- Footer -->
+  <!-- Copyright Section -->
+  <section class="copyright py-4 text-center text-white">
+    <div class="container">
+      <small>Copyright &copy; Instarecipes 2020</small>
+    </div>
+  </section>
 
+  <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+  <div class="scroll-to-top d-lg-none position-fixed ">
+    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
 
+  <script type="text/javascript">
+  var likeMode = document.getElementById("pressedLike");
+  var noLikeMode = document.getElementById("unpressedLike");
+  likeMode.onclick = function(){
+    noLikeMode.hidden = false;
+    likeMode.hidden = true;
+  }
+  noLikeMode.onclick = function(){
+    noLikeMode.hidden = true;
+    likeMode.hidden = false;
+  }
+  </script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/freelancer.min.js"></script>
+  
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

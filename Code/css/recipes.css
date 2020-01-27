@@ -9,77 +9,52 @@
     text-underline-color: orange;
 }
 
-.img1{
+.prev-img{
     transition:all 0.5s ease;
     width: 100%;
     display: block;
-    border-style:solid;
+    border: 1px solid;
+    justify-content: center;
+    align-self: center;
+    height: 100%;
+    border-radius: 0.8rem;
 }
-.img1:hover{
+.prev-img:hover{
     transform: scale(1.5);
-}
-.img2{
-    transition:all 0.5s ease;
-    width: 100%;
     display: block;
-    border-style:solid;
 }
-.img2:hover{
-    transform: scale(1.5);
-}
-.img3{
-    transition:all 0.5s ease;
-    width: 100%;
-    display: block;
-    border-style:solid;
-}
-.img3:hover{
-    transform: scale(1.5);
-}
-.img4{
-    transition:all 0.5s ease;
-    width: 100%;
-    display: block;
-    border-style:solid;
-}
-.img4:hover{
-    transform: scale(1.5);
-}
-.separador{
+.separator{
     height:10px;
 }
-.separador1{
+.separator1{
     height:15px;
 }
-.separador3{
+.separator3{
     width:10px;
 }
-.categorias{
-    background-color:greenyellow;
-    border-style:solid;
+.category{
+    background-color: rgba(173, 255, 47, 0.5);
     border-radius: 20px;
-    text-aling:center;
+    text-align:center;
 }
-.busqueda{
-    background-color:orange;
-    border-style:solid;
+.details{
+    background-color: rgba(255, 166, 0, 0.5);
     border-radius: 20px;
-    text-aling:center;
+    text-align:center;
 
 }
-.ingredientes{
-    background-color:cornflowerblue;
-    border-style:solid;
+.ingredients{
     border-radius: 20px;
-    text-aling:center;
+    text-align:center;
+    background-color: rgba(100, 149, 237, 0.5);
 }
-.pollo{
+.chicken{
     width: 100%;
     display: block;
     padding-top: 10px;
 }
 body {
-    background-image: url(images/plantilla_daw.jpg);
+    /*background-image: url(images/template_daw.jpg);*/
     background-position:center center;
     background-repeat: no-repeat;
     background-size:cover;
@@ -87,16 +62,13 @@ body {
 
     padding-top: 56px;
 }
-.blog-post{
 
-}
 .carousel-item {
     height: 65vh;
     min-height: 500px;
     background: no-repeat center center scroll;
     -webkit-background-size: cover;
     background-color: white;
-    border-style:solid;
     padding:5px;
     text-align: center;
     -moz-background-size: cover;
@@ -117,11 +89,11 @@ body {
     width: 5%;
     height: 5%;
 }
-.comentarios{
+.comments{
     background-color:white;
     border-style:solid;
     border-radius: 20px;
-    text-aling:center;
+    text-align:center;
     padding:5px;
 
 }
