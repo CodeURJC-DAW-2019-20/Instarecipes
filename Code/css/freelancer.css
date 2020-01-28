@@ -632,6 +632,40 @@ th, td {
 
 /** ---------------- */
 /* Publications section */
+.trending-topic-text{
+  position: absolute;
+  top:10%;
+  height: fit-content;
+  left: 25%;
+  width: 50%;
+  z-index: 1;
+  border-bottom-left-radius: 3rem;
+  border-bottom-right-radius: 3rem;
+  background-color: rgb(240, 248, 255, 0.7);
+}
+
+.img-blur{
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+  object-fit: cover;
+}
+
+.trending-pub{
+  background-color: aliceblue;
+  border-radius: 1rem;
+  position: absolute;
+  z-index: 1;
+  width: 75%;
+  left: 12.5%;
+  top:25%;
+  height: 50%;
+  filter: blur(-8px);
+  -webkit-filter: blur(-80px);
+}
+
 .pub-date-text{
   text-align: center;
   width: 100%;
@@ -664,13 +698,29 @@ th, td {
   color: aliceblue;
   background-color: rgba(0, 0, 0, 0.5);
 }
+/* rotate and rerotate icon */
 .rotate45{
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+  -webkit-animation:spin 0.2s linear normal; 
+  -moz-animation:spin 0.2s linear normal;
+  animation:spin 0.2s linear normal;
+  animation-fill-mode: forwards;
 }
+.rotate0{
+  -webkit-animation:respin 0.2s linear reverse; 
+  -moz-animation:respin 0.2s linear reverse;
+  animation:respin 0.2s linear reverse;
+  animation-fill-mode: forwards;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(135deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(135deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(135deg); transform:rotate(135deg);}}
+
+@-moz-keyframes respin { 100% { -moz-transform: rotate(135deg); } }
+@-webkit-keyframes respin { 100% { -webkit-transform: rotate(135deg); } }
+@keyframes respin { 100% { -webkit-transform: rotate(135deg); transform:rotate(135deg);}}
+/* ----------------------- */
+
 .likes-comments{
   position: absolute;
   right: 0;

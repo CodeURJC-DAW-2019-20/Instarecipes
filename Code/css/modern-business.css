@@ -33,10 +33,10 @@
 
 .flotating-button {
   position:fixed;
-  width:10%;
-	height:10%;
-	bottom:80px;
-  right:-30px;
+  width: auto;
+	bottom: 10%;
+  left: 92%;
+  cursor: pointer;
 }
 
 .search-button{
