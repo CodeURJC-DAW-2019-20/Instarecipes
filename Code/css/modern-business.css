@@ -6,18 +6,12 @@
  body {
   padding-top: 56px;
 }
-.blog-post{
 
-  }
 .carousel-item {
   height: 65vh;
-  min-height: 500px;
+  min-height: 300px;
   background: no-repeat center center scroll;
   -webkit-background-size: cover;
-  background-color: white;
-  border-style:solid;
-  padding:5px;
-  text-align: center;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
@@ -36,14 +30,7 @@
   width: 5%;
   height: 5%;
 }
-.comentarios{
-  background-color:white;
-  border-style:solid;
-  border-radius: 20px;
-  text-aling:center;
-  padding:5px;
 
-}
 .flotating-button {
   position:fixed;
   width: auto;
