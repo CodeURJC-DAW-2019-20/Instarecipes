@@ -20,7 +20,7 @@
     border-radius: 0.8rem;
 }
 .prev-img:hover{
-    transform: scale(1.5);
+    transform: scale(1.2);
     display: block;
 }
 .separator{
