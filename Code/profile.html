@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Profile • Instarecipes</title>
+  <title>Instarecipes • Profile</title>
 
   <!-- Custom fonts for this theme -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -17,6 +17,7 @@
 
   <!-- Theme CSS -->
   <link href="css/freelancer.css" rel="stylesheet">
+  <link href="css/modern-business.css" rel="stylesheet">
 
     <!-- Images and icons-->
     <link rel="icon" type="image/png" href="images/icons/chef.png"/>
@@ -30,22 +31,12 @@
     <div class="container">
       <img width="3%" src="img/avataaars.svg" alt="">
       <a class="navbar-brand js-scroll-trigger" href="#page-top" style="margin-left: 20px;">Profile</a>
-      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" 
-      type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" 
-      aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html">Home</a>
-          </li>
-          <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#publications">Publications</a>
-          </li>
-        </ul>
-      </div>
+      <form class="example" action="search-page.html">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+      <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#publications">Publications</a>
+      <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html">Home</a>
     </div>
   </nav>
 
@@ -306,46 +297,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer text-center">
-    <div class="container">
-      <div class="row">
-
-        <!-- Footer Location -->
-        <div class="col-lg-4 mb-5 mb-lg-0">
-          <h4 class="text-uppercase mb-4">Location</h4>
-          <p class="lead mb-0">28800
-            <br>Madrid, Spain</p>
-        </div>
-
-        <!-- Footer Social Icons -->
-        <div class="col-lg-4 mb-5 mb-lg-0">
-          <h4 class="text-uppercase mb-4">Follow us in</h4>
-          <a class="btn btn-outline-light btn-social mx-1" href="#">
-            <i class="fab fa-fw fa-facebook-f"></i>
-          </a>
-          <a class="btn btn-outline-light btn-social mx-1" href="#">
-            <i class="fab fa-fw fa-twitter"></i>
-          </a>
-          <a class="btn btn-outline-light btn-social mx-1" href="#">
-            <i class="fab fa-fw fa-linkedin-in"></i>
-          </a>
-          <a class="btn btn-outline-light btn-social mx-1" href="#">
-            <i class="fab fa-fw fa-dribbble"></i>
-          </a>
-        </div>
-
-        <!-- Footer About Text -->
-        <div class="col-lg-4">
-          <h4 class="text-uppercase mb-4">Info</h4>
-          <p class="lead mb-0">Get more information of Instarecipes company and terms of use
-            <a href="http://startbootstrap.com">here</a>.</p>
-        </div>
-
-      </div>
-    </div>
-  </footer>
-
   <!-- Copyright Section -->
   <section class="copyright py-4 text-center text-white">
     <div class="container">
@@ -360,23 +311,23 @@
     </a>
   </div>
 
-<!-- Profile avatar -->
-<div class="publications-modal modal fade" id="showAvatar" tabindex="-1" role="dialog" aria-labelledby="publicationsModal1Label" aria-hidden="true">
-  <div class="modal-dialog modal-xm" role="document">
-    <div class="modal-content" style="background-color: rgba(0, 0, 0, 0.8);">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">
-          <i class="fas fa-times"></i>
-        </span>
-      </button>
-      <div class="modal-body text-center">
-        <div class="container">
-          <img class="img-fluid rounded mb-5" src="img/avataaars.svg" alt="">
+  <!-- Profile avatar -->
+  <div class="publications-modal modal fade" id="showAvatar" tabindex="-1" role="dialog" aria-labelledby="publicationsModal1Label" aria-hidden="true">
+    <div class="modal-dialog modal-xm" role="document">
+      <div class="modal-content" style="background-color: rgba(0, 0, 0, 0.8);">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <img class="img-fluid rounded mb-5" src="img/avataaars.svg" alt="">
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
   <!-- user following -->
   <div class="publications-modal modal fade" id="following" tabindex="-1" role="dialog" 
@@ -728,9 +679,9 @@
                     <p class="mb-5">30 min.</p>
                   </div>
                 </div>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                <a class="btn btn-primary" href="simple-recipe.html">
                   <img class="rounded" src="images/icons/go.png" alt="">
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -799,9 +750,9 @@
                     <p class="mb-5">20 min.</p>
                   </div>
                 </div>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                <a class="btn btn-primary" href="simple-recipe.html">
                   <img class="rounded" src="images/icons/go.png" alt="">
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -872,9 +823,9 @@
                     <p class="mb-5">30 min.</p>
                   </div>
                 </div>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                <a class="btn btn-primary" href="simple-recipe.html">
                   <img class="rounded" src="images/icons/go.png" alt="">
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -956,9 +907,9 @@
                     <p class="mb-5">30 min.</p>
                   </div>
                 </div>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                <a class="btn btn-primary" href="simple-recipe.html">
                   <img class="rounded" src="images/icons/go.png" alt="">
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -1040,9 +991,9 @@
                     <p class="mb-5">30 min.</p>
                   </div>
                 </div>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                <a class="btn btn-primary" href="simple-recipe.html">
                   <img class="rounded" src="images/icons/go.png" alt="">
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -1124,9 +1075,9 @@
                     <p class="mb-5">30 min.</p>
                   </div>
                 </div>
-                <button class="btn btn-primary" href="#" data-dismiss="modal">
+                <a class="btn btn-primary" href="simple-recipe.html">
                   <img class="rounded" src="images/icons/go.png" alt="">
-                </button>
+                </a>
               </div>
             </div>
           </div>

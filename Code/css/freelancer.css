@@ -4666,18 +4666,17 @@ input[type="button"].btn-block {
 }
 
 .card-img {
-  width: 100%;
   border-radius: calc(0.5rem - 0.125rem);
 }
 
 .card-img-top {
-  width: 100%;
+  object-fit: cover;
+  height: 200px;
   border-top-left-radius: calc(0.5rem - 0.125rem);
   border-top-right-radius: calc(0.5rem - 0.125rem);
 }
 
 .card-img-bottom {
-  width: 100%;
   border-bottom-right-radius: calc(0.5rem - 0.125rem);
   border-bottom-left-radius: calc(0.5rem - 0.125rem);
 }
