@@ -54,17 +54,6 @@
   cursor: pointer;
 }
 
-.search-button{
-  position:fixed;
-  /*transform: translate(-50%,-50%);*/
-  background: transparent;
-  border-radius:40px;
-  padding: 10px;
-  bottom: 5px;
-  right: 35px;
-  height: 5%;
-}
-
 /* Style the search field */
 form.example input[type=text] {
   padding: 10px;
@@ -102,35 +91,70 @@ form.example::after {
   display: table;
 }
 
-.search-button:hover > .search-txt{
-  width: 240px;
-  padding: 0 6px;
-  background-color: whitesmoke;
-} 
+/*------------------------------------------------------------------
+[ Search button design ]*/
+.search-button{
+  position: fixed;
+  background: #2be964;
+  border-radius: 60%;
+  padding: 10px;
+  bottom: 2%;
+  height: 5.2%;
+  left: 92%;
+  width: 2.8%;
+  cursor: pointer;
+}
 
+/*icon*/
 .search-btn{
   color: white;
-  float: right;
-  width: 40px;
-  height: 120px;
-  border-radius: 60%;
-  background:#2be964 ;
-  display: flex;
+}
+/*------------------------------------------------------------------
+[ Ingredients scrollbar ]*/
+.ingredients-scroll{
+  left: -10;
+}
+.btn-delete-line {
+  background-color: rgb(212, 69, 69);
+  border-radius: 0.8rem;
+  border-color: rgb(88, 0, 0) ;
+}
+.btn-delete-ingredients, .btn-delete-categories, .btn-delete-allergens { 
+  width: 15%;
+  height: 10%;
+  background-color: rgb(212, 69, 69);
+  border-color: rgb(88, 0, 0);
   justify-content: center;
-  align-items: center;
-  height: 120%;
+  border-radius: 0.8rem;
 }
 
-.search-txt{
-  border: none;
-  background: none;
-  outline: none;
-  float: left;
-  border-radius: 10px;
-  padding: 0;
-  color: black;
-  font-size: 16px;
-  transition: 0.4s;
-  line-height: 25px;
-  width: 0;
+.btn-add-ingredient, .btn-add-category, .btn-add-allergen{
+  width: 15%;
+  height: 10%;
+  background-color: teal;
+  border-color: #343a40;
+  justify-content: center;
+  border-radius: 0.8rem;
 }
+
+/*------------------------------------------------------------------
+[ On mouse-over ]*/
+.search-btn:hover {color: white;}
+/*Ingredients*/
+.btn-add-ingredient:hover {background: rgb(8, 206, 206);}
+.btn-delete-ingredients:hover {background: rgb(252, 78, 78);}
+.btn-delete-line:hover {background: rgb(252, 78, 78);}
+
+/*Categories*/
+.btn-add-category:hover {background: rgb(8, 206, 206);}
+.btn-delete-categories:hover {background: rgb(252, 78, 78);}
+
+/*allergens*/
+.btn-add-allergen:hover{background: rgb(8, 206, 206);}
+.btn-delete-allergens:hover{background: rgb(252, 78, 78);}
+
+.success {color: green;}
+.info {color: dodgerblue;}
+.warning {color: orange;}
+.danger {color: red;}
+.default {color: black;}

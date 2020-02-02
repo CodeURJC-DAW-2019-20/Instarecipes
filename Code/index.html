@@ -389,14 +389,157 @@
       </div>
     </div>
 
-    <!-- search button -->
-    <div id="open-search-button" class='search-button'>
-      <!-- search-txt -->
-      <input class="search-txt" type="text" name="" placeholder="Type to search a recipe!">
-      <!-- search-btn -->
+    <!-- search button-->
+    <div id="open-search-button" class='search-button'> 
+      <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-search-button" 
+      style="width: max-content">      
       <a class="search-btn" href="#">
-        <i class="fas fa-search"></i>
+        <i class="fas fa-search" aria-hidden="true"></i>
       </a>
+      </div>
+    </div>
+
+<!-- Search button pannel -->
+    <div class="publications-modal modal fade" id="opened-search-button" tabindex="-1" role="dialog" aria-labelledby="publicationsModal6Label" aria-hidden="true">
+      <div id="filtered-search" class="modal-dialog modal-xl" role="document">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">
+                <i class="fas fa-times"></i>
+              </span>
+            </button>
+            <div class="modal-body text-center">
+              <div class="container">
+                  <div class="col-lg-12">
+                  <!-- publications Modal - Title -->
+                    <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Filtered Search</h2>
+                  <!-- Icon Divider -->
+                    <div class="divider-custom">
+                      <div class="divider-custom-line"></div>
+                      <div class="divider-custom-icon">
+                        <img src='images/orange-search.png' width="50%" style="height: 50px; width: 50px;"/>
+                      </div>
+                    <div class="divider-custom-line"></div>
+                    </div> 
+                    <!-- INGREDIENT FILTER -->
+                    <h3 class="underlined-text">INGREDIENTS</h3>
+                    <div class="ingredients-options" >
+                      <h7>Ingredient</h7>
+                      <input type="text" name="ingredients-scroll" list="ingredientslist" placeholder="Type an ingredient..">
+                        <datalist id="ingredientslist">
+                          <option value="dark chocolate"></option>
+                          <option value="potatoes"></option>
+                          <option value="oil"></option>
+                          <option value="white chocolate"></option>   
+                          <option value="garlic"></option>
+                          <option value="milk chocolate"></option>        
+                        </datalist>
+                        <h7>Quantity</h7>
+                        <input type="text" name="ingredients-quantity" placeholder="Type a quantity..">
+                        <h7>Unit</h7>
+                        <input type="text" name="ingredients-unit" list="ingredientsunit" placeholder="Type a unit..">
+                        <datalist id="ingredientsunit">
+                          <option value="Gr"></option>
+                          <option value="L"></option>    
+                          <option value="K"></option>        
+                        </datalist>
+
+                        <button type="button" class="btn-delete-line" style="color: white;font-size: inherit;">
+                          <span aria-hidden="true">
+                            <i class="fas fa-trash"></i>
+                          </span>
+                        </button>
+                    </div>
+                    <hr>
+                      <!-- add and delete ingredients buttons -->
+                        <button type="button" class="btn-add-ingredient">
+                          <span aria-hidden="true">                           
+                              <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                              <h6 class="text">ADD</h6>
+                          </span>
+                        </button>
+                        <button type="button" class="btn-delete-ingredients">
+                          <span aria-hidden="true">            
+                            <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                            <h6 class="text">DELETE ALL</h6>
+                        </button>
+                    <hr>
+                    <!-- CATEGORY FILTER -->
+                    <h3 class="underlined-text">CATEGORIES</h3>
+                    <div class="categories-options">
+                    <input type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
+                        <datalist id="categorieslist">
+                          <option value="Vegan"></option>
+                          <option value="Grains"></option>     
+                          <option value="Beans"></option> 
+                          <option value="Seafood"></option>  
+                          <option value="Vegetarian"></option>   
+                          <option value="Shellfish"></option>    
+                        </datalist>
+
+                        <button type="button" class="btn-delete-line" style="color: white;font-size: inherit;">
+                          <span aria-hidden="true">
+                            <i class="fas fa-trash"></i>
+                          </span>
+                        </button>
+                    </div>
+                    <hr>
+                      <!-- add and delete categories-->
+                        <button type="button" class="btn-add-category" >
+                          <span aria-hidden="true">                           
+                            <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                            <h6 class="text">ADD</h6>
+                          </span>
+                        </button>
+                        <button type="button" class="btn-delete-categories">
+                          <span aria-hidden="true">            
+                            <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                            <h6 class="text">DELETE ALL</h6>
+                        </button>
+                    <hr>    
+                    <!-- ALLERGEN FILTER -->
+                    <h3 class="underlined-text">ALLERGENS</h3>
+                    <div class="allergens-options">
+                    <input type="text" name="allergens-scroll" list="allergenslist" placeholder="Type an allergen..">
+                        <datalist id="allergenslist">
+                          <option value="Peanuts"></option>
+                          <option value="Crustaceans"></option>     
+                          <option value="Eggs"></option> 
+                          <option value="Soybeans"></option>  
+                          <option value="Milk"></option>   
+                          <option value="Mustard"></option>    
+                        </datalist>
+
+                        <button type="button" class="btn-delete-line" style="color: white;font-size: inherit;">
+                          <span aria-hidden="true">
+                            <i class="fas fa-trash"></i>
+                          </span>
+                        </button>
+                    </div>
+                    <hr>
+                      <!-- add and delete allergens-->
+                        <button type="button" class="btn-add-allergen" >
+                          <span aria-hidden="true">                           
+                            <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                            <h6 class="text">ADD</h6>
+                          </span>
+                        </button>
+                        <button type="button" class="btn-delete-allergens">
+                          <span aria-hidden="true">            
+                            <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                            <h6 class="text">DELETE ALL</h6>
+                        </button>
+                    <hr>
+                  </div>
+                  <button class="btn btn-primary" href="#" data-dismiss="modal">
+                    <h6 class="text">Go!</h6>
+                    <img class="img-fluid rounded" src="images/pizza-go.png" alt="" width="50%" style="height: 50px; width: 50px;">
+                  </button>
+              </div>
+            </div> 
+        </div>
+      </div>
     </div>
   </div>
 
@@ -510,6 +653,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
   <!-- /.container -->
 
