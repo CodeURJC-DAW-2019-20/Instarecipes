@@ -206,7 +206,6 @@ iframe {
 }
 
 
-
 /*------------------------------------------------------------------
 [ Input ]*/
 
@@ -215,6 +214,7 @@ iframe {
   position: relative;
   border-bottom: 2px solid #d9d9d9;
 }
+
 
 .label-input100 {
   font-family: Poppins-Regular;
@@ -374,6 +374,7 @@ iframe {
 }
 
 
+
 /*------------------------------------------------------------------
 [ Alert validate ]*/
 
@@ -475,3 +476,7 @@ iframe {
     padding-right: 15px;
   }
 } 
+
+#signupDiv{
+  display:none;
+}
