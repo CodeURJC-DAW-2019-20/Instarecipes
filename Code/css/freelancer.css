@@ -631,6 +631,72 @@ th, td {
 }
 
 /** ---------------- */
+/* Add recipe section */
+.avaiable-ingredients{
+  margin: 5px;
+  border-radius: 0.5rem;
+}
+.avaiable-categories{
+  margin: 5px;
+  border-radius: 0.5rem;
+}
+.avaiable-quantity{
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 0.5rem;
+}
+fieldset
+{
+    border: solid 0px #000;
+    padding:10px;
+    display:block;
+    clear:both;
+    margin:5px 0px;
+}
+legend
+{
+    padding:0px 10px;
+    background:black;
+    color:#FFF;
+}
+input.add
+{
+    float:right;
+}
+input.fieldname
+{
+    float:left;
+    clear:left;
+    display:block;
+    margin:5px;
+}
+select.fieldtype
+{
+    float:left;
+    display:block;
+    margin:5px;
+}
+input.remove
+{
+    float:left;
+    display:block;
+    margin:5px;
+}
+#yourform label
+{
+    float:left;
+    clear:left;
+    display:block;
+    margin:5px;
+}
+#yourform input, #yourform textarea
+{
+    float:left;
+    display:block;
+    margin:5px;
+}
+/** ---------------- */
 /* Publications section */
 .trending-topic-text{
   position: absolute;
@@ -738,6 +804,55 @@ th, td {
 .centered-img{
   align-self: center;
 }
+.rating {
+  width: 100%;
+  --star-size: 3;  /* use CSS variables to calculate dependent dimensions later */
+  padding: 0;  /* to prevent flicker when mousing over padding */
+  border: none;  /* to prevent flicker when mousing over border */
+  unicode-bidi: bidi-override; direction: rtl;  /* for CSS-only style change on hover */
+  text-align: left;  /* revert the RTL direction */
+  user-select: none;  /* disable mouse/touch selection */
+  font-size: 3em;  /* fallback - IE doesn't support CSS variables */
+  font-size: calc(var(--star-size) * 1em);  /* because `var(--star-size)em` would be too good to be true */
+  cursor: pointer;
+  /* disable touch feedback on cursor: pointer - http://stackoverflow.com/q/25704650/1269037 */
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+}
+ /* the stars */
+ .rating > label {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;  /* magic number to overlap the radio buttons on top of the stars */
+  width: calc(var(--star-size) / 3 * 1.1em);
+}
+.rating > *:hover,
+  .rating > *:hover ~ label,
+  .rating:not(:hover) > input:checked ~ label {
+    color: transparent;  /* reveal the contour/white star from the HTML markup */
+    cursor: inherit;  /* avoid a cursor transition from arrow/pointer to text selection */
+  }
+  .rating > *:hover:before,
+  .rating > *:hover ~ label:before,
+  .rating:not(:hover) > input:checked ~ label:before {
+    content: "★";
+    position: absolute;
+    left: 0;
+    color: gold;
+  }
+  .rating > input {
+    position: relative;
+    transform: scale(3);  /* make the radio buttons big; they don't inherit font-size */
+    transform: scale(var(--star-size));
+    /* the magic numbers below correlate with the font-size */
+    top: -0.5em;  /* margin-top doesn't work */
+    top: calc(var(--star-size) / 6 * -1em);
+    margin-left: -2.5em;  /* overlap the radio buttons exactly under the stars */
+    margin-left: calc(var(--star-size) / 6 * -5em);
+    z-index: 2;  /* bring the button above the stars so it captures touches/clicks */
+    opacity: 0;  /* comment to see where the radio buttons are */
+    font-size: initial; /* reset to default */
+  }
 
 .likes-comments-simple-recipe {
   right: 0;
