@@ -4242,6 +4242,7 @@ input[type="button"].btn-block {
   width: fit-content;
   white-space: nowrap;
   margin-right:5%;
+  margin-left: 5%;
 }
 
 .nav-link {

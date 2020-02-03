@@ -135,9 +135,15 @@ form.example::after {
   justify-content: center;
   border-radius: 0.8rem;
 }
+/*------------------------------------------------------------------
+[ Profile Stadistics ]*/
 
+.stadistics-button {
+  cursor: pointer;
+}
 /*------------------------------------------------------------------
 [ On mouse-over ]*/
+.stadistics-button:hover {color: white;}
 .search-btn:hover {color: white;}
 /*Ingredients*/
 .btn-add-ingredient:hover {background: rgb(8, 206, 206);}
