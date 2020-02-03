@@ -443,7 +443,7 @@
                           <div class="row">
                             <div class="col-6">
                               <p style="text-align: center;font-size: 10px;height: 8px;">Ingredient</p>
-                              <input type="text" name="ingredients-scroll" list="ingredientslist" placeholder="Ingredient..">
+                              <input style="width: inherit;border-radius: 0.5rem;border-width: 0.5px;" type="text" name="ingredients-scroll" list="ingredientslist" placeholder="Ingredient..">
                               <datalist id="ingredientslist">
                                 <option value="dark chocolate"></option>
                                 <option value="potatoes"></option>
@@ -453,13 +453,19 @@
                                 <option value="milk chocolate"></option>        
                               </datalist>
                             </div>
-                            <input class="col-2" style="margin-left: 4%;" type="text" name="ingredients-quantity" placeholder="Quantity">
-                            <input class="col-3" style="margin-left: 4%;" type="text" name="ingredients-unit" list="ingredientsunit" placeholder="Units">
-                            <datalist id="ingredientsunit">
-                              <option value="Gr"></option>
-                              <option value="L"></option>    
-                              <option value="K"></option>        
-                            </datalist>
+                            <div class="col-3" style="padding-left: 0;">
+                              <p style="text-align: center;font-size: 10px;height: 8px;width: 100%;">Quantity</p>
+                              <input style="text-align: center;width: inherit;border-radius: 0.5rem;border-width: 0.5px;" type="text" name="ingredients-quantity" placeholder="Quantity">
+                            </div>
+                            <div class="col-3" style="padding-left: 0;">
+                              <p style="text-align: center;font-size: 10px;height: 8px;">Units</p>
+                              <input style="text-align: center;width: inherit;border-radius: 0.5rem;border-width: 0.5px;" type="text" name="ingredients-unit" list="ingredientsunit" placeholder="Units">
+                              <datalist id="ingredientsunit">
+                                <option value="grs."></option>
+                                <option value="Kg./L"></option>    
+                                <option value="Units"></option>        
+                              </datalist>
+                            </div>
                           </div>
                           <button type="button" class="btn-delete-line" style="color: white;font-size: inherit;">
                             <span aria-hidden="true">
@@ -486,7 +492,7 @@
                         <!-- CATEGORY FILTER -->
                         <h3 class="underlined-text">COOKING STYLE</h3>
                         <div class="categories-options">
-                        <input type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
+                        <input style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
                             <datalist id="categorieslist">
                               <option value="Vegan"></option>
                               <option value="Grains"></option>     
@@ -521,7 +527,7 @@
                         <!-- CATEGORY FILTER -->
                         <h3 class="underlined-text">CATEGORIES</h3>
                         <div class="categories-options">
-                        <input type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
+                        <input style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
                             <datalist id="categorieslist">
                               <option value="Vegan"></option>
                               <option value="Grains"></option>     
@@ -554,7 +560,7 @@
                         <!-- ALLERGEN FILTER -->
                       <h3 class="underlined-text">ALLERGENS</h3>
                       <div class="allergens-options">
-                        <input type="text" name="allergens-scroll" list="allergenslist" placeholder="Type an allergen..">
+                        <input style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="allergens-scroll" list="allergenslist" placeholder="Type an allergen..">
                           <datalist id="allergenslist">
                             <option value="Peanuts"></option>
                             <option value="Crustaceans"></option>     
