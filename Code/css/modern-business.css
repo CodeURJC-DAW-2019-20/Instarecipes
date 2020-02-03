@@ -6,9 +6,6 @@
  body {
   padding-top: 56px;
 }
-.blog-post{
-
-  }
   
 .carousel-item {
   height: 65vh;
@@ -54,7 +51,6 @@
   left: 92%;
   cursor: pointer;
 }
-.contsearch{}
 /* Style the search field */
 form.example input[type=text] {
   padding: 10px;
@@ -66,7 +62,6 @@ form.example input[type=text] {
   background: #f1f1f1;
   border-bottom-left-radius: 0.5rem;
   border-top-left-radius: 0.5rem;
-  m;
 }
 
 /* Style the submit button */
