@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Instarecipes • Profile</title>
+  <!-- Images and icons-->
+  <link rel="icon" type="image/png" href="images/icons/chef.png"/>
+
+  <!-- Custom fonts for this theme -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Theme CSS -->
+  <link href="css/freelancer.css" rel="stylesheet">
+  <link href="css/modern-business.css" rel="stylesheet">
+
+  <!-- Images and icons-->
+  <link rel="icon" type="image/png" href="images/icons/chef.png" />
+
+</head>
+
+<body id="page-top" style="background-size: cover;">
+
+ 
+
+  
+  <header class="masthead bg-primary text-white text-center">
+  
+    <div class="container d-flex align-items-center flex-column" >
+
+     
+  
+      <h3 class="text-uppercase mb-0">Top 10 Ranking</h3>
+      
+
+    
+    <table class="table" style="width: 80%; margin-left: 10%; margin-right: 10%; margin-top: 3%; background-color: azure;">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Likes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>@trevod</td>
+            <td>255</td>
+            
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>@rosalia</td>
+            <td>189</td>
+         
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>@travisScott</td>
+            <td>98</td>
+         
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>@daniM</td>
+            <td>88</td>
+         
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>@haldrobi</td>
+            <td>82</td>
+         
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>@chicoote</td>
+            <td>80</td>
+         
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td>@karguinano</td>
+            <td>77</td>
+         
+          </tr>
+          <tr>
+            <th scope="row">8</th>
+            <td>@pepeCol</td>
+            <td>68</td>
+         
+          </tr>
+          <tr>
+            <th scope="row">9</th>
+            <td>@julia</td>
+            <td>67</td>
+         
+          </tr>
+          <tr>
+            <th scope="row">10</th>
+            <td>@juanito</td>
+            <td>52</td>
+         
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </header>
+
+ 
+
+  <!-- Copyright Section -->
+  <section class="copyright py-4 text-center text-white">
+    <div class="container">
+      <small>Copyright &copy; Instarecipes 2020</small>
+    </div>
+  </section>
+
+  <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+  <div class="scroll-to-top d-lg-none position-fixed ">
+    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+
+  <!-- Profile avatar -->
+  <div class="publications-modal modal fade" id="showAvatar" tabindex="-1" role="dialog" aria-labelledby="publicationsModal1Label" aria-hidden="true">
+    <div class="modal-dialog modal-xm" role="document">
+      <div class="modal-content" style="background-color: rgba(0, 0, 0, 0.8);">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <img class="img-fluid rounded mb-5" src="img/avataaars.svg" alt="" style="height: auto;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- user following -->
+  <div class="publications-modal modal fade" id="following" tabindex="-1" role="dialog"
+    aria-labelledby="publicationsModal1Label" aria-hidden="true" style="overflow-y: hidden;">
+    <div class="modal-dialog modal-xm" role="document">
+      <div class="modal-content" style="height: 700px;">
+        <div style="height: 20%; position: relative;">
+          <div class="row" style="margin-left: 0px; margin-right: 0px;">
+            <div class="col-11" style="position: absolute; bottom: 0;">
+              <!-- publications Modal - Title -->
+              <h2 class="publications-modal-title text-secondary text-uppercase mb-0"
+                style="text-align: center; margin-top: 2%;">Following</h2>
+              <!-- Icon Divider -->
+              <div class="divider-custom" style="margin:0px">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="divider-custom-line"></div>
+              </div>
+            </div>
+            <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">
+                <i class="fas fa-times"></i>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="modal-body text-center container" style="height: 80%; padding: 2rem 1rem;">
+          <div class="row justify-content-center" style="height: 100%;">
+            <div class="col-lg-12" style="height: 100%">
+              <div class="col-12" style="height: 100%;">
+                <div class="nav-item dropdown scrolling">
+                  <!-- User x -->
+                  <div class="row">
+                    <div class="col-2">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="img/avataaars.svg" alt="">
+                    </div>
+                    <div class="col-6">
+                      <h6 style="text-align:left;">Princess Elisabeth </h6>
+                      <p style="text-align:left;">@elisabeth</p>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
+                    </div>
+                  </div>
+                  <!-- User x -->
+                  <div class="row">
+                    <div class="col-2">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="img/avataaars.svg" alt="">
+                    </div>
+                    <div class="col-6">
+                      <h6 style="text-align:left;">Nick Chelsea Vane</h6>
+                      <p style="text-align:left;">@nickvane</p>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
+                    </div>
+                  </div>
+                  <!-- User x -->
+                  <div class="row">
+                    <div class="col-2">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="img/avataaars.svg" alt="">
+                    </div>
+                    <div class="col-6">
+                      <h6 style="text-align:left;">Julie Ham</h6>
+                      <p style="text-align:left;">@myhamsterissocute</p>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn btn-primary">Follow</div>
+                    </div>
+                  </div>
+                  <!-- User x -->
+                  <div class="row">
+                    <div class="col-2">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="img/avataaars.svg" alt="">
+                    </div>
+                    <div class="col-6">
+                      <h6 style="text-align:left;">David Spear</h6>
+                      <p style="text-align:left;">@stronger666</p>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
+                    </div>
+                  </div>
+                  <!-- User x -->
+                  <div class="row">
+                    <div class="col-2">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="img/avataaars.svg" alt="">
+                    </div>
+                    <div class="col-6">
+                      <h6 style="text-align:left;">Alice Turner</h6>
+                      <p style="text-align:left;">@turnertun3</p>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn btn-primary">Follow</div>
+                    </div>
+                  </div>
+                  <!-- User x -->
+                  <div class="row">
+                    <div class="col-2">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="img/avataaars.svg" alt="">
+                    </div>
+                    <div class="col-6">
+                      <h6 style="text-align:left;">Alfred Homes</h6>
+                      <p style="text-align:left;">@alfredhomes</p>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn btn-primary">Follow</div>
+                    </div>
+                  </div>
+                  <!-- User x -->
+                  <div class="row">
+                    <div class="col-2">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="img/avataaars.svg" alt="">
+                    </div>
+                    <div class="col-6">
+                      <h6 style="text-align:left;">Jason Smith</h6>
+                      <p style="text-align:left;">@jsmith</p>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
+                    </div>
+                  </div>
+                  <!-- User x -->
+                  <div class="row">
+                    <div class="col-2">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="img/avataaars.svg" alt="">
+                    </div>
+                    <div class="col-6">
+                      <h6 style="text-align:left;">Mr. Eric</h6>
+                      <p style="text-align:left;">@ericcrack</p>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn btn-primary">Follow</div>
+                    </div>
+                  </div>
+                  <!-- User x -->
+                  <div class="row">
+                    <div class="col-2">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="img/avataaars.svg" alt="">
+                    </div>
+                    <div class="col-6">
+                      <h6 style="text-align:left;">Lewis Parker</h6>
+                      <p style="text-align:left;">@mynameislewis</p>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
+                    </div>
+                  </div>
+                  <!-- User x -->
+                  <div class="row">
+                    <div class="col-2">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="img/avataaars.svg" alt="">
+                    </div>
+                    <div class="col-6">
+                      <h6 style="text-align:left;">Jeniffer Boston</h6>
+                      <p style="text-align:left;">@jenny92</p>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn btn-primary">Follow</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- user following -->
+  <div class="publications-modal modal fade" id="followers" tabindex="-1" role="dialog"
+    aria-labelledby="publicationsModal1Label" aria-hidden="true" style="overflow-y: hidden;">
+    <div class="modal-dialog modal-xm" role="document">
+      <div class="modal-content" style="height: 700px;">
+        <div style="height: 20%; position: relative;">
+          <div class="row" style="margin-left: 0px; margin-right: 0px;">
+            <div class="col-11" style="position: absolute; bottom: 0;">
+              <!-- publications Modal - Title -->
+              <h2 class="publications-modal-title text-secondary text-uppercase mb-0"
+                style="text-align: center; margin-top: 2%;">Followers</h2>
+              <!-- Icon Divider -->
+              <div class="divider-custom" style="margin:0px">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="divider-custom-line"></div>
+              </div>
+            </div>
+            <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">
+                <i class="fas fa-times"></i>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="modal-body text-center container" style="height: 80%; padding: 2rem 1rem;">
+          <div class="row justify-content-center" style="height: 100%;">
+            <div class="col-lg-12" style="height: 100%">
+              <div class="col-12" style="height: 100%;">
+                <div class="nav-item dropdown scrolling">
+                  <!-- User x -->
+                  <div class="row">
+                    <div class="col-2">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="img/avataaars.svg" alt="">
+                    </div>
+                    <div class="col-6">
+                      <h6 style="text-align:left;">David Spear</h6>
+                      <p style="text-align:left;">@stronger666</p>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
+                    </div>
+                  </div>
+                  <!-- User x -->
+                  <div class="row">
+                    <div class="col-2">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="img/avataaars.svg" alt="">
+                    </div>
+                    <div class="col-6">
+                      <h6 style="text-align:left;">Alice Turner</h6>
+                      <p style="text-align:left;">@turnertun3</p>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn btn-primary">Follow</div>
+                    </div>
+                  </div>
+                  <!-- User x -->
+                  <div class="row">
+                    <div class="col-2">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="img/avataaars.svg" alt="">
+                    </div>
+                    <div class="col-6">
+                      <h6 style="text-align:left;">Princess Elisabeth </h6>
+                      <p style="text-align:left;">@elisabeth</p>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
+                    </div>
+                  </div>
+                  <!-- User x -->
+                  <div class="row">
+                    <div class="col-2">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="img/avataaars.svg" alt="">
+                    </div>
+                    <div class="col-6">
+                      <h6 style="text-align:left;">Julie Ham</h6>
+                      <p style="text-align:left;">@myhamsterissocute</p>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn btn-primary">Follow</div>
+                    </div>
+                  </div>
+                  <!-- User x -->
+                  <div class="row">
+                    <div class="col-2">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="img/avataaars.svg" alt="">
+                    </div>
+                    <div class="col-6">
+                      <h6 style="text-align:left;">Nick Chelsea Vane</h6>
+                      <p style="text-align:left;">@nickvane</p>
+                    </div>
+                    <div class="col-4">
+                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- publications Modals -->
+
+  <!-- publications Modal 1 -->
+  <div class="publications-modal modal fade" id="publicationsModal1" tabindex="-1" role="dialog"
+    aria-labelledby="publicationsModal1Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-12">
+                <!-- publications Modal - Title -->
+                <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Vegetal pizza</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
+                  <h3 class="underlined-text">INGREDIENTS</h3>
+                </div>
+                <div class="row" style="height: 300px;">
+                <!-- publications Modal - Image -->
+                  <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
+                    <img class="img-fluid-preview rounded mb-5" src="images/recipe_example_1.jpg" alt="">
+                  </div>
+                  <div class="col-4" style="height: 300px;">
+                    <div class="nav-item dropdown scrolling">
+                      <p class="dropdown-item">1. Bread</p>
+                      <p class="dropdown-item">20 grs. Mushrooms</p>
+                      <p class="dropdown-item">30 grs. Beans</p>
+                      <p class="dropdown-item">50 grs. Nuts</p>
+                      <p class="dropdown-item">30 grs. Salad</p>
+                      <p class="dropdown-item">20 grs. Tomatoe</p>
+                      <p class="dropdown-item">1. Bread</p>
+                      <p class="dropdown-item">20 grs. Mushrooms</p>
+                      <p class="dropdown-item">30 grs. Beans</p>
+                      <p class="dropdown-item">50 grs. Nuts</p>
+                      <p class="dropdown-item">30 grs. Salad</p>
+                      <p class="dropdown-item">20 grs. Tomatoe</p>
+                      <p class="dropdown-item">1. Bread</p>
+                      <p class="dropdown-item">20 grs. Mushrooms</p>
+                      <p class="dropdown-item">30 grs. Beans</p>
+                      <p class="dropdown-item">50 grs. Nuts</p>
+                      <p class="dropdown-item">30 grs. Salad</p>
+                      <p class="dropdown-item">20 grs. Tomatoe</p>
+                    </div>
+                  </div>
+                </div>
+                <h3 class="underlined-text" style="margin-top: 10px;">INTRODUCTION</h3>
+                  <!-- publications Modal - Text -->
+                  <p class="mb-5" style="text-align:left;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam 
+                    velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <div class="row">
+                  <div class="col-4">
+                    <h3 class="underlined-text">CATEGORY</h3>
+                    <p class="mb-5">Vegetarian</p>
+                  </div>
+                  <div class="col-4">
+                    <h3 class="underlined-text">DIFICULTY</h3>
+                    <p class="mb-5">Easy</p>
+                  </div>
+                  <div class="col-4">
+                    <h3 class="underlined-text">APROXIMATED TIME</h3>
+                    <p class="mb-5">30 min.</p>
+                  </div>
+                </div>
+                <a class="btn btn-primary" href="simple-recipe.html">
+                  <img class="rounded" src="images/icons/go.png" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- publications Modal 2 -->
+  <div class="publications-modal modal fade" id="publicationsModal2" tabindex="-1" role="dialog"
+    aria-labelledby="publicationsModal2Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-12">
+                <!-- publications Modal - Title -->
+                <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Strawberry Juice</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
+                  <h3 class="underlined-text">INGREDIENTS</h3>
+                </div>
+                <div class="row" style="height: 300px;">
+                <!-- publications Modal - Image -->
+                  <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
+                    <img class="img-fluid-preview rounded mb-5" src="images/recipe_example_2.jpg" alt="">
+                  </div>
+                  <div class="col-4" style="height: 300px;">
+                    <div class="nav-item dropdown scrolling">
+                      <p class="dropdown-item">20 grs. Mushrooms</p>
+                      <p class="dropdown-item">30 grs. Raspberry</p>
+                      <p class="dropdown-item">50 grs. Strawberry</p>
+                      <p class="dropdown-item">1/2 l. Milk</p>
+                      <p class="dropdown-item">20 grs. Bananna</p>
+                    </div>
+                  </div>
+                </div>
+                <h3 class="underlined-text" style="margin-top: 10px;">INTRODUCTION</h3>
+                  <!-- publications Modal - Text -->
+                  <p class="mb-5" style="text-align:left;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam 
+                    velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <div class="row">
+                  <div class="col-4">
+                    <h3 class="underlined-text">CATEGORY</h3>
+                    <p class="mb-5">Dessert</p>
+                  </div>
+                  <div class="col-4">
+                    <h3 class="underlined-text">DIFICULTY</h3>
+                    <p class="mb-5">Easy</p>
+                  </div>
+                  <div class="col-4">
+                    <h3 class="underlined-text">APROXIMATED TIME</h3>
+                    <p class="mb-5">20 min.</p>
+                  </div>
+                </div>
+                <a class="btn btn-primary" href="simple-recipe.html">
+                  <img class="rounded" src="images/icons/go.png" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- publications Modal 3 -->
+  <div class="publications-modal modal fade" id="publicationsModal3" tabindex="-1" role="dialog"
+    aria-labelledby="publicationsModal3Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-12">
+                <!-- publications Modal - Title -->
+                <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Vegetal pizza</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
+                  <h3 class="underlined-text">INGREDIENTS</h3>
+                </div>
+                <div class="row" style="height: 300px;">
+                <!-- publications Modal - Image -->
+                  <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
+                    <img class="img-fluid-preview rounded mb-5" src="images/recipe_example_3.jpg" alt="">
+                  </div>
+                  <div class="col-4" style="height: 300px;">
+                    <div class="nav-item dropdown scrolling">
+                      <p class="dropdown-item">1. Bread</p>
+                      <p class="dropdown-item">20 grs. Mushrooms</p>
+                      <p class="dropdown-item">30 grs. Beans</p>
+                      <p class="dropdown-item">50 grs. Nuts</p>
+                      <p class="dropdown-item">30 grs. Salad</p>
+                      <p class="dropdown-item">20 grs. Tomatoe</p>
+                      <p class="dropdown-item">1. Bread</p>
+                    </div>
+                  </div>
+                </div>
+                <h3 class="underlined-text" style="margin-top: 10px;">INTRODUCTION</h3>
+                  <!-- publications Modal - Text -->
+                  <p class="mb-5" style="text-align:left;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam 
+                    velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <div class="row">
+                  <div class="col-4">
+                    <h3 class="underlined-text">CATEGORY</h3>
+                    <p class="mb-5">Vegetarian</p>
+                  </div>
+                  <div class="col-4">
+                    <h3 class="underlined-text">DIFICULTY</h3>
+                    <p class="mb-5">Easy</p>
+                  </div>
+                  <div class="col-4">
+                    <h3 class="underlined-text">APROXIMATED TIME</h3>
+                    <p class="mb-5">30 min.</p>
+                  </div>
+                </div>
+                <a class="btn btn-primary" href="simple-recipe.html">
+                  <img class="rounded" src="images/icons/go.png" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- publications Modal 4 -->
+  <div class="publications-modal modal fade" id="publicationsModal4" tabindex="-1" role="dialog"
+    aria-labelledby="publicationsModal4Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-12">
+                <!-- publications Modal - Title -->
+                <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Vegetal pizza</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
+                  <h3 class="underlined-text">INGREDIENTS</h3>
+                </div>
+                <div class="row" style="height: 300px;">
+                <!-- publications Modal - Image -->
+                  <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
+                    <img class="img-fluid-preview rounded mb-5" src="images/recipe_example_4.jpg" alt="">
+                  </div>
+                  <div class="col-4" style="height: 300px;">
+                    <div class="nav-item dropdown scrolling">
+                      <p class="dropdown-item">1. Bread</p>
+                      <p class="dropdown-item">20 grs. Mushrooms</p>
+                      <p class="dropdown-item">30 grs. Beans</p>
+                      <p class="dropdown-item">50 grs. Nuts</p>
+                      <p class="dropdown-item">30 grs. Salad</p>
+                      <p class="dropdown-item">20 grs. Tomatoe</p>
+                      <p class="dropdown-item">1. Bread</p>
+                      <p class="dropdown-item">20 grs. Mushrooms</p>
+                      <p class="dropdown-item">30 grs. Beans</p>
+                      <p class="dropdown-item">50 grs. Nuts</p>
+                      <p class="dropdown-item">30 grs. Salad</p>
+                      <p class="dropdown-item">20 grs. Tomatoe</p>
+                      <p class="dropdown-item">1. Bread</p>
+                      <p class="dropdown-item">20 grs. Mushrooms</p>
+                      <p class="dropdown-item">30 grs. Beans</p>
+                      <p class="dropdown-item">50 grs. Nuts</p>
+                      <p class="dropdown-item">30 grs. Salad</p>
+                      <p class="dropdown-item">20 grs. Tomatoe</p>
+                    </div>
+                  </div>
+                </div>
+                <h3 class="underlined-text" style="margin-top: 10px;">INTRODUCTION</h3>
+                  <!-- publications Modal - Text -->
+                  <p class="mb-5" style="text-align:left;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam 
+                    velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <div class="row">
+                  <div class="col-4">
+                    <h3 class="underlined-text">CATEGORY</h3>
+                    <p class="mb-5">Vegetarian</p>
+                  </div>
+                  <div class="col-4">
+                    <h3 class="underlined-text">DIFICULTY</h3>
+                    <p class="mb-5">Easy</p>
+                  </div>
+                  <div class="col-4">
+                    <h3 class="underlined-text">APROXIMATED TIME</h3>
+                    <p class="mb-5">30 min.</p>
+                  </div>
+                </div>
+                <a class="btn btn-primary" href="simple-recipe.html">
+                  <img class="rounded" src="images/icons/go.png" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- publications Modal 5 -->
+  <div class="publications-modal modal fade" id="publicationsModal5" tabindex="-1" role="dialog"
+    aria-labelledby="publicationsModal5Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-12">
+                <!-- publications Modal - Title -->
+                <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Vegetal pizza</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
+                  <h3 class="underlined-text">INGREDIENTS</h3>
+                </div>
+                <div class="row" style="height: 300px;">
+                <!-- publications Modal - Image -->
+                  <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
+                    <img class="img-fluid-preview rounded mb-5" src="images/recipe_example_5.jpg" alt="">
+                  </div>
+                  <div class="col-4" style="height: 300px;">
+                    <div class="nav-item dropdown scrolling">
+                      <p class="dropdown-item">1. Bread</p>
+                      <p class="dropdown-item">20 grs. Mushrooms</p>
+                      <p class="dropdown-item">30 grs. Beans</p>
+                      <p class="dropdown-item">50 grs. Nuts</p>
+                      <p class="dropdown-item">30 grs. Salad</p>
+                      <p class="dropdown-item">20 grs. Tomatoe</p>
+                      <p class="dropdown-item">1. Bread</p>
+                      <p class="dropdown-item">20 grs. Mushrooms</p>
+                      <p class="dropdown-item">30 grs. Beans</p>
+                      <p class="dropdown-item">50 grs. Nuts</p>
+                      <p class="dropdown-item">30 grs. Salad</p>
+                      <p class="dropdown-item">20 grs. Tomatoe</p>
+                      <p class="dropdown-item">1. Bread</p>
+                      <p class="dropdown-item">20 grs. Mushrooms</p>
+                      <p class="dropdown-item">30 grs. Beans</p>
+                      <p class="dropdown-item">50 grs. Nuts</p>
+                      <p class="dropdown-item">30 grs. Salad</p>
+                      <p class="dropdown-item">20 grs. Tomatoe</p>
+                    </div>
+                  </div>
+                </div>
+                <h3 class="underlined-text" style="margin-top: 10px;">INTRODUCTION</h3>
+                  <!-- publications Modal - Text -->
+                  <p class="mb-5" style="text-align:left;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam 
+                    velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <div class="row">
+                  <div class="col-4">
+                    <h3 class="underlined-text">CATEGORY</h3>
+                    <p class="mb-5">Vegetarian</p>
+                  </div>
+                  <div class="col-4">
+                    <h3 class="underlined-text">DIFICULTY</h3>
+                    <p class="mb-5">Easy</p>
+                  </div>
+                  <div class="col-4">
+                    <h3 class="underlined-text">APROXIMATED TIME</h3>
+                    <p class="mb-5">30 min.</p>
+                  </div>
+                </div>
+                <a class="btn btn-primary" href="simple-recipe.html">
+                  <img class="rounded" src="images/icons/go.png" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- publications Modal 6 -->
+  <div class="publications-modal modal fade" id="publicationsModal6" tabindex="-1" role="dialog"
+    aria-labelledby="publicationsModal6Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-12">
+                <!-- publications Modal - Title -->
+                <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Vegetal pizza</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
+                  <div class="divider-custom-line"></div>
+                  <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                  </div>
+                  <div class="divider-custom-line"></div>
+                </div>
+                <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
+                  <h3 class="underlined-text">INGREDIENTS</h3>
+                </div>
+                <div class="row" style="height: 300px;">
+                <!-- publications Modal - Image -->
+                  <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
+                    <img class="img-fluid-preview rounded mb-5" src="images/recipe_example_6.jpg" alt="">
+                  </div>
+                  <div class="col-4" style="height: 300px;">
+                    <div class="nav-item dropdown scrolling">
+                      <p class="dropdown-item">1. Bread</p>
+                      <p class="dropdown-item">20 grs. Mushrooms</p>
+                      <p class="dropdown-item">30 grs. Beans</p>
+                      <p class="dropdown-item">50 grs. Nuts</p>
+                      <p class="dropdown-item">30 grs. Salad</p>
+                      <p class="dropdown-item">20 grs. Tomatoe</p>
+                      <p class="dropdown-item">1. Bread</p>
+                      <p class="dropdown-item">20 grs. Mushrooms</p>
+                      <p class="dropdown-item">30 grs. Beans</p>
+                      <p class="dropdown-item">50 grs. Nuts</p>
+                      <p class="dropdown-item">30 grs. Salad</p>
+                      <p class="dropdown-item">20 grs. Tomatoe</p>
+                      <p class="dropdown-item">1. Bread</p>
+                      <p class="dropdown-item">20 grs. Mushrooms</p>
+                      <p class="dropdown-item">30 grs. Beans</p>
+                      <p class="dropdown-item">50 grs. Nuts</p>
+                      <p class="dropdown-item">30 grs. Salad</p>
+                      <p class="dropdown-item">20 grs. Tomatoe</p>
+                    </div>
+                  </div>
+                </div>
+                <h3 class="underlined-text" style="margin-top: 10px;">INTRODUCTION</h3>
+                  <!-- publications Modal - Text -->
+                  <p class="mb-5" style="text-align:left;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam 
+                    velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <div class="row">
+                  <div class="col-4">
+                    <h3 class="underlined-text">CATEGORY</h3>
+                    <p class="mb-5">Vegetarian</p>
+                  </div>
+                  <div class="col-4">
+                    <h3 class="underlined-text">DIFICULTY</h3>
+                    <p class="mb-5">Easy</p>
+                  </div>
+                  <div class="col-4">
+                    <h3 class="underlined-text">APROXIMATED TIME</h3>
+                    <p class="mb-5">30 min.</p>
+                  </div>
+                </div>
+                <a class="btn btn-primary" href="simple-recipe.html">
+                  <img class="rounded" src="images/icons/go.png" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Contact Form JavaScript -->
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/freelancer.min.js"></script>
+
+</body>
+
+</html>
