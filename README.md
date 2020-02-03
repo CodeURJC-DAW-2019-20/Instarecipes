@@ -55,7 +55,7 @@ Here you can found a list of existing features in Instarecipes.
 
 * Cooking Style :seedling:
 
-* Category :cn:
+* Category :open_file_folder:
 
 * Comment :speech_balloon:
 
