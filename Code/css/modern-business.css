@@ -9,6 +9,7 @@
 .blog-post{
 
   }
+  
 .carousel-item {
   height: 65vh;
   min-height: 500px;
@@ -160,3 +161,9 @@ form.example::after {
 .warning {color: orange;}
 .danger {color: red;}
 .default {color: black;}
+
+/*------------------------------------------------------------------
+[ READMEE.md ]*/
+img[src*="#trending-gif"] {
+  align-content: center;
+}
