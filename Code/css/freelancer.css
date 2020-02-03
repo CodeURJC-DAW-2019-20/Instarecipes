@@ -4239,6 +4239,12 @@ input[type="button"].btn-block {
   list-style: none;
 }
 
+.login-container{
+  width: fit-content;
+  white-space: nowrap;
+  margin-right:5%;
+}
+
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
@@ -4250,8 +4256,6 @@ input[type="button"].btn-block {
   border: 2px solid #FFF;
   border-style: groove;
   border-radius: 0.8rem;
-  margin-right:10%;
-
 }
 
 .nav-link:hover, .nav-link:focus {
