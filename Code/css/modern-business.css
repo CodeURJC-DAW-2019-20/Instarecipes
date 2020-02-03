@@ -162,9 +162,3 @@ form.example::after {
 .warning {color: orange;}
 .danger {color: red;}
 .default {color: black;}
-
-/*------------------------------------------------------------------
-[ READMEE.md ]*/
-img[src*="#trending-gif"] {
-  align-content: center;
-}
