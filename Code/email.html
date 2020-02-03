@@ -36,12 +36,11 @@
 				<div class="login100 p-l-55 p-r-65 p-t-5 p-b-5">
 					<a href="index.html"><span style="font-size: 50px; margin-left: 40%; border: 2px;" class="fa fa-home"></a></span> 
 				</div>
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" id="validationDiv">
 					<span class="login100-form-title p-b-30">
 						Validation
 					</span>
-
-					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired"  >
 						<span class="label-input100">E-Mail</span>
 						<input class="input100" type="email" name="E-Mail" placeholder="E-mail">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
@@ -51,13 +50,16 @@
 					<div class="container-login100-form-btn p-t-35">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn ">
-								<a class="login100-form-btn" href="verified.html">Reset Password</a> 
+							<button class="login100-form-btn " id="verifyProfileBtn" name="verifyProfile"  onclick="verifyProfile()">
+								<a class="login100-form-btn" >Reset Password</a> 
 							</button>
 						</div>
                     </div>
-                    
+                   
 				</form>
+				<div class="wrap-input100 validate-input m-b-23" style="border-bottom: none; text-align: justify; display: none;" id="verifyMsgDiv" >
+					<span class="label-input100">If your email matches an existing account we will send a password reset email within a few minutes. If you have not received an email check your spam folder   </span>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -65,6 +67,7 @@
 
 	<div id="dropDownSelect1"></div>
 	
+	<script type="text/javascript" src="js/verify.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
