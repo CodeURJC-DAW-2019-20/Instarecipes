@@ -55,7 +55,7 @@ Here you can found a list of existing features in Instarecipes.
 
 * Cooking Style :seedling:
 
-* Category :cn:
+* Category :open_file_folder:
 
 * Comment :speech_balloon:
 
@@ -90,4 +90,4 @@ It is almost always easier to sign up for a new site by accessing through your *
 
 The first thing we observe when we visit the main page are **three slides**, which contain three outstanding recipes at a certain time and, that's simple but, the funny thing about this is that, each registered user can emphasize that he is allergic to certain foods so, if one of the trending recipes of the moment contains an allergen that the user has, **another recipe will be shown to him.**
 
-![trending-gif](Images\Gifs\Trending-gif.gif#trending-gif)
+![Trending-gif](https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Gifs/Trending-gif.gif)
