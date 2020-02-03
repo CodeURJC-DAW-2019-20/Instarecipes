@@ -4243,6 +4243,15 @@ input[type="button"].btn-block {
   display: block;
   padding: 0.5rem 1rem;
   color: var(--white);
+  font-size: 20px;
+  margin-right: 5px;
+}
+.nav-log {
+  border: 2px solid #FFF;
+  border-style: groove;
+  border-radius: 0.8rem;
+  margin-right:10%;
+
 }
 
 .nav-link:hover, .nav-link:focus {
