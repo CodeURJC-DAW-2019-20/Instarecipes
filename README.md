@@ -4,7 +4,7 @@ This is the main project's repository, where you can found folders like **Code**
 ## Members :busts_in_silhouette:
 |                           |                                 |
 |---------------------------|---------------------------------|
-| Daniel Murillo Garzón     | d....@alumnos.urjc.es           |
+| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  |
 | Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       |
 | Manuel León Briz          | m.leon.2016@alumnos.urjc.es     |
 | José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  |
@@ -12,7 +12,7 @@ This is the main project's repository, where you can found folders like **Code**
 |                           |                                 |
 
 ## Support links :link:
-We're using [Trello](https://trello.com/b/CyhfEwRF/daw-g13)to make easier the organization for the web product.
+We're using [Trello](https://trello.com/b/CyhfEwRF/daw-g13) to make easier the organization for the web product.
 
 ### Web Access :computer:
 >*Downloading the repository you will be able to view the latest things added.*
@@ -41,7 +41,7 @@ Here you can found a list of existing features in Instarecipes.
 > * Trending recipes. *There will be a ranking with 3 recipes with the highest amount of likes in a certain time.*
 > * Posibility of Sign up. 
 >    * By Facebook, Google or email.
-> * Ban available to users. *Because of 'trolls' comments or recipes.
+> * Ban available to users. *Because of 'trolls' comments or recipes.*
 
 ### Entities 
 
@@ -61,7 +61,7 @@ Here you can found a list of existing features in Instarecipes.
 
 ### Types of users and permissions
 There are three types of users:
-* **Anonymous.** 
+* **Anonymous.**   
 They won't be able to upload any recipes or post comments, but, they can view recipes, search users, filter by ingredients, allergens, cooking style or even search one recipe. 
 Neither can they follow or unfollow users or have a list of favorite recipes, give likes... but, they do have the option to download recipes with all the steps, ingredients, and photos.  
   * **Permissions.**  
@@ -81,7 +81,13 @@ There is only one admin, and he will be the one that has full control over the i
 One of the complementary technologies that we will use is the possibility of **logging in without email.**  
 It is almost always easier to sign up for a new site by accessing through your **Google, Facebook or even Twitter**, and the good thing about this is that practically almost everyone has a Google account, so we will facilitate the registration to new users with a **simple click**.
 
-|--------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| ![Google](https://github.com/CodeURJC-DAW-2019-20/webapp8/tree/master/Images\google-icon.png) | ![Facebook](https://github.com/CodeURJC-DAW-2019-20/webapp8/tree/master/Images\facebook-icon.png) | ![Twitter](https://github.com/CodeURJC-DAW-2019-20/webapp8/tree/master/Images\twitter-icon.png) |
-|                           |                                 |
-###
+<p align="center">
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/google-icon.png" width="50" height="50"> <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/facebook-icon.png" width="50" height="50"> <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/twitter-icon.png" width="50" height="50"> 
+</p>  
+
+### Algorithm or advanced query  
+> In this section we will make a brief explanation of what our advanced search algorithm will consist of.  
+
+The first thing we observe when we visit the main page are **three slides**, which contain three outstanding recipes at a certain time and, that's simple but, the funny thing about this is that, each registered user can emphasize that he is allergic to certain foods so, if one of the trending recipes of the moment contains an allergen that the user has, **another recipe will be shown to him.**
+
+![trending-gif](Images\Gifs\Trending-gif.gif#trending-gif)

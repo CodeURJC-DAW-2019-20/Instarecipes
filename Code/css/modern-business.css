@@ -9,6 +9,7 @@
 .blog-post{
 
   }
+  
 .carousel-item {
   height: 65vh;
   min-height: 500px;
@@ -162,18 +163,7 @@ form.example::after {
 .default {color: black;}
 
 /*------------------------------------------------------------------
-[ README.md ]*/
-img[alt="Google"] { 
-  max-width:  20px; 
-  display: block;
-}
-
-img[alt="Facebook"] { 
-  max-width:  20px; 
-  display: block;
-}
-
-img[alt="Twitter"] { 
-  max-width:  20px; 
-  display: block;
+[ READMEE.md ]*/
+img[src*="#trending-gif"] {
+  align-content: center;
 }
