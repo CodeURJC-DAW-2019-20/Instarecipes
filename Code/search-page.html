@@ -15,6 +15,7 @@
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="css/searchfile.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
@@ -30,13 +31,19 @@
         <img class="img-navbar" src="images/icons/chef.png" alt="">
       </div>
       <a class="navbar-brand js-scroll-trigger" href="index.html">&nbsp;Instarecipes</a>
-      <a class="nav-link" href="profile.html">Profile</a>
-      <a class="nav-link" href="login.html">Login</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" 
       type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" 
       aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item col-4">
+          <a class="nav-link" href="profile.html"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+        </li>
+        <li class="nav-item col-4">
+            <a class="nav-link" href="profile.html"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
+        </li>
+      </ul>  
     </div>
   </nav>
 
@@ -75,49 +82,41 @@
 
         <!-- Categories Widget -->
         <div class="card my-4">
+          <h5 class="card-header">Cooking Style</h5>
+
+                <div class="containersearch">
+                  <ul class="ks-cboxtags">
+                    <li><input type="checkbox" id="checkbox1" value="Vegan"><label for="checkbox1">Vegan</label></li>
+                    <li><input type="checkbox" id="checkbox2" value="Vegetarian" checked><label for="checkbox2">Vegetarian</label></li>
+                    <li><input type="checkbox" id="checkbox3" value="Mediterranean" checked><label for="checkbox3">Mediterranean</label></li>
+                    <li><input type="checkbox" id="checkbox4" value="American"><label for="checkbox4">American</label></li> 
+                    <li><input type="checkbox" id="checkbox5" value="Asian"><label for="checkbox5">Asian</label></li>
+                    <li><input type="checkbox" id="checkbox6" value="Italian" checked><label for="checkbox6">Italian</label></li>
+                    <li><input type="checkbox" id="checkbox7" value="Arabic"><label for="checkbox7">Arabic</label></li>
+                    <li><input type="checkbox" id="checkbox8" value="Latina"><label for="checkbox8">Latina</label></li>
+                  </ul> 
+        </div>
+        </div>
+        <div class="card my-4"> 
           <h5 class="card-header">Categories</h5>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">Vegetarian</a>
-                  </li>
-                  <li>
-                    <a href="#">Athlantic</a>
-                  </li>
-                  <li>
-                    <a href="#">Gluten free</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">Fastfood</a>
-                  </li>
-                  <li>
-                    <a href="#">Mediumfood</a>
-                  </li>
-                  <li>
-                    <a href="#">Hardfood</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <div class="containersearch">
+            <ul class="ks-cboxtags">
+              <li><input type="checkbox" id="checkbox9" value="Desserts"><label for="checkbox9">Desserts</label></li>
+              <li><input type="checkbox" id="checkbox10" value="Starters" checked><label for="checkbox10">Starters</label></li>
+              <li><input type="checkbox" id="checkbox11" value="Main" checked><label for="checkbox11">Main</label></li>
+              <li><input type="checkbox" id="checkbox12" value="Soups"><label for="checkbox12">Soups</label></li>
+              <li><input type="checkbox" id="checkbox13" value="Salad"><label for="checkbox13">Salad</label></li>
+              <li><input type="checkbox" id="checkbox14" value="Burgers"><label for="checkbox14">Burgers</label></li>
+              <li><input type="checkbox" id="checkbox15" value="Pizzas"><label for="checkbox15">Pizzas</label></li>
+              <li><input type="checkbox" id="checkbox16" value="Smoothies"><label for="checkbox16">Smoothies</label></li>
+              <li><input type="checkbox" id="checkbox17" value="Breakfast"><label for="checkbox17">BreakFast</label></li>
+              <li><input type="checkbox" id="checkbox18" value="Brunch"><label for="checkbox18">Brunch</label></li>
+              <li><input type="checkbox" id="checkbox19" value="Dinner"><label for="checkbox19">Dinner</label></li>
+            </ul>
+          
+          </div>       
         </div>
-
-        <!-- Side Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Side Widget</h5>
-          <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-          </div>
-        </div>
-
       </div>
-
       <!-- Blog Entries Column -->
       <div class="col-md-8">
 

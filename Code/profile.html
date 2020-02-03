@@ -17,10 +17,13 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
     type="text/css">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
   <!-- Theme CSS -->
   <link href="css/freelancer.css" rel="stylesheet">
   <link href="css/modern-business.css" rel="stylesheet">
+
 
   <!-- Images and icons-->
   <link rel="icon" type="image/png" href="images/icons/chef.png" />
@@ -31,17 +34,34 @@
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-    <div class="container">
-      <img width="5%" src="img/avataaars.svg" alt="">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top" style="margin-left: 20px;">Profile</a>
-      <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#publications">Publications</a>
-      <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="index.html">Home</a>
+    <div class="container" style="margin-left: 30px;">
+      <div id="img-navbar-container">
+        <img src="img/avataaars.svg" alt="">
+      </div>
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">Profile</a> 
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" 
+      type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" 
+      aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div style="width: 10%;"></div>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#publications">Publications</a>
+            <a href="index.html"><img width="10%" src="images/icons/chef.png"></a>     
+      </div> 
+    </div> 
+    <div>
       <form class="example" action="search-page.html">
         <input type="text" placeholder="Search.." name="search">
         <button type="submit"><i class="fa fa-search"></i></button>
       </form>
     </div>
+    <div style="width: 10%;"></div>
+    <div class="login-container">
+      <a class="nav-link nav-log" href="login.html" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+    </div>
   </nav>
+
 
   <!-- Masthead -->
   <header class="masthead bg-primary text-white text-center"
