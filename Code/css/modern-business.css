@@ -9,6 +9,7 @@
 .blog-post{
 
   }
+  
 .carousel-item {
   height: 65vh;
   min-height: 500px;
@@ -53,7 +54,7 @@
   left: 92%;
   cursor: pointer;
 }
-
+.contsearch{}
 /* Style the search field */
 form.example input[type=text] {
   padding: 10px;
@@ -65,6 +66,7 @@ form.example input[type=text] {
   background: #f1f1f1;
   border-bottom-left-radius: 0.5rem;
   border-top-left-radius: 0.5rem;
+  m;
 }
 
 /* Style the submit button */
@@ -160,3 +162,9 @@ form.example::after {
 .warning {color: orange;}
 .danger {color: red;}
 .default {color: black;}
+
+/*------------------------------------------------------------------
+[ READMEE.md ]*/
+img[src*="#trending-gif"] {
+  align-content: center;
+}
