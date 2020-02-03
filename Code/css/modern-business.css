@@ -160,3 +160,20 @@ form.example::after {
 .warning {color: orange;}
 .danger {color: red;}
 .default {color: black;}
+
+/*------------------------------------------------------------------
+[ README.md ]*/
+img[alt="Google"] { 
+  max-width:  20px; 
+  display: block;
+}
+
+img[alt="Facebook"] { 
+  max-width:  20px; 
+  display: block;
+}
+
+img[alt="Twitter"] { 
+  max-width:  20px; 
+  display: block;
+}
