@@ -29,16 +29,39 @@
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-    <div class="container">
-      <img width="5%" src="images/icons/chef.png" alt="">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top" style="margin-left: 20px;">Recipe</a>
-      <form class="example" action="asearch-page.html">
-        <input type="text" placeholder="Search.." name="search">
-        <button type="submit"><i class="fa fa-search"></i></button>
-      </form>
-      <a class="nav-link py-3 px-0 px-lg-2 rounded js-scroll-trigger" href="index.html">Home</a>
-      <a class="nav-link py-3 px-0 px-lg-2 rounded js-scroll-trigger" href="profile.html">Profile</a>
-      <a class="nav-link py-3 px-0 px-lg-2 rounded js-scroll-trigger" href="#comments-section">Comments</a>
+    <div class="container" style="margin-left: 30px;">
+      <div id="img-navbar-container">
+        <img class="img-navbar" src="images/icons/chef.png" alt="">
+      </div>
+      <a class="navbar-brand js-scroll-trigger" href="index.html">&nbsp;Instarecipes</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" 
+      type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" 
+      aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto" style="margin-right: 20%;">
+          <li class="nav-item col-3">
+            <a class="nav-link" href="index.html"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
+          </li>
+          <li class="nav-item col-3">
+            <a class="nav-link" href="profile.html"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+          </li>
+          <li class="nav-item col-3">
+            <a class="nav-link" href="ranking.html"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
+          </li>
+          <li class="nav-item col-3">
+            <a class="nav-link js-scroll-trigger" href="#comments-section"><i class="fas fa-comment" style="font-size: xx-large;"></i></a>
+          </li>
+        </ul>
+        <form class="example" action="search-page.html" >
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="login-container">
+      <a class="nav-link nav-log" href="login.html" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
     </div>
   </nav>
   
@@ -220,12 +243,6 @@
           <div class="row">
             <div class="col-8">
               <p class="lead">Place chicken pieces in large bowl. Season with salt, oregano, pepper, rosemary, and cayenne pepper. Add fresh lemon juice, olive oil, and garlic. Place potatoes in bowl with the chicken; stir together until chicken and potatoes are evenly coated with marinade.</p>
-                <blockquote class="blockquote"></blockquote>
-                  <footer class="blockquote-footer">Someone famous in
-                    <cite title="Source Title">Source Title</cite>
-                  </footer>
-                </blockquote>
-              <p>.................</p>
             </div>
             <div class="col-4">
                 <img class="img-fluid rounded-lg prev-img" src="images/potatoes.jpg" alt="" style="cursor: pointer;">

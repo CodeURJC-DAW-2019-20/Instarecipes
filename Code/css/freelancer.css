@@ -4246,11 +4246,12 @@ input[type="button"].btn-block {
 }
 
 .nav-link {
-  display: block;
+  display: flex;
   padding: 0.5rem 1rem;
   color: var(--white);
   font-size: 20px;
   margin-right: 5px;
+  justify-content: center;
 }
 .nav-log {
   border: 2px solid #FFF;
