@@ -8166,7 +8166,7 @@ h1, h2, h3, h4, h5,
   line-height: 1.5;
   font-weight: 400;
   font-family: "Poppins", Arial, sans-serif;
-  color: #000; }
+  color: #fff; }
 
 .ftco-section {
   padding: 7em 0; }
@@ -8255,7 +8255,7 @@ h1, h2, h3, h4, h5,
   #sidebar .custom-menu {
     display: inline-block;
     position: absolute;
-    top: 20px;
+    top: 5%;
     right: 0;
     margin-right: -20px;
     -webkit-transition: 0.3s;
