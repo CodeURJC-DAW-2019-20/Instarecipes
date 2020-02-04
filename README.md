@@ -26,6 +26,36 @@ Instarecipes will be an application web where you can share all of your favorite
 You can also follow or unfollow the users whenever you want to! And, if you really love one recipe, just add it to your favorites list.
 And even if you don't want to register you will be able to see everyone's recipes.
 
+  #### Main page
+  <p align="center">
+   <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Gifs/Main-page.gif">
+  </p> 
+  
+  #### Publish recipe
+  <p align="center">
+   <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Gifs/Publish-recipe.gif">  
+  </p>  
+  
+  #### Filter per ingredients, category...
+  <p align="center">
+   <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Gifs/Filtered-search.gif">
+  </p>
+  
+  #### Search a recipe
+  <p align="center">
+   <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Gifs/Search-navbar.gif">
+  </p>  
+  
+  #### Profile page
+  <p align="center">
+   <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Gifs/Profile-page(rs).gif">
+  </p>
+  
+  #### Recipe page
+   <p align="center">
+    <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Gifs/Recipe-page(rs).gif">
+   </p>  
+   
 ### Funcionalities
 Here you can found a list of existing features in Instarecipes.
 > * Posibility to upload a recipe. 
