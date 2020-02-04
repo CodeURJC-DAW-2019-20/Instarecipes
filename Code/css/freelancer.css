@@ -637,7 +637,10 @@ th, td {
 .underlined-text {
   border-bottom: 2px solid rgba(0, 0, 0, 0.3);
 }
-
+.underlined-texts{
+  color:#343a40;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+}
 .scrolling{
   border: 1px solid rgba(0, 0, 0, 0.1);;
   overflow:auto;
