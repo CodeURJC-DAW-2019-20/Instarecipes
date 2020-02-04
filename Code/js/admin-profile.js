@@ -60,6 +60,6 @@ function contentDiv(){
     $("#text-content").removeAttr("class");
     $("#text-request").removeAttr("class");
     $("#text-users").removeAttr("class");
-    $("#text-users").removeAttr("class");
+    $("#text-recipes").removeAttr("class");
     $("#text-reports").attr("class", "active");
   }
