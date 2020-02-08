@@ -125,11 +125,11 @@ The first thing we observe when we visit the main page are **three slides**, whi
 </p>  
 
 ### Navigation diagrams
-Finally, we show the navigation diagrams to make the connections between the pages a little bit clearer. 
+Finally, we show the *first* navigation diagrams to make the connections between the pages a little bit clearer. 
 
 * **Main diagram**
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Navigation%20Diagrams/Navigation%20Diagram%20(Pages).png" width="50" height="50">
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Navigation%20Diagrams/Navigation%20Diagram%20(Pages).png">
 </p> 
 
 * **Users and profile diagram**
@@ -139,6 +139,6 @@ In the next diagram, you can see the main differences between the registered use
 All of them can access to their recipes, the recipes pages, go back to home... (*Main diagram*) **BUT** the administrator will have a menu where he can manage things like accept new ingredients, categories...
 
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Navigation%20Diagrams/Navigation%20Diagram%20(Profile).png" width="50" height="50">
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Navigation%20Diagrams/Navigation%20Diagram%20(Profile).png">
 </p> 
 
