@@ -175,7 +175,7 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background-image: url('images/backgrounds/pizza_bg.jpg');
+  background-image: url('../images/backgrounds/pizza_bg.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
