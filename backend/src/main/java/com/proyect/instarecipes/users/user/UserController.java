@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class UserController {
-    
+    /*
     @GetMapping("/index")
     public String indexLink(Model model){
         return "index";
@@ -31,4 +31,5 @@ public class UserController {
     public String simpleRecipeLink(Model model){
         return "simple-recipe";
     }
+    */
 }
