@@ -10,25 +10,13 @@ import org.springframework.ui.Model;
 @Controller
 
 public class IndexController {
-    String titulo;
-    String descripcion;
-
     @PostMapping("/")
-    public String pagetrying1(Model model, String titulo, String descripcion) {
-
-        //model.addAttribute("title", titulo);
-        //model.addAttribute("description", descripcion);
-        this.descripcion = descripcion;
-        this.titulo = titulo;
+    public String pagetrying1(Model model) {
 
         return "index";
     }
     @GetMapping("/")
     public String pagetrying2(Model model) {
-
-        model.addAttribute("title", titulo);
-        model.addAttribute("description", descripcion);
-
         return "index";
     }
  
