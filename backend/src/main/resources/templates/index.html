@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Instarecipes</title>
+  <!-- Images and icons-->
+  <link rel="icon" type="image/png" href="../images/icons/chef.png"/>
+  <link rel="icon" type="image/png" href="../static/images/icons/instarecipes.png.png"/>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+    type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="../css/modern-business.css" rel="stylesheet">
+  <link href="../css/freelancer.css" rel="stylesheet">
+
+  <!-- Images and icons-->
+  <link rel="icon" type="image/png" href="../images/icons/chef.png" />
+
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <div class="container" style="margin-left: 30px;">
+      <div id="img-navbar-container">
+        <img class="img-navbar" src="../images/icons/chef.png" alt="">
+      </div>
+      <a class="navbar-brand js-scroll-trigger" href="index.html">&nbsp;Instarecipes</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" 
+      type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" 
+      aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto" style="margin-right: 20%;">
+          <li class="nav-item col-4">
+            <a class="nav-link js-scroll-trigger" href="#header-section"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
+          </li>
+          <li class="nav-item col-4">
+            <a class="nav-link" href="profile.html"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+          </li>
+          <li class="nav-item col-4">
+            <a class="nav-link" href="ranking.html"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
+          </li>
+        </ul>
+        <form class="example" action="search-page.html" >
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="login-container">
+      <a class="nav-link nav-log" href="login.html" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+    </div>
+  </nav>
+  <!-- Carousel-->
+  <header id="header-section">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <div class="trending-topic-text">
+        <h1 class="page-section-heading text-center text-uppercase mb-0">Trending</h1>
+      </div>
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <!-- Slide One - Set the background image for this slide in the line below -->
+        <div class="carousel-item active">
+          <img src="../images/Recipes/recipe_example_5.jpg" class="img-blur" width="100%">
+          <div class="trending-pub">
+            <div class="row" style="height: 100%; margin-left: 0; margin-right: 0;">
+              <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);">
+                <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
+              </div>
+              <div class="col-md-4">
+                <h3>Introduction</h3>
+                <p>Essential crepe recipe. Sprinkle warm crepes with sugar and lemon, or serve with cream or ice cream and fruit.</p>
+                <a class="btn btn-primary" href="#">Read
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+              </div>
+              <div class="col-md-7" style="height: inherit; padding-left: 0; padding-right: 0;">
+                <a href="#">
+                  <img class="rounded mb-3 mb-md-0" src="../images/Recipes/recipe_example_5.jpg" style="object-fit: cover;"
+                    height="100%" width="100%" alt="">
+                </a>
+                <div class="likes-comments-top-right">
+                  <div class="row" style="margin-right: 0;margin-left: 0;">
+                    <div class="col-3">
+                      <img class="icon-fluid" src="../images/icons/like_pressed.png" alt="">
+                    </div>
+                    <div class="col-3">
+                      <p class="icon-fluid pub-date-text">84</p>
+                    </div>
+                    <div class="col-3">
+                      <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
+                    </div>
+                    <div class="col-3">
+                      <p class="icon-fluid pub-date-text">203</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h3>Dessert Crepes</h3>
+            <p>This is a description for the first slide.</p>
+          </div>
+        </div>
+        <!-- Slide Two - Set the background image for this slide in the line below -->
+        <div class="carousel-item">
+          <img src="../images/Recipes/recipe_example_6.jpg" class="img-blur" width="100%">
+          <div class="trending-pub">
+            <div class="row" style="height: 100%; margin-left: 0; margin-right: 0;">
+              <div class="col-md-7" style="height: inherit; padding-left: 0; padding-right: 0;">
+                <a href="#">
+                  <img class="rounded mb-3 mb-md-0" src="../images/Recipes/recipe_example_6.jpg" style="object-fit: cover;"
+                    height="100%" width="100%" alt="">
+                </a>
+                <div class="likes-comments-top-left">
+                  <div class="row" style="margin-right: 0;margin-left: 0;">
+                    <div class="col-3">
+                      <img class="icon-fluid" src="../images/icons/like_pressed.png" alt="">
+                    </div>
+                    <div class="col-3">
+                      <p class="icon-fluid pub-date-text">84</p>
+                    </div>
+                    <div class="col-3">
+                      <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
+                    </div>
+                    <div class="col-3">
+                      <p class="icon-fluid pub-date-text">203</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <h3>Introduction</h3>
+                <p>This is a super simple recipe and perfect for Lent because it has a spring-like taste and feel. You can use other seasonings in this recipe, 
+                  such as basil, thyme, or marjoram in place of the dill weed if you'd like.</p>
+                <a class="btn btn-primary" href="#">Read
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+              </div>
+              <div class="col-lg-1" style="align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);">
+                <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h3>Honey Orange Fish Fillets</h3>
+            <p>This is a description for the second slide.</p>
+          </div>
+        </div>
+        <!-- Slide Three - Set the background image for this slide in the line below -->
+        <div class="carousel-item">
+          <img src="../images/Recipes/recipe_example_7.jpg" class="img-blur" width="100%">
+          <div class="trending-pub">
+            <div class="row" style="height: 100%; margin-left: 0; margin-right: 0;">
+              <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);">
+                <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
+              </div>
+              <div class="col-md-4">
+                <h3>Introduction</h3>
+                <p>Thanksgiving is a week away. Do you know what that means? Lots of delicious food, yes!! Cannelloni pasta stuffed with a cheesy and savory Ricotta, 
+                  covered in homemade marinara sauce and baked with parmesan until crispy.</p>
+                <a class="btn btn-primary" href="#">Read
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+              </div>
+              <div class="col-md-7" style="height: inherit; padding-left: 0; padding-right: 0;">
+                <a href="#">
+                  <img class="rounded mb-3 mb-md-0" src="../images/Recipes/recipe_example_7.jpg" style="object-fit: cover;"
+                    height="100%" width="100%" alt="">
+                </a>
+                <div class="likes-comments-top-right">
+                  <div class="row" style="margin-right: 0;margin-left: 0;">
+                    <div class="col-3">
+                      <img class="icon-fluid" src="../images/icons/like_pressed.png" alt="">
+                    </div>
+                    <div class="col-3">
+                      <p class="icon-fluid pub-date-text">84</p>
+                    </div>
+                    <div class="col-3">
+                      <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
+                    </div>
+                    <div class="col-3">
+                      <p class="icon-fluid pub-date-text">203</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h3>Delicious cannelloni</h3>
+            <p>This is a description for the third slide.</p>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <h3 class="my-4">Recent user's recipes</h3>
+    <!-- Recent recipes -->
+
+    <!-- Project One -->
+    <div class="row">
+      <div class="col-md-7">
+        <a href="#">
+          <img class="img-fluid rounded mb-3 mb-md-0" src="../images/Recipes/recipe_example_1.jpg" alt="">
+        </a>
+        <div class="likes-comments-top-left">
+          <div class="row" style="margin-right: 0;margin-left: 0;">
+            <div class="col-3">
+              <img class="icon-fluid" src="../images/icons/like_pressed.png" alt="">
+            </div>
+            <div class="col-3">
+              <p class="icon-fluid pub-date-text">84</p>
+            </div>
+            <div class="col-3">
+              <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
+            </div>
+            <div class="col-3">
+              <p class="icon-fluid pub-date-text">203</p>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-text-image rounded mb-3 mb-md-0"><h3>{{title}}</h3></div>
+      </div>
+      <div class="col-md-4">
+        <h3>Introduction</h3>
+        <p>{{description}}</p>
+        <a class="btn btn-primary" href="#">Read
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div>
+      <div class="col-lg-1" style="align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);">
+          <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+    <!-- Project Two -->
+    <div class="row">
+      <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);">
+        <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
+      </div>
+      <div class="col-md-4">
+        <h3>Introduction</h3>
+        <p> This smoothie is made from fresh ingredients. It's sweet and creamy, I love it and I hope you do too.
+          Only with a few steps you will have the perfect summer drink! </p>
+        <a class="btn btn-primary" href="#">Read
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div>
+      <div class="col-md-7">
+        <a href="#">
+          <img class="img-fluid rounded mb-3 mb-md-0" src="../images/Recipes/recipe_example_2.jpg" alt="">
+        </a>
+        <div class="likes-comments-top-right">
+          <div class="row" style="margin-right: 0;margin-left: 0;">
+            <div class="col-3">
+              <img class="icon-fluid" src="../images/icons/like_pressed.png" alt="">
+            </div>
+            <div class="col-3">
+              <p class="icon-fluid pub-date-text">84</p>
+            </div>
+            <div class="col-3">
+              <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
+            </div>
+            <div class="col-3">
+              <p class="icon-fluid pub-date-text">203</p>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-text-image rounded mb-3 mb-md-0"><h3>Strawberry banana smoothie! (Easy & Healthy)</h3></div>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+    <hr width="80%">
+    <!-- Ajax load more button -->
+    <div class="loadmore-container">
+      <img class="loadmore-button" src="../images/icons/loadmore_unpressed.png" alt="" />
+    </div>
+
+    <!-- add recipe button -->
+    <div id="open-add-button" class='flotating-button'>
+      <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-add-button"
+        style="width: max-content">
+        <img src='../images/icons/flotating_button.png' width="50%" style="height: 50px; width: 50px;" />
+      </div>
+    </div>
+
+    <!-- search button-->
+    <div id="open-search-button" class="search-button" data-toggle="modal" data-target="#opened-search-button"> 
+      <div class="publications-item mx-auto"  
+      style="width: max-content">      
+        <div class="search-btn fas fa-search" href="#"></div>
+      </div>
+    </div>
+
+    <!-- Search button pannel -->
+    <div class="publications-modal modal fade" id="opened-search-button" tabindex="-1" role="dialog" aria-labelledby="publicationsModal6Label" aria-hidden="true">
+      <div id="filtered-search" class="modal-dialog modal-xl" role="document" style="width: 50%;">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">
+                <i class="fas fa-times"></i>
+              </span>
+            </button>
+            <div class="modal-body text-center">
+              <div class="container">
+                  <div class="col-lg-12">
+                  <!-- publications Modal - Title -->
+                    <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Filtered Search</h2>
+                  <!-- Icon Divider -->
+                    <div class="divider-custom">
+                      <div class="divider-custom-line"></div>
+                      <div class="divider-custom-icon">
+                        <img src='../images/icons/orange-search.png' width="50%" style="height: 50px; width: 50px;"/>
+                      </div>
+                    <div class="divider-custom-line"></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        <!-- INGREDIENT FILTER -->
+                        <h3 class="underlined-text">INGREDIENTS</h3>
+                        <div class="ingredients-options" >
+                          <div class="row">
+                            <div class="col-6">
+                              <p style="text-align: center;font-size: 10px;height: 8px;">Ingredient</p>
+                              <input style="width: inherit;border-radius: 0.5rem;border-width: 0.5px;" type="text" name="ingredients-scroll" list="ingredientslist" placeholder="Ingredient..">
+                              <datalist id="ingredientslist">
+                                <option value="dark chocolate"></option>
+                                <option value="potatoes"></option>
+                                <option value="oil"></option>
+                                <option value="white chocolate"></option>   
+                                <option value="garlic"></option>
+                                <option value="milk chocolate"></option>        
+                              </datalist>
+                            </div>
+                            <div class="col-3" style="padding-left: 0;">
+                              <p style="text-align: center;font-size: 10px;height: 8px;width: 100%;">Quantity</p>
+                              <input style="text-align: center;width: inherit;border-radius: 0.5rem;border-width: 0.5px;" type="text" name="ingredients-quantity" placeholder="Quantity">
+                            </div>
+                            <div class="col-3" style="padding-left: 0;">
+                              <p style="text-align: center;font-size: 10px;height: 8px;">Units</p>
+                              <input style="text-align: center;width: inherit;border-radius: 0.5rem;border-width: 0.5px;" type="text" name="ingredients-unit" list="ingredientsunit" placeholder="Units">
+                              <datalist id="ingredientsunit">
+                                <option value="grs."></option>
+                                <option value="Kg./L"></option>    
+                                <option value="Units"></option>        
+                              </datalist>
+                            </div>
+                          </div>
+                          <button type="button" class="btn-delete-line" style="color: white;font-size: inherit;">
+                            <span aria-hidden="true">
+                              <i class="fas fa-trash"></i>
+                            </span>
+                          </button>
+                        </div>
+                        <hr>
+                        <!-- add and delete ingredients buttons -->
+                        <button type="button" class="btn-add-ingredient">
+                          <span aria-hidden="true">                           
+                              <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                              <h6 class="text">ADD</h6>
+                          </span>
+                        </button>
+                        <button type="button" class="btn-delete-ingredients">
+                          <span aria-hidden="true">            
+                            <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                            <h6 class="text">DELETE ALL</h6>
+                        </button>
+                        <hr>
+                      </div>
+                      <div class="col-6">
+                        <!-- CATEGORY FILTER -->
+                        <h3 class="underlined-text">COOKING STYLE</h3>
+                        <div class="categories-options">
+                        <input style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
+                            <datalist id="categorieslist">
+                              <option value="Vegan"></option>
+                              <option value="Grains"></option>     
+                              <option value="Beans"></option> 
+                              <option value="Seafood"></option>  
+                              <option value="Vegetarian"></option>   
+                              <option value="Shellfish"></option>    
+                            </datalist>
+                            <button type="button" class="btn-delete-line" style="color: white;font-size: inherit;">
+                              <span aria-hidden="true">
+                                <i class="fas fa-trash"></i>
+                              </span>
+                            </button>
+                        </div>
+                        <hr>
+                        <!-- add and delete categories-->
+                        <button type="button" class="btn-add-category" >
+                          <span aria-hidden="true">                           
+                            <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                            <h6 class="text">ADD</h6>
+                          </span>
+                        </button>
+                        <button type="button" class="btn-delete-categories">
+                          <span aria-hidden="true">            
+                            <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                            <h6 class="text">DELETE ALL</h6>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        <!-- CATEGORY FILTER -->
+                        <h3 class="underlined-text">CATEGORIES</h3>
+                        <div class="categories-options">
+                        <input style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
+                            <datalist id="categorieslist">
+                              <option value="Vegan"></option>
+                              <option value="Grains"></option>     
+                              <option value="Beans"></option> 
+                              <option value="Seafood"></option>  
+                              <option value="Vegetarian"></option>   
+                              <option value="Shellfish"></option>    
+                            </datalist>
+                            <button type="button" class="btn-delete-line" style="color: white;font-size: inherit;">
+                              <span aria-hidden="true">
+                                <i class="fas fa-trash"></i>
+                              </span>
+                            </button>
+                        </div>
+                        <hr>
+                        <!-- add and delete categories-->
+                        <button type="button" class="btn-add-category" >
+                          <span aria-hidden="true">                           
+                            <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                            <h6 class="text">ADD</h6>
+                          </span>
+                        </button>
+                        <button type="button" class="btn-delete-categories">
+                          <span aria-hidden="true">            
+                            <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                            <h6 class="text">DELETE ALL</h6>
+                        </button>
+                      </div>
+                      <div class="col-6">
+                        <!-- ALLERGEN FILTER -->
+                      <h3 class="underlined-text">ALLERGENS</h3>
+                      <div class="allergens-options">
+                        <input style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="allergens-scroll" list="allergenslist" placeholder="Type an allergen..">
+                          <datalist id="allergenslist">
+                            <option value="Peanuts"></option>
+                            <option value="Crustaceans"></option>     
+                            <option value="Eggs"></option> 
+                            <option value="Soybeans"></option>  
+                            <option value="Milk"></option>   
+                            <option value="Mustard"></option>    
+                          </datalist>
+                          <button type="button" class="btn-delete-line" style="color: white;font-size: inherit;">
+                            <span aria-hidden="true">
+                              <i class="fas fa-trash"></i>
+                            </span>
+                          </button>
+                        </div>
+                        <hr>
+                        <!-- add and delete allergens-->
+                        <button type="button" class="btn-add-allergen" >
+                          <span aria-hidden="true">                           
+                            <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                            <h6 class="text">ADD</h6>
+                          </span>
+                        </button>
+                        <button type="button" class="btn-delete-allergens">
+                          <span aria-hidden="true">            
+                            <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                            <h6 class="text">DELETE ALL</h6>
+                        </button>
+                      </div>
+                    </div>
+                    <hr>
+                  </div>
+                  <button class="btn btn-primary" href="#" data-dismiss="modal">
+                    <h6 class="text">Go!</h6>
+                    <img class="img-fluid rounded" src="../images/icons/pizza-go.png" alt="" width="50%" style="height: 50px; width: 50px;">
+                  </button>
+              </div>
+            </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add button pannel -->
+  <div class="publications-modal modal fade" id="opened-add-button" tabindex="-1" role="dialog"
+    aria-labelledby="publicationsModal6Label" aria-hidden="true">
+    <div id="example" class="modal-dialog modal-xl" style="width: 70%;" role="document">
+      <div class="modal-content">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            <i class="fas fa-times"></i>
+          </span>
+        </button>
+        <div class="modal-body text-center">
+          <div class="container">
+            <!-- publications Modal - Title -->
+            <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Add Recipe</h2>
+            <!-- Icon Divider -->
+            <div class="divider-custom">
+              <div class="divider-custom-line"></div>
+              <div class="divider-custom-icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="divider-custom-line"></div>
+            </div>
+            <div class="row">
+              <div class="col-8" style="justify-content: center; height: 100%;">
+                <!-- Recipe section -->
+                <div class="wrap-input50 m-b-23" style="text-align: initial;">
+                  <h3 class="underlined-text">Recipe name*</h3>
+                  <div id="titleCountChar"></div>
+                  <input onkeyup="titleCountChar(this)" class="input100" type="text" name="title" placeholder="Recipe name" style="padding:10px;width: 100%;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)">
+                </div>
+                <hr>
+                <!-- Introduction section -->
+                <div class="wrap-input50 m-b-23" style="text-align: initial;">
+                  <h3 class="underlined-text">Introduction*</h3>
+                  <div id="introCountChar"></div>
+                  <textarea onkeyup="introCountChar(this)" name="description" style="padding:10px;width: 100%;height: 100px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" placeholder="Type a introduction here.."></textarea>
+                </div>
+                <div class="btn-outline-primary" style="border-radius:0.5rem;
+                  border:1px solid rgb(23, 162, 184); align-self:center;z-index: 1050;
+                  text-align:center;padding:0;right:0;width:25%;position:absolute;cursor:pointer">
+                  <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
+                </div>
+                <fieldset id="steps-form" class="nav-item dropdown wrap-input50 m-b-23" style="text-align: initial;">
+                  <h3>Step 1*</h3>
+                  <hr>
+                  <div id="stepCountChar"></div>
+                  <textarea onkeyup="stepCountChar(this)" placeholder="A recipe must have at least 1 step :D" style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"></textarea>
+                  <span class="focus-input100" data-symbol="&#xf206;"></span>
+                </fieldset>
+                <hr>
+                <div id="add-step" class="btn btn-dark" style="width: 100%; border-radius: 0.8rem;background-color: teal;cursor: pointer;">
+                  <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                </div>
+              </div>
+              <div class="col-4" style="height: 100%;">
+                <!-- Ingredients section -->
+                <h3 class="underlined-text">Ingredients*</h3>
+                <p>Select ingredients:</p>
+                <div id="add-ingredient" class="btn btn-primary" style="width: 100%; border-radius: 0.8rem;background-color: mediumspringgreen;cursor: pointer;">
+                  <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                </div>
+                <fieldset id="ingredients-form" class="nav-item dropdown scrolling" style="height: 300px;">
+                </fieldset>
+                <hr>
+                <h3 class="underlined-text">Category</h3>
+                <div id="add-category" class="btn btn-secondary" style="width: 100%; border-radius: 0.8rem;background-color: steelblue;cursor: pointer;">
+                  <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                </div>
+                <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;">
+                </fieldset>
+                <hr>
+                <h3 class="underlined-text">Difficulty</h3>
+                <!-- Difficulty section stars -->
+                <div class="rating" style="text-align: center;">
+                  <input name="rating" type="radio" id="extreme-star" onclick="starClick(4)" value="4" on="change:rating.submit">
+                  <label for="rating4" title="4 stars" >☆</label>
+                  <input name="rating" type="radio" id="hard-star" onclick="starClick(3)" value="3" on="change:rating.submit">
+                  <label for="rating3" title="4 stars" >☆</label>
+                  <input name="rating" type="radio" id="medium-star" onclick="starClick(2)" value="2" on="change:rating.submit">
+                  <label for="rating2" title="4 stars" >☆</label>
+                  <input name="rating" type="radio" id="easy-star" onclick="starClick(1)" value="1" on="change:rating.submit">
+                  <label for="rating1" title="4 stars" >☆</label>
+                </div>
+                <div>
+                  <p id="extreme-text" hidden>Extreme</p>
+                  <p id="hard-text" hidden>Hard</pid="extreme-text">
+                  <p id="medium-text" hidden>Medium</p>
+                  <p id="easy-text" hidden>Easy</p>
+                </div>
+                <h3 class="underlined-text">Aproximated time</h3>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>15m</option>
+                  <option>30m</option>
+                  <option>45m</option>
+                  <option>1h</option>
+                  <option>1h 30m</option>
+                  <option>2h</option>
+                  <option>2h 30m</option>
+                  <option>3h</option>
+                  <option>4h or more</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-primary" href="#" data-dismiss="modal" style="margin-top: 20px;">
+              <span>Post</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Instarecipes 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Test JS -->
+  <script>
+    var icon = document.getElementById("open-add-button");
+    var bgTouch = document.getElementById("opened-add-button");
+    var aux = true;
+    icon.onclick = function (e) {
+      if (aux) {
+        icon.style.zIndex = "1051"; //has to be in front of the faded background, this z faded is 1050
+        icon.classList.add("rotate45");
+        icon.classList.remove("rotate0");
+        aux = false;
+      } else {
+        secondTime();
+      }
+    }
+    function secondTime() {
+      icon.style.zIndex = "750";
+      icon.classList.add("rotate0");
+      icon.classList.remove("rotate45");
+      aux = true;
+    }
+    bgTouch.onclick = secondTime;
+  </script>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Contact Form JavaScript -->
+  <script src="../js/jqBootstrapValidation.js"></script>
+  <script src="../js/contact_me.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="../js/freelancer.min.js"></script>
+
+  <!-- Add a recipe js -->
+  <script src="../js/add-recipe.js"></script>
+
+</body>
+
+</html>

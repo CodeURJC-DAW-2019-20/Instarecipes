@@ -123,3 +123,22 @@ The first thing we observe when we visit the main page are **three slides**, whi
 <p align="center">
 <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Gifs/Trending-gif.gif">  
 </p>  
+
+### Navigation diagrams
+Finally, we show the *first* navigation diagrams to make the connections between the pages a little bit clearer. 
+
+* **Main diagram**
+<p align="center">
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Navigation%20Diagrams/Navigation%20Diagram%20(Pages).png">
+</p> 
+
+In the diagram we can see above, we observe that Home, User Profile, Ranking, Search User/Recipe and Login/Sign Up are always connected to each other, this is simply because they are in the navbar, ***but*** Login/Sign Up button has an arrow directed towards it, this means that you can go to the login and sign up section but once you're there, you cannot go to User Profile, Ranking and Search User/Recipe because there is no Navbar there. (*Obviously, you can go to the Home page* :house:) 
+
+* **Users and profile diagram**  
+In the next diagram, you can see the main differences between the registered users, anonymous users and the administrator.
+All of them can access to their recipes, the recipes pages, go back to home... (*Main diagram*) **BUT** the administrator will have a menu where he can manage things like accept new ingredients, categories...
+
+<p align="center">
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Navigation%20Diagrams/Navigation%20Diagram%20(Profile).png">
+</p> 
+
