@@ -1,4 +1,4 @@
-package com.proyect.instarecipes.instarecipes;
+package com.proyect.user;
 
 import java.awt.Image;
 import java.util.ArrayList;
