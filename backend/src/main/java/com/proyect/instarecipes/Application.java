@@ -1,4 +1,4 @@
-package com.proyect.instarecipes.instarecipes;
+package com.proyect.instarecipes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

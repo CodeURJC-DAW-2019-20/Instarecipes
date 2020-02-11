@@ -1,4 +1,4 @@
-package com.proyect.instarecipes.instarecipes;
+package com.proyect.instarecipes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
