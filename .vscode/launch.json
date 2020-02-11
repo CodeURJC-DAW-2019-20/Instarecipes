@@ -9,6 +9,16 @@
             "mainClass": "com.proyect.instarecipes.instarecipes.Application",
             "projectName": "instarecipes",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<instarecipes>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.proyect.instarecipes.Application",
+            "projectName": "instarecipes",
+            "args": ""
         }
     ]
 }
