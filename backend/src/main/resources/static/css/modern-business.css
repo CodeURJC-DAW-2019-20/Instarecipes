@@ -116,6 +116,7 @@ form.example::after {
 .btn-delete-line {
   background-color: rgb(212, 69, 69);
   border-radius: 0.8rem;
+  border-style: groove;
   border-color: rgb(88, 0, 0) ;
 }
 .btn-delete-ingredients, .btn-delete-categories, .btn-delete-allergens { 
