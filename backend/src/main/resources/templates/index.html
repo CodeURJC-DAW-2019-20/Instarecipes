@@ -10,7 +10,8 @@
 
   <title>Instarecipes</title>
   <!-- Images and icons-->
-  <link rel="icon" type="image/png" href="images/icons/instarecipes.png"/>
+  <link rel="icon" type="image/png" href="../images/icons/chef.png"/>
+  <link rel="icon" type="image/png" href="../static/images/icons/instarecipes.png.png"/>
 
   <!-- Bootstrap core CSS -->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -24,7 +25,7 @@
   <link href="../css/freelancer.css" rel="stylesheet">
 
   <!-- Images and icons-->
-  <link rel="icon" type="image/png" href="images/icons/instarecipes.png"/>
+  <link rel="icon" type="image/png" href="../images/icons/chef.png" />
 
 </head>
 
@@ -33,7 +34,7 @@
   <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container" style="margin-left: 30px;">
       <div id="img-navbar-container">
-        <img class="img-navbar" src="images/icons/instarecipes.png" alt="">
+        <img class="img-navbar" src="../images/icons/chef.png" alt="">
       </div>
       <a class="navbar-brand js-scroll-trigger" href="index.html">&nbsp;Instarecipes</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" 
@@ -249,11 +250,11 @@
             </div>
           </div>
         </div>
-        <div class="bottom-text-image rounded mb-3 mb-md-0"><h3>Homemade Pizza!</h3></div>
+        <div class="bottom-text-image rounded mb-3 mb-md-0"><h3>{{title}}</h3></div>
       </div>
       <div class="col-md-4">
         <h3>Introduction</h3>
-        <p>BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying</p>
+        <p>{{description}}</p>
         <a class="btn btn-primary" href="#">Read
           <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
@@ -303,88 +304,7 @@
       </div>
     </div>
     <!-- /.row -->
- <!-- Project Three -->
- <div class="row">
-  <div class="col-md-7">
-    <a href="#">
-      <img class="img-fluid rounded mb-3 mb-md-0" src="../images/Recipes/recipe_example_3.jpg" alt="">
-    </a>
-    <div class="likes-comments-top-left">
-      <div class="row" style="margin-right: 0;margin-left: 0;">
-        <div class="col-3">
-          <img class="icon-fluid" src="../images/icons/like_pressed.png" alt="">
-        </div>
-        <div class="col-3">
-          <p class="icon-fluid pub-date-text">84</p>
-        </div>
-        <div class="col-3">
-          <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
-        </div>
-        <div class="col-3">
-          <p class="icon-fluid pub-date-text">203</p>
-        </div>
-      </div>
-    </div>
-    <div class="bottom-text-image rounded mb-3 mb-md-0"><h3>Custard + Cinnamon = Satisfaction</h3></div>
-  </div>
-  <div class="col-md-4">
-    <h3>Introduction</h3>
-    <p>In my opinion, this is truly one of the best dessert that a human being can make.My mum used to make them
-      always to me when I was little but now, I do them for my son.
-      Pretty simple and delicious, what more can I say? :)</p>
-    <a class="btn btn-primary" href="#">Read
-      <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
-  </div>
-  <div class="col-lg-1" style="align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);">
-    <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
-  </div>
-</div>
-<!-- /.row -->
 
-<hr>
-
-<!-- Project Four -->
-<div class="row">
-  <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);">
-    <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
-  </div>
-  <div class="col-md-4">
-    <h3>Introduction</h3>
-    <p>Corn, Tomato, and Avocado Pasta Salad. If you’re going to eat a salad today, it should probably be this
-      salad.
-      It’s the perfect quick fix salad that’s almost no cook and comes together in minutes.
-      Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it all
-      together, and done.
-      It’s summery, healthy, and so good!</p>
-    <a class="btn btn-primary" href="#">Read
-      <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
-  </div>
-  <div class="col-md-7">
-    <a href="#">
-      <img class="img-fluid rounded mb-3 mb-md-0" src="../images/Recipes/recipe_example_4.jpg" alt="">
-    </a>
-    <div class="likes-comments-top-right">
-        <div class="row" style="margin-right: 0;margin-left: 0;">
-          <div class="col-3">
-            <img class="icon-fluid" src="../images/icons/like_pressed.png" alt="">
-          </div>
-          <div class="col-3">
-            <p class="icon-fluid pub-date-text">84</p>
-          </div>
-          <div class="col-3">
-            <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
-          </div>
-          <div class="col-3">
-            <p class="icon-fluid pub-date-text">203</p>
-          </div>
-        </div>
-      </div>
-    <div class="bottom-text-image rounded mb-3 mb-md-0"><h3>Salad with avocado!!!</h3></div>
-  </div>
-</div>
-<!-- /.row -->
     <hr>
 
     <hr width="80%">
@@ -411,7 +331,7 @@
 
     <!-- Search button pannel -->
     <div class="publications-modal modal fade" id="opened-search-button" tabindex="-1" role="dialog" aria-labelledby="publicationsModal6Label" aria-hidden="true">
-      <div id="filtered-search" class="modal-dialog modal-xl" role="document" style="width: 90%;">
+      <div id="filtered-search" class="modal-dialog modal-xl" role="document" style="width: 50%;">
         <div class="modal-dialog modal-xl" role="document">
           <div class="modal-content">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -436,92 +356,77 @@
                       <div class="col-6">
                         <!-- INGREDIENT FILTER -->
                         <h3 class="underlined-text">INGREDIENTS</h3>
-                        <div class="row">
-                        <table id="IngredientsTable">          
-                        <tr>
-                          <td>
-                            <!--"Ingredient-Name"-->
-                            <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="ingredients-scroll" list="ingredientslist" placeholder="Ingredient..">
+                        <div class="ingredients-options" >
+                          <div class="row">
+                            <div class="col-6">
+                              <p style="text-align: center;font-size: 10px;height: 8px;">Ingredient</p>
+                              <input style="width: inherit;border-radius: 0.5rem;border-width: 0.5px;" type="text" name="ingredients-scroll" list="ingredientslist" placeholder="Ingredient..">
                               <datalist id="ingredientslist">
                                 <option value="dark chocolate"></option>
                                 <option value="potatoes"></option>
                                 <option value="oil"></option>
-                                <option value="white chocolate"></option>
+                                <option value="white chocolate"></option>   
                                 <option value="garlic"></option>
-                                <option value="milk chocolate"></option>
+                                <option value="milk chocolate"></option>        
                               </datalist>
-                          </td>
-                          <td>
-                            <!--"Ingredient-Quantity"-->
-                            <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="ingredients-quantity" placeholder="Quantity">
-                          </td>
-
-                          <td>
-                            <!--"Ingredient-Unit"-->
-                            <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="ingredients-unit" list="ingredientsunit" placeholder="Units">
+                            </div>
+                            <div class="col-3" style="padding-left: 0;">
+                              <p style="text-align: center;font-size: 10px;height: 8px;width: 100%;">Quantity</p>
+                              <input style="text-align: center;width: inherit;border-radius: 0.5rem;border-width: 0.5px;" type="text" name="ingredients-quantity" placeholder="Quantity">
+                            </div>
+                            <div class="col-3" style="padding-left: 0;">
+                              <p style="text-align: center;font-size: 10px;height: 8px;">Units</p>
+                              <input style="text-align: center;width: inherit;border-radius: 0.5rem;border-width: 0.5px;" type="text" name="ingredients-unit" list="ingredientsunit" placeholder="Units">
                               <datalist id="ingredientsunit">
                                 <option value="grs."></option>
-                                <option value="Kg./L"></option>
-                                <option value="Units"></option>
+                                <option value="Kg./L"></option>    
+                                <option value="Units"></option>        
                               </datalist>
-                          </td>    
-                          <td>
-                            <button id="ing-delete-button" type="button" class="btn-delete-line" style="color: white; font-size: inherit;" onclick="delRowIngredient(this)">
+                            </div>
+                          </div>
+                          <button type="button" class="btn-delete-line" style="color: white;font-size: inherit;">
+                            <span aria-hidden="true">
+                              <i class="fas fa-trash"></i>
+                            </span>
+                          </button>
+                        </div>
+                        <hr>
+                        <!-- add and delete ingredients buttons -->
+                        <button type="button" class="btn-add-ingredient">
+                          <span aria-hidden="true">                           
+                              <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                              <h6 class="text">ADD</h6>
+                          </span>
+                        </button>
+                        <button type="button" class="btn-delete-ingredients">
+                          <span aria-hidden="true">            
+                            <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                            <h6 class="text">DELETE ALL</h6>
+                        </button>
+                        <hr>
+                      </div>
+                      <div class="col-6">
+                        <!-- CATEGORY FILTER -->
+                        <h3 class="underlined-text">COOKING STYLE</h3>
+                        <div class="categories-options">
+                        <input style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
+                            <datalist id="categorieslist">
+                              <option value="Vegan"></option>
+                              <option value="Grains"></option>     
+                              <option value="Beans"></option> 
+                              <option value="Seafood"></option>  
+                              <option value="Vegetarian"></option>   
+                              <option value="Shellfish"></option>    
+                            </datalist>
+                            <button type="button" class="btn-delete-line" style="color: white;font-size: inherit;">
                               <span aria-hidden="true">
                                 <i class="fas fa-trash"></i>
                               </span>
                             </button>
-                          </td>
-                        </tr>
-                        </table> 
-                        </div>
-                        <hr>
-                        <!-- add and delete ingredients buttons -->
-                        <button id="ing-add-button" type="button" class="btn-add-ingredient">
-                          <span aria-hidden="true">                           
-                              <i class="fa fa-plus add" aria-hidden="true" style="color: white; font-size: inherit;"></i>
-                              <h6 class="text">ADD</h6>
-                          </span>
-                        </button>
-                        <button id="ing-delete-all-button" type="button" class="btn-delete-ingredients">
-                          <span aria-hidden="true">            
-                            <i class="fas fa-trash" aria-hidden="true" style="color: white; font-size: inherit;"></i>
-                            <h6 class="text">DELETE ALL</h6>
-                          </span>
-                        </button>
-                        <hr>
-                      </div>
-
-                      <div class="col-6">
-                        <!-- COOKING STYLE FILTER -->
-                        <h3 class="underlined-text">COOKING STYLE</h3>
-                        <div class="row">
-                        <table id="CookingStyleTable">
-                        <tr>
-                          <td>
-                          <input style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
-                              <datalist id="categorieslist">
-                                <option value="Vegan"></option>
-                                <option value="Grains"></option>     
-                                <option value="Beans"></option> 
-                                <option value="Seafood"></option>  
-                                <option value="Vegetarian"></option>   
-                                <option value="Shellfish"></option>    
-                              </datalist>
-                          </td>
-                          <td>
-                           <button id="CSy-delete-button" type="button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCookingStyle(this)">
-                              <span aria-hidden="true">
-                                <i class="fas fa-trash"></i>
-                              </span>
-                            </button> 
-                          </td>
-                        </tr>
-                        </table>
                         </div>
                         <hr>
                         <!-- add and delete categories-->
-                        <button id="CSy-add-button" type="button" class="btn-add-category" >
+                        <button type="button" class="btn-add-category" >
                           <span aria-hidden="true">                           
                             <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                             <h6 class="text">ADD</h6>
@@ -532,41 +437,31 @@
                             <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                             <h6 class="text">DELETE ALL</h6>
                         </button>
-                        <hr>
+                      </div>
                     </div>
-                    </div>
-
                     <div class="row">
                       <div class="col-6">
                         <!-- CATEGORY FILTER -->
                         <h3 class="underlined-text">CATEGORIES</h3>
-                        <div class="row">
-                        <table id="CategoriesTable">
-                          <tr>
-                            <td>
-                              <input style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
-                              <datalist id="categorieslist">
-                                <option value="Vegan"></option>
-                                <option value="Grains"></option>     
-                                <option value="Beans"></option> 
-                                <option value="Seafood"></option>  
-                                <option value="Vegetarian"></option>   
-                                <option value="Shellfish"></option>    
-                              </datalist>
-                            </td>
-                            <td>
-                              <button id="cat-delete-button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCategory(this)">
-                                <span aria-hidden="true">
-                                  <i class="fas fa-trash"></i>
-                                </span>
-                              </button>  
-                            </td> 
-                          </tr>
-                        </table>
-                      </div>
-                      <hr>
+                        <div class="categories-options">
+                        <input style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
+                            <datalist id="categorieslist">
+                              <option value="Vegan"></option>
+                              <option value="Grains"></option>     
+                              <option value="Beans"></option> 
+                              <option value="Seafood"></option>  
+                              <option value="Vegetarian"></option>   
+                              <option value="Shellfish"></option>    
+                            </datalist>
+                            <button type="button" class="btn-delete-line" style="color: white;font-size: inherit;">
+                              <span aria-hidden="true">
+                                <i class="fas fa-trash"></i>
+                              </span>
+                            </button>
+                        </div>
+                        <hr>
                         <!-- add and delete categories-->
-                        <button id="cat-add-button" type="button" class="btn-add-category" >
+                        <button type="button" class="btn-add-category" >
                           <span aria-hidden="true">                           
                             <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                             <h6 class="text">ADD</h6>
@@ -578,51 +473,42 @@
                             <h6 class="text">DELETE ALL</h6>
                         </button>
                       </div>
-
                       <div class="col-6">
                         <!-- ALLERGEN FILTER -->
                       <h3 class="underlined-text">ALLERGENS</h3>
-                      <div class="row">
-                      <table id="AllergensTable">
-                        <tr>
-                          <td>
-                          <input style="border-radius: 0.5rem; border-width: 0.5px;" type="text" name="allergens-scroll" list="allergenslist" placeholder="Type an allergen..">
-                            <datalist id="allergenslist">
-                              <option value="Peanuts"></option>
-                              <option value="Crustaceans"></option>     
-                              <option value="Eggs"></option> 
-                              <option value="Soybeans"></option>  
-                              <option value="Milk"></option>   
-                              <option value="Mustard"></option>    
-                            </datalist>
-                          </td>
-                          <td>
-                            <button id="Alg-delete-button" type="button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowAllergen(this)">
-                              <span aria-hidden="true">
-                                <i class="fas fa-trash"></i>
-                              </span>
-                            </button>
-                          </td>
-                        </tr>
-                      </table>
+                      <div class="allergens-options">
+                        <input style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="allergens-scroll" list="allergenslist" placeholder="Type an allergen..">
+                          <datalist id="allergenslist">
+                            <option value="Peanuts"></option>
+                            <option value="Crustaceans"></option>     
+                            <option value="Eggs"></option> 
+                            <option value="Soybeans"></option>  
+                            <option value="Milk"></option>   
+                            <option value="Mustard"></option>    
+                          </datalist>
+                          <button type="button" class="btn-delete-line" style="color: white;font-size: inherit;">
+                            <span aria-hidden="true">
+                              <i class="fas fa-trash"></i>
+                            </span>
+                          </button>
+                        </div>
+                        <hr>
+                        <!-- add and delete allergens-->
+                        <button type="button" class="btn-add-allergen" >
+                          <span aria-hidden="true">                           
+                            <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                            <h6 class="text">ADD</h6>
+                          </span>
+                        </button>
+                        <button type="button" class="btn-delete-allergens">
+                          <span aria-hidden="true">            
+                            <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                            <h6 class="text">DELETE ALL</h6>
+                        </button>
                       </div>
-                      <hr>
-                      <!-- add and delete allergens-->
-                      <button id="Alg-add-button" type="button" class="btn-add-allergen" >
-                        <span aria-hidden="true">                           
-                          <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
-                          <h6 class="text">ADD</h6>
-                        </span>
-                      </button>
-                      <button type="button" class="btn-delete-allergens">
-                        <span aria-hidden="true">            
-                          <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
-                          <h6 class="text">DELETE ALL</h6>
-                      </button>
                     </div>
+                    <hr>
                   </div>
-                  <hr>
-                </div>
                   <button class="btn btn-primary" href="#" data-dismiss="modal">
                     <h6 class="text">Go!</h6>
                     <img class="img-fluid rounded" src="../images/icons/pizza-go.png" alt="" width="50%" style="height: 50px; width: 50px;">
@@ -662,7 +548,7 @@
                 <div class="wrap-input50 m-b-23" style="text-align: initial;">
                   <h3 class="underlined-text">Recipe name*</h3>
                   <div id="titleCountChar"></div>
-                  <input onkeyup="titleCountChar(this)" class="input100" type="text" name="Title of your recipe" placeholder="Recipe name" style="padding:10px;width: 100%;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)">
+                  <input onkeyup="titleCountChar(this)" class="input100" type="text" name="title" placeholder="Recipe name" style="padding:10px;width: 100%;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)">
                 </div>
                 <hr>
                 <!-- Introduction section -->
@@ -796,7 +682,6 @@
 
   <!-- Add a recipe js -->
   <script src="../js/add-recipe.js"></script>
-  <script src="../js/filter-search-btn.js"></script>
 
 </body>
 
