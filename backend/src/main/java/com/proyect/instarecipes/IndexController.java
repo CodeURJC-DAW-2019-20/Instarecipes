@@ -15,11 +15,13 @@ public class IndexController {
     private List<Recipe> recipes = new ArrayList<>();
 
 	public IndexController() {
-        recipes.add(new Recipe(null, "@boss99", 111, "This smoothie is made from fresh ingredients. It's sweet and creamy, I love it and I hope you do too. Only with a few steps you will have the perfect summer drink! ", "XXXX", "YYYY", "ejemplo titulo1", "ejemplo descripcion1", "15 min.", "Hard", null));
-        recipes.add(new Recipe(null, "@lady44", 222, "Strawberry banana smoothie! (Easy & Healthy)", "XXXX", "YYYY", "ejemplo titulo2", "ejemplo descripcion2", "15 min.", "Hard", null));
+        recipes.add(new Recipe(null, "@boss99", 111, "??? ", "¿¿¿¿", "Homemade Pizza!", "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!", 
+        "ejemplo descripcion2", "15 min.", "Hard", null));
+        recipes.add(new Recipe(null, "@lady44", 222, "???", "¿¿¿¿", "Avocado Salad", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
+        "ejemplo descripcion2", "15 min.", "Hard", null));
     }
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String indexPage(Model model) {
         model.addAttribute("recipes", recipes);
         return "index";
@@ -37,7 +39,7 @@ public class IndexController {
         return "login";
     }
 
-    @PostMapping("/")
+    @PostMapping("/index")
     public String postRecipe(Model model, Recipe recipe) {
 
         recipes.add(recipe);
@@ -45,5 +47,8 @@ public class IndexController {
 
         return "index"; 
     }
-    
+    @GetMapping("/search-page")
+    public String searchPage(Model model) {
+        return "search-page";
+    }
 }

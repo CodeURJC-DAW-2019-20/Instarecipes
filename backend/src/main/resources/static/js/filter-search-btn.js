@@ -1,37 +1,42 @@
-var Add_Ing_Button = document.getElementById("ing-add-button");
-var Add_Cat_Button = document.getElementById("cat-add-button");
+var Add_Ing_Button = document.getElementById("Ing-add-button");
+var Add_Cat_Button = document.getElementById("Cat-add-button");
 var Add_CSy_Button = document.getElementById("CSy-add-button"); /*Cooking Style*/
 var Add_Alg_Button = document.getElementById("Alg-add-button"); /*Allergens*/
 
 /*DELETE ALL VARIABLES*/
-var Delete_Ing_Button = document.getElementById("ing-delete-all-button");
+var Delete_Ing_Button = document.getElementById("Ing-delete-all-button");
+var Delete_Cat_Button = document.getElementById("Cat-delete-all-button");
+var Delete_CSy_Button = document.getElementById("CSy-delete-all-button");
+var Delete_Alg_Button = document.getElementById("Alg-delete-all-button");
 
 
 /* ADD AND DELETE INGREDIENT ROW */
+//var IngredientsTable = document.getElementById("IngredientsTable");
+//var IngredientsTotalRows = IngredientsTable.rows.length;
 
 Add_Ing_Button.onclick = function insRowIngredient() {
     var table = document.getElementById("IngredientsTable");
-    var totalrows = table.rows.length;
+    var totalRows = table.rows.length;
     var new_row = table.rows[0].cloneNode(true);
     var inp1 = new_row.cells[0].getElementsByTagName('input')[0]; //ingredient
     var inp2 = new_row.cells[1].getElementsByTagName('input')[0]; //quantity
     var inp3 = new_row.cells[2].getElementsByTagName('input')[0]; //unit
     
-    inp1.id += totalrows;
+    inp1.id += totalRows;
     inp1.value = ''; //new slot empty!
    
-    inp2.id += totalrows;
+    inp2.id += totalRows;
     inp2.value = ''; //new slot empty!
 
-    inp3.id += totalrows;
+    inp3.id += totalRows;
     inp3.value = ''; //new slot empty!
 
-  table.appendChild(new_row);
+    table.appendChild(new_row);
 }
 
 function delRowIngredient(currentRow) {
     var table = document.getElementById("IngredientsTable");
-    
+
     if (table.rows.length > 1) {
     var parentRowIndex = currentRow.parentNode.parentNode.rowIndex; //parent will have the index row that we want to delete 
         document.getElementById("IngredientsTable").deleteRow(parentRowIndex);
@@ -43,7 +48,7 @@ Delete_Ing_Button.onclick = function delAll_IngredientRows() {
     var table = document.getElementById("IngredientsTable");
     var totalrows = table.rows.length;
     var tableRows = table.getElementsByTagName('tr');
-
+    
     for (var i=totalrows-1; i>0; i--) {
         table.removeChild(tableRows[i]);
     }
@@ -73,6 +78,15 @@ function delRowCookingStyle(currentRow) {
     }
 }
 
+Delete_CSy_Button.onclick = function delAll_CookingStyleRows() {
+    var table = document.getElementById("CookingStyleTable");
+    var totalrows = table.rows.length;
+    var tableRows = table.getElementsByTagName('tr');
+    
+    for (var i=totalrows-1; i>0; i--) {
+        table.removeChild(tableRows[i]);
+    }
+}
 /* ADD AND DELETE CATEGORIES ROW */
   
 Add_Cat_Button.onclick = function insRowCategory() {
@@ -97,6 +111,16 @@ function delRowCategory(currentRow) {
   
 }
 
+Delete_Cat_Button.onclick = function delAll_CategoryRows() {
+    var table = document.getElementById("CategoriesTable");
+    var totalrows = table.rows.length;
+    var tableRows = table.getElementsByTagName('tr');
+    
+    for (var i=totalrows-1; i>0; i--) {
+        table.removeChild(tableRows[i]);
+    }
+}
+
 /* ADD AND DELETE ALLERGENS ROW */
   
 Add_Alg_Button.onclick = function delRowAllergen() {
@@ -119,4 +143,14 @@ function delRowAllergen(currentRow) {
         document.getElementById("AllergensTable").deleteRow(parentRowIndex);
     }
 
+}
+
+Delete_Alg_Button.onclick = function delAll_AllergensRows() {
+    var table = document.getElementById("AllergensTable");
+    var totalrows = table.rows.length;
+    var tableRows = table.getElementsByTagName('tr');
+    
+    for (var i=totalrows-1; i>0; i--) {
+        table.removeChild(tableRows[i]);
+    }
 }
