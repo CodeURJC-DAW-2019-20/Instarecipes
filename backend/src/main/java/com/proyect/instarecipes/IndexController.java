@@ -21,7 +21,7 @@ public class IndexController {
         "ejemplo descripcion2", "15 min.", "Hard", null));
     }
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String indexPage(Model model) {
         model.addAttribute("recipes", recipes);
         return "index";
@@ -39,7 +39,7 @@ public class IndexController {
         return "login";
     }
 
-    @PostMapping("/index")
+    @PostMapping("/")
     public String postRecipe(Model model, Recipe recipe) {
 
         recipes.add(recipe);
