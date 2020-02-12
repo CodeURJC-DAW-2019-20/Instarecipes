@@ -15,29 +15,6 @@ public class Recipe{
     private String steps;
     private Image galery;
 
-    //Empty contructor
-    public Recipe(){}
-
-    //Constructor with all atributes
-    public Recipe(AtomicInteger id, String username, int id_ingredients, String name_categories,
-    String name_cookingStyle, String title, String description, String duration, String dificulty, String steps,
-    Image galery) {
-        super();
-        this.id = id;
-        this.username = username;
-        this.id_ingredients = id_ingredients;
-        this.name_categories = name_categories;
-        this.name_cookingStyle = name_cookingStyle;
-        this.title = title;
-        this.description = description;
-        this.duration = duration;
-        this.dificulty = dificulty;
-        this.steps = steps;
-        this.galery = galery;
-    } 
-
-    //GETTERS AND SETTERS
-
     public AtomicInteger getId() {
         return id;
     }
@@ -125,5 +102,5 @@ public class Recipe{
     public void setGalery(Image galery) {
         this.galery = galery;
     }
-
+     
 }
