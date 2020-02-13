@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Instarecipes</title>
+  <link rel="icon" type="image/png" href="images/icons/instarecipes.png"/>
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  <link href="css/searchfile.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/modern-business.css" rel="stylesheet">
+  <link href="css/freelancer.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <div class="container" style="margin-left: 30px;">
+      <div id="img-navbar-container">
+        <img class="img-navbar" src="images/icons/instarecipes.png" alt="">
+      </div>
+      <a class="navbar-brand js-scroll-trigger" href="../templates/index.html">&nbsp;Instarecipes</a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" 
+      type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" 
+      aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto" style="margin-right: 20%;">
+          <li class="nav-item col-4">
+            <a class="nav-link" href="../templates/index.html"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
+          </li>
+          <li class="nav-item col-4">
+            <a class="nav-link" href="../templates/profile.html"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+          </li>
+          <li class="nav-item col-4">
+              <a class="nav-link" href="../templates/ranking.html"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
+          </li>
+        </ul>
+        <form class="example" action="../templates/search-page.html" >
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="login-container">
+      <a class="nav-link nav-log" href="../templates/login.html" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container" style="margin-top: 5%;">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h4 class="mt-4 mb-3">Search
+      <small>results</small>
+    </h4>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="../templates/index.html">Home</a>
+      </li>
+      <li class="breadcrumb-item active">Search</li>
+    </ol>
+
+    <div class="row">
+
+      <!-- Sidebar Widgets Column -->
+      <div class="col-4">
+
+        <!-- Search Widget -->
+        <div class="card mb-4">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories Widget -->
+        <div class="card my-4">
+          <h5 class="card-header">Cooking Style</h5>
+            <div class="containersearch">
+              <ul class="ks-cboxtags">
+                <li><input type="checkbox" id="checkbox1" value="Vegan"><label for="checkbox1">Vegan</label></li>
+                <li><input type="checkbox" id="checkbox2" value="Vegetarian" ><label for="checkbox2">Vegetarian</label></li>
+                <li><input type="checkbox" id="checkbox3" value="Mediterranean" ><label for="checkbox3">Mediterranean</label></li>
+                <li><input type="checkbox" id="checkbox4" value="American"><label for="checkbox4">American</label></li> 
+                <li><input type="checkbox" id="checkbox5" value="Asian"><label for="checkbox5">Asian</label></li>
+                <li><input type="checkbox" id="checkbox6" value="Italian" ><label for="checkbox6">Italian</label></li>
+                <li><input type="checkbox" id="checkbox7" value="Arabic"><label for="checkbox7">Arabic</label></li>
+                <li><input type="checkbox" id="checkbox8" value="Latina"><label for="checkbox8">Latina</label></li>
+            </ul> 
+          </div>
+        </div>
+        <div class="card my-4"> 
+          <h5 class="card-header">Categories</h5>
+          <div class="containersearch">
+            <ul class="ks-cboxtags">
+              <li><input type="checkbox" id="checkbox9" value="Desserts"><label for="checkbox9">Desserts</label></li>
+              <li><input type="checkbox" id="checkbox10" value="Starters" ><label for="checkbox10">Starters</label></li>
+              <li><input type="checkbox" id="checkbox11" value="Main" ><label for="checkbox11">Main</label></li>
+              <li><input type="checkbox" id="checkbox12" value="Soups"><label for="checkbox12">Soups</label></li>
+              <li><input type="checkbox" id="checkbox13" value="Salad"><label for="checkbox13">Salad</label></li>
+              <li><input type="checkbox" id="checkbox14" value="Burgers"><label for="checkbox14">Burgers</label></li>
+              <li><input type="checkbox" id="checkbox15" value="Pizzas"><label for="checkbox15">Pizzas</label></li>
+              <li><input type="checkbox" id="checkbox16" value="Smoothies"><label for="checkbox16">Smoothies</label></li>
+              <li><input type="checkbox" id="checkbox17" value="Breakfast"><label for="checkbox17">BreakFast</label></li>
+              <li><input type="checkbox" id="checkbox18" value="Brunch"><label for="checkbox18">Brunch</label></li>
+              <li><input type="checkbox" id="checkbox19" value="Dinner"><label for="checkbox19">Dinner</label></li>
+            </ul>
+          
+          </div>       
+        </div>
+      </div>
+      <!-- Blog Entries Column -->
+      <div class="col-md-8">
+
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          <img class="card-img-top" src="images/Recipes/chicken_potatoes_recipe.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="card-title">Post Title</h2>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            <a href="#" class="btn btn-primary">Read More &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            Posted on January 1, 2017 by
+            <a href="#">Start Bootstrap</a>
+          </div>
+        </div>
+
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          <img class="card-img-top" src="images/Recipes/recipe_example_6.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="card-title">Post Title</h2>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            <a href="#" class="btn btn-primary">Read More &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            Posted on January 1, 2017 by
+            <a href="#">Start Bootstrap</a>
+          </div>
+        </div>
+
+        <!-- Blog Post -->
+        <div class="card mb-4">
+          <img class="card-img-top" src="images/Recipes/recipe_example_7.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="card-title">Post Title</h2>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            <a href="#" class="btn btn-primary">Read More &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+            Posted on January 1, 2017 by
+            <a href="#">Start Bootstrap</a>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <ul class="pagination justify-content-center mb-4">
+          <li class="page-item">
+            <a class="page-link" href="#">&larr; Older</a>
+          </li>
+          <li class="page-item disabled">
+            <a class="page-link" href="#">Newer &rarr;</a>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Contact Form JavaScript -->
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/freelancer.min.js"></script>
+
+</body>
+
+</html>
