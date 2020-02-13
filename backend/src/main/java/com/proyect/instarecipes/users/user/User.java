@@ -1,18 +1,12 @@
 package com.proyect.instarecipes.users.user;
 
 import java.util.Set;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 @Entity
 public class User{
@@ -28,7 +22,8 @@ public class User{
 	@Column(name = "Password", nullable = false, length = 36)
 	private String password;
 	@Column(name = "Role", nullable = false, length = 5)
-	private String role;				//"user","admin","annon"
+	@ElementCollection(fetch=FetchType.EAGER)
+    private List<String> role;			//"user","admin","annon"
 	@Column(name = "Name", nullable = false, length = 24)
 	private String name;
 	@Column(name = "Surname", nullable = true, length = 24)
@@ -51,13 +46,13 @@ public class User{
 	public User() {
 	}
 	
-	public User(long id, String username, String email, String password, String role, String name, String surname,
+	public User(long id, String username, String email, String password, String[] role, String name, String surname,
 			String allergens, Set<User> followers, Set<User> following) {
 		this.id = id;
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		this.role = role;
+		this.role = new ArrayList<>(Arrays.asList(role));
 		this.name = name;
 		this.surname = surname;
 		this.allergens = allergens;
@@ -100,13 +95,6 @@ public class User{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public String isRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
 
 	public String getName() {
 		return name;
@@ -121,22 +109,6 @@ public class User{
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-
-	// @Column(name = "background")
-	// public Image getBackground() {
-	// 	return background;
-	// }
-	// public void setBackground(Image background) {
-	// 	this.background = background;
-	// }
-
-	// @Column(name = "avatar")
-	// public Image getAvatar() {
-	// 	return avatar;
-	// }
-	// public void setAvatar(Image avatar) {
-	// 	this.avatar = avatar;
-	// }
 
 	public String getAllergens() {
 		return allergens;
@@ -159,9 +131,37 @@ public class User{
 		this.following = following;
 	}
 
-	public String getRole() { 
+	public List<String> getRole() { 
 		return role;
 	}
+
+	public void setRole(List<String> role) {
+		this.role = role;
+	}
+
+	public String toString(){
+        if(this.role.contains("ROLE_ADMIN")){
+            return "admin";
+        }else{
+            return "user";
+        }
+	}
+	
+	// @Column(name = "background")
+	// public Image getBackground() {
+	// 	return background;
+	// }
+	// public void setBackground(Image background) {
+	// 	this.background = background;
+	// }
+
+	// @Column(name = "avatar")
+	// public Image getAvatar() {
+	// 	return avatar;
+	// }
+	// public void setAvatar(Image avatar) {
+	// 	this.avatar = avatar;
+	// }
 	
 	/**				FOLLOWER / FOLLOWING METHODS				*/
 	public void addFollower(User follower) {
