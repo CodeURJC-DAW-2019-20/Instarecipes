@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class User{
 	
-	private AtomicInteger id;
+	private int id;
 	private String username;
 	private String email;
 	private String password;
@@ -18,10 +18,23 @@ public class User{
 	private Image background;
 	private Image avatar;
 	private ArrayList<String> allergens;
-	public AtomicInteger getId() {
+	
+	public User(){
+		this.id=1;
+	}
+	public User(String username, String email,String password, String name, String surname,int N_recipes,
+		int N_follows,int N_followers,Image background, Image avatar, ArrayList<String> allergens){
+			this.username=username;this.email=email;
+			this.password=password;this.surname=surname;
+			this.N_recipes=N_recipes;this.N_follows=N_follows;
+			this.N_followers=N_followers;this.background=background;
+			this.avatar=avatar;this.allergens=allergens;
+	}
+
+	public int getId() {
 		return id;
 	}
-	public void setId(AtomicInteger id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getUsername() {

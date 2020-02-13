@@ -3,7 +3,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.awt.Image;
 
 public class Recipe{
-    private AtomicInteger id;
+    private int id_recipe;
     private String username;
     private int id_ingredients;
     private String name_categories;
@@ -15,12 +15,28 @@ public class Recipe{
     private String steps;
     private Image galery;
 
-    public AtomicInteger getId() {
-        return id;
+    
+
+    public Recipe(){
+        this.id_recipe=9;
     }
 
-    public void setId(AtomicInteger id) {
-        this.id = id;
+    public Recipe(String username, int id_ingredients,String name_categories, String name_cookingStyle, 
+    String title,String description,String duration,String dificulty,String steps, Image galery){
+        this.id_recipe=9;
+		this.username=username;this.id_ingredients=id_ingredients;
+		this.name_categories=name_categories;this.name_cookingStyle=name_cookingStyle;
+		this.title=title;this.description=description;
+		this.duration=duration;this.dificulty=dificulty;
+		this.steps=steps;this.galery=galery;
+    }
+    
+    public int getId_recipe() {
+        return id_recipe;
+    }
+
+    public void setId(int id_recipe) {
+        this.id_recipe = id_recipe;
     }
 
     public String getUsername() {
