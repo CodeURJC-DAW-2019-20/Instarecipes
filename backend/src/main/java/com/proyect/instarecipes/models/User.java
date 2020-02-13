@@ -21,7 +21,7 @@ public class User{
 	private String email;
 	@Column(name = "Password", nullable = false, length = 36)
 	private String password;
-	@Column(name = "Role", nullable = false, length = 5)
+	@Column(name = "Role", nullable = true, length = 5) //provisional true nullable, then will be false
 	@ElementCollection(fetch=FetchType.EAGER)
     private List<String> role;			//"user","admin","annon"
 	@Column(name = "Name", nullable = false, length = 24)
