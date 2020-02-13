@@ -1,6 +1,6 @@
-package com.proyect.instarecipes.recipe;
+package com.proyect.instarecipes.models;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.awt.Image;
+// import java.awt.Image;
 
 public class Recipe{
     private AtomicInteger id;
@@ -13,16 +13,14 @@ public class Recipe{
     private String duration;
     private String dificulty;
     private String steps;
-    private Image galery;
+    // private Image galery;
 
     //Empty contructor
     public Recipe(){}
 
     //Constructor with all atributes
     public Recipe(AtomicInteger id, String username, int id_ingredients, String name_categories,
-    String name_cookingStyle, String title, String description, String duration, String dificulty, String steps,
-    Image galery) {
-        super();
+    String name_cookingStyle, String title, String description, String duration, String dificulty, String steps) {
         this.id = id;
         this.username = username;
         this.id_ingredients = id_ingredients;
@@ -33,7 +31,7 @@ public class Recipe{
         this.duration = duration;
         this.dificulty = dificulty;
         this.steps = steps;
-        this.galery = galery;
+        //this.galery = galery;
     } 
 
     //GETTERS AND SETTERS
@@ -118,12 +116,12 @@ public class Recipe{
         this.steps = steps;
     }
 
-    public Image getGalery() {
-        return galery;
-    }
+    // public Image getGalery() {
+    //     return galery;
+    // }
 
-    public void setGalery(Image galery) {
-        this.galery = galery;
-    }
+    // public void setGalery(Image galery) {
+    //     this.galery = galery;
+    // }
 
 }

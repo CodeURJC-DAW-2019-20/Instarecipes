@@ -1,6 +1,6 @@
-package com.proyect.instarecipes.users;
+package com.proyect.instarecipes.repositories;
 
-import com.proyect.instarecipes.users.user.User;
+import com.proyect.instarecipes.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsersRepository extends JpaRepository<User, Long> {

@@ -1,24 +1,21 @@
-
-package com.proyect.instarecipes.step;
-
-import java.awt.Image;
+package com.proyect.instarecipes.models;
+// import java.awt.Image;
 
 public class Step{
     private int id_step;
     private int id_recipe;
     private int number;
     private String Content;
-    private Image photo;
+    // private Image photo;
 
     public Step(){
-        id_step=9;
     }
     
-    public Step(int id_recipe,int number, String Contect, Image photo){
+    public Step(int id_recipe,int number, String Contect){
         this.id_recipe=id_recipe;
         this.number=number;
         this.Content=Contect;
-        this.photo=photo;
+        // this.photo=photo;
     }
 
     public int getId_step() {
@@ -53,13 +50,11 @@ public class Step{
         Content = content;
     }
 
-    public Image getPhoto() {
-        return photo;
-    }
+    // public Image getPhoto() {
+    //     return photo;
+    // }
 
-    public void setPhoto(Image photo) {
-        this.photo = photo;
-    }
-
-    
+    // public void setPhoto(Image photo) {
+    //     this.photo = photo;
+    // }
 }

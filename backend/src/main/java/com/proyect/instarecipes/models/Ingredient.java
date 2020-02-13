@@ -1,4 +1,4 @@
-package com.proyect.instarecipes.ingredients;
+package com.proyect.instarecipes.models;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Ingredient {

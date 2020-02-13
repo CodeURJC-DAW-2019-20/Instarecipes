@@ -1,4 +1,4 @@
-package com.proyect.instarecipes.users.user;
+package com.proyect.instarecipes.models;
 
 import java.util.Set;
 import java.util.ArrayList;

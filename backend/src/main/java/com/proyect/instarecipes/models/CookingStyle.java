@@ -1,28 +1,26 @@
-package com.proyect.instarecipes.cookingStyle;
+package com.proyect.instarecipes.models;
 
-import java.awt.Image;
-
-public class CookStyle{
-    private String name_cookstyle;
+public class CookingStyle{
+    private String name_cookingstyle;
     private String name_category;
     private String id_ingredients;
 
-    public CookStyle(String name_cookstyle){
-        this.name_cookstyle=name_cookstyle;
+    public CookingStyle(String name_cookingstyle){
+        this.name_cookingstyle=name_cookingstyle;
     }
 
-    public CookStyle( String name_category, String id_ingredients){
-        this.name_cookstyle=name_cookstyle;
+    public CookingStyle(String name_cookingstyle, String name_category, String id_ingredients){
+        this.name_cookingstyle=name_cookingstyle;
         this.name_category=name_category;
         this.id_ingredients=id_ingredients;
     }
 
-    public String getname_cookstyle() {
-        return name_cookstyle;
+    public String getname_cookingstyle() {
+        return name_cookingstyle;
     }
 
-    public void setname_cookstyle(String name_cookstyle) {
-        this.name_cookstyle = name_cookstyle;
+    public void setname_cookingstyle(String name_cookingstyle) {
+        this.name_cookingstyle = name_cookingstyle;
     }
 
 
