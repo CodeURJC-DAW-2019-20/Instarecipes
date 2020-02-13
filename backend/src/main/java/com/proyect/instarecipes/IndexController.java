@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.proyect.instarecipes.recipe.Recipe;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +25,10 @@ public class IndexController {
         model.addAttribute("recipes", recipes);
         return "index";
     }
+    @GetMapping("/index")
+    public String indexedPage(Model model) {
+        return "index";
+    }
     @GetMapping("/profile") 
     public String profilePage(Model model) {
         return "profile";
@@ -38,6 +41,10 @@ public class IndexController {
     public String loginPage(Model model) {
         return "login";
     }
+    @GetMapping("/search-page")
+    public String searchPage(Model model) {
+        return "search-page";
+    }
 
     @PostMapping("/")
     public String postRecipe(Model model, Recipe recipe) {
@@ -47,8 +54,14 @@ public class IndexController {
 
         return "index"; 
     }
-    @GetMapping("/search-page")
-    public String searchPage(Model model) {
-        return "search-page";
+
+    public List<Recipe> getRecipes() {
+        return recipes;
     }
+
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
+    
 }
