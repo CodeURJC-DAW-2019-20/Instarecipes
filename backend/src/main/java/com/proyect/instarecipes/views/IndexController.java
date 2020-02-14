@@ -21,13 +21,6 @@ import org.springframework.ui.Model;
 @Controller
 public class IndexController {
     private List<Recipe> recipes = new ArrayList<>();
-
-	public IndexController() {
-        // recipes.add(new Recipe(1, "@boss99", null, "asd", "??? ", "¿¿¿¿", "Homemade Pizza!", "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!", 
-        // "ejemplo descripcion2", "15 min.", "Hard"));
-        // recipes.add(new Recipe(2, "@lady44", null, "asdasdsasds", "???", "¿¿¿¿", "Avocado Salad", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
-        // "ejemplo descripcion2", "15 min.", "Hard"));
-    }
     
     @Autowired
     private UsersRepository uRepository;
@@ -35,33 +28,17 @@ public class IndexController {
     @Autowired
     private RecipesRepository recipesRepository;
 
-    // @PostConstruct
-    // public void init(){
-    //     long id=0;
-    //     String username="chiquito";
-    //     String email="asdasdas@asddas.com";
-    //     String password="12345";
-    //     String[] role=null;			//If he's an administrator
-    //     String name="pepe";
-    //     String surname="surmano";
-    //     String allergens="null";
-    //     Set<User> followers = new HashSet<User>();
-    //     Set<User> following = new HashSet<User>();
-    //     uRepository.save(new User(id,
-    //                             username,
-    //                             email,
-    //                             password,
-    //                             role,
-    //                             name,
-    //                             surname,
-    //                             allergens,
-    //                             followers,
-    //                             following)
-    //                     );
-    // }
+    @PostConstruct
+	public void init() {
+        recipesRepository.save(new Recipe(1, "@boss99", null, "??? ", "¿¿¿¿", "Homemade Pizza!", "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!", 
+         "ejemplo descripcion2", "15 min.", null, "Hard"));
+        recipesRepository.save(new Recipe(2, "@lady44", null, "???", "¿¿¿¿", "Avocado Salad", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
+         "ejemplo descripcion2", "15 min.",null, "Hard"));
+    }
 
     @GetMapping("/")
     public String indexPage(Model model) {
+        List<Recipe> recipes = recipesRepository.findAll();
         model.addAttribute("recipes", recipes);
         return "index";
     }
@@ -100,6 +77,7 @@ public class IndexController {
         //recipes.add(recipe);
         Recipe r = recipe;
         recipesRepository.save(r);
+        List<Recipe> recipes = recipesRepository.findAll();
         model.addAttribute("recipes", recipes);
         return "index";
     }
@@ -118,7 +96,7 @@ public class IndexController {
         u = user;
         return "signUp";
     }
-/*
+/* DO NOT DELETE THIS CODE FOR THE MOMENT
     @PostMapping("/index")
     public String registerUser(Model model, User user){
         u.setName(user.getName());
