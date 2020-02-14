@@ -613,7 +613,7 @@
                     text-align:center;padding:0;right:0;width:25%;position:absolute;cursor:pointer">
                     <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                   </div>
-                  <fieldset id="steps-form" class="nav-item dropdown wrap-input50 m-b-23" style="text-align: initial;">
+                  <fieldset id="steps-form" name="steps" class="nav-item dropdown wrap-input50 m-b-23" style="text-align: initial;">
                     <h3>Step 1*</h3>
                     <hr>
                     <div id="stepCountChar"></div>
@@ -632,12 +632,13 @@
                   <div id="add-ingredient" class="btn btn-primary" style="width: 100%; border-radius: 0.8rem;background-color: mediumspringgreen;cursor: pointer;">
                     <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                   </div>
-                  <fieldset id="ingredients-form" class="nav-item dropdown scrolling" style="height: 300px;">
+                  <fieldset id="ingredients-form" class="nav-item dropdown scrolling" name="ingredients" style="height: 300px;">
                   </fieldset>
                   <hr>
                   <h3 class="underlined-text">Category</h3>
-                  <div id="add-category" class="btn btn-secondary" style="width: 100%; border-radius: 0.8rem;background-color: steelblue;cursor: pointer;">
-                    <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                  <div class="btn btn-secondary" style="width: 100%; border-radius: 0.8rem;background-color: steelblue;cursor: pointer;">
+                    <input id="add-category"  name="category" class="fa fa-plus add" style="color: white;font-size: inherit;">
+                    <!-- <i  aria-hidden="true"></i> -->
                   </div>
                   <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;">
                   </fieldset>
@@ -645,13 +646,13 @@
                   <h3 class="underlined-text">Difficulty</h3>
                   <!-- Difficulty section stars -->
                   <div class="rating" style="text-align: center;">
-                    <input name="rating" type="radio" id="extreme-star" onclick="starClick(4)" value="4" on="change:rating.submit">
+                    <input name="rating" type="radio" id="extreme-star" onclick="starClick(4)" value="extreme" on="change:rating.submit">
                     <label for="rating4" title="4 stars" >☆</label>
-                    <input name="rating" type="radio" id="hard-star" onclick="starClick(3)" value="3" on="change:rating.submit">
+                    <input name="rating" type="radio" id="hard-star" onclick="starClick(3)" value="hard" on="change:rating.submit">
                     <label for="rating3" title="4 stars" >☆</label>
-                    <input name="rating" type="radio" id="medium-star" onclick="starClick(2)" value="2" on="change:rating.submit">
+                    <input name="rating" type="radio" id="medium-star" onclick="starClick(2)" value="medium" on="change:rating.submit">
                     <label for="rating2" title="4 stars" >☆</label>
-                    <input name="rating" type="radio" id="easy-star" onclick="starClick(1)" value="1" on="change:rating.submit">
+                    <input name="rating" type="radio" id="easy-star" onclick="starClick(1)" value="easy" on="change:rating.submit">
                     <label for="rating1" title="4 stars" >☆</label>
                   </div>
                   <div>
@@ -661,7 +662,7 @@
                     <p id="easy-text" hidden>Easy</p>
                   </div>
                   <h3 class="underlined-text">Aproximated time</h3>
-                  <select class="form-control" id="exampleFormControlSelect1">
+                  <select name="duration" class="form-control" id="exampleFormControlSelect1">
                     <option>15m</option>
                     <option>30m</option>
                     <option>45m</option>

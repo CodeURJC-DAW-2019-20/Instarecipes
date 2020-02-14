@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.User;
+import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +23,17 @@ public class IndexController {
     private List<Recipe> recipes = new ArrayList<>();
 
 	public IndexController() {
-        recipes.add(new Recipe(null, "@boss99", 111, "??? ", "¿¿¿¿", "Homemade Pizza!", "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!", 
-        "ejemplo descripcion2", "15 min.", "Hard"));
-        recipes.add(new Recipe(null, "@lady44", 222, "???", "¿¿¿¿", "Avocado Salad", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
-        "ejemplo descripcion2", "15 min.", "Hard"));
+        // recipes.add(new Recipe(1, "@boss99", null, "asd", "??? ", "¿¿¿¿", "Homemade Pizza!", "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!", 
+        // "ejemplo descripcion2", "15 min.", "Hard"));
+        // recipes.add(new Recipe(2, "@lady44", null, "asdasdsasds", "???", "¿¿¿¿", "Avocado Salad", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
+        // "ejemplo descripcion2", "15 min.", "Hard"));
     }
     
     @Autowired
     private UsersRepository uRepository;
+
+    @Autowired
+    private RecipesRepository recipesRepository;
 
     // @PostConstruct
     // public void init(){
@@ -81,14 +85,24 @@ public class IndexController {
     public String searchPage(Model model) {
         return "search-page";
     }
-/*
+
+
+
+
+
+
+
+
+    
+
     @PostMapping("/")
     public String postRecipe(Model model, Recipe recipe) {
-        recipes.add(recipe);
+        //recipes.add(recipe);
+        Recipe r = recipe;
+        recipesRepository.save(r);
         model.addAttribute("recipes", recipes);
-        return "index"; 
+        return "index";
     }
-    */
 
     public List<Recipe> getRecipes() {
         return recipes;
@@ -104,7 +118,7 @@ public class IndexController {
         u = user;
         return "signUp";
     }
-
+/*
     @PostMapping("/index")
     public String registerUser(Model model, User user){
         u.setName(user.getName());
@@ -125,5 +139,5 @@ public class IndexController {
 
         return "index";
     }
-    
+    */
 }

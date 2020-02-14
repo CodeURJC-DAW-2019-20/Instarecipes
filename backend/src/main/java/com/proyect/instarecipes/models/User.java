@@ -1,10 +1,7 @@
 package com.proyect.instarecipes.models;
 
 import java.util.Set;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 
 import javax.persistence.*;
 
@@ -22,8 +19,9 @@ public class User{
 	@Column(name = "Password", nullable = false, length = 36)
 	private String password;
 	@Column(name = "Role", nullable = true, length = 5) //provisional true nullable, then will be false
-	@ElementCollection(fetch=FetchType.EAGER)
-    private List<String> role;			//"user","admin","annon"
+	// @ElementCollection(fetch=FetchType.EAGER)
+	// private List<String role;			//"user","admin","annon"
+	private String role;
 	@Column(name = "Name", nullable = false, length = 24)
 	private String name;
 	@Column(name = "Surname", nullable = true, length = 24)
@@ -46,13 +44,14 @@ public class User{
 	public User() {
 	}
 	
-	public User(long id, String username, String email, String password, String[] role, String name, String surname,
+	public User(long id, String username, String email, String password, String role, String name, String surname,
 			String allergens, Set<User> followers, Set<User> following) {
 		this.id = id;
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		this.role = new ArrayList<>(Arrays.asList(role));
+		//this.role = new ArrayList<>(Arrays.asList(role));
+		this.role = role;
 		this.name = name;
 		this.surname = surname;
 		this.allergens = allergens;
@@ -131,11 +130,11 @@ public class User{
 		this.following = following;
 	}
 
-	public List<String> getRole() { 
+	public String getRole() { 
 		return role;
 	}
 
-	public void setRole(List<String> role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 

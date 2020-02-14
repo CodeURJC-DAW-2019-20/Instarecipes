@@ -1,21 +1,42 @@
 package com.proyect.instarecipes.models;
 // import java.awt.Image;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Step{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_step;
-    private int id_recipe;
+
+    @ManyToOne
+    private Recipe recipe;
+    
     private int number;
-    private String Content;
+    private String content;
     // private Image photo;
 
     public Step(){
     }
     
-    public Step(int id_recipe,int number, String Contect){
-        this.id_recipe=id_recipe;
+    public Step(Recipe recipe,int number, String contect){
+        this.recipe=recipe;
         this.number=number;
-        this.Content=Contect;
+        this.content=contect;
         // this.photo=photo;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
     public int getId_step() {
@@ -26,13 +47,6 @@ public class Step{
         this.id_step = id_step;
     }
 
-    public int getId_recipe() {
-        return id_recipe;
-    }
-
-    public void setId_recipe(int id_recipe) {
-        this.id_recipe = id_recipe;
-    }
 
     public int getNumber() {
         return number;
@@ -43,11 +57,11 @@ public class Step{
     }
 
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public void setContent(String content) {
-        Content = content;
+        this.content = content;
     }
 
     // public Image getPhoto() {
