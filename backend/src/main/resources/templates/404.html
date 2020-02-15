@@ -37,7 +37,17 @@
         <button type="submit"><i class="fa fa-search"></i></button>
       </form>
       <a class="nav-link" href="../templates/profile.html">Profile</a>
-      <a class="nav-link" href="../templates/login.html">Login</a>
+      <div class="login-container"></div>
+        {{#logged}}
+          <form action="/logout" method="post">
+            <button type="submit" class="nav-link nav-log btn-dark" style="color:white;font-weight: normal;font-size: 15px;">Logout</button>
+            <input type="hidden" name="_csrf" value="{{token}}"/>
+          </form>
+        {{/logged}}
+        {{^logged}}
+          <a class="nav-link nav-log" href="login" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+        {{/logged}}
+      </div>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" 
       type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" 
       aria-expanded="false" aria-label="Toggle navigation">

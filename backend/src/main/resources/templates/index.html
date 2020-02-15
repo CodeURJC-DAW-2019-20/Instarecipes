@@ -49,12 +49,14 @@
             <a class="nav-link js-scroll-trigger" href="#header-section"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
           </li>
           <li class="nav-item col-4">
-            {{#user}}
-              <a class="nav-link" href="profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
-            {{/user}}
-            {{#admin}}
-              <a class="nav-link" href="admin-profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
-            {{/admin}}
+            {{#logged}}
+              {{#user}}
+                <a class="nav-link" href="profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+              {{/user}}
+              {{#admin}}
+                <a class="nav-link" href="admin-profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+              {{/admin}}
+            {{/logged}}
           </li>
           <li class="nav-item col-4">
             <a class="nav-link" href="ranking"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
@@ -69,7 +71,7 @@
     <div class="login-container">
       {{#logged}}
         <form action="/logout" method="post">
-          <input type="submit" value="Logout" class="nav-link nav-log" style="font-weight: normal;font-size: 15px;"/>
+          <button type="submit" class="nav-link nav-log btn-dark" style="color:white;font-weight: normal;font-size: 15px;">Logout</button>
           <input type="hidden" name="_csrf" value="{{token}}"/>
         </form>
       {{/logged}}

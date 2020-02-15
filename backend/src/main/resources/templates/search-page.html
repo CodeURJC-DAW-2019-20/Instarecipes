@@ -55,7 +55,15 @@
       </div>
     </div>
     <div class="login-container">
-      <a class="nav-link nav-log" href="../templates/login.html" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+      {{#logged}}
+        <form action="/logout" method="post">
+          <button type="submit" class="nav-link nav-log btn-dark" style="color:white;font-weight: normal;font-size: 15px;">Logout</button>
+          <input type="hidden" name="_csrf" value="{{token}}"/>
+        </form>
+      {{/logged}}
+      {{^logged}}
+        <a class="nav-link nav-log" href="login" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+      {{/logged}}
     </div>
   </nav>
 

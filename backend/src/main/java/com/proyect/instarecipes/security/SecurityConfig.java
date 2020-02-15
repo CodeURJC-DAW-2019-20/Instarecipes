@@ -16,29 +16,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-    	
+        
+        // Private pages (all other pages)
+        http.authorizeRequests().antMatchers("/profile").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/admin-profile").hasAnyRole("ADMIN");
+
         // Public pages
         //http.antMatcher("/**");
-        http.authorizeRequests().antMatchers("/").permitAll();
-        http.authorizeRequests().antMatchers("/index").permitAll(); // ???????????????
-        http.authorizeRequests().antMatchers("/ranking").permitAll();
-        http.authorizeRequests().antMatchers("/search-page").permitAll();
-        http.authorizeRequests().antMatchers("/login").permitAll();
-        http.authorizeRequests().antMatchers("/signUp").permitAll();
-        http.authorizeRequests().antMatchers("/loginerror").permitAll();
-        http.authorizeRequests().antMatchers("/simple-recipe").permitAll();
-
-        // Private pages (all other pages)
-        http.authorizeRequests().antMatchers("/profile").hasAnyRole("ROLE_USER");
-        http.authorizeRequests().antMatchers("/home").hasAnyRole("ROLE_USER");
-        http.authorizeRequests().antMatchers("/admin-profile").hasAnyRole("ROLE_ADMIN");
+        // Other URLs can be accessed without authentication
+		http.authorizeRequests().anyRequest().permitAll();
 
         // Login form
         http.formLogin().loginPage("/login");
         http.formLogin().usernameParameter("username");
         http.formLogin().passwordParameter("password");
-        http.formLogin().defaultSuccessUrl("/home");
-        http.formLogin().failureUrl("/loginerror");
+        http.formLogin().defaultSuccessUrl("/index");
+        http.formLogin().failureUrl("/login");
 
         // Logout
         http.logout().logoutUrl("/logout");
