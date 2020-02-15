@@ -11,8 +11,8 @@ import javax.persistence.ManyToOne;
 public class Step{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_step;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id_step;
 
     @ManyToOne
     private Recipe recipe;
@@ -39,11 +39,11 @@ public class Step{
         this.recipe = recipe;
     }
 
-    public int getId_step() {
+    public Long getId_step() {
         return id_step;
     }
 
-    public void setId_step(int id_step) {
+    public void setId_step(Long id_step) {
         this.id_step = id_step;
     }
 

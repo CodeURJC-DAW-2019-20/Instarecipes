@@ -1,11 +1,9 @@
 package com.proyect.instarecipes.views;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.User;
@@ -16,25 +14,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
 
 @Controller
 public class IndexController {
+
     private List<Recipe> recipes = new ArrayList<>();
-    
-    @Autowired
-    private UsersRepository uRepository;
 
     @Autowired
     private RecipesRepository recipesRepository;
-
-    @PostConstruct
-	public void init() {
-        recipesRepository.save(new Recipe(1, "@boss99", null, "??? ", "¿¿¿¿", "Homemade Pizza!", "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!", 
-         "ejemplo descripcion2", "15 min.", null, "Hard"));
-        recipesRepository.save(new Recipe(2, "@lady44", null, "???", "¿¿¿¿", "Avocado Salad", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
-         "ejemplo descripcion2", "15 min.",null, "Hard"));
-    }
+    @Autowired
+    private UsersRepository usersRepository;
 
     @GetMapping("/")
     public String indexPage(Model model) {
@@ -42,30 +33,68 @@ public class IndexController {
         model.addAttribute("recipes", recipes);
         return "index";
     }
-    @GetMapping("/index")
-    public String indexedPage(Model model) {
-        return "index";
-    }
+    // @GetMapping("/index")
+    // public String indexedPage() {
+    //     return "index";
+    // }
     @GetMapping("/profile") 
-    public String profilePage(Model model) {
+    public String profilePage() {
         return "profile";
     }
     @GetMapping("/ranking")
-    public String rankingPage(Model model) {
+    public String rankingPage() {
         return "ranking";
     }
     @GetMapping("/login")
-    public String loginPage(Model model) {
+    public String loginPage() {
         return "login";
     }
     @GetMapping("/search-page")
-    public String searchPage(Model model) {
+    public String searchPage() {
         return "search-page";
     }
+    @GetMapping("/loginerror")
+    public String loginerror() {
+    	return "loginerror";
+    }
+    @GetMapping("/admin-profile")
+    public String adminProfile() {
+    	return "admin-profile";
+    }
 
+    //Attempt to enter in a link that he cant if not logged in
+    @GetMapping("/home")
+    public String home(Model model, HttpServletRequest request) {
+    	User user = usersRepository.findByName(request.getUserPrincipal().getName());
+    	model.addAttribute("admin", request.isUserInRole("ROLE_ADMIN"));
+    	model.addAttribute("username", user.getName());
+    	
+    	return "index ";
+    }
 
+    // @RequestMapping("/error")
+    // public String errorPage(Model model){
+    //     return "404";
+    // }
+    // @ModelAttribute
+	// public void addUserToModel(Model model) {
+	// 	boolean logged = userSession.getLoggedUser() != null;
+	// 	model.addAttribute("logged", logged);
+	// 	if(logged) {
+	// 		model.addAttribute("role", userSession.getLoggedUser().toString());
+	// 		model.addAttribute("username",userSession.getLoggedUser().getName());
+	// 		if(userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN")){
+	// 			model.addAttribute("admin",userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
+	// 			model.addAttribute("user",userSession.getLoggedUser().getRoles().contains("ROLE_USER"));
+	// 		}
+	// 	}
+    // }
 
-
+    // @GetMapping("/error")
+	// public ModelAndView showError(Model model) {
+	// 	ModelAndView newModel = new ModelAndView("404");
+	// 	return newModel;
+	// }
 
 
 

@@ -12,8 +12,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class Comment{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @OneToOne
     private User user;
@@ -27,19 +27,18 @@ public class Comment{
 
     public Comment() {}
 
-    public Comment(long id, User user, String content, Set<Comment> subcomment, long likes) {
-        this.id = id;
+    public Comment(User user, String content, Set<Comment> subcomment, long likes) {
         this.user = user;
         this.content = content;
         this.subcomment = subcomment;
         this.likes = likes;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

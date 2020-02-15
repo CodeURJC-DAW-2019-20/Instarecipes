@@ -1,57 +1,57 @@
 package com.proyect.instarecipes.models;
 
 import java.util.Set;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 import javax.persistence.*;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class User{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "User_ID", nullable = false)
-	private long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@Column(name = "User_ID", nullable = false)
+	private Long id;
 	
-	@Column(name = "Username", nullable = false, unique = true, length = 24)
+	//@Column(name = "Username", nullable = false, unique = true, length = 100)
 	private String username;
-	@Column(name = "Email", nullable = false, unique = true, length = 24)
+	//@Column(name = "Email", nullable = false, unique = true, length = 100)
 	private String email;
-	@Column(name = "Password", nullable = false, length = 36)
+	//@Column(name = "Password", nullable = false, length = 100)
 	private String password;
-	@Column(name = "Role", nullable = true, length = 5) //provisional true nullable, then will be false
-	// @ElementCollection(fetch=FetchType.EAGER)
-	// private List<String role;			//"user","admin","annon"
-	private String role;
-	@Column(name = "Name", nullable = false, length = 24)
+	//@Column(name = "Roles", nullable = true, length = 100) //provisional true nullable, then will be false
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> roles;
+	//@Column(name = "Name", nullable = false, length = 100)
 	private String name;
-	@Column(name = "Surname", nullable = true, length = 24)
+	//@Column(name = "Surname", nullable = true, length = 100)
 	private String surname;
 	// private Image background;
 	// private Image avatar;
-	@Column(name = "Allergens", nullable = true, length = 24)
+	//@Column(name = "Allergens", nullable = true, length = 100)
 	private String allergens;
 	
-	@Column(name = "Followers", nullable = true, length = 24)
+	//@Column(name = "Followers", nullable = true, length = 100)
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "user_follow_user",
-        joinColumns = @JoinColumn(name = "followed_id"),
-        inverseJoinColumns = @JoinColumn(name = "follower_id"))
+	//@JoinTable(joinColumns = @JoinColumn(name = "followed_id"),inverseJoinColumns = @JoinColumn(name = "follower_id"))
 	private Set<User> followers; //Set is like a collection of an objets that the items couldn't be repeated
-	@Column(name = "Following", nullable = true, length = 24)
+	//@Column(name = "Following", nullable = true, length = 100)
 	@ManyToMany(mappedBy = "followers")
 	private Set<User> following;
 	
 	public User() {
 	}
 	
-	public User(long id, String username, String email, String password, String role, String name, String surname,
-			String allergens, Set<User> followers, Set<User> following) {
-		this.id = id;
+	public User(String username, String email, String password, String name, String surname,
+			String allergens, Set<User> followers, Set<User> following, String... roles) { //THIS ROLE PARAM NECESSARY HAS TO BE AT THE END OF THE COSTRUCTOR
 		this.username = username;
 		this.email = email;
-		this.password = password;
-		//this.role = new ArrayList<>(Arrays.asList(role));
-		this.role = role;
+		this.password = new BCryptPasswordEncoder().encode(password);;
+		this.roles = new ArrayList<>(Arrays.asList(roles));;
 		this.name = name;
 		this.surname = surname;
 		this.allergens = allergens;
@@ -67,10 +67,10 @@ public class User{
         this.following = new HashSet<User>();
     }
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -130,16 +130,16 @@ public class User{
 		this.following = following;
 	}
 
-	public String getRole() { 
-		return role;
+	public List<String> getRoles() { 
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
 	}
 
 	public String toString(){
-        if(this.role.contains("ROLE_ADMIN")){
+        if(this.roles.contains("ROLE_ADMIN")){
             return "admin";
         }else{
             return "user";

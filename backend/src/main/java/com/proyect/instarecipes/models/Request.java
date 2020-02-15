@@ -10,8 +10,8 @@ import javax.persistence.OneToOne;
 public class Request{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     
     private String type;
     private String value;
@@ -22,18 +22,17 @@ public class Request{
     public Request() {
     }
 
-    public Request(long id, String type, String value) {
-        this.id = id;
+    public Request(String type, String value) {
         this.type = type;
         this.value = value;
         // this.user = user;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

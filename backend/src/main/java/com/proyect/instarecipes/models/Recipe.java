@@ -13,8 +13,8 @@ import javax.persistence.OneToMany;
 public class Recipe{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String username;
 
@@ -36,9 +36,8 @@ public class Recipe{
     public Recipe(){}
 
     //Constructor with all atributes
-    public Recipe(long id, String username, Set<Ingredient> id_ingredients, String name_categories, String name_cookingStyle,
+    public Recipe(String username, Set<Ingredient> id_ingredients, String name_categories, String name_cookingStyle,
     String title, String description, String duration, String difficulty, Set<Step> steps, String allergens) {
-        this.id = id;
         this.username = username;
         this.id_ingredients = id_ingredients;
         this.name_categories = name_categories;
@@ -52,11 +51,11 @@ public class Recipe{
     }
     //GETTERS AND SETTERS
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
