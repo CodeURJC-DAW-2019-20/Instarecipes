@@ -1,12 +1,21 @@
 package com.proyect.instarecipes.models;
 
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-
-import javax.persistence.*;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -14,32 +23,26 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class User{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	//@Column(name = "User_ID", nullable = false)
 	private Long id;
 	
-	//@Column(name = "Username", nullable = false, unique = true, length = 100)
+	@Column(nullable = false, unique = true)
 	private String username;
-	//@Column(name = "Email", nullable = false, unique = true, length = 100)
+	@Column(nullable = false, unique = true)
 	private String email;
-	//@Column(name = "Password", nullable = false, length = 100)
+	@Column(nullable = false)
 	private String password;
-	//@Column(name = "Roles", nullable = true, length = 100) //provisional true nullable, then will be false
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
-	//@Column(name = "Name", nullable = false, length = 100)
+	@Column(nullable = false)
 	private String name;
-	//@Column(name = "Surname", nullable = true, length = 100)
+	@Column(nullable = false)
 	private String surname;
 	// private Image background;
 	// private Image avatar;
-	//@Column(name = "Allergens", nullable = true, length = 100)
 	private String allergens;
 	
-	//@Column(name = "Followers", nullable = true, length = 100)
 	@ManyToMany(cascade = CascadeType.ALL)
-	//@JoinTable(joinColumns = @JoinColumn(name = "followed_id"),inverseJoinColumns = @JoinColumn(name = "follower_id"))
 	private Set<User> followers; //Set is like a collection of an objets that the items couldn't be repeated
-	//@Column(name = "Following", nullable = true, length = 100)
 	@ManyToMany(mappedBy = "followers")
 	private Set<User> following;
 	

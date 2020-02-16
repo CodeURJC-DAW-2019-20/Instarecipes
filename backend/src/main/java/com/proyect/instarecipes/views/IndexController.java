@@ -1,10 +1,8 @@
 package com.proyect.instarecipes.views;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.proyect.instarecipes.models.Recipe;
-import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.security.UserSession;
 
@@ -17,8 +15,6 @@ import org.springframework.ui.Model;
 
 @Controller
 public class IndexController {
-
-    private List<Recipe> recipes = new ArrayList<>();
 
     @Autowired
     private RecipesRepository recipesRepository;
@@ -33,8 +29,7 @@ public class IndexController {
     }
     @GetMapping("/index")
     public String indexedPage(Model model) {
-        List<Recipe> recipes = recipesRepository.findAll();
-        //in the future: empty when he first time loged in, cause the query will be the recipes of his followers
+        List<Recipe> recipes = recipesRepository.findAll(); //should be sustituted by only following users publications
         model.addAttribute("recipes", recipes);
         return "index";
     }
@@ -50,13 +45,13 @@ public class IndexController {
     public String loginPage() {
         return "login";
     }
+    @GetMapping("/signUp")
+    public String signupPage(){
+        return "signUp";
+    }
     @GetMapping("/search-page")
     public String searchPage() {
         return "search-page";
-    }
-    @GetMapping("/loginerror")
-    public String loginerror() {
-    	return "loginerror";
     }
     @GetMapping("/admin-profile")
     public String adminProfile() {
@@ -67,11 +62,11 @@ public class IndexController {
 	public void addAttributes(Model model) {
 		
 		boolean logged = userSession.getLoggedUser() != null;
-		model.addAttribute("logged", logged);
+        model.addAttribute("logged", logged);
 		//model.addAttribute("notLogged", !logged);
 		
 		if(logged){
-			model.addAttribute("username",userSession.getLoggedUser().getName());
+			model.addAttribute("user",userSession.getLoggedUser().getUsername());
 			model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
 		}
 	}
@@ -84,20 +79,5 @@ public class IndexController {
         List<Recipe> recipes = recipesRepository.findAll();
         model.addAttribute("recipes", recipes);
         return "index";
-    }
-
-    public List<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
-    }
-    User u = new User();
-
-    @PostMapping("/signUp")
-    public String loginPage(Model model, User user){
-        u = user;
-        return "signUp";
     }
 }
