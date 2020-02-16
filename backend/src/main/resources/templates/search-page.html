@@ -20,6 +20,7 @@
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
   <link href="css/freelancer.css" rel="stylesheet">
+ 
 
 </head>
 
@@ -55,7 +56,15 @@
       </div>
     </div>
     <div class="login-container">
-      <a class="nav-link nav-log" href="../templates/login.html" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+      {{#logged}}
+        <form action="/logout" method="post">
+          <button type="submit" class="nav-link nav-log btn-dark" style="color:white;font-weight: normal;font-size: 15px;">Logout</button>
+          <input type="hidden" name="_csrf" value="{{token}}"/>
+        </form>
+      {{/logged}}
+      {{^logged}}
+        <a class="nav-link nav-log" href="login" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+      {{/logged}}
     </div>
   </nav>
 
@@ -92,12 +101,13 @@
           </div>
         </div>
 
-        <!-- Categories Widget -->
+        <!-- Categories and Cooking Style Widget -->
+        
         <div class="card my-4">
           <h5 class="card-header">Cooking Style</h5>
             <div class="containersearch">
-              <ul class="ks-cboxtags">
-                <li><input type="checkbox" id="checkbox1" value="Vegan"><label for="checkbox1">Vegan</label></li>
+              <ul class="ks-cboxtags" >
+                <li><input type="checkbox" id="checkbox1" value="Vegan"><label for="checkbox1">Vegan</label></li> 
                 <li><input type="checkbox" id="checkbox2" value="Vegetarian" ><label for="checkbox2">Vegetarian</label></li>
                 <li><input type="checkbox" id="checkbox3" value="Mediterranean" ><label for="checkbox3">Mediterranean</label></li>
                 <li><input type="checkbox" id="checkbox4" value="American"><label for="checkbox4">American</label></li> 
@@ -212,7 +222,7 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/freelancer.min.js"></script>
-
+  <script src="js/search-page.js"></script>
 </body>
 
 </html>

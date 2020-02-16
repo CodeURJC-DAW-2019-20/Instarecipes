@@ -1,0 +1,74 @@
+package com.proyect.instarecipes.models;
+// import java.awt.Image;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Step{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id_step;
+
+    @ManyToOne
+    private Recipe recipe;
+    
+    private int number;
+    private String content;
+    // private Image photo;
+
+    public Step(){
+    }
+    
+    public Step(Recipe recipe,int number, String contect){
+        this.recipe=recipe;
+        this.number=number;
+        this.content=contect;
+        // this.photo=photo;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
+    public Long getId_step() {
+        return id_step;
+    }
+
+    public void setId_step(Long id_step) {
+        this.id_step = id_step;
+    }
+
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    // public Image getPhoto() {
+    //     return photo;
+    // }
+
+    // public void setPhoto(Image photo) {
+    //     this.photo = photo;
+    // }
+}

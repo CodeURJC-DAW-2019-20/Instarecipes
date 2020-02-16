@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -12,7 +11,7 @@
   <!-- Images and icons-->
   <link rel="icon" type="image/png" href="images/icons/instarecipes.png"/>
   
-  <!-- jquery de mierda-->
+  <!-- jquery -->
   <script src="../vendor/jquery/jquery.min.js"></script>
 
   <!-- Bootstrap core CSS -->
@@ -25,9 +24,6 @@
   <!-- Custom styles for this template -->
   <link href="../css/modern-business.css" rel="stylesheet">
   <link href="../css/freelancer.css" rel="stylesheet">
-
-  <!-- Images and icons-->
-  <link rel="icon" type="image/png" href="images/icons/instarecipes.png"/>
 
 </head>
 
@@ -50,20 +46,35 @@
             <a class="nav-link js-scroll-trigger" href="#header-section"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
           </li>
           <li class="nav-item col-4">
-            <a class="nav-link" href="profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+            {{#logged}}
+              {{#user}}
+                <a class="nav-link" href="profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+              {{/user}}
+              {{#admin}}
+                <a class="nav-link" href="admin-profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+              {{/admin}}
+            {{/logged}}
           </li>
           <li class="nav-item col-4">
             <a class="nav-link" href="ranking"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
           </li>
         </ul>
         <form class="example" action="search-page" >
-          <input type="text" href="#" placeholder="Search.." name="search">
+          <input type="text" href="#" placeholder="Search.." name="search"/>
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
       </div>
     </div>
     <div class="login-container">
-      <a class="nav-link nav-log" href="login" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+      {{#logged}}
+        <form action="/logout" method="post">
+          <button type="submit" class="nav-link nav-log btn-dark" style="color:white;font-weight: normal;font-size: 15px;">Logout</button>
+          <input type="hidden" name="_csrf" value="{{token}}"/>
+        </form>
+      {{/logged}}
+      {{^logged}}
+        <a class="nav-link nav-log" href="login" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+      {{/logged}}
     </div>
   </nav>
   <!-- Carousel-->
@@ -227,7 +238,6 @@
 
   <!-- Page Content -->
   <div class="container">
-
     <h3 class="my-4">Recent user's recipes</h3>
     <div id="recipes-container">
     </div>
@@ -257,16 +267,16 @@
                 +"</div>"
               +"</div>"
             +"</div>"
-            +"<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3>{{title}}</h3></div>"
+            +"<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">{{title}}</h3></div>"
           +"</div>"
           +"<div class=\"col-md-4\">"
             +"<h3>Introduction</h3>"
-            +"<p>{{description}}</p>"
+            +"<p style=\"word-break: break-all;\">{{description}}</p>"
             +"<a class=\"btn btn-primary\" href=\"#\">Read"
               +"<span class=\"glyphicon glyphicon-chevron-right\"></span>"
             +"</a>"
           +"</div>"
-          +"<div class=\"col-lg-1\" style=\"align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);\">"
+          +"<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);\">"
             +"<img class=\"d-flex mr-3 rounded-circle profile-border\" src=\"../images/icons/avatar.svg\">"
           +"</div>"
         +"</div>"
@@ -275,12 +285,12 @@
         );
         var model2 = $("<!-- Project Two -->"
            +"<div class=\"row\">"
-             +"<div class=\"col-lg-1\" style=\"align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);\">"
+             +"<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);\">"
                +"<img class=\"d-flex mr-3 rounded-circle profile-border\" src=\"../images/icons/avatar.svg\">"
                +"</div>"
                +"<div class=\"col-md-4\">"
                  +"<h3>Introduction</h3>"
-                 +"<p>{{description}}</p>"
+                 +"<p style=\"word-break: break-all;\">{{description}}</p>"
                  +"<a class=\"btn btn-primary\" href=\"#\">Read"
                    +"<span class=\"glyphicon glyphicon-chevron-right\"></span>"
                    +"</a>"
@@ -305,21 +315,21 @@
                                    +"</div>"
                                    +"</div>"
                                    +"</div>"
-                                   +"<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3>{{title}}</h3></div>"
+                                   +"<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">{{title}}</h3></div>"
                                    +"</div>"
                                    +"</div>"
                                    +"<!-- /.row -->"
                                    +"<hr>"
            );
              if(aux){
-               $("#recipes-container").append(model1);
+               $("#recipes-container").prepend(model1);
                aux = false;
              }else{
-               $("#recipes-container").append(model2);
+               $("#recipes-container").prepend(model2);
                aux = true;
              }
          });
-       </script>
+    </script>
      {{/recipes}}
 
     <hr width="80%">
@@ -356,190 +366,188 @@
             </button>
             <div class="modal-body text-center">
               <div class="container">
-                  <div class="col-lg-12">
-                  <!-- publications Modal - Title -->
-                    <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Filtered Search</h2>
-                  <!-- Icon Divider -->
-                    <div class="divider-custom">
-                      <div class="divider-custom-line"></div>
-                      <div class="divider-custom-icon">
-                        <img src='../images/icons/orange-search.png' width="50%" style="height: 50px; width: 50px;"/>
-                      </div>
+                <!--<div class="col-lg-12">-->
+                <!-- publications Modal - Title -->
+                <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Filtered Search</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom">
                     <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon">
+                        <img src='../images/icons/orange-search.png' width="50%" style="height: 50px; width: 50px;"/>
                     </div>
-                    <div class="row">
-                      <div class="col-6">
-                        <!-- INGREDIENT FILTER -->
-                        <h3 class="underlined-text">INGREDIENTS</h3>
-                        <div class="row">
+                    <div class="divider-custom-line"></div>
+                </div>
+                <form action="/search" method="POST">
+                  <div class="row">
+                    <!-- INGREDIENT FILTER -->
+                    <div class="col-6">
+                      <h3 class="underlined-text">INGREDIENTS</h3>
+                      <div class="row">
                         <table id="IngredientsTable">          
-                        <tr>
-                          <td>
-                            <!--"Ingredient-Name"-->
-                            <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="ingredients-scroll" list="ingredientslist" placeholder="Ingredient..">
-                              <datalist id="ingredientslist">
-                                <option value="dark chocolate"></option>
-                                <option value="potatoes"></option>
-                                <option value="oil"></option>
-                                <option value="white chocolate"></option>
-                                <option value="garlic"></option>
-                                <option value="milk chocolate"></option>
-                              </datalist>
-                          </td>
-                          <td>
-                            <!--"Ingredient-Quantity"-->
-                            <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="ingredients-quantity" placeholder="Quantity">
-                          </td>
-
-                          <td>
-                            <!--"Ingredient-Unit"-->
-                            <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="ingredients-unit" list="ingredientsunit" placeholder="Units">
-                              <datalist id="ingredientsunit">
-                                <option value="grs."></option>
-                                <option value="Kg./L"></option>
-                                <option value="Units"></option>
-                              </datalist>
-                          </td>    
-                          <td>
-                            <button id="Ing-delete-button" type="button" class="btn-delete-line" style="color: white; font-size: inherit;" onclick="delRowIngredient(this)">
-                              <span aria-hidden="true">
-                                <i class="fas fa-trash"></i>
-                              </span>
-                            </button>
-                          </td>
-                        </tr>
-                        </table> 
-                        </div>
-                        <hr>
-                        <!-- add and delete ingredients buttons -->
-                        <button id="Ing-add-button" type="button" class="btn-add-ingredient">
-                          <span aria-hidden="true">                           
-                              <i class="fa fa-plus add" aria-hidden="true" style="color: white; font-size: inherit;"></i>
-                              <h6 class="text">ADD</h6>
-                          </span>
-                        </button>
-                        <button id="Ing-delete-all-button" type="button" class="btn-delete-ingredients">
-                          <span aria-hidden="true">            
-                            <i class="fas fa-trash" aria-hidden="true" style="color: white; font-size: inherit;"></i>
-                            <h6 class="text">DELETE ALL</h6>
-                          </span>
-                        </button>
-                        <hr>
-                      </div>
-
-                      <div class="col-6">
-                        <!-- COOKING STYLE FILTER -->
-                        <h3 class="underlined-text">COOKING STYLE</h3>
-                        <div class="row">
-                        <table id="CookingStyleTable">
-                        <tr>
-                          <td>
-                          <input style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
-                              <datalist id="categorieslist">
-                                <option value="Vegan"></option>
-                                <option value="Grains"></option>     
-                                <option value="Beans"></option> 
-                                <option value="Seafood"></option>  
-                                <option value="Vegetarian"></option>   
-                                <option value="Shellfish"></option>    
-                              </datalist>
-                          </td>
-                          <td>
-                           <button id="CSy-delete-button" type="button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCookingStyle(this)">
-                              <span aria-hidden="true">
-                                <i class="fas fa-trash"></i>
-                              </span>
-                            </button> 
-                          </td>
-                        </tr>
-                        </table>
-                        </div>
-                        <hr>
-                        <!-- add and delete categories-->
-                        <button id="CSy-add-button" type="button" class="btn-add-category" >
-                          <span aria-hidden="true">                           
-                            <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
-                            <h6 class="text">ADD</h6>
-                          </span>
-                        </button>
-                        <button ID="CSy-delete-all-button" type="button" class="btn-delete-categories">
-                          <span aria-hidden="true">            
-                            <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
-                            <h6 class="text">DELETE ALL</h6>
-                        </button>
-                        <hr>
-                    </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-6">
-                        <!-- CATEGORY FILTER -->
-                        <h3 class="underlined-text">CATEGORIES</h3>
-                        <div class="row">
-                        <table id="CategoriesTable">
                           <tr>
                             <td>
-                              <input style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
-                              <datalist id="categorieslist">
-                                <option value="Vegan"></option>
-                                <option value="Grains"></option>     
-                                <option value="Beans"></option> 
-                                <option value="Seafood"></option>  
-                                <option value="Vegetarian"></option>   
-                                <option value="Shellfish"></option>    
+                            <!--"Ingredient-Name"-->
+                              <input name="ingredients" style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" list="ingredientslist" placeholder="Ingredient..">
+                              <datalist id="ingredientslist">
+                                <option value="dark chocolate">dark chocolate</option>
+                                <option value="potatoes">potatoes</option>
+                                <option value="oil">oil</option>
+                                <option value="white chocolate">white chocolate</option>
+                                <option value="garlic">garlic</option>
+                                <option value="milk chocolate">milk chocolate</option>
                               </datalist>
                             </td>
                             <td>
-                              <button id="Cat-delete-button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCategory(this)">
+                            <!--"Ingredient-Quantity"-->
+                              <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="quantity" placeholder="Quantity">
+                            </td>
+                            <td>
+                              <!--"Ingredient-Unit"-->
+                              <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="units" list="unit" placeholder="Units">
+                              <datalist id="ingredientsunit">
+                                  <option value="grs."></option>
+                                  <option value="Kg./L"></option>
+                                  <option value="Units"></option>
+                              </datalist>
+                            </td>    
+                            <td>
+                              <button id="Ing-delete-button" type="button" class="btn-delete-line" style="color: white; font-size: inherit;" onclick="delRowIngredient(this)">
                                 <span aria-hidden="true">
                                   <i class="fas fa-trash"></i>
                                 </span>
-                              </button>  
-                            </td> 
+                              </button>
+                            </td>
+                          </tr>
+                        </table> 
+                      </div>
+                      <hr>
+                      <!-- add and delete ingredients buttons -->
+                      <button id="Ing-add-button" type="button" class="btn-add-ingredient">
+                        <span aria-hidden="true">                           
+                            <i class="fa fa-plus add" aria-hidden="true" style="color: white; font-size: inherit;"></i>
+                            <h6 class="text">ADD</h6>
+                        </span>
+                      </button>
+                      <button id="Ing-delete-all-button" type="button" class="btn-delete-ingredients">
+                        <span aria-hidden="true">            
+                          <i class="fas fa-trash" aria-hidden="true" style="color: white; font-size: inherit;"></i>
+                          <h6 class="text">DELETE ALL</h6>
+                        </span>
+                      </button>
+                      <hr>
+                    </div>
+                    <!-- COOKING STYLE FILTER -->
+                    <div class="col-6">
+                      <h3 class="underlined-text">COOKING STYLE</h3>
+                      <div class="row">
+                        <table id="CookingStyleTable">
+                          <tr>
+                            <td>
+                              <input name="cookingStyles" style="border-radius: 0.5rem;border-width: 0.5px;" type="text" list="cookingStyleslist" placeholder="Type a category..">
+                              <datalist id="cookingStyleslist">
+                                <option value="Vegan">Vegan</option>
+                                <option value="Vegetarian">Vegetarian</option>     
+                                <option value="Mediterranean">Mediterranean</option> 
+                                <option value="American">American</option>  
+                                <option value="Asian">Asian</option>   
+                                <option value="Italian">Italian</option>    
+                              </datalist>
+                            </td>
+                            <td>
+                              <button id="CSy-delete-button" type="button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCookingStyle(this)">
+                                <span aria-hidden="true">
+                                  <i class="fas fa-trash"></i>
+                                </span>
+                              </button> 
+                            </td>
                           </tr>
                         </table>
                       </div>
                       <hr>
-                        <!-- add and delete categories-->
-                        <button id="Cat-add-button" type="button" class="btn-add-category" >
-                          <span aria-hidden="true">                           
-                            <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
-                            <h6 class="text">ADD</h6>
-                          </span>
-                        </button>
-                        <button id="Cat-delete-all-button"type="button" class="btn-delete-categories">
-                          <span aria-hidden="true">            
-                            <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
-                            <h6 class="text">DELETE ALL</h6>
-                        </button>
-                      </div>
-
-                      <div class="col-6">
-                        <!-- ALLERGEN FILTER -->
-                      <h3 class="underlined-text">ALLERGENS</h3>
+                      <!-- add and delete categories-->
+                      <button id="CSy-add-button" type="button" class="btn-add-category" >
+                        <span aria-hidden="true">                           
+                          <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                          <h6 class="text">ADD</h6>
+                        </span>
+                      </button>
+                      <button ID="CSy-delete-all-button" type="button" class="btn-delete-categories">
+                        <span aria-hidden="true">            
+                          <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                          <h6 class="text">DELETE ALL</h6>
+                      </button>
+                      <hr>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <!-- CATEGORY FILTER -->
+                    <div class="col-6"> 
+                      <h3 class="underlined-text">CATEGORIES</h3>
                       <div class="row">
-                      <table id="AllergensTable">
-                        <tr>
+                        <table id="CategoriesTable">
+                        <tr>  
                           <td>
-                          <input style="border-radius: 0.5rem; border-width: 0.5px;" type="text" name="allergens-scroll" list="allergenslist" placeholder="Type an allergen..">
-                            <datalist id="allergenslist">
-                              <option value="Peanuts"></option>
-                              <option value="Crustaceans"></option>     
-                              <option value="Eggs"></option> 
-                              <option value="Soybeans"></option>  
-                              <option value="Milk"></option>   
-                              <option value="Mustard"></option>    
+                            <input name="categories" type="text" id = "categoriesList" list="categorieslist"  placeholder="Type a category.." style="border-radius: 0.5rem;border-width: 0.5px;">
+                            <datalist id="categorieslist">
+                              <option value="Desserts">Desserts</option>
+                              <option value="Starters">Starters</option>     
+                              <option value="Main">Main</option> 
+                              <option value="Soups">Soups</option>  
+                              <option value="Salad">Salad</option>   
+                              <option value="Burgers">Burgers</option>   
                             </datalist>
                           </td>
                           <td>
-                            <button id="Alg-delete-button" type="button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowAllergen(this)">
+                            <button id="Cat-delete-button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCategory(this)">
                               <span aria-hidden="true">
                                 <i class="fas fa-trash"></i>
                               </span>
-                            </button>
-                          </td>
+                            </button>  
+                          </td> 
                         </tr>
-                      </table>
+                        </table>
+                      </div>
+                      <hr>
+                      <!-- add and delete categories-->
+                      <button id="Cat-add-button" type="button" class="btn-add-category" >
+                        <span aria-hidden="true">                           
+                          <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                          <h6 class="text">ADD</h6>
+                        </span>
+                      </button>
+                      <button id="Cat-delete-all-button"type="button" class="btn-delete-categories">
+                        <span aria-hidden="true">            
+                          <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                          <h6 class="text">DELETE ALL</h6>
+                        </span>
+                      </button>
+                    </div>
+                    <!-- ALLERGEN FILTER -->
+                    <div class="col-6"> 
+                      <h3 class="underlined-text">ALLERGENS</h3>
+                      <div class="row">
+                        <table id="AllergensTable">
+                          <tr>
+                            <td>
+                              <input style="border-radius: 0.5rem; border-width: 0.5px;" type="text" name="allergens" list="allergenslist" placeholder="Type an allergen..">
+                              <datalist id="allergenslist">
+                                <option value="Peanuts"></option>
+                                <option value="Crustaceans"></option>     
+                                <option value="Eggs"></option> 
+                                <option value="Soybeans"></option>  
+                                <option value="Milk"></option>   
+                                <option value="Mustard"></option>    
+                              </datalist>
+                            </td>
+                            <td>
+                              <button id="Alg-delete-button" type="button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowAllergen(this)">
+                                <span aria-hidden="true">
+                                  <i class="fas fa-trash"></i>
+                                </span>
+                              </button>
+                            </td>
+                          </tr>
+                        </table>
                       </div>
                       <hr>
                       <!-- add and delete allergens-->
@@ -553,133 +561,137 @@
                         <span aria-hidden="true">            
                           <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                           <h6 class="text">DELETE ALL</h6>
+                        </span>
                       </button>
                     </div>
                   </div>
                   <hr>
-                </div>
-                  <button class="btn btn-primary" data-dismiss="modal">
+                  <!--</div>-->
+                  <button type = "submit" class="btn btn-primary">
                     <h6 class="text">Go!</h6>
                     <img class="img-fluid rounded" src="../images/icons/pizza-go.png" alt="" width="50%" style="height: 50px; width: 50px;">
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
                   </button>
+                </form>
               </div>
-            </div> 
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Add button pannel -->
-  <div class="publications-modal modal fade" id="opened-add-button" tabindex="-1" role="dialog"
-    aria-labelledby="publicationsModal6Label" aria-hidden="true">
-    <div id="example" class="modal-dialog modal-xl" style="width: 70%;" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <!-- publications Modal - Title -->
-            <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Add Recipe</h2>
-            <!-- Icon Divider -->
-            <div class="divider-custom">
-              <div class="divider-custom-line"></div>
-              <div class="divider-custom-icon">
-                <i class="fas fa-star"></i>
-              </div>
-              <div class="divider-custom-line"></div>
             </div>
-            <form method="post">
-              <div class="row">
-              <div class="col-8" style="justify-content: center; height: 100%;">
-                <!-- Recipe section -->
-                <div class="wrap-input50 m-b-23" style="text-align: initial;">
-                  <h3 class="underlined-text">Recipe name*</h3>
-                  <div id="titleCountChar"></div>
-                  <input onkeyup="titleCountChar(this)" class="input100" type="text" name="title" placeholder="Recipe name" style="padding:10px;width: 100%;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)">
-                </div>
-                <hr>
-                <!-- Introduction section -->
-                <div class="wrap-input50 m-b-23" style="text-align: initial;">
-                  <h3 class="underlined-text">Introduction*</h3>
-                  <div id="introCountChar"></div>
-                  <textarea onkeyup="introCountChar(this)" type="text" name="description" style="padding:10px;width: 100%;height: 100px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" placeholder="Type a introduction here.."></textarea>
-                </div>
-                <div class="btn-outline-primary" style="border-radius:0.5rem;
-                  border:1px solid rgb(23, 162, 184); align-self:center;z-index: 1050;
-                  text-align:center;padding:0;right:0;width:25%;position:absolute;cursor:pointer">
-                  <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
-                </div>
-                <fieldset id="steps-form" class="nav-item dropdown wrap-input50 m-b-23" style="text-align: initial;">
-                  <h3>Step 1*</h3>
-                  <hr>
-                  <div id="stepCountChar"></div>
-                  <textarea onkeyup="stepCountChar(this)" placeholder="A recipe must have at least 1 step :D" style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"></textarea>
-                  <span class="focus-input100" data-symbol="&#xf206;"></span>
-                </fieldset>
-                <hr>
-                <div id="add-step" class="btn btn-dark" style="width: 100%; border-radius: 0.8rem;background-color: teal;cursor: pointer;">
-                  <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
-                </div>
-              </div>
-              <div class="col-4" style="height: 100%;">
-                <!-- Ingredients section -->
-                <h3 class="underlined-text">Ingredients*</h3>
-                <p>Select ingredients:</p>
-                <div id="add-ingredient" class="btn btn-primary" style="width: 100%; border-radius: 0.8rem;background-color: mediumspringgreen;cursor: pointer;">
-                  <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
-                </div>
-                <fieldset id="ingredients-form" class="nav-item dropdown scrolling" style="height: 300px;">
-                </fieldset>
-                <hr>
-                <h3 class="underlined-text">Category</h3>
-                <div id="add-category" class="btn btn-secondary" style="width: 100%; border-radius: 0.8rem;background-color: steelblue;cursor: pointer;">
-                  <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
-                </div>
-                <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;">
-                </fieldset>
-                <hr>
-                <h3 class="underlined-text">Difficulty</h3>
-                <!-- Difficulty section stars -->
-                <div class="rating" style="text-align: center;">
-                  <input name="rating" type="radio" id="extreme-star" onclick="starClick(4)" value="4" on="change:rating.submit">
-                  <label for="rating4" title="4 stars" >☆</label>
-                  <input name="rating" type="radio" id="hard-star" onclick="starClick(3)" value="3" on="change:rating.submit">
-                  <label for="rating3" title="4 stars" >☆</label>
-                  <input name="rating" type="radio" id="medium-star" onclick="starClick(2)" value="2" on="change:rating.submit">
-                  <label for="rating2" title="4 stars" >☆</label>
-                  <input name="rating" type="radio" id="easy-star" onclick="starClick(1)" value="1" on="change:rating.submit">
-                  <label for="rating1" title="4 stars" >☆</label>
-                </div>
-                <div>
-                  <p id="extreme-text" hidden>Extreme</p>
-                  <p id="hard-text" hidden>Hard</pid="extreme-text">
-                  <p id="medium-text" hidden>Medium</p>
-                  <p id="easy-text" hidden>Easy</p>
-                </div>
-                <h3 class="underlined-text">Aproximated time</h3>
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option>15m</option>
-                  <option>30m</option>
-                  <option>45m</option>
-                  <option>1h</option>
-                  <option>1h 30m</option>
-                  <option>2h</option>
-                  <option>2h 30m</option>
-                  <option>3h</option>
-                  <option>4h or more</option>
-                </select>
-              </div>
-              </div>
-              <input type='submit' value='Post' class="btn btn-primary" style="margin-top: 20px;"></input>
-            </form>
           </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <!-- Add button pannel -->
+    <div class="publications-modal modal fade" id="opened-add-button" tabindex="-1" role="dialog"
+      aria-labelledby="publicationsModal6Label" aria-hidden="true">
+      <div id="example" class="modal-dialog modal-xl" style="width: 70%;" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">
+              <i class="fas fa-times"></i>
+            </span>
+          </button>
+          <div class="modal-body text-center">
+            <div class="container">
+              <!-- publications Modal - Title -->
+              <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Add Recipe</h2>
+              <!-- Icon Divider -->
+              <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="divider-custom-line"></div>
+              </div>
+              <form method="post" action="/">
+                <div class="row">
+                <div class="col-8" style="justify-content: center; height: 100%;">
+                  <!-- Recipe section -->
+                  <div class="wrap-input50 m-b-23" style="text-align: initial;">
+                    <h3 class="underlined-text">Recipe name*</h3>
+                    <div id="titleCountChar"></div>
+                    <input onkeyup="titleCountChar(this)" class="input100" type="text" name="title" placeholder="Recipe name" style="padding:10px;width: 100%;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)">
+                  </div>
+                  <hr>
+                  <!-- Introduction section -->
+                  <div class="wrap-input50 m-b-23" style="text-align: initial;">
+                    <h3 class="underlined-text">Introduction*</h3>
+                    <div id="introCountChar"></div>
+                    <textarea onkeyup="introCountChar(this)" type="text" name="description" style="padding:10px;width: 100%;height: 100px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" placeholder="Type a introduction here.."></textarea>
+                  </div>
+                  <div class="btn-outline-primary" style="border-radius:0.5rem;
+                    border:1px solid rgb(23, 162, 184); align-self:center;z-index: 1050;
+                    text-align:center;padding:0;right:0;width:25%;position:absolute;cursor:pointer">
+                    <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
+                  </div>
+                  <fieldset id="steps-form" name="steps" class="nav-item dropdown wrap-input50 m-b-23" style="text-align: initial;">
+                    <h3>Step 1*</h3>
+                    <hr>
+                    <div id="stepCountChar"></div>
+                    <textarea onkeyup="stepCountChar(this)" placeholder="A recipe must have at least 1 step :D" style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"></textarea>
+                    <span class="focus-input100" data-symbol="&#xf206;"></span>
+                  </fieldset>
+                  <hr>
+                  <div id="add-step" class="btn btn-dark" style="width: 100%; border-radius: 0.8rem;background-color: teal;cursor: pointer;">
+                    <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                  </div>
+                </div>
+                <div class="col-4" style="height: 100%;">
+                  <!-- Ingredients section -->
+                  <h3 class="underlined-text">Ingredients*</h3>
+                  <p>Select ingredients:</p>
+                  <div id="add-ingredient" class="btn btn-primary" style="width: 100%; border-radius: 0.8rem;background-color: mediumspringgreen;cursor: pointer;">
+                    <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                  </div>
+                  <fieldset id="ingredients-form" class="nav-item dropdown scrolling" name="ingredients" style="height: 300px;">
+                  </fieldset>
+                  <hr>
+                  <h3 class="underlined-text">Category</h3>
+                  <div class="btn btn-secondary" style="width: 100%; border-radius: 0.8rem;background-color: steelblue;cursor: pointer;">
+                    <input id="add-category"  name="category" class="fa fa-plus add" style="color: white;font-size: inherit;">
+                    <!-- <i  aria-hidden="true"></i> -->
+                  </div>
+                  <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;">
+                  </fieldset>
+                  <hr>
+                  <h3 class="underlined-text">Difficulty</h3>
+                  <!-- Difficulty section stars -->
+                  <div class="rating" style="text-align: center;">
+                    <input name="rating" type="radio" id="extreme-star" onclick="starClick(4)" value="extreme" on="change:rating.submit">
+                    <label for="rating4" title="4 stars" >☆</label>
+                    <input name="rating" type="radio" id="hard-star" onclick="starClick(3)" value="hard" on="change:rating.submit">
+                    <label for="rating3" title="4 stars" >☆</label>
+                    <input name="rating" type="radio" id="medium-star" onclick="starClick(2)" value="medium" on="change:rating.submit">
+                    <label for="rating2" title="4 stars" >☆</label>
+                    <input name="rating" type="radio" id="easy-star" onclick="starClick(1)" value="easy" on="change:rating.submit">
+                    <label for="rating1" title="4 stars" >☆</label>
+                  </div>
+                  <div>
+                    <p id="extreme-text" hidden>Extreme</p>
+                    <p id="hard-text" hidden>Hard</pid="extreme-text">
+                    <p id="medium-text" hidden>Medium</p>
+                    <p id="easy-text" hidden>Easy</p>
+                  </div>
+                  <h3 class="underlined-text">Aproximated time</h3>
+                  <select name="duration" class="form-control" id="exampleFormControlSelect1">
+                    <option>15m</option>
+                    <option>30m</option>
+                    <option>45m</option>
+                    <option>1h</option>
+                    <option>1h 30m</option>
+                    <option>2h</option>
+                    <option>2h 30m</option>
+                    <option>3h</option>
+                    <option>4h or more</option>
+                  </select>
+                </div>
+                </div>
+                <input type='submit' value='Post' class="btn btn-primary" style="margin-top: 20px;"></input>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- /.container -->
 

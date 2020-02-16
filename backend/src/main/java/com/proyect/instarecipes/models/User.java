@@ -1,63 +1,60 @@
-package com.proyect.instarecipes.users.user;
+package com.proyect.instarecipes.models;
 
 import java.util.Set;
-import java.util.HashSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class User{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "User_ID", nullable = false)
-	private long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	
-	@Column(name = "Username", nullable = false, unique = true, length = 24)
+	@Column(nullable = false, unique = true)
 	private String username;
-	@Column(name = "Email", nullable = false, unique = true, length = 24)
+	@Column(nullable = false, unique = true)
 	private String email;
-	@Column(name = "Password", nullable = false, length = 36)
+	@Column(nullable = false)
 	private String password;
-	@Column(name = "Role", nullable = false, length = 5)
-	private String role;				//"user","admin","annon"
-	@Column(name = "Name", nullable = false, length = 24)
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> roles;
+	@Column(nullable = false)
 	private String name;
-	@Column(name = "Surname", nullable = true, length = 24)
+	@Column(nullable = false)
 	private String surname;
 	// private Image background;
 	// private Image avatar;
-	@Column(name = "Allergens", nullable = true, length = 24)
 	private String allergens;
 	
-	@Column(name = "Followers", nullable = true, length = 24)
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "user_follow_user",
-        joinColumns = @JoinColumn(name = "followed_id"),
-        inverseJoinColumns = @JoinColumn(name = "follower_id"))
 	private Set<User> followers; //Set is like a collection of an objets that the items couldn't be repeated
-	@Column(name = "Following", nullable = true, length = 24)
 	@ManyToMany(mappedBy = "followers")
 	private Set<User> following;
 	
 	public User() {
 	}
 	
-	public User(long id, String username, String email, String password, String role, String name, String surname,
-			String allergens, Set<User> followers, Set<User> following) {
-		this.id = id;
+	public User(String username, String email, String password, String name, String surname,
+			String allergens, Set<User> followers, Set<User> following, String... roles) { //THIS ROLE PARAM NECESSARY HAS TO BE AT THE END OF THE COSTRUCTOR
 		this.username = username;
 		this.email = email;
-		this.password = password;
-		this.role = role;
+		this.password = new BCryptPasswordEncoder().encode(password);;
+		this.roles = new ArrayList<>(Arrays.asList(roles));;
 		this.name = name;
 		this.surname = surname;
 		this.allergens = allergens;
@@ -73,10 +70,10 @@ public class User{
         this.following = new HashSet<User>();
     }
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -100,13 +97,6 @@ public class User{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public String isRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
 
 	public String getName() {
 		return name;
@@ -121,22 +111,6 @@ public class User{
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-
-	// @Column(name = "background")
-	// public Image getBackground() {
-	// 	return background;
-	// }
-	// public void setBackground(Image background) {
-	// 	this.background = background;
-	// }
-
-	// @Column(name = "avatar")
-	// public Image getAvatar() {
-	// 	return avatar;
-	// }
-	// public void setAvatar(Image avatar) {
-	// 	this.avatar = avatar;
-	// }
 
 	public String getAllergens() {
 		return allergens;
@@ -159,9 +133,37 @@ public class User{
 		this.following = following;
 	}
 
-	public String getRole() { 
-		return role;
+	public List<String> getRoles() { 
+		return roles;
 	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+
+	public String toString(){
+        if(this.roles.contains("ROLE_ADMIN")){
+            return "admin";
+        }else{
+            return "user";
+        }
+	}
+	
+	// @Column(name = "background")
+	// public Image getBackground() {
+	// 	return background;
+	// }
+	// public void setBackground(Image background) {
+	// 	this.background = background;
+	// }
+
+	// @Column(name = "avatar")
+	// public Image getAvatar() {
+	// 	return avatar;
+	// }
+	// public void setAvatar(Image avatar) {
+	// 	this.avatar = avatar;
+	// }
 	
 	/**				FOLLOWER / FOLLOWING METHODS				*/
 	public void addFollower(User follower) {

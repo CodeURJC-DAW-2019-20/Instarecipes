@@ -2,16 +2,13 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
   <title>Instarecipes • Profile</title>
   <!-- Images and icons-->
   <link rel="icon" type="image/png" href="../images/icons/instarecipes.png"/>
-
   <!-- Custom fonts for this theme -->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -19,15 +16,11 @@
     type="text/css">
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
   <!-- Theme CSS -->
   <link href="../css/freelancer.css" rel="stylesheet">
   <link href="../css/modern-business.css" rel="stylesheet">
-
-
   <!-- Images and icons-->
   <link rel="icon" type="image/png" href="../images/icons/instarecipes.png" />
-
 </head>
 
 <body id="page-top">
@@ -65,14 +58,29 @@
       </div>
     </div>
     <div class="login-container">
-      <a class="nav-link nav-log" href="login" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+      {{#logged}}
+        <form action="/logout" method="post">
+          <button type="submit" class="nav-link nav-log btn-dark" style="color:white;font-weight: normal;font-size: 15px;">Logout</button>
+          <input type="hidden" name="_csrf" value="{{token}}"/>
+        </form>
+      {{/logged}}
+      {{^logged}}
+        <a class="nav-link nav-log" href="login" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+      {{/logged}}
     </div>
   </nav>
 
   <!-- Masthead -->
   <header class="masthead bg-primary text-white text-center"
     style="background-image: url(../images/backgrounds/profile_background_example.jpeg); background-repeat: no-repeat; background-size: cover;">
-    <div class="container d-flex align-items-center flex-column">
+    <div class="container d-flex align-items-center flex-column" style="position: relative;">
+    <!-- Request ingredient/category button -->
+    <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 50%;right: 15%;cursor: pointer;">
+      <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-request-button"
+        style="width: max-content">
+        <img src='../images/icons/request_icon.png' width="50%" style="height: 50px; width: 50px;" />
+      </div>
+    </div>
       <!-- Masthead Avatar Image -->
       <img class="masthead-avatar mb-5" src="../images/icons/avatar.svg" alt="Show profile photo" data-toggle="modal"
         data-target="#showAvatar">
@@ -150,7 +158,7 @@
                 </div>
               </div>
             </div>
-          </div>
+        </div>
         </div>
         <table>
           <tr>
@@ -198,6 +206,42 @@
         </table>
       </div>
     </div>
+    <!-- Request button pannel -->
+    <div class="publications-modal modal fade" id="opened-request-button" tabindex="-1" role="dialog"
+      aria-labelledby="publicationsModal6Label" aria-hidden="true">
+      <div id="example" class="modal-dialog modal-xl" style="width: 40%;" role="document">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">
+              <i class="fas fa-times"></i>
+            </span>
+          </button>
+          <div class="modal-body text-center">
+            <div class="container">
+              <h3 style="width: 100%;color: cadetblue;text-align: center;">Request item</h3>
+              <!-- Icon Divider -->
+              <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="divider-custom-line"></div>
+              </div>
+              <form method="post">
+                <select style="width: 80%;font-size: 25px;">
+                  <option>-- Select one --</option>
+                  <option>Ingredient</option>
+                  <option>Category</option>
+                  <option>Cooking style</option>
+                </select>
+                <input type='text' placeholder='Value' class="btn btn-outline-primary" style="margin-top: 20px;width: 80%;height: 80px;font-size: 50px;">
+                <input type='submit' value='Send' class="btn btn-primary" style="margin-top: 40px;width: 50%;height: 60%;">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
 
   <!-- Publications Section -->
@@ -217,8 +261,7 @@
       </div>
 
       <!-- publications Grid Items -->
-      <div class="row">
-
+      <div class="row" id="publications-section">
         <!-- publications Item 1 -->
         <div class="col-md-6 col-lg-4">
           <div class="publications-item mx-auto" data-toggle="modal" data-target="#publicationsModal1">
@@ -247,152 +290,6 @@
             <p class="pub-date-text">27 min. ago</p>
           </div>
         </div>
-
-        <!-- publications Item 2 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="publications-item mx-auto" data-toggle="modal" data-target="#publicationsModal2">
-            <div class="likes-comments">
-              <div class="row" style="margin-right: 0;margin-left: 0;">
-                <div class="col-3">
-                  <img class="icon-fluid" src="../images/icons/like_pressed.png" alt="">
-                </div>
-                <div class="col-3">
-                  <p class="icon-fluid pub-date-text">67</p>
-                </div>
-                <div class="col-3">
-                  <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
-                </div>
-                <div class="col-3">
-                  <p class="icon-fluid pub-date-text">121</p>
-                </div>
-              </div>
-            </div>
-            <div class="publications-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="publications-item-caption-content text-center text-white">
-                <img src="../images/icons/eye.png" />
-              </div>
-            </div>
-            <img class="img-fluid" src="../images/Recipes/recipe_example_2.jpg" alt="">
-            <p class="pub-date-text">4 h.</p>
-          </div>
-        </div>
-
-        <!-- publications Item 3 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="publications-item mx-auto" data-toggle="modal" data-target="#publicationsModal3">
-            <div class="likes-comments">
-              <div class="row" style="margin-right: 0;margin-left: 0;">
-                <div class="col-3">
-                  <img class="icon-fluid" src="../images/icons/like_unpressed.png" alt="">
-                </div>
-                <div class="col-3">
-                  <p class="icon-fluid pub-date-text">84</p>
-                </div>
-                <div class="col-3">
-                  <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
-                </div>
-                <div class="col-3">
-                  <p class="icon-fluid pub-date-text">203</p>
-                </div>
-              </div>
-            </div>
-            <div class="publications-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="publications-item-caption-content text-center text-white">
-                <img src="../images/icons/eye.png" />
-              </div>
-            </div>
-            <img class="img-fluid" src="../images/Recipes/potatoes_chicken_recipe.jpg" alt="">
-            <p class="pub-date-text">3 d.</p>
-          </div>
-        </div>
-
-        <!-- publications Item 4 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="publications-item mx-auto" data-toggle="modal" data-target="#publicationsModal4">
-            <div class="likes-comments">
-              <div class="row" style="margin-right: 0;margin-left: 0;">
-                <div class="col-3">
-                  <img class="icon-fluid" src="../images/icons/like_unpressed.png" alt="">
-                </div>
-                <div class="col-3">
-                  <p class="icon-fluid pub-date-text">32</p>
-                </div>
-                <div class="col-3">
-                  <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
-                </div>
-                <div class="col-3">
-                  <p class="icon-fluid pub-date-text">100</p>
-                </div>
-              </div>
-            </div>
-            <div class="publications-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="publications-item-caption-content text-center text-white">
-                <img src="../images/icons/eye.png" />
-              </div>
-            </div>
-            <img class="img-fluid" src="../images/Recipes/recipe_example_4.jpg" alt="">
-            <p class="pub-date-text">1 wk.</p>
-          </div>
-        </div>
-
-        <!-- publications Item 5 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="publications-item mx-auto" data-toggle="modal" data-target="#publicationsModal5">
-            <div class="likes-comments">
-              <div class="row" style="margin-right: 0;margin-left: 0;">
-                <div class="col-3">
-                  <img class="icon-fluid" src="../images/icons/like_pressed.png" alt="">
-                </div>
-                <div class="col-3">
-                  <p class="icon-fluid pub-date-text">14</p>
-                </div>
-                <div class="col-3">
-                  <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
-                </div>
-                <div class="col-3">
-                  <p class="icon-fluid pub-date-text">4</p>
-                </div>
-              </div>
-            </div>
-            <div class="publications-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="publications-item-caption-content text-center text-white">
-                <img src="../images/icons/eye.png" />
-              </div>
-            </div>
-            <img class="img-fluid" src="../images/Recipes/recipe_example_5.jpg" alt="">
-            <p class="pub-date-text">3 mth.</p>
-          </div>
-        </div>
-
-        <!-- publications Item 6 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="publications-item mx-auto" data-toggle="modal" data-target="#publicationsModal6">
-            <div class="likes-comments">
-              <div class="row" style="margin-right: 0;margin-left: 0;">
-                <div class="col-3">
-                  <img class="icon-fluid" src="../images/icons/like_unpressed.png" alt="">
-                </div>
-                <div class="col-3">
-                  <p class="icon-fluid pub-date-text">23</p>
-                </div>
-                <div class="col-3">
-                  <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
-                </div>
-                <div class="col-3">
-                  <p class="icon-fluid pub-date-text">2</p>
-                </div>
-              </div>
-            </div>
-            <div class="publications-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="publications-item-caption-content text-center text-white">
-                <img src="../images/icons/eye.png" />
-              </div>
-            </div>
-            <img class="img-fluid" src="../images/Recipes/recipe_example_6.jpg" alt="">
-            <p class="pub-date-text">1 y.</p>
-          </div>
-        </div>
-
       </div>
       <!-- /.row -->
 
@@ -714,7 +611,6 @@
   </div>
 
   <!-- publications Modals -->
-
   <!-- publications Modal 1 -->
   <div class="publications-modal modal fade" id="publicationsModal1" tabindex="-1" role="dialog"
     aria-labelledby="publicationsModal1Label" aria-hidden="true">
@@ -746,407 +642,6 @@
                 <!-- publications Modal - Image -->
                   <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
                     <img class="img-fluid-preview rounded mb-5" src="../images/Recipes/recipe_example_1.jpg" alt="">
-                  </div>
-                  <div class="col-4" style="height: 300px;">
-                    <div class="nav-item dropdown scrolling">
-                      <p class="dropdown-item">1. Bread</p>
-                      <p class="dropdown-item">20 grs. Mushrooms</p>
-                      <p class="dropdown-item">30 grs. Beans</p>
-                      <p class="dropdown-item">50 grs. Nuts</p>
-                      <p class="dropdown-item">30 grs. Salad</p>
-                      <p class="dropdown-item">20 grs. Tomatoe</p>
-                      <p class="dropdown-item">1. Bread</p>
-                      <p class="dropdown-item">20 grs. Mushrooms</p>
-                      <p class="dropdown-item">30 grs. Beans</p>
-                      <p class="dropdown-item">50 grs. Nuts</p>
-                      <p class="dropdown-item">30 grs. Salad</p>
-                      <p class="dropdown-item">20 grs. Tomatoe</p>
-                      <p class="dropdown-item">1. Bread</p>
-                      <p class="dropdown-item">20 grs. Mushrooms</p>
-                      <p class="dropdown-item">30 grs. Beans</p>
-                      <p class="dropdown-item">50 grs. Nuts</p>
-                      <p class="dropdown-item">30 grs. Salad</p>
-                      <p class="dropdown-item">20 grs. Tomatoe</p>
-                    </div>
-                  </div>
-                </div>
-                <h3 class="underlined-text" style="margin-top: 10px;">INTRODUCTION</h3>
-                  <!-- publications Modal - Text -->
-                  <p class="mb-5" style="text-align:left;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam 
-                    velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                <div class="row">
-                  <div class="col-4">
-                    <h3 class="underlined-text">CATEGORY</h3>
-                    <p class="mb-5">Vegetarian</p>
-                  </div>
-                  <div class="col-4">
-                    <h3 class="underlined-text">DIFICULTY</h3>
-                    <p class="mb-5">Easy</p>
-                  </div>
-                  <div class="col-4">
-                    <h3 class="underlined-text">APROXIMATED TIME</h3>
-                    <p class="mb-5">30 min.</p>
-                  </div>
-                </div>
-                <a class="btn btn-primary" href="simple-recipe">
-                  <img class="rounded" src="../images/icons/go.png" alt="">
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- publications Modal 2 -->
-  <div class="publications-modal modal fade" id="publicationsModal2" tabindex="-1" role="dialog"
-    aria-labelledby="publicationsModal2Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-12">
-                <!-- publications Modal - Title -->
-                <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Strawberry Juice</h2>
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-star"></i>
-                  </div>
-                  <div class="divider-custom-line"></div>
-                </div>
-                <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
-                  <h3 class="underlined-text">INGREDIENTS</h3>
-                </div>
-                <div class="row" style="height: 300px;">
-                <!-- publications Modal - Image -->
-                  <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
-                    <img class="img-fluid-preview rounded mb-5" src="../images/Recipes/recipe_example_2.jpg" alt="">
-                  </div>
-                  <div class="col-4" style="height: 300px;">
-                    <div class="nav-item dropdown scrolling">
-                      <p class="dropdown-item">20 grs. Mushrooms</p>
-                      <p class="dropdown-item">30 grs. Raspberry</p>
-                      <p class="dropdown-item">50 grs. Strawberry</p>
-                      <p class="dropdown-item">1/2 l. Milk</p>
-                      <p class="dropdown-item">20 grs. Bananna</p>
-                    </div>
-                  </div>
-                </div>
-                <h3 class="underlined-text" style="margin-top: 10px;">INTRODUCTION</h3>
-                  <!-- publications Modal - Text -->
-                  <p class="mb-5" style="text-align:left;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam 
-                    velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                <div class="row">
-                  <div class="col-4">
-                    <h3 class="underlined-text">CATEGORY</h3>
-                    <p class="mb-5">Dessert</p>
-                  </div>
-                  <div class="col-4">
-                    <h3 class="underlined-text">DIFICULTY</h3>
-                    <p class="mb-5">Easy</p>
-                  </div>
-                  <div class="col-4">
-                    <h3 class="underlined-text">APROXIMATED TIME</h3>
-                    <p class="mb-5">20 min.</p>
-                  </div>
-                </div>
-                <a class="btn btn-primary" href="simple-recipe">
-                  <img class="rounded" src="../images/icons/go.png" alt="">
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- publications Modal 3 -->
-  <div class="publications-modal modal fade" id="publicationsModal3" tabindex="-1" role="dialog"
-    aria-labelledby="publicationsModal3Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-12">
-                <!-- publications Modal - Title -->
-                <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Chicken and potatoes</h2>
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-star"></i>
-                  </div>
-                  <div class="divider-custom-line"></div>
-                </div>
-                <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
-                  <h3 class="underlined-text">INGREDIENTS</h3>
-                </div>
-                <div class="row" style="height: 300px;">
-                <!-- publications Modal - Image -->
-                  <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
-                    <img class="img-fluid-preview rounded mb-5" src="../images/Recipes/potatoes_chicken_recipe.jpg" alt="">
-                  </div>
-                  <div class="col-4" style="height: 300px;">
-                    <div class="nav-item dropdown scrolling">
-                      <p class="dropdown-item">3pcs. Potatoes</p>
-                      <p class="dropdown-item">1kg. Chicken</p>
-                      <p class="dropdown-item">1pc. Laurel</p>
-                      <p class="dropdown-item">200g. Olives</p>
-                      <p class="dropdown-item">30 grs. Salad</p>
-                      <p class="dropdown-item">20 grs. Tomatoe</p>
-                    </div>
-                  </div>
-                </div>
-                <h3 class="underlined-text" style="margin-top: 10px;">INTRODUCTION</h3>
-                  <!-- publications Modal - Text -->
-                  <p class="mb-5" style="text-align:left;">This Sheet Pan Garlic Herb Butter Chicken recipe is low in fat and absolutely 
-                    incredible. So buttery with so much flavour, it TASTES so sinful yet contains half the fat of a regular butter sauce 
-                    that no one knows the difference!
-                  </p>
-                <div class="row">
-                  <div class="col-4">
-                    <h3 class="underlined-text">CATEGORY</h3>
-                    <p class="mb-5">Meat</p>
-                  </div>
-                  <div class="col-4">
-                    <h3 class="underlined-text">DIFICULTY</h3>
-                    <p class="mb-5">Medium</p>
-                  </div>
-                  <div class="col-4">
-                    <h3 class="underlined-text">APROXIMATED TIME</h3>
-                    <p class="mb-5">2 h.</p>
-                  </div>
-                </div>
-                <a class="btn btn-primary" href="simple-recipe">
-                  <img class="rounded" src="../images/icons/go.png" alt="">
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- publications Modal 4 -->
-  <div class="publications-modal modal fade" id="publicationsModal4" tabindex="-1" role="dialog"
-    aria-labelledby="publicationsModal4Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-12">
-                <!-- publications Modal - Title -->
-                <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Vegetal pizza</h2>
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-star"></i>
-                  </div>
-                  <div class="divider-custom-line"></div>
-                </div>
-                <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
-                  <h3 class="underlined-text">INGREDIENTS</h3>
-                </div>
-                <div class="row" style="height: 300px;">
-                <!-- publications Modal - Image -->
-                  <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
-                    <img class="img-fluid-preview rounded mb-5" src="../images/Recipes/recipe_example_4.jpg" alt="">
-                  </div>
-                  <div class="col-4" style="height: 300px;">
-                    <div class="nav-item dropdown scrolling">
-                      <p class="dropdown-item">1. Bread</p>
-                      <p class="dropdown-item">20 grs. Mushrooms</p>
-                      <p class="dropdown-item">30 grs. Beans</p>
-                      <p class="dropdown-item">50 grs. Nuts</p>
-                      <p class="dropdown-item">30 grs. Salad</p>
-                      <p class="dropdown-item">20 grs. Tomatoe</p>
-                      <p class="dropdown-item">1. Bread</p>
-                      <p class="dropdown-item">20 grs. Mushrooms</p>
-                      <p class="dropdown-item">30 grs. Beans</p>
-                      <p class="dropdown-item">50 grs. Nuts</p>
-                      <p class="dropdown-item">30 grs. Salad</p>
-                      <p class="dropdown-item">20 grs. Tomatoe</p>
-                      <p class="dropdown-item">1. Bread</p>
-                      <p class="dropdown-item">20 grs. Mushrooms</p>
-                      <p class="dropdown-item">30 grs. Beans</p>
-                      <p class="dropdown-item">50 grs. Nuts</p>
-                      <p class="dropdown-item">30 grs. Salad</p>
-                      <p class="dropdown-item">20 grs. Tomatoe</p>
-                    </div>
-                  </div>
-                </div>
-                <h3 class="underlined-text" style="margin-top: 10px;">INTRODUCTION</h3>
-                  <!-- publications Modal - Text -->
-                  <p class="mb-5" style="text-align:left;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam 
-                    velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                <div class="row">
-                  <div class="col-4">
-                    <h3 class="underlined-text">CATEGORY</h3>
-                    <p class="mb-5">Vegetarian</p>
-                  </div>
-                  <div class="col-4">
-                    <h3 class="underlined-text">DIFICULTY</h3>
-                    <p class="mb-5">Easy</p>
-                  </div>
-                  <div class="col-4">
-                    <h3 class="underlined-text">APROXIMATED TIME</h3>
-                    <p class="mb-5">30 min.</p>
-                  </div>
-                </div>
-                <a class="btn btn-primary" href="simple-recipe">
-                  <img class="rounded" src="images/icons/go.png" alt="">
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- publications Modal 5 -->
-  <div class="publications-modal modal fade" id="publicationsModal5" tabindex="-1" role="dialog"
-    aria-labelledby="publicationsModal5Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-12">
-                <!-- publications Modal - Title -->
-                <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Vegetal pizza</h2>
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-star"></i>
-                  </div>
-                  <div class="divider-custom-line"></div>
-                </div>
-                <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
-                  <h3 class="underlined-text">INGREDIENTS</h3>
-                </div>
-                <div class="row" style="height: 300px;">
-                <!-- publications Modal - Image -->
-                  <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
-                    <img class="img-fluid-preview rounded mb-5" src="../images/Recipes/recipe_example_5.jpg" alt="">
-                  </div>
-                  <div class="col-4" style="height: 300px;">
-                    <div class="nav-item dropdown scrolling">
-                      <p class="dropdown-item">1. Bread</p>
-                      <p class="dropdown-item">20 grs. Mushrooms</p>
-                      <p class="dropdown-item">30 grs. Beans</p>
-                      <p class="dropdown-item">50 grs. Nuts</p>
-                      <p class="dropdown-item">30 grs. Salad</p>
-                      <p class="dropdown-item">20 grs. Tomatoe</p>
-                      <p class="dropdown-item">1. Bread</p>
-                      <p class="dropdown-item">20 grs. Mushrooms</p>
-                      <p class="dropdown-item">30 grs. Beans</p>
-                      <p class="dropdown-item">50 grs. Nuts</p>
-                      <p class="dropdown-item">30 grs. Salad</p>
-                      <p class="dropdown-item">20 grs. Tomatoe</p>
-                      <p class="dropdown-item">1. Bread</p>
-                      <p class="dropdown-item">20 grs. Mushrooms</p>
-                      <p class="dropdown-item">30 grs. Beans</p>
-                      <p class="dropdown-item">50 grs. Nuts</p>
-                      <p class="dropdown-item">30 grs. Salad</p>
-                      <p class="dropdown-item">20 grs. Tomatoe</p>
-                    </div>
-                  </div>
-                </div>
-                <h3 class="underlined-text" style="margin-top: 10px;">INTRODUCTION</h3>
-                  <!-- publications Modal - Text -->
-                  <p class="mb-5" style="text-align:left;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam 
-                    velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                <div class="row">
-                  <div class="col-4">
-                    <h3 class="underlined-text">CATEGORY</h3>
-                    <p class="mb-5">Vegetarian</p>
-                  </div>
-                  <div class="col-4">
-                    <h3 class="underlined-text">DIFICULTY</h3>
-                    <p class="mb-5">Easy</p>
-                  </div>
-                  <div class="col-4">
-                    <h3 class="underlined-text">APROXIMATED TIME</h3>
-                    <p class="mb-5">30 min.</p>
-                  </div>
-                </div>
-                <a class="btn btn-primary" href="simple-recipe">
-                  <img class="rounded" src="../images/icons/go.png" alt="">
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- publications Modal 6 -->
-  <div class="publications-modal modal fade" id="publicationsModal6" tabindex="-1" role="dialog"
-    aria-labelledby="publicationsModal6Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-12">
-                <!-- publications Modal - Title -->
-                <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Vegetal pizza</h2>
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-star"></i>
-                  </div>
-                  <div class="divider-custom-line"></div>
-                </div>
-                <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
-                  <h3 class="underlined-text">INGREDIENTS</h3>
-                </div>
-                <div class="row" style="height: 300px;">
-                <!-- publications Modal - Image -->
-                  <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
-                    <img class="img-fluid-preview rounded mb-5" src="../images/Recipes/recipe_example_6.jpg" alt="">
                   </div>
                   <div class="col-4" style="height: 300px;">
                     <div class="nav-item dropdown scrolling">
