@@ -368,26 +368,26 @@
               <div class="container">
                 <!--<div class="col-lg-12">-->
                 <!-- publications Modal - Title -->
-                  <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Filtered Search</h2>
+                <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Filtered Search</h2>
                 <!-- Icon Divider -->
-                  <div class="divider-custom">
+                <div class="divider-custom">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon">
                         <img src='../images/icons/orange-search.png' width="50%" style="height: 50px; width: 50px;"/>
                     </div>
                     <div class="divider-custom-line"></div>
-                    </div>
-                    <form method="POST" action="/search">
-                    <div class="row">
-                      <!-- INGREDIENT FILTER -->
-                      <div class="col-6">
-                        <h3 class="underlined-text">INGREDIENTS</h3>
-                        <div class="row">
+                </div>
+                <form action="/search" method="POST">
+                  <div class="row">
+                    <!-- INGREDIENT FILTER -->
+                    <div class="col-6">
+                      <h3 class="underlined-text">INGREDIENTS</h3>
+                      <div class="row">
                         <table id="IngredientsTable">          
-                        <tr>
-                          <td>
-                          <!--"Ingredient-Name"-->
-                            <input name="ingredients" style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" list="ingredientslist" placeholder="Ingredient..">
+                          <tr>
+                            <td>
+                            <!--"Ingredient-Name"-->
+                              <input name="ingredients" style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" list="ingredientslist" placeholder="Ingredient..">
                               <datalist id="ingredientslist">
                                 <option value="dark chocolate">dark chocolate</option>
                                 <option value="potatoes">potatoes</option>
@@ -396,55 +396,55 @@
                                 <option value="garlic">garlic</option>
                                 <option value="milk chocolate">milk chocolate</option>
                               </datalist>
-                          </td>
-                          <td>
-                          <!--"Ingredient-Quantity"-->
-                            <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="ingredients-quantity" placeholder="Quantity">
-                          </td>
-                          <td>
-                            <!--"Ingredient-Unit"-->
-                            <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="units" list="ingredientsunit" placeholder="Units">
+                            </td>
+                            <td>
+                            <!--"Ingredient-Quantity"-->
+                              <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="quantity" placeholder="Quantity">
+                            </td>
+                            <td>
+                              <!--"Ingredient-Unit"-->
+                              <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="units" list="unit" placeholder="Units">
                               <datalist id="ingredientsunit">
-                                <option value="grs."></option>
-                                <option value="Kg./L"></option>
-                                <option value="Units"></option>
+                                  <option value="grs."></option>
+                                  <option value="Kg./L"></option>
+                                  <option value="Units"></option>
                               </datalist>
-                          </td>    
-                          <td>
-                            <button id="Ing-delete-button" type="button" class="btn-delete-line" style="color: white; font-size: inherit;" onclick="delRowIngredient(this)">
-                              <span aria-hidden="true">
-                                <i class="fas fa-trash"></i>
-                              </span>
-                            </button>
-                          </td>
-                        </tr>
+                            </td>    
+                            <td>
+                              <button id="Ing-delete-button" type="button" class="btn-delete-line" style="color: white; font-size: inherit;" onclick="delRowIngredient(this)">
+                                <span aria-hidden="true">
+                                  <i class="fas fa-trash"></i>
+                                </span>
+                              </button>
+                            </td>
+                          </tr>
                         </table> 
-                        </div>
-                        <hr>
-                        <!-- add and delete ingredients buttons -->
-                        <button id="Ing-add-button" type="button" class="btn-add-ingredient">
-                          <span aria-hidden="true">                           
-                              <i class="fa fa-plus add" aria-hidden="true" style="color: white; font-size: inherit;"></i>
-                              <h6 class="text">ADD</h6>
-                          </span>
-                        </button>
-                        <button id="Ing-delete-all-button" type="button" class="btn-delete-ingredients">
-                          <span aria-hidden="true">            
-                            <i class="fas fa-trash" aria-hidden="true" style="color: white; font-size: inherit;"></i>
-                            <h6 class="text">DELETE ALL</h6>
-                          </span>
-                        </button>
-                        <hr>
                       </div>
-                      <!-- COOKING STYLE FILTER -->
-                      <div class="col-6">
-                        <h3 class="underlined-text">COOKING STYLE</h3>
-                        <div class="row">
+                      <hr>
+                      <!-- add and delete ingredients buttons -->
+                      <button id="Ing-add-button" type="button" class="btn-add-ingredient">
+                        <span aria-hidden="true">                           
+                            <i class="fa fa-plus add" aria-hidden="true" style="color: white; font-size: inherit;"></i>
+                            <h6 class="text">ADD</h6>
+                        </span>
+                      </button>
+                      <button id="Ing-delete-all-button" type="button" class="btn-delete-ingredients">
+                        <span aria-hidden="true">            
+                          <i class="fas fa-trash" aria-hidden="true" style="color: white; font-size: inherit;"></i>
+                          <h6 class="text">DELETE ALL</h6>
+                        </span>
+                      </button>
+                      <hr>
+                    </div>
+                    <!-- COOKING STYLE FILTER -->
+                    <div class="col-6">
+                      <h3 class="underlined-text">COOKING STYLE</h3>
+                      <div class="row">
                         <table id="CookingStyleTable">
-                        <tr>
-                          <td>
-                          <input name="cookingStyles" style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
-                              <datalist id="categorieslist">
+                          <tr>
+                            <td>
+                              <input name="cookingStyles" style="border-radius: 0.5rem;border-width: 0.5px;" type="text" list="cookingStyleslist" placeholder="Type a category..">
+                              <datalist id="cookingStyleslist">
                                 <option value="Vegan">Vegan</option>
                                 <option value="Vegetarian">Vegetarian</option>     
                                 <option value="Mediterranean">Mediterranean</option> 
@@ -452,107 +452,102 @@
                                 <option value="Asian">Asian</option>   
                                 <option value="Italian">Italian</option>    
                               </datalist>
-                          </td>
-                          <td>
-                           <button id="CSy-delete-button" type="button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCookingStyle(this)">
-                              <span aria-hidden="true">
-                                <i class="fas fa-trash"></i>
-                              </span>
-                            </button> 
-                          </td>
-                        </tr>
-                        </table>
-                        </div>
-                        <hr>
-                        <!-- add and delete categories-->
-                        <button id="CSy-add-button" type="button" class="btn-add-category" >
-                          <span aria-hidden="true">                           
-                            <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
-                            <h6 class="text">ADD</h6>
-                          </span>
-                        </button>
-                        <button ID="CSy-delete-all-button" type="button" class="btn-delete-categories">
-                          <span aria-hidden="true">            
-                            <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
-                            <h6 class="text">DELETE ALL</h6>
-                        </button>
-                        <hr>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <!-- CATEGORY FILTER -->
-                      <div class="col-6"> 
-                      <h3 class="underlined-text">CATEGORIES</h3>
-                        <div class="row">
-                        <table id="CategoriesTable">
-                          <tr>  
-                            <td>
-                              <form id="categoriesForm"> 
-                                <select name = "catChosen">
-                             <!-- <input type="text" id = "categoriesList" list="categorieslist" name="categories-scroll" placeholder="Type a category.." style="border-radius: 0.5rem;border-width: 0.5px;"> -->
-                              <!-- <datalist id="categoriesDatalist"> -->
-                                <option data-value="Desserts">Desserts</option>
-                                <option data-value="Starters">Starters</option>     
-                                <option data-value="Main">Main</option> 
-                                <option data-value="Soups">Soups</option>  
-                                <option data-value="Salad">Salad</option>   
-                                <option data-value="Burgers">Burgers</option> 
-                              </select>   
-                              <!-- </datalist> -->
-                            </form>
                             </td>
                             <td>
-                              <button id="Cat-delete-button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCategory(this)">
+                              <button id="CSy-delete-button" type="button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCookingStyle(this)">
                                 <span aria-hidden="true">
                                   <i class="fas fa-trash"></i>
                                 </span>
-                              </button>  
-                            </td> 
+                              </button> 
+                            </td>
                           </tr>
                         </table>
                       </div>
                       <hr>
-                        <!-- add and delete categories-->
-                        <button id="Cat-add-button" type="button" class="btn-add-category" >
-                          <span aria-hidden="true">                           
-                            <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
-                            <h6 class="text">ADD</h6>
-                          </span>
-                        </button>
-                        <button id="Cat-delete-all-button"type="button" class="btn-delete-categories">
-                          <span aria-hidden="true">            
-                            <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
-                            <h6 class="text">DELETE ALL</h6>
-                          </span>
-                        </button>
-                      </div>
-                      <!-- ALLERGEN FILTER -->
-                      <div class="col-6"> 
-                      <h3 class="underlined-text">ALLERGENS</h3>
+                      <!-- add and delete categories-->
+                      <button id="CSy-add-button" type="button" class="btn-add-category" >
+                        <span aria-hidden="true">                           
+                          <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                          <h6 class="text">ADD</h6>
+                        </span>
+                      </button>
+                      <button ID="CSy-delete-all-button" type="button" class="btn-delete-categories">
+                        <span aria-hidden="true">            
+                          <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                          <h6 class="text">DELETE ALL</h6>
+                      </button>
+                      <hr>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <!-- CATEGORY FILTER -->
+                    <div class="col-6"> 
+                      <h3 class="underlined-text">CATEGORIES</h3>
                       <div class="row">
-                      <table id="AllergensTable">
-                        <tr>
+                        <table id="CategoriesTable">
+                        <tr>  
                           <td>
-                          <input style="border-radius: 0.5rem; border-width: 0.5px;" type="text" name="allergens" list="allergenslist" placeholder="Type an allergen..">
-                            <datalist id="allergenslist">
-                              <option value="Peanuts"></option>
-                              <option value="Crustaceans"></option>     
-                              <option value="Eggs"></option> 
-                              <option value="Soybeans"></option>  
-                              <option value="Milk"></option>   
-                              <option value="Mustard"></option>    
+                            <input name="categories" type="text" id = "categoriesList" list="categorieslist"  placeholder="Type a category.." style="border-radius: 0.5rem;border-width: 0.5px;">
+                            <datalist id="categorieslist">
+                              <option value="Desserts">Desserts</option>
+                              <option value="Starters">Starters</option>     
+                              <option value="Main">Main</option> 
+                              <option value="Soups">Soups</option>  
+                              <option value="Salad">Salad</option>   
+                              <option value="Burgers">Burgers</option>   
                             </datalist>
                           </td>
                           <td>
-                            <button id="Alg-delete-button" type="button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowAllergen(this)">
+                            <button id="Cat-delete-button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCategory(this)">
                               <span aria-hidden="true">
                                 <i class="fas fa-trash"></i>
                               </span>
-                            </button>
-                          </td>
+                            </button>  
+                          </td> 
                         </tr>
-                      </table>
+                        </table>
+                      </div>
+                      <hr>
+                      <!-- add and delete categories-->
+                      <button id="Cat-add-button" type="button" class="btn-add-category" >
+                        <span aria-hidden="true">                           
+                          <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                          <h6 class="text">ADD</h6>
+                        </span>
+                      </button>
+                      <button id="Cat-delete-all-button"type="button" class="btn-delete-categories">
+                        <span aria-hidden="true">            
+                          <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                          <h6 class="text">DELETE ALL</h6>
+                        </span>
+                      </button>
+                    </div>
+                    <!-- ALLERGEN FILTER -->
+                    <div class="col-6"> 
+                      <h3 class="underlined-text">ALLERGENS</h3>
+                      <div class="row">
+                        <table id="AllergensTable">
+                          <tr>
+                            <td>
+                              <input style="border-radius: 0.5rem; border-width: 0.5px;" type="text" name="allergens" list="allergenslist" placeholder="Type an allergen..">
+                              <datalist id="allergenslist">
+                                <option value="Peanuts"></option>
+                                <option value="Crustaceans"></option>     
+                                <option value="Eggs"></option> 
+                                <option value="Soybeans"></option>  
+                                <option value="Milk"></option>   
+                                <option value="Mustard"></option>    
+                              </datalist>
+                            </td>
+                            <td>
+                              <button id="Alg-delete-button" type="button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowAllergen(this)">
+                                <span aria-hidden="true">
+                                  <i class="fas fa-trash"></i>
+                                </span>
+                              </button>
+                            </td>
+                          </tr>
+                        </table>
                       </div>
                       <hr>
                       <!-- add and delete allergens-->
@@ -568,16 +563,16 @@
                           <h6 class="text">DELETE ALL</h6>
                         </span>
                       </button>
-                      </div>
                     </div>
-                    
+                  </div>
                   <hr>
-                <!--</div>-->
-                <button type = "submit" class="btn btn-primary">
-                  <h6 class="text">Go!</h6>
-                  <img class="img-fluid rounded" src="../images/icons/pizza-go.png" alt="" width="50%" style="height: 50px; width: 50px;">
-                </button>
-              </form>
+                  <!--</div>-->
+                  <button type = "submit" class="btn btn-primary">
+                    <h6 class="text">Go!</h6>
+                    <img class="img-fluid rounded" src="../images/icons/pizza-go.png" alt="" width="50%" style="height: 50px; width: 50px;">
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                  </button>
+                </form>
               </div>
             </div>
           </div>

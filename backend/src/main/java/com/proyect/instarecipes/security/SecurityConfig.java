@@ -37,6 +37,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // Logout
         http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
+
+        //This is for ore security to the posst
+        //http.csrf().disable();
     }
 
     @Override
