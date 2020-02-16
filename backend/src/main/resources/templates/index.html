@@ -357,41 +357,41 @@
             </button>
             <div class="modal-body text-center">
               <div class="container">
-                  <div class="col-lg-12">
-                  <!-- publications Modal - Title -->
-                    <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Filtered Search</h2>
-                  <!-- Icon Divider -->
-                    <div class="divider-custom">
-                      <div class="divider-custom-line"></div>
-                      <div class="divider-custom-icon">
+                <!--<div class="col-lg-12">-->
+                <!-- publications Modal - Title -->
+                  <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Filtered Search</h2>
+                <!-- Icon Divider -->
+                  <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon">
                         <img src='../images/icons/orange-search.png' width="50%" style="height: 50px; width: 50px;"/>
-                      </div>
+                    </div>
                     <div class="divider-custom-line"></div>
                     </div>
+                    <form method="POST" action="/search">
                     <div class="row">
+                      <!-- INGREDIENT FILTER -->
                       <div class="col-6">
-                        <!-- INGREDIENT FILTER -->
                         <h3 class="underlined-text">INGREDIENTS</h3>
                         <div class="row">
                         <table id="IngredientsTable">          
                         <tr>
                           <td>
-                            <!--"Ingredient-Name"-->
-                            <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="ingredients-scroll" list="ingredientslist" placeholder="Ingredient..">
+                          <!--"Ingredient-Name"-->
+                            <input name="ingredients" style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" list="ingredientslist" placeholder="Ingredient..">
                               <datalist id="ingredientslist">
-                                <option value="dark chocolate"></option>
-                                <option value="potatoes"></option>
-                                <option value="oil"></option>
-                                <option value="white chocolate"></option>
-                                <option value="garlic"></option>
-                                <option value="milk chocolate"></option>
+                                <option value="dark chocolate">dark chocolate</option>
+                                <option value="potatoes">potatoes</option>
+                                <option value="oil">oil</option>
+                                <option value="white chocolate">white chocolate</option>
+                                <option value="garlic">garlic</option>
+                                <option value="milk chocolate">milk chocolate</option>
                               </datalist>
                           </td>
                           <td>
-                            <!--"Ingredient-Quantity"-->
+                          <!--"Ingredient-Quantity"-->
                             <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="ingredients-quantity" placeholder="Quantity">
                           </td>
-
                           <td>
                             <!--"Ingredient-Unit"-->
                             <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="ingredients-unit" list="ingredientsunit" placeholder="Units">
@@ -427,22 +427,21 @@
                         </button>
                         <hr>
                       </div>
-
+                      <!-- COOKING STYLE FILTER -->
                       <div class="col-6">
-                        <!-- COOKING STYLE FILTER -->
                         <h3 class="underlined-text">COOKING STYLE</h3>
                         <div class="row">
                         <table id="CookingStyleTable">
                         <tr>
                           <td>
-                          <input style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
+                          <input name="cookingStyles" style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
                               <datalist id="categorieslist">
-                                <option value="Vegan"></option>
-                                <option value="Grains"></option>     
-                                <option value="Beans"></option> 
-                                <option value="Seafood"></option>  
-                                <option value="Vegetarian"></option>   
-                                <option value="Shellfish"></option>    
+                                <option value="Vegan">Vegan</option>
+                                <option value="Vegetarian">Vegetarian</option>     
+                                <option value="Mediterranean">Mediterranean</option> 
+                                <option value="American">American</option>  
+                                <option value="Asian">Asian</option>   
+                                <option value="Italian">Italian</option>    
                               </datalist>
                           </td>
                           <td>
@@ -469,26 +468,30 @@
                             <h6 class="text">DELETE ALL</h6>
                         </button>
                         <hr>
-                    </div>
+                      </div>
                     </div>
 
                     <div class="row">
-                      <div class="col-6">
-                        <!-- CATEGORY FILTER -->
-                        <h3 class="underlined-text">CATEGORIES</h3>
+                      <!-- CATEGORY FILTER -->
+                      <div class="col-6"> 
+                      <h3 class="underlined-text">CATEGORIES</h3>
                         <div class="row">
                         <table id="CategoriesTable">
-                          <tr>
+                          <tr>  
                             <td>
-                              <input style="border-radius: 0.5rem;border-width: 0.5px;" type="text" name="categories-scroll" list="categorieslist" placeholder="Type a category..">
-                              <datalist id="categorieslist">
-                                <option value="Vegan"></option>
-                                <option value="Grains"></option>     
-                                <option value="Beans"></option> 
-                                <option value="Seafood"></option>  
-                                <option value="Vegetarian"></option>   
-                                <option value="Shellfish"></option>    
-                              </datalist>
+                              <form id="categoriesForm"> 
+                                <select name = "catChosen">
+                             <!-- <input type="text" id = "categoriesList" list="categorieslist" name="categories-scroll" placeholder="Type a category.." style="border-radius: 0.5rem;border-width: 0.5px;"> -->
+                              <!-- <datalist id="categoriesDatalist"> -->
+                                <option data-value="Desserts">Desserts</option>
+                                <option data-value="Starters">Starters</option>     
+                                <option data-value="Main">Main</option> 
+                                <option data-value="Soups">Soups</option>  
+                                <option data-value="Salad">Salad</option>   
+                                <option data-value="Burgers">Burgers</option> 
+                              </select>   
+                              <!-- </datalist> -->
+                            </form>
                             </td>
                             <td>
                               <button id="Cat-delete-button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCategory(this)">
@@ -512,11 +515,11 @@
                           <span aria-hidden="true">            
                             <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                             <h6 class="text">DELETE ALL</h6>
+                          </span>
                         </button>
                       </div>
-
-                      <div class="col-6">
-                        <!-- ALLERGEN FILTER -->
+                      <!-- ALLERGEN FILTER -->
+                      <div class="col-6"> 
                       <h3 class="underlined-text">ALLERGENS</h3>
                       <div class="row">
                       <table id="AllergensTable">
@@ -554,20 +557,23 @@
                         <span aria-hidden="true">            
                           <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                           <h6 class="text">DELETE ALL</h6>
+                        </span>
                       </button>
+                      </div>
                     </div>
-                  </div>
+                    
                   <hr>
-                </div>
-                  <button class="btn btn-primary" data-dismiss="modal">
-                    <h6 class="text">Go!</h6>
-                    <img class="img-fluid rounded" src="../images/icons/pizza-go.png" alt="" width="50%" style="height: 50px; width: 50px;">
-                  </button>
+                <!--</div>-->
+                <button type = "submit" class="btn btn-primary">
+                  <h6 class="text">Go!</h6>
+                  <img class="img-fluid rounded" src="../images/icons/pizza-go.png" alt="" width="50%" style="height: 50px; width: 50px;">
+                </button>
+              </form>
               </div>
-            </div> 
+            </div>
+          </div>
         </div>
       </div>
-    </div>
     </div>
 
     <!-- Add button pannel -->
