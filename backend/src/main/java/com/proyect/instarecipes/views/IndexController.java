@@ -96,7 +96,7 @@ public class IndexController {
     
 
     @PostMapping("/")
-    public String postRecipe(Model model, Recipe recipe) {
+    public String postRecipe(Model model, Recipe recipe){
         //recipes.add(recipe);
         Recipe r = recipe;
         recipesRepository.save(r);
