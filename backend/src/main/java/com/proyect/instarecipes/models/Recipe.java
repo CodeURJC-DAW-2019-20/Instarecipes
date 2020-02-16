@@ -1,27 +1,43 @@
 package com.proyect.instarecipes.models;
-import java.util.concurrent.atomic.AtomicInteger;
 // import java.awt.Image;
 
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Recipe{
-    private AtomicInteger id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String username;
-    private int id_ingredients;
+
+    @OneToMany
+    private Set<Ingredient> id_ingredients;
+    @OneToMany
+    private Set<Step> steps;
+
     private String name_categories;
     private String name_cookingStyle;
     private String title;
     private String description;
     private String duration;
-    private String dificulty;
-    private String steps;
+    private String difficulty;
+    private String allergens;
     // private Image galery;
 
     //Empty contructor
     public Recipe(){}
 
     //Constructor with all atributes
-    public Recipe(AtomicInteger id, String username, int id_ingredients, String name_categories,
-    String name_cookingStyle, String title, String description, String duration, String dificulty, String steps) {
-        this.id = id;
+    public Recipe(String username, Set<Ingredient> id_ingredients, String name_categories, String name_cookingStyle,
+    String title, String description, String duration, String difficulty, Set<Step> steps, String allergens) {
         this.username = username;
         this.id_ingredients = id_ingredients;
         this.name_categories = name_categories;
@@ -29,18 +45,17 @@ public class Recipe{
         this.title = title;
         this.description = description;
         this.duration = duration;
-        this.dificulty = dificulty;
+        this.difficulty = difficulty;
         this.steps = steps;
-        //this.galery = galery;
-    } 
-
+        this.allergens = allergens;
+    }
     //GETTERS AND SETTERS
 
-    public AtomicInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(AtomicInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -52,11 +67,11 @@ public class Recipe{
         this.username = username;
     }
 
-    public int getId_ingredients() {
+    public Set<Ingredient> getId_ingredients() {
         return id_ingredients;
     }
 
-    public void setId_ingredients(int id_ingredients) {
+    public void setId_ingredients(Set<Ingredient> id_ingredients) {
         this.id_ingredients = id_ingredients;
     }
 
@@ -100,20 +115,28 @@ public class Recipe{
         this.duration = duration;
     }
 
-    public String getDificulty() {
-        return dificulty;
+    public String getDifficulty() {
+        return difficulty;
     }
 
-    public void setDificulty(String dificulty) {
-        this.dificulty = dificulty;
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
     }
 
-    public String getSteps() {
+    public Set<Step> getSteps() {
         return steps;
     }
 
-    public void setSteps(String steps) {
+    public void setSteps(Set<Step> steps) {
         this.steps = steps;
+    }
+
+    public String getAllergens() {
+        return this.allergens;
+    }
+
+    public void setAllergens(String alergens) {
+        this.allergens = alergens;
     }
 
     // public Image getGalery() {

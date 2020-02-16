@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -12,7 +11,7 @@
   <!-- Images and icons-->
   <link rel="icon" type="image/png" href="images/icons/instarecipes.png"/>
   
-  <!-- jquery de mierda-->
+  <!-- jquery -->
   <script src="../vendor/jquery/jquery.min.js"></script>
 
   <!-- Bootstrap core CSS -->
@@ -25,9 +24,6 @@
   <!-- Custom styles for this template -->
   <link href="../css/modern-business.css" rel="stylesheet">
   <link href="../css/freelancer.css" rel="stylesheet">
-
-  <!-- Images and icons-->
-  <link rel="icon" type="image/png" href="images/icons/instarecipes.png"/>
 
 </head>
 
@@ -50,20 +46,35 @@
             <a class="nav-link js-scroll-trigger" href="#header-section"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
           </li>
           <li class="nav-item col-4">
-            <a class="nav-link" href="profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+            {{#logged}}
+              {{#user}}
+                <a class="nav-link" href="profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+              {{/user}}
+              {{#admin}}
+                <a class="nav-link" href="admin-profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+              {{/admin}}
+            {{/logged}}
           </li>
           <li class="nav-item col-4">
             <a class="nav-link" href="ranking"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
           </li>
         </ul>
         <form class="example" action="search-page" >
-          <input type="text" href="#" placeholder="Search.." name="search">
+          <input type="text" href="#" placeholder="Search.." name="search"/>
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
       </div>
     </div>
     <div class="login-container">
-      <a class="nav-link nav-log" href="login" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+      {{#logged}}
+        <form action="/logout" method="post">
+          <button type="submit" class="nav-link nav-log btn-dark" style="color:white;font-weight: normal;font-size: 15px;">Logout</button>
+          <input type="hidden" name="_csrf" value="{{token}}"/>
+        </form>
+      {{/logged}}
+      {{^logged}}
+        <a class="nav-link nav-log" href="login" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+      {{/logged}}
     </div>
   </nav>
   <!-- Carousel-->
@@ -227,11 +238,9 @@
 
   <!-- Page Content -->
   <div class="container">
-
     <h3 class="my-4">Recent user's recipes</h3>
     <div id="recipes-container">
     </div>
-    
     <!-- Recent recipes -->
     {{#recipes}}
     <script type="text/javascript">
@@ -258,16 +267,16 @@
                 +"</div>"
               +"</div>"
             +"</div>"
-            +"<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3>{{title}}</h3></div>"
+            +"<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">{{title}}</h3></div>"
           +"</div>"
           +"<div class=\"col-md-4\">"
             +"<h3>Introduction</h3>"
-            +"<p>{{description}}</p>"
+            +"<p style=\"word-break: break-all;\">{{description}}</p>"
             +"<a class=\"btn btn-primary\" href=\"#\">Read"
               +"<span class=\"glyphicon glyphicon-chevron-right\"></span>"
             +"</a>"
           +"</div>"
-          +"<div class=\"col-lg-1\" style=\"align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);\">"
+          +"<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);\">"
             +"<img class=\"d-flex mr-3 rounded-circle profile-border\" src=\"../images/icons/avatar.svg\">"
           +"</div>"
         +"</div>"
@@ -276,12 +285,12 @@
         );
         var model2 = $("<!-- Project Two -->"
            +"<div class=\"row\">"
-             +"<div class=\"col-lg-1\" style=\"align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);\">"
+             +"<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);\">"
                +"<img class=\"d-flex mr-3 rounded-circle profile-border\" src=\"../images/icons/avatar.svg\">"
                +"</div>"
                +"<div class=\"col-md-4\">"
                  +"<h3>Introduction</h3>"
-                 +"<p>{{description}}</p>"
+                 +"<p style=\"word-break: break-all;\">{{description}}</p>"
                  +"<a class=\"btn btn-primary\" href=\"#\">Read"
                    +"<span class=\"glyphicon glyphicon-chevron-right\"></span>"
                    +"</a>"
@@ -306,7 +315,7 @@
                                    +"</div>"
                                    +"</div>"
                                    +"</div>"
-                                   +"<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3>{{title}}</h3></div>"
+                                   +"<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">{{title}}</h3></div>"
                                    +"</div>"
                                    +"</div>"
                                    +"<!-- /.row -->"
@@ -394,7 +403,7 @@
                           </td>
                           <td>
                             <!--"Ingredient-Unit"-->
-                            <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="ingredients-unit" list="ingredientsunit" placeholder="Units">
+                            <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text" name="units" list="ingredientsunit" placeholder="Units">
                               <datalist id="ingredientsunit">
                                 <option value="grs."></option>
                                 <option value="Kg./L"></option>
@@ -525,7 +534,7 @@
                       <table id="AllergensTable">
                         <tr>
                           <td>
-                          <input style="border-radius: 0.5rem; border-width: 0.5px;" type="text" name="allergens-scroll" list="allergenslist" placeholder="Type an allergen..">
+                          <input style="border-radius: 0.5rem; border-width: 0.5px;" type="text" name="allergens" list="allergenslist" placeholder="Type an allergen..">
                             <datalist id="allergenslist">
                               <option value="Peanuts"></option>
                               <option value="Crustaceans"></option>     
@@ -598,7 +607,7 @@
                 </div>
                 <div class="divider-custom-line"></div>
               </div>
-              <form method="post">
+              <form method="post" action="/">
                 <div class="row">
                 <div class="col-8" style="justify-content: center; height: 100%;">
                   <!-- Recipe section -->
@@ -619,7 +628,7 @@
                     text-align:center;padding:0;right:0;width:25%;position:absolute;cursor:pointer">
                     <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                   </div>
-                  <fieldset id="steps-form" class="nav-item dropdown wrap-input50 m-b-23" style="text-align: initial;">
+                  <fieldset id="steps-form" name="steps" class="nav-item dropdown wrap-input50 m-b-23" style="text-align: initial;">
                     <h3>Step 1*</h3>
                     <hr>
                     <div id="stepCountChar"></div>
@@ -638,12 +647,13 @@
                   <div id="add-ingredient" class="btn btn-primary" style="width: 100%; border-radius: 0.8rem;background-color: mediumspringgreen;cursor: pointer;">
                     <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                   </div>
-                  <fieldset id="ingredients-form" class="nav-item dropdown scrolling" style="height: 300px;">
+                  <fieldset id="ingredients-form" class="nav-item dropdown scrolling" name="ingredients" style="height: 300px;">
                   </fieldset>
                   <hr>
                   <h3 class="underlined-text">Category</h3>
-                  <div id="add-category" class="btn btn-secondary" style="width: 100%; border-radius: 0.8rem;background-color: steelblue;cursor: pointer;">
-                    <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                  <div class="btn btn-secondary" style="width: 100%; border-radius: 0.8rem;background-color: steelblue;cursor: pointer;">
+                    <input id="add-category"  name="category" class="fa fa-plus add" style="color: white;font-size: inherit;">
+                    <!-- <i  aria-hidden="true"></i> -->
                   </div>
                   <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;">
                   </fieldset>
@@ -651,13 +661,13 @@
                   <h3 class="underlined-text">Difficulty</h3>
                   <!-- Difficulty section stars -->
                   <div class="rating" style="text-align: center;">
-                    <input name="rating" type="radio" id="extreme-star" onclick="starClick(4)" value="4" on="change:rating.submit">
+                    <input name="rating" type="radio" id="extreme-star" onclick="starClick(4)" value="extreme" on="change:rating.submit">
                     <label for="rating4" title="4 stars" >☆</label>
-                    <input name="rating" type="radio" id="hard-star" onclick="starClick(3)" value="3" on="change:rating.submit">
+                    <input name="rating" type="radio" id="hard-star" onclick="starClick(3)" value="hard" on="change:rating.submit">
                     <label for="rating3" title="4 stars" >☆</label>
-                    <input name="rating" type="radio" id="medium-star" onclick="starClick(2)" value="2" on="change:rating.submit">
+                    <input name="rating" type="radio" id="medium-star" onclick="starClick(2)" value="medium" on="change:rating.submit">
                     <label for="rating2" title="4 stars" >☆</label>
-                    <input name="rating" type="radio" id="easy-star" onclick="starClick(1)" value="1" on="change:rating.submit">
+                    <input name="rating" type="radio" id="easy-star" onclick="starClick(1)" value="easy" on="change:rating.submit">
                     <label for="rating1" title="4 stars" >☆</label>
                   </div>
                   <div>
@@ -667,7 +677,7 @@
                     <p id="easy-text" hidden>Easy</p>
                   </div>
                   <h3 class="underlined-text">Aproximated time</h3>
-                  <select class="form-control" id="exampleFormControlSelect1">
+                  <select name="duration" class="form-control" id="exampleFormControlSelect1">
                     <option>15m</option>
                     <option>30m</option>
                     <option>45m</option>

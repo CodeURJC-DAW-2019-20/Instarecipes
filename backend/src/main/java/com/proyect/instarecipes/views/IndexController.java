@@ -1,58 +1,79 @@
 package com.proyect.instarecipes.views;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.repositories.RecipesRepository;
+import com.proyect.instarecipes.security.UserSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 
 @Controller
 public class IndexController {
-    private List<Recipe> recipes = new ArrayList<>();
 
-	public IndexController() {
-        recipes.add(new Recipe(null, "@boss99", 111,  "???", "¿¿¿¿", "Homemade Pizza!", "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!", 
-        "ejemplo descripcion2", "15 min.", "Hard"));
-        recipes.add(new Recipe(null, "@lady44", 222, "???", "¿¿¿¿", "Avocado Salad", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
-        "ejemplo descripcion2", "15 min.", "Hard"));
-    }
+    @Autowired
+    private RecipesRepository recipesRepository;
+    @Autowired
+    private UserSession userSession;
 
     @GetMapping("/")
     public String indexPage(Model model) {
+        List<Recipe> recipes = recipesRepository.findAll();
         model.addAttribute("recipes", recipes);
         return "index";
     }
     @GetMapping("/index")
     public String indexedPage(Model model) {
+        List<Recipe> recipes = recipesRepository.findAll(); //should be sustituted by only following users publications
+        model.addAttribute("recipes", recipes);
         return "index";
     }
     @GetMapping("/profile") 
-    public String profilePage(Model model) {
+    public String profilePage() {
         return "profile";
     }
     @GetMapping("/ranking")
-    public String rankingPage(Model model) {
+    public String rankingPage() {
         return "ranking";
     }
     @GetMapping("/login")
-    public String loginPage(Model model) {
+    public String loginPage() {
         return "login";
     }
-    @PostMapping("/")
-    public String postRecipe(Model model, Recipe recipe) {
-        recipes.add(recipe);
-        model.addAttribute("recipes", recipes);
-        return "index"; 
+    @GetMapping("/signUp")
+    public String signupPage(){
+        return "signUp";
     }
-    public List<Recipe> getRecipes() {
-        return recipes;
+    @GetMapping("/admin-profile")
+    public String adminProfile() {
+    	return "admin-profile";
     }
 
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
+    @ModelAttribute
+	public void addAttributes(Model model) {
+		
+		boolean logged = userSession.getLoggedUser() != null;
+        model.addAttribute("logged", logged);
+		//model.addAttribute("notLogged", !logged);
+		
+		if(logged){
+			model.addAttribute("user",userSession.getLoggedUser().getUsername());
+			model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
+		}
+	}
+
+    @PostMapping("/")
+    public String postRecipe(Model model, Recipe recipe){
+        //recipes.add(recipe);
+        Recipe r = recipe;
+        recipesRepository.save(r);
+        List<Recipe> recipes = recipesRepository.findAll();
+        model.addAttribute("recipes", recipes);
+        return "index";
     }
-    
 }

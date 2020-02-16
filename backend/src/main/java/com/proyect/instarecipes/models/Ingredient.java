@@ -1,17 +1,32 @@
 package com.proyect.instarecipes.models;
-import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Ingredient {
-    private AtomicInteger id;
-    private String name;
-    private String name_categories;
-    private String allergens;
 
-    public AtomicInteger getId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+    private String quantity;
+
+    public Ingredient() {
+    }
+
+    public Ingredient(String name, String quantity) {
+        this.name = name;
+        this.quantity = quantity;
+    }
+
+    public long getId() {
         return this.id;
     }
 
-    public void setId(AtomicInteger id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -23,20 +38,12 @@ public class Ingredient {
         this.name = name;
     }
 
-    public String getName_categories() {
-        return this.name_categories;
+    public String getQuantity() {
+        return quantity;
     }
 
-    public void setName_categories(String name_categories) {
-        this.name_categories = name_categories;
-    }
-
-    public String getAllergens() {
-        return this.allergens;
-    }
-
-    public void setAllergens(String alergens) {
-        this.allergens = alergens;
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
 }

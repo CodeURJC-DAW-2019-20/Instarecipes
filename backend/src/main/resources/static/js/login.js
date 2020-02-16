@@ -1,14 +1,8 @@
 var signUp = document.getElementById('signUp');
-var signIn = document.getElementById('signIn');
-var divSignUp = document.getElementById('signupDiv');
-var divSignIn = document.getElementById('loginDiv');
+var divSignUp = document.getElementById('signUpDiv');
+var divCompleteSignUp = document.getElementById('completeSignUpDiv');
 signUp.onclick = function(){
-    divSignUp.style.display = "block";
-    divSignIn.style.display = "none";
-    return false;
-}
-signIn.onclick = function(){
+    divCompleteSignUp.style.display = "block";
     divSignUp.style.display = "none";
-    divSignIn.style.display = "block";
     return false;
 }
