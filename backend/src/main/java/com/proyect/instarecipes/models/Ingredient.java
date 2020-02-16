@@ -9,9 +9,18 @@ import javax.persistence.Id;
 public class Ingredient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String name;
+    private String quantity;
+
+    public Ingredient() {
+    }
+
+    public Ingredient(String name, String quantity) {
+        this.name = name;
+        this.quantity = quantity;
+    }
 
     public long getId() {
         return this.id;
@@ -27,6 +36,14 @@ public class Ingredient {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
 }

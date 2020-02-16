@@ -1,67 +1,65 @@
 package com.proyect.instarecipes.controllers;
 
-// import java.util.ArrayList;
-// import java.util.List;
-// import java.util.Set;
-// import java.util.HashSet;
+import com.proyect.instarecipes.models.User;
+import com.proyect.instarecipes.repositories.UsersRepository;
+import com.proyect.instarecipes.security.UserAuthProvider;
 
-// import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 
-// import com.proyect.instarecipes.models.Recipe;
-// import com.proyect.instarecipes.models.User;
-// import com.proyect.instarecipes.repositories.UsersRepository;
+import java.io.IOException;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Controller;
-// import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.ui.Model;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-// @Controller
-// public class RegisterPageController {
-
-//     @Autowired
-//     private UsersRepository usersRepository;
-
-//     @PostConstruct
-// 	public void init() {
-//         long id=0;
-//         String username="chiquito";
-//         String email="asdasdas@asddas.com";
-//         String password="12345";
-//         String[] role=null;			//If he's an administrator
-//         String name="pepe";
-//         String surname="surmano";
-//         String allergens="null";
-//         Set<User> followers = new HashSet<User>();
-//         Set<User> following = new HashSet<User>();
-//         usersRepository.save(new User(id,
-//                                 username,
-//                                 email,
-//                                 password,
-//                                 role,
-//                                 name,
-//                                 surname,
-//                                 allergens,
-//                                 followers,
-//                                 following)
-//                         );
-//     }
-
-//     @PostMapping("/")
-//     public String postRecipe(Model model, User user) {
-//         User u = new User();
-//         //List<String> role = new ;
-//         model.addAttribute("user", user);
-//         //role.add("admin");
-//         //u.setRole(role);
-//         u=user;
-//         usersRepository.save(u);
-//         return "index"; 
-//     }
-    
-// }
-
+@Controller
 public class RegisterPageController {
-    
 
+    @Autowired
+    private UsersRepository usersRepository;
+    @Autowired
+    public UserAuthProvider userAuthProvider;
+
+    @PostMapping("/signUp")
+    public void signUp(Model model, User user, HttpServletRequest request, HttpServletResponse response) {
+        // cause i need to transform password hash and set role of user
+        User u = new User(user.getUsername(), user.getEmail(), user.getPassword(), user.getName(), user.getSurname(),
+                user.getAllergens(), user.getFollowers(), user.getFollowing(), "ROLE_USER");
+
+        boolean userExists = usersRepository.findByUsername(u.getUsername()) != null || 
+                                usersRepository.findByEmail(u.getEmail()) != null;
+        if (userExists) {
+            System.out.println("User already registered !!");
+            try {
+                response.sendRedirect("signUp");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            usersRepository.save(u);
+            try{
+                authenticateUser(u.getUsername(),user.getPassword(),request);
+                //THIS IS THE FKING KEY
+                response.sendRedirect("index");
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    //this method aproach the @Autowird of userAuthProvider to autenticate user and password and setup autologged 
+    private void authenticateUser(String username,String password,HttpServletRequest request) {
+        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
+        request.getSession();
+        authToken.setDetails(new WebAuthenticationDetails(request));
+        Authentication authentication = userAuthProvider.authenticate(authToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+    }
 }
