@@ -1,46 +1,90 @@
-//ARRAY datos ingredientes, categorias, cooking style and allergens
-
 package com.proyect.instarecipes.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
-import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.models.Category;
+import com.proyect.instarecipes.models.CookingStyle;
+import com.proyect.instarecipes.repositories.CategoriesRepository;
+import com.proyect.instarecipes.repositories.CookingStylesRepository;
+import com.proyect.instarecipes.repositories.IngredientsRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 
 @Controller
 public class SearchPageController {
-    private String ingredient;
-    private String cookingStyle;
-    /*private Set<String> ingredients;
-    private Set<String> categories;
-    private Set<String> cookingStyle;
-    private Set<String> allergens;*/
+    // @Autowired
+    // private IngredientsRepository ingredientsRepository;
+    @Autowired
+    private CategoriesRepository categoriesRepository;
+    @Autowired
+    private CookingStylesRepository cookingStylesRepository;
+    // @Autowired
+    // private AllergensRepository allergensRepository;
     
 
     @PostMapping("/search")
     public String searchPage(Model model, String ingredients, String categories, String cookingStyles, String allergens) {
-        cookingStyle = cookingStyles;
-        if (cookingStyle.contentEquals("Vegan")) {
-            model.addAttribute("cookingStyles", cookingStyles);
+
+        ArrayList<String> cookingStylesSelected = new ArrayList<String>(Arrays.asList(cookingStyles.split(",")));
+        if(cookingStylesSelected.size()>1){
+            model.addAttribute("cookingStyles", cookingStylesSelected);
         }
-        cookingStyle = null;
-        System.out.print(" Ingrediente : "+ cookingStyles +".");
+        ArrayList<String> categoriesSelected = new ArrayList<String>(Arrays.asList(categories.split(",")));
+        if(categoriesSelected.size()>1){
+            model.addAttribute("categories", categoriesSelected);
+        }
+        
+        //para mimi
+        // ArrayList<String> allergensSelected = new ArrayList<String>(Arrays.asList(allergens.split(",")));
+        // if(allergensSelected.size()>1){
+        // model.addAttribute("allergens", allergensSelected);
+        // }
+        // ArrayList<String> ingredientsSelected = new ArrayList<String>(Arrays.asList(ingredients.split(",")));
+        // if(ingredientsSelected.size()>1){
+        // model.addAttribute("ingredients", ingredientsSelected);
+        // }
+
+        List<Category> allCategories = categoriesRepository.findAll();
+        List<Category> restOfCategories = restCategories(allCategories, categoriesSelected);
+        List<CookingStyle> allCookingStyles = cookingStylesRepository.findAll();
+        List<CookingStyle> restOfCookingStyles = restCookingStyles(allCookingStyles, cookingStylesSelected);
+        
+        //Return all the items
+        model.addAttribute("allCategories", restOfCategories);
+        model.addAttribute("allCookingStyles", restOfCookingStyles);
+        //para mimi
+        //model.addAttribute("allAllergens", allergensRepository.findAll());
+
         return "search-page";
     }
 
-    /*@GetMapping("/search")
-    public String filterPage(Model model) {
-            model.addAttribute("cookingStyles", cookingStyle);
-        return "search-page";
-    }*/
+    //Better option filter db but so dificult
+    private List<Category> restCategories(List<Category> all, ArrayList<String> categoriesSelected) {
+        List<Category> aux = all;
+        for (int i = 0; i < categoriesSelected.size(); i++) {
+            for (int j = 0; j < all.size(); j++) {
+                if (categoriesSelected.contains(all.get(j).getCategory())) {
+                    aux.remove(j);
+                }
+            }
+        }
+        return aux;
+    }
+    private List<CookingStyle> restCookingStyles(List<CookingStyle> all, ArrayList<String> cookingStylesSelected) {
+        List<CookingStyle> aux = all;
+        for (int i = 0; i < cookingStylesSelected.size(); i++) {
+            for (int j = 0; j < all.size(); j++) {
+                if (cookingStylesSelected.contains(all.get(j).getCookingStyle())) {
+                    aux.remove(j);
+                }
+            }
+        }
+        return aux;
+    }
+
 }
-    /*@GetMapping("/search")
-    public String filterPage(Model model) {
-            model.addAttribute("ingredients", ingredient);
-        return "search-page";
-    }*/
