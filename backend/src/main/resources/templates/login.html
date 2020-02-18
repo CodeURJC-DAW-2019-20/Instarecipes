@@ -17,6 +17,16 @@
 	<link rel="stylesheet" type="text/css" href="../css/util.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
 	<link href="../css/freelancer.min.css" rel="stylesheet">
+
+	<!-- LOGIN GOOGLE -->
+	<script src="js/google.js"></script>
+	<meta name="google-signin-client_id" content="30926288382-mdagtl5v39ftj6d6k7tceer5bt310n71.apps.googleusercontent.com">
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<meta name="google-signin-scope" content="https://www.googleapis.com/auth/plus.login" />
+
+
+
 </head>
 <body>
 	<div class="limiter">
@@ -58,15 +68,16 @@
 				<!-- END Login form -->
 				<div class="txt1 text-center p-t-54 p-b-20">
 					<span>
-						Or sign in with
+						Or
 					</span>
 				</div>
-				<!-- Facebook Login -->
+				<!-- Google Login -->
 				<div class="flex-c-m">
-					<a href="index" class="login100-social-item bg1">
-						<i class="fa fa-facebook"></i>
+					<a id="google-button" class="g-signin2" data-onsuccess="onSignIn">
+						<!--<i class="fa fa-facebook"></i> -->
 					</a>
 				</div>
+				<button onclick="signOut()" class="btn btn-danger">Sign out</button>
 				<!-- Sign Up Button -->
 				<div class="flex-col-c">
 					<span class="txt1 p-b-17">
@@ -81,7 +92,6 @@
 	</div>
 
 	<div id="dropDownSelect1"></div>
-	<script src="../js.facebok.js"></script>
 	<script type="text/javascript" src="../js/login.js"></script>
 	<script src="../vendor/animsition/js/animsition.min.js"></script>
 	<script src="../vendor/bootstrap/js/popper.js"></script>
