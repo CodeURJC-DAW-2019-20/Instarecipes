@@ -88,7 +88,7 @@
       <!-- Sidebar Widgets Column -->
       <div class="col-4">
 
-        <!-- Search Widget -->
+        <!-- Search Widget
         <div class="card mb-4">
           <h5 class="card-header">Search</h5>
           <div class="card-body">
@@ -99,42 +99,34 @@
               </span>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- Categories and Cooking Style Widget -->
         
         <div class="card my-4">
           <h5 class="card-header">Cooking Style</h5>
             <div class="containersearch">
-              <ul class="ks-cboxtags" >
-                <li><input type="checkbox" id="checkbox1" value="Vegan"><label for="checkbox1">Vegan</label></li> 
-                <li><input type="checkbox" id="checkbox2" value="Vegetarian" ><label for="checkbox2">Vegetarian</label></li>
-                <li><input type="checkbox" id="checkbox3" value="Mediterranean" ><label for="checkbox3">Mediterranean</label></li>
-                <li><input type="checkbox" id="checkbox4" value="American"><label for="checkbox4">American</label></li> 
-                <li><input type="checkbox" id="checkbox5" value="Asian"><label for="checkbox5">Asian</label></li>
-                <li><input type="checkbox" id="checkbox6" value="Italian" ><label for="checkbox6">Italian</label></li>
-                <li><input type="checkbox" id="checkbox7" value="Arabic"><label for="checkbox7">Arabic</label></li>
-                <li><input type="checkbox" id="checkbox8" value="Latina"><label for="checkbox8">Latina</label></li>
-            </ul> 
+              <ul class="ks-cboxtags">
+                {{#cookingStyles}}
+                  <li><input class="toCheck" type="checkbox" value="{{.}}"><label>{{.}}</label></li> 
+                {{/cookingStyles}}
+                {{#allCookingStyles}}
+                  <li><input type="checkbox" value="{{cookingStyle}}"><label>{{cookingStyle}}</label></li> 
+                {{/allCookingStyles}}
+            </ul>
           </div>
         </div>
         <div class="card my-4"> 
           <h5 class="card-header">Categories</h5>
           <div class="containersearch">
             <ul class="ks-cboxtags">
-              <li><input type="checkbox" id="checkbox9" value="Desserts"><label for="checkbox9">Desserts</label></li>
-              <li><input type="checkbox" id="checkbox10" value="Starters" ><label for="checkbox10">Starters</label></li>
-              <li><input type="checkbox" id="checkbox11" value="Main" ><label for="checkbox11">Main</label></li>
-              <li><input type="checkbox" id="checkbox12" value="Soups"><label for="checkbox12">Soups</label></li>
-              <li><input type="checkbox" id="checkbox13" value="Salad"><label for="checkbox13">Salad</label></li>
-              <li><input type="checkbox" id="checkbox14" value="Burgers"><label for="checkbox14">Burgers</label></li>
-              <li><input type="checkbox" id="checkbox15" value="Pizzas"><label for="checkbox15">Pizzas</label></li>
-              <li><input type="checkbox" id="checkbox16" value="Smoothies"><label for="checkbox16">Smoothies</label></li>
-              <li><input type="checkbox" id="checkbox17" value="Breakfast"><label for="checkbox17">BreakFast</label></li>
-              <li><input type="checkbox" id="checkbox18" value="Brunch"><label for="checkbox18">Brunch</label></li>
-              <li><input type="checkbox" id="checkbox19" value="Dinner"><label for="checkbox19">Dinner</label></li>
+              {{#categories}}
+                <li><input class="toCheck" type="checkbox" value="{{.}}"><label>{{.}}</label></li>
+              {{/categories}}
+              {{#allCategories}}
+                <li><input type="checkbox" value="{{category}}"><label>{{category}}</label></li> 
+              {{/allCategories}}
             </ul>
-          
           </div>       
         </div>
       </div>

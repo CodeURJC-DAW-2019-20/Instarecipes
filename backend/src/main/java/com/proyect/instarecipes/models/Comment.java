@@ -1,12 +1,11 @@
 package com.proyect.instarecipes.models;
 
-import java.util.Set;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -18,20 +17,25 @@ public class Comment{
     @OneToOne
     private User user;
     
+    @Column(nullable = false)
     private String content;
 
-    @OneToMany
-    private Set<Comment> subcomment;
+    @OneToOne
+    private Comment parentAnswer;
+
+    @ManyToOne
+    private Recipe recipe;
 
     private long likes;
 
     public Comment() {}
 
-    public Comment(User user, String content, Set<Comment> subcomment, long likes) {
+    public Comment(User user, String content, Comment parentAnswer, long likes, Recipe recipe) {
         this.user = user;
         this.content = content;
-        this.subcomment = subcomment;
+        this.parentAnswer = parentAnswer;
         this.likes = likes;
+        this.recipe = recipe;
     }
 
     public Long getId() {
@@ -58,12 +62,12 @@ public class Comment{
         this.content = content;
     }
 
-    public Set<Comment> getSubcomment() {
-        return subcomment;
+    public Comment getParentAnswer() {
+        return parentAnswer;
     }
 
-    public void setSubcomment(Set<Comment> subcomment) {
-        this.subcomment = subcomment;
+    public void setParentAnswer(Comment parentAnswer) {
+        this.parentAnswer = parentAnswer;
     }
 
     public long getLikes() {
@@ -72,6 +76,14 @@ public class Comment{
 
     public void setLikes(long likes) {
         this.likes = likes;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
     
     

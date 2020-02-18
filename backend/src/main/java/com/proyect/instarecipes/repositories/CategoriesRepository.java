@@ -1,12 +1,9 @@
 package com.proyect.instarecipes.repositories;
 
-import java.util.List;
-
-import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.models.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RecipesRepository extends JpaRepository<Recipe, Long> {
+public interface CategoriesRepository extends JpaRepository<Category, Long> {
     // List<User> findByLastName(String lastName);
     // List<User> findByFirstName(String firstName);
-    List<Recipe> findByUsernameId(Long username);
 }

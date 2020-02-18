@@ -40,6 +40,7 @@ public class User{
 	// private Image background;
 	// private Image avatar;
 	private String allergens;
+	private String info;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<User> followers; //Set is like a collection of an objets that the items couldn't be repeated
@@ -49,7 +50,7 @@ public class User{
 	public User() {
 	}
 	
-	public User(String username, String email, String password, String name, String surname,
+	public User(String username, String email, String password, String name, String surname, String info,
 			String allergens, Set<User> followers, Set<User> following, String... roles) { //THIS ROLE PARAM NECESSARY HAS TO BE AT THE END OF THE COSTRUCTOR
 		this.username = username;
 		this.email = email;
@@ -57,6 +58,7 @@ public class User{
 		this.roles = new ArrayList<>(Arrays.asList(roles));;
 		this.name = name;
 		this.surname = surname;
+		this.info = info;
 		this.allergens = allergens;
 		this.followers = followers;
 		this.following = following;
@@ -111,7 +113,13 @@ public class User{
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
+	public String getInfo() {
+		return info;
+	}
 
+	public void setInfo(String info) {
+		this.info = info;
+	}
 	public String getAllergens() {
 		return allergens;
 	}
@@ -175,4 +183,5 @@ public class User{
         followed.addFollower(this);//i follow him, so i call addFollower() where im the parameter
     }
 	/**				_____________________________				*/
+
 }

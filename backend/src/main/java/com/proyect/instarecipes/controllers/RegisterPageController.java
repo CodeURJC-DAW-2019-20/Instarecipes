@@ -30,7 +30,7 @@ public class RegisterPageController {
     public void signUp(Model model, User user, HttpServletRequest request, HttpServletResponse response) {
         // cause i need to transform password hash and set role of user
         User u = new User(user.getUsername(), user.getEmail(), user.getPassword(), user.getName(), user.getSurname(),
-                user.getAllergens(), user.getFollowers(), user.getFollowing(), "ROLE_USER");
+            "Hello world !!", user.getAllergens(), user.getFollowers(), user.getFollowing(), "ROLE_USER");
 
         boolean userExists = usersRepository.findByUsername(u.getUsername()) != null || 
                                 usersRepository.findByEmail(u.getEmail()) != null;
