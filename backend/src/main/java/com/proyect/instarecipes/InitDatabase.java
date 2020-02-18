@@ -11,6 +11,7 @@ import com.proyect.instarecipes.repositories.CommentsRepository;
 import com.proyect.instarecipes.repositories.CookingStylesRepository;
 import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
+import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.views.GroupStaff;
 import com.proyect.instarecipes.models.User;
@@ -39,6 +40,8 @@ public class InitDatabase {
     private CookingStylesRepository cookingStylesRepository;
     @Autowired
     private CommentsRepository commentsRepository;
+    @Autowired
+    private StepsRepository stepsRepository;
 
     @PostConstruct
     private void initDatabase() {
@@ -144,21 +147,36 @@ public class InitDatabase {
         Set<CookingStyle> cookingStyles2 = groupStaff.groupCookingStyles(cs2,cs4);
 
         Recipe r1 = new Recipe(u1, ingredients1, categories1, cookingStyles1, "Homemade Pizza!", "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!", 
-        "15 min.", "Hard", null, "Acids", 3);
+        "15 min.", "Hard", "Acids", 3);
         Recipe r2 = new Recipe(u1, ingredients4, categories3, cookingStyles2, "Fish with i dont know", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
-        "30 min.", "Hard", null, "Gluten", 10);
+        "30 min.", "Hard", "Gluten", 10);
         Recipe r3 = new Recipe(u1, ingredients3, categories4, cookingStyles2, "Avocado Salad", "Your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
-        "45 min.", "Hard", null, "Sugar", 22);
-        Recipe r4 = new Recipe(u2, ingredients2, categories2, cookingStyles2, "Avocado Salad", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
-        "15 min.", "Hard", null, "Milk", 35);
+        "45 min.", "Hard", "Sugar", 22);
+        Recipe r4 = new Recipe(u2, ingredients2, categories2, cookingStyles2, "Avocado Salad", "This Sheet Pan Garlic Herb Butter Chicken recipe is low in fat and absolutely incredible. So buttery with so much flavour, it TASTES so sinful yet contains half the fat of a regular butter sauce that no one knows the difference!", 
+        "15 min.", "Hard", "Milk", 35);
         Recipe r5 = new Recipe(u2, ingredients1, categories2, cookingStyles2, "Avocado Salad", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
-        "1 h.", "Hard", null, "Honey", 15);
+        "1 h.", "Hard", "Honey", 15);
+        //Steps for r4(for example)
+        Step step11 = new Step(r4, 1, "Preheat oven to 425 degrees F (220 degrees C). Lightly oil a large roasting pan.");
+        Step step22 = new Step(r4, 2, "Place chicken pieces in large bowl. Season with salt, oregano, pepper, rosemary, and cayenne pepper. Add fresh lemon juice, olive oil, and garlic. Place potatoes in bowl with the chicken; stir together until chicken and potatoes are evenly coated with marinade.");
+        Step step33 = new Step(r4, 3, "Transfer chicken pieces, skin side up, to prepared roasting pan, reserving marinade. Distribute potato pieces among chicken thighs. Drizzle with 2/3 cup chicken broth. Spoon remainder of marinade over chicken and potatoes.");
+        //Steps for r5(for example)
+        Step step1 = new Step(r5, 1, "Place in preheated oven. Bake in the preheated oven for 20 minutes. Toss chicken and potatoes, keeping chicken skin side up; continue baking until chicken is browned and cooked through, about 25 minutes more. An instant-read thermometer inserted near the bone should read 165 degrees F (74 degrees C). Transfer chicken to serving platter and keep warm.");
+        Step step2 = new Step(r5, 2, "Set oven to broil or highest heat setting. Toss potatoes once again in pan juices. Place pan under broiler and broil until potatoes are caramelized, about 3 minutes. Transfer potatoes to serving platter with chicken.");
+        Step step3 = new Step(r5, 3, "Place roasting pan on stove over medium heat. Add a splash of broth and stir up browned bits from the bottom of the pan. Strain; spoon juices over chicken and potatoes. Top with chopped oregano.");
         recipesRepository.save(r1);
         recipesRepository.save(r2);
         recipesRepository.save(r3);
         recipesRepository.save(r4);
         recipesRepository.save(r5);
-
+        //Save steps
+        stepsRepository.save(step11);
+        stepsRepository.save(step22);
+        stepsRepository.save(step33);
+        stepsRepository.save(step1);
+        stepsRepository.save(step2);
+        stepsRepository.save(step3);
+        
         //Comments: User, Content, Subcomments, Likes
         //template
         /*              ALL THIS IS ONLY FOR RECIPE NUMBER 1                    */

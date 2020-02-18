@@ -8,7 +8,6 @@ import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.repositories.CategoriesRepository;
 import com.proyect.instarecipes.repositories.CookingStylesRepository;
-import com.proyect.instarecipes.repositories.IngredientsRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

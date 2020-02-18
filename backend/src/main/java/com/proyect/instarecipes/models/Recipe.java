@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Recipe{
@@ -27,8 +26,6 @@ public class Recipe{
     private Set<Category> categories;
     @ManyToMany
     private Set<CookingStyle> cookingStyles;
-    @ManyToMany
-    private Set<Step> steps;
 
     private String title;
     private String description;
@@ -36,8 +33,6 @@ public class Recipe{
     private String difficulty;
     private String allergens;
 
-    // @OneToMany
-    // private Set<Comment> comments;
     private int likes;
     private int n_comments;
     // private Image galery;
@@ -47,7 +42,7 @@ public class Recipe{
 
     //Constructor with all atributes
     public Recipe(User username, Set<Ingredient> ingredients, Set<Category> categories, Set<CookingStyle> cookingStyles,
-    String title, String description, String duration, String difficulty, Set<Step> steps, String allergens, int likes) {
+    String title, String description, String duration, String difficulty, String allergens, int likes) {
         this.username = username;
         this.ingredients = ingredients;
         this.categories = categories;
@@ -56,10 +51,8 @@ public class Recipe{
         this.description = description;
         this.duration = duration;
         this.difficulty = difficulty;
-        this.steps = steps;
         this.allergens = allergens;
         this.likes = likes;
-        // this.comments = comments;
     }
     //GETTERS AND SETTERS
 
@@ -133,14 +126,6 @@ public class Recipe{
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
-    }
-
-    public Set<Step> getSteps() {
-        return steps;
-    }
-
-    public void setSteps(Set<Step> steps) {
-        this.steps = steps;
     }
 
     public String getAllergens() {
