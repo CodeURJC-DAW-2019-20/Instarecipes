@@ -31,11 +31,11 @@ public class SearchPageController {
     public String searchPage(Model model, String ingredients, String categories, String cookingStyles, String allergens) {
 
         ArrayList<String> cookingStylesSelected = new ArrayList<String>(Arrays.asList(cookingStyles.split(",")));
-        if(cookingStylesSelected.size()>1){
+        if(cookingStylesSelected.get(0) != ""){
             model.addAttribute("cookingStyles", cookingStylesSelected);
         }
         ArrayList<String> categoriesSelected = new ArrayList<String>(Arrays.asList(categories.split(",")));
-        if(categoriesSelected.size()>1){
+        if(categoriesSelected.get(0) != ""){
             model.addAttribute("categories", categoriesSelected);
         }
         

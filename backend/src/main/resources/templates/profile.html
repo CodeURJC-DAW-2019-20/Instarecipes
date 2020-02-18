@@ -2,25 +2,31 @@
 <html lang="en">
 
 <head>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+
   <title>Instarecipes • Profile</title>
   <!-- Images and icons-->
-  <link rel="icon" type="image/png" href="../images/icons/instarecipes.png"/>
+  <link rel="icon" type="image/png" href="images/icons/instarecipes.png"/>
+
   <!-- Custom fonts for this theme -->
-  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
     type="text/css">
-  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
   <!-- Theme CSS -->
-  <link href="../css/freelancer.css" rel="stylesheet">
-  <link href="../css/modern-business.css" rel="stylesheet">
-  <!-- Images and icons-->
-  <link rel="icon" type="image/png" href="../images/icons/instarecipes.png" />
+  <link href="css/freelancer.css" rel="stylesheet">
+  <link href="css/modern-business.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -28,7 +34,7 @@
   <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container" style="margin-left: 30px;">
       <div id="img-navbar-container">
-        <img class="img-navbar" src="../images/icons/avatar.svg" alt="">
+        <img class="img-navbar" src="images/icons/avatar.svg" alt="">
       </div>
       <a class="navbar-brand js-scroll-trigger" href="profile">&nbsp;Profile</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" 
@@ -70,59 +76,83 @@
     </div>
   </nav>
 
-  <!-- Masthead -->
-  <header class="masthead bg-primary text-white text-center"
-    style="background-image: url(../images/backgrounds/profile_background_example.jpeg); background-repeat: no-repeat; background-size: cover;">
-    <div class="container d-flex align-items-center flex-column" style="position: relative;">
-    <!-- Request ingredient/category button -->
-    <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 50%;right: 15%;cursor: pointer;">
-      <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-request-button"
-        style="width: max-content">
-        <img src='../images/icons/request_icon.png' width="50%" style="height: 50px; width: 50px;" />
+  <div class="wrapper d-flex align-items-stretch">
+    {{#admin}}
+    <nav id="sidebar" class="active" style="margin-top:2%;background-color:rgba(0, 0, 0, 0.6)">
+      <div class="custom-menu">
+        <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
       </div>
-    </div>
-      <!-- Masthead Avatar Image -->
-      <img class="masthead-avatar mb-5" src="../images/icons/avatar.svg" alt="Show profile photo" data-toggle="modal"
-        data-target="#showAvatar">
-
-      <!-- Masthead Heading -->
-      <h3 class="text-uppercase mb-0">Jhonny McConnor Soria</h3>
-      <h6>@jmsoria</h6>
-
-      <!-- Icon Divider -->
-      <div class="divider-custom divider-light">
-        <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon">
-          <i class="fas fa-star"></i>
+      <div class="p-4">
+        <h1><a href="index" class="logo">Manage</a></h1>
+        <ul class="list-unstyled components mb-5">
+          <li id="text-content" class="active">
+            <a onclick="contentDiv()" href="#"><span class="fa fa-user mr-3" style="width: 20px;text-align: center;"></span>Profile</a>
+          </li>
+          <li id="text-request">
+            <a onclick="requestDiv()" href="#"><span class="fa fa-bell mr-3" style="width: 20px;text-align: center;"></span>Requests</a>
+          </li>
+          <li id="text-users">
+            <a onclick="usersDiv()" href="#"><span class="fa fa-users mr-3" style="width: 20px;text-align: center;"></span>Users</a>
+          </li>
+          <li id="text-recipes">
+            <a onclick="recipesDiv()" href="#"><span class="fa fa-book mr-3" style="width: 20px;text-align: center;"></span>Recipes</a>
+          </li>
+          <li id="text-reports">
+            <a onclick="reportsDiv()" href="#"><span class="fa fa-exclamation mr-3" style="width: 20px;text-align: center;"></span>Reports</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    {{/admin}}
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5" style="padding:0 !important">
+      <!-- Masthead -->
+      <header class="masthead bg-primary text-white text-center"
+      style="background-image: url(images/backgrounds/profile_background_example.jpeg); background-repeat: no-repeat; background-size: cover;">
+        <!-- Request ingredient/category button -->
+        <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;right: 35%;">
+          <img src='../images/icons/request_icon.png' data-toggle="modal" data-target="#opened-request-button" width="50%" style="height: 50px; width: 50px;cursor: pointer;" />
         </div>
-        <div class="divider-custom-line"></div>
-      </div>
-
-      <!-- Masthead Subheading -->
-      <div class="profile-about-separator">
-        <p class="masthead-subheading font-weight-light mb-0">Graphic Artist - Web Designer - Illustrator</p>
-       
-        <!-- Statistics button-->
-        <div id="open-stadistics-button" class="stadistics-button" data-toggle="modal" data-target="#opened-stadistics-button"> 
-          <div class="publications-item mx-auto"  
-          style="width: max-content">      
-            <img src='../images/icons/stadistics-button.png' width="50%" style="height: 40px; width: 40px;" />
+        <div class="container d-flex align-items-center flex-column">
+          <!-- Masthead Avatar Image -->
+          <img class="masthead-avatar mb-5" src="images/icons/avatar.svg" alt="Show profile photo" data-toggle="modal"
+            data-target="#showAvatar">
+          <!-- Masthead Heading -->
+          <h3 class="text-uppercase mb-0">{{name}}&nbsp;{{surname}}</h3>
+          <h6>@{{username}}</h6>
+          <!-- Icon Divider -->
+          <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+              <div class="divider-custom-icon">
+                <i class="fas fa-star"></i>
+              </div>
+            <div class="divider-custom-line"></div>
           </div>
-        </div>
-
-        <!-- Statistics button pannel -->
-        <div class="publications-modal modal fade" id="opened-stadistics-button" tabindex="-1" role="dialog" aria-labelledby="publicationsModal6Label" aria-hidden="true">
-          <div id="filtered-search" class="modal-dialog modal-xl" role="document" style="width: 50%;">
-            <div class="modal-dialog modal-xl" role="document">
-              <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">
-                    <i class="fas fa-times"></i>
-                  </span>
-                </button>
-                <div class="modal-body text-center">
-                  <div class="container">
-                    <div class="col-lg-12">
+          <!-- Masthead Subheading -->
+          <div>
+            <p class="masthead-subheading font-weight-light mb-0">Hi everyone !</p>
+          </div>
+          <!-- Stadistics button-->
+          <div id="open-stadistics-button" class="stadistics-button" data-toggle="modal" data-target="#opened-stadistics-button"> 
+            <div class="publications-item mx-auto" style="width: max-content">      
+              <img src='images/icons/stadistics-button.png' width="50%" style="height: 50px; width: 50px;" />
+            </div>
+          </div>
+          <!-- Statistics button pannel -->
+          <div class="publications-modal modal fade" id="opened-stadistics-button" tabindex="-1" role="dialog" aria-labelledby="publicationsModal6Label" aria-hidden="true">
+            <div id="filtered-search" class="modal-dialog modal-xl" role="document" style="width: 50%;">
+              <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                      <i class="fas fa-times"></i>
+                    </span>
+                  </button>
+                  <div class="modal-body text-center">
+                    <div class="container">
                       <!-- publications Modal - Title -->
                       <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Statistics</h2>
                       <!-- Icon Divider -->
@@ -130,35 +160,28 @@
                         <div class="row">                   
                           <div class="col-6">
                             <h2 class="underlined-texts">LIKES</h2>
-                              <div class="ingredients-options" >
-                                <div class="row">
-                                  <div class="col-6">
-                                    <img src="../images/graphics/donut.png" width="185%">
-                                  </div>                    
-                                </div>                        
-                              </div>                     
+                            <div class="ingredients-options" >
+                              <div class="row">
+                                <div class="col-6">
+                                  <img src="images/graphics/donut.png" width="185%">
+                                </div>                    
+                              </div>                        
                             </div>
-                            <div class="col-6">
-                              <h2 class="underlined-texts">VISITS</h2>
-                              <div class="categories-options">
-                                <img src="../images/graphics/donut.png" width="85%">
-                              </div>              
-                            </div>
-                          </div> 
-                        </div>
-                        <div class="col-6">
-                          <h2 class="underlined-texts">VISITS</h2>
-                          <div class="categories-options">
-                            <img src="../static/images/graphics/donut.png" width="85%">
-                          </div>              
-                        </div>
-                      </div> 
+                          </div>
+                          <div class="col-6">
+                            <h2 class="underlined-texts">VISITS</h2>
+                            <div class="categories-options">
+                              <img src="images/graphics/donut.png" width="85%">
+                            </div>              
+                          </div>
+                        </div> 
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-        </div>
+          </div>
         </div>
         <table>
           <tr>
@@ -182,125 +205,1109 @@
           <tr>
             <td>
               <div class="profile-border">
-                <h3 class="font-weight-light">6</h3>
+                <h3 class="font-weight-light">{{n_publications}}</h3>
               </div>
             </td>
             <td>
               <div class="profile-border">
                 <div class="mx-auto" data-toggle="modal" data-target="#followers" style="width: fit-content;">
-                  <h3 class="font-weight-light" style="cursor: pointer;">5</h3>
+                  <h3 class="font-weight-light" style="cursor: pointer;">{{n_followers}}</h3>
                 </div>
               </div>
             </td>
             <td>
               <div class="profile-border">
                 <div class="mx-auto" data-toggle="modal" data-target="#following" style="width: fit-content;">
-                  <h3 class="font-weight-light" style="cursor: pointer; width: auto;">10</h3>
+                  <h3 class="font-weight-light" style="cursor: pointer; width: auto;">{{n_following}}</h3>
                 </div>
               </div>
             </td>
             <td>
-              <h3 class="font-weight-light">343</h3>
+              <h3 class="font-weight-light">{{n_likes}}</h3>
             </td>
           </tr>
         </table>
-      </div>
-    </div>
-    <!-- Request button pannel -->
-    <div class="publications-modal modal fade" id="opened-request-button" tabindex="-1" role="dialog"
-      aria-labelledby="publicationsModal6Label" aria-hidden="true">
-      <div id="example" class="modal-dialog modal-xl" style="width: 40%;" role="document">
-        <div class="modal-content">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">
-              <i class="fas fa-times"></i>
-            </span>
-          </button>
-          <div class="modal-body text-center">
-            <div class="container">
-              <h3 style="width: 100%;color: cadetblue;text-align: center;">Request item</h3>
-              <!-- Icon Divider -->
-              <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon">
-                  <i class="fas fa-star"></i>
+        <!-- Request button pannel -->
+        <div class="publications-modal modal fade" id="opened-request-button" tabindex="-1" role="dialog"
+        aria-labelledby="publicationsModal6Label" aria-hidden="true">
+          <div id="example" class="modal-dialog modal-xl" style="width: 40%;" role="document">
+            <div class="modal-content">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">
+                  <i class="fas fa-times"></i>
+                </span>
+              </button>
+              <div class="modal-body text-center">
+                <div class="container">
+                  <h3 style="width: 100%;color: cadetblue;text-align: center;">Request item</h3>
+                  <!-- Icon Divider -->
+                  <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon">
+                      <i class="fas fa-star"></i>
+                      <div class="divider-custom-line"></div>
+                      <form method="post">
+                        <select style="width: 80%;font-size: 25px;">
+                          <option>-- Select one --</option>
+                          <option>Ingredient</option>
+                          <option>Category</option>
+                          <option>Cooking style</option>
+                        </select>
+                        <input type='text' placeholder='Value' class="btn btn-outline-primary" style="margin-top: 20px;width: 80%;height: 80px;font-size: 50px;">
+                        <input type='submit' value='Send' class="btn btn-primary" style="margin-top: 40px;width: 50%;height: 60%;">
+                      </form>
+                    </div>
+                  </div>
                 </div>
-                <div class="divider-custom-line"></div>
               </div>
-              <form method="post">
-                <select style="width: 80%;font-size: 25px;">
-                  <option>-- Select one --</option>
-                  <option>Ingredient</option>
-                  <option>Category</option>
-                  <option>Cooking style</option>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Publications Section -->
+      <section class="page-section publications" id="publications">
+        <div class="container">
+          <!-- publications Section Heading -->
+          <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Publications</h2>
+          <!-- Icon Divider -->
+          <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="divider-custom-line"></div>
+          </div>
+          <!-- publications Grid Items -->
+          <div class="row">
+            {{#publications}}
+              <!-- publications Item 1 -->
+              <div class="col-md-6 col-lg-4">
+                <div class="publications-item mx-auto" data-toggle="modal" data-target="#publicationsModal{{id}}">
+                  <div class="likes-comments">
+                    <div class="row" style="margin-right: 0;margin-left: 0;">
+                      <div class="col-3">
+                        <img class="icon-fluid" src="images/icons/like_pressed.png" alt="">
+                      </div>
+                      <div class="col-3">
+                        <p class="icon-fluid pub-date-text">{{likes}}</p>
+                      </div>
+                      <div class="col-3">
+                        <img class="icon-fluid" src="images/icons/dialogue.png" alt="">
+                      </div>
+                      <div class="col-3">
+                        <p class="icon-fluid pub-date-text">{{n_comments}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="publications-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                    <div class="publications-item-caption-content text-center text-white">
+                      <img src="images/icons/eye.png" />
+                    </div>
+                  </div>
+                  <img class="img-fluid" src="images/Recipes/recipe_example_1.jpg" alt="">
+                  <p class="pub-date-text">27 min. ago</p>
+                </div>
+              </div>
+              <!-- publications Modals -->
+              <div class="publications-modal modal fade" id="publicationsModal{{id}}" tabindex="-1" role="dialog"
+                aria-labelledby="publicationsModal1Label" aria-hidden="true">
+                <div class="modal-dialog modal-xl" role="document">
+                  <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">
+                        <i class="fas fa-times"></i>
+                      </span>
+                    </button>
+                    <div class="modal-body text-center">
+                      <div class="container">
+                        <div class="row justify-content-center">
+                          <div class="col-lg-12">
+                            <!-- publications Modal - Title -->
+                            <h2 class="publications-modal-title text-secondary text-uppercase mb-0">{{title}}</h2>
+                            <!-- Icon Divider -->
+                            <div class="divider-custom">
+                              <div class="divider-custom-line"></div>
+                              <div class="divider-custom-icon">
+                                <i class="fas fa-star"></i>
+                              </div>
+                              <div class="divider-custom-line"></div>
+                            </div>
+                            <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
+                              <h3 class="underlined-text">INGREDIENTS</h3>
+                            </div>
+                            <div class="row" style="height: 300px;">
+                            <!-- publications Modal - Image -->
+                              <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
+                                <img class="img-fluid-preview rounded mb-5" src="images/Recipes/recipe_example_1.jpg" alt="">
+                              </div>
+                              <div class="col-4" style="height: 300px;">
+                                <div class="nav-item dropdown scrolling">
+                                  {{#ingredients}}
+                                  <p class="dropdown-item">{{ingredient}}</p>
+                                  {{/ingredients}}
+                                </div>
+                              </div>
+                            </div>
+                            <h3 class="underlined-text" style="margin-top: 10px;color:rgba(0, 0, 0, 0.8)">INTRODUCTION</h3>
+                              <!-- publications Modal - Text -->
+                              <p class="mb-5" style="text-align:left;">{{description}}</p>
+                            <div class="row">
+                              <div class="col-4">
+                                <h3 class="underlined-text" style="color:rgba(0, 0, 0, 0.8)">CATEGORY</h3>
+                                {{#categories}}
+                                  <p class="mb-5">{{category}}</p>
+                                {{/categories}}
+                              </div>
+                              <div class="col-4">
+                                <h3 class="underlined-text" style="color:rgba(0, 0, 0, 0.8)">DIFICULTY</h3>
+                                <p class="mb-5">{{difficulty}}</p>
+                              </div>
+                              <div class="col-4">
+                                <h3 class="underlined-text" style="color:rgba(0, 0, 0, 0.8)">APROXIMATED TIME</h3>
+                                <p class="mb-5">{{duration}}</p>
+                              </div>
+                            </div>
+                            <a class="btn btn-primary" href="simple-recipe">
+                              <img class="rounded" src="images/icons/go.png" alt="">
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {{/publications}}
+          </div>
+          <!-- /.row -->
+        </div>
+        <hr width="50%">
+        <!-- Ajax load more button -->
+        <div class="loadmore-container">
+          <img class="loadmore-button" src="images/icons/loadmore_unpressed.png" alt="" />
+        </div>
+      </section>
+    </div>
+    <!-- Page Request  -->
+    <div id="request-div" class="p-4 p-md-5 pt-5" style="padding:0 !important;width:100%;height:100%;" hidden>
+      <!-- Masthead -->
+      <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+          <!-- Masthead Subheading -->
+          <div class="profile-about-separator">
+            <!-- publications Section Heading -->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">User's requests</h2>
+            <!-- Icon Divider -->
+            <div class="divider-custom divider-light">
+              <div class="divider-custom-line"></div>
+              <div class="divider-custom-icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="divider-custom-line"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+    <!-- Publications Section -->
+    <section class="page-section publications" id="publications">
+      <div class="container">
+        <p class="masthead-subheading font-weight-light mb-0">Search user</p>
+            <select style="height: 50px;width: 300px;">
+              <option>All</option>
+              <option>Ingredients</option>
+              <option>Categories</option>
+              <option>Cooking style</option>
+            </select>
+        <!-- Icon Divider -->
+        <div class="divider-custom">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="divider-custom-line"></div>
+        </div>
+        <div class="row" style="margin-right: 50px;margin-bottom: 10px;">
+          <div class="col-4">
+            <p class="page-section-heading text-center text-uppercase text-secondary mb-0">User</p>
+          </div >
+          <div class="col-3">
+            <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Type</p>
+          </div>
+          <div class="col-3">
+            <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Value</p>
+          </div>
+          <div class="col-2">
+            <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Action</p>
+          </div>
+        </div>
+        <div class="scrolling container" style="height: 100%; width: 100%;background-color: rgba(0, 0, 0, 0.2);">
+          <!-- User x -->
+          <div class="row" style="align-items: center;">
+            <div class="col-2">
+              <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+            </div>
+            <div class="col-2">
+              <h6 style="text-align:left;">Princess Elisabeth </h6>
+              <p style="text-align:left;">@elisabeth</p>
+            </div>
+            <div class="col-3">
+              <h6 style="text-align:left;">Ingredient</h6>
+            </div>
+            <div class="col-3">
+              <h6 style="text-align:left; color: red;">Cheesse</h6>
+              <p>Avaiable "Cheese"</p>
+            </div>
+            <div class="col-2" style="display: flex; height:fit-content;">
+              <div class="btn btn-outline-primary fa fa-check" style="margin-right: 5%;border-radius: 50%;"></div>
+              <div class="btn btn-outline-danger fa fa-remove" style="border-radius: 50%;"></div>
+            </div>
+          </div>
+          <hr>
+          <!-- User x -->
+          <div class="row" style="align-items: center;">
+            <div class="col-2">
+              <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+            </div>
+            <div class="col-2">
+              <h6 style="text-align:left;">Nick Chelsea Vane</h6>
+              <p style="text-align:left;">@nickvane</p>
+            </div>
+            <div class="col-3">
+              <h6 style="text-align:left;">Category</h6>
+            </div>
+            <div class="col-3">
+              <h6 style="text-align:left; color: red;">Vegan</h6>
+              <p>Avaiable "Vegan"</p>
+            </div>
+            <div class="col-2" style="display: flex; height:fit-content;">
+              <div class="btn btn-outline-primary fa fa-check" style="margin-right: 5%;border-radius: 50%;"></div>
+              <div class="btn btn-outline-danger fa fa-remove" style="border-radius: 50%;"></div>
+            </div>
+          </div>
+          <hr>
+          <!-- User x -->
+          <div class="row" style="align-items: center;">
+            <div class="col-2">
+              <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+            </div>
+            <div class="col-2">
+              <h6 style="text-align:left;">Nick Chelsea Vane</h6>
+              <p style="text-align:left;">@nickvane</p>
+            </div>
+            <div class="col-3">
+              <h6 style="text-align:left;">Category</h6>
+            </div>
+            <div class="col-3">
+              <h6 style="text-align:left; color: red;">Vegan</h6>
+              <p>Avaiable "Vegan"</p>
+            </div>
+            <div class="col-2" style="display: flex; height:fit-content;">
+              <div class="btn btn-outline-primary fa fa-check" style="margin-right: 5%;border-radius: 50%;"></div>
+              <div class="btn btn-outline-danger fa fa-remove" style="border-radius: 50%;"></div>
+            </div>
+          </div>
+          <hr>
+          <!-- User x -->
+          <div class="row" style="align-items: center;">
+            <div class="col-2">
+              <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+            </div>
+            <div class="col-2">
+              <h6 style="text-align:left;">Julie Ham</h6>
+              <p style="text-align:left;">@myhamsterissocute</p>
+            </div>
+            <div class="col-3">
+              <h6 style="text-align:left;">Cooking Style</h6>
+            </div>
+            <div class="col-3">
+              <h6 style="text-align:left; color: green;">Mediterranean</h6>
+              <p>Avaiable "null"</p>
+            </div>
+            <div class="col-2" style="display: flex; height:fit-content;">
+              <div class="btn btn-outline-primary fa fa-check" style="margin-right: 5%;border-radius: 50%;"></div>
+              <div class="btn btn-outline-danger fa fa-remove" style="border-radius: 50%;"></div>
+            </div>
+          </div>
+          <hr>
+          <!-- User x -->
+          <div class="row" style="align-items: center;">
+            <div class="col-2">
+              <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+            </div>
+            <div class="col-2">
+              <h6 style="text-align:left;">Julie Ham</h6>
+              <p style="text-align:left;">@myhamsterissocute</p>
+            </div>
+            <div class="col-3">
+              <h6 style="text-align:left;">Cooking Style</h6>
+            </div>
+            <div class="col-3">
+              <h6 style="text-align:left; color: green;">Mediterranean</h6>
+              <p>Avaiable "null"</p>
+            </div>
+            <div class="col-2" style="display: flex; height:fit-content;">
+              <div class="btn btn-outline-primary fa fa-check" style="margin-right: 5%;border-radius: 50%;"></div>
+              <div class="btn btn-outline-danger fa fa-remove" style="border-radius: 50%;"></div>
+            </div>
+          </div>
+          <hr>
+          <!-- User x -->
+          <div class="row" style="align-items: center;">
+            <div class="col-2">
+              <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+            </div>
+            <div class="col-2">
+              <h6 style="text-align:left;">Julie Ham</h6>
+              <p style="text-align:left;">@myhamsterissocute</p>
+            </div>
+            <div class="col-3">
+              <h6 style="text-align:left;">Cooking Style</h6>
+            </div>
+            <div class="col-3">
+              <h6 style="text-align:left; color: green;">Mediterranean</h6>
+              <p>Avaiable "null"</p>
+            </div>
+            <div class="col-2" style="display: flex; height:fit-content;">
+              <div class="btn btn-outline-primary fa fa-check" style="margin-right: 5%;border-radius: 50%;"></div>
+              <div class="btn btn-outline-danger fa fa-remove" style="border-radius: 50%;"></div>
+            </div>
+          </div>
+          <hr>
+          <!-- User x -->
+          <div class="row" style="align-items: center;">
+            <div class="col-2">
+              <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+            </div>
+            <div class="col-2">
+              <h6 style="text-align:left;">Julie Ham</h6>
+              <p style="text-align:left;">@myhamsterissocute</p>
+            </div>
+            <div class="col-3">
+              <h6 style="text-align:left;">Cooking Style</h6>
+            </div>
+            <div class="col-3">
+              <h6 style="text-align:left; color: green;">Mediterranean</h6>
+              <p>Avaiable "null"</p>
+            </div>
+            <div class="col-2" style="display: flex; height:fit-content;">
+              <div class="btn btn-outline-primary fa fa-check" style="margin-right: 5%;border-radius: 50%;"></div>
+              <div class="btn btn-outline-danger fa fa-remove" style="border-radius: 50%;"></div>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <hr>
+        <!-- Ajax load more button -->
+        <div class="loadmore-container">
+          <img class="loadmore-button" src="images/icons/loadmore_unpressed.png" alt="" />
+        </div>
+    </section>
+    </div>
+    <!-- Page Users  -->
+    <div id="users-div" class="p-4 p-md-5 pt-5" style="padding:0 !important;width:100%;height:100%;" hidden>
+      <!-- Masthead -->
+      <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+          <!-- Masthead Subheading -->
+          <div class="profile-about-separator">
+            <!-- publications Section Heading -->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">User's details</h2>
+            <!-- Icon Divider -->
+            <div class="divider-custom divider-light">
+              <div class="divider-custom-line"></div>
+              <div class="divider-custom-icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="divider-custom-line"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Users Section -->
+      <section class="page-section publications" id="publications">
+        <div class="container">
+          <form class="example" action="">
+            <input type="text" placeholder="Search user.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+          <!-- Icon Divider -->
+          <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="divider-custom-line"></div>
+          </div>
+          <div style="text-align: center;margin: 10px;">
+            <button class="btn btn-danger">Apply changes</button>
+          </div>
+          <div class="scrolling container" style="height: 100%; width: 100%;background-color: rgba(0, 0, 0, 0.2);">
+            <div class="row" style="margin-bottom: 10px;background-color: #fff;">
+              <!-- User -->
+              <div class="col-3">
+                <p class="text-center text-uppercase text-secondary mb-0">User</p>
+              </div >
+              <!-- Date of creation -->
+              <div class="col-2">
+                <p class="text-center text-uppercase text-secondary mb-0">Date</p>
+              </div >
+              <!-- Followers -->
+              <div class="col-2">
+                <p class="text-center text-uppercase text-secondary mb-0">Followers</p>
+              </div>
+              <!-- Follows -->
+              <div class="col-1">
+                <p class="text-center text-uppercase text-secondary mb-0">Follows</p>
+              </div>
+              <!-- Publications -->
+              <div class="col-1">
+                <p class="text-center text-uppercase text-secondary mb-0">Recipes</p>
+              </div>
+              <!-- Likes -->
+              <div class="col-1">
+                <p class="text-center text-uppercase text-secondary mb-0">Likes</p>
+              </div>
+              <!-- Action -->
+              <div class="col-2">
+                <p class="text-center text-uppercase text-secondary mb-0">Actions</p>
+              </div>
+            </div>
+            <!-- User x -->
+            <div class="row" style="align-items: center;text-align: center;">
+              <div class="col-1">
+                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+              </div>
+              <div class="col-2">
+                <h6 style="text-align:left;">Princess Elisabeth </h6>
+                <p style="text-align:left;">@elisabeth</p>
+              </div>
+              <div class="col-2">
+                <p style="text-align:center;">10/02/2011</p>
+                <p style="text-align:center; color: green;">Active</p>
+              </div>
+              <div class="col-2">
+                <p>182</p>
+              </div>
+              <div class="col-1">
+                <p>99</p>
+              </div>
+              <div class="col-1">
+                <p>8</p>
+              </div>
+              <div class="col-1">
+                <p>300</p>
+              </div>
+              <div class="col-2">
+                <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
+                  <option>...</option>
+                  <option>Block</option>
+                  <option>Suspend</option>
                 </select>
-                <input type='text' placeholder='Value' class="btn btn-outline-primary" style="margin-top: 20px;width: 80%;height: 80px;font-size: 50px;">
-                <input type='submit' value='Send' class="btn btn-primary" style="margin-top: 40px;width: 50%;height: 60%;">
-              </form>
+              </div>
+            </div>
+            <hr>
+            <!-- User x -->
+            <div class="row" style="align-items: center;text-align: center;">
+              <div class="col-1">
+                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+              </div>
+              <div class="col-2">
+                <h6 style="text-align:left;">Princess Elisabeth </h6>
+                <p style="text-align:left;">@elisabeth</p>
+              </div>
+              <div class="col-2">
+                <p style="text-align:center;">10/02/2011</p>
+                <p style="text-align:center; color: green;">Active</p>
+              </div>
+              <div class="col-2">
+                <p>182</p>
+              </div>
+              <div class="col-1">
+                <p>99</p>
+              </div>
+              <div class="col-1">
+                <p>8</p>
+              </div>
+              <div class="col-1">
+                <p>300</p>
+              </div>
+              <div class="col-2">
+                <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
+                  <option>...</option>
+                  <option>Block</option>
+                  <option>Suspend</option>
+                </select>
+              </div>
+            </div>
+            <hr>
+            <!-- User x -->
+            <div class="row" style="align-items: center;text-align: center;">
+              <div class="col-1">
+                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+              </div>
+              <div class="col-2">
+                <h6 style="text-align:left;">Princess Elisabeth </h6>
+                <p style="text-align:left;">@elisabeth</p>
+              </div>
+              <div class="col-2">
+                <p style="text-align:center;">10/02/2011</p>
+                <p style="text-align:center; color: green;">Active</p>
+              </div>
+              <div class="col-2">
+                <p>182</p>
+              </div>
+              <div class="col-1">
+                <p>99</p>
+              </div>
+              <div class="col-1">
+                <p>8</p>
+              </div>
+              <div class="col-1">
+                <p>300</p>
+              </div>
+              <div class="col-2">
+                <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
+                  <option>...</option>
+                  <option>Block</option>
+                  <option>Suspend</option>
+                </select>
+              </div>
+            </div>
+            <hr>
+            <!-- User x -->
+            <div class="row" style="align-items: center;text-align: center;">
+              <div class="col-1">
+                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+              </div>
+              <div class="col-2">
+                <h6 style="text-align:left;">Princess Elisabeth </h6>
+                <p style="text-align:left;">@elisabeth</p>
+              </div>
+              <div class="col-2">
+                <p style="text-align:center;">10/02/2011</p>
+                <p style="text-align:center; color: green;">Active</p>
+              </div>
+              <div class="col-2">
+                <p>182</p>
+              </div>
+              <div class="col-1">
+                <p>99</p>
+              </div>
+              <div class="col-1">
+                <p>8</p>
+              </div>
+              <div class="col-1">
+                <p>300</p>
+              </div>
+              <div class="col-2">
+                <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
+                  <option>...</option>
+                  <option>Block</option>
+                  <option>Suspend</option>
+                </select>
+              </div>
+            </div>
+            <hr>
+            <!-- User x -->
+            <div class="row" style="align-items: center;text-align: center;">
+              <div class="col-1">
+                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+              </div>
+              <div class="col-2">
+                <h6 style="text-align:left;">Princess Elisabeth </h6>
+                <p style="text-align:left;">@elisabeth</p>
+              </div>
+              <div class="col-2">
+                <p style="text-align:center;">10/02/2011</p>
+                <p style="text-align:center; color: green;">Active</p>
+              </div>
+              <div class="col-2">
+                <p>182</p>
+              </div>
+              <div class="col-1">
+                <p>99</p>
+              </div>
+              <div class="col-1">
+                <p>8</p>
+              </div>
+              <div class="col-1">
+                <p>300</p>
+              </div>
+              <div class="col-2">
+                <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
+                  <option>...</option>
+                  <option>Block</option>
+                  <option>Suspend</option>
+                </select>
+              </div>
+            </div>
+            <hr>
+            <!-- User x -->
+            <div class="row" style="align-items: center;text-align: center;">
+              <div class="col-1">
+                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+              </div>
+              <div class="col-2">
+                <h6 style="text-align:left;">Princess Elisabeth </h6>
+                <p style="text-align:left;">@elisabeth</p>
+              </div>
+              <div class="col-2">
+                <p style="text-align:center;">10/02/2011</p>
+                <p style="text-align:center; color: green;">Active</p>
+              </div>
+              <div class="col-2">
+                <p>182</p>
+              </div>
+              <div class="col-1">
+                <p>99</p>
+              </div>
+              <div class="col-1">
+                <p>8</p>
+              </div>
+              <div class="col-1">
+                <p>300</p>
+              </div>
+              <div class="col-2">
+                <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
+                  <option>...</option>
+                  <option>Block</option>
+                  <option>Suspend</option>
+                </select>
+              </div>
+            </div>
+            <hr>
+            <!-- User x -->
+            <div class="row" style="align-items: center;text-align: center;">
+              <div class="col-1">
+                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+              </div>
+              <div class="col-2">
+                <h6 style="text-align:left;">Princess Elisabeth </h6>
+                <p style="text-align:left;">@elisabeth</p>
+              </div>
+              <div class="col-2">
+                <p style="text-align:center;">10/02/2011</p>
+                <p style="text-align:center; color: green;">Active</p>
+              </div>
+              <div class="col-2">
+                <p>182</p>
+              </div>
+              <div class="col-1">
+                <p>99</p>
+              </div>
+              <div class="col-1">
+                <p>8</p>
+              </div>
+              <div class="col-1">
+                <p>300</p>
+              </div>
+              <div class="col-2">
+                <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
+                  <option>...</option>
+                  <option>Block</option>
+                  <option>Suspend</option>
+                </select>
+              </div>
+            </div>
+            <hr>
+          </div>
+          <hr>
+          <!-- Ajax load more button -->
+          <div class="loadmore-container">
+            <img class="loadmore-button" src="images/icons/loadmore_unpressed.png" alt="" />
+          </div>
+      </section>
+    </div>
+    <!-- Page Recipes  -->
+    <div id="recipes-div" class="p-4 p-md-5 pt-5" style="padding:0 !important;width:100%;height:100%;" hidden>
+      <!-- Masthead -->
+      <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+          <!-- Masthead Subheading -->
+          <div class="profile-about-separator">
+            <!-- publications Section Heading -->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Recipes, ingredients, categories and cooking style</h2>
+            <!-- Icon Divider -->
+            <div class="divider-custom divider-light">
+              <div class="divider-custom-line"></div>
+              <div class="divider-custom-icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="divider-custom-line"></div>
             </div>
           </div>
         </div>
-      </div>
+      </header>
+      <!-- Publications Section -->
+      <section class="page-section publications" id="publications">
+        <div class="container">
+          <p class="masthead-subheading font-weight-light mb-0">Select type</p>
+          <div class="row">
+            <select class="col-5" style="height: 50px;">
+              <option>Recipes</option>
+              <option>Ingredients</option>
+              <option>Categories</option>
+              <option>Cooking style</option>
+            </select>
+            <div class="col-2" style="text-align: center;align-self: center;">
+              <i class="btn btn-outline-primary fa fa-plus" style="width: 100px;border-radius: 1rem;"></i>
+            </div>
+            <form class="example col-5" action="" style="height: 50px;">
+              <input type="text" placeholder="Search type.." name="search">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+          <!-- Icon Divider -->
+          <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="divider-custom-line"></div>
+          </div>
+          <div class="row container" style="margin-bottom: 10px;margin-right: 0;margin-left: 0;">
+            <div class="col-4">
+              <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Type</p>
+            </div >
+            <div class="col-4">
+              <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Item</p>
+            </div>
+            <div class="col-4">
+              <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Actions</p>
+            </div>
+          </div>
+          <div class="scrolling container" style="height: 100%;background-color: rgba(0, 0, 0, 0.2);">
+            <!-- Type x -->
+            <div class="row" style="align-items: center;">
+              <div class="col-4">
+                <h6 style="text-align:center;">Ingredient</h6>
+              </div>
+              <div class="col-4">
+                <p style="text-align:center;">Pepperoni</p>
+              </div>
+              <div class="col-4" style="display: flex; height:fit-content;justify-content:center; text-align: center;">
+                <div class="btn btn-outline-primary" style="border-radius: 50%;margin-right: 5px;">
+                  <i class=" fa fa-edit"></i>
+                </div>
+                <div class="btn btn-outline-danger" style="border-radius: 50%; margin-left: 5px;">
+                  <i class="fa fa-remove"></i>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <!-- Type x -->
+            <div class="row" style="align-items: center;">
+              <div class="col-4">
+                <h6 style="text-align:center;">Ingredient</h6>
+              </div>
+              <div class="col-4">
+                <p style="text-align:center;">Cheesse</p>
+              </div>
+              <div class="col-4" style="display: flex; height:fit-content;justify-content:center; text-align: center;">
+                <div class="btn btn-outline-primary" style="border-radius: 50%;margin-right: 5px;">
+                  <i class=" fa fa-edit"></i>
+                </div>
+                <div class="btn btn-outline-danger" style="border-radius: 50%; margin-left: 5px;">
+                  <i class="fa fa-remove"></i>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <!-- Type x -->
+            <div class="row" style="align-items: center;">
+              <div class="col-4">
+                <h6 style="text-align:center;">Ingredient</h6>
+              </div>
+              <div class="col-4">
+                <p style="text-align:center;">Bread</p>
+              </div>
+              <div class="col-4" style="display: flex; height:fit-content;justify-content:center; text-align: center;">
+                <div class="btn btn-outline-primary" style="border-radius: 50%;margin-right: 5px;">
+                  <i class=" fa fa-edit"></i>
+                </div>
+                <div class="btn btn-outline-danger" style="border-radius: 50%; margin-left: 5px;">
+                  <i class="fa fa-remove"></i>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <!-- Type x -->
+            <div class="row" style="align-items: center;">
+              <div class="col-4">
+                <h6 style="text-align:center;">Category</h6>
+              </div>
+              <div class="col-4">
+                <p style="text-align:center;">Mediterranean</p>
+              </div>
+              <div class="col-4" style="display: flex; height:fit-content;justify-content:center; text-align: center;">
+                <div class="btn btn-outline-primary" style="border-radius: 50%;margin-right: 5px;">
+                  <i class=" fa fa-edit"></i>
+                </div>
+                <div class="btn btn-outline-danger" style="border-radius: 50%; margin-left: 5px;">
+                  <i class="fa fa-remove"></i>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <!-- Type x -->
+            <div class="row" style="align-items: center;">
+              <div class="col-4">
+                <h6 style="text-align:center;">Cooking style</h6>
+              </div>
+              <div class="col-4">
+                <p style="text-align:center;">Turkish</p>
+              </div>
+              <div class="col-4" style="display: flex; height:fit-content;justify-content:center; text-align: center;">
+                <div class="btn btn-outline-primary" style="border-radius: 50%;margin-right: 5px;">
+                  <i class=" fa fa-edit"></i>
+                </div>
+                <div class="btn btn-outline-danger" style="border-radius: 50%; margin-left: 5px;">
+                  <i class="fa fa-remove"></i>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <!-- Type x -->
+            <div class="row" style="align-items: center;">
+              <div class="col-4">
+                <h6 style="text-align:center;">Ingredient</h6>
+              </div>
+              <div class="col-4">
+                <p style="text-align:center;">Tomatoe sauce</p>
+              </div>
+              <div class="col-4" style="display: flex; height:fit-content;justify-content:center; text-align: center;">
+                <div class="btn btn-outline-primary" style="border-radius: 50%;margin-right: 5px;">
+                  <i class=" fa fa-edit"></i>
+                </div>
+                <div class="btn btn-outline-danger" style="border-radius: 50%; margin-left: 5px;">
+                  <i class="fa fa-remove"></i>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <!-- Type x -->
+            <div class="row" style="align-items: center;">
+              <div class="col-4">
+                <h6 style="text-align:center;">Category</h6>
+              </div>
+              <div class="col-4">
+                <p style="text-align:center;">Vegetarian</p>
+              </div>
+              <div class="col-4" style="display: flex; height:fit-content;justify-content:center; text-align: center;">
+                <div class="btn btn-outline-primary" style="border-radius: 50%;margin-right: 5px;">
+                  <i class=" fa fa-edit"></i>
+                </div>
+                <div class="btn btn-outline-danger" style="border-radius: 50%; margin-left: 5px;">
+                  <i class="fa fa-remove"></i>
+                </div>
+              </div>
+            </div>
+            <hr>
+          </div>
+          <hr>
+          <!-- Ajax load more button -->
+          <div class="loadmore-container">
+            <img class="loadmore-button" src="images/icons/loadmore_unpressed.png" alt="" />
+          </div>
+      </section>
     </div>
-  </header>
-
-  <!-- Publications Section -->
-  <section class="page-section publications" id="publications">
-    <div class="container">
-
-      <!-- publications Section Heading -->
-      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Publications</h2>
-
-      <!-- Icon Divider -->
-      <div class="divider-custom">
-        <div class="divider-custom-line"></div>
-        <div class="divider-custom-icon">
-          <i class="fas fa-star"></i>
-        </div>
-        <div class="divider-custom-line"></div>
-      </div>
-
-      <!-- publications Grid Items -->
-      <div class="row" id="publications-section">
-        <!-- publications Item 1 -->
-        <div class="col-md-6 col-lg-4">
-          <div class="publications-item mx-auto" data-toggle="modal" data-target="#publicationsModal1">
-            <div class="likes-comments">
-              <div class="row" style="margin-right: 0;margin-left: 0;">
-                <div class="col-3">
-                  <img class="icon-fluid" src="../images/icons/like_pressed.png" alt="">
-                </div>
-                <div class="col-3">
-                  <p class="icon-fluid pub-date-text">24</p>
-                </div>
-                <div class="col-3">
-                  <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
-                </div>
-                <div class="col-3">
-                  <p class="icon-fluid pub-date-text">10</p>
-                </div>
+    <!-- Page Reports  -->
+    <div id="reports-div" class="p-4 p-md-5 pt-5" style="padding:0 !important;width:100%;height:100%;" hidden>
+      <!-- Masthead -->
+      <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+          <!-- Masthead Subheading -->
+          <div class="profile-about-separator">
+            <!-- publications Section Heading -->
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Annonymous reports</h2>
+            <!-- Icon Divider -->
+            <div class="divider-custom divider-light">
+              <div class="divider-custom-line"></div>
+              <div class="divider-custom-icon">
+                <i class="fas fa-star"></i>
               </div>
+              <div class="divider-custom-line"></div>
             </div>
-            <div class="publications-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-              <div class="publications-item-caption-content text-center text-white">
-                <img src="../images/icons/eye.png" />
-              </div>
-            </div>
-            <img class="img-fluid" src="../images/Recipes/recipe_example_1.jpg" alt="">
-            <p class="pub-date-text">27 min. ago</p>
           </div>
         </div>
-      </div>
-      <!-- /.row -->
-
+      </header>
+      <!-- Users Section -->
+      <section class="page-section publications" id="publications">
+        <div class="container">
+          <form class="example" action="">
+            <input type="text" placeholder="Search user or ID.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
+          <!-- Icon Divider -->
+          <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="divider-custom-line"></div>
+          </div>
+          <div style="text-align: center;margin: 10px;">
+            <button class="btn btn-danger">Apply changes</button>
+          </div>
+          <div class="scrolling container" style="height: 100%; width: 100%;background-color: rgba(0, 0, 0, 0.2);">
+            <div class="row" style="margin-bottom: 10px;background-color: #fff;">
+              <!-- Id User -->
+              <div class="col-1">
+                <p class="text-center text-uppercase text-secondary mb-0">#Id_User</p>
+              </div >
+              <!-- User reported -->
+              <div class="col-3">
+                <p class="text-center text-uppercase text-secondary mb-0">User reported</p>
+              </div >
+              <!-- Date -->
+              <div class="col-2">
+                <p class="text-center text-uppercase text-secondary mb-0">Date</p>
+              </div >
+              <!-- Reason -->
+              <div class="col-2">
+                <p class="text-center text-uppercase text-secondary mb-0">Reason</p>
+              </div>
+              <!-- Link -->
+              <div class="col-2">
+                <p class="text-center text-uppercase text-secondary mb-0">Link</p>
+              </div>
+              <!-- Actions -->
+              <div class="col-2">
+                <p class="text-center text-uppercase text-secondary mb-0">Actions</p>
+              </div>
+            </div>
+            <!-- User x -->
+            <div class="row" style="align-items: center;text-align: center;">
+              <div class="col-1">
+                <p>4923</p>
+              </div>
+              <div class="col-3">
+                <h6 style="text-align:left;">Princess Elisabeth </h6>
+                <p style="text-align:left;">@elisabeth</p>
+                <p style="text-align:left;">elisabeth_lachunga@gmail.com</p>
+              </div>
+              <div class="col-2">
+                <p style="text-align:center;">10/02/2011</p>
+              </div>
+              <div class="col-2">
+                <select class="btn btn-outline-secondary" style="border-radius: 0.8rem;-moz-appearance: none;-webkit-appearance: none;">
+                  <option>Comment</option>
+                  <option>Recipe</option>
+                  <option>User</option>
+                </select>
+              </div>
+              <div class="col-2">
+                <select class="btn btn-outline-danger" style="border-radius: 0.8rem;">
+                  <option>...</option>
+                  <option>Delete comment</option>
+                  <option>Delete recipe</option>
+                  <option>Block user</option>
+                  <option>Suspend user</option>
+                </select>
+              </div>
+            </div>
+            <hr>
+            <!-- User x -->
+            <div class="row" style="align-items: center;text-align: center;">
+              <div class="col-1">
+                <p>4923</p>
+              </div>
+              <div class="col-3">
+                <h6 style="text-align:left;">Princess Elisabeth </h6>
+                <p style="text-align:left;">@elisabeth</p>
+                <p style="text-align:left;">elisabeth_lachunga@gmail.com</p>
+              </div>
+              <div class="col-2">
+                <p style="text-align:center;">10/02/2011</p>
+              </div>
+              <div class="col-2">
+                <select class="btn btn-outline-secondary" style="border-radius: 0.8rem;-moz-appearance: none;-webkit-appearance: none;">
+                  <option>Comment</option>
+                  <option>Recipe</option>
+                  <option>User</option>
+                </select>
+              </div>
+              <div class="col-2">
+                <select class="btn btn-outline-danger" style="border-radius: 0.8rem;">
+                  <option>...</option>
+                  <option>Delete comment</option>
+                  <option>Delete recipe</option>
+                  <option>Block user</option>
+                  <option>Suspend user</option>
+                </select>
+              </div>
+            </div>
+            <hr>
+            <!-- User x -->
+            <div class="row" style="align-items: center;text-align: center;">
+              <div class="col-1">
+                <p>4923</p>
+              </div>
+              <div class="col-3">
+                <h6 style="text-align:left;">Princess Elisabeth </h6>
+                <p style="text-align:left;">@elisabeth</p>
+                <p style="text-align:left;">elisabeth_lachunga@gmail.com</p>
+              </div>
+              <div class="col-2">
+                <p style="text-align:center;">10/02/2011</p>
+              </div>
+              <div class="col-2">
+                <select class="btn btn-outline-secondary" style="border-radius: 0.8rem;-moz-appearance: none;-webkit-appearance: none;">
+                  <option>Comment</option>
+                  <option>Recipe</option>
+                  <option>User</option>
+                </select>
+              </div>
+              <div class="col-2">
+                <select class="btn btn-outline-danger" style="border-radius: 0.8rem;">
+                  <option>...</option>
+                  <option>Delete comment</option>
+                  <option>Delete recipe</option>
+                  <option>Block user</option>
+                  <option>Suspend user</option>
+                </select>
+              </div>
+            </div>
+            <hr>
+            <!-- User x -->
+            <div class="row" style="align-items: center;text-align: center;">
+              <div class="col-1">
+                <p>4923</p>
+              </div>
+              <div class="col-3">
+                <h6 style="text-align:left;">Princess Elisabeth </h6>
+                <p style="text-align:left;">@elisabeth</p>
+                <p style="text-align:left;">elisabeth_lachunga@gmail.com</p>
+              </div>
+              <div class="col-2">
+                <p style="text-align:center;">10/02/2015</p>
+              </div>
+              <div class="col-2">
+                <select class="btn btn-outline-secondary" style="border-radius: 0.8rem;-moz-appearance: none;-webkit-appearance: none;">
+                  <option>Comment</option>
+                  <option>Recipe</option>
+                  <option>User</option>
+                </select>
+              </div>
+              <div class="col-2">
+                <select class="btn btn-outline-danger" style="border-radius: 0.8rem;">
+                  <option>...</option>
+                  <option>Delete comment</option>
+                  <option>Delete recipe</option>
+                  <option>Block user</option>
+                  <option>Suspend user</option>
+                </select>
+              </div>
+            </div>
+            <hr>
+          <!-- Ajax load more button -->
+          <div class="loadmore-container">
+            <img class="loadmore-button" src="images/icons/loadmore_unpressed.png" alt="" />
+          </div>
+      </section>
     </div>
-    <hr width="50%">
-    <!-- Ajax load more button -->
-    <div class="loadmore-container">
-      <img class="loadmore-button" src="../images/icons/loadmore_unpressed.png" alt="" />
-    </div>
-  </section>
-
+  </div>
   <!-- Copyright Section -->
   <section class="copyright py-4 text-center text-white">
     <div class="container">
@@ -326,7 +1333,7 @@
         </button>
         <div class="modal-body text-center">
           <div class="container">
-            <img class="img-fluid rounded mb-5" src="../images/icons/avatar.svg" alt="" style="height: auto;">
+            <img class="img-fluid rounded mb-5" src="images/icons/avatar.svg" alt="" style="height: auto;">
           </div>
         </div>
       </div>
@@ -363,139 +1370,22 @@
         <div class="modal-body text-center container" style="height: 80%; padding: 2rem 1rem;">
           <div class="row justify-content-center" style="height: 100%;">
             <div class="col-lg-12" style="height: 100%">
-              <div class="col-12" style="height: 100%;">
-                <div class="nav-item dropdown scrolling">
+              <div class="nav-item dropdown scrolling">
+                {{#following}}
                   <!-- User x -->
                   <div class="row">
                     <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
                     </div>
                     <div class="col-6">
-                      <h6 style="text-align:left;">Princess Elisabeth </h6>
-                      <p style="text-align:left;">@elisabeth</p>
+                      <h6 style="text-align:left;">{{name}}&nbsp;{{surname}}</h6>
+                      <p style="text-align:left;">@{{username}}</p>
                     </div>
                     <div class="col-4">
                       <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
                     </div>
                   </div>
-                  <!-- User x -->
-                  <div class="row">
-                    <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
-                    </div>
-                    <div class="col-6">
-                      <h6 style="text-align:left;">Nick Chelsea Vane</h6>
-                      <p style="text-align:left;">@nickvane</p>
-                    </div>
-                    <div class="col-4">
-                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
-                    </div>
-                  </div>
-                  <!-- User x -->
-                  <div class="row">
-                    <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
-                    </div>
-                    <div class="col-6">
-                      <h6 style="text-align:left;">Julie Ham</h6>
-                      <p style="text-align:left;">@myhamsterissocute</p>
-                    </div>
-                    <div class="col-4">
-                      <div class="btn btn-primary">Follow</div>
-                    </div>
-                  </div>
-                  <!-- User x -->
-                  <div class="row">
-                    <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
-                    </div>
-                    <div class="col-6">
-                      <h6 style="text-align:left;">David Spear</h6>
-                      <p style="text-align:left;">@stronger666</p>
-                    </div>
-                    <div class="col-4">
-                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
-                    </div>
-                  </div>
-                  <!-- User x -->
-                  <div class="row">
-                    <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
-                    </div>
-                    <div class="col-6">
-                      <h6 style="text-align:left;">Alice Turner</h6>
-                      <p style="text-align:left;">@turnertun3</p>
-                    </div>
-                    <div class="col-4">
-                      <div class="btn btn-primary">Follow</div>
-                    </div>
-                  </div>
-                  <!-- User x -->
-                  <div class="row">
-                    <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
-                    </div>
-                    <div class="col-6">
-                      <h6 style="text-align:left;">Alfred Homes</h6>
-                      <p style="text-align:left;">@alfredhomes</p>
-                    </div>
-                    <div class="col-4">
-                      <div class="btn btn-primary">Follow</div>
-                    </div>
-                  </div>
-                  <!-- User x -->
-                  <div class="row">
-                    <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
-                    </div>
-                    <div class="col-6">
-                      <h6 style="text-align:left;">Jason Smith</h6>
-                      <p style="text-align:left;">@jsmith</p>
-                    </div>
-                    <div class="col-4">
-                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
-                    </div>
-                  </div>
-                  <!-- User x -->
-                  <div class="row">
-                    <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
-                    </div>
-                    <div class="col-6">
-                      <h6 style="text-align:left;">Mr. Eric</h6>
-                      <p style="text-align:left;">@ericcrack</p>
-                    </div>
-                    <div class="col-4">
-                      <div class="btn btn-primary">Follow</div>
-                    </div>
-                  </div>
-                  <!-- User x -->
-                  <div class="row">
-                    <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
-                    </div>
-                    <div class="col-6">
-                      <h6 style="text-align:left;">Lewis Parker</h6>
-                      <p style="text-align:left;">@mynameislewis</p>
-                    </div>
-                    <div class="col-4">
-                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
-                    </div>
-                  </div>
-                  <!-- User x -->
-                  <div class="row">
-                    <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
-                    </div>
-                    <div class="col-6">
-                      <h6 style="text-align:left;">Jeniffer Boston</h6>
-                      <p style="text-align:left;">@jenny92</p>
-                    </div>
-                    <div class="col-4">
-                      <div class="btn btn-primary">Follow</div>
-                    </div>
-                  </div>
-                </div>
+                {{/following}}
               </div>
             </div>
           </div>
@@ -504,7 +1394,7 @@
     </div>
   </div>
 
-  <!-- user following -->
+  <!-- user followers -->
   <div class="publications-modal modal fade" id="followers" tabindex="-1" role="dialog"
     aria-labelledby="publicationsModal1Label" aria-hidden="true" style="overflow-y: hidden;">
     <div class="modal-dialog modal-xm" role="document">
@@ -534,160 +1424,22 @@
         <div class="modal-body text-center container" style="height: 80%; padding: 2rem 1rem;">
           <div class="row justify-content-center" style="height: 100%;">
             <div class="col-lg-12" style="height: 100%">
-              <div class="col-12" style="height: 100%;">
-                <div class="nav-item dropdown scrolling">
+              <div class="nav-item dropdown scrolling">
+                {{#followers}}
                   <!-- User x -->
                   <div class="row">
                     <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
+                      <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
                     </div>
                     <div class="col-6">
-                      <h6 style="text-align:left;">David Spear</h6>
-                      <p style="text-align:left;">@stronger666</p>
+                      <h6 style="text-align:left;">{{name}}&nbsp;{{surname}}</h6>
+                      <p style="text-align:left;">@{{username}}</p>
                     </div>
                     <div class="col-4">
                       <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
                     </div>
                   </div>
-                  <!-- User x -->
-                  <div class="row">
-                    <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
-                    </div>
-                    <div class="col-6">
-                      <h6 style="text-align:left;">Alice Turner</h6>
-                      <p style="text-align:left;">@turnertun3</p>
-                    </div>
-                    <div class="col-4">
-                      <div class="btn btn-primary">Follow</div>
-                    </div>
-                  </div>
-                  <!-- User x -->
-                  <div class="row">
-                    <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
-                    </div>
-                    <div class="col-6">
-                      <h6 style="text-align:left;">Princess Elisabeth </h6>
-                      <p style="text-align:left;">@elisabeth</p>
-                    </div>
-                    <div class="col-4">
-                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
-                    </div>
-                  </div>
-                  <!-- User x -->
-                  <div class="row">
-                    <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
-                    </div>
-                    <div class="col-6">
-                      <h6 style="text-align:left;">Julie Ham</h6>
-                      <p style="text-align:left;">@myhamsterissocute</p>
-                    </div>
-                    <div class="col-4">
-                      <div class="btn btn-primary">Follow</div>
-                    </div>
-                  </div>
-                  <!-- User x -->
-                  <div class="row">
-                    <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
-                    </div>
-                    <div class="col-6">
-                      <h6 style="text-align:left;">Nick Chelsea Vane</h6>
-                      <p style="text-align:left;">@nickvane</p>
-                    </div>
-                    <div class="col-4">
-                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- publications Modals -->
-  <!-- publications Modal 1 -->
-  <div class="publications-modal modal fade" id="publicationsModal1" tabindex="-1" role="dialog"
-    aria-labelledby="publicationsModal1Label" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">
-            <i class="fas fa-times"></i>
-          </span>
-        </button>
-        <div class="modal-body text-center">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-lg-12">
-                <!-- publications Modal - Title -->
-                <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Vegetal pizza</h2>
-                <!-- Icon Divider -->
-                <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                    <i class="fas fa-star"></i>
-                  </div>
-                  <div class="divider-custom-line"></div>
-                </div>
-                <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
-                  <h3 class="underlined-text">INGREDIENTS</h3>
-                </div>
-                <div class="row" style="height: 300px;">
-                <!-- publications Modal - Image -->
-                  <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
-                    <img class="img-fluid-preview rounded mb-5" src="../images/Recipes/recipe_example_1.jpg" alt="">
-                  </div>
-                  <div class="col-4" style="height: 300px;">
-                    <div class="nav-item dropdown scrolling">
-                      <p class="dropdown-item">1. Bread</p>
-                      <p class="dropdown-item">20 grs. Mushrooms</p>
-                      <p class="dropdown-item">30 grs. Beans</p>
-                      <p class="dropdown-item">50 grs. Nuts</p>
-                      <p class="dropdown-item">30 grs. Salad</p>
-                      <p class="dropdown-item">20 grs. Tomatoe</p>
-                      <p class="dropdown-item">1. Bread</p>
-                      <p class="dropdown-item">20 grs. Mushrooms</p>
-                      <p class="dropdown-item">30 grs. Beans</p>
-                      <p class="dropdown-item">50 grs. Nuts</p>
-                      <p class="dropdown-item">30 grs. Salad</p>
-                      <p class="dropdown-item">20 grs. Tomatoe</p>
-                      <p class="dropdown-item">1. Bread</p>
-                      <p class="dropdown-item">20 grs. Mushrooms</p>
-                      <p class="dropdown-item">30 grs. Beans</p>
-                      <p class="dropdown-item">50 grs. Nuts</p>
-                      <p class="dropdown-item">30 grs. Salad</p>
-                      <p class="dropdown-item">20 grs. Tomatoe</p>
-                    </div>
-                  </div>
-                </div>
-                <h3 class="underlined-text" style="margin-top: 10px;">INTRODUCTION</h3>
-                  <!-- publications Modal - Text -->
-                  <p class="mb-5" style="text-align:left;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                    Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam 
-                    velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
-                <div class="row">
-                  <div class="col-4">
-                    <h3 class="underlined-text">CATEGORY</h3>
-                    <p class="mb-5">Vegetarian</p>
-                  </div>
-                  <div class="col-4">
-                    <h3 class="underlined-text">DIFICULTY</h3>
-                    <p class="mb-5">Easy</p>
-                  </div>
-                  <div class="col-4">
-                    <h3 class="underlined-text">APROXIMATED TIME</h3>
-                    <p class="mb-5">30 min.</p>
-                  </div>
-                </div>
-                <a class="btn btn-primary" href="simple-recipe">
-                  <img class="rounded" src="../images/icons/go.png" alt="">
-                </a>
+                {{/followers}}
               </div>
             </div>
           </div>
@@ -697,18 +1449,23 @@
   </div>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="../vendor/jquery/jquery.min.js"></script>
-  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Plugin JavaScript -->
-  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Contact Form JavaScript -->
-  <script src="../js/jqBootstrapValidation.js"></script>
-  <script src="../js/contact_me.js"></script>
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="../js/freelancer.min.js"></script>
+  <script src="js/freelancer.min.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main2.js"></script>
+  <script src="js/admin-profile.js"></script>
 
 </body>
 

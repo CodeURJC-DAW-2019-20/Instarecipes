@@ -12,18 +12,18 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
+    private String ingredient;
     private String quantity;
 
     public Ingredient() {
     }
     //only add ingredient
-    public Ingredient(String name) {
-        this.name = name;
+    public Ingredient(String ingredient) {
+        this.ingredient = ingredient;
     }
 
-    public Ingredient(String name, String quantity) {
-        this.name = name;
+    public Ingredient(String ingredient, String quantity) {
+        this.ingredient = ingredient;
         this.quantity = quantity;
     }
 
@@ -36,11 +36,11 @@ public class Ingredient {
     }
 
     public String getName() {
-        return this.name;
+        return this.ingredient;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String ingredient) {
+        this.ingredient = ingredient;
     }
 
     public String getQuantity() {

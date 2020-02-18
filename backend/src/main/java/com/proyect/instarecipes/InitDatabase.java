@@ -1,17 +1,25 @@
 package com.proyect.instarecipes;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.annotation.PostConstruct;
 
 import com.proyect.instarecipes.repositories.CategoriesRepository;
+import com.proyect.instarecipes.repositories.CommentsRepository;
 import com.proyect.instarecipes.repositories.CookingStylesRepository;
 import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
+import com.proyect.instarecipes.views.GroupStaff;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.models.Category;
+import com.proyect.instarecipes.models.Comment;
 import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.models.Step;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,51 +37,152 @@ public class InitDatabase {
     private CategoriesRepository categoriesRepository;
     @Autowired
     private CookingStylesRepository cookingStylesRepository;
+    @Autowired
+    private CommentsRepository commentsRepository;
 
     @PostConstruct
     private void initDatabase() {
-        //Users examples
-        userRepository.save(new User("user1", "pepe@grillo.com", "pass", "Pepe", "Grillo", "sida", null, null, "ROLE_USER"));
-        userRepository.save(new User("user2", "manu@gmail.com", "pass", "Manuel", "Savater", "awp's", null, null, "ROLE_USER"));
-        userRepository.save(new User("user3", "trevodrap@hotmail.com", "pass", "Trevod", "Rap", "Toyacos", null, null, "ROLE_USER"));
-        userRepository.save(new User("admin", "hola@adios.com", "adminpass", "Hamsa", "Jefe", "cerdo", null, null, "ROLE_USER", "ROLE_ADMIN"));
+        GroupStaff groupStaff = new GroupStaff();
+
+//Users examples
+        User u1 = new User("user1", "pepe@grillo.com", "pass", "Pepe", "Grillo", "Hello World !!", "sida", null, null, "ROLE_USER");
+        User u2 = new User("user2", "manu@gmail.com", "pass", "Manuel", "Savater", "Konichiwa people !", "awp's", null, null, "ROLE_USER");
+        User u3 = new User("user3", "trevodrap@hotmail.com", "pass", "Trevod", "Rap","Hello people !", "Toyacos", null, null, "ROLE_USER");
+        User u4 = new User("admin", "hola@adios.com", "adminpass", "Hamsa", "Jefe", "Hi people !", "cerdo", null, null, "ROLE_USER", "ROLE_ADMIN");
+
+        Set<User> followers1 = groupStaff.groupFollowers(u2,u3,u4);
+        Set<User> following1 = groupStaff.groupFollowing(u2,u3,u4);
+        Set<User> followers2 = groupStaff.groupFollowers(u1,u3,u4);
+        Set<User> following2 = groupStaff.groupFollowing(u1,u4);
+
+        u1.setFollowers(followers1);
+        u2.setFollowers(followers2);
+        u3.setFollowers(followers2);
+        u4.setFollowers(followers1);
+
+        u1.setFollowing(following1);
+        u2.setFollowing(following2);
+        u3.setFollowing(following2);
+        u4.setFollowing(following1);
+        
+        userRepository.save(u1);
+        userRepository.save(u2);
+        userRepository.save(u3);
+        userRepository.save(u4);
+
+//Ingredients examples
+        Ingredient i1 = new Ingredient("Potatoes");
+        Ingredient i2 = new Ingredient("Honey");
+        Ingredient i3 = new Ingredient("Fish");
+        Ingredient i4 = new Ingredient("Tomatoes");
+        Ingredient i5 = new Ingredient("Milk");
+        Ingredient i6 = new Ingredient("Bread");
+        
+        ingredientsRepository.save(i1);
+        ingredientsRepository.save(i2);
+        ingredientsRepository.save(i3);
+        ingredientsRepository.save(i4);
+        ingredientsRepository.save(i5);
+        ingredientsRepository.save(i6);
+
+//Categories examples        
+        Category c1 = new Category("Desserts");
+        Category c2 = new Category("Starters");
+        Category c3 = new Category("Main");
+        Category c4 = new Category("Soups");
+        Category c5 = new Category("Salad");
+        Category c6 = new Category("Burgers");
+        Category c7 = new Category("Pizzas");
+        Category c8 = new Category("Smoothies");
+        Category c9 = new Category("BreakFast");
+        Category c10 = new Category("Brunch");
+        Category c11 = new Category("Dinner");
+        
+        categoriesRepository.save(c1);
+        categoriesRepository.save(c2);
+        categoriesRepository.save(c3);
+        categoriesRepository.save(c4);
+        categoriesRepository.save(c5);
+        categoriesRepository.save(c6);
+        categoriesRepository.save(c7);
+        categoriesRepository.save(c8);
+        categoriesRepository.save(c9);
+        categoriesRepository.save(c10);
+        categoriesRepository.save(c11);
+
+//Cooking Styles examples        
+        CookingStyle cs1 = new CookingStyle("Vegan");
+        CookingStyle cs2 = new CookingStyle("Vegetarian");
+        CookingStyle cs3 = new CookingStyle("Mediterranean");
+        CookingStyle cs4 = new CookingStyle("American");
+        CookingStyle cs5 = new CookingStyle("Asian");
+        CookingStyle cs6 = new CookingStyle("Italian");
+        CookingStyle cs7 = new CookingStyle("Arabic");
+        CookingStyle cs8 = new CookingStyle("Latina");
+        
+        cookingStylesRepository.save(cs1);
+        cookingStylesRepository.save(cs2);
+        cookingStylesRepository.save(cs3);
+        cookingStylesRepository.save(cs4);
+        cookingStylesRepository.save(cs5);
+        cookingStylesRepository.save(cs6);
+        cookingStylesRepository.save(cs7);
+        cookingStylesRepository.save(cs8);
 
         //Recipes examples
-        recipesRepository.save(new Recipe("@boss99", null, "??? ", "¿¿¿¿", "Homemade Pizza!", "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!", 
-            "ejemplo descripcion2", "15 min.", null, "Hard"));
-        recipesRepository.save(new Recipe("@lady44", null, "???", "¿¿¿¿", "Avocado Salad", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
-            "ejemplo descripcion2", "15 min.",null, "Hard"));
+        Set<Ingredient> ingredients1 = groupStaff.groupIngredients(i1,i2,i3);
+        Set<Ingredient> ingredients2 = groupStaff.groupIngredients(i2,i4,i5,i6);
+        Set<Ingredient> ingredients3 = groupStaff.groupIngredients(i2,i4,i5,i6,i1);
+        Set<Ingredient> ingredients4 = groupStaff.groupIngredients(i2,i4,i5,i3,i6);
+        
+        Set<Category> categories1 = groupStaff.groupCategories(c1,c2,c3);
+        Set<Category> categories2 = groupStaff.groupCategories(c2,c4,c5,c6);
+        Set<Category> categories3 = groupStaff.groupCategories(c1,c2,c3,c4,c5);
+        Set<Category> categories4 = groupStaff.groupCategories(c2,c4);
+        
+        Set<CookingStyle> cookingStyles1 = groupStaff.groupCookingStyles(cs1,cs2,cs3);
+        Set<CookingStyle> cookingStyles2 = groupStaff.groupCookingStyles(cs2,cs4);
 
-        //Ingredients examples
-        ingredientsRepository.save(new Ingredient("Potatoes"));
-        ingredientsRepository.save(new Ingredient("Honey"));
-        ingredientsRepository.save(new Ingredient("Fish"));
-        ingredientsRepository.save(new Ingredient("Tomatoes"));
-        ingredientsRepository.save(new Ingredient("Milk"));
-        ingredientsRepository.save(new Ingredient("Bread"));
+        Recipe r1 = new Recipe(u1, ingredients1, categories1, cookingStyles1, "Homemade Pizza!", "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!", 
+        "15 min.", "Hard", null, "Acids", 3);
+        Recipe r2 = new Recipe(u1, ingredients4, categories3, cookingStyles2, "Fish with i dont know", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
+        "30 min.", "Hard", null, "Gluten", 10);
+        Recipe r3 = new Recipe(u1, ingredients3, categories4, cookingStyles2, "Avocado Salad", "Your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
+        "45 min.", "Hard", null, "Sugar", 22);
+        Recipe r4 = new Recipe(u2, ingredients2, categories2, cookingStyles2, "Avocado Salad", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
+        "15 min.", "Hard", null, "Milk", 35);
+        Recipe r5 = new Recipe(u2, ingredients1, categories2, cookingStyles2, "Avocado Salad", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
+        "1 h.", "Hard", null, "Honey", 15);
+        recipesRepository.save(r1);
+        recipesRepository.save(r2);
+        recipesRepository.save(r3);
+        recipesRepository.save(r4);
+        recipesRepository.save(r5);
 
-        //Categories examples
-        categoriesRepository.save(new Category("Desserts"));
-        categoriesRepository.save(new Category("Starters"));
-        categoriesRepository.save(new Category("Main"));
-        categoriesRepository.save(new Category("Soups"));
-        categoriesRepository.save(new Category("Salad"));
-        categoriesRepository.save(new Category("Burgers"));
-        categoriesRepository.save(new Category("Pizzas"));
-        categoriesRepository.save(new Category("Smoothies"));
-        categoriesRepository.save(new Category("BreakFast"));
-        categoriesRepository.save(new Category("Brunch"));
-        categoriesRepository.save(new Category("Dinner"));
+        //Comments: User, Content, Subcomments, Likes
+        //template
+        /*              ALL THIS IS ONLY FOR RECIPE NUMBER 1                    */
+        Comment comment1 = new Comment(u3, "Cool", null, 3, r1);
+        Comment comment2 = new Comment(u1, "This is awesome", null, 1, r1);
+                Comment comment3 = new Comment(u2, "Do you eat cheesse?", comment2, 2, r1);
+                        Comment comment4 = new Comment(u1, "Yes i do", comment3, 4, r1);
+                Comment comment5 = new Comment(u4, "Lol what a conversation, so original", comment2, 7, r1);
+                Comment comment6 = new Comment(u1, "Shut the fk up idiot", comment2, 0, r1);
+        
+        //Save coments
+        commentsRepository.save(comment1);
+        commentsRepository.save(comment2); 
+        commentsRepository.save(comment3);
+        commentsRepository.save(comment4);
+        commentsRepository.save(comment5);
+        commentsRepository.save(comment6);
 
-        //Cooking Styles examples
-        cookingStylesRepository.save(new CookingStyle("Vegan"));
-        cookingStylesRepository.save(new CookingStyle("Vegetarian"));
-        cookingStylesRepository.save(new CookingStyle("Mediterranean"));
-        cookingStylesRepository.save(new CookingStyle("American"));
-        cookingStylesRepository.save(new CookingStyle("Asian"));
-        cookingStylesRepository.save(new CookingStyle("Italian"));
-        cookingStylesRepository.save(new CookingStyle("Arabic"));
-        cookingStylesRepository.save(new CookingStyle("Latina"));
+        //THIS SHOULD BE ALWAYS LIKE THIS, THIS WILL UPDATE THE RECIPES WITH THE CORRESPONDING NUMBER OF COMMENTS
+        for(Recipe recipe : recipesRepository.findAll()){
+                recipe.setN_comments(commentsRepository.countByRecipeId(recipe));
+                recipesRepository.save(recipe);
+        }
+        /* _ _ _ _ _ _ _ _ _ _ ALL THIS IS ONLY FOR RECIPE NUMBER 1 _ _ _ _ _ _ _ _ _ _ */
     }
 
 }
