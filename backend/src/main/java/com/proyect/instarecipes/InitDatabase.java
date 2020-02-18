@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
+import com.proyect.instarecipes.repositories.AllergensRepository;
 import com.proyect.instarecipes.repositories.CategoriesRepository;
 import com.proyect.instarecipes.repositories.CommentsRepository;
 import com.proyect.instarecipes.repositories.CookingStylesRepository;
@@ -14,6 +15,7 @@ import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.views.GroupStaff;
 import com.proyect.instarecipes.models.User;
+import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.models.Comment;
 import com.proyect.instarecipes.models.CookingStyle;
@@ -39,6 +41,8 @@ public class InitDatabase {
     private CookingStylesRepository cookingStylesRepository;
     @Autowired
     private CommentsRepository commentsRepository;
+    @Autowired
+    private AllergensRepository allergensRepository;
 
     @PostConstruct
     private void initDatabase() {
@@ -128,6 +132,22 @@ public class InitDatabase {
         cookingStylesRepository.save(cs6);
         cookingStylesRepository.save(cs7);
         cookingStylesRepository.save(cs8);
+
+//Allergen examples
+        Allergen a1 = new Allergen("Peanuts");
+        Allergen a2 = new Allergen("Crustaceans");
+        Allergen a3 = new Allergen("Eggs");
+        Allergen a4 = new Allergen("Soybeans");
+        Allergen a5 = new Allergen("Milk");
+        Allergen a6 = new Allergen("Mustard");
+
+        allergensRepository.save(a1);
+        allergensRepository.save(a2);
+        allergensRepository.save(a3);
+        allergensRepository.save(a4);
+        allergensRepository.save(a5);
+        allergensRepository.save(a6);
+
 
         //Recipes examples
         Set<Ingredient> ingredients1 = groupStaff.groupIngredients(i1,i2,i3);

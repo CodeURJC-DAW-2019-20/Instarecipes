@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.models.CookingStyle;
+import com.proyect.instarecipes.repositories.AllergensRepository;
 import com.proyect.instarecipes.repositories.CategoriesRepository;
 import com.proyect.instarecipes.repositories.CookingStylesRepository;
 import com.proyect.instarecipes.repositories.IngredientsRepository;
@@ -17,48 +18,41 @@ import org.springframework.ui.Model;
 
 @Controller
 public class SearchPageController {
-    // @Autowired
-    // private IngredientsRepository ingredientsRepository;
+
     @Autowired
     private CategoriesRepository categoriesRepository;
     @Autowired
     private CookingStylesRepository cookingStylesRepository;
-    // @Autowired
-    // private AllergensRepository allergensRepository;
     
 
     @PostMapping("/search")
     public String searchPage(Model model, String ingredients, String categories, String cookingStyles, String allergens) {
 
         ArrayList<String> cookingStylesSelected = new ArrayList<String>(Arrays.asList(cookingStyles.split(",")));
-        if(cookingStylesSelected.get(0) != ""){
+        if(cookingStylesSelected.get(0) != ""){ //fix the bug when only 1 is selected :) 
             model.addAttribute("cookingStyles", cookingStylesSelected);
         }
         ArrayList<String> categoriesSelected = new ArrayList<String>(Arrays.asList(categories.split(",")));
         if(categoriesSelected.get(0) != ""){
             model.addAttribute("categories", categoriesSelected);
         }
-        
-        //para mimi
-        // ArrayList<String> allergensSelected = new ArrayList<String>(Arrays.asList(allergens.split(",")));
-        // if(allergensSelected.size()>1){
-        // model.addAttribute("allergens", allergensSelected);
-        // }
-        // ArrayList<String> ingredientsSelected = new ArrayList<String>(Arrays.asList(ingredients.split(",")));
-        // if(ingredientsSelected.size()>1){
-        // model.addAttribute("ingredients", ingredientsSelected);
-        // }
-
+        ArrayList<String> allergensSelected = new ArrayList<String>(Arrays.asList(allergens.split(",")));
+        if(allergensSelected.get(0) != ""){
+            model.addAttribute("allergens", allergensSelected);
+        }
+            ArrayList<String> ingredientsSelected = new ArrayList<String>(Arrays.asList(ingredients.split(",")));
+        if(ingredientsSelected.get(0) != ""){
+            model.addAttribute("ingredients", ingredientsSelected);
+        }
         List<Category> allCategories = categoriesRepository.findAll();
         List<Category> restOfCategories = restCategories(allCategories, categoriesSelected);
         List<CookingStyle> allCookingStyles = cookingStylesRepository.findAll();
         List<CookingStyle> restOfCookingStyles = restCookingStyles(allCookingStyles, cookingStylesSelected);
-        
+
         //Return all the items
         model.addAttribute("allCategories", restOfCategories);
         model.addAttribute("allCookingStyles", restOfCookingStyles);
-        //para mimi
-        //model.addAttribute("allAllergens", allergensRepository.findAll());
+    
 
         return "search-page";
     }

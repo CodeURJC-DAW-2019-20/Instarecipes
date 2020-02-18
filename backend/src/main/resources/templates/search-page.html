@@ -40,16 +40,16 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto" style="margin-right: 20%;">
           <li class="nav-item col-4">
-            <a class="nav-link" href="../templates/index.html"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
+            <a class="nav-link" href="/"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
           </li>
           <li class="nav-item col-4">
-            <a class="nav-link" href="../templates/profile.html"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+            <a class="nav-link" href="profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
           </li>
           <li class="nav-item col-4">
-              <a class="nav-link" href="../templates/ranking.html"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
+              <a class="nav-link" href="ranking"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
           </li>
         </ul>
-        <form class="example" action="../templates/search-page.html" >
+        <form class="example" action="search" >
           <input type="text" placeholder="Search.." name="search">
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
@@ -102,7 +102,25 @@
         </div> -->
 
         <!-- Categories and Cooking Style Widget -->
-        
+
+        <div class="card my-4">
+          <h6 class="card-header">Ingredients</h6>
+            <ul class="ks-cboxtags">
+              {{#ingredients}}
+                <li><input  class="toCheck" type="checkbox" value="{{.}}"><label>{{.}}</label></li> 
+              {{/ingredients}}
+            </ul>
+        </div>
+
+        <div class="card my-4">
+          <h6 class="card-header">Allergens</h6>
+            <ul class="ks-cboxtags">
+              {{#allergens}}
+                <li><input  class="toCheck" type="checkbox" value="{{.}}"><label>{{.}}</label></li> 
+              {{/allergens}}
+            </ul>
+        </div>
+
         <div class="card my-4">
           <h5 class="card-header">Cooking Style</h5>
             <div class="containersearch">
