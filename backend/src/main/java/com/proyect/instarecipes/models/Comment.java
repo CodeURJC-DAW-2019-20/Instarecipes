@@ -15,7 +15,7 @@ public class Comment{
     private Long id;
 
     @OneToOne
-    private User user;
+    private User userComment;
     
     @Column(nullable = false)
     private String content;
@@ -30,8 +30,8 @@ public class Comment{
 
     public Comment() {}
 
-    public Comment(User user, String content, Comment parentAnswer, long likes, Recipe recipe) {
-        this.user = user;
+    public Comment(User userComment, String content, Comment parentAnswer, long likes, Recipe recipe) {
+        this.userComment = userComment;
         this.content = content;
         this.parentAnswer = parentAnswer;
         this.likes = likes;
@@ -46,12 +46,12 @@ public class Comment{
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public User getUserComment() {
+        return userComment;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserComment(User userComment) {
+        this.userComment = userComment;
     }
 
     public String getContent() {
