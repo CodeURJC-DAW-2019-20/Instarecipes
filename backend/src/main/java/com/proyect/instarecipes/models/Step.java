@@ -19,6 +19,7 @@ public class Step{
     
     private int number;
     private String content;
+    private boolean Image;
     // private Image photo;
 
     public Step(){
@@ -60,8 +61,12 @@ public class Step{
         return content;
     }
 
+
     public void setContent(String content) {
         this.content = content;
+    }
+    public void setImage(boolean Image){
+        this.Image=Image;
     }
 
     // public Image getPhoto() {

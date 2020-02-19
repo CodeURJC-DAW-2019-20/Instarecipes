@@ -19,6 +19,7 @@ public class Comment{
     private User user;
     
     private String content;
+    private boolean Image;
 
     @OneToMany
     private Set<Comment> subcomment;
@@ -72,6 +73,9 @@ public class Comment{
 
     public void setLikes(long likes) {
         this.likes = likes;
+    }
+    public void setImage(boolean Image){
+        this.Image=Image;
     }
     
     

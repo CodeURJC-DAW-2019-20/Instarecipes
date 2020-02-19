@@ -30,6 +30,7 @@ public class Recipe{
     private String duration;
     private String difficulty;
     private String allergens;
+    private boolean Image;
     // private Image galery;
 
     //Empty contructor
@@ -137,6 +138,9 @@ public class Recipe{
 
     public void setAllergens(String alergens) {
         this.allergens = alergens;
+    }
+    public void setImage(boolean Image){
+        this.Image=Image;
     }
 
     // public Image getGalery() {
