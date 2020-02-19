@@ -1,6 +1,7 @@
 package com.proyect.instarecipes.models;
 // import java.awt.Image;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +19,7 @@ public class Step{
     private Recipe recipe;
     
     private int number;
+    @Column(length = 500)
     private String content;
     private boolean Image;
     // private Image photo;

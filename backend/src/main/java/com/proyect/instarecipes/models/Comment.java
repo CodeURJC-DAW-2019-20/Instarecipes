@@ -1,12 +1,11 @@
 package com.proyect.instarecipes.models;
 
-import java.util.Set;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -16,23 +15,28 @@ public class Comment{
     private Long id;
 
     @OneToOne
-    private User user;
+    private User userComment;
     
+    @Column(nullable = false)
     private String content;
     private boolean Image;
 
-    @OneToMany
-    private Set<Comment> subcomment;
+    @OneToOne
+    private Comment parentAnswer;
+
+    @ManyToOne
+    private Recipe recipe;
 
     private long likes;
 
     public Comment() {}
 
-    public Comment(User user, String content, Set<Comment> subcomment, long likes) {
-        this.user = user;
+    public Comment(User userComment, String content, Comment parentAnswer, long likes, Recipe recipe) {
+        this.userComment = userComment;
         this.content = content;
-        this.subcomment = subcomment;
+        this.parentAnswer = parentAnswer;
         this.likes = likes;
+        this.recipe = recipe;
     }
 
     public Long getId() {
@@ -43,12 +47,12 @@ public class Comment{
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public User getUserComment() {
+        return userComment;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserComment(User userComment) {
+        this.userComment = userComment;
     }
 
     public String getContent() {
@@ -59,12 +63,12 @@ public class Comment{
         this.content = content;
     }
 
-    public Set<Comment> getSubcomment() {
-        return subcomment;
+    public Comment getParentAnswer() {
+        return parentAnswer;
     }
 
-    public void setSubcomment(Set<Comment> subcomment) {
-        this.subcomment = subcomment;
+    public void setParentAnswer(Comment parentAnswer) {
+        this.parentAnswer = parentAnswer;
     }
 
     public long getLikes() {
@@ -74,8 +78,18 @@ public class Comment{
     public void setLikes(long likes) {
         this.likes = likes;
     }
+<<<<<<< HEAD
     public void setImage(boolean Image){
         this.Image=Image;
+=======
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+>>>>>>> e3d02640d95219d5aef0cf2e1d6653059ce0e393
     }
     
     

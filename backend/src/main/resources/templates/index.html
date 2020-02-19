@@ -42,17 +42,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto" style="margin-right: 20%;">
-          <li class="nav-item col-4">
+          <li class="nav-item col-4" style="max-width: 100%;">
             <a class="nav-link js-scroll-trigger" href="#header-section"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
           </li>
           <li class="nav-item col-4">
             {{#logged}}
-              {{#user}}
                 <a class="nav-link" href="profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
-              {{/user}}
-              {{#admin}}
-                <a class="nav-link" href="admin-profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
-              {{/admin}}
             {{/logged}}
           </li>
           <li class="nav-item col-4">
@@ -272,7 +267,7 @@
           +"<div class=\"col-md-4\">"
             +"<h3>Introduction</h3>"
             +"<p style=\"word-break: break-all;\">{{description}}</p>"
-            +"<a class=\"btn btn-primary\" href=\"#\">Read"
+            +"<a class=\"btn btn-primary\" href=\"/recipes/{{id}}\">Read"
               +"<span class=\"glyphicon glyphicon-chevron-right\"></span>"
             +"</a>"
           +"</div>"
@@ -291,7 +286,7 @@
                +"<div class=\"col-md-4\">"
                  +"<h3>Introduction</h3>"
                  +"<p style=\"word-break: break-all;\">{{description}}</p>"
-                 +"<a class=\"btn btn-primary\" href=\"#\">Read"
+                 +"<a class=\"btn btn-primary\" href=\"/recipes/{{id}}\">Read"
                    +"<span class=\"glyphicon glyphicon-chevron-right\"></span>"
                    +"</a>"
                    +"</div>"

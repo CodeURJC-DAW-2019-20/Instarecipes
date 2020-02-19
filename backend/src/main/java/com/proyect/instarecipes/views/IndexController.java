@@ -33,10 +33,6 @@ public class IndexController {
         model.addAttribute("recipes", recipes);
         return "index";
     }
-    @GetMapping("/profile") 
-    public String profilePage() {
-        return "profile";
-    }
     @GetMapping("/ranking")
     public String rankingPage() {
         return "ranking";
@@ -48,10 +44,6 @@ public class IndexController {
     @GetMapping("/signUp")
     public String signupPage(){
         return "signUp";
-    }
-    @GetMapping("/admin-profile")
-    public String adminProfile() {
-    	return "admin-profile";
     }
 
     @ModelAttribute
