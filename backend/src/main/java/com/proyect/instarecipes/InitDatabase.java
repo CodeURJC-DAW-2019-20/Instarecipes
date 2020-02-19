@@ -199,7 +199,7 @@ public class InitDatabase {
         
         //Comments: User, Content, Subcomments, Likes
         //template
-        /*              ALL THIS IS ONLY FOR RECIPE NUMBER 1                    */
+        /*              ALL THIS IS ONLY FOR RECIPE NUMBER 1               */
         Comment comment1 = new Comment(u3, "Cool", null, 3, r1);
         Comment comment2 = new Comment(u1, "This is awesome", null, 1, r1);
                 Comment comment3 = new Comment(u2, "Do you eat cheesse?", comment2, 2, r1);
@@ -208,12 +208,12 @@ public class InitDatabase {
                 Comment comment6 = new Comment(u1, "Shut the fk up idiot", comment2, 0, r1);
         
         //Save coments
-        commentsRepository.save(comment1);
-        commentsRepository.save(comment2); 
-        commentsRepository.save(comment3);
-        commentsRepository.save(comment4);
-        commentsRepository.save(comment5);
-        commentsRepository.save(comment6);
+        // commentsRepository.save(comment1);
+        // commentsRepository.save(comment2); 
+        // commentsRepository.save(comment3);
+        // commentsRepository.save(comment4);
+        // commentsRepository.save(comment5);
+        // commentsRepository.save(comment6);
 
         //THIS SHOULD BE ALWAYS LIKE THIS, THIS WILL UPDATE THE RECIPES WITH THE CORRESPONDING NUMBER OF COMMENTS
         for(Recipe recipe : recipesRepository.findAll()){

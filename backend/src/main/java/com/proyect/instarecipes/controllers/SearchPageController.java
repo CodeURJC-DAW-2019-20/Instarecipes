@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.models.CookingStyle;
-import com.proyect.instarecipes.repositories.AllergensRepository;
 import com.proyect.instarecipes.repositories.CategoriesRepository;
 import com.proyect.instarecipes.repositories.CookingStylesRepository;
 

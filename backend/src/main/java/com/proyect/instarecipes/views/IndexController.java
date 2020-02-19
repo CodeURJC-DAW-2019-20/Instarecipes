@@ -24,19 +24,21 @@ public class IndexController {
     @GetMapping("/")
     public String indexPage(Model model) {
         List<Recipe> recipes = recipesRepository.findAll();
+        model.addAttribute("size", recipes.size());
         model.addAttribute("recipes", recipes);
         return "index";
     }
     @GetMapping("/index")
     public String indexedPage(Model model) {
         List<Recipe> recipes = recipesRepository.findAll(); //should be sustituted by only following users publications
+        model.addAttribute("size", recipes.size());
         model.addAttribute("recipes", recipes);
         return "index";
     }
-    @GetMapping("/ranking")
-    public String rankingPage() {
-        return "ranking";
-    }
+    // @GetMapping("/ranking")
+    // public String rankingPage() {
+    //     return "ranking";
+    // }
     @GetMapping("/login")
     public String loginPage() {
         return "login";
@@ -48,11 +50,8 @@ public class IndexController {
 
     @ModelAttribute
 	public void addAttributes(Model model) {
-		
 		boolean logged = userSession.getLoggedUser() != null;
         model.addAttribute("logged", logged);
-		//model.addAttribute("notLogged", !logged);
-		
 		if(logged){
 			model.addAttribute("user",userSession.getLoggedUser().getUsername());
 			model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));

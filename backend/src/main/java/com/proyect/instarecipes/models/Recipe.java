@@ -1,5 +1,4 @@
 package com.proyect.instarecipes.models;
-// import java.awt.Image;
 
 import java.util.Set;
 
@@ -151,18 +150,5 @@ public class Recipe{
     public void setN_comments(int n_comments) {
         this.n_comments = n_comments;
     }
-
-	// public int getN_comments() {
-    //     n_comments = comments.size();
-    //     return n_comments;
-	// }
-
-    // public Image getGalery() {
-    //     return galery;
-    // }
-
-    // public void setGalery(Image galery) {
-    //     this.galery = galery;
-    // }
 
 }
