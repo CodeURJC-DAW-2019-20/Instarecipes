@@ -18,12 +18,12 @@ public class RecipePageController{
 		
 		model.addAttribute("recetas", recipes);
 
-		return "Allrecipes";
+		return "index";
 	}
 
     @GetMapping("/recipe/new")
 	public String NewRecipeForm() {
-		return "new_recipe";
+		return "index";
 	}
 
 	@PostMapping("/anuncio/guardar")
@@ -35,19 +35,19 @@ public class RecipePageController{
 		
 		imgService.saveImage("receta", recipe.getId(), imagenFile);
 
-		return "recipe_saved";
+		return "index";
 
 	}
 
 	@GetMapping("/anuncio/{id}")
-	public String verAnuncio(Model model, @PathVariable long id) {
+	public String verRecipe(Model model, @PathVariable long id) {
 
 		Optional<Recipe> recipe = repository.findById(id);
 		if(recipe.isPresent()) {
 			model.addAttribute("receta", recipe.get());
 		}
 		
-		return "show_recipe";
+		return "Simple-recipe";
 	}
 
 
