@@ -6,9 +6,11 @@ import java.util.List;
 
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.models.CookingStyle;
+import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.repositories.AllergensRepository;
 import com.proyect.instarecipes.repositories.CategoriesRepository;
 import com.proyect.instarecipes.repositories.CookingStylesRepository;
+import com.proyect.instarecipes.repositories.IngredientsRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +24,6 @@ public class SearchPageController {
     private CategoriesRepository categoriesRepository;
     @Autowired
     private CookingStylesRepository cookingStylesRepository;
-    
 
     @PostMapping("/search")
     public String searchPage(Model model, String ingredients, String categories, String cookingStyles, String allergens) {
@@ -42,7 +43,8 @@ public class SearchPageController {
             ArrayList<String> ingredientsSelected = new ArrayList<String>(Arrays.asList(ingredients.split(",")));
         if(ingredientsSelected.get(0) != ""){
             model.addAttribute("ingredients", ingredientsSelected);
-        }
+        }        
+
         List<Category> allCategories = categoriesRepository.findAll();
         List<Category> restOfCategories = restCategories(allCategories, categoriesSelected);
         List<CookingStyle> allCookingStyles = cookingStylesRepository.findAll();
