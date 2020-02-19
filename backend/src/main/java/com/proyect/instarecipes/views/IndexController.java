@@ -2,7 +2,15 @@ package com.proyect.instarecipes.views;
 
 import java.util.List;
 
+import com.proyect.instarecipes.models.Allergen;
+import com.proyect.instarecipes.models.Category;
+import com.proyect.instarecipes.models.CookingStyle;
+import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.repositories.AllergensRepository;
+import com.proyect.instarecipes.repositories.CategoriesRepository;
+import com.proyect.instarecipes.repositories.CookingStylesRepository;
+import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.security.UserSession;
 
@@ -21,11 +29,33 @@ public class IndexController {
     @Autowired
     private UserSession userSession;
 
+    @Autowired
+    private IngredientsRepository ingredientsRepository;
+    @Autowired
+    private CookingStylesRepository cookingstylesRepository;
+    @Autowired
+    private AllergensRepository allergensRepository;
+    @Autowired
+    private CategoriesRepository categoriesRepository;
+
+    
     @GetMapping("/")
     public String indexPage(Model model) {
+        //we create a list based on the database info!
         List<Recipe> recipes = recipesRepository.findAll();
         model.addAttribute("size", recipes.size());
+        List<Ingredient> ingredients = ingredientsRepository.findAll();
+        List<CookingStyle> cookingStyles = cookingstylesRepository.findAll();
+        List<Category> categories = categoriesRepository.findAll();
+        List<Allergen> allergens = allergensRepository.findAll();
+
+        //then we add the elements of the list in the model, AKA: we send them with mustache exampl: {{recipes}} 
         model.addAttribute("recipes", recipes);
+        model.addAttribute("ingredientsList", ingredients);
+        model.addAttribute("cookingStylesList", cookingStyles);
+        model.addAttribute("categoriesList", categories);
+        model.addAttribute("allergensList", allergens);
+
         return "index";
     }
     @GetMapping("/index")

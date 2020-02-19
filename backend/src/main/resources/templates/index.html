@@ -306,12 +306,9 @@
                             <!--"Ingredient-Name"-->
                               <input name="ingredients" type="text" list="ingredientslist" placeholder="Ingredient.." style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;">
                               <datalist id="ingredientslist">
-                                <option value="dark chocolate">dark chocolate</option>
-                                <option value="potatoes">potatoes</option>
-                                <option value="oil">oil</option>
-                                <option value="white chocolate">white chocolate</option>
-                                <option value="garlic">garlic</option>
-                                <option value="milk chocolate">milk chocolate</option>
+                                {{#ingredientsList}}
+                                <option value="{{ingredient}}">{{ingredient}}</option>
+                                {{/ingredientsList}}
                               </datalist>
                             </td>
                             <td>
@@ -365,12 +362,9 @@
                             <td>
                               <input name="cookingStyles" type="text" list="cookingStyleslist" placeholder="Type a category.." style="border-radius: 0.5rem;border-width: 0.5px;">
                               <datalist id="cookingStyleslist">
-                                <option value="Vegan">Vegan</option>
-                                <option value="Vegetarian">Vegetarian</option>
-                                <option value="Mediterranean">Mediterranean</option>
-                                <option value="American">American</option>
-                                <option value="Asian">Asian</option>
-                                <option value="Italian">Italian</option>
+                                {{#cookingStylesList}}
+                                <option value="{{cookingStyle}}">{{cookingStyle}}</option>
+                                {{/cookingStylesList}}
                               </datalist>
                             </td>
                             <td>
@@ -410,12 +404,9 @@
                           <td>
                             <input name="categories" type="text" list="categorieslist" placeholder="Type a category.." style="border-radius: 0.5rem;border-width: 0.5px;">
                             <datalist id="categorieslist">
-                              <option value="Desserts">Desserts</option>
-                              <option value="Starters">Starters</option>     
-                              <option value="Main">Main</option> 
-                              <option value="Soups">Soups</option>  
-                              <option value="Salad">Salad</option>   
-                              <option value="Burgers">Burgers</option>   
+                              {{#categoriesList}}
+                              <option value="{{category}}">{{category}}</option>
+                              {{/categoriesList}}
                             </datalist>
                           </td>
                           <td>
@@ -452,12 +443,9 @@
                             <td>
                               <input name="allergens" type="text" list="allergenslist" placeholder="Type an allergen.." style="border-radius: 0.5rem; border-width: 0.5px;">
                               <datalist id="allergenslist">
-                                <option value="Peanuts">Peanuts</option>
-                                <option value="Crustaceans">Crustaceans</option>     
-                                <option value="Eggs">Eggs</option> 
-                                <option value="Soybeans">Soybeans</option>  
-                                <option value="Milk">Milk</option>   
-                                <option value="Mustard">Mustard</option>    
+                                {{#allergensList}}
+                                <option value="{{allergen}}">{{allergen}}</option>
+                                {{/allergensList}}                           
                               </datalist>
                             </td>
                             <td>
