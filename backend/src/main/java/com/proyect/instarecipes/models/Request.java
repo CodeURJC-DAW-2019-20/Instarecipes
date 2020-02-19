@@ -22,10 +22,10 @@ public class Request{
     public Request() {
     }
 
-    public Request(String type, String value) {
+    public Request(String type, String value, User user) {
         this.type = type;
         this.value = value;
-        // this.user = user;
+        this.user = user;
     }
 
     public Long getId() {
@@ -52,12 +52,12 @@ public class Request{
         this.value = value;
     }
 
-    // public User getUser() {
-    //     return user;
-    // }
+    public User getUser() {
+        return user;
+    }
 
-    // public void setUser(User user) {
-    //     this.user = user;
-    // }
+    public void setUser(User user) {
+        this.user = user;
+    }
     
 }

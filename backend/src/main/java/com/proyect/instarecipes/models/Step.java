@@ -1,5 +1,4 @@
 package com.proyect.instarecipes.models;
-// import java.awt.Image;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +20,6 @@ public class Step{
     private int number;
     @Column(length = 500)
     private String content;
-    // private Image photo;
 
     public Step(){
     }
@@ -30,7 +28,6 @@ public class Step{
         this.recipe=recipe;
         this.number=number;
         this.content=contect;
-        // this.photo=photo;
     }
 
     public Recipe getRecipe() {
@@ -65,12 +62,5 @@ public class Step{
     public void setContent(String content) {
         this.content = content;
     }
-
-    // public Image getPhoto() {
-    //     return photo;
-    // }
-
-    // public void setPhoto(Image photo) {
-    //     this.photo = photo;
-    // }
+    
 }

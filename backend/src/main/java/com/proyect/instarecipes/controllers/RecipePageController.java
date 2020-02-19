@@ -1,39 +1,27 @@
 package com.proyect.instarecipes.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.proyect.instarecipes.models.Comment;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.Step;
 import com.proyect.instarecipes.models.User;
-import com.proyect.instarecipes.repositories.CategoriesRepository;
 import com.proyect.instarecipes.repositories.CommentsRepository;
-import com.proyect.instarecipes.repositories.CookingStylesRepository;
-import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.StepsRepository;
-import com.proyect.instarecipes.repositories.UsersRepository;
+import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 @Controller
 public class RecipePageController {
     @Autowired
-    private IngredientsRepository ingredientsRepository;
-    @Autowired
-    private CategoriesRepository categoriesRepository;
-    @Autowired
-    private CookingStylesRepository cookingStylesRepository;
-    @Autowired
-    private UsersRepository usersRepository;
+    private UserSession userSession;
     @Autowired
     private RecipesRepository recipesRepository;
     @Autowired
@@ -64,4 +52,14 @@ public class RecipePageController {
         model.addAttribute("comments", comments);
         return "recipe";
     }
+
+    @ModelAttribute
+	public void addAttributes(Model model) {
+		boolean logged = userSession.getLoggedUser() != null;
+        model.addAttribute("logged", logged);
+		if(logged){
+			model.addAttribute("user",userSession.getLoggedUser().getUsername());
+			model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
+		}
+	}
 }
