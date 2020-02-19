@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.repositories.RecipesRepository;
-import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
