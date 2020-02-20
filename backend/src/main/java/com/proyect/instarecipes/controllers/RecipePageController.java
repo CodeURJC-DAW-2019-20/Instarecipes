@@ -54,9 +54,7 @@ public class RecipePageController {
 
         // Comments
         List<Comment> comments = commentsRepository.findAllByRecipe(recipe);
-        int n_comments;
-        for (n_comments = 0; n_comments < comments.size(); n_comments++);
-        model.addAttribute("n_comments", n_comments);
+        model.addAttribute("n_comments", comments.size());
         model.addAttribute("comments", comments);
         return "recipe";
     }

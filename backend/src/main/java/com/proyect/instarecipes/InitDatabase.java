@@ -202,12 +202,20 @@ public class InitDatabase {
                 stepsRepository.save(step2);
                 stepsRepository.save(step3);
 
-                // Create images
-                File file1 = new File("/Users/hamsaaldrobi/Documents/GitHub/webapp8/backend/src/main/resources/static/images/Recipes/chicken_recipe.jpg");
-                File file2 = new File("/Users/hamsaaldrobi/Documents/GitHub/webapp8/backend/src/main/resources/static/images/Recipes/chicken_potatoes.jpg");
-                File file3 = new File("/Users/hamsaaldrobi/Documents/GitHub/webapp8/backend/src/main/resources/static/images/Recipes/potatoes_recipe.jpg");
-                File file4 = new File("/Users/hamsaaldrobi/Documents/GitHub/webapp8/backend/src/main/resources/static/images/Recipes/potatoes_chicken_recipe.jpg");
-                File file5 = new File("/Users/hamsaaldrobi/Documents/GitHub/webapp8/backend/src/main/resources/static/images/Recipes/recipe_example_7.jpg");
+                try {
+                        String path = new File(".").getCanonicalPath();
+                        System.out.println("ESTO ES EL DIRECTORIO: " + path);
+                } catch (IOException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                }
+
+                // Create images / Canonical folder is backend!!!
+                File file1 = new File("src/main/resources/static/images/Recipes/chicken_recipe.jpg");
+                File file2 = new File("src/main/resources/static/images/Recipes/chicken_potatoes.jpg");
+                File file3 = new File("src/main/resources/static/images/Recipes/potatoes_recipe.jpg");
+                File file4 = new File("src/main/resources/static/images/Recipes/potatoes_chicken_recipe.jpg");
+                File file5 = new File("src/main/resources/static/images/Recipes/recipe_example_7.jpg");
                 FileInputStream input1 = new FileInputStream(file1);
                 FileInputStream input2 = new FileInputStream(file2);
                 FileInputStream input3 = new FileInputStream(file3);

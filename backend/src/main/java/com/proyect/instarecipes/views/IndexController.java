@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.List;
 
 import com.proyect.instarecipes.security.ImageService;
+import com.proyect.instarecipes.models.Comment;
 import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.repositories.CommentsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.security.UserSession;
 
@@ -22,6 +24,8 @@ public class IndexController {
 
     @Autowired
     private RecipesRepository recipesRepository;
+    @Autowired
+    private CommentsRepository commentsRepository;
     @Autowired
     private UserSession userSession;
     @Autowired
@@ -75,6 +79,8 @@ public class IndexController {
         imageService.saveImage("recipes", r.getId(), imageFile);
         List<Recipe> recipes = recipesRepository.findAll();
         model.addAttribute("recipes", recipes);
+        List<Comment> comments = commentsRepository.findAllByRecipe(recipe);
+        model.addAttribute("n_comments", comments.size());
         return "index";
     }
 }
