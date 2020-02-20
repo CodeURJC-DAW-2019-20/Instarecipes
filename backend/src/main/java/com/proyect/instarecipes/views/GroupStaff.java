@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.models.Comment;
 import com.proyect.instarecipes.models.CookingStyle;
@@ -36,5 +37,9 @@ public class GroupStaff{
 
 	public Set<Comment> groupComments(Comment... comments) {
 		return new HashSet<>(Arrays.asList(comments));
+	}
+
+	public Set<Allergen> groupAllergens(Allergen... allergens) {
+		return new HashSet<>(Arrays.asList(allergens));
 	}
 }

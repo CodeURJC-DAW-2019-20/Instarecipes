@@ -1,7 +1,10 @@
 package com.proyect.instarecipes.repositories;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.User;
 
@@ -22,7 +25,17 @@ public interface RecipesRepository extends JpaRepository<Recipe, Long> {
     @Query("SELECT r.id, r.title, r.description, r.username.id, r.username.username, r.username.name, r.username.surname, r.likes FROM Recipe r")
     Page<Recipe> findAllRecipes(Pageable page);
 
-    // SELECT r.username_id, SUM(r.likes) AS total FROM instarecipes_db.recipe r GROUP BY r.username_id ORDER BY total DESC;
     @Query("SELECT r.username.username, SUM(r.likes) AS total FROM Recipe r GROUP BY r.username.username ORDER BY total DESC")
 	Page<Recipe> findTopTen(Pageable page);
+    
+    @Query("SELECT DISTINCT r FROM Recipe r "
+    + "INNER JOIN r.ingredients ing INNER JOIN r.categories cat INNER JOIN r.allergens ale INNER JOIN r.cookingStyles cok WHERE "
+    + "(ing.ingredient IN :ingredients) OR "
+    + "(cat.category IN :categories) OR "
+    + "(ale.allergen IN :allergens) OR "
+    + "(cok.cookingStyle IN :cookingStyles)")
+    List<Recipe> findFilteredSearch(ArrayList<String> ingredients, 
+                                    ArrayList<String> categories, 
+                                    ArrayList<String> allergens, 
+                                    ArrayList<String> cookingStyles);
 }

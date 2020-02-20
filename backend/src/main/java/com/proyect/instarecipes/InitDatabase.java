@@ -164,16 +164,19 @@ public class InitDatabase {
         Set<CookingStyle> cookingStyles1 = groupStaff.groupCookingStyles(cs1,cs2,cs3);
         Set<CookingStyle> cookingStyles2 = groupStaff.groupCookingStyles(cs2,cs4);
 
-        Recipe r1 = new Recipe(u1, ingredients1, categories1, cookingStyles1, "Homemade Pizza!", "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!", 
-        "15 min.", "Hard", "Acids", 3);
-        Recipe r2 = new Recipe(u1, ingredients4, categories3, cookingStyles2, "Fish with i dont know", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
-        "30 min.", "Hard", "Gluten", 10);
-        Recipe r3 = new Recipe(u1, ingredients3, categories4, cookingStyles2, "Avocado Salad", "Your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
-        "45 min.", "Hard", "Sugar", 22);
-        Recipe r4 = new Recipe(u2, ingredients2, categories2, cookingStyles2, "Avocado Salad", "This Sheet Pan Garlic Herb Butter Chicken recipe is low in fat and absolutely incredible. So buttery with so much flavour, it TASTES so sinful yet contains half the fat of a regular butter sauce that no one knows the difference!", 
-        "15 min.", "Hard", "Milk", 35);
-        Recipe r5 = new Recipe(u2, ingredients1, categories2, cookingStyles2, "Avocado Salad", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
-        "1 h.", "Hard", "Honey", 15);
+        Set<Allergen> allergens1 = groupStaff.groupAllergens(a1,a2,a3);
+        Set<Allergen> allergens2 = groupStaff.groupAllergens(a4,a5,a6);
+
+        Recipe r1 = new Recipe(u1, ingredients1, categories1, cookingStyles1, allergens1, "Homemade Pizza!", "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!", 
+        "15 min.", "Hard", 3);
+        Recipe r2 = new Recipe(u1, ingredients4, categories3, cookingStyles2, allergens2, "Fish with i dont know", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
+        "30 min.", "Hard", 10);
+        Recipe r3 = new Recipe(u1, ingredients3, categories4, cookingStyles2, allergens1, "Avocado Salad", "Your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
+        "45 min.", "Hard", 22);
+        Recipe r4 = new Recipe(u2, ingredients2, categories2, cookingStyles2, allergens2, "Avocado Salad", "This Sheet Pan Garlic Herb Butter Chicken recipe is low in fat and absolutely incredible. So buttery with so much flavour, it TASTES so sinful yet contains half the fat of a regular butter sauce that no one knows the difference!", 
+        "15 min.", "Hard", 35);
+        Recipe r5 = new Recipe(u2, ingredients1, categories2, cookingStyles2, allergens1, "Avocado Salad", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
+        "1 h.", "Hard", 15);
         //Steps for r4(for example)
         Step step11 = new Step(r4, 1, "Preheat oven to 425 degrees F (220 degrees C). Lightly oil a large roasting pan.");
         Step step22 = new Step(r4, 2, "Place chicken pieces in large bowl. Season with salt, oregano, pepper, rosemary, and cayenne pepper. Add fresh lemon juice, olive oil, and garlic. Place potatoes in bowl with the chicken; stir together until chicken and potatoes are evenly coated with marinade.");

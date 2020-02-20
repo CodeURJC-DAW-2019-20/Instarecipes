@@ -25,12 +25,13 @@ public class Recipe{
     private Set<Category> categories;
     @ManyToMany
     private Set<CookingStyle> cookingStyles;
+    @ManyToMany
+    private Set<Allergen> allergens;
 
     private String title;
     private String description;
     private String duration;
     private String difficulty;
-    private String allergens;
 
     private int likes;
     private int n_comments;
@@ -41,7 +42,7 @@ public class Recipe{
 
     //Constructor with all atributes
     public Recipe(User username, Set<Ingredient> ingredients, Set<Category> categories, Set<CookingStyle> cookingStyles,
-    String title, String description, String duration, String difficulty, String allergens, int likes) {
+    Set<Allergen> allergens, String title, String description, String duration, String difficulty, int likes) {
         this.username = username;
         this.ingredients = ingredients;
         this.categories = categories;
@@ -127,11 +128,11 @@ public class Recipe{
         this.difficulty = difficulty;
     }
 
-    public String getAllergens() {
+    public Set<Allergen> getAllergens() {
         return this.allergens;
     }
 
-    public void setAllergens(String alergens) {
+    public void setAllergens(Set<Allergen> alergens) {
         this.allergens = alergens;
     }
 

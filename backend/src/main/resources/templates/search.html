@@ -31,7 +31,7 @@
       <div id="img-navbar-container">
         <img class="img-navbar" src="images/icons/instarecipes.png" alt="">
       </div>
-      <a class="navbar-brand js-scroll-trigger" href="../templates/index.html">&nbsp;Instarecipes</a>
+      <a class="navbar-brand js-scroll-trigger" href="index">&nbsp;Instarecipes</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" 
       type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" 
       aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +78,7 @@
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="../templates/index.html">Home</a>
+        <a href="index">Home</a>
       </li>
       <li class="breadcrumb-item active">Search</li>
     </ol>
@@ -148,51 +148,39 @@
           </div>       
         </div>
       </div>
-      <!-- Blog Entries Column -->
+      <!-- Recipes Entries Column -->
       <div class="col-md-8">
-
-        <!-- Blog Post -->
+        {{#recipesFound}}
+        <!-- Recipe Post -->
         <div class="card mb-4">
           <img class="card-img-top" src="images/Recipes/chicken_potatoes_recipe.jpg" alt="Card image cap">
           <div class="card-body">
-            <h2 class="card-title">Post Title</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="#" class="btn btn-primary">Read More &rarr;</a>
+            <h2 class="card-title">{{title}}</h2>
+            <p class="card-text">{{description}}</p>
+            <div class="row">
+              <div class="col-2" style="align-self: flex-end;">
+                <img class="d-flex mr-3 rounded-circle profile-border\" src="../images/icons/avatar.svg">
+              </div>
+              <div class="col-4" style="align-self: flex-end;">
+                <h5>{{username.name}}&nbsp;{{username.surname}}</h5>
+                <p>@{{username.username}}</p>
+              </div>
+              <div class="col-4 scrolling" style="align-self: flex-end;height: 100px;">
+                <p style="background-color: rgba(127, 255, 212, 0.2);border-radius: 0.8rem;"><strong>Ingredients:</strong>&nbsp;{{#ingredients}}{{ingredient}}, {{/ingredients}}..</p>
+                <p style="background-color: rgba(171, 255, 46, 0.2);border-radius: 0.8rem;"><strong>Allergens:</strong>&nbsp;{{#allergens}}{{allergen}}, {{/allergens}}..</p>
+                <p style="background-color: rgba(191, 191, 191, 0.3);border-radius: 0.8rem;"><strong>Cooking Styles:</strong>&nbsp;{{#cookingStyles}}{{cookingStyle}}, {{/cookingStyles}}..</p>
+                <p style="background-color: rgba(255, 185, 127, 0.3);border-radius: 0.8rem;"><strong>Categories:</strong>&nbsp;{{#categories}}{{category}}, {{/categories}}..</p>
+              </div>
+              <div class="col-2" style="align-self: flex-end;">
+                <a href="/recipes/{{id}}" class="btn btn-primary">Try &rarr;</a>
+              </div>
+            </div>
           </div>
           <div class="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
+            Posted on 17/01/2020
           </div>
         </div>
-
-        <!-- Blog Post -->
-        <div class="card mb-4">
-          <img class="card-img-top" src="images/Recipes/recipe_example_6.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h2 class="card-title">Post Title</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="#" class="btn btn-primary">Read More &rarr;</a>
-          </div>
-          <div class="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
-          </div>
-        </div>
-
-        <!-- Blog Post -->
-        <div class="card mb-4">
-          <img class="card-img-top" src="images/Recipes/recipe_example_7.jpg" alt="Card image cap">
-          <div class="card-body">
-            <h2 class="card-title">Post Title</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="#" class="btn btn-primary">Read More &rarr;</a>
-          </div>
-          <div class="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
-          </div>
-        </div>
-
+        {{/recipesFound}}
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">
           <li class="page-item">
@@ -202,15 +190,11 @@
             <a class="page-link" href="#">Newer &rarr;</a>
           </li>
         </ul>
-
       </div>
-
     </div>
     <!-- /.row -->
-
   </div>
   <!-- /.container -->
-
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
@@ -232,7 +216,7 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/freelancer.min.js"></script>
-  <script src="js/search-page.js"></script>
+  <script src="js/search.js"></script>
 </body>
 
 </html>

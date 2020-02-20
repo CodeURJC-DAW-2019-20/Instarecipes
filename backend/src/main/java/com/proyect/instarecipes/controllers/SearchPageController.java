@@ -3,11 +3,14 @@ package com.proyect.instarecipes.controllers;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.models.CookingStyle;
+import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.repositories.CategoriesRepository;
 import com.proyect.instarecipes.repositories.CookingStylesRepository;
+import com.proyect.instarecipes.repositories.RecipesRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +24,8 @@ public class SearchPageController {
     private CategoriesRepository categoriesRepository;
     @Autowired
     private CookingStylesRepository cookingStylesRepository;
+    @Autowired
+    private RecipesRepository recipesRepository;
 
     @PostMapping("/search")
     public String searchPage(Model model, String ingredients, String categories, String cookingStyles, String allergens) {
@@ -40,7 +45,7 @@ public class SearchPageController {
             ArrayList<String> ingredientsSelected = new ArrayList<String>(Arrays.asList(ingredients.split(",")));
         if(ingredientsSelected.get(0) != ""){
             model.addAttribute("ingredients", ingredientsSelected);
-        }        
+        }
 
         List<Category> allCategories = categoriesRepository.findAll();
         List<Category> restOfCategories = restCategories(allCategories, categoriesSelected);
@@ -50,9 +55,14 @@ public class SearchPageController {
         //Return all the items
         model.addAttribute("allCategories", restOfCategories);
         model.addAttribute("allCookingStyles", restOfCookingStyles);
-    
 
-        return "search-page";
+        //Search by items
+        // List<Recipe> recipesFounded = recipesRepository.findAll();
+        List<Recipe> recipesFounded = recipesRepository.findFilteredSearch(ingredientsSelected,categoriesSelected,allergensSelected,cookingStylesSelected);
+        System.out.println("LISTA: " + recipesFounded);
+        model.addAttribute("recipesFound", recipesFounded);
+
+        return "search";
     }
 
     //Better option filter db but so dificult
