@@ -51,4 +51,12 @@ public class Ingredient {
         this.quantity = quantity;
     }
 
+    public String getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(String ingredient) {
+        this.ingredient = ingredient;
+    }
+
 }
