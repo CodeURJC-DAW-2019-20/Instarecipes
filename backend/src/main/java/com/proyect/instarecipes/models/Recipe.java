@@ -32,6 +32,7 @@ public class Recipe{
     private String description;
     private String duration;
     private String difficulty;
+    private boolean image;
 
     private int likes;
     private int n_comments;
@@ -134,6 +135,12 @@ public class Recipe{
 
     public void setAllergens(Set<Allergen> alergens) {
         this.allergens = alergens;
+    }
+    public void setImage(boolean image){
+        this.image=image;
+    }
+    public boolean getImage(){
+        return this.image;
     }
 
     public int getLikes() {

@@ -92,11 +92,11 @@
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
         <div class="carousel-item active">
-          <img src="../images/Recipes/recipe_example_5.jpg" class="img-blur" width="100%">
+          <img src="images/Recipes/recipe_example_5.jpg" class="img-blur" width="100%">
           <div class="trending-pub">
             <div class="row" style="height: 100%; margin-left: 0; margin-right: 0;">
               <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);">
-                <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
+                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
               </div>
               <div class="col-md-4">
                 <h3>Introduction</h3>
@@ -115,13 +115,13 @@
                 <div class="likes-comments-top-right">
                   <div class="row" style="margin-right: 0;margin-left: 0;">
                     <div class="col-3">
-                      <img class="icon-fluid" src="../images/icons/like_pressed.png" alt="">
+                      <img class="icon-fluid" src="images/icons/like_pressed.png" alt="">
                     </div>
                     <div class="col-3">
                       <p class="icon-fluid pub-date-text">84</p>
                     </div>
                     <div class="col-3">
-                      <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
+                      <img class="icon-fluid" src="images/icons/dialogue.png" alt="">
                     </div>
                     <div class="col-3">
                       <p class="icon-fluid pub-date-text">203</p>
@@ -138,7 +138,7 @@
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
         <div class="carousel-item">
-          <img src="../images/Recipes/recipe_example_6.jpg" class="img-blur" width="100%">
+          <img src="images/Recipes/recipe_example_6.jpg" class="img-blur" width="100%">
           <div class="trending-pub">
             <div class="row" style="height: 100%; margin-left: 0; margin-right: 0;">
               <div class="col-md-7" style="height: inherit; padding-left: 0; padding-right: 0;">
@@ -149,13 +149,13 @@
                 <div class="likes-comments-top-left">
                   <div class="row" style="margin-right: 0;margin-left: 0;">
                     <div class="col-3">
-                      <img class="icon-fluid" src="../images/icons/like_pressed.png" alt="">
+                      <img class="icon-fluid" src="images/icons/like_pressed.png" alt="">
                     </div>
                     <div class="col-3">
                       <p class="icon-fluid pub-date-text">84</p>
                     </div>
                     <div class="col-3">
-                      <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
+                      <img class="icon-fluid" src="images/icons/dialogue.png" alt="">
                     </div>
                     <div class="col-3">
                       <p class="icon-fluid pub-date-text">203</p>
@@ -173,7 +173,7 @@
                 </a>
               </div>
               <div class="col-lg-1" style="align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);">
-                <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
+                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
               </div>
             </div>
           </div>
@@ -188,7 +188,7 @@
           <div class="trending-pub">
             <div class="row" style="height: 100%; margin-left: 0; margin-right: 0;">
               <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);">
-                <img class="d-flex mr-3 rounded-circle profile-border" src="../images/icons/avatar.svg" alt="">
+                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
               </div>
               <div class="col-md-4">
                 <h3>Introduction</h3>
@@ -207,13 +207,13 @@
                 <div class="likes-comments-top-right">
                   <div class="row" style="margin-right: 0;margin-left: 0;">
                     <div class="col-3">
-                      <img class="icon-fluid" src="../images/icons/like_pressed.png" alt="">
+                      <img class="icon-fluid" src="images/icons/like_pressed.png" alt="">
                     </div>
                     <div class="col-3">
                       <p class="icon-fluid pub-date-text">84</p>
                     </div>
                     <div class="col-3">
-                      <img class="icon-fluid" src="../images/icons/dialogue.png" alt="">
+                      <img class="icon-fluid" src="images/icons/dialogue.png" alt="">
                     </div>
                     <div class="col-3">
                       <p class="icon-fluid pub-date-text">203</p>
@@ -246,6 +246,7 @@
     <!-- Recent recipes -->
     <div id="recipes-container">
     </div>
+
     <hr width="80%">
     <!-- Ajax load more button -->
     <div class="loadmore-container">
@@ -259,7 +260,7 @@
     <div id="open-add-button" class='flotating-button'>
       <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-add-button" id="load-recipe-btn"
         style="width: max-content">
-        <img src='../images/icons/flotating_button.png' width="50%" style="height: 50px; width: 50px;" />
+        <img src='images/icons/flotating_button.png' width="50%" style="height: 50px; width: 50px;" />
       </div>
     </div>
 
@@ -513,7 +514,7 @@
                 </div>
                 <div class="divider-custom-line"></div>
               </div>
-              <form method="post" action="/">
+              <form method="post" action="/" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-8" style="justify-content: center; height: 100%;">
                     <!-- Recipe section -->
@@ -521,8 +522,7 @@
                       <h3 class="underlined-text">Recipe name*</h3>
                       <div id="titleCountChar"></div>
                       <input onkeyup="titleCountChar(this)" class="input100" type="text" name="title"
-                        placeholder="Recipe name"
-                        style="padding:10px;width: 100%;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)">
+                        placeholder="Recipe name" style="padding:10px;width: 100%;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)">
                     </div>
                     <hr>
                     <!-- Introduction section -->
@@ -536,7 +536,7 @@
                     <div class="btn-outline-primary" style="border-radius:0.5rem;
                     border:1px solid rgb(23, 162, 184); align-self:center;z-index: 1050;
                     text-align:center;padding:0;right:0;width:25%;position:absolute;cursor:pointer">
-                      <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
+                      <input type="file" name="imageFile" accept=".jpg, .jpeg"/><i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i></input>
                     </div>
                     <fieldset id="steps-form" name="steps" class="nav-item dropdown wrap-input50 m-b-23"
                       style="text-align: initial;">
@@ -610,7 +610,9 @@
                     </select>
                   </div>
                 </div>
-                <input type='submit' value='Post' class="btn btn-primary" style="margin-top: 20px;"></input>
+                <button type='submit' value='Post' class="btn btn-primary" style="margin-top: 20px;">
+                  <input type="hidden" name="_csrf" value="{{token}}"/>
+                </button>
               </form>
             </div>
           </div>
@@ -702,7 +704,7 @@
                     $('#recipes-container').append("<div class=\"row\">"
                       +"<div class=\"col-md-7\">"
                       +"<a href=\"#\">"
-                      +"<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"../images/Recipes/recipe_example_1.jpg\">"
+                        +"<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"temp/recipes/image-"+Object.values(item)[0]+".jpg\">"
                       +"</a>"
                       +"<div class=\"likes-comments-top-left\">"
                       +"<div class=\"row\" style=\"margin-right: 0;margin-left: 0;\">"
@@ -753,7 +755,7 @@
                         +"</div>"
                         +"<div class=\"col-md-7\">"
                         +"<a href=\"#\">"
-                        +"<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"../images/Recipes/recipe_example_4.jpg\">"
+                        +"<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"temp/recipes/image-"+Object.values(item)[0]+".jpg\">"
                         +"</a>"
                         +"<div class=\"likes-comments-top-right\">"
                         +"<div class=\"row\" style=\"margin-right: 0;margin-left: 0;\">"
@@ -786,7 +788,7 @@
                     document.getElementById("loadmore1").setAttribute("hidden", "");
                   }
             });
-        })
+        });
       })
     </script>
 

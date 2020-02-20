@@ -19,6 +19,7 @@ public class Comment{
     
     @Column(nullable = false)
     private String content;
+    private boolean image;
 
     @OneToOne
     private Comment parentAnswer;
@@ -77,7 +78,9 @@ public class Comment{
     public void setLikes(long likes) {
         this.likes = likes;
     }
-
+    public void setImage(boolean image){
+        this.image=image;
+    }
     public Recipe getRecipe() {
         return recipe;
     }

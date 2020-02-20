@@ -1,13 +1,13 @@
 package com.proyect.instarecipes.controllers;
+import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.repositories.RecipesRepository;
 
 import java.util.List;
 
 import com.proyect.instarecipes.models.Comment;
-import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.Step;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.CommentsRepository;
-import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.security.UserSession;
 
@@ -31,9 +31,11 @@ public class RecipePageController {
 
     @GetMapping("/recipes/{id}")
     public String searchPage(Model model, @PathVariable Long id) {
+
+        // User of the recipe
         User user = recipesRepository.findUsernameByRecipeId(id);
-        System.out.println("USUARIO: " + user.getUsername());
         model.addAttribute("user", user);
+
         // Number of publications and total likes
         List<Recipe> recipes = recipesRepository.findByUsernameId(user.getId());
         int likes = 0;
@@ -42,13 +44,20 @@ public class RecipePageController {
             likes = likes + recipes.get(pubs).getLikes();
         }
         model.addAttribute("n_publications", pubs);
-        model.addAttribute("n_likes", likes); 
+        model.addAttribute("n_likes", likes);
+
+        // // Recipe
         Recipe recipe = recipesRepository.findRecipeById(id);
         model.addAttribute("recipe", recipe);
+
+        // Number of all steps
         List<Step> steps = stepsRepository.findAllByRecipe(recipe);
         model.addAttribute("n_steps", steps.size());
         model.addAttribute("steps", steps);
+
+        // Comments
         List<Comment> comments = commentsRepository.findAllByRecipe(recipe);
+        model.addAttribute("n_comments", comments.size());
         model.addAttribute("comments", comments);
         return "recipe";
     }
