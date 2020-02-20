@@ -32,13 +32,10 @@ public class Recipe{
     private String duration;
     private String difficulty;
     private String allergens;
-<<<<<<< HEAD
-    private boolean Image;
-=======
+    private boolean image;
 
     private int likes;
     private int n_comments;
->>>>>>> e3d02640d95219d5aef0cf2e1d6653059ce0e393
     // private Image galery;
 
     //Empty contructor
@@ -139,8 +136,11 @@ public class Recipe{
     public void setAllergens(String alergens) {
         this.allergens = alergens;
     }
-    public void setImage(boolean Image){
-        this.Image=Image;
+    public void setImage(boolean image){
+        this.image=image;
+    }
+    public boolean getImage(){
+        return this.image;
     }
 
     public int getLikes() {

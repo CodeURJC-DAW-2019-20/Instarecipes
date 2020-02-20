@@ -1,4 +1,4 @@
-package es.codeurjc.daw;
+package com.proyect.instarecipes.security;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -20,12 +20,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class ImageService implements WebMvcConfigurer {
 
-	private static final Path FILES_FOLDER = Paths.get(System.getProperty("user.dir"), "images");
+	private static final Path FILES_FOLDER = Paths.get(System.getProperty("user.dir"), "temp");
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-		registry.addResourceHandler("/images/**")
+		registry.addResourceHandler("/temp/**")
 				.addResourceLocations("file:" + FILES_FOLDER.toAbsolutePath().toString() + "/");
 		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
 	}

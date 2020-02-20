@@ -19,7 +19,7 @@ public class Comment{
     
     @Column(nullable = false)
     private String content;
-    private boolean Image;
+    private boolean image;
 
     @OneToOne
     private Comment parentAnswer;
@@ -78,18 +78,15 @@ public class Comment{
     public void setLikes(long likes) {
         this.likes = likes;
     }
-<<<<<<< HEAD
-    public void setImage(boolean Image){
-        this.Image=Image;
-=======
-
+    public void setImage(boolean image){
+        this.image=image;
+    }
     public Recipe getRecipe() {
         return recipe;
     }
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
->>>>>>> e3d02640d95219d5aef0cf2e1d6653059ce0e393
     }
     
     

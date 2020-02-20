@@ -40,12 +40,10 @@ public class User{
 	// private Image background;
 	// private Image avatar;
 	private String allergens;
-<<<<<<< HEAD
-	private boolean Image;
-	@column(nullable=false);
-=======
+	private boolean image;
+	
+	@Column(nullable = false)
 	private String info;
->>>>>>> e3d02640d95219d5aef0cf2e1d6653059ce0e393
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<User> followers; //Set is like a collection of an objets that the items couldn't be repeated
@@ -153,8 +151,8 @@ public class User{
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-	public void setImage(boolean Image){
-        this.Image=Image;
+	public void setImage(boolean image){
+        this.image=image;
     }
 
 	public String toString(){
