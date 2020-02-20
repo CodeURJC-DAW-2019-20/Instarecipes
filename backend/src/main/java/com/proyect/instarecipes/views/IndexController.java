@@ -77,7 +77,10 @@ public class IndexController {
     public String signupPage(){
         return "signUp";
     }
-
+    @GetMapping("/search")
+    public String searchPage(){
+        return "search-page";
+    }
     @ModelAttribute
 	public void addAttributes(Model model) {
 		boolean logged = userSession.getLoggedUser() != null;
