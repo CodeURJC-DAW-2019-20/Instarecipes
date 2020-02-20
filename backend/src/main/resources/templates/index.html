@@ -26,7 +26,7 @@
   <link href="../css/freelancer.css" rel="stylesheet">
 
   <!-- load recipes with AJAX and jQuery-->
-  <script src="../static/js/load-recipe.js"></script>
+  <script src="../static/js/load_recipe.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 </head>
@@ -311,13 +311,13 @@
                                 {{/ingredientsList}}
                               </datalist>
                             </td>
-                            <td>
-                              <!--"Ingredient-Quantity"-->
+                           <!-- <td>
+                              <!--"Ingredient-Quantity"
                               <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text"
                                 name="quantity" placeholder="Quantity">
                             </td>
                             <td>
-                              <!--"Ingredient-Unit"-->
+                              <!--"Ingredient-Unit"
                               <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text"
                                 name="units" list="unit" placeholder="Units">
                               <datalist id="ingredientsunit">
@@ -325,7 +325,7 @@
                                 <option value="Kg./L"></option>
                                 <option value="Units"></option>
                               </datalist>
-                            </td>
+                            </td>-->
                             <td>
                               <button id="Ing-delete-button" type="button" class="btn-delete-line"
                                 style="color: white; font-size: inherit;" onclick="delRowIngredient(this)">
@@ -566,13 +566,12 @@
                     </fieldset>
                     <hr>
                     <h3 class="underlined-text">Category</h3>
-                    <div class="btn btn-secondary"
+                    <div id="add-category" class="btn btn-secondary"
                       style="width: 100%; border-radius: 0.8rem;background-color: steelblue;cursor: pointer;">
-                      <input id="add-category" name="category" class="fa fa-plus add"
-                        style="color: white;font-size: inherit;">
+                      <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                       <!-- <i  aria-hidden="true"></i> -->
-                    </div>
-                    <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;">
+                  </div>
+                    <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;" name="categories">
                     </fieldset>
                     <hr>
                     <h3 class="underlined-text">Difficulty</h3>
@@ -667,8 +666,8 @@
   <script src="../js/freelancer.min.js"></script>
 
   <!-- Add a recipe js -->
-  <script src="../js/add-recipe.js"></script>
-  <script src="../js/filter-search-btn.js"></script>
+  <script src="../js/add_recipe.js"></script>
+  <script src="../js/filter_search_btn.js"></script>
 
   <script type="text/javascript">
       var aux = false;

@@ -19,17 +19,17 @@ Add_Ing_Button.onclick = function insRowIngredient() {
     var totalRows = table.rows.length;
     var new_row = table.rows[0].cloneNode(true);
     var inp1 = new_row.cells[0].getElementsByTagName('input')[0]; //ingredient
-    var inp2 = new_row.cells[1].getElementsByTagName('input')[0]; //quantity
-    var inp3 = new_row.cells[2].getElementsByTagName('input')[0]; //unit
+    //var inp2 = new_row.cells[1].getElementsByTagName('input')[0]; //quantity
+    //var inp3 = new_row.cells[2].getElementsByTagName('input')[0]; //unit
     
     inp1.id += totalRows;
     inp1.value = ''; //new slot empty!
    
-    inp2.id += totalRows;
+    /*inp2.id += totalRows;
     inp2.value = ''; //new slot empty!
 
     inp3.id += totalRows;
-    inp3.value = ''; //new slot empty!
+    inp3.value = ''; //new slot empty!*/
 
     table.appendChild(new_row);
 }
