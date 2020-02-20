@@ -54,17 +54,22 @@ public class IndexController {
         //we create a list based on the database info!
         List<Recipe> recipes = recipesRepository.findAll();
         model.addAttribute("size", recipes.size());
-        List<Ingredient> ingredients = ingredientsRepository.findAll();
-        List<CookingStyle> cookingStyles = cookingstylesRepository.findAll();
-        List<Category> categories = categoriesRepository.findAll();
-        List<Allergen> allergens = allergensRepository.findAll();
-
-        //then we add the elements of the list in the model, AKA: we send them with mustache exampl: {{recipes}} 
         model.addAttribute("recipes", recipes);
-        model.addAttribute("ingredientsList", ingredients);
-        model.addAttribute("cookingStylesList", cookingStyles);
-        model.addAttribute("categoriesList", categories);
-        model.addAttribute("allergensList", allergens);
+        // List<Ingredient> ingredients = ingredientsRepository.findAll();
+        // List<CookingStyle> cookingStyles = cookingstylesRepository.findAll();
+        // List<Category> categories = categoriesRepository.findAll();
+        // List<Allergen> allergens = allergensRepository.findAll();
+
+        // //then we add the elements of the list in the model, AKA: we send them with mustache exampl: {{recipes}} 
+        // model.addAttribute("recipes", recipes);
+        // model.addAttribute("ingredientsList", ingredients);
+        // model.addAttribute("cookingStylesList", cookingStyles);
+        // model.addAttribute("categoriesList", categories);
+        // model.addAttribute("allergensList", allergens);
+        
+        // ??? wtf is this? we can access them by putting {{#recipes.ingredients}} as a list
+        // anyway we dont need this stuff in main page, we only need recipes with respective users
+        // like {{#recipes.username}}, See Recipe.java class attributes.
 
         return "index";
     }
@@ -105,14 +110,20 @@ public class IndexController {
     public String postRecipe(Model model, Recipe recipe, @RequestParam MultipartFile imageFile) throws IOException{
         //recipes.add(recipe);
         System.out.println("IMAGEN: " + imageFile);
+
         Recipe r = recipe;
         r.setImage(true);
+        r.setUsername(userSession.getLoggedUser());
         recipesRepository.save(r);
         imageService.saveImage("recipes", r.getId(), imageFile);
+
         List<Recipe> recipes = recipesRepository.findAll();
         model.addAttribute("recipes", recipes);
+        model.addAttribute("size", recipes.size());
+
         List<Comment> comments = commentsRepository.findAllByRecipe(recipe);
         model.addAttribute("n_comments", comments.size());
+
         return "index";
     }
 }

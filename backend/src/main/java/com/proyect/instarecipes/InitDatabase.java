@@ -250,12 +250,12 @@ public class InitDatabase {
                 Comment comment6 = new Comment(u1, "Shut the fk up idiot", comment2, 0, r1);
         
         //Save coments
-        // commentsRepository.save(comment1);
-        // commentsRepository.save(comment2); 
-        // commentsRepository.save(comment3);
-        // commentsRepository.save(comment4);
-        // commentsRepository.save(comment5);
-        // commentsRepository.save(comment6);
+        commentsRepository.save(comment1);
+        commentsRepository.save(comment2); 
+        commentsRepository.save(comment3);
+        commentsRepository.save(comment4);
+        commentsRepository.save(comment5);
+        commentsRepository.save(comment6);
 
         //THIS SHOULD BE ALWAYS LIKE THIS, THIS WILL UPDATE THE RECIPES WITH THE CORRESPONDING NUMBER OF COMMENTS
         for(Recipe recipe : recipesRepository.findAll()){

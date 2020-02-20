@@ -26,7 +26,6 @@
   <link href="../css/freelancer.css" rel="stylesheet">
 
   <!-- load recipes with AJAX and jQuery-->
-  <script src="../static/js/load_recipe.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 </head>
@@ -295,7 +294,7 @@
                   </div>
                   <div class="divider-custom-line"></div>
                 </div>
-                <form action="/search" method="POST">
+                <form action="/search" method="post">
                   <div class="row">
                     <!-- INGREDIENT FILTER -->
                     <div class="col-6">
@@ -312,21 +311,6 @@
                                 {{/ingredientsList}}
                               </datalist>
                             </td>
-                           <!-- <td>
-                              <!--"Ingredient-Quantity"
-                              <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text"
-                                name="quantity" placeholder="Quantity">
-                            </td>
-                            <td>
-                              <!--"Ingredient-Unit"
-                              <input style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" type="text"
-                                name="units" list="unit" placeholder="Units">
-                              <datalist id="ingredientsunit">
-                                <option value="grs."></option>
-                                <option value="Kg./L"></option>
-                                <option value="Units"></option>
-                              </datalist>
-                            </td>-->
                             <td>
                               <button id="Ing-delete-button" type="button" class="btn-delete-line"
                                 style="color: white; font-size: inherit;" onclick="delRowIngredient(this)">
@@ -569,8 +553,7 @@
                     <div id="add-category" class="btn btn-secondary"
                       style="width: 100%; border-radius: 0.8rem;background-color: steelblue;cursor: pointer;">
                       <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
-                      <!-- <i  aria-hidden="true"></i> -->
-                  </div>
+                    </div>
                     <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;" name="categories">
                     </fieldset>
                     <hr>
@@ -672,9 +655,9 @@
   <script src="../js/filter_search_btn.js"></script>
 
   <script type="text/javascript">
-      var aux = false;
-      var page_counter = 1;
       $(document).ready(function () {
+        var aux = false;
+        var page_counter = 0;
         $("#loadmore1").click(function () {
             var value = $('#value-input').val();
             document.getElementById("loadmore1").setAttribute("hidden", "");
@@ -699,6 +682,7 @@
                   [5] -> name
                   [6] -> surname
                   [7] -> likes
+                  [8] -> n_comments
                   */
                   if(aux){
                     $('#recipes-container').append("<div class=\"row\">"
@@ -718,7 +702,7 @@
                       +"<img class=\"icon-fluid\" src=\"../images/icons/dialogue.png\">"
                       +"</div>"
                       +"<div class=\"col-3\">"
-                      +"<p class=\"icon-fluid pub-date-text\">recipes.likes</p>"
+                      +"<p class=\"icon-fluid pub-date-text\">"+Object.values(item)[8]+"</p>"
                       +"</div>"
                       +"</div>"
                       +"</div>"
@@ -769,7 +753,7 @@
                         +"<img class=\"icon-fluid\" src=\"../images/icons/dialogue.png\">"
                         +"</div>"
                         +"<div class=\"col-3\">"
-                        +"<p class=\"icon-fluid pub-date-text\">recipes.likes</p>"
+                        +"<p class=\"icon-fluid pub-date-text\">"+Object.values(item)[8]+"</p>"
                         +"</div>"
                         +"</div>"
                         +"</div>"
@@ -784,7 +768,8 @@
                   });
                   page_counter++;
                   console.log("Length: " + "{{size}}");
-                  if(parseInt(page_counter) === parseInt("{{size}}")){
+                  if(parseInt(page_counter) >= parseInt("{{size}}")){
+                    page_counter = 0;
                     document.getElementById("loadmore1").setAttribute("hidden", "");
                   }
             });
