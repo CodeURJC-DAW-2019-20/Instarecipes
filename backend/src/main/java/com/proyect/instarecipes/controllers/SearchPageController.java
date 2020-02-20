@@ -5,11 +5,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.models.CookingStyle;
+import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.repositories.AllergensRepository;
 import com.proyect.instarecipes.repositories.CategoriesRepository;
 import com.proyect.instarecipes.repositories.CookingStylesRepository;
+import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +28,10 @@ public class SearchPageController {
     private CategoriesRepository categoriesRepository;
     @Autowired
     private CookingStylesRepository cookingStylesRepository;
+    @Autowired
+    private AllergensRepository allergensRepository;
+    @Autowired
+    private IngredientsRepository ingredientsRepository;
     @Autowired
     private RecipesRepository recipesRepository;
 
@@ -49,12 +57,21 @@ public class SearchPageController {
 
         List<Category> allCategories = categoriesRepository.findAll();
         List<Category> restOfCategories = restCategories(allCategories, categoriesSelected);
+        
         List<CookingStyle> allCookingStyles = cookingStylesRepository.findAll();
         List<CookingStyle> restOfCookingStyles = restCookingStyles(allCookingStyles, cookingStylesSelected);
+
+        List<Ingredient> allIngredients = ingredientsRepository.findAll();
+        List<Ingredient> restOfIngredients = restIngredients(allIngredients, ingredientsSelected);
+
+        List<Allergen> allAllergens = allergensRepository.findAll();
+        List<Allergen> restOfAllergens = restAllergens(allAllergens, allergensSelected);
 
         //Return all the items
         model.addAttribute("allCategories", restOfCategories);
         model.addAttribute("allCookingStyles", restOfCookingStyles);
+        model.addAttribute("allIngredients", restOfIngredients);
+        model.addAttribute("allAllergens", restOfAllergens);
 
         //Search by items
         // List<Recipe> recipesFounded = recipesRepository.findAll();
@@ -82,6 +99,29 @@ public class SearchPageController {
         for (int i = 0; i < cookingStylesSelected.size(); i++) {
             for (int j = 0; j < all.size(); j++) {
                 if (cookingStylesSelected.contains(all.get(j).getCookingStyle())) {
+                    aux.remove(j);
+                }
+            }
+        }
+        return aux;
+    }
+    
+    private List<Ingredient> restIngredients(List<Ingredient> all, ArrayList<String> ingredientsSelected) {
+        List<Ingredient> aux = all;
+        for (int i = 0; i < ingredientsSelected.size(); i++) {
+            for (int j = 0; j < all.size(); j++) {
+                if (ingredientsSelected.contains(all.get(j).getIngredient())) {
+                    aux.remove(j);
+                }
+            }
+        }
+        return aux;
+    }
+    private List<Allergen> restAllergens(List<Allergen> all, ArrayList<String> allergensSelected) {
+        List<Allergen> aux = all;
+        for (int i = 0; i < allergensSelected.size(); i++) {
+            for (int j = 0; j < all.size(); j++) {
+                if (allergensSelected.contains(all.get(j).getAllergen())) {
                     aux.remove(j);
                 }
             }

@@ -83,43 +83,35 @@
     </ol>
 
     <div class="row">
-
       <!-- Sidebar Widgets Column -->
       <div class="col-4">
-
-        <!-- Search Widget
-        <div class="card mb-4">
-          <h5 class="card-header">Search</h5>
-          <div class="card-body">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Go!</button>
-              </span>
-            </div>
-          </div>
-        </div> -->
-
         <!-- Categories and Cooking Style Widget -->
-
         <div class="card my-4">
           <h6 class="card-header">Ingredients</h6>
+          <div class="containersearch">
             <ul class="ks-cboxtags">
               {{#ingredients}}
                 <li><input  class="toCheck" type="checkbox" value="{{.}}"><label>{{.}}</label></li> 
               {{/ingredients}}
+              {{#allIngredients}}
+                <li><input type="checkbox" value="{{ingredient}}"><label>{{ingredient}}</label></li> 
+              {{/allIngredients}}
             </ul>
+          </div>
         </div>
-
         <div class="card my-4">
           <h6 class="card-header">Allergens</h6>
+          <div class="containersearch">
             <ul class="ks-cboxtags">
               {{#allergens}}
                 <li><input  class="toCheck" type="checkbox" value="{{.}}"><label>{{.}}</label></li> 
               {{/allergens}}
+              {{#allAllergens}}
+                <li><input type="checkbox" value="{{allergen}}"><label>{{allergen}}</label></li> 
+              {{/allAllergens}}
             </ul>
+          </div>
         </div>
-
         <div class="card my-4">
           <h5 class="card-header">Cooking Style</h5>
             <div class="containersearch">
@@ -145,6 +137,12 @@
               {{/allCategories}}
             </ul>
           </div>       
+        </div>
+         <!-- Button Filter Widget -->
+        <div class="card-body">
+          <div class="input-group">
+            <button class="btn btn-secondary" style="width: 100%;" type="button">FILTER</button>
+          </div>
         </div>
       </div>
       <!-- Recipes Entries Column -->
