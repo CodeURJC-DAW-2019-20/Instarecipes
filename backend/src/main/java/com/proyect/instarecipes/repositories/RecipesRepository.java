@@ -2,9 +2,7 @@ package com.proyect.instarecipes.repositories;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.User;
 
@@ -12,7 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public interface RecipesRepository extends JpaRepository<Recipe, Long> {
     List<Recipe> findByUsernameId(Long username);
 

@@ -40,7 +40,7 @@ public class User{
 	// private Image background;
 	// private Image avatar;
 	private String allergens;
-	private boolean image;
+	// private boolean image;
 	
 	@Column(nullable = false)
 	private String info;
@@ -151,9 +151,9 @@ public class User{
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-	public void setImage(boolean image){
-        this.image=image;
-    }
+	// public void setImage(boolean image){
+    //     this.image=image;
+    // }
 
 	public String toString(){
         if(this.roles.contains("ROLE_ADMIN")){

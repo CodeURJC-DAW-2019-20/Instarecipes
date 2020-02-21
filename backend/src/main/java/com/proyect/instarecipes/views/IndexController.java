@@ -3,15 +3,7 @@ package com.proyect.instarecipes.views;
 import java.io.IOException;
 import java.util.List;
 
-import com.proyect.instarecipes.models.Allergen;
-import com.proyect.instarecipes.models.Category;
-import com.proyect.instarecipes.models.CookingStyle;
-import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
-import com.proyect.instarecipes.repositories.AllergensRepository;
-import com.proyect.instarecipes.repositories.CategoriesRepository;
-import com.proyect.instarecipes.repositories.CookingStylesRepository;
-import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.security.ImageService;
 import com.proyect.instarecipes.models.Comment;
 import com.proyect.instarecipes.repositories.CommentsRepository;
@@ -38,15 +30,6 @@ public class IndexController {
     private UserSession userSession;
     @Autowired
     private ImageService imageService;
-
-    @Autowired
-    private IngredientsRepository ingredientsRepository;
-    @Autowired
-    private CookingStylesRepository cookingstylesRepository;
-    @Autowired
-    private AllergensRepository allergensRepository;
-    @Autowired
-    private CategoriesRepository categoriesRepository;
 
     
     @GetMapping("/")
@@ -80,10 +63,6 @@ public class IndexController {
         model.addAttribute("recipes", recipes);
         return "index";
     }
-    // @GetMapping("/ranking")
-    // public String rankingPage() {
-    //     return "ranking";
-    // }
     @GetMapping("/login")
     public String loginPage() {
         return "login";
@@ -108,9 +87,7 @@ public class IndexController {
 
     @PostMapping("/")
     public String postRecipe(Model model, Recipe recipe, @RequestParam MultipartFile imageFile) throws IOException{
-        //recipes.add(recipe);
-        System.out.println("IMAGEN: " + imageFile);
-
+        
         Recipe r = recipe;
         r.setImage(true);
         r.setUsername(userSession.getLoggedUser());

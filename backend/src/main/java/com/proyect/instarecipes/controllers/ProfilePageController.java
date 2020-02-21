@@ -3,9 +3,11 @@ package com.proyect.instarecipes.controllers;
 import java.util.List;
 
 import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.models.Request;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
+import com.proyect.instarecipes.repositories.RequestsRepository;
 import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class ProfilePageController{
     private RecipesRepository recipesRepository;
     @Autowired
     private UserSession userSession;
+    @Autowired
+    private RequestsRepository requestsRepository;
 
     @GetMapping("/profile") 
     public String profilePage(Model model) {
@@ -65,6 +69,12 @@ public class ProfilePageController{
 		if(logged){
 			model.addAttribute("user",userSession.getLoggedUser().getUsername());
 			model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
-		}
-	}
+        }
+        System.out.println("LISTA DE REQueST: " + requestsRepository.findAll());
+        //if(userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN")){
+            List<Request> requestsList = requestsRepository.findAll();
+
+            model.addAttribute("allRequests", requestsList);
+        //}
+    }
 }

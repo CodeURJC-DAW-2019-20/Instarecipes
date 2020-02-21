@@ -7,7 +7,8 @@ import com.proyect.instarecipes.models.Recipe;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-
+import org.springframework.stereotype.Repository;
+@Repository
 public interface CommentsRepository extends JpaRepository<Comment, Long> {
     //The querys has to be so strict, every single letter should go as same as the classes, like capital letters
     @Query("SELECT COUNT(*) FROM Comment c WHERE c.recipe= :id_recipe") 
