@@ -506,7 +506,7 @@
                       <h3 class="underlined-text">Recipe name*</h3>
                       <div id="titleCountChar"></div>
                       <input onkeyup="titleCountChar(this)" class="input100" type="text" name="title"
-                        placeholder="Recipe name" style="padding:10px;width: 100%;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)">
+                        placeholder="Recipe name" style="padding:10px;width: 100%;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" required>
                     </div>
                     <hr>
                     <!-- Introduction section -->
@@ -515,12 +515,16 @@
                       <div id="introCountChar"></div>
                       <textarea onkeyup="introCountChar(this)" type="text" name="description"
                         style="padding:10px;width: 100%;height: 100px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
-                        placeholder="Type a introduction here.."></textarea>
+                        placeholder="Type a introduction here.." required></textarea>
                     </div>
-                    <div class="btn-outline-primary" style="border-radius:0.5rem;
-                    border:1px solid rgb(23, 162, 184); align-self:center;z-index: 1050;
-                    text-align:center;padding:0;right:0;width:25%;position:absolute;cursor:pointer">
-                      <input type="file" name="imageFile" accept=".jpg, .jpeg"/><i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i></input>
+                    <img id="preview-img-file" src=""  style="object-fit:cover;height:100px;width:100%;border-radius: 0.5rem;" hidden/>
+                    <div>
+                      <p id="no-such-image">No such image selected yet</p>
+                      <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem;
+                          border:1px solid rgb(23, 162, 184); align-self:center;z-index: 1050;
+                          text-align:center;padding:0;right:0;width:25%;position:absolute;cursor:pointer">
+                        <input id="file-input" hidden type="file" name="imageFile" accept=".jpg, .jpeg"/><i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i></input>
+                      </label>
                     </div>
                     <fieldset id="steps-form" name="steps" class="nav-item dropdown wrap-input50 m-b-23"
                       style="text-align: initial;">
@@ -528,7 +532,7 @@
                       <hr>
                       <div id="stepCountChar"></div>
                       <textarea onkeyup="stepCountChar(this)" placeholder="A recipe must have at least 1 step :D"
-                        style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"></textarea>
+                        style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" required></textarea>
                       <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </fieldset>
                     <hr>
@@ -593,7 +597,8 @@
                     </select>
                   </div>
                 </div>
-                <button type='submit' value='Post' class="btn btn-primary" style="margin-top: 20px;">
+                <button type='submit' class="btn btn-primary" style="margin-top: 20px; height: 50px;width: 10%;">
+                  Post
                   <input type="hidden" name="_csrf" value="{{token}}"/>
                 </button>
               </form>
@@ -775,6 +780,28 @@
             });
         });
       })
+    </script>
+    <!-- Photo selector at add button -->
+    <script>
+      document.getElementById('file-input').onchange = function (evt) {
+          var tgt = evt.target || window.event.srcElement,
+              files = tgt.files;
+          // FileReader support
+          if (FileReader && files && files.length) {
+              var fr = new FileReader();
+              fr.onload = function () {
+                document.getElementById("no-such-image").setAttribute("hidden","");
+                document.getElementById("preview-img-file").removeAttribute("hidden");
+                document.getElementById("preview-img-file").src = fr.result;
+              }
+              fr.readAsDataURL(files[0]);
+          }
+          // Not supported
+          else {
+              // fallback -- perhaps submit the input to an iframe and temporarily store
+              // them on the server until the user's session ends.
+          }
+      }
     </script>
 
 </body>
