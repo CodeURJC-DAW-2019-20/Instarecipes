@@ -1,5 +1,6 @@
 package com.proyect.instarecipes.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.proyect.instarecipes.models.Recipe;
@@ -45,26 +46,36 @@ public class ProfilePageController{
         model.addAttribute("following", usersRepository.findFollowing(actual.getUsername()));
         //Number of publications and total likes
         List<Recipe> recipes = recipesRepository.findByUsernameId(actual.getId());
+        List<Integer> Laiks = new ArrayList<Integer>();
         int likes = 0;
         int pubs;
+        
         for(pubs=0; pubs<recipes.size();pubs++){
             likes = likes + recipes.get(pubs).getLikes();
+            Laiks.add(recipes.get(pubs).getLikes()); //List of every user recipe LIKES!!
         }
+        
         model.addAttribute("n_publications", pubs);
         model.addAttribute("n_likes", likes);
         //Publications
         model.addAttribute("publications", recipes);
-
+        model.addAttribute("canvasLikes", Laiks);
+    
+        System.out.println(recipes.get(0).getUsername());
+        System.out.println(Laiks);
+        
         return "profile";
     }
 
+    
     @ModelAttribute
 	public void addAttributes(Model model) {
 		boolean logged = userSession.getLoggedUser() != null;
         model.addAttribute("logged", logged);
 		if(logged){
 			model.addAttribute("user",userSession.getLoggedUser().getUsername());
-			model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
-		}
+            model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
+            
+        }
 	}
 }
