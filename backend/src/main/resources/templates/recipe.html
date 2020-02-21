@@ -91,23 +91,23 @@
           <!-- Preview image -->
           <div id="carouselExampleIndicators" class="carousel slide">
             <ol class="simple-recipe-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"><img class="prev-img" src="../images/Recipes/chicken_recipe.jpg" alt=""></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1"><img class="prev-img" src="../images/Recipes/potatoes_recipe.jpg" alt=""></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2"><img class="prev-img" src="../images/Recipes/potatoes_chicken_recipe.jpg" alt=""></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="3"><img class="prev-img" src="../images/Recipes/recipe_example_7.jpg" alt=""></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"><img class="prev-img" src="/temp/recipes/image-{{id}}.jpg" alt=""></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"><img class="prev-img" src="/temp/recipes/image-{{id}}.jpg" alt=""></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"><img class="prev-img" src="/temp/recipes/image-{{id}}.jpg" alt=""></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="3"><img class="prev-img" src="/temp/recipes/image-{{id}}.jpg" alt=""></li>
             </ol>
             <div class="carousel-inner" style="border-radius: 0.8rem;">
               <!-- Slide One - Set the background image for this slide in the line below -->
-              <div class="carousel-item active" style="background-image: url('../images/Recipes/chicken_recipe.jpg')">
+              <div class="carousel-item active" style="background-image: url('/temp/recipes/image-{{id}}.jpg')">
               </div>
               <!-- Slide Two - Set the background image for this slide in the line below -->
-              <div class="carousel-item" style="background-image: url('../images/Recipes/potatoes_recipe.jpg')">
+              <div class="carousel-item" style="background-image: url('/temp/recipes/image-{{id}}.jpg')">
               </div>
               <!-- Slide Three - Set the background image for this slide in the line below -->
-              <div class="carousel-item" style="background-image: url('../images/Recipes/potatoes_chicken_recipe.jpg')">
+              <div class="carousel-item" style="background-image: url('/temp/recipes/image-{{id}}.jpg')">
               </div>
               <!-- Slide Four - Set the background image for this slide in the line below -->
-              <div class="carousel-item" style="background-image: url('../images/Recipes/recipe_example_7.jpg')">
+              <div class="carousel-item" style="background-image: url('/temp/recipes/image-{{id}}.jpg')">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -126,10 +126,10 @@
             </div>
             <div class="col-4">
               <ol class="likes-comments-simple-recipe">
-                <li><h3 class="font-weight-light"> 132</h3></li>
-                <li style="cursor: pointer;"><img class="focusHeart" id="unpressedLike" src="../images/icons/like_unpressed.png" height="80%" alt=""></li>
-                <li><h3 class="font-weight-light">4</h3></li>
-                <li><a class="js-scroll-trigger rounded" href="#comments-section"><img src="../images/icons/dialogue.png" height="80%" alt=""></a></li>
+                <li><h3 class="font-weight-light"> {{recipe.likes}}</h3></li>
+                <li style="cursor: pointer;"><img class="focusHeart" id="unpressedLike" src="/images/icons/like_unpressed.png" height="80%" alt=""></li>
+                <li><h3 class="font-weight-light">{{n_comments}}</h3></li>
+                <li><a class="js-scroll-trigger rounded" href="#comments-section"><img src="/images/icons/dialogue.png" height="80%" alt=""></a></li>
               </ol>
             </div>
           </div>
@@ -143,7 +143,7 @@
                 <tr>by <h3>{{user.name}}&nbsp;{{user.surname}}</h3></tr>
                 <tr class="card-header">
                   <th><h5 class="text-uppercase mb-0 font-weight-light">User</h5></th>
-                  <th><h5 class="text-uppercase mb-0 font-weight-light"><img id="pressedLike" src="../images/icons/like_pressed.png" height="20%" width="20%" alt="" ></h5></th>
+                  <th><h5 class="text-uppercase mb-0 font-weight-light"><img id="pressedLike" src="/images/icons/like_pressed.png" height="20%" width="20%" alt="" ></h5></th>
                   <th><h5 class="text-uppercase mb-0 font-weight-light">Publications</h5></th>
                 </tr>
                 <tr>
@@ -211,7 +211,7 @@
       <!-- STEPS sections -->
       {{#steps}}
       <section>
-        <h1>Step {{number}}</h1>
+        <h1>Step {{-index}}</h1>
         <!-- Post Content -->
         <p class="lead">{{content}}</p>
       </section>
@@ -262,28 +262,7 @@
             </form>
           </div>
       </div>
-      <!-- Single Comment -->
-      <div class="media mb-4">
-        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-        <div class="media-body">
-          <h5 class="mt-0">Raul Martinez</h5>
-          <p class="mt-0">@raulMar</p>
-          This looks delicious!
-        <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
-          <div class="col-4" style="height: 100%;">
-            <p style="top: 0; align-self: center;"> 132</p>
-          </div>
-          <div class="col-4" style="cursor: pointer; height: 100%;">
-            <img class="focusHeart" src="../images/icons/like_unpressed.png" height="100%" alt="">
-          </div>
-          <div class="col-4" style="height: 100%;">
-            <a href="#comments-section">
-              <img src="../images/icons/dialogue.png" height="100%" alt="">
-            </a>
-          </div>
-        </div>
-      </div>
-      </div>
+
       {{#comments}}
       <!-- Comment with nested comments -->
       <div class="media mb-4">
@@ -291,7 +270,7 @@
         <div class="media-body">
           <h5 class="mt-0">{{userComment.name}}&nbsp;{{userComment.surname}}</h5>
           <p class="mt-0">@{{userComment.username}}</p>
-          {{content}}
+
           <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
             <div class="col-4" style="height: 100%;">
               <p style="top: 0; align-self: center;">{{likes}}</p>
