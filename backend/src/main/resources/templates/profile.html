@@ -140,7 +140,7 @@
             <p class="masthead-subheading font-weight-light mb-0">Hi everyone !</p>
           </div>
           <!-- Statistics button-->
-          <button id="open-stadistics-button" onclick="achuparla()" type="button" class="stadistics-button" data-toggle="modal" data-target="#opened-stadistics-button" style="background-color: transparent;">
+          <button id="open-stadistics-button" type="button" class="stadistics-button" data-toggle="modal" data-target="#opened-stadistics-button" style="background-color: transparent;">
             <span aria-hidden="true">
               <img src='images/icons/stadistics-button.png' width="50%" style="height: 50px; width: 50px;" />
             </span>
@@ -166,8 +166,9 @@
                           <!-- LIKES Divider -->               
                           <div class="col-6">
                             <h2 class="underlined-texts">LIKES</h2>
-                            <button type="button" id="canvasFrame"></button>
-                            <div id="canvasLikes" style="width: 100%;height: 100%;">                    
+                            <div id="canvasLikes" style="width: 100%;height: 100%;">
+                            <input value="{{idkwtp}}" id="idkwtp" hidden/>
+                            <input value="{{likesGraphics}}" id="Grapilotes" hidden/>                                          
                             </div>
                                                          
                           </div>
@@ -1461,6 +1462,8 @@
   <script src="js/jqBootstrapValidation.js"></script>
   <script src="js/contact_me.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  
   <!-- Custom scripts for this template -->
   <script src="js/freelancer.min.js"></script>
   <script src="js/jquery.min.js"></script>
@@ -1469,8 +1472,6 @@
   <script src="js/main2.js"></script>
   <script src="js/admin_Profile.js"></script>
   <script src="js/statistics.js"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
 </body>
 

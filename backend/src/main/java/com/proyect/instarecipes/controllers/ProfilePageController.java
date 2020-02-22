@@ -1,6 +1,7 @@
 package com.proyect.instarecipes.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.proyect.instarecipes.models.Recipe;
@@ -46,23 +47,25 @@ public class ProfilePageController{
         model.addAttribute("following", usersRepository.findFollowing(actual.getUsername()));
         //Number of publications and total likes
         List<Recipe> recipes = recipesRepository.findByUsernameId(actual.getId());
-        List<Integer> Laiks = new ArrayList<Integer>();
+        ArrayList<Integer> Laiks = new ArrayList<Integer>();
+        ArrayList<String> titles = new ArrayList<String>();
+        //ArrayList<String> finallyTitles = new ArrayList<String>(Arrays.asList(recipes.toString().split(",")));
         int likes = 0;
         int pubs;
         
         for(pubs=0; pubs<recipes.size();pubs++){
             likes = likes + recipes.get(pubs).getLikes();
             Laiks.add(recipes.get(pubs).getLikes()); //List of every user recipe LIKES!!
+            titles.add(recipes.get(pubs).getTitle());
         }
         
         model.addAttribute("n_publications", pubs);
         model.addAttribute("n_likes", likes);
         //Publications
         model.addAttribute("publications", recipes);
-        model.addAttribute("canvasLikes", Laiks);
+        model.addAttribute("idkwtp", Laiks);
+        model.addAttribute("likesGraphics", titles);
     
-        System.out.println(recipes.get(0).getUsername());
-        System.out.println(Laiks);
         
         return "profile";
     }
