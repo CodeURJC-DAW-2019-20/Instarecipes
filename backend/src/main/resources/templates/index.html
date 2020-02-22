@@ -61,13 +61,23 @@ function normal(y){
             <a class="nav-link js-scroll-trigger" href="#header-section"><i onmouseover= "hover(this)" onmouseout="normal(this)" class="fas fa-home"
             style="font-size: xx-large; color: #1abc9c"></i></a>
           </li>
-          <li class="nav-item col-4">
+          <li class="nav-item col-4" style="max-width: 100%;">
             {{#logged}}
             <a class="nav-link" href="profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
             {{/logged}}
           </li>
-          <li class="nav-item col-4">
+          <li class="nav-item col-4" style="max-width: 100%;">
             <a class="nav-link" href="ranking"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
+          </li>
+          <li class="nav-item col-4" style="max-width: 100%;">
+            <div class="min-search">
+              <a class="nav-link" href="#"><i class="fa fa-search" style="font-size: xx-large;"></i></a>
+            </div>
+          </li>
+          <li class="nav-item col-4" style="max-width: 100%;">
+            <div class="login-logo" style="display:block;  color: black; position: relative;">
+              <a class="nav-link" href="login"><i class="fa fa-user-circle" style="font-size: xx-large; padding:5%; "></i></a>
+            </div>
           </li>
         </ul>
         <form class="example" action="/search">
@@ -75,9 +85,7 @@ function normal(y){
           <button type="submit" style="background-color: #1abc9c"><i class="fa fa-search"></i></button>
         </form>
        
-        <div class="min-search">
-          <a href="#"><i class="fa fa-search" style="font-size: xx-large; padding:5%;"></i></a>
-        </div>
+       
      
       </div>
     </div>
@@ -92,11 +100,6 @@ function normal(y){
       {{^logged}}
       <a class="nav-link nav-log" href="login" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
       {{/logged}}
-    </div>
-    <div class="login-logo" style="display:block;  color: black; position: relative;">
-      <a href="login"><i class="fa fa-user-circle" style="font-size: xx-large; padding:5%; "></i></a>
-      
-
     </div>
   </nav>
   <!-- Carousel-->
