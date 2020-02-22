@@ -38,21 +38,6 @@ public class IndexController {
         List<Recipe> recipes = recipesRepository.findAll();
         model.addAttribute("size", recipes.size());
         model.addAttribute("recipes", recipes);
-        // List<Ingredient> ingredients = ingredientsRepository.findAll();
-        // List<CookingStyle> cookingStyles = cookingstylesRepository.findAll();
-        // List<Category> categories = categoriesRepository.findAll();
-        // List<Allergen> allergens = allergensRepository.findAll();
-
-        // //then we add the elements of the list in the model, AKA: we send them with mustache exampl: {{recipes}} 
-        // model.addAttribute("recipes", recipes);
-        // model.addAttribute("ingredientsList", ingredients);
-        // model.addAttribute("cookingStylesList", cookingStyles);
-        // model.addAttribute("categoriesList", categories);
-        // model.addAttribute("allergensList", allergens);
-        
-        // ??? wtf is this? we can access them by putting {{#recipes.ingredients}} as a list
-        // anyway we dont need this stuff in main page, we only need recipes with respective users
-        // like {{#recipes.username}}, See Recipe.java class attributes.
 
         return "index";
     }

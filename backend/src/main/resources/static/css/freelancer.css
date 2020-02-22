@@ -10004,6 +10004,19 @@ a.text-dark:hover, a.text-dark:focus {
   font-size: 1.25rem;
 }
 
+div>canvas{
+  float: none;
+  width: auto;
+}
+div.canvasjs-chart-toolbar{
+  float: none;
+  width: auto;
+  position: relative;
+}
+a.canvasjs-chart-credit{
+  display: none;
+}
+
 .btn-social {
   border-radius: 100%;
   display: inline-flex;

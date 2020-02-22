@@ -11,24 +11,22 @@ $(document).ready(function(){
   var likes2 = likes1.slice(likes1, lastE);
   var likes = likes2.split(",");
   
-  var dataPoints;
+  var dataPoints = [];
+  for(var i = 0; i < likes.length; i++) {
+    var valuePoints={label:titles[i], y:likes[i]};
+    dataPoints.push(valuePoints);
+  }
 
   var chart = new CanvasJS.Chart("canvasLikes", {
-    animationEnabled: true,
-    exportEnabled: true,
-    theme: "light2",
-    data: [{
-      type: "pie", 
-      //indexLabel: "{y}", //Shows y value on all Data Points
-      indexLabelFontColor: "#5A5757",
-      indexLabelPlacement: "outside",
-      indexLabel: "{label} {y}",
-      dataPoints: dataPoints
-    }]
-  });
-  for(var i = 0; i < likes.length; i++) {
-    chart.options.data[0].dataPoints.push(titles[i]);
-    chart.options.data[0].dataPoints.push(likes[i]);
-  }
+      animationEnabled: true,
+      exportEnabled: true,
+	    theme: "light2", // "light1", "light2", "dark1", "dark2"
+      data: [{
+        type: "pie",
+        indexLabelFontColor: "#5A5757",
+        indexLabelPlacement: "outside",
+		    dataPoints: dataPoints
+	    }]
+    });
   chart.render();
 })

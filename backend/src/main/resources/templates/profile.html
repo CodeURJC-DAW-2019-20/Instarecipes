@@ -147,8 +147,8 @@
 
           <!-- Statistics button pannel -->
           <div class="publications-modal modal fade" id="opened-stadistics-button" tabindex="-1" role="dialog" aria-labelledby="publicationsModal6Label" aria-hidden="true">
-            <div id="graphics-canvas" class="modal-dialog modal-xl" role="document" style="width: 90%;">
-              <div class="modal-dialog modal-xl" role="document">
+            <div id="graphics-canvas" class="modal-dialog modal-xl" role="document">
+              <div class="modal-dialog modal-xl" role="document" style="width: 50%;">
                 <div class="modal-content" style="width: 100%;">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">
@@ -160,15 +160,13 @@
                       <!-- publications Modal - Title -->
                       <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Statistics</h2>
                       <!-- Icon Divider -->
-                      <div class="divider-custom">
-                       
-                      </div>   
-                        <!-- LIKES Divider -->               
-                          <h2 class="underlined-texts">LIKES</h2>
-                            <div id="canvasLikes" style="left: 36%; position: fixed;">
-                            <input value="{{idkwtp}}" id="idkwtp" hidden/>
-                            <input value="{{likesGraphics}}" id="Grapilotes" hidden/>  
-                            </div>                                  
+                      <div class="divider-custom"></div>
+                        <!-- LIKES Divider -->
+                      <h2 class="underlined-texts">LIKES</h2>
+                      <div id="canvasLikes" style="width: 100%;height: auto; align-items: center;justify-self: center;">
+                        <input value="{{idkwtp}}" id="idkwtp" hidden/>
+                        <input value="{{likesGraphics}}" id="Grapilotes" hidden/>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -441,15 +439,18 @@
                 <p style="text-align:left;">@{{username.username}}</p>
               </div>
               <div class="col-3">
-                <label name="typeOfItemRequest" class="btn-xl" type="text" style="text-align:left;">{{typeOfRequest}}</label>
+                <h6 class="btn-xl" type="text" style="text-align:left;">{{typeOfRequest}}</h6>
+                <input name="typeOfItemRequest" value="{{typeOfRequest}}" hidden/>
               </div>
               <div class="col-3">
                 {{#itemExists}}
-                <label name="itemContent" class="btn-xl" style="text-align:left; color: red;">{{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}</label>
+                <h6 class="btn-xl" style="text-align:left; color: red;">{{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}</h6>
+                <input name="itemContent" value="{{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}" hidden/>
                 <p>{{typeOfRequest}}&nbsp;"{{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}"&nbsp;already exists!</p>
                 {{/itemExists}}
                 {{^itemExists}}
-                <label name="itemContent" class="btn-xl" style="text-align:left; color: green;">{{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}</label>
+                <h6 class="btn-xl" style="text-align:left; color: green;">{{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}</h6>
+                <input name="itemContent" value="{{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}" hidden/>
                 {{/itemExists}}
               </div>
               <div class="col-2" style="display: flex; height:fit-content;">
@@ -569,216 +570,9 @@
               </div>
             </div>
             <hr>
-            <!-- User x -->
-            <div class="row" style="align-items: center;text-align: center;">
-              <div class="col-1">
-                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
-              </div>
-              <div class="col-2">
-                <h6 style="text-align:left;">Princess Elisabeth </h6>
-                <p style="text-align:left;">@elisabeth</p>
-              </div>
-              <div class="col-2">
-                <p style="text-align:center;">10/02/2011</p>
-                <p style="text-align:center; color: green;">Active</p>
-              </div>
-              <div class="col-2">
-                <p>182</p>
-              </div>
-              <div class="col-1">
-                <p>99</p>
-              </div>
-              <div class="col-1">
-                <p>8</p>
-              </div>
-              <div class="col-1">
-                <p>300</p>
-              </div>
-              <div class="col-2">
-                <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
-                  <option>...</option>
-                  <option>Block</option>
-                  <option>Suspend</option>
-                </select>
-              </div>
-            </div>
-            <hr>
-            <!-- User x -->
-            <div class="row" style="align-items: center;text-align: center;">
-              <div class="col-1">
-                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
-              </div>
-              <div class="col-2">
-                <h6 style="text-align:left;">Princess Elisabeth </h6>
-                <p style="text-align:left;">@elisabeth</p>
-              </div>
-              <div class="col-2">
-                <p style="text-align:center;">10/02/2011</p>
-                <p style="text-align:center; color: green;">Active</p>
-              </div>
-              <div class="col-2">
-                <p>182</p>
-              </div>
-              <div class="col-1">
-                <p>99</p>
-              </div>
-              <div class="col-1">
-                <p>8</p>
-              </div>
-              <div class="col-1">
-                <p>300</p>
-              </div>
-              <div class="col-2">
-                <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
-                  <option>...</option>
-                  <option>Block</option>
-                  <option>Suspend</option>
-                </select>
-              </div>
-            </div>
-            <hr>
-            <!-- User x -->
-            <div class="row" style="align-items: center;text-align: center;">
-              <div class="col-1">
-                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
-              </div>
-              <div class="col-2">
-                <h6 style="text-align:left;">Princess Elisabeth </h6>
-                <p style="text-align:left;">@elisabeth</p>
-              </div>
-              <div class="col-2">
-                <p style="text-align:center;">10/02/2011</p>
-                <p style="text-align:center; color: green;">Active</p>
-              </div>
-              <div class="col-2">
-                <p>182</p>
-              </div>
-              <div class="col-1">
-                <p>99</p>
-              </div>
-              <div class="col-1">
-                <p>8</p>
-              </div>
-              <div class="col-1">
-                <p>300</p>
-              </div>
-              <div class="col-2">
-                <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
-                  <option>...</option>
-                  <option>Block</option>
-                  <option>Suspend</option>
-                </select>
-              </div>
-            </div>
-            <hr>
-            <!-- User x -->
-            <div class="row" style="align-items: center;text-align: center;">
-              <div class="col-1">
-                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
-              </div>
-              <div class="col-2">
-                <h6 style="text-align:left;">Princess Elisabeth </h6>
-                <p style="text-align:left;">@elisabeth</p>
-              </div>
-              <div class="col-2">
-                <p style="text-align:center;">10/02/2011</p>
-                <p style="text-align:center; color: green;">Active</p>
-              </div>
-              <div class="col-2">
-                <p>182</p>
-              </div>
-              <div class="col-1">
-                <p>99</p>
-              </div>
-              <div class="col-1">
-                <p>8</p>
-              </div>
-              <div class="col-1">
-                <p>300</p>
-              </div>
-              <div class="col-2">
-                <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
-                  <option>...</option>
-                  <option>Block</option>
-                  <option>Suspend</option>
-                </select>
-              </div>
-            </div>
-            <hr>
-            <!-- User x -->
-            <div class="row" style="align-items: center;text-align: center;">
-              <div class="col-1">
-                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
-              </div>
-              <div class="col-2">
-                <h6 style="text-align:left;">Princess Elisabeth </h6>
-                <p style="text-align:left;">@elisabeth</p>
-              </div>
-              <div class="col-2">
-                <p style="text-align:center;">10/02/2011</p>
-                <p style="text-align:center; color: green;">Active</p>
-              </div>
-              <div class="col-2">
-                <p>182</p>
-              </div>
-              <div class="col-1">
-                <p>99</p>
-              </div>
-              <div class="col-1">
-                <p>8</p>
-              </div>
-              <div class="col-1">
-                <p>300</p>
-              </div>
-              <div class="col-2">
-                <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
-                  <option>...</option>
-                  <option>Block</option>
-                  <option>Suspend</option>
-                </select>
-              </div>
-            </div>
-            <hr>
-            <!-- User x -->
-            <div class="row" style="align-items: center;text-align: center;">
-              <div class="col-1">
-                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
-              </div>
-              <div class="col-2">
-                <h6 style="text-align:left;">Princess Elisabeth </h6>
-                <p style="text-align:left;">@elisabeth</p>
-              </div>
-              <div class="col-2">
-                <p style="text-align:center;">10/02/2011</p>
-                <p style="text-align:center; color: green;">Active</p>
-              </div>
-              <div class="col-2">
-                <p>182</p>
-              </div>
-              <div class="col-1">
-                <p>99</p>
-              </div>
-              <div class="col-1">
-                <p>8</p>
-              </div>
-              <div class="col-1">
-                <p>300</p>
-              </div>
-              <div class="col-2">
-                <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
-                  <option>...</option>
-                  <option>Block</option>
-                  <option>Suspend</option>
-                </select>
-              </div>
-            </div>
-            <hr>
           </div>
           <hr>
-          <!-- Ajax load more button -->
-          <div class="loadmore-container">
-            <img class="loadmore-button" src="images/icons/loadmore_unpressed.png" alt="" />
-          </div>
+        </div>
       </section>
     </div>
     <!-- Page Recipes  -->

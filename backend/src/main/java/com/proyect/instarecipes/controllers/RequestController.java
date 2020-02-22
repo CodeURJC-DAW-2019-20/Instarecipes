@@ -105,7 +105,7 @@ public class RequestController {
                 System.out.println("CATEGORY ADDED");
                 categoriesRepository.save(i);
                 requestsRepository.deleteById(id_request);
-            }else if(typeOfRequest.equalsIgnoreCase("Cooking Style")){
+            }else if(typeOfRequest.equalsIgnoreCase("Cooking style")){
                 System.out.println("COOKING STYLE ADDED");
                 CookingStyle i = new CookingStyle(itemContent);
                 cookingStylesRepository.save(i);
