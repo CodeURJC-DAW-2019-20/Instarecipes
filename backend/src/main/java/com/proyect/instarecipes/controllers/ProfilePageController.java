@@ -62,6 +62,8 @@ public class ProfilePageController{
             Laiks.add(recipes.get(pubs).getLikes()); //List of every user recipe LIKES!!
             titles.add(recipes.get(pubs).getTitle());
         }
+        System.out.println(Laiks);
+        System.out.println(titles);
         
         model.addAttribute("n_publications", pubs);
         model.addAttribute("n_likes", likes);

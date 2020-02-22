@@ -1,41 +1,34 @@
 $(document).ready(function(){
+  var titles1 = document.getElementById("Grapilotes").value.slice(1);
+  var likes1 = document.getElementById("idkwtp").value.slice(1);
 
-var titles = document.getElementById("Grapilotes").value.split(",");
-var likes = document.getElementById("idkwtp").value.split(",");
-var i=0; 
+  var lastC = titles1.indexOf("]");
+  var lastE = likes1.indexOf("]");
+  
+  var titles2 = titles1.slice(titles1, lastC);
+  var titles = titles2.split(",");
 
-console.log(titles);
-console.log(likes);
-console.log(titles[0]);
-console.log(titles[1]);
-console.log(titles[2]);
-console.log(likes[1]);
-console.log(likes[2]);
-var num = parseInt(likes[0], 10);
-console.log(num);
-//for(i=0;i<titles.length;i++){
-  //console.log("el nombre de la receta es "+ titles[i]);
-  //console.log("putos likes de mierda: "+ likes);
-  //console.log("putos likes de mierda2: "+ Object.values(mayonesa)[i]);
+  var likes2 = likes1.slice(likes1, lastE);
+  var likes = likes2.split(",");
+  
+  var dataPoints;
 
-
-var dataPoints = [
-  { label: titles[0], y: num },
-  { label: titles[1], y: num },
-  { label: titles[2], y: num }
-];
-    var chart = new CanvasJS.Chart("canvasLikes", {
-      animationEnabled: true,
-      exportEnabled: true,
-	    theme: "light2", // "light1", "light2", "dark1", "dark2"
-      data: [{
-        type: "pie", 
-        //indexLabel: "{y}", //Shows y value on all Data Points
-        indexLabelFontColor: "#5A5757",
-        indexLabelPlacement: "outside",
-    
-		    dataPoints: dataPoints
-	    }]
-    });
-    chart.render();
+  var chart = new CanvasJS.Chart("canvasLikes", {
+    animationEnabled: true,
+    exportEnabled: true,
+    theme: "light2",
+    data: [{
+      type: "pie", 
+      //indexLabel: "{y}", //Shows y value on all Data Points
+      indexLabelFontColor: "#5A5757",
+      indexLabelPlacement: "outside",
+      indexLabel: "{label} {y}",
+      dataPoints: dataPoints
+    }]
+  });
+  for(var i = 0; i < likes.length; i++) {
+    chart.options.data[0].dataPoints.push(titles[i]);
+    chart.options.data[0].dataPoints.push(likes[i]);
+  }
+  chart.render();
 })
