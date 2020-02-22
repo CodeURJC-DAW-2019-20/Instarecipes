@@ -27,7 +27,19 @@
 
   <!-- load recipes with AJAX and jQuery-->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+<script> 
+function hover(x){
+  x.style.color = "white";
+  return false;
+}
+</script>
+<script>
+function normal(y){
+  y.style.color = "#1abc9c";
+  y.style.backgroundColor = none;
+  return false;
+}
+</script>
 </head>
 
 <body>
@@ -41,13 +53,13 @@
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
         type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
         aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"><i class="fa fa-bars" style="font-size: x-large;"></i></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto" style="margin-right: 20%;">
           <li class="nav-item col-4" style="max-width: 100%;">
-            <a class="nav-link js-scroll-trigger" href="#header-section"><i class="fas fa-home"
-                style="font-size: xx-large;"></i></a>
+            <a class="nav-link js-scroll-trigger" href="#header-section"><i onmouseover= "hover(this)" onmouseout="normal(this)" class="fas fa-home"
+            style="font-size: xx-large; color: #1abc9c"></i></a>
           </li>
           <li class="nav-item col-4">
             {{#logged}}
@@ -62,6 +74,11 @@
           <input type="text" href="#" placeholder="Search.." name="search" />
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
+       
+        <div class="min-search">
+          <button type="submit"  class="min-search-btn" style="background-color: #1abc9c; border-radius: 15px; display: none;"><i class="fa fa-search"></i></button>
+        </div>
+     
       </div>
     </div>
     <div class="login-container">
@@ -75,6 +92,11 @@
       {{^logged}}
       <a class="nav-link nav-log" href="login" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
       {{/logged}}
+    </div>
+    <div class="login-logo" style="display:block;  color: black; position: relative;">
+      <a href="login"><i class="fa fa-user-circle" style="font-size: xx-large; padding:5%; "></i></a>
+      
+
     </div>
   </nav>
   <!-- Carousel-->
@@ -94,7 +116,9 @@
           <img src="images/Recipes/recipe_example_5.jpg" class="img-blur" width="100%">
           <div class="trending-pub">
             <div class="row" style="height: 100%; margin-left: 0; margin-right: 0;">
-              <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);">
+              <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2); @media only screen and (max-width: 800px){
+                display:none;
+                }">
                 <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
               </div>
               <div class="col-md-4">

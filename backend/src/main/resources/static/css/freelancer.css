@@ -10092,7 +10092,7 @@ a.canvasjs-chart-credit{
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
     color: #fff;
-    background: #1abc9c;
+    
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active:active, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:hover {
     color: #fff;
@@ -10255,3 +10255,35 @@ form .row:first-child .floating-label-form-group {
 .copyright {
   background-color: #1a252f;
 }
+
+#navbarResponsive ul a i :hover{
+  background-color: black;
+}
+
+.nav-link nav-log:hover{
+  background-color: #1abc9c;
+  color: black;
+}
+.nav-log:hover{
+  background-color: #1abc9c;
+  color:white;
+}
+.login-logo i{
+  color: white;
+}
+.login-logo i:hover{ 
+  color: #1abc9c;
+}
+
+@media  only screen and (max-width: 1000px){
+  .col-lg-1{display:none;}
+  .example{display:none;}
+  .navbar{float: left;}
+  .login-container{display: none;}
+  .login-logo a{display:block;}
+  }
+
+  @media  only screen and (min-width: 1000px){
+    .min-search button{display:block;}
+    .login-logo a{display:none;}
+  }
