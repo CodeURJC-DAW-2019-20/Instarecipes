@@ -1,5 +1,6 @@
 package com.proyect.instarecipes.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,19 +14,50 @@ public class Request{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String type;
-    private String value;
-
     @OneToOne
-    private User user;
+    private User username;
+
+    @Column(nullable = true)
+    private String typeOfRequest;
+    @Column(nullable = true)
+    private String ingredientContent;
+    @Column(nullable = true)
+    private String cookingStyleContent;
+    @Column(nullable = true)
+    private String categoryContent;
+    @Column(nullable = true)
+    private boolean itemExists;
+
+    // @Column(nullable = true)
+    // private Recipe recipeReport;
+    // @Column(nullable = true)
+    // private User userReport;
 
     public Request() {
     }
 
-    public Request(String type, String value, User user) {
-        this.type = type;
-        this.value = value;
-        this.user = user;
+    public Request(User username, String typeOfRequest, String ingredientContent, String cookingStyleContent,
+            String categoryContent, boolean itemExists) {
+        this.username = username;
+        this.typeOfRequest = typeOfRequest;
+        if(ingredientContent == null){
+            this.ingredientContent = "";
+        }else{
+            this.ingredientContent = ingredientContent;
+        }
+        if(cookingStyleContent == null){
+            this.cookingStyleContent = "";
+        }else{
+            this.cookingStyleContent = cookingStyleContent;
+        }
+        if(categoryContent == null){
+            this.categoryContent = "";
+        }else{
+            this.categoryContent = categoryContent;
+        }
+        this.itemExists = itemExists;
+        // this.recipeReport = recipeReport;
+        // this.userReport = userReport;
     }
 
     public Long getId() {
@@ -36,28 +68,79 @@ public class Request{
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public User getUsername() {
+        return username;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setUsername(User username) {
+        this.username = username;
     }
 
-    public String getValue() {
-        return value;
+    public String getTypeOfRequest() {
+        return typeOfRequest;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setTypeOfRequest(String typeOfRequest) {
+        this.typeOfRequest = typeOfRequest;
     }
 
-    public User getUser() {
-        return user;
+    public String getIngredientContent() {
+        return ingredientContent;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setIngredientContent(String ingredientContent) {
+        this.ingredientContent = ingredientContent;
     }
+
+    public String getCookingStyleContent() {
+        return cookingStyleContent;
+    }
+
+    public void setCookingStyleContent(String cookingStyleContent) {
+        this.cookingStyleContent = cookingStyleContent;
+    }
+
+    public String getCategoryContent() {
+        return categoryContent;
+    }
+
+    public void setCategoryContent(String categoryContent) {
+        this.categoryContent = categoryContent;
+    }
+
+    // public Request(User username, String typeOfRequest, String ingredientContent, String cookingStyleContent,
+    //         String categoryContent, boolean itemExists) {
+    //     this.username = username;
+    //     this.typeOfRequest = typeOfRequest;
+    //     this.ingredientContent = ingredientContent;
+    //     this.cookingStyleContent = cookingStyleContent;
+    //     this.categoryContent = categoryContent;
+    //     this.itemExists = itemExists;
+    // }
+
+    public boolean isItemExists() {
+        return itemExists;
+    }
+
+    public void setItemExists(boolean itemExists) {
+        this.itemExists = itemExists;
+    }
+
+    // public Recipe getRecipeReport() {
+    //     return recipeReport;
+    // }
+
+    // public void setRecipeReport(Recipe recipeReport) {
+    //     this.recipeReport = recipeReport;
+    // }
+
+    // public User getUserReport() {
+    //     return userReport;
+    // }
+
+    // public void setUserReport(User userReport) {
+    //     this.userReport = userReport;
+    // }
+
     
 }

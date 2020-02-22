@@ -14,6 +14,7 @@ import com.proyect.instarecipes.repositories.CommentsRepository;
 import com.proyect.instarecipes.repositories.CookingStylesRepository;
 import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
+import com.proyect.instarecipes.repositories.RequestsRepository;
 import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.ImageService;
@@ -25,6 +26,7 @@ import com.proyect.instarecipes.models.Comment;
 import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.models.Request;
 import com.proyect.instarecipes.models.Step;
 
 import org.apache.commons.io.IOUtils;
@@ -52,6 +54,8 @@ public class InitDatabase {
     private AllergensRepository allergensRepository;
     @Autowired
     private StepsRepository stepsRepository;
+    @Autowired
+    private RequestsRepository requestsRepository;
     @Autowired
     private ImageService imageService;
 
@@ -155,6 +159,13 @@ public class InitDatabase {
         allergensRepository.save(a4);
         allergensRepository.save(a5);
         allergensRepository.save(a6);
+
+        //Requests examples
+        Request req1 = new Request(u2, "Ingredient", "Apple", null, null, false);
+        Request req2 = new Request(u3, "Ingredient", "Potatoes", null, null, true);
+
+        requestsRepository.save(req1);
+        requestsRepository.save(req2);
 
 
         //Recipes examples

@@ -6,14 +6,9 @@ import com.proyect.instarecipes.models.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
-/**
- * Repository to manage users in database.
- * 
- * NOTE: This interface is intended to be extended by developer adding new
- * methods. Current method can not be removed because it is used in
- * authentication procedures.
- */
+@Repository
 public interface UsersRepository extends JpaRepository<User, Long> {
 
 	User findByUsername(String name);
