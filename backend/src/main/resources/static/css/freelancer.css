@@ -10274,16 +10274,24 @@ form .row:first-child .floating-label-form-group {
 .login-logo i:hover{ 
   color: #1abc9c;
 }
+.min-search i{
+  color:white;
+}
+
+.min-search i:hover{
+  color: #1abc9c;
+}
 
 @media  only screen and (max-width: 1000px){
   .col-lg-1{display:none;}
   .example{display:none;}
+  .min-search {display:block;}
   .navbar{float: left;}
   .login-container{display: none;}
   .login-logo a{display:block;}
   }
 
   @media  only screen and (min-width: 1000px){
-    .min-search button{display:block;}
+    .min-search i{display:none;}
     .login-logo a{display:none;}
   }
