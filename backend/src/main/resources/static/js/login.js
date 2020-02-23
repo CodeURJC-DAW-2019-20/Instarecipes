@@ -13,7 +13,6 @@ signUp.onclick = function () {
     if (emailInfo.value.match(mailformat) && pass.value.match(cpass.value)) {
         divCompleteSignUp.style.display = "block";
         divSignUp.style.display = "none";
-        alert("la password coincide");
 
     }
     else if (!pass.value.match(cpass.value)) {
