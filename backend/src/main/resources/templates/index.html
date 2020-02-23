@@ -560,7 +560,8 @@ function normal(y){
                       <h3>Step 1*</h3>
                       <hr>
                       <div id="stepCountChar"></div>
-                      <textarea onkeyup="stepCountChar(this)" name="steps" placeholder="A recipe must have at least 1 step :D"
+                      <input id="stepsString" name="stepsString" hidden/>
+                      <textarea onkeyup="stepCountChar(this)" placeholder="A recipe must have at least 1 step :D"
                         style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" required></textarea>
                       <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </fieldset>
@@ -577,34 +578,18 @@ function normal(y){
                       style="width: 100%; border-radius: 0.8rem;background-color: mediumspringgreen;cursor: pointer;">
                       <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                     </div>
-                    <fieldset id="ingredients-form" class="nav-item dropdown scrolling" name="ingredients"
-                      style="height: 300px;">
-                      <!--<table id="ingredientsTableAdd"> 
-                        <tr>
-                          <td>
-                          <input name="ingredients" type="text" list="ingredientslist" placeholder="Ingredient.." style="border-radius: 0.5rem; border-width: 0.5px;" onkeypress="return false;"> 
-                          <datalist id="ingredientlist">
-                            {{#ingredientsList}}
-                            <option value="{{ingredient}}">{{ingredient}}</option>
-                            {{/ingredientsList}}
-                          </datalist>
-                          </td>
-                          <td>
-                          <button id="ing-delete-buttonAdd" type="button" class="btn-delete-line" style="color: white; font-size: inherit;" onclick="delRowIngredientAdd(this)">
-                            <span aria-hidden="true">
-                              <i class="fas fa-trash"></i>
-                            </span>
-                          </button>
-                          </td>
-                        </tr>
-                      </table>-->
+                    <input id="ingredientsString" name="ingredientsString" hidden/>
+                    <fieldset id="ingredients-form" class="nav-item dropdown scrolling" style="height: 300px;">
                     </fieldset>
                     <hr>
-                    <h3 class="underlined-text">Category</h3>
+                    <!-- Categories section -->
+                    <h3 class="underlined-text">Categories*</h3>
+                    <p>Select categories:</p>
                     <div id="add-category" class="btn btn-secondary"
                       style="width: 100%; border-radius: 0.8rem;background-color: steelblue;cursor: pointer;">
                       <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                     </div>
+                    <input id="categoriesString" name="categoriesString" hidden/>
                     <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;" name="categories">
                       <!--<table id="CategoriesTableAdd">
                         <tr>  
@@ -627,8 +612,9 @@ function normal(y){
                         </table>-->
                     </fieldset>
                     <hr>
-                    <h3 class="underlined-text">Difficulty</h3>
                     <!-- Difficulty section stars -->
+                    <h3 class="underlined-text">Difficulty</h3>
+                    <p>Select difficulty:</p>
                     <div class="rating" style="text-align: center;">
                       <input name="rating" type="radio" id="extreme-star" onclick="starClick(4)" value="extreme"
                         on="change:rating.submit">
@@ -649,6 +635,7 @@ function normal(y){
                         <p id="medium-text" hidden>Medium</p>
                         <p id="easy-text" hidden>Easy</p>
                     </div>
+                    <!-- Duration section -->
                     <h3 class="underlined-text">Aproximated time</h3>
                     <select name="duration" class="form-control" id="exampleFormControlSelect1">
                       <option>15m</option>
