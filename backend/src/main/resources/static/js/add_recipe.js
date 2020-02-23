@@ -38,7 +38,7 @@ $(document).ready(function() {
           +arrayOfQuantity
         +"</select>"
       );
-      var fIngredients = $("<select name=\"ingredients\" class=\"col-7 avaiable-ingredients\">"
+      var fIngredients = $("<select class=\"col-7 avaiable-ingredients\">"
                 +arrayOfIngredients
             +"</select>"
       );
