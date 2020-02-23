@@ -123,10 +123,12 @@
 							</div>
 							<div class="wrap-input100 validate-input m-b-20">
 								<h3 class="label-input100" style="text-align:center;">Allergens</h3>
-								<input class="form-control" type="text" name="allergens" onkeypress="return false;">
-								  {{#allergens}} 
-								  <select value="{{.}}">{{.}}</select>
-								  {{/allergens}}                           
+								<input name="allergens" list="allergenslist" class="form-control" type="text" placeholder="Select an allergen.." onkeypress="return false;">
+								 <datalist id="allergenslist">
+								 	{{#allergensSignUp}} 
+								  	<option value="{{allergen}}">{{allergen}}</option>
+								  	{{/allergensSignUp}}  
+								</datalist>                         
 							</div>
 						</div>
 						<!-- Submit button -->
