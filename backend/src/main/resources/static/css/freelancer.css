@@ -35,7 +35,7 @@
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
-  --breakpoint-lg: 992px;
+  --breakpoint-lg: 1200px;
   --breakpoint-xl: 1200px;
   --font-family-sans-serif: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -590,7 +590,7 @@ pre code {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .container {
     max-width: 960px;
   }
@@ -1449,7 +1449,7 @@ input.remove
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .col-lg {
     flex-basis: 0;
     flex-grow: 1;
@@ -2041,7 +2041,7 @@ input.remove
   }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1200px) {
   .table-responsive-lg {
     display: block;
     width: 100%;
@@ -3310,7 +3310,7 @@ input[type="button"].btn-block {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .dropdown-menu-lg-left {
     right: auto;
     left: 0;
@@ -4384,7 +4384,7 @@ input[type="button"].btn-block {
 
 .navbar-nav .dropdown-menu {
   position: static;
-  float: none;
+  float: left;
 }
 
 .navbar-text {
@@ -4494,7 +4494,7 @@ input[type="button"].btn-block {
   }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1200px) {
   .navbar-expand-lg > .container,
   .navbar-expand-lg > .container-fluid {
     padding-right: 0;
@@ -4502,7 +4502,7 @@ input[type="button"].btn-block {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .navbar-expand-lg {
     flex-flow: row nowrap;
     justify-content: flex-start;
@@ -4530,7 +4530,7 @@ input[type="button"].btn-block {
   }
 }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 1200px) {
   .navbar-expand-xl > .container,
   .navbar-expand-xl > .container-fluid {
     padding-right: 0;
@@ -5566,7 +5566,7 @@ a.badge-dark:focus, a.badge-dark.focus {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .list-group-horizontal-lg {
     flex-direction: row;
   }
@@ -6025,13 +6025,13 @@ a.close.disabled {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .modal-lg,
   .modal-xl {
     max-width: 800px;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .modal-xm {
     max-width: 500px;
     height: 700px;
@@ -6904,7 +6904,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .d-lg-none {
     display: none !important;
   }
@@ -7383,7 +7383,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .flex-lg-row {
     flex-direction: row !important;
   }
@@ -7629,7 +7629,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .float-lg-left {
     float: left !important;
   }
@@ -8941,7 +8941,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .m-lg-0 {
     margin: 0 !important;
   }
@@ -9689,7 +9689,7 @@ button.bg-dark:focus {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .text-lg-left {
     text-align: left !important;
   }
@@ -9908,10 +9908,10 @@ a.text-dark:hover, a.text-dark:focus {
     size: a3;
   }
   body {
-    min-width: 992px !important;
+    min-width: 1200px !important;
   }
   .container {
-    min-width: 992px !important;
+    min-width: 1200px !important;
   }
   .navbar {
     display: none;
@@ -9954,7 +9954,7 @@ a.text-dark:hover, a.text-dark:focus {
   line-height: 2rem;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .page-section .page-section-heading {
     font-size: 3rem;
     line-height: 2.5rem;
@@ -10077,7 +10077,7 @@ a.canvasjs-chart-credit{
   padding: 0.8rem;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   #mainNav {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
@@ -10092,7 +10092,7 @@ a.canvasjs-chart-credit{
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
     color: #fff;
-    background: #1abc9c;
+    
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active:active, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:hover {
     color: #fff;
@@ -10126,7 +10126,7 @@ a.canvasjs-chart-credit{
   cursor: pointer;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .masthead {
     padding-top: calc(6rem + 24px);
     padding-bottom: 3rem;
@@ -10176,7 +10176,7 @@ a.canvasjs-chart-credit{
   line-height: 2rem;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .publications-modal .publications-modal-title {
     font-size: 3rem;
     line-height: 2.5rem;
@@ -10255,3 +10255,62 @@ form .row:first-child .floating-label-form-group {
 .copyright {
   background-color: #1a252f;
 }
+
+#title-web:hover{
+color: #1abc9c;
+}
+
+#navbarResponsive ul{
+  
+  float: left;
+  
+}
+#navbarResponsive ul li{
+  float: left;
+  margin: 4px;
+}
+
+#navbarResponsive ul a i :hover{
+  background-color: black;
+}
+
+.nav-link nav-log:hover{
+  background-color: #1abc9c;
+  color: black;
+}
+.nav-log:hover{
+  background-color: #1abc9c;
+  color:white;
+}
+.login-logo i{
+  color: white;
+}
+.login-logo i:hover{ 
+  color: #1abc9c;
+}
+.min-search i{
+  color:white;
+}
+
+.min-search i:hover{
+  color: #1abc9c;
+}
+
+
+
+@media  only screen and (max-width: 1200px){
+  .col-lg-1{display:none;}
+  .example{display:none;}
+  .min-search {display:block;}
+  .navbar{float: left;}
+  .login-container{display: none;}
+  .login-logo a{display:block;}
+
+  }
+
+  @media  only screen and (min-width: 1200px){
+    .min-search i{display:none;}
+    .login-logo a{display:none;}
+    .navbar-toggler-icon i{display:block}
+ 
+  }
