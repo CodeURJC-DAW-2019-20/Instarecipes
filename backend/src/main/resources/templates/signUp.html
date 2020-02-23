@@ -36,7 +36,7 @@
 						<div class="login100 p-l p-r p-t-5 p-b-35 ">
 							<a href="login"><span style="font-size: 32px; display:contents; "
 									class="fa fa-arrow-left"></a></span>
-							<a href="index"><span style="font-size: 32px; float:right; margin-left: 50%;"
+							<a href="/"><span style="font-size: 32px; float:right; margin-left: 50%;"
 									class="fa fa-close"></a></span>
 						</div>
 						<span class="login100-form-title p-b-30">
@@ -64,14 +64,17 @@
 						<!-- Password input -->
 						<div class="wrap-input100 validate-input m-b-20" data-validate="Password is required">
 							<span class="label-input100">Password</span>
-							<input class="input100" type="password" name="password" placeholder="Password" required />
+							<input class="input100" type="password" name="password" placeholder="Password" id="pass" required />
 							<span class="focus-input100" data-symbol="&#xf190;"></span>
 						</div>
 						<!-- Confirm password input -->
 						<div class="wrap-input100 validate-input m-b-20" data-validate="Password doesn't match">
 							<span class="label-input100">Confirm Password</span>
-							<input class="input100" type="password" placeholder="Confirm your password" required />
+							<input class="input100" type="password" placeholder="Confirm your password" id="cpass" required />
 							<span class="focus-input100" data-symbol="&#xf190;"></span>
+						</div>
+						<div class="email-val" id="conf-pass" style="display: none;">
+							<h6>The password doesnt match!</h6>
 						</div>
 						<!-- Complete sign up button -->
 						<div class="container-login100-form-btn m-t-55">
