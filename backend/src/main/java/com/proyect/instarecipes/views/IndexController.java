@@ -78,10 +78,19 @@ public class IndexController {
     
     @GetMapping("/index")
     public String indexedPage(Model model) {
-        List<Recipe> recipes = recipesRepository.findAll(); //should be sustituted by only following users publications
-        model.addAttribute("id", userSession.getLoggedUser().getId());//THIS IS ONLY A TEST
+        List<Recipe> recipes = recipesRepository.findAll();
+        List<Ingredient> allIngredients = ingredientsRepository.findAll();
+        List<CookingStyle> allCookingStyles = cookingStylesRepository.findAll();
+        List<Category> allCategories = categoriesRepository.findAll();
+        List<Allergen> allAllergens = allergensRepository.findAll();
+
         model.addAttribute("size", recipes.size());
         model.addAttribute("recipes", recipes);
+        model.addAttribute("ingredientsList", allIngredients);
+        model.addAttribute("cookingStylesList", allCookingStyles);
+        model.addAttribute("categoriesList", allCategories);
+        model.addAttribute("allergensList", allAllergens);
+        model.addAttribute("id", userSession.getLoggedUser().getId());
         return "index";
     }
     @GetMapping("/login")

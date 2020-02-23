@@ -578,6 +578,7 @@ function normal(y){
                       style="width: 100%; border-radius: 0.8rem;background-color: mediumspringgreen;cursor: pointer;">
                       <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                     </div>
+                    <input id="ingredientsList" value="{{#ingredientsList}}{{ingredient}},{{/ingredientsList}}" hidden/>
                     <input id="ingredientsString" name="ingredientsString" hidden/>
                     <fieldset id="ingredients-form" class="nav-item dropdown scrolling" style="height: 300px;">
                     </fieldset>
@@ -591,25 +592,6 @@ function normal(y){
                     </div>
                     <input id="categoriesString" name="categoriesString" hidden/>
                     <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;" name="categories">
-                      <!--<table id="CategoriesTableAdd">
-                        <tr>  
-                          <td>
-                            <input name="categories" type="text" list="categorieslist" placeholder="Type a category.." style="border-radius: 0.5rem;border-width: 0.5px;" onkeypress="return false;">
-                            <datalist id="categorieslist">
-                              {{#categoriesList}}
-                              <option value="{{category}}">{{category}}</option>
-                              {{/categoriesList}}
-                            </datalist>
-                          </td>
-                          <td>
-                            <button id="cat-delete-buttonAdd" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCategory(this)">
-                              <span aria-hidden="true">
-                                <i class="fas fa-trash"></i>
-                              </span>
-                            </button>  
-                          </td> 
-                        </tr>
-                        </table>-->
                     </fieldset>
                     <hr>
                     <!-- Difficulty section stars -->
