@@ -2053,7 +2053,7 @@ input.remove
   }
 }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 1200px) {
   .table-responsive-xl {
     display: block;
     width: 100%;
@@ -10295,7 +10295,6 @@ color: #1abc9c;
 .min-search i:hover{
   color: #1abc9c;
 }
-
 
 
 @media  only screen and (max-width: 1200px){

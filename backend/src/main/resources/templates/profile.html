@@ -49,9 +49,11 @@
           <li class="nav-item col-3">
             <a class="nav-link" href="/index"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
           </li>
+          {{^logged}}
           <li class="nav-item col-3">
             <a class="nav-link js-scroll-trigger" href="#page-top"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
           </li>
+          {{/logged}}
           <li class="nav-item col-3">
             <a class="nav-link" href="/ranking"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
           </li>
@@ -524,71 +526,44 @@
               <button class="btn btn-danger" type="submit">Apply changes</button>
             </div>
             <div class="scrolling container" style="height: 100%; width: 100%;background-color: rgba(0, 0, 0, 0.2);">
-              <div class="row" style="margin-bottom: 10px;background-color: #fff;">
-                <!-- User -->
-                <div class="col-3">
-                  <p class="text-center text-uppercase text-secondary mb-0">User</p>
-                </div >
-                <!-- Date of creation -->
-                <div class="col-2">
-                  <p class="text-center text-uppercase text-secondary mb-0">Date</p>
-                </div >
-                <!-- Followers -->
-                <div class="col-2">
-                  <p class="text-center text-uppercase text-secondary mb-0">Followers</p>
-                </div>
-                <!-- Follows -->
-                <div class="col-1">
-                  <p class="text-center text-uppercase text-secondary mb-0">Follows</p>
-                </div>
-                <!-- Publications -->
-                <div class="col-1">
-                  <p class="text-center text-uppercase text-secondary mb-0">Recipes</p>
-                </div>
-                <!-- Likes -->
-                <div class="col-1">
-                  <p class="text-center text-uppercase text-secondary mb-0">Likes</p>
-                </div>
-                <!-- Action -->
-                <div class="col-2">
-                  <p class="text-center text-uppercase text-secondary mb-0">Actions</p>
-                </div>
-              </div>
-              {{#usersList}}
-              <!-- User x -->
-              <div class="row" style="align-items: center;text-align: center;">
-                <div class="col-1">
-                  <img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{id}}.jpg" alt="">
-                </div>
-                <div class="col-2">
-                  <h6 style="text-align:left;">{{name}}&nbsp;{{surname}}</h6>
-                  <a style="text-align:left;" href="/users/{{id}}">@{{username}}</a>
-                </div>
-                <div class="col-2">
-                  <p style="text-align:center;">10/02/2011</p>
-                  <p style="text-align:center; color: green;">Active</p>
-                </div>
-                <div class="col-2">
-                  <p>182</p>
-                </div>
-                <div class="col-1">
-                  <p>99</p>
-                </div>
-                <div class="col-1">
-                  <p>8</p>
-                </div>
-                <div class="col-1">
-                  <p>{{n_likes}}</p>
-                </div>
-                <div class="col-2">
-                  <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
-                    <option>...</option>
-                    <option name="selectedSuspend{{id}}">Suspend</option>
+              <table style="text-align: center;">
+                <tr style="line-break: auto;">
+                  <th><p class="text-center text-uppercase text-secondary mb-0">User</p></th>
+                  <th><p class="text-center text-uppercase text-secondary mb-0">Date</p></th>
+                  <th><p class="text-center text-uppercase text-secondary mb-0">Followers</p></th>
+                  <th><p class="text-center text-uppercase text-secondary mb-0">Follows</p></th>
+                  <th><p class="text-center text-uppercase text-secondary mb-0">Recipes</p></th>
+                  <th><p class="text-center text-uppercase text-secondary mb-0">Likes</p></th>
+                  <th><p class="text-center text-uppercase text-secondary mb-0">Actions</p></th>
+                </tr>
+                
+                <tr>
+                  <hr>
+                  {{#usersList}}
+                  <th><img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{id}}.jpg" alt="" style="width:100px; height: 100px; object-fit: cover;">
+                  <hr>
+                  <th> <h8 style="text-align:left; text-justify: auto;">{{name}}&nbsp;{{surname}}</h8>
+                  <a style="text-align:left;" href="/users/{{id}}">@{{username}}</a></th>
+                  
+                  <th><p style="text-align:center;">10/02/2011</p>
+                  <p style="text-align:center; color: green;">Active</p></th>
+                  <th><p>182</p></th>
+
+                  <th><p>99</p></th>
+
+                  <th><p>8</p></th>
+
+                  <th><p>{{n_likes}}</p></th>
+
+                  <th style="border: 1px;">
+                    <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
+                      <option>...</option>
+                      <option name="selectedSuspend{{id}}">Suspend</option>
                   </select>
-                </div>
-              </div>
-              <hr>
-              {{/usersList}}
+              </tr>
+             
+                {{/usersList}}
+              </table>
             </div>
           </form>
           <hr>

@@ -103,7 +103,11 @@ public class IndexController {
         return "login";
     }
     @GetMapping("/signUp")
-    public String signupPage(){
+    public String signupPage(Model model){
+        List<Allergen> allAllergensSingUp = allergensRepository.findAll();
+        model.addAttribute("allergensSignUp", allAllergensSingUp);
+        System.out.println(allAllergensSingUp);
+        
         return "signUp";
     }
     @GetMapping("/search")
