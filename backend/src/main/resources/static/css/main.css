@@ -560,3 +560,8 @@ iframe {
   display:none;
 }
  
+.email-val{
+  background-color: #f44336;
+  color: white;
+  margin-bottom: 5px;
+}
