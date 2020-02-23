@@ -1,20 +1,10 @@
 $(document).ready(function() {
-  var yokese = document.getElementById("ingredientsList").value;
-  var arrayOfIngredients = yokese.split(",");
+  var iList = document.getElementById("ingredientsList").value;
+  var arrayOfIngredients = iList.split(",");
 
-  // var arrayOfIngredients = 
-  //   "<option>Bread</option>"
-  //       +"<option>Potatoes</option>"
-  //       +"<option>Fish</option>"
-  //       +"<option>Honey</option>"
-  //       +"<option>Milk</option>"
-  //       +"<option>Tomatoes</option>";
-  var arrayOfCategories ="<option>Desserts</option>"
-        +"<option>Starters</option>"
-        +"<option>Main</option>"
-        +"<option>Soups</option>"
-        +"<option>Salad</option>"
-        +"<option>Burgers</option>";
+  var cList = document.getElementById("categoriesList").value;
+  var arrayOfCategories = cList.split(",");
+
     var arrayIngredients = [ ];
     var arrayCategories = [ ];
     var arraySteps = [ ];
@@ -23,16 +13,16 @@ $(document).ready(function() {
     var stepCounter = 0;
     
     var ingredientsContainer = "";
-    
-    console.log("Ahora? :" + arrayOfIngredients);
-    for(var i=0; i<arrayOfIngredients.length;i++){
+    var categoriesContainer = "";
+    for(var i=0; i<arrayOfIngredients.length-1;i++){
       ingredientsContainer = ingredientsContainer + "<option>"+arrayOfIngredients[i]+"</option>";
+    }
+    for(var i=0; i<arrayOfCategories.length-1;i++){
+      categoriesContainer = categoriesContainer + "<option>"+arrayOfCategories[i]+"</option>";
     }
 
     //------------------ ADDING AN INGREDIENT ------------------//
     $("#add-ingredient").click(function() {
-      
-      
       var lastField = $("#ingredients-form div:last");
       var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
       var fieldWrapper = $("<div class=\"row\" id=\"ingredients-field" + intId + "\"/>");
@@ -60,7 +50,7 @@ $(document).ready(function() {
         var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
         var fieldWrapper = $("<div class=\"row\" id=\"category-field" + intId + "\"/>");
         fieldWrapper.data("idx", intId);
-        var fCategories = $("<select id=\"cat"+catCounter+"\" name=\"ing"+catCounter+"\" class=\"col-9 avaiable-categories\">"+arrayOfCategories+"</select>");
+        var fCategories = $("<select id=\"cat"+catCounter+"\" name=\"ing"+catCounter+"\" class=\"col-9 avaiable-categories\">"+categoriesContainer+"</select>");
         var removeButton = $("<div class=\"btn-danger col-2\" style=\"border-radius:0.5rem;"
           +"align-self:center;"
           +"text-align:center;"
