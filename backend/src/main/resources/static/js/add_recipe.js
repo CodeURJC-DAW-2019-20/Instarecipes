@@ -38,7 +38,7 @@ $(document).ready(function() {
           +arrayOfQuantity
         +"</select>"
       );
-      var fIngredients = $("<select class=\"col-7 avaiable-ingredients\">"
+      var fIngredients = $("<select name=\"ingredients\" class=\"col-7 avaiable-ingredients\">"
                 +arrayOfIngredients
             +"</select>"
       );
@@ -105,6 +105,11 @@ $(document).ready(function() {
         //fieldWrapper.append(removeButton);
         $("#steps-form").append(fieldWrapper);//add to the top of the form
       });
+    //------------------------------------------------------//
+    $("#post-recipe").click(function(){
+      console.log("valores de los cojones: " + $("#ingredients-form").val());
+      document.getElementById("ingredientsId").setAttribute("value", $("#ingredients-form").val());
+    });
     //------------------ ADDING A CATEGORY ------------------//
     $("#add-category").click(function() {
         var lastField = $("#category-form div:last");

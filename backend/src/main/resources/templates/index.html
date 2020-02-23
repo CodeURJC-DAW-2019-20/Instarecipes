@@ -95,7 +95,7 @@
           <div class="trending-pub">
             <div class="row" style="height: 100%; margin-left: 0; margin-right: 0;">
               <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);">
-                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+                <img class="d-flex mr-3 rounded-circle profile-border" width="50%" src="/temp/avatars/image-1.jpg" alt="">
               </div>
               <div class="col-md-4">
                 <h3>Introduction</h3>
@@ -172,7 +172,7 @@
                 </a>
               </div>
               <div class="col-lg-1" style="align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);">
-                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+                <img class="d-flex mr-3 rounded-circle profile-border" width="50%" src="/temp/avatars/image-1.jpg" alt="">
               </div>
             </div>
           </div>
@@ -187,7 +187,7 @@
           <div class="trending-pub">
             <div class="row" style="height: 100%; margin-left: 0; margin-right: 0;">
               <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);">
-                <img class="d-flex mr-3 rounded-circle profile-border" src="images/icons/avatar.svg" alt="">
+                <img class="d-flex mr-3 rounded-circle profile-border" width="50%" src="/temp/avatars/image-1.jpg" alt="">
               </div>
               <div class="col-md-4">
                 <h3>Introduction</h3>
@@ -517,7 +517,7 @@
                         style="padding:10px;width: 100%;height: 100px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
                         placeholder="Type a introduction here.." required></textarea>
                     </div>
-                    <img id="preview-img-file" src=""  style="object-fit:cover;height:100px;width:100%;border-radius: 0.5rem;" hidden/>
+                    <img id="preview-img-file" src="" style="object-fit:cover;height:100px;width:100%;border-radius: 0.5rem;" hidden/>
                     <div>
                       <p id="no-such-image">No such image selected yet</p>
                       <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem;
@@ -526,18 +526,17 @@
                         <input id="file-input" hidden type="file" name="imageFile" accept=".jpg, .jpeg"/><i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i></input>
                       </label>
                     </div>
-                    <fieldset id="steps-form" name="steps" class="nav-item dropdown wrap-input50 m-b-23"
+                    <fieldset id="steps-form" class="nav-item dropdown wrap-input50 m-b-23"
                       style="text-align: initial;">
                       <h3>Step 1*</h3>
                       <hr>
                       <div id="stepCountChar"></div>
-                      <textarea onkeyup="stepCountChar(this)" placeholder="A recipe must have at least 1 step :D"
+                      <textarea onkeyup="stepCountChar(this)" name="steps" placeholder="A recipe must have at least 1 step :D"
                         style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" required></textarea>
                       <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </fieldset>
                     <hr>
-                    <div id="add-step" class="btn btn-dark"
-                      style="width: 100%; border-radius: 0.8rem;background-color: teal;cursor: pointer;">
+                    <div id="add-step" class="btn btn-dark" style="width: 100%; border-radius: 0.8rem;background-color: teal;cursor: pointer;">
                       <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                     </div>
                   </div>
@@ -549,8 +548,7 @@
                       style="width: 100%; border-radius: 0.8rem;background-color: mediumspringgreen;cursor: pointer;">
                       <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                     </div>
-                    <fieldset id="ingredients-form" class="nav-item dropdown scrolling" name="ingredients"
-                      style="height: 300px;">
+                    <fieldset id="ingredients-form" class="nav-item dropdown scrolling" style="height: 300px;">
                     </fieldset>
                     <hr>
                     <h3 class="underlined-text">Category</h3>
@@ -597,10 +595,10 @@
                     </select>
                   </div>
                 </div>
-                <button type='submit' class="btn btn-primary" style="margin-top: 20px; height: 50px;width: 10%;">
+                <button id="post-recipe" type='submit' class="btn btn-primary" style="margin-top: 20px; height: 50px;width: 10%;">
                   Post
-                  <input type="hidden" name="_csrf" value="{{token}}"/>
                 </button>
+                <input type="hidden" name="_csrf" value="{{token}}"/>
               </form>
             </div>
           </div>
@@ -619,7 +617,8 @@
   </footer>
 
   <!-- Test JS -->
-  <script>
+  <script type="text/javascript">
+  $(document).ready(function(){
     var icon = document.getElementById("open-add-button");
     var bgTouch = document.getElementById("opened-add-button");
     var aux = true;
@@ -640,6 +639,7 @@
       aux = true;
     }
     bgTouch.onclick = secondTime;
+  });
   </script>
 
   <!-- Bootstrap core JavaScript -->
@@ -721,7 +721,7 @@
                       +"</a>"
                       +"</div>"
                       +"<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);\">"
-                      +"<img class=\"d-flex mr-3 rounded-circle profile-border\" src=\"../images/icons/avatar.svg\">"
+                      +"<img class=\"d-flex mr-3 rounded-circle profile-border\" width=\"50%\" src=\"/temp/avatars/image-"+Object.values(item)[3]+".jpg\">"
                       +"<p>@"+Object.values(item)[4]+"</p>"
                       +"</div>"
                       +"</div>"
@@ -732,7 +732,7 @@
                   }else{
                     $('#recipes-container').append("<div class=\"row\">"
                         +"<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);\">"
-                        +"<img class=\"d-flex mr-3 rounded-circle profile-border\" src=\"../images/icons/avatar.svg\">"
+                        +"<img class=\"d-flex mr-3 rounded-circle profile-border\" width=\"50%\" src=\"/temp/avatars/image-"+Object.values(item)[3]+".jpg\">"
                         +"<p>@"+Object.values(item)[4]+"</p>"
                         +"</div>"
                         +"<div class=\"col-md-4\">"
