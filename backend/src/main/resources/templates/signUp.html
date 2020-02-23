@@ -113,15 +113,11 @@
 								<input class="form-control-file" type="file" name="fileAvatar" accept=".jpg, .jpeg" />
 							</div>
 							<div class="wrap-input100 validate-input m-b-20">
-								<span class="label-input100">Allergens</span>
-								<select class="form-control" id="allergens" name="allergens">
-									<option>-- Select one --</option>
-									<option>Dairy products</option>
-									<option>Gluten</option>
-									<option>Mustard</option>
-									<option>Egg</option>
-									<option>Lactic</option>
-								</select>
+								<h3 class="label-input100" style="text-align:center;">Allergens</h3>
+								<input class="form-control" type="text" name="allergens" onkeypress="return false;">
+								  {{#allergens}} 
+								  <select value="{{.}}">{{.}}</select>
+								  {{/allergens}}                           
 							</div>
 						</div>
 						<!-- Submit button -->

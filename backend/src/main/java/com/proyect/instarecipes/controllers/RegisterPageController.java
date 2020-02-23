@@ -1,6 +1,8 @@
 package com.proyect.instarecipes.controllers;
 
+import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.User;
+import com.proyect.instarecipes.repositories.AllergensRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.ImageService;
 import com.proyect.instarecipes.security.UserAuthProvider;
@@ -21,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +32,8 @@ import javax.servlet.http.HttpServletResponse;
 public class RegisterPageController {
 
     @Autowired
+    private AllergensRepository allergensRepository;
+    @Autowired
     private UsersRepository usersRepository;
     @Autowired
     public UserAuthProvider userAuthProvider;
@@ -36,7 +41,8 @@ public class RegisterPageController {
     private ImageService imageService;
 
     @PostMapping("/signUp")
-    public void signUp(Model model, User user, HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile fileAvatar) throws IOException{
+    public String signUp(Model model, User user, HttpServletRequest request, HttpServletResponse response,
+            @RequestParam MultipartFile fileAvatar) throws IOException {
         // cause i need to transform password hash and set role of user
         User u = new User(user.getUsername(), user.getEmail(), user.getPassword(), user.getName(), user.getSurname(),
             "Hello world !!", user.getAllergens(), user.getFollowers(), user.getFollowing(), "ROLE_USER");
@@ -72,6 +78,12 @@ public class RegisterPageController {
                 e.printStackTrace();
             }
         }
+
+
+        List<Allergen> allAllergens = allergensRepository.findAll();
+        model.addAttribute("allergens", allAllergens);
+        
+        return "signUp";
     }
     
     //this method aproach the @Autowired of userAuthProvider to autenticate user and password and setup autologged 

@@ -1,7 +1,6 @@
 package com.proyect.instarecipes.views;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -15,6 +14,10 @@ import com.proyect.instarecipes.models.Comment;
 import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.repositories.CategoriesRepository;
 import com.proyect.instarecipes.repositories.CommentsRepository;
+import com.proyect.instarecipes.models.Allergen;
+import com.proyect.instarecipes.models.CookingStyle;
+import com.proyect.instarecipes.repositories.AllergensRepository;
+import com.proyect.instarecipes.repositories.CookingStylesRepository;
 import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.StepsRepository;
@@ -35,6 +38,11 @@ public class IndexController {
     @Autowired
     private RecipesRepository recipesRepository;
     @Autowired
+    private CookingStylesRepository cookingStylesRepository;
+    @Autowired
+    private AllergensRepository allergensRepository;
+
+    @Autowired
     private CommentsRepository commentsRepository;
     @Autowired
     private IngredientsRepository ingredientsRepository;
@@ -52,11 +60,22 @@ public class IndexController {
     public String indexPage(Model model) {
         //we create a list based on the database info!
         List<Recipe> recipes = recipesRepository.findAll();
+        List<Ingredient> allIngredients = ingredientsRepository.findAll();
+        List<CookingStyle> allCookingStyles = cookingStylesRepository.findAll();
+        List<Category> allCategories = categoriesRepository.findAll();
+        List<Allergen> allAllergens = allergensRepository.findAll();
+
         model.addAttribute("size", recipes.size());
         model.addAttribute("recipes", recipes);
-
+        model.addAttribute("ingredientsList", allIngredients);
+        model.addAttribute("cookingStylesList", allCookingStyles);
+        model.addAttribute("categoriesList", allCategories);
+        model.addAttribute("allergensList", allAllergens);
+        
         return "index";
     }
+
+    
     @GetMapping("/index")
     public String indexedPage(Model model) {
         List<Recipe> recipes = recipesRepository.findAll(); //should be sustituted by only following users publications

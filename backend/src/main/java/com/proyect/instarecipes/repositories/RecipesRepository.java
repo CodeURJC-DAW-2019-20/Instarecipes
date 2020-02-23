@@ -35,6 +35,11 @@ public interface RecipesRepository extends JpaRepository<Recipe, Long> {
     + "(cok.cookingStyle IN :cookingStyles)")
     List<Recipe> findFilteredSearch(ArrayList<String> ingredients, 
                                     ArrayList<String> categories, 
-                                    ArrayList<String> allergens, 
+                                    ArrayList<String> allergens,
                                     ArrayList<String> cookingStyles);
+
+    @Query("SELECT DISTINCT r FROM Recipe r "
+        + "INNER JOIN r.allergens ale WHERE "
+        + "(ale.allergen IN :allergens)")
+        List<Recipe> findFilteredSearch2(ArrayList<String> allergens);
 }
