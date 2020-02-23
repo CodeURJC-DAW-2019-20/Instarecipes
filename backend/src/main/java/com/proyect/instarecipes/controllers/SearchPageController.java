@@ -3,6 +3,7 @@ package com.proyect.instarecipes.controllers;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;
@@ -18,6 +19,9 @@ import com.proyect.instarecipes.repositories.RecipesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import ch.qos.logback.classic.pattern.ThreadConverter;
+
 import org.springframework.ui.Model;
 
 @Controller
@@ -35,28 +39,29 @@ public class SearchPageController {
     private RecipesRepository recipesRepository;
 
     @PostMapping("/search")
-    public String searchPage(Model model, String ingredients, String categories, String cookingStyles, String allergens) {
+    public String searchPage(Model model, String ingredients, String categories, String cookingStyles,
+            String allergens) {
 
         ArrayList<String> cookingStylesSelected = new ArrayList<String>(Arrays.asList(cookingStyles.split(",")));
-        if(cookingStylesSelected.get(0) != ""){ //fix the bug when only 1 is selected :) 
+        if (cookingStylesSelected.get(0) != "") { // fix the bug when only 1 is selected :)
             model.addAttribute("cookingStyles", cookingStylesSelected);
         }
         ArrayList<String> categoriesSelected = new ArrayList<String>(Arrays.asList(categories.split(",")));
-        if(categoriesSelected.get(0) != ""){
+        if (categoriesSelected.get(0) != "") {
             model.addAttribute("categories", categoriesSelected);
         }
         ArrayList<String> allergensSelected = new ArrayList<String>(Arrays.asList(allergens.split(",")));
-        if(allergensSelected.get(0) != ""){
+        if (allergensSelected.get(0) != "") {
             model.addAttribute("allergens", allergensSelected);
         }
-            ArrayList<String> ingredientsSelected = new ArrayList<String>(Arrays.asList(ingredients.split(",")));
-        if(ingredientsSelected.get(0) != ""){
+        ArrayList<String> ingredientsSelected = new ArrayList<String>(Arrays.asList(ingredients.split(",")));
+        if (ingredientsSelected.get(0) != "") {
             model.addAttribute("ingredients", ingredientsSelected);
         }
 
         List<Category> allCategories = categoriesRepository.findAll();
         List<Category> restOfCategories = restCategories(allCategories, categoriesSelected);
-        
+
         List<CookingStyle> allCookingStyles = cookingStylesRepository.findAll();
         List<CookingStyle> restOfCookingStyles = restCookingStyles(allCookingStyles, cookingStylesSelected);
 
@@ -66,22 +71,40 @@ public class SearchPageController {
         List<Allergen> allAllergens = allergensRepository.findAll();
         List<Allergen> restOfAllergens = restAllergens(allAllergens, allergensSelected);
 
-        //Return all the items
+        // Return all the items
         model.addAttribute("allCategories", restOfCategories);
         model.addAttribute("allCookingStyles", restOfCookingStyles);
         model.addAttribute("allIngredients", restOfIngredients);
         model.addAttribute("allAllergens", restOfAllergens);
 
-        //Search by items
-        // List<Recipe> recipesFounded = recipesRepository.findAll();
-        List<Recipe> recipesFounded = recipesRepository.findFilteredSearch(ingredientsSelected,categoriesSelected,allergensSelected,cookingStylesSelected);
-        System.out.println("LISTA: " + recipesFounded);
+        // Search by items
+        //List<Recipe> recipesFounded = recipesRepository.findAll();
+        List<Recipe> recipesFounded = recipesRepository.findFilteredSearch(ingredientsSelected, categoriesSelected, allergensSelected, cookingStylesSelected);
+      //  List<Recipe> finallist = removeAllergens(recipesFounded,allergensSelected);
+
+
+        System.out.println("LISTA: " + recipesFounded.toString());
+        System.out.println("LISTA foto: " + recipesFounded.get(0).getId());
+       // System.out.println("LISTA: " + finallist.toString());
         model.addAttribute("recipesFound", recipesFounded);
 
         return "search";
     }
 
-    //Better option filter db but so dificult
+  /*  private List<Recipe> removeAllergens(List<Recipe> recipesFounded, ArrayList<String> allergensSelected) {
+        List<Recipe> aux = recipesFounded;
+        for (int i = 0; i < allergensSelected.size(); i++) {
+            for (int j = 0; j < recipesFounded.size(); j++) {
+                if (recipesFounded.get(j).getIngredients().contains(allergensSelected.get(i))) {
+                    aux.remove(j);
+                }
+            }
+        }
+        System.out.println(aux);
+        return aux;
+    }*/
+
+    // Better option filter db but so dificult
     private List<Category> restCategories(List<Category> all, ArrayList<String> categoriesSelected) {
         List<Category> aux = all;
         for (int i = 0; i < categoriesSelected.size(); i++) {

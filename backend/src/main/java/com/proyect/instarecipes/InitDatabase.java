@@ -89,11 +89,20 @@ public class InitDatabase {
 
         //Ingredients examples
         Ingredient i1 = new Ingredient("Potatoes");
-        Ingredient i2 = new Ingredient("Honey");
+        Ingredient i2 = new Ingredient("Lettuce");
         Ingredient i3 = new Ingredient("Fish");
-        Ingredient i4 = new Ingredient("Tomatoes");
-        Ingredient i5 = new Ingredient("Milk");
-        Ingredient i6 = new Ingredient("Bread");
+        Ingredient i4 = new Ingredient("Chicken");
+        Ingredient i5 = new Ingredient("Carrots");
+        Ingredient i6 = new Ingredient("Pasta");
+        Ingredient i7 = new Ingredient("Garlic");
+        Ingredient i8 = new Ingredient("Peppers");
+        Ingredient i9 = new Ingredient("Tomato Sauce");
+        Ingredient i10 = new Ingredient("Lemon");
+        Ingredient i11 = new Ingredient("Butter");
+        Ingredient i12 = new Ingredient("Radish");
+        Ingredient i13 = new Ingredient("Oregano");
+        Ingredient i14 = new Ingredient("Vodka");
+        Ingredient i15 = new Ingredient("Cheese");
 
         ingredientsRepository.save(i1);
         ingredientsRepository.save(i2);
@@ -101,6 +110,15 @@ public class InitDatabase {
         ingredientsRepository.save(i4);
         ingredientsRepository.save(i5);
         ingredientsRepository.save(i6);
+        ingredientsRepository.save(i7);
+        ingredientsRepository.save(i8);
+        ingredientsRepository.save(i9);
+        ingredientsRepository.save(i10);
+        ingredientsRepository.save(i11);
+        ingredientsRepository.save(i12);
+        ingredientsRepository.save(i13);
+        ingredientsRepository.save(i14);
+        ingredientsRepository.save(i15);
 
         //Categories examples        
         Category c1 = new Category("Desserts");
@@ -145,6 +163,7 @@ public class InitDatabase {
         cookingStylesRepository.save(cs6);
         cookingStylesRepository.save(cs7);
         cookingStylesRepository.save(cs8);
+
         //Allergen examples
         Allergen a1 = new Allergen("Peanuts");
         Allergen a2 = new Allergen("Crustaceans");
@@ -152,6 +171,9 @@ public class InitDatabase {
         Allergen a4 = new Allergen("Soybeans");
         Allergen a5 = new Allergen("Milk");
         Allergen a6 = new Allergen("Mustard");
+        Allergen a7 = new Allergen("Wheat");
+        Allergen a8 = new Allergen("Soy");
+        Allergen a9 = new Allergen("Nuts");
 
         allergensRepository.save(a1);
         allergensRepository.save(a2);
@@ -159,6 +181,9 @@ public class InitDatabase {
         allergensRepository.save(a4);
         allergensRepository.save(a5);
         allergensRepository.save(a6);
+        allergensRepository.save(a7);
+        allergensRepository.save(a8);
+        allergensRepository.save(a9);
 
         //Requests examples
         Request req1 = new Request(u2, "Ingredient", "Apple", null, null, false);
@@ -167,35 +192,40 @@ public class InitDatabase {
         requestsRepository.save(req1);
         requestsRepository.save(req2);
 
-
         //Recipes examples
-        Set<Ingredient> ingredients1 = groupStaff.groupIngredients(i1,i2,i3);
-        Set<Ingredient> ingredients2 = groupStaff.groupIngredients(i2,i4,i5,i6);
-        Set<Ingredient> ingredients3 = groupStaff.groupIngredients(i2,i4,i5,i6,i1);
-        Set<Ingredient> ingredients4 = groupStaff.groupIngredients(i2,i4,i5,i3,i6);
+        Set<Ingredient> ingredients1 = groupStaff.groupIngredients(i1,i4,i7);//pizzita
+        Set<Ingredient> ingredients2 = groupStaff.groupIngredients(i7,i10,i11); //fish
+        Set<Ingredient> ingredients3 = groupStaff.groupIngredients(i1,i4,i5,i7,i8); //thai
+        Set<Ingredient> ingredients4 = groupStaff.groupIngredients(i2,i7,i8,i10,i12); //salad
+        Set<Ingredient> ingredients5 = groupStaff.groupIngredients(i6,i7,i8,i9,i13,i14); //pasta
 
-        Set<Category> categories1 = groupStaff.groupCategories(c1,c2,c3);
-        Set<Category> categories2 = groupStaff.groupCategories(c2,c4,c5,c6);
-        Set<Category> categories3 = groupStaff.groupCategories(c1,c2,c3,c4,c5);
-        Set<Category> categories4 = groupStaff.groupCategories(c2,c4);
+        Set<Category> categories1 = groupStaff.groupCategories(c3,c11);//pizzita
+        Set<Category> categories2 = groupStaff.groupCategories(c3,c11); //fish, pasta
+        Set<Category> categories3 = groupStaff.groupCategories(c3,c4,c11); //thai
+        Set<Category> categories4 = groupStaff.groupCategories(c2,c3,c4,c5,c11);  //salad
+         
+        Set<CookingStyle> cookingStyles1 = groupStaff.groupCookingStyles(cs1,cs3,cs4); //pizzita
+        Set<CookingStyle> cookingStyles2 = groupStaff.groupCookingStyles(cs3); //fish
+        Set<CookingStyle> cookingStyles3 = groupStaff.groupCookingStyles(cs5); //thai
+        Set<CookingStyle> cookingStyles4 = groupStaff.groupCookingStyles(cs6); //salad
 
-        Set<CookingStyle> cookingStyles1 = groupStaff.groupCookingStyles(cs1,cs2,cs3);
-        Set<CookingStyle> cookingStyles2 = groupStaff.groupCookingStyles(cs2,cs4);
-
-        Set<Allergen> allergens1 = groupStaff.groupAllergens(a1,a2,a3);
-        Set<Allergen> allergens2 = groupStaff.groupAllergens(a4,a5,a6);
-
+        Set<Allergen> allergens1 = groupStaff.groupAllergens(a7,a8); //pizzita
+        Set<Allergen> allergens2 = groupStaff.groupAllergens(a3,a5,a6); //fish
+        Set<Allergen> allergens3 = groupStaff.groupAllergens(a8); //chicken
+        Set<Allergen> allergens4 = groupStaff.groupAllergens(a5); //chicken
+        Set<Allergen> allergens5 = groupStaff.groupAllergens(a9); 
 
         Recipe r1 = new Recipe(u1, ingredients1, categories1, cookingStyles1, allergens1, "Homemade Pizza!", "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!", 
         "15 min.", "Hard", 3);
-        Recipe r2 = new Recipe(u1, ingredients4, categories3, cookingStyles2, allergens2, "Fish with i dont know", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
+        Recipe r2 = new Recipe(u1, ingredients2, categories2, cookingStyles2, allergens2, "Baked Fish with Lemon Cream Sauce", "Yup, just throw it all in one pan, bake it, and you end up with a tender juicy fish in a creamy lemon sauce.", 
         "30 min.", "Hard", 10);
-        Recipe r3 = new Recipe(u1, ingredients3, categories4, cookingStyles2, allergens1, "Avocado Salad", "Your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
+        Recipe r3 = new Recipe(u1, ingredients3, categories3, cookingStyles3, allergens3, "Thai Chicken Soup with Rice Noodles", "Cozy, comforting, and fragrant, this flavor-packed Thai chicken noodle soup will warm you right up.", 
         "45 min.", "Hard", 22);
-        Recipe r4 = new Recipe(u2, ingredients2, categories2, cookingStyles2, allergens2, "Avocado Salad", "This Sheet Pan Garlic Herb Butter Chicken recipe is low in fat and absolutely incredible. So buttery with so much flavour, it TASTES so sinful yet contains half the fat of a regular butter sauce that no one knows the difference!", 
+        Recipe r4 = new Recipe(u2, ingredients4, categories4, cookingStyles4, allergens5, "Avocado Salad", "This salad features ripe avocado slices covered in a fresh lime dressing, topped generously with a contrasting crisp-and-crunchy blend of chopped radish, onion, peppers, and herbs.", 
         "15 min.", "Hard", 35);
-        Recipe r5 = new Recipe(u2, ingredients1, categories2, cookingStyles2, allergens1, "Avocado Salad", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese, and an avocado…toss it alltogether, and done. It’s summery, healthy, and so good!", 
+        Recipe r5 = new Recipe(u2, ingredients5, categories2, cookingStyles4, allergens4, "Vodka Sauce Pasta (Pasta Party!)", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese.. And don't worry, It won't taste like vodka!", 
         "1 h.", "Hard", 15);
+
         //Steps for r4(for example)
         Step step11 = new Step(r4, 1, "Preheat oven to 425 degrees F (220 degrees C). Lightly oil a large roasting pan.");
         Step step22 = new Step(r4, 2, "Place chicken pieces in large bowl. Season with salt, oregano, pepper, rosemary, and cayenne pepper. Add fresh lemon juice, olive oil, and garlic. Place potatoes in bowl with the chicken; stir together until chicken and potatoes are evenly coated with marinade.");
@@ -218,11 +248,11 @@ public class InitDatabase {
         stepsRepository.save(step3);
 
         // Create images / Canonical folder is backend!!!
-        File file1 = new File("src/main/resources/static/images/Recipes/chicken_recipe.jpg");
-        File file2 = new File("src/main/resources/static/images/Recipes/chicken_potatoes.jpg");
-        File file3 = new File("src/main/resources/static/images/Recipes/potatoes_recipe.jpg");
-        File file4 = new File("src/main/resources/static/images/Recipes/potatoes_chicken_recipe.jpg");
-        File file5 = new File("src/main/resources/static/images/Recipes/recipe_example_7.jpg");
+        File file1 = new File("src/main/resources/static/images/Recipes/recipe_example_1.jpg");
+        File file2 = new File("src/main/resources/static/images/Recipes/recipe_example_6.jpg");
+        File file3 = new File("src/main/resources/static/images/Recipes/recipe_example_9.jpg");
+        File file4 = new File("src/main/resources/static/images/Recipes/recipe_example_4.jpg");
+        File file5 = new File("src/main/resources/static/images/Recipes/recipe_example_8.jpg");
         FileInputStream input1 = new FileInputStream(file1);
         FileInputStream input2 = new FileInputStream(file2);
         FileInputStream input3 = new FileInputStream(file3);

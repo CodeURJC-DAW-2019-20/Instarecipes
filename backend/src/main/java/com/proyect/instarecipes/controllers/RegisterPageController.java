@@ -1,6 +1,8 @@
 package com.proyect.instarecipes.controllers;
 
+import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.User;
+import com.proyect.instarecipes.repositories.AllergensRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserAuthProvider;
 
@@ -14,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,12 +25,14 @@ import javax.servlet.http.HttpServletResponse;
 public class RegisterPageController {
 
     @Autowired
+    private AllergensRepository allergensRepository;
+    @Autowired
     private UsersRepository usersRepository;
     @Autowired
     public UserAuthProvider userAuthProvider;
 
     @PostMapping("/signUp")
-    public void signUp(Model model, User user, HttpServletRequest request, HttpServletResponse response) {
+    public String signUp(Model model, User user, HttpServletRequest request, HttpServletResponse response) {
         // cause i need to transform password hash and set role of user
         User u = new User(user.getUsername(), user.getEmail(), user.getPassword(), user.getName(), user.getSurname(),
             "Hello world !!", user.getAllergens(), user.getFollowers(), user.getFollowing(), "ROLE_USER");
@@ -52,6 +57,12 @@ public class RegisterPageController {
                 e.printStackTrace();
             }
         }
+
+
+        List<Allergen> allAllergens = allergensRepository.findAll();
+        model.addAttribute("allergens", allAllergens);
+        
+        return "signUp";
     }
     
     //this method aproach the @Autowird of userAuthProvider to autenticate user and password and setup autologged 

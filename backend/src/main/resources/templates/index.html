@@ -59,8 +59,10 @@
           </li>
         </ul>
         <form class="example" action="/search">
-          <input type="text" href="#" placeholder="Search.." name="search" />
-          <button type="submit"><i class="fa fa-search"></i></button>
+          <input type="text" href="#" placeholder="Search.." name="search"/>
+          <button type="submit">
+            <i class="fa fa-search"></i>
+          </button>
         </form>
       </div>
     </div>
@@ -304,7 +306,7 @@
                           <tr>
                             <td>
                             <!--"Ingredient-Name"-->
-                              <input name="ingredients" type="text" list="ingredientslist" placeholder="Ingredient.." style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;">
+                              <input name="ingredients" type="text" list="ingredientslist" placeholder="Ingredient.." style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" onkeypress="return false;">
                               <datalist id="ingredientslist">
                                 {{#ingredientsList}}
                                 <option value="{{ingredient}}">{{ingredient}}</option>
@@ -345,7 +347,7 @@
                         <table id="CookingStyleTable">
                           <tr>
                             <td>
-                              <input name="cookingStyles" type="text" list="cookingStyleslist" placeholder="Type a category.." style="border-radius: 0.5rem;border-width: 0.5px;">
+                              <input name="cookingStyles" type="text" list="cookingStyleslist" placeholder="Type a category.." style="border-radius: 0.5rem;border-width: 0.5px;" onkeypress="return false;">
                               <datalist id="cookingStyleslist">
                                 {{#cookingStylesList}}
                                 <option value="{{cookingStyle}}">{{cookingStyle}}</option>
@@ -387,7 +389,7 @@
                         <table id="CategoriesTable">
                         <tr>  
                           <td>
-                            <input name="categories" type="text" list="categorieslist" placeholder="Type a category.." style="border-radius: 0.5rem;border-width: 0.5px;">
+                            <input name="categories" type="text" list="categorieslist" placeholder="Type a category.." style="border-radius: 0.5rem;border-width: 0.5px;" onkeypress="return false;">
                             <datalist id="categorieslist">
                               {{#categoriesList}}
                               <option value="{{category}}">{{category}}</option>
@@ -426,7 +428,7 @@
                         <table id="AllergensTable">
                           <tr>
                             <td>
-                              <input name="allergens" type="text" list="allergenslist" placeholder="Type an allergen.." style="border-radius: 0.5rem; border-width: 0.5px;">
+                              <input name="allergens" type="text" list="allergenslist" placeholder="Type an allergen.." style="border-radius: 0.5rem; border-width: 0.5px;" onkeypress="return false;">
                               <datalist id="allergenslist">
                                 {{#allergensList}}
                                 <option value="{{allergen}}">{{allergen}}</option>
@@ -551,6 +553,25 @@
                     </div>
                     <fieldset id="ingredients-form" class="nav-item dropdown scrolling" name="ingredients"
                       style="height: 300px;">
+                      <!--<table id="ingredientsTableAdd"> 
+                        <tr>
+                          <td>
+                          <input name="ingredients" type="text" list="ingredientslist" placeholder="Ingredient.." style="border-radius: 0.5rem; border-width: 0.5px;" onkeypress="return false;"> 
+                          <datalist id="ingredientlist">
+                            {{#ingredientsList}}
+                            <option value="{{ingredient}}">{{ingredient}}</option>
+                            {{/ingredientsList}}
+                          </datalist>
+                          </td>
+                          <td>
+                          <button id="ing-delete-buttonAdd" type="button" class="btn-delete-line" style="color: white; font-size: inherit;" onclick="delRowIngredientAdd(this)">
+                            <span aria-hidden="true">
+                              <i class="fas fa-trash"></i>
+                            </span>
+                          </button>
+                          </td>
+                        </tr>
+                      </table>-->
                     </fieldset>
                     <hr>
                     <h3 class="underlined-text">Category</h3>
@@ -559,6 +580,25 @@
                       <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                     </div>
                     <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;" name="categories">
+                      <!--<table id="CategoriesTableAdd">
+                        <tr>  
+                          <td>
+                            <input name="categories" type="text" list="categorieslist" placeholder="Type a category.." style="border-radius: 0.5rem;border-width: 0.5px;" onkeypress="return false;">
+                            <datalist id="categorieslist">
+                              {{#categoriesList}}
+                              <option value="{{category}}">{{category}}</option>
+                              {{/categoriesList}}
+                            </datalist>
+                          </td>
+                          <td>
+                            <button id="cat-delete-buttonAdd" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCategory(this)">
+                              <span aria-hidden="true">
+                                <i class="fas fa-trash"></i>
+                              </span>
+                            </button>  
+                          </td> 
+                        </tr>
+                        </table>-->
                     </fieldset>
                     <hr>
                     <h3 class="underlined-text">Difficulty</h3>
@@ -668,7 +708,7 @@
             document.getElementById("loadmore1").setAttribute("hidden", "");
             $("#loadmore2").removeAttr("hidden");
             $.ajax({
-                url: "http://localhost:8443/recipes", //para filtrar busqueda se añade +value
+                url: "http://localhost:8443/recipes", //to filter search we must add +value
                 data: {
                   page: page_counter,
                 }

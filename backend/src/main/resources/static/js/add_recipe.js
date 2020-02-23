@@ -12,8 +12,8 @@ var arrayOfQuantity =
         +"<option>1/2 kg./l.</option>"
         +"<option>1 kg./l.</option>"
         +"<option>5 kg./l.</option>";
-var arrayOfIngredients = 
-    "<option>Bread</option>"
+var arrayOfIngredients =
+       "<option>Bread</option>"
         +"<option>Mushrooms</option>"
         +"<option>Beans</option>"
         +"<option>Nuts</option>"
