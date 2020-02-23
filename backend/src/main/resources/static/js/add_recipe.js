@@ -34,14 +34,7 @@ $(document).ready(function() {
       var fieldWrapper = $("<div class=\"row\" id=\"ingredients-field" + intId + "\"/>");
       fieldWrapper.data("idx", intId);
       //var fName = $("<input type=\"text\" class=\"fieldname col-4\" />");
-      var fQuantity = $("<select class=\"col-3 avaiable-quantity\">"
-          +arrayOfQuantity
-        +"</select>"
-      );
-      var fIngredients = $("<select class=\"col-7 avaiable-ingredients\">"
-                +arrayOfIngredients
-            +"</select>"
-      );
+      var fIngredients = $("<select class=\"col-7 avaiable-ingredients\">"+arrayOfIngredients+"</select>");
       var removeButton = $("<div class=\"btn-danger col-1\" style=\"border-radius:0.5rem;"
         +"align-self:center;"
         +"text-align:center;"
@@ -52,7 +45,6 @@ $(document).ready(function() {
       removeButton.click(function() {
           $(this).parent().remove();
       });
-      fieldWrapper.append(fQuantity);
       fieldWrapper.append(fIngredients);
       fieldWrapper.append(removeButton);
       $("#ingredients-form").prepend(fieldWrapper);//add to the top of the form
@@ -74,18 +66,6 @@ $(document).ready(function() {
                 +"border:1px solid rgba(0, 0, 0, 0.3);"
                 +"padding:10px;\">"
             +"</textarea>"
-            +"<div style=\"width:100%;height:100%;display:flex;flex-wrap:wrap;right:0\">"
-            +"<div class=\"btn-outline-primary\" style=\"border-radius:0.5rem;border:1px solid rgb(23, 162, 184);background-color:white"
-                    +"align-self:center;"
-                    +"text-align:center;"
-                    +"padding:0;"
-                    +"right:0;"
-                    +"width:25%;"
-                    +"position:absolute;"
-                    +"cursor:pointer\">"
-                +"<i class=\"fa fa-camera\" aria-hidden=\"true\" styles=\"object-fit:cover;padding:5px\"></i>"
-            +"</div>"
-        +"</div>"
         );
         var removeButton = $("<div class=\"btn-danger\" style=\"border-radius:0.5rem;"
                 +"align-self:center;"
