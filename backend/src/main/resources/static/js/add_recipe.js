@@ -1,19 +1,6 @@
 var counter = 2;
-var arrayOfQuantity = 
-    "<option>1 Ud.</option>"
-        +"<option>2 Ud.</option>"
-        +"<option>5 Ud.</option>"
-        +"<option>10 Ud.</option>"
-        +"<option>50 Ud.</option>"
-        +"<option>25 g./cl.</option>"
-        +"<option>50 g./cl.</option>"
-        +"<option>100 g./cl.</option>"
-        +"<option>250 g./cl.</option>"
-        +"<option>1/2 kg./l.</option>"
-        +"<option>1 kg./l.</option>"
-        +"<option>5 kg./l.</option>";
-var arrayOfIngredients =
-       "<option>Bread</option>"
+var arrayOfIngredients = 
+    "<option>Bread</option>"
         +"<option>Mushrooms</option>"
         +"<option>Beans</option>"
         +"<option>Nuts</option>"
@@ -27,6 +14,8 @@ var arrayOfCategories =
         +"<option>Gluten Free</option>"
         +"<option>Sugar Free</option>";
 $(document).ready(function() {
+    var arrayIngredients = [ ];
+    var counter = 0;
     //------------------ ADDING AN INGREDIENT ------------------//
     $("#add-ingredient").click(function() {
       var lastField = $("#ingredients-form div:last");
@@ -34,14 +23,7 @@ $(document).ready(function() {
       var fieldWrapper = $("<div class=\"row\" id=\"ingredients-field" + intId + "\"/>");
       fieldWrapper.data("idx", intId);
       //var fName = $("<input type=\"text\" class=\"fieldname col-4\" />");
-      var fQuantity = $("<select class=\"col-3 avaiable-quantity\">"
-          +arrayOfQuantity
-        +"</select>"
-      );
-      var fIngredients = $("<select class=\"col-7 avaiable-ingredients\">"
-                +arrayOfIngredients
-            +"</select>"
-      );
+      var fIngredients = $("<select id=\"ing"+counter+"\" name=\"ing"+counter+"\" class=\"col-7 avaiable-ingredients\">"+arrayOfIngredients+"</select>");
       var removeButton = $("<div class=\"btn-danger col-1\" style=\"border-radius:0.5rem;"
         +"align-self:center;"
         +"text-align:center;"
@@ -52,7 +34,6 @@ $(document).ready(function() {
       removeButton.click(function() {
           $(this).parent().remove();
       });
-      fieldWrapper.append(fQuantity);
       fieldWrapper.append(fIngredients);
       fieldWrapper.append(removeButton);
       $("#ingredients-form").prepend(fieldWrapper);//add to the top of the form
@@ -74,18 +55,6 @@ $(document).ready(function() {
                 +"border:1px solid rgba(0, 0, 0, 0.3);"
                 +"padding:10px;\">"
             +"</textarea>"
-            +"<div style=\"width:100%;height:100%;display:flex;flex-wrap:wrap;right:0\">"
-            +"<div class=\"btn-outline-primary\" style=\"border-radius:0.5rem;border:1px solid rgb(23, 162, 184);background-color:white"
-                    +"align-self:center;"
-                    +"text-align:center;"
-                    +"padding:0;"
-                    +"right:0;"
-                    +"width:25%;"
-                    +"position:absolute;"
-                    +"cursor:pointer\">"
-                +"<i class=\"fa fa-camera\" aria-hidden=\"true\" styles=\"object-fit:cover;padding:5px\"></i>"
-            +"</div>"
-        +"</div>"
         );
         var removeButton = $("<div class=\"btn-danger\" style=\"border-radius:0.5rem;"
                 +"align-self:center;"
@@ -105,6 +74,16 @@ $(document).ready(function() {
         //fieldWrapper.append(removeButton);
         $("#steps-form").append(fieldWrapper);//add to the top of the form
       });
+    //------------------------------------------------------//
+    $("#post-recipe").click(function(){
+      for(var i=0; i<counter; i++){
+        var valor = document.getElementById("ing"+counter);
+        console.log("ID: " + valor);
+        arrayIngredients.push(valor.value);
+        counter++;
+        console.log("ARRAY: " + arrayIngredients);
+      }
+    });
     //------------------ ADDING A CATEGORY ------------------//
     $("#add-category").click(function() {
         var lastField = $("#category-form div:last");

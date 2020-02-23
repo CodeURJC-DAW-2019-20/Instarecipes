@@ -72,6 +72,7 @@ public class IndexController {
     @GetMapping("/index")
     public String indexedPage(Model model) {
         List<Recipe> recipes = recipesRepository.findAll(); //should be sustituted by only following users publications
+        model.addAttribute("id", userSession.getLoggedUser().getId());//THIS IS ONLY A TEST
         model.addAttribute("size", recipes.size());
         model.addAttribute("recipes", recipes);
         return "index";
@@ -104,6 +105,7 @@ public class IndexController {
         Recipe r = recipe;
         r.setImage(true);
         r.setUsername(userSession.getLoggedUser());
+        System.out.println("RECIPE1: " + r.getCategories() +" INGREd1:" + r.getIngredients());
         recipesRepository.save(r);
         imageService.saveImage("recipes", r.getId(), imageFile);
 

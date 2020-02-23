@@ -1,7 +1,6 @@
 package com.proyect.instarecipes.controllers;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.proyect.instarecipes.models.Recipe;
@@ -33,14 +32,10 @@ public class ProfilePageController{
     @GetMapping("/profile") 
     public String profilePage(Model model) {
         User actual =  userSession.getLoggedUser();
-        //Name
-        model.addAttribute("name", actual.getName());
-        //Surname
-        model.addAttribute("surname", actual.getSurname());
-        //Username
-        model.addAttribute("username", actual.getUsername());
-        //Info
-        model.addAttribute("info",actual.getInfo());
+        //User
+        model.addAttribute("actualUser", actual);
+        //All users
+        model.addAttribute("usersList", usersRepository.findAll());
         //Number of followers
         model.addAttribute("n_followers", usersRepository.findFollowers(actual.getUsername()).size());
         //Number of following

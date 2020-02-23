@@ -121,19 +121,22 @@ public class RequestController {
             e.printStackTrace();
         }
     }
-
-    // @ModelAttribute
-    // public void modelPage(Model model) {
-    //     boolean logged = userSession.getLoggedUser() != null;
-    //     model.addAttribute("logged", logged);
-	// 	if(logged){
-	// 		model.addAttribute("user",userSession.getLoggedUser().getUsername());
-	// 		model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
-	// 	}
-    //     //if(userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN")){
-    //         model.addAttribute("allRequests", requestsRepository.findAll());
-    //     //}
-    // }
     
+
+
+
+
+
+
+
+
+    @PostMapping("/suspendUsersRequest")
+    public void actionUsersRequest(@RequestParam("typeOfItemRequest") String typeOfRequest, 
+    @RequestParam("itemContent") String itemContent,
+    @RequestParam("action") String action, 
+    @RequestParam("id_request") Long id_request,
+    HttpServletResponse response){
+        
+    }
 
 }

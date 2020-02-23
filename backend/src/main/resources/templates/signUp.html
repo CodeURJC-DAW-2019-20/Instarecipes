@@ -30,7 +30,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-35 p-r-35 p-t-5 p-b-54">
 				<!--Signup container-->
-				<form class="login100-form validate-form" method="post" action="/signUp">
+				<form class="login100-form validate-form" method="post" action="/signUp" enctype="multipart/form-data">
 					<div id="signUpDiv">
 						<!-- Back buttons -->
 						<div class="login100 p-l p-r p-t-5 p-b-35 ">
@@ -110,7 +110,7 @@
 							<!-- Load image and select box -->
 							<div class="form-group">
 								<span class="label-input100">Upload a profile pic</span>
-								<input class="form-control-file" type='file' name='avatar' accept=".jpg, .jpeg" />
+								<input class="form-control-file" type="file" name="fileAvatar" accept=".jpg, .jpeg" />
 							</div>
 							<div class="wrap-input100 validate-input m-b-20">
 								<h3 class="label-input100" style="text-align:center;">Allergens</h3>
