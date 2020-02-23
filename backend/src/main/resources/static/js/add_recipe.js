@@ -5,6 +5,8 @@ $(document).ready(function() {
   var cList = document.getElementById("categoriesList").value;
   var arrayOfCategories = cList.split(",");
 
+  var firstStep = $("#firstStep");
+
     var arrayIngredients = [ ];
     var arrayCategories = [ ];
     var arraySteps = [ ];
@@ -14,6 +16,7 @@ $(document).ready(function() {
     
     var ingredientsContainer = "";
     var categoriesContainer = "";
+
     for(var i=0; i<arrayOfIngredients.length-1;i++){
       ingredientsContainer = ingredientsContainer + "<option>"+arrayOfIngredients[i]+"</option>";
     }
@@ -73,7 +76,7 @@ $(document).ready(function() {
         var lastField = $("#steps-form div:last");
         var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
         var fieldWrapper = $("<div id=\"steps-field" 
-        + intId + "\">"
+        + stepCounter + "\">"
         +"<h3>Step " + stepNumber +"</h3><hr></div>");
         fieldWrapper.data("idx", intId);
         var fStep = $("<div style=\"width: 100%;height:250\">"
@@ -85,7 +88,7 @@ $(document).ready(function() {
                 +"padding:10px;\">"
             +"</textarea>"
         );
-        var removeButton = $("<div class=\"btn-danger\" style=\"border-radius:0.5rem;"
+        var removeButton = $("<div id=\"removeB"+stepCounter+"\" class=\"btn-danger\" style=\"border-radius:0.5rem;"
                 +"align-self:center;"
                 +"text-align:center;"
                 +"width:10%;"
@@ -97,8 +100,16 @@ $(document).ready(function() {
         fieldWrapper.append(fStep);
         fieldWrapper.append(removeButton);
         stepNumber++;
-        $("#steps-form").append(fieldWrapper);//add to the top of the form
+        $("#steps-form").append(fieldWrapper);//add to the bottom of the form
+        if(stepCounter>0){
+          var au = stepCounter-1;
+          var asdf = $("#removeB"+au);
+          asdf.hide();
+        }
         removeButton.click(function() {
+          if(stepNumber>3){
+            asdf.show();
+          }
           stepNumber--; //still've some troubles, need to refresh with ajax(realtime)the counter var for each h3 on top
           $(this).parent().remove();
         });
@@ -109,10 +120,10 @@ $(document).ready(function() {
     $("#post-recipe").click(function(){
 //INGREDIENTS
       for(var i=0; i<ingCounter; i++){
-        var valor = document.getElementById("ing"+i);
-        console.log("ID: " + valor);
-        if(valor != null){
-          arrayIngredients.push(valor.value);
+        var valor1 = document.getElementById("ing"+i);
+        console.log("ID: " + valor1);
+        if(valor1 != null){
+          arrayIngredients.push(valor1.value);
         }
         console.log("ARRAY: " + arrayIngredients);
       }
@@ -121,10 +132,10 @@ $(document).ready(function() {
       console.log("Definitive Ings: " + ings.value);
 //CATEGORIES
       for(var i=0; i<catCounter; i++){
-        var valor = document.getElementById("cat"+i);
-        console.log("ID: " + valor);
-        if(valor != null){
-          arrayCategories.push(valor.value);
+        var valor2 = document.getElementById("cat"+i);
+        console.log("ID: " + valor2);
+        if(valor2 != null){
+          arrayCategories.push(valor2.value);
         }
         console.log("ARRAY CATEGORIES: " + arrayCategories);
       }
@@ -132,17 +143,18 @@ $(document).ready(function() {
       cats.setAttribute("value", arrayCategories);
       console.log("Definitive Cat: " + cats.value);
 //STEPS
-      for(var i=0; i<stepCounter; i++){
-        var valor = document.getElementById("step"+i);
-        console.log("ID: " + valor);
-        if(valor != null){
-          arraySteps.push(valor.value);
+      for(var i=0; i<stepNumber-2; i++){
+        var valor3 = $("#step"+i);
+        if(valor3 != null){
+          var othersStps = valor3.val();
+          if(i < stepNumber-3){
+            othersStps = othersStps + "ab#12#45-3";
+          }
+          arraySteps.push(othersStps);
         }
-        console.log("ARRAY STEPS: " + arraySteps);
       }
       var steps = document.getElementById("stepsString");
       steps.setAttribute("value", arraySteps);
-      console.log("Definitive Steps: " + steps.value);
     });
     
     //--------------------------------------------------------//
