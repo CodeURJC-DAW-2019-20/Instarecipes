@@ -16,13 +16,12 @@ This is the developer project's repository, where you can found folders like **C
 * [Advanced algorithm](#algorithm)
 * [Navigation Diagrams](#navDiagram)
 
-**PHASE 2**
-* [Introduction](#phase1)  
-  * [Most important commits](#importantComm)  
-  * [Most worked files](#workedFiles)    
-  * [Instructions](#instructions)  
-  * [Database diagrams](#dbDiagram)  
-  * [Classes and templates diagrams](#CTdiagrams)  
+**PHASE 2** 
+ * [Most important commits](#importantComm)  
+ * [Most worked files](#workedFiles)    
+ * [Instructions](#instructions)  
+ * [Database diagrams](#dbDiagram)  
+ * [Classes and templates diagrams](#CTdiagrams)  
   
 # Page layout with HTML and CSS <a name="phase1"></a>
 
