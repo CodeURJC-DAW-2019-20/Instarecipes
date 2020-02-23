@@ -1,17 +1,4 @@
 var counter = 2;
-var arrayOfQuantity = 
-    "<option>1 Ud.</option>"
-        +"<option>2 Ud.</option>"
-        +"<option>5 Ud.</option>"
-        +"<option>10 Ud.</option>"
-        +"<option>50 Ud.</option>"
-        +"<option>25 g./cl.</option>"
-        +"<option>50 g./cl.</option>"
-        +"<option>100 g./cl.</option>"
-        +"<option>250 g./cl.</option>"
-        +"<option>1/2 kg./l.</option>"
-        +"<option>1 kg./l.</option>"
-        +"<option>5 kg./l.</option>";
 var arrayOfIngredients = 
     "<option>Bread</option>"
         +"<option>Mushrooms</option>"
@@ -27,6 +14,8 @@ var arrayOfCategories =
         +"<option>Gluten Free</option>"
         +"<option>Sugar Free</option>";
 $(document).ready(function() {
+    var arrayIngredients = [ ];
+    var counter = 0;
     //------------------ ADDING AN INGREDIENT ------------------//
     $("#add-ingredient").click(function() {
       var lastField = $("#ingredients-form div:last");
@@ -34,7 +23,7 @@ $(document).ready(function() {
       var fieldWrapper = $("<div class=\"row\" id=\"ingredients-field" + intId + "\"/>");
       fieldWrapper.data("idx", intId);
       //var fName = $("<input type=\"text\" class=\"fieldname col-4\" />");
-      var fIngredients = $("<select class=\"col-7 avaiable-ingredients\">"+arrayOfIngredients+"</select>");
+      var fIngredients = $("<select id=\"ing"+counter+"\" name=\"ing"+counter+"\" class=\"col-7 avaiable-ingredients\">"+arrayOfIngredients+"</select>");
       var removeButton = $("<div class=\"btn-danger col-1\" style=\"border-radius:0.5rem;"
         +"align-self:center;"
         +"text-align:center;"
@@ -87,8 +76,13 @@ $(document).ready(function() {
       });
     //------------------------------------------------------//
     $("#post-recipe").click(function(){
-      console.log("valores de los cojones: " + $("#ingredients-form").val());
-      document.getElementById("ingredientsId").setAttribute("value", $("#ingredients-form").val());
+      for(var i=0; i<counter; i++){
+        var valor = document.getElementById("ing"+counter);
+        console.log("ID: " + valor);
+        arrayIngredients.push(valor.value);
+        counter++;
+        console.log("ARRAY: " + arrayIngredients);
+      }
     });
     //------------------ ADDING A CATEGORY ------------------//
     $("#add-category").click(function() {
