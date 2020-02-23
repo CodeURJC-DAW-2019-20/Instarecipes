@@ -22,7 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Entity
 public class User{
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(nullable = false, unique = true)
@@ -37,10 +37,9 @@ public class User{
 	private String name;
 	@Column(nullable = false)
 	private String surname;
-	// private Image background;
-	// private Image avatar;
+	private boolean background;
+	private boolean avatar;
 	private String allergens;
-	// private boolean image;
 	
 	@Column(nullable = false)
 	private String info;
@@ -163,22 +162,6 @@ public class User{
         }
 	}
 	
-	// @Column(name = "background")
-	// public Image getBackground() {
-	// 	return background;
-	// }
-	// public void setBackground(Image background) {
-	// 	this.background = background;
-	// }
-
-	// @Column(name = "avatar")
-	// public Image getAvatar() {
-	// 	return avatar;
-	// }
-	// public void setAvatar(Image avatar) {
-	// 	this.avatar = avatar;
-	// }
-	
 	/**				FOLLOWER / FOLLOWING METHODS				*/
 	public void addFollower(User follower) {
         followers.add(follower); //he followed me, so i increment my followers list
@@ -189,5 +172,21 @@ public class User{
         followed.addFollower(this);//i follow him, so i call addFollower() where im the parameter
     }
 	/**				_____________________________				*/
+
+	public boolean isBackground() {
+		return background;
+	}
+
+	public void setBackground(boolean background) {
+		this.background = background;
+	}
+
+	public boolean isAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(boolean avatar) {
+		this.avatar = avatar;
+	}
 
 }

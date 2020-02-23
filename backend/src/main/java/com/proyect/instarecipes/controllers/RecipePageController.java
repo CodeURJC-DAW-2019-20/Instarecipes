@@ -48,6 +48,7 @@ public class RecipePageController {
 
         // // Recipe
         Recipe recipe = recipesRepository.findRecipeById(id);
+        System.out.println("RECIPE2: " + recipe.getCategories() +" INGREd2:" + recipe.getIngredients());
         model.addAttribute("recipe", recipe);
 
         // Number of all steps

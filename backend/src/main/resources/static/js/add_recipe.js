@@ -1,47 +1,33 @@
-var counter = 2;
-var arrayOfQuantity = 
-    "<option>1 Ud.</option>"
-        +"<option>2 Ud.</option>"
-        +"<option>5 Ud.</option>"
-        +"<option>10 Ud.</option>"
-        +"<option>50 Ud.</option>"
-        +"<option>25 g./cl.</option>"
-        +"<option>50 g./cl.</option>"
-        +"<option>100 g./cl.</option>"
-        +"<option>250 g./cl.</option>"
-        +"<option>1/2 kg./l.</option>"
-        +"<option>1 kg./l.</option>"
-        +"<option>5 kg./l.</option>";
-var arrayOfIngredients = 
-    "<option>Bread</option>"
-        +"<option>Mushrooms</option>"
-        +"<option>Beans</option>"
-        +"<option>Nuts</option>"
-        +"<option>Salad</option>"
-        +"<option>Tomatoe</option>";
-var arrayOfCategories =
-    "<option>Vegetarian</option>"
-        +"<option>Athlantic</option>"
-        +"<option>Vegan</option>"
-        +"<option>Dessert</option>"
-        +"<option>Gluten Free</option>"
-        +"<option>Sugar Free</option>";
 $(document).ready(function() {
+  var iList = document.getElementById("ingredientsList").value;
+  var arrayOfIngredients = iList.split(",");
+
+  var cList = document.getElementById("categoriesList").value;
+  var arrayOfCategories = cList.split(",");
+
+    var arrayIngredients = [ ];
+    var arrayCategories = [ ];
+    var arraySteps = [ ];
+    var ingCounter = 0;
+    var catCounter = 0;
+    var stepCounter = 0;
+    
+    var ingredientsContainer = "";
+    var categoriesContainer = "";
+    for(var i=0; i<arrayOfIngredients.length-1;i++){
+      ingredientsContainer = ingredientsContainer + "<option>"+arrayOfIngredients[i]+"</option>";
+    }
+    for(var i=0; i<arrayOfCategories.length-1;i++){
+      categoriesContainer = categoriesContainer + "<option>"+arrayOfCategories[i]+"</option>";
+    }
+
     //------------------ ADDING AN INGREDIENT ------------------//
     $("#add-ingredient").click(function() {
       var lastField = $("#ingredients-form div:last");
       var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
       var fieldWrapper = $("<div class=\"row\" id=\"ingredients-field" + intId + "\"/>");
       fieldWrapper.data("idx", intId);
-      //var fName = $("<input type=\"text\" class=\"fieldname col-4\" />");
-      var fQuantity = $("<select class=\"col-3 avaiable-quantity\">"
-          +arrayOfQuantity
-        +"</select>"
-      );
-      var fIngredients = $("<select class=\"col-7 avaiable-ingredients\">"
-                +arrayOfIngredients
-            +"</select>"
-      );
+      var fIngredients = $("<select id=\"ing"+ingCounter+"\" name=\"ing"+ingCounter+"\" class=\"col-9 avaiable-ingredients\">"+ingredientsContainer+"</select>");
       var removeButton = $("<div class=\"btn-danger col-1\" style=\"border-radius:0.5rem;"
         +"align-self:center;"
         +"text-align:center;"
@@ -49,43 +35,55 @@ $(document).ready(function() {
         +"cursor:pointer\">"
         +"<i class=\"fa fa-trash\" aria-hidden=\"true\" styles=\"object-fit:cover;padding:50%\"></i>"
         +"</div>");
-      removeButton.click(function() {
-          $(this).parent().remove();
-      });
-      fieldWrapper.append(fQuantity);
       fieldWrapper.append(fIngredients);
       fieldWrapper.append(removeButton);
       $("#ingredients-form").prepend(fieldWrapper);//add to the top of the form
+        removeButton.click(function() {
+        $(this).parent().remove();
+      });
+      ingCounter++;
     });
+    
+    //------------------ ADDING A CATEGORY ------------------//
+    $("#add-category").click(function() {
+      var lastField = $("#category-form div:last");
+        var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
+        var fieldWrapper = $("<div class=\"row\" id=\"category-field" + intId + "\"/>");
+        fieldWrapper.data("idx", intId);
+        var fCategories = $("<select id=\"cat"+catCounter+"\" name=\"ing"+catCounter+"\" class=\"col-9 avaiable-categories\">"+categoriesContainer+"</select>");
+        var removeButton = $("<div class=\"btn-danger col-2\" style=\"border-radius:0.5rem;"
+          +"align-self:center;"
+          +"text-align:center;"
+          +"padding:0;"
+          +"cursor:pointer\">"
+          +"<i class=\"fa fa-trash\" aria-hidden=\"true\" styles=\"object-fit:cover;padding:50%\"></i>"
+          +"</div>");
+        fieldWrapper.append(fCategories);
+        fieldWrapper.append(removeButton);
+        $("#category-form").prepend(fieldWrapper);
+        removeButton.click(function() {
+          $(this).parent().remove();
+      });
+      catCounter++;
+    });
+
+    var stepNumber = 2;
     //------------------ ADDING A STEP ------------------//
     $("#add-step").click(function() {
         var lastField = $("#steps-form div:last");
         var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
         var fieldWrapper = $("<div id=\"steps-field" 
         + intId + "\">"
-        +"<h3>Step " + counter +"</h3><hr></div>");
-        counter++;
+        +"<h3>Step " + stepNumber +"</h3><hr></div>");
         fieldWrapper.data("idx", intId);
         var fStep = $("<div style=\"width: 100%;height:250\">"
-            +"<div id=\"stepsCountChar"+counter+"\"></div>"
-            +"<textarea onkeyup=\"stepsCountChar(this)\" class=\"\""
+            +"<div id=\"stepsCountChar"+stepNumber+"\"></div>"
+            +"<textarea id=\"step"+stepCounter+"\" name=\"step"+stepCounter+"\" onkeyup=\"stepsCountChar(this)\" class=\"\""
                 +"placeholder=\"Type how to do this step\" style=\"width: 100%;"
                 +"height: 150px;border-radius: 0.5rem;"
                 +"border:1px solid rgba(0, 0, 0, 0.3);"
                 +"padding:10px;\">"
             +"</textarea>"
-            +"<div style=\"width:100%;height:100%;display:flex;flex-wrap:wrap;right:0\">"
-            +"<div class=\"btn-outline-primary\" style=\"border-radius:0.5rem;border:1px solid rgb(23, 162, 184);background-color:white"
-                    +"align-self:center;"
-                    +"text-align:center;"
-                    +"padding:0;"
-                    +"right:0;"
-                    +"width:25%;"
-                    +"position:absolute;"
-                    +"cursor:pointer\">"
-                +"<i class=\"fa fa-camera\" aria-hidden=\"true\" styles=\"object-fit:cover;padding:5px\"></i>"
-            +"</div>"
-        +"</div>"
         );
         var removeButton = $("<div class=\"btn-danger\" style=\"border-radius:0.5rem;"
                 +"align-self:center;"
@@ -96,40 +94,57 @@ $(document).ready(function() {
                 +"padding:5px\"></i>"
             +"</div>"
         );
-        removeButton.click(function() {
-            counter--; //still've some troubles, need to refresh with ajax(realtime)the counter var for each h3 on top
-            $(this).parent().remove();
-        });
         fieldWrapper.append(fStep);
         fieldWrapper.append(removeButton);
-        //fieldWrapper.append(removeButton);
+        stepNumber++;
         $("#steps-form").append(fieldWrapper);//add to the top of the form
-      });
-    //------------------ ADDING A CATEGORY ------------------//
-    $("#add-category").click(function() {
-        var lastField = $("#category-form div:last");
-        var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
-        var fieldWrapper = $("<div class=\"row\" id=\"category-field" + intId + "\"/>");
-        fieldWrapper.data("idx", intId);
-        var fCategories = $("<select class=\"col-9 avaiable-categories\">"
-                +arrayOfCategories
-            +"</select>"
-        );
-        var removeButton = $("<div class=\"btn-danger col-2\" style=\"border-radius:0.5rem;"
-          +"align-self:center;"
-          +"text-align:center;"
-          +"padding:0;"
-          +"cursor:pointer\">"
-          +"<i class=\"fa fa-trash\" aria-hidden=\"true\" styles=\"object-fit:cover;padding:50%\"></i>"
-          +"</div>");
         removeButton.click(function() {
-            $(this).parent().remove();
+          stepNumber--; //still've some troubles, need to refresh with ajax(realtime)the counter var for each h3 on top
+          $(this).parent().remove();
         });
-        fieldWrapper.append(fCategories);
-        fieldWrapper.append(removeButton);
-        $("#category-form").prepend(fieldWrapper);
-      });
-
+        stepCounter++;
+    });
+    
+    //------------------- POST RECIPE BUTTON ---------------------//
+    $("#post-recipe").click(function(){
+//INGREDIENTS
+      for(var i=0; i<ingCounter; i++){
+        var valor = document.getElementById("ing"+i);
+        console.log("ID: " + valor);
+        if(valor != null){
+          arrayIngredients.push(valor.value);
+        }
+        console.log("ARRAY: " + arrayIngredients);
+      }
+      var ings = document.getElementById("ingredientsString");
+      ings.setAttribute("value", arrayIngredients);
+      console.log("Definitive Ings: " + ings.value);
+//CATEGORIES
+      for(var i=0; i<catCounter; i++){
+        var valor = document.getElementById("cat"+i);
+        console.log("ID: " + valor);
+        if(valor != null){
+          arrayCategories.push(valor.value);
+        }
+        console.log("ARRAY CATEGORIES: " + arrayCategories);
+      }
+      var cats = document.getElementById("categoriesString");
+      cats.setAttribute("value", arrayCategories);
+      console.log("Definitive Cat: " + cats.value);
+//STEPS
+      for(var i=0; i<stepCounter; i++){
+        var valor = document.getElementById("step"+i);
+        console.log("ID: " + valor);
+        if(valor != null){
+          arraySteps.push(valor.value);
+        }
+        console.log("ARRAY STEPS: " + arraySteps);
+      }
+      var steps = document.getElementById("stepsString");
+      steps.setAttribute("value", arraySteps);
+      console.log("Definitive Steps: " + steps.value);
+    });
+    
     //--------------------------------------------------------//
   });
   function stepCountChar(val) {

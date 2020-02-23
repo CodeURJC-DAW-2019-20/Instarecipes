@@ -8,11 +8,11 @@ signUp.onclick = function(){
     if (emailInfo.value.match(mailformat)) {
         divCompleteSignUp.style.display = "block";
         divSignUp.style.display = "none";
-        return true;
+        
     }
     else {
         emailMsg.style.display = "block";
-        return false;
+        
     }
     
     
