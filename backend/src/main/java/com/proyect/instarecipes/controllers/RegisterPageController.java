@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,7 +42,7 @@ public class RegisterPageController {
     private ImageService imageService;
 
     @PostMapping("/signUp")
-    public String signUp(Model model, User user, HttpServletRequest request, HttpServletResponse response,
+    public void signUp(Model model, User user, HttpServletRequest request, HttpServletResponse response,
             @RequestParam MultipartFile fileAvatar) throws IOException {
         // cause i need to transform password hash and set role of user
         User u = new User(user.getUsername(), user.getEmail(), user.getPassword(), user.getName(), user.getSurname(),
@@ -79,13 +80,9 @@ public class RegisterPageController {
             }
         }
 
-
-        List<Allergen> allAllergens = allergensRepository.findAll();
-        model.addAttribute("allergens", allAllergens);
-        
-        return "signUp";
     }
     
+
     //this method aproach the @Autowired of userAuthProvider to autenticate user and password and setup autologged 
     private void authenticateUser(String username,String password,HttpServletRequest request) {
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
