@@ -333,7 +333,7 @@ function normal(y){
                           <tr>
                             <td>
                             <!--"Ingredient-Name"-->
-                              <input name="ingredients" type="text" list="ingredientslist" placeholder="Ingredient.." style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" onkeypress="return false;">
+                              <input name="ingredients" type="text" list="ingredientslist" placeholder="Select an ingredient.." style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" onkeypress="return false;">
                               <datalist id="ingredientslist">
                                 {{#ingredientsList}}
                                 <option value="{{ingredient}}">{{ingredient}}</option>
@@ -374,7 +374,7 @@ function normal(y){
                         <table id="CookingStyleTable">
                           <tr>
                             <td>
-                              <input name="cookingStyles" type="text" list="cookingStyleslist" placeholder="Type a category.." style="border-radius: 0.5rem;border-width: 0.5px;" onkeypress="return false;">
+                              <input name="cookingStyles" type="text" list="cookingStyleslist" placeholder="Select a category.." style="width: 90%; border-radius: 0.5rem;border-width: 0.5px;" onkeypress="return false;">
                               <datalist id="cookingStyleslist">
                                 {{#cookingStylesList}}
                                 <option value="{{cookingStyle}}">{{cookingStyle}}</option>
@@ -416,7 +416,7 @@ function normal(y){
                         <table id="CategoriesTable">
                         <tr>  
                           <td>
-                            <input name="categories" type="text" list="categorieslist" placeholder="Type a category.." style="border-radius: 0.5rem;border-width: 0.5px;" onkeypress="return false;">
+                            <input name="categories" type="text" list="categorieslist" placeholder="Select a category.." style="width: 90%; border-radius: 0.5rem;border-width: 0.5px;" onkeypress="return false;">
                             <datalist id="categorieslist">
                               {{#categoriesList}}
                               <option value="{{category}}">{{category}}</option>
@@ -455,7 +455,7 @@ function normal(y){
                         <table id="AllergensTable">
                           <tr>
                             <td>
-                              <input name="allergens" type="text" list="allergenslist" placeholder="Type an allergen.." style="border-radius: 0.5rem; border-width: 0.5px;" onkeypress="return false;">
+                              <input name="allergens" type="text" list="allergenslist" placeholder="Select an allergen.." style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" onkeypress="return false;">
                               <datalist id="allergenslist">
                                 {{#allergensList}}
                                 <option value="{{allergen}}">{{allergen}}</option>
