@@ -1,7 +1,32 @@
 # Group 13 of DAW   ![Active](https://img.shields.io/badge/version-0.1-blue)
 This is the developer project's repository, where you can found folders like **Code**'s folder, that contains all the stuff related to the application developing code, or the **Prototype**'s folder, where you will be able to see our first ideas and some sketches used to carry out the web application.
 
-## Members :busts_in_silhouette:
+# Table of contents
+**PHASE 1**.
+* [Introduction](#phase1)  
+  * [Members](#members)  
+  * [Support links](#supplink)  
+  * [What is our product about?](#intro)  
+* [Funcionalities](#funcionalities)  
+* [Entities](#entities)  
+* [Types of users](#users)  
+  * [Anonymous](#anonymousUser)  
+  * [Registered](#registeredUser)  
+  * [Aministrator](#adminUser)  
+* [Advanced algorithm](#algorithm)
+* [Navigation Diagrams](#navDiagram)
+
+**PHASE 2**
+* [Introduction](#phase1)  
+  * [Most important commits](#importantComm)  
+  * [Most worked files](#workedFiles)    
+  * [Instructions](#instructions)  
+  * [Database diagrams](#dbDiagram)  
+  * [Classes and templates diagrams](#CTdiagrams)  
+  
+# Page layout with HTML and CSS <a name="phase1"></a>
+
+## Members :busts_in_silhouette: <a name="members"></a>
 |                           |                                 |
 |---------------------------|---------------------------------|
 | Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  |
@@ -11,7 +36,7 @@ This is the developer project's repository, where you can found folders like **C
 | Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es |
 |                           |                                 |
 
-## Support links :link:
+## Support links :link: <a name="supplink"></a>
 We're using [Trello](https://trello.com/b/CyhfEwRF/daw-g13) to make easier the organization for the web product.
 
 ### Web Access :computer:
@@ -20,13 +45,13 @@ We're using [Trello](https://trello.com/b/CyhfEwRF/daw-g13) to make easier the o
 When you have downloaded the folder **wepapp8**, click on **code** and execute *Index.html* If you want to see the Main page.
 Through it, you can access to the others! 
 
-# Our project :construction_worker: :hammer:
-### Introduction
+# Our project :construction_worker: :hammer: <a name="intro"></a>
+### Introduction 
 Instarecipes will be an application web where you can share all of your favorites recipes with the other users.
 You can also follow or unfollow the users whenever you want to! And, if you really love one recipe, just add it to your favorites list.
 And even if you don't want to register you will be able to see everyone's recipes.
 
-  #### Main page
+  #### Main page 
   <p align="center">
    <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Gifs/Main-page.gif">
   </p> 
@@ -56,7 +81,7 @@ And even if you don't want to register you will be able to see everyone's recipe
     <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Gifs/Recipe-page(rs).gif">
    </p>  
    
-### Funcionalities
+### Funcionalities <a name="funcionalities"></a>
 Here you can found a list of existing features in Instarecipes.
 > * Posibility to upload a recipe. 
 > * Posibility to download a recipe.
@@ -73,7 +98,7 @@ Here you can found a list of existing features in Instarecipes.
 >    * By Facebook, Google or email.
 > * Ban available to users. *Because of 'trolls' comments or recipes.*
 
-### Entities 
+### Entities <a name="entities"></a>
 
 * User :bust_in_silhouette: 
 
@@ -89,19 +114,19 @@ Here you can found a list of existing features in Instarecipes.
 
 * Comment :speech_balloon:
 
-### Types of users and permissions
+### Types of users and permissions <a name="users"></a>
 There are three types of users:
-* **Anonymous.**   
+* **Anonymous.**   <a name="anonymousUser"></a>
 They won't be able to upload any recipes or post comments, but, they can view recipes, search users, filter by ingredients, allergens, cooking style or even search one recipe. 
 Neither can they follow or unfollow users or have a list of favorite recipes, give likes... but, they do have the option to download recipes with all the steps, ingredients, and photos.  
   * **Permissions.**  
    An anonymous user always has the option to download a recipe and see what users upload without problem.
-* **Registered.**  
+* **Registered.**  <a name="registeredUser"></a>
 They can upload and delete his own recipes. Obviously they have the option of download a recipe, search users, use the filter option, cooking style...
   * **Permissions.**
     If a registered user upload a recipe, it will have a comments section, but if someone comments something and the owner does not like it, he has the option to delete it.
     Also, they can edit the recipe post later, so they don't have to delete and upload it again. This means: uploading new photos, modify the steps...  
-* **Administrator.**  
+* **Administrator.**  <a name="adminUser"></a>
 There is only one admin, and he will be the one that has full control over the information in the Web.
   * **Permissions.**  
   Receive requests from users about new ingredients that can be added, cooking style and categories. 
@@ -115,7 +140,7 @@ It is almost always easier to sign up for a new site by accessing through your *
 <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/google-icon.png" width="50" height="50"> <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/facebook-icon.png" width="50" height="50"> <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/twitter-icon.png" width="50" height="50"> 
 </p>  
 
-### Algorithm or advanced query  
+### Algorithm or advanced query  <a name="algorithm"></a>
 > In this section we will make a brief explanation of what our advanced search algorithm will consist of.  
 
 The first thing we observe when we visit the main page are **three slides**, which contain three outstanding recipes at a certain time and, that's simple but, the funny thing about this is that, each registered user can emphasize that he is allergic to certain foods so, if one of the trending recipes of the moment contains an allergen that the user has, **another recipe will be shown to him.**
@@ -124,10 +149,10 @@ The first thing we observe when we visit the main page are **three slides**, whi
 <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Gifs/Trending-gif.gif">  
 </p>  
 
-### Navigation diagrams
+### Navigation diagrams <a name="navDiagram"></a>
 Finally, we show the *first* navigation diagrams to make the connections between the pages a little bit clearer. 
 
-* **Main diagram**
+* **Main diagram** 
 <p align="center">
 <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Navigation%20Diagrams/Navigation%20Diagram%20(Pages).png">
 </p> 
@@ -142,3 +167,86 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Navigation%20Diagrams/Navigation%20Diagram%20(Profile).png">
 </p> 
 
+
+
+# Web with HTML generated on server and AJAX <a 
+
+## Most important commits :newspaper: <a name="importantComm"></a>
+|                           |                                 |                                           |
+|---------------------------|---------------------------------|-------------------------------------------|
+| Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       |[@lordkener](https://github.com/lordkener) |
+|                           |                                 |                                           |
+
+> Textual description of the tasks performed in the phase.
+> * Commit 1  
+> * Commit 2  
+> * Commit 3  
+> * Commit 4  
+> * Commit 5 
+
+|                           |                                 |                                             |
+|---------------------------|---------------------------------|---------------------------------------------|
+| Manuel León Briz          | m.leon.2016@alumnos.urjc.es     | [@manuellb97](https://github.com/manuellb97)|
+|                           |                                 |                                             |
+
+> Textual description of the tasks performed in the phase.
+> * Commit 1  
+> * Commit 2  
+> * Commit 3  
+> * Commit 4  
+> * Commit 5 
+
+|                           |                                 |                                            |
+|---------------------------|---------------------------------|--------------------------------------------|
+| José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  | [@trevod98](https://github.com/trevod98)   |
+|                           |                                 |                                            |
+
+> Textual description of the tasks performed in the phase.
+> * Commit 1  
+> * Commit 2  
+> * Commit 3  
+> * Commit 4  
+> * Commit 5 
+
+|                           |                                 |                                            |
+|---------------------------|---------------------------------|--------------------------------------------|
+| Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es | [@Muffinous](https://github.com/Muffinous) |
+|                           |                                 |                                            |
+
+> Textual description of the tasks performed in the phase.
+> * Commit 1  
+> * Commit 2  
+> * Commit 3  
+> * Commit 4  
+> * Commit 5 
+
+|                           |                                 |                                            |
+|---------------------------|---------------------------------|--------------------------------------------|
+| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  | [@dMurill0](https://github.com/dMurill0)   |
+|                           |                                 |                                            |
+
+> Textual description of the tasks performed in the phase.
+> * Commit 1      
+> * Commit 2  
+> * Commit 3                      
+> * Commit 4  
+> * Commit 5  
+
+
+## Most worked files :newspaper: <a name="workedFiles"></a>
+|                           |                                 |                                 |
+|---------------------------|---------------------------------|---------------------------------|
+| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  |                                 |
+| Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       |                                 |
+| Manuel León Briz          | m.leon.2016@alumnos.urjc.es     |                                 |
+| José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  |                                 |
+| Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es |                                 |
+|                           |                                 |                                 |  
+
+
+
+## Instructions <a name="instructions">  
+  
+## Database diagrams  </a><a name="dbDiagram">
+  
+##  Classes and templates diagrams </a><a name="CTdiagrams"></a>
