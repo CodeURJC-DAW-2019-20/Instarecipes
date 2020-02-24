@@ -44,4 +44,7 @@ public interface RecipesRepository extends JpaRepository<Recipe, Long> {
         + "INNER JOIN r.allergens ale WHERE "
         + "(ale.allergen IN :allergens)")
         List<Recipe> findFilteredSearch2(ArrayList<String> allergens);
+    
+    @Query("SELECT r FROM Recipe r ORDER BY r.likes DESC")
+    List<Recipe> FindByLikes();
 }
