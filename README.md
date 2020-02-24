@@ -20,6 +20,7 @@ This is the developer project's repository, where you can found folders like **C
  * [Most important commits](#importantComm)  
  * [Most worked files](#workedFiles)    
  * [Instructions](#instructions)  
+ * [New navigation diagrams](#navDiagrams2)
  * [Database diagrams](#dbDiagram)  
  * [Classes and templates diagrams](#CTdiagrams)  
   
@@ -177,11 +178,11 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 |                           |                                 |                                           |
 
 > Textual description of the tasks performed in the phase.
-> * Commit 1  
-> * Commit 2  
-> * Commit 3  
-> * Commit 4  
-> * Commit 5 
+> * Ranking and AJAX button.  
+> * Spring Security.  
+> * Init database.  
+> * Reordered folders.  
+> * 'SEE DESCRIPTION' commit: user's publications, likes, comments...
 
 |                           |                                 |                                             |
 |---------------------------|---------------------------------|---------------------------------------------|
@@ -189,11 +190,11 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 |                           |                                 |                                             |
 
 > Textual description of the tasks performed in the phase.
-> * Commit 1  
-> * Commit 2  
-> * Commit 3  
-> * Commit 4  
-> * Commit 5 
+> * Graphics done!.   
+> * Likes funcionality. 
+> * Fixed bugs.  
+> * Reorder folders.  
+> * Navbar funcionalities. 
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
@@ -201,9 +202,9 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 |                           |                                 |                                            |
 
 > Textual description of the tasks performed in the phase.
-> * Commit 1  
-> * Commit 2  
-> * Commit 3  
+> * Images to BBDD.  
+> * Category, comment step and cooking style java classes.  
+> * Each step images. 
 > * Commit 4  
 > * Commit 5 
 
@@ -213,11 +214,11 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 |                           |                                 |                                            |
 
 > Textual description of the tasks performed in the phase.
-> * Commit 1  
-> * Commit 2  
-> * Commit 3  
-> * Commit 4  
-> * Commit 5 
+> * Filtered search button.  
+> * Conection between filtered search button and search page.
+> * Managment of new users (admin)  
+> * Database conections.  
+> * Google Javascript and login. 
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
@@ -225,11 +226,11 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 |                           |                                 |                                            |
 
 > Textual description of the tasks performed in the phase.
-> * Commit 1      
-> * Commit 2  
-> * Commit 3                      
-> * Commit 4  
-> * Commit 5  
+> * Upload recipe container.      
+> * Login and sign up restrictions.  
+> * User settings button.                      
+> * Validated email.  
+> * Responsive pages.
 
 
 ## Most worked files :newspaper: <a name="workedFiles"></a>
@@ -244,8 +245,18 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 
 
 
-## Instructions <a name="instructions">  
-  
-## Database diagrams  </a><a name="dbDiagram">
-  
+## Instructions <a name="instructions"></a>  
+
+## Navigation Diagrams <a name="navDiagrams2"></a>
+
+<p align="center">
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Navigation Diagram (Pages-Updated).png">
+</p> 
+
+## Database diagrams <a name="dbDiagram"></a>
+
+<p align="center">
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/databaseDiagram.png">
+</p> 
+
 ##  Classes and templates diagrams </a><a name="CTdiagrams"></a>
