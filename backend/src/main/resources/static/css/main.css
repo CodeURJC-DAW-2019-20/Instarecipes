@@ -560,8 +560,9 @@ iframe {
   display:none;
 }
  
-.email-val{
+.validation{
+  border-radius: 10px;
   background-color: #f44336;
   color: white;
-  margin-bottom: 5px;
+  padding: 5px;
 }
