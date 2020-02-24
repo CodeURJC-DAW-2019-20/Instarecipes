@@ -134,7 +134,7 @@ public class IndexController {
 	}
 
     @PostMapping("/")
-    public String postRecipe(Model model, Recipe recipe, @RequestParam MultipartFile imageFile, @RequestParam String ingredientsString, @RequestParam String categoriesString,@RequestParam String firstStepString, @RequestParam(required = false) String stepsString) throws IOException{
+    public String postRecipe(Model model, Recipe recipe, @RequestParam MultipartFile imageFile,@RequestParam List<MultipartFile> stepsImage, @RequestParam String ingredientsString, @RequestParam String categoriesString,@RequestParam String firstStepString, @RequestParam(required = false) String stepsString) throws IOException{
         Recipe r = recipe;
         int i = 2;
         // Ingredients selector //
@@ -165,6 +165,9 @@ public class IndexController {
         // Steps selector //
         // System.out.println("Step: " + listOfSteps.get(0));
         stepsRepository.save(new Step(r, 1, firstStepString));
+
+        
+
         if(stepsString != null){
             List<String> listOfSteps = Arrays.asList(stepsString.split("ab#12#45-3,"));
             for(String steps : listOfSteps){
@@ -174,6 +177,17 @@ public class IndexController {
                 }
             }
         }
+        for(MultipartFile multifile: stepsImage){
+            if(multifile != null){
+                int pos =stepsImage.indexOf(multifile); 
+                String text= listOfSteps.index(pos);
+                Step step = StepsRepository.findbytext(text);
+                step.setImage(true);
+                imageService.saveImage("step", step.getId(), multifile);
+            }
+        }
+
+
         //SHOW ELEMENTS
         List<Recipe> recipes = recipesRepository.findAll();
         model.addAttribute("recipes", recipes);
