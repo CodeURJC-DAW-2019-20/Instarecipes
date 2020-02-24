@@ -246,17 +246,29 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 
 
 ## Instructions <a name="instructions"></a>  
+To access the website, you need:
+
+ * Any environment that is for web server development technologies
+> We recommend [Visual Studio Code](https://code.visualstudio.com), since it has been the code editor with which we have developed the project.
+ * MySQL server community.
+ * MySQL workbench.
+> * Once we have both downloaded and installed (*follow the steps indicated by the installer and once you have to enter the password for the database you have to put: '**root**'*).  
+> * Now that we have Workbench, access to your MySQL connections (*Local instance MySQL80 with the word **root***) and create a new Schema named: "instarecipes_db".    
+> * Finally, go to Visual Studio Code (*or the program you have downloaded*) and you must download the following dependencies:     
+>>  * Spring Boot Extension Pack.  
+>>  * Java Extension Pack.  
+>>  * Maven for Java.  
+> * Click 'Start..' button, go to your navegator and put: http://localhost:8443 and enjoy! (***We will change it to https soon***)
 
 ## Navigation Diagrams <a name="navDiagrams2"></a>
 
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Navigation Diagram (Pages-Updated).png">
-</p> 
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/Navigation%20Diagram%20(Pages-Updated).png"></p> 
 
 ## Database diagrams <a name="dbDiagram"></a>
 
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/databaseDiagram.png">
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/databaseDiagram.png"
 </p> 
 
 ##  Classes and templates diagrams </a><a name="CTdiagrams"></a>
