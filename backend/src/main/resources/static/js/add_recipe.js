@@ -9,6 +9,7 @@ $(document).ready(function() {
 
     var arrayIngredients = [ ];
     var arrayCategories = [ ];
+    var arrayOtherImages = [ ];
     var arraySteps = [ ];
     var ingCounter = 0;
     var catCounter = 0;
@@ -76,8 +77,8 @@ $(document).ready(function() {
         var lastField = $("#steps-form div:last");
         var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
         var fieldWrapper = $("<div id=\"steps-field" 
-        + stepCounter + "\">"
-        +"<h3>Step " + stepNumber +"</h3><hr></div>");
+                              + stepCounter + "\">"
+                              + "<h3>Step " + stepNumber +"</h3><hr></div>");
         fieldWrapper.data("idx", intId);
         var fStep = $("<div style=\"width: 100%;height:250\">"
             +"<div id=\"stepsCountChar"+stepNumber+"\"></div>"
@@ -87,6 +88,20 @@ $(document).ready(function() {
                 +"border:1px solid rgba(0, 0, 0, 0.3);"
                 +"padding:10px;\">"
             +"</textarea>"
+            +"<div style=\"width:100%;height:100%;display:flex;flex-wrap:wrap;right:0\">"
+            +"<label for=\"file-input"+stepCounter+"\" class=\"btn-outline-primary\" style=\"border-radius:0.5rem;border:1px solid rgb(23, 162, 184);background-color:white"
+                    +"align-self:center;"
+                    +"text-align:center;"
+                    +"padding:0;"
+                    +"right:0;"
+                    +"width:25%;"
+                    +"position:absolute;"
+                    +"cursor:pointer\">"
+                    +"<input id=\"file-input"+stepCounter+"\" hidden type=\"file\" accept=\".jpg, .jpeg\">"
+                +"<i class=\"fa fa-camera\" aria-hidden=\"true\" styles=\"object-fit:cover;padding:5px\"></i>"
+                +"</input>"
+            +"</label>"
+        +"</div>"
         );
         var removeButton = $("<div id=\"removeB"+stepCounter+"\" class=\"btn-danger\" style=\"border-radius:0.5rem;"
                 +"align-self:center;"
@@ -157,7 +172,15 @@ $(document).ready(function() {
       var steps = document.getElementById("stepsString");
       steps.setAttribute("value", arraySteps);
     });
-    
+    //photo steps
+    var divImageSteps = $("#divImageSteps");
+    for(var i=0; i<stepCounter;i++){
+      var photoSteps = document.getElementById("allImages"+i);
+      if($("#file-input"+i).val() != null ){
+        divImageSteps.append("<input name=\"allImages\" type=\"file\" value=\""
+        +$("#file-input"+i).val()+"\" accept=\".jpg, .jpeg\" hidden></input>")
+      }
+    }
     //--------------------------------------------------------//
   });
   function stepCountChar(val) {

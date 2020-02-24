@@ -1,5 +1,7 @@
 package com.proyect.instarecipes.views;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +28,9 @@ import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.security.UserSession;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -128,7 +132,12 @@ public class IndexController {
 	}
 
     @PostMapping("/")
-    public String postRecipe(Model model, Recipe recipe, @RequestParam MultipartFile imageFile, @RequestParam String ingredientsString, @RequestParam String categoriesString,@RequestParam String firstStepString, @RequestParam(required = false) String stepsString) throws IOException{
+    public String postRecipe(Model model, Recipe recipe, @RequestParam MultipartFile imageFile, 
+    @RequestParam String ingredientsString, @RequestParam String categoriesString, 
+    @RequestParam String firstStepString, @RequestParam(required = false) String stepsString, 
+    @RequestParam(required = false) MultipartFile... allImages) throws IOException{
+        System.out.println("IMAGEN 1: " + imageFile);
+        System.out.println("IMAGEN 2: " + allImages + " SIZE: " + allImages.length);
         Recipe r = recipe;
         int i = 2;
         // Ingredients selector //
@@ -156,8 +165,20 @@ public class IndexController {
         r.setUsername(userSession.getLoggedUser());
         recipesRepository.save(r);
         imageService.saveImage("recipes", r.getId(), imageFile);
+        int count = 1;
+        if(allImages != null){
+            for(MultipartFile mpf : allImages){
+                if(mpf != null && !mpf.isEmpty()){
+                    System.out.println("Paso " + count + " guardado como: "+ mpf);
+                    imageService.saveImage("recipes/steps/"+r.getId(), count, mpf);
+                    count++;
+                }
+            }
+        }
         // Steps selector //
         stepsRepository.save(new Step(r, 1, firstStepString));
+        System.out.println("Imagen unica: " + imageFile.toString());
+        // System.out.println("Las imagenes: " + allImages[0].toString());
         if(stepsString != null){
             List<String> listOfSteps = Arrays.asList(stepsString.split("ab#12#45-3,"));
             for(String steps : listOfSteps){
