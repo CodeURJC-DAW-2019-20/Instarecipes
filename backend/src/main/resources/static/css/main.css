@@ -560,3 +560,9 @@ iframe {
   display:none;
 }
  
+.validation{
+  border-radius: 10px;
+  background-color: #f44336;
+  color: white;
+  padding: 5px;
+}

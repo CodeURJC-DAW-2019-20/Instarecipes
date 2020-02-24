@@ -23,10 +23,8 @@ public class RankingPageController{
 
     @GetMapping("/ranking")
     public String showRanking(Model model){
-        // List<User> ranking = usersRepository.find
         Page<Recipe> rankingPage = recipesRepository.findTopTen(PageRequest.of(0, 10));
         List<Recipe> ranking = rankingPage.getContent();
-        // System.out.println("OBjETO: " + rankingPage);
         model.addAttribute("rankingList", ranking);
         return "ranking";
     }

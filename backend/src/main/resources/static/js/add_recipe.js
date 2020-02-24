@@ -1,24 +1,28 @@
-var arrayOfIngredients = 
-    "<option>Bread</option>"
-        +"<option>Potatoes</option>"
-        +"<option>Fish</option>"
-        +"<option>Honey</option>"
-        +"<option>Milk</option>"
-        +"<option>Tomatoes</option>";
-var arrayOfCategories =
-    "<option>Desserts</option>"
-        +"<option>Starters</option>"
-        +"<option>Main</option>"
-        +"<option>Soups</option>"
-        +"<option>Salad</option>"
-        +"<option>Burgers</option>";
 $(document).ready(function() {
+  var iList = document.getElementById("ingredientsList").value;
+  var arrayOfIngredients = iList.split(",");
+
+  var cList = document.getElementById("categoriesList").value;
+  var arrayOfCategories = cList.split(",");
+
+  var firstStep = $("#firstStep");
+
     var arrayIngredients = [ ];
     var arrayCategories = [ ];
     var arraySteps = [ ];
     var ingCounter = 0;
     var catCounter = 0;
     var stepCounter = 0;
+    
+    var ingredientsContainer = "";
+    var categoriesContainer = "";
+
+    for(var i=0; i<arrayOfIngredients.length-1;i++){
+      ingredientsContainer = ingredientsContainer + "<option>"+arrayOfIngredients[i]+"</option>";
+    }
+    for(var i=0; i<arrayOfCategories.length-1;i++){
+      categoriesContainer = categoriesContainer + "<option>"+arrayOfCategories[i]+"</option>";
+    }
 
     //------------------ ADDING AN INGREDIENT ------------------//
     $("#add-ingredient").click(function() {
@@ -26,7 +30,7 @@ $(document).ready(function() {
       var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
       var fieldWrapper = $("<div class=\"row\" id=\"ingredients-field" + intId + "\"/>");
       fieldWrapper.data("idx", intId);
-      var fIngredients = $("<select id=\"ing"+ingCounter+"\" name=\"ing"+ingCounter+"\" class=\"col-9 avaiable-ingredients\">"+arrayOfIngredients+"</select>");
+      var fIngredients = $("<select id=\"ing"+ingCounter+"\" name=\"ing"+ingCounter+"\" class=\"col-9 avaiable-ingredients\">"+ingredientsContainer+"</select>");
       var removeButton = $("<div class=\"btn-danger col-1\" style=\"border-radius:0.5rem;"
         +"align-self:center;"
         +"text-align:center;"
@@ -42,13 +46,14 @@ $(document).ready(function() {
       });
       ingCounter++;
     });
+    
     //------------------ ADDING A CATEGORY ------------------//
     $("#add-category").click(function() {
       var lastField = $("#category-form div:last");
         var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
         var fieldWrapper = $("<div class=\"row\" id=\"category-field" + intId + "\"/>");
         fieldWrapper.data("idx", intId);
-        var fCategories = $("<select id=\"cat"+catCounter+"\" name=\"ing"+catCounter+"\" class=\"col-9 avaiable-categories\">"+arrayOfCategories+"</select>");
+        var fCategories = $("<select id=\"cat"+catCounter+"\" name=\"ing"+catCounter+"\" class=\"col-9 avaiable-categories\">"+categoriesContainer+"</select>");
         var removeButton = $("<div class=\"btn-danger col-2\" style=\"border-radius:0.5rem;"
           +"align-self:center;"
           +"text-align:center;"
@@ -63,17 +68,16 @@ $(document).ready(function() {
           $(this).parent().remove();
       });
       catCounter++;
-      });
-    
+    });
+
     var stepNumber = 2;
     //------------------ ADDING A STEP ------------------//
     $("#add-step").click(function() {
         var lastField = $("#steps-form div:last");
         var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
         var fieldWrapper = $("<div id=\"steps-field" 
-        + intId + "\">"
+        + stepCounter + "\">"
         +"<h3>Step " + stepNumber +"</h3><hr></div>");
-        stepNumber++;
         fieldWrapper.data("idx", intId);
         var fStep = $("<div style=\"width: 100%;height:250\">"
             +"<div id=\"stepsCountChar"+stepNumber+"\"></div>"
@@ -84,7 +88,7 @@ $(document).ready(function() {
                 +"padding:10px;\">"
             +"</textarea>"
         );
-        var removeButton = $("<div class=\"btn-danger\" style=\"border-radius:0.5rem;"
+        var removeButton = $("<div id=\"removeB"+stepCounter+"\" class=\"btn-danger\" style=\"border-radius:0.5rem;"
                 +"align-self:center;"
                 +"text-align:center;"
                 +"width:10%;"
@@ -95,21 +99,31 @@ $(document).ready(function() {
         );
         fieldWrapper.append(fStep);
         fieldWrapper.append(removeButton);
-        $("#steps-form").append(fieldWrapper);//add to the top of the form
+        stepNumber++;
+        $("#steps-form").append(fieldWrapper);//add to the bottom of the form
+        if(stepCounter>0){
+          var au = stepCounter-1;
+          var asdf = $("#removeB"+au);
+          asdf.hide();
+        }
         removeButton.click(function() {
+          if(stepNumber>3){
+            asdf.show();
+          }
           stepNumber--; //still've some troubles, need to refresh with ajax(realtime)the counter var for each h3 on top
           $(this).parent().remove();
         });
         stepCounter++;
-      });
+    });
+    
     //------------------- POST RECIPE BUTTON ---------------------//
     $("#post-recipe").click(function(){
 //INGREDIENTS
       for(var i=0; i<ingCounter; i++){
-        var valor = document.getElementById("ing"+i);
-        console.log("ID: " + valor);
-        if(valor != null){
-          arrayIngredients.push(valor.value);
+        var valor1 = document.getElementById("ing"+i);
+        console.log("ID: " + valor1);
+        if(valor1 != null){
+          arrayIngredients.push(valor1.value);
         }
         console.log("ARRAY: " + arrayIngredients);
       }
@@ -118,10 +132,10 @@ $(document).ready(function() {
       console.log("Definitive Ings: " + ings.value);
 //CATEGORIES
       for(var i=0; i<catCounter; i++){
-        var valor = document.getElementById("cat"+i);
-        console.log("ID: " + valor);
-        if(valor != null){
-          arrayCategories.push(valor.value);
+        var valor2 = document.getElementById("cat"+i);
+        console.log("ID: " + valor2);
+        if(valor2 != null){
+          arrayCategories.push(valor2.value);
         }
         console.log("ARRAY CATEGORIES: " + arrayCategories);
       }
@@ -129,20 +143,20 @@ $(document).ready(function() {
       cats.setAttribute("value", arrayCategories);
       console.log("Definitive Cat: " + cats.value);
 //STEPS
-      for(var i=0; i<stepCounter; i++){
-        var valor = document.getElementById("step"+i);
-        console.log("ID: " + valor);
-        if(valor != null){
-          arraySteps.push(valor.value);
+      for(var i=0; i<stepNumber-2; i++){
+        var valor3 = $("#step"+i);
+        if(valor3 != null){
+          var othersStps = valor3.val();
+          if(i < stepNumber-3){
+            othersStps = othersStps + "ab#12#45-3";
+          }
+          arraySteps.push(othersStps);
         }
-        console.log("ARRAY STEPS: " + arraySteps);
       }
       var steps = document.getElementById("stepsString");
       steps.setAttribute("value", arraySteps);
-      console.log("Definitive Steps: " + steps.value);
     });
     
-
     //--------------------------------------------------------//
   });
   function stepCountChar(val) {

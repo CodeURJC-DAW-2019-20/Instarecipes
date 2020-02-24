@@ -11,6 +11,9 @@
   <!-- Images and icons-->
   <link rel="icon" type="image/png" href="images/icons/instarecipes.png" />
 
+  <!-- Fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+
   <!-- jquery -->
   <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -27,19 +30,17 @@
 
   <!-- load recipes with AJAX and jQuery-->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script> 
-function hover(x){
-  x.style.color = "white";
-  return false;
-}
-</script>
-<script>
-function normal(y){
-  y.style.color = "#1abc9c";
-  y.style.backgroundColor = none;
-  return false;
-}
-</script>
+  <script>
+    function hover(x) {
+      x.style.color = "white";
+      return false;
+    }
+    function normal(y) {
+      y.style.color = "#1abc9c";
+      y.style.backgroundColor = none;
+      return false;
+    }
+  </script>
 </head>
 
 <body>
@@ -49,7 +50,7 @@ function normal(y){
       <div id="img-navbar-container">
         <img class="img-navbar" src="images/icons/instarecipes.png" alt="">
       </div>
-      <a class="navbar-brand js-scroll-trigger" href="/">&nbsp;Instarecipes</a>
+      <a class="navbar-brand js-scroll-trigger" href="/" style="font-family: 'Pacifico';">&nbsp;Instarecipes</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
         type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -58,37 +59,40 @@ function normal(y){
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto" style="margin-right: 20%;">
           <li class="nav-item col-4" style="max-width: 100%;">
-            <a class="nav-link js-scroll-trigger" href="#header-section"><i onmouseover= "hover(this)" onmouseout="normal(this)" class="fas fa-home"
-            style="font-size: xx-large; color: #1abc9c"></i></a>
+            <a class="nav-link js-scroll-trigger" href="#header-section"><i onmouseover="hover(this)"
+                onmouseout="normal(this)" class="fas fa-home" style="font-size: xx-large; color: #1abc9c"></i></a>
           </li>
-          <li class="nav-item col-4" style="max-width: 100%;">
+          <li class="nav-item col-2" style="max-width: 100%;">
             {{#logged}}
             <a class="nav-link" href="profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
             {{/logged}}
           </li>
-          <li class="nav-item col-4" style="max-width: 100%;">
+          <li class="nav-item col-2" style="max-width: 100%;">
             <a class="nav-link" href="ranking"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
           </li>
-          <li class="nav-item col-4" style="max-width: 100%;">
-            <div class="min-search">
+          <li class="nav-item col-2" style="max-width: 100%;">
+            <div class="min-search" id="min-search">
               <a class="nav-link" href="#"><i class="fa fa-search" style="font-size: xx-large;"></i></a>
             </div>
           </li>
-          <li class="nav-item col-4" style="max-width: 100%;">
-            <div class="login-logo" style="display:block;  color: black; position: relative;">
-              <a class="nav-link" href="login"><i class="fa fa-user-circle" style="font-size: xx-large; padding:5%; "></i></a>
+          {{^logged}}
+          <li class="nav-item col-2" style="max-width: 100%;">
+            <div class="login-logo" style="color: black; position: relative;">
+              <a class="nav-link" href="login"><i class="fa fa-user-circle"
+                  style="font-size: xx-large; margin-left: 7%;"></i></a>
             </div>
           </li>
+          {{/logged}}
         </ul>
         <form class="example" action="/search">
           <input type="text" href="#" placeholder="Search.." name="search"/>
-          <button type="submit">
-            <i class="fa fa-search"></i>
+          <button type="submit" style="background-color: #1abc9c;">
+            <i class="fa fa-search" ></i>
           </button>
         </form>
-       
-       
-     
+
+
+
       </div>
     </div>
     <div class="login-container">
@@ -235,6 +239,95 @@ function normal(y){
     <h3 class="my-4">Recent user's recipes</h3>
     <!-- Recent recipes -->
     <div id="recipes-container">
+      {{#subRecipe}}
+      <script type="text/javascript">
+        var aux = true;
+        $(function () {
+          var model1 = $("<div class=\"row\">"
+            +"<div class=\"col-md-7\">"
+            +"<a href=\"#\">"
+            +"<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"../images/Recipes/recipe_example_1.jpg\">"
+            +"</a>"
+            +"<div class=\"likes-comments-top-left\">"
+            +"<div class=\"row\" style=\"margin-right: 0;margin-left: 0;\">"
+            +"<div class=\"col-3\">"
+            +"<img class=\"icon-fluid\" src=\"../images/icons/like_pressed.png\">"
+            +"</div>"
+            +"<div class=\"col-3\">"
+            +"<p class=\"icon-fluid pub-date-text\">84</p>"
+            +"</div>"
+            +"<div class=\"col-3\">"
+            +"<img class=\"icon-fluid\" src=\"../images/icons/dialogue.png\">"
+            +"</div>"
+            +"<div class=\"col-3\">"
+            +"<p class=\"icon-fluid pub-date-text\">203</p>"
+            +"</div>"
+            +"</div>"
+            +"</div>"
+            +"<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">{{title}}</h3></div>"
+            +"</div>"
+            +"<div class=\"col-md-4\">"
+            +"<h3>Introduction</h3>"
+            +"<p style=\"word-break: break-all;\">{{description}}</p>"
+            +"<a class=\"btn btn-primary\" href=\"/recipes/{{id}}\">Read"
+            +"<span class=\"glyphicon glyphicon-chevron-right\"></span>"
+            +"</a>"
+            +"</div>"
+            +"<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);\">"
+            +"<img class=\"d-flex mr-3 rounded-circle profile-border\" src=\"../images/icons/avatar.svg\">"
+            +"</div>"
+            +"</div>"
+            +"<!-- /.row -->"
+            +"<hr>"
+            );
+          var model2 = $("<!-- Project Two -->"
+            +"<div class=\"row\">"
+            +"<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);\">"
+            +"<img class=\"d-flex mr-3 rounded-circle profile-border\" src=\"../images/icons/avatar.svg\">"
+            +"</div>"
+            +"<div class=\"col-md-4\">"
+            +"<h3>Introduction</h3>"
+            +"<p style=\"word-break: break-all;\">{{description}}</p>"
+            +"<a class=\"btn btn-primary\" href=\"/recipes/{{id}}\">Read"
+            +"<span class=\"glyphicon glyphicon-chevron-right\"></span>"
+            +"</a>"
+            +"</div>"
+            +"<div class=\"col-md-7\">"
+            +"<a href=\"#\">"
+            +"<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"../images/Recipes/recipe_example_4.jpg\">"
+            +"</a>"
+            +"<div class=\"likes-comments-top-right\">"
+            +"<div class=\"row\" style=\"margin-right: 0;margin-left: 0;\">"
+            +"<div class=\"col-3\">"
+            +"<img class=\"icon-fluid\" src=\"../images/icons/like_pressed.png\">"
+            +"</div>"
+            +"<div class=\"col-3\">"
+            +"<p class=\"icon-fluid pub-date-text\">84</p>"
+            +"</div>"
+            +"<div class=\"col-3\">"
+            +"<img class=\"icon-fluid\" src=\"../images/icons/dialogue.png\">"
+            +"</div>"
+            +"<div class=\"col-3\">"
+            +"<p class=\"icon-fluid pub-date-text\">203</p>"
+            +"</div>"
+            +"</div>"
+            +"</div>"
+            +"<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">{{title}}</h3></div>"
+            +"</div>"
+            +"</div>"
+            +"<!-- /.row -->"
+            +"<hr>"
+             );
+            if(aux){
+              $("#recipes-container").prepend(model1);
+              aux = false;
+            }else{
+              $("#recipes-container").prepend(model2);
+              aux = true;
+            }
+        });
+      </script>
+      {{/subRecipe}}
     </div>
 
     <hr width="80%">
@@ -242,7 +335,7 @@ function normal(y){
     <div class="loadmore-container">
       <div>
         <img id="loadmore1" class="loadmore-button" src="../images/icons/loadmore_unpressed.png" alt="" />
-        <img id="loadmore2" class="loadmore-button" src="../images/icons/spinner.gif" alt="" hidden/>
+        <img id="loadmore2" class="loadmore-button" src="../images/icons/spinner.gif" alt="" hidden />
       </div>
     </div>
 
@@ -421,7 +514,7 @@ function normal(y){
                               <datalist id="allergenslist">
                                 {{#allergensList}}
                                 <option value="{{allergen}}">{{allergen}}</option>
-                                {{/allergensList}}                           
+                                {{/allergensList}}
                               </datalist>
                             </td>
                             <td>
@@ -497,7 +590,9 @@ function normal(y){
                       <h3 class="underlined-text">Recipe name*</h3>
                       <div id="titleCountChar"></div>
                       <input onkeyup="titleCountChar(this)" class="input100" type="text" name="title"
-                        placeholder="Recipe name" style="padding:10px;width: 100%;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" required>
+                        placeholder="Recipe name"
+                        style="padding:10px;width: 100%;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
+                        required>
                     </div>
                     <hr>
                     <!-- Introduction section -->
@@ -514,17 +609,22 @@ function normal(y){
                       <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem;
                           border:1px solid rgb(23, 162, 184); align-self:center;z-index: 1050;
                           text-align:center;padding:0;right:0;width:25%;position:absolute;cursor:pointer">
-                        <input id="file-input" hidden type="file" name="imageFile" accept=".jpg, .jpeg"/><i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i></input>
+                        <input id="file-input" hidden type="file" name="imageFile" accept=".jpg, .jpeg" /><i
+                          class="fa fa-camera" styles="object-fit:cover;padding:5px"></i></input>
                       </label>
                     </div>
+                    <input type="text" id="stepsString" name="stepsString" hidden/>
                     <fieldset id="steps-form" class="nav-item dropdown wrap-input50 m-b-23"
                       style="text-align: initial;">
                       <h3>Step 1*</h3>
                       <hr>
                       <div id="stepCountChar"></div>
+                      <textarea wrap="soft" id="firstStep" name="firstStepString" onkeyup="stepCountChar(this)" placeholder="A recipe must have at least 1 step :D"
+                        style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" required></textarea>
                       <input id="stepsString" name="stepsString" hidden/>
                       <textarea onkeyup="stepCountChar(this)" placeholder="A recipe must have at least 1 step :D"
-                        style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" required></textarea>
+                        style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
+                        required></textarea>
                       <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </fieldset>
                     <hr>
@@ -540,6 +640,7 @@ function normal(y){
                       style="width: 100%; border-radius: 0.8rem;background-color: mediumspringgreen;cursor: pointer;">
                       <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                     </div>
+                    <input id="ingredientsList" value="{{#ingredientsList}}{{ingredient}},{{/ingredientsList}}" hidden/>
                     <input id="ingredientsString" name="ingredientsString" hidden/>
                     <fieldset id="ingredients-form" class="nav-item dropdown scrolling" style="height: 300px;">
                     </fieldset>
@@ -551,27 +652,9 @@ function normal(y){
                       style="width: 100%; border-radius: 0.8rem;background-color: steelblue;cursor: pointer;">
                       <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                     </div>
+                    <input id="categoriesList" value="{{#categoriesList}}{{category}},{{/categoriesList}}" hidden/>
                     <input id="categoriesString" name="categoriesString" hidden/>
                     <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;" name="categories">
-                      <!--<table id="CategoriesTableAdd">
-                        <tr>  
-                          <td>
-                            <input name="categories" type="text" list="categorieslist" placeholder="Type a category.." style="border-radius: 0.5rem;border-width: 0.5px;" onkeypress="return false;">
-                            <datalist id="categorieslist">
-                              {{#categoriesList}}
-                              <option value="{{category}}">{{category}}</option>
-                              {{/categoriesList}}
-                            </datalist>
-                          </td>
-                          <td>
-                            <button id="cat-delete-buttonAdd" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCategory(this)">
-                              <span aria-hidden="true">
-                                <i class="fas fa-trash"></i>
-                              </span>
-                            </button>  
-                          </td> 
-                        </tr>
-                        </table>-->
                     </fieldset>
                     <hr>
                     <!-- Difficulty section stars -->
@@ -677,147 +760,147 @@ function normal(y){
   <script src="../js/filter_search_btn.js"></script>
 
   <script type="text/javascript">
-      $(document).ready(function () {
-        var aux = false;
-        var page_counter = 0;
-        $("#loadmore1").click(function () {
-            var value = $('#value-input').val();
-            document.getElementById("loadmore1").setAttribute("hidden", "");
-            $("#loadmore2").removeAttr("hidden");
-            $.ajax({
-                url: "http://localhost:8443/recipes", //to filter search we must add +value
-                data: {
-                  page: page_counter,
-                }
-              }).done(function (recipes) {
-                document.getElementById("loadmore2").setAttribute("hidden", "");
-                $("#loadmore1").removeAttr("hidden");
-                //$('#moreContent').empty();
-                recipes.forEach(element => {
-                  var item = Object.values(element);
-                  /*
-                  [0] -> id_recipe
-                  [1] -> title
-                  [2] -> description
-                  [3] -> id_user
-                  [4] -> username
-                  [5] -> name
-                  [6] -> surname
-                  [7] -> likes
-                  [8] -> n_comments
-                  */
-                  if(aux){
-                    $('#recipes-container').append("<div class=\"row\">"
-                      +"<div class=\"col-md-7\">"
-                      +"<a href=\"#\">"
-                        +"<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"temp/recipes/image-"+Object.values(item)[0]+".jpg\">"
-                      +"</a>"
-                      +"<div class=\"likes-comments-top-left\">"
-                      +"<div class=\"row\" style=\"margin-right: 0;margin-left: 0;\">"
-                      +"<div class=\"col-3\">"
-                      +"<img class=\"icon-fluid\" src=\"../images/icons/like_pressed.png\">"
-                      +"</div>"
-                      +"<div class=\"col-3\">"
-                      +"<p class=\"icon-fluid pub-date-text\">"+Object.values(item)[7]+"</p>"
-                      +"</div>"
-                      +"<div class=\"col-3\">"
-                      +"<img class=\"icon-fluid\" src=\"../images/icons/dialogue.png\">"
-                      +"</div>"
-                      +"<div class=\"col-3\">"
-                      +"<p class=\"icon-fluid pub-date-text\">"+Object.values(item)[8]+"</p>"
-                      +"</div>"
-                      +"</div>"
-                      +"</div>"
-                      +"<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">"+Object.values(item)[1]+"</h3></div>"
-                      +"</div>"
-                      +"<div class=\"col-md-4\">"
-                      +"<h3>Introduction</h3>"
-                      +"<p style=\"word-break: break-all;\">"+Object.values(item)[2]+"</p>"
-                      +"<a class=\"btn btn-primary\" href=\"/recipes/"+Object.values(item)[0]+"\">Read"
-                      +"<span class=\"glyphicon glyphicon-chevron-right\"></span>"
-                      +"</a>"
-                      +"</div>"
-                      +"<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);\">"
-                      +"<img class=\"d-flex mr-3 rounded-circle profile-border\" width=\"50%\" src=\"/temp/avatars/image-"+Object.values(item)[3]+".jpg\">"
-                      +"<p>@"+Object.values(item)[4]+"</p>"
-                      +"</div>"
-                      +"</div>"
-                      +"<!-- /.row -->"
-                      +"<hr>"
-                    );
-                    aux = false;
-                  }else{
-                    $('#recipes-container').append("<div class=\"row\">"
-                        +"<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);\">"
-                        +"<img class=\"d-flex mr-3 rounded-circle profile-border\" width=\"50%\" src=\"/temp/avatars/image-"+Object.values(item)[3]+".jpg\">"
-                        +"<p>@"+Object.values(item)[4]+"</p>"
-                        +"</div>"
-                        +"<div class=\"col-md-4\">"
-                        +"<h3>Introduction</h3>"
-                        +"<p style=\"word-break: break-all;\">"+Object.values(item)[2]+"</p>"
-                        +"<a class=\"btn btn-primary\" href=\"/recipes/"+Object.values(item)[0]+"\">Read"
-                        +"<span class=\"glyphicon glyphicon-chevron-right\"></span>"
-                        +"</a>"
-                        +"</div>"
-                        +"<div class=\"col-md-7\">"
-                        +"<a href=\"#\">"
-                        +"<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"temp/recipes/image-"+Object.values(item)[0]+".jpg\">"
-                        +"</a>"
-                        +"<div class=\"likes-comments-top-right\">"
-                        +"<div class=\"row\" style=\"margin-right: 0;margin-left: 0;\">"
-                        +"<div class=\"col-3\">"
-                        +"<img class=\"icon-fluid\" src=\"../images/icons/like_pressed.png\">"
-                        +"</div>"
-                        +"<div class=\"col-3\">"
-                        +"<p class=\"icon-fluid pub-date-text\">"+Object.values(item)[7]+"</p>"
-                        +"</div>"
-                        +"<div class=\"col-3\">"
-                        +"<img class=\"icon-fluid\" src=\"../images/icons/dialogue.png\">"
-                        +"</div>"
-                        +"<div class=\"col-3\">"
-                        +"<p class=\"icon-fluid pub-date-text\">"+Object.values(item)[8]+"</p>"
-                        +"</div>"
-                        +"</div>"
-                        +"</div>"
-                        +"<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">"+Object.values(item)[1]+"</h3></div>"
-                        +"</div>"
-                        +"</div>"
-                        +"<!-- /.row -->"
-                        +"<hr>"
-                      );
-                      aux = true;
-                    }
-                  });
-                  page_counter++;
-                  console.log("Length: " + "{{size}}");
-                  if(parseInt(page_counter) >= parseInt("{{size}}")){
-                    page_counter = 0;
-                    document.getElementById("loadmore1").setAttribute("hidden", "");
-                  }
-            });
+    $(document).ready(function () {
+      var aux = false;
+      var page_counter = 0;
+      $("#loadmore1").click(function () {
+        var value = $('#value-input').val();
+        document.getElementById("loadmore1").setAttribute("hidden", "");
+        $("#loadmore2").removeAttr("hidden");
+        $.ajax({
+          url: "http://localhost:8443/recipes", //para filtrar busqueda se añade +value
+          data: {
+            page: page_counter,
+          }
+        }).done(function (recipes) {
+          document.getElementById("loadmore2").setAttribute("hidden", "");
+          $("#loadmore1").removeAttr("hidden");
+          //$('#moreContent').empty();
+          recipes.forEach(element => {
+            var item = Object.values(element);
+            /*
+            [0] -> id_recipe
+            [1] -> title
+            [2] -> description
+            [3] -> id_user
+            [4] -> username
+            [5] -> name
+            [6] -> surname
+            [7] -> likes
+            [8] -> n_comments
+            */
+            if (aux) {
+              $('#recipes-container').append("<div class=\"row\">"
+                + "<div class=\"col-md-7\">"
+                + "<a href=\"#\">"
+                + "<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"temp/recipes/image-" + Object.values(item)[0] + ".jpg\">"
+                + "</a>"
+                + "<div class=\"likes-comments-top-left\">"
+                + "<div class=\"row\" style=\"margin-right: 0;margin-left: 0;\">"
+                + "<div class=\"col-3\">"
+                + "<img class=\"icon-fluid\" src=\"../images/icons/like_pressed.png\">"
+                + "</div>"
+                + "<div class=\"col-3\">"
+                + "<p class=\"icon-fluid pub-date-text\">" + Object.values(item)[7] + "</p>"
+                + "</div>"
+                + "<div class=\"col-3\">"
+                + "<img class=\"icon-fluid\" src=\"../images/icons/dialogue.png\">"
+                + "</div>"
+                + "<div class=\"col-3\">"
+                + "<p class=\"icon-fluid pub-date-text\">" + Object.values(item)[8] + "</p>"
+                + "</div>"
+                + "</div>"
+                + "</div>"
+                + "<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">" + Object.values(item)[1] + "</h3></div>"
+                + "</div>"
+                + "<div class=\"col-md-4\">"
+                + "<h3>Introduction</h3>"
+                + "<p style=\"word-break: break-all;\">" + Object.values(item)[2] + "</p>"
+                + "<a class=\"btn btn-primary\" href=\"/recipes/" + Object.values(item)[0] + "\">Read"
+                + "<span class=\"glyphicon glyphicon-chevron-right\"></span>"
+                + "</a>"
+                + "</div>"
+                + "<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);\">"
+                + "<img class=\"d-flex mr-3 rounded-circle profile-border\" src=\"../images/icons/avatar.svg\">"
+                + "<p>@" + Object.values(item)[4] + "</p>"
+                + "</div>"
+                + "</div>"
+                + "<!-- /.row -->"
+                + "<hr>"
+              );
+              aux = false;
+            } else {
+              $('#recipes-container').append("<div class=\"row\">"
+                + "<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);\">"
+                + "<img class=\"d-flex mr-3 rounded-circle profile-border\" src=\"../images/icons/avatar.svg\">"
+                + "<p>@" + Object.values(item)[4] + "</p>"
+                + "</div>"
+                + "<div class=\"col-md-4\">"
+                + "<h3>Introduction</h3>"
+                + "<p style=\"word-break: break-all;\">" + Object.values(item)[2] + "</p>"
+                + "<a class=\"btn btn-primary\" href=\"/recipes/" + Object.values(item)[0] + "\">Read"
+                + "<span class=\"glyphicon glyphicon-chevron-right\"></span>"
+                + "</a>"
+                + "</div>"
+                + "<div class=\"col-md-7\">"
+                + "<a href=\"#\">"
+                + "<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"temp/recipes/image-" + Object.values(item)[0] + ".jpg\">"
+                + "</a>"
+                + "<div class=\"likes-comments-top-right\">"
+                + "<div class=\"row\" style=\"margin-right: 0;margin-left: 0;\">"
+                + "<div class=\"col-3\">"
+                + "<img class=\"icon-fluid\" src=\"../images/icons/like_pressed.png\">"
+                + "</div>"
+                + "<div class=\"col-3\">"
+                + "<p class=\"icon-fluid pub-date-text\">" + Object.values(item)[7] + "</p>"
+                + "</div>"
+                + "<div class=\"col-3\">"
+                + "<img class=\"icon-fluid\" src=\"../images/icons/dialogue.png\">"
+                + "</div>"
+                + "<div class=\"col-3\">"
+                + "<p class=\"icon-fluid pub-date-text\">" + Object.values(item)[8] + "</p>"
+                + "</div>"
+                + "</div>"
+                + "</div>"
+                + "<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">" + Object.values(item)[1] + "</h3></div>"
+                + "</div>"
+                + "</div>"
+                + "<!-- /.row -->"
+                + "<hr>"
+              );
+              aux = true;
+            }
+          });
+            page_counter++;
+            console.log("Length: " + "{{size}}");
+            if(parseInt(page_counter) >= parseInt("{{size}}")){
+              page_counter = 0;
+              document.getElementById("loadmore1").setAttribute("hidden", "");
+            }
         });
-      })
+      });
+    });
   </script>
   <!-- Photo selector at add button -->
   <script>
     document.getElementById('file-input').onchange = function (evt) {
-        var tgt = evt.target || window.event.srcElement,
-            files = tgt.files;
-        // FileReader support
-        if (FileReader && files && files.length) {
-            var fr = new FileReader();
-            fr.onload = function () {
-              document.getElementById("no-such-image").setAttribute("hidden","");
-              document.getElementById("preview-img-file").removeAttribute("hidden");
-              document.getElementById("preview-img-file").src = fr.result;
-            }
-            fr.readAsDataURL(files[0]);
+      var tgt = evt.target || window.event.srcElement,
+        files = tgt.files;
+      // FileReader support
+      if (FileReader && files && files.length) {
+        var fr = new FileReader();
+        fr.onload = function () {
+          document.getElementById("no-such-image").setAttribute("hidden", "");
+          document.getElementById("preview-img-file").removeAttribute("hidden");
+          document.getElementById("preview-img-file").src = fr.result;
         }
-        // Not supported
-        else {
-            // fallback -- perhaps submit the input to an iframe and temporarily store
-            // them on the server until the user's session ends.
-        }
+        fr.readAsDataURL(files[0]);
+      }
+      // Not supported
+      else {
+        // fallback -- perhaps submit the input to an iframe and temporarily store
+        // them on the server until the user's session ends.
+      }
     }
   </script>
 

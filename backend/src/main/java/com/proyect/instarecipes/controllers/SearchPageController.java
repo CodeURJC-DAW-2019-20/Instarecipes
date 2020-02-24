@@ -81,12 +81,12 @@ public class SearchPageController {
         //List<Recipe> recipesFounded = recipesRepository.findAll();
         List<Recipe> recipesFounded = recipesRepository.findFilteredSearch(ingredientsSelected, categoriesSelected, allergensSelected, cookingStylesSelected);
       //  List<Recipe> finallist = removeAllergens(recipesFounded,allergensSelected);
-
-
-        System.out.println("LISTA: " + recipesFounded.toString());
-        System.out.println("LISTA foto: " + recipesFounded.get(0).getId());
-       // System.out.println("LISTA: " + finallist.toString());
-        model.addAttribute("recipesFound", recipesFounded);
+        if(recipesFounded.size()==0){
+            model.addAttribute("notFound", true);
+        }else{
+            model.addAttribute("notFound", false);
+            model.addAttribute("recipesFound", recipesFounded);
+        }
 
         return "search";
     }
@@ -116,6 +116,7 @@ public class SearchPageController {
         }
         return aux;
     }
+    
     private List<CookingStyle> restCookingStyles(List<CookingStyle> all, ArrayList<String> cookingStylesSelected) {
         List<CookingStyle> aux = all;
         for (int i = 0; i < cookingStylesSelected.size(); i++) {
@@ -139,6 +140,7 @@ public class SearchPageController {
         }
         return aux;
     }
+    
     private List<Allergen> restAllergens(List<Allergen> all, ArrayList<String> allergensSelected) {
         List<Allergen> aux = all;
         for (int i = 0; i < allergensSelected.size(); i++) {
