@@ -67,8 +67,7 @@ public class IndexController {
         List<CookingStyle> allCookingStyles = cookingStylesRepository.findAll();
         List<Category> allCategories = categoriesRepository.findAll();
         List<Allergen> allAllergens = allergensRepository.findAll();
-        List<Recipe> subRecipe = recipes.subList(0, 3);
-        model.addAttribute("subRecipe",subRecipe);
+        
         model.addAttribute("size", recipes.size());
         model.addAttribute("recipes", recipes);
         model.addAttribute("ingredientsList", allIngredients);
@@ -87,8 +86,7 @@ public class IndexController {
         List<CookingStyle> allCookingStyles = cookingStylesRepository.findAll();
         List<Category> allCategories = categoriesRepository.findAll();
         List<Allergen> allAllergens = allergensRepository.findAll();
-        List<Recipe> subRecipe = recipes.subList(0, 3);
-        model.addAttribute("subRecipe",subRecipe);
+
         model.addAttribute("size", recipes.size());
         model.addAttribute("recipes", recipes);
         model.addAttribute("ingredientsList", allIngredients);

@@ -20,9 +20,9 @@ public class RecipesController{
     private RecipesRepository recipesRepository;
 
     @GetMapping("/recipes")
-    public List<Recipe> getRecipes(Model model, @RequestParam("page") int page){
-        System.out.println("Page: " + page);
-        Page<Recipe> recipes = recipesRepository.findAllRecipes(PageRequest.of(page,1));
+    public List<Recipe> getRecipes(Model model, @RequestParam("page") int page_number, @RequestParam("size") int page_size){
+        System.out.println("Page: " + page_number + " Size: " + page_size);
+        Page<Recipe> recipes = recipesRepository.findAllRecipes(PageRequest.of(page_number,page_size));
         List<Recipe> recipeList = (List<Recipe>)recipes.getContent();
         return recipeList;
     } 

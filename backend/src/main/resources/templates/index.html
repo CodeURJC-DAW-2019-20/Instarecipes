@@ -108,6 +108,7 @@
       {{/logged}}
     </div>
   </nav>
+
   <!-- Carousel-->
   <header id="header-section">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -277,95 +278,6 @@
     <h3 class="my-4">Recent user's recipes</h3>
     <!-- Recent recipes -->
     <div id="recipes-container">
-      {{#subRecipe}}
-      <script type="text/javascript">
-        var aux = true;
-        $(function () {
-          var model1 = $("<div class=\"row\">"
-            +"<div class=\"col-md-7\">"
-            +"<a href=\"#\">"
-            +"<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"../images/Recipes/recipe_example_1.jpg\">"
-            +"</a>"
-            +"<div class=\"likes-comments-top-left\">"
-            +"<div class=\"row\" style=\"margin-right: 0;margin-left: 0;\">"
-            +"<div class=\"col-3\">"
-            +"<img class=\"icon-fluid\" src=\"../images/icons/like_pressed.png\">"
-            +"</div>"
-            +"<div class=\"col-3\">"
-            +"<p class=\"icon-fluid pub-date-text\">84</p>"
-            +"</div>"
-            +"<div class=\"col-3\">"
-            +"<img class=\"icon-fluid\" src=\"../images/icons/dialogue.png\">"
-            +"</div>"
-            +"<div class=\"col-3\">"
-            +"<p class=\"icon-fluid pub-date-text\">203</p>"
-            +"</div>"
-            +"</div>"
-            +"</div>"
-            +"<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">{{title}}</h3></div>"
-            +"</div>"
-            +"<div class=\"col-md-4\">"
-            +"<h3>Introduction</h3>"
-            +"<p style=\"word-break: break-all;\">{{description}}</p>"
-            +"<a class=\"btn btn-primary\" href=\"/recipes/{{id}}\">Read"
-            +"<span class=\"glyphicon glyphicon-chevron-right\"></span>"
-            +"</a>"
-            +"</div>"
-            +"<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);\">"
-            +"<img class=\"d-flex mr-3 rounded-circle profile-border\" src=\"../images/icons/avatar.svg\">"
-            +"</div>"
-            +"</div>"
-            +"<!-- /.row -->"
-            +"<hr>"
-            );
-          var model2 = $("<!-- Project Two -->"
-            +"<div class=\"row\">"
-            +"<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);\">"
-            +"<img class=\"d-flex mr-3 rounded-circle profile-border\" src=\"../images/icons/avatar.svg\">"
-            +"</div>"
-            +"<div class=\"col-md-4\">"
-            +"<h3>Introduction</h3>"
-            +"<p style=\"word-break: break-all;\">{{description}}</p>"
-            +"<a class=\"btn btn-primary\" href=\"/recipes/{{id}}\">Read"
-            +"<span class=\"glyphicon glyphicon-chevron-right\"></span>"
-            +"</a>"
-            +"</div>"
-            +"<div class=\"col-md-7\">"
-            +"<a href=\"#\">"
-            +"<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"../images/Recipes/recipe_example_4.jpg\">"
-            +"</a>"
-            +"<div class=\"likes-comments-top-right\">"
-            +"<div class=\"row\" style=\"margin-right: 0;margin-left: 0;\">"
-            +"<div class=\"col-3\">"
-            +"<img class=\"icon-fluid\" src=\"../images/icons/like_pressed.png\">"
-            +"</div>"
-            +"<div class=\"col-3\">"
-            +"<p class=\"icon-fluid pub-date-text\">84</p>"
-            +"</div>"
-            +"<div class=\"col-3\">"
-            +"<img class=\"icon-fluid\" src=\"../images/icons/dialogue.png\">"
-            +"</div>"
-            +"<div class=\"col-3\">"
-            +"<p class=\"icon-fluid pub-date-text\">203</p>"
-            +"</div>"
-            +"</div>"
-            +"</div>"
-            +"<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">{{title}}</h3></div>"
-            +"</div>"
-            +"</div>"
-            +"<!-- /.row -->"
-            +"<hr>"
-             );
-            if(aux){
-              $("#recipes-container").prepend(model1);
-              aux = false;
-            }else{
-              $("#recipes-container").prepend(model2);
-              aux = true;
-            }
-        });
-      </script>
-      {{/subRecipe}}
     </div>
 
     <hr width="80%">
@@ -659,10 +571,6 @@
                       <div id="stepCountChar"></div>
                       <textarea wrap="soft" id="firstStep" name="firstStepString" onkeyup="stepCountChar(this)" placeholder="A recipe must have at least 1 step :D"
                         style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" required></textarea>
-                      <input id="stepsString" name="stepsString" hidden/>
-                      <textarea onkeyup="stepCountChar(this)" placeholder="A recipe must have at least 1 step :D"
-                        style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
-                        required></textarea>
                       <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </fieldset>
                     <hr>
@@ -801,21 +709,30 @@
     $(document).ready(function () {
       var aux = false;
       var page_counter = 0;
+      var page_size = 2;
+      var lastRecipe;
+      loadMoreAjax(page_counter, aux, page_size);
+      page_counter++;
       $("#loadmore1").click(function () {
         var value = $('#value-input').val();
         document.getElementById("loadmore1").setAttribute("hidden", "");
         $("#loadmore2").removeAttr("hidden");
+        loadMoreAjax(page_counter, aux, page_size);
+        page_counter++;
+      });
+      function loadMoreAjax(page_counter, aux, page_size){
         $.ajax({
           url: "http://localhost:8443/recipes", //para filtrar busqueda se añade +value
           data: {
             page: page_counter,
+            size: page_size,
           }
         }).done(function (recipes) {
           document.getElementById("loadmore2").setAttribute("hidden", "");
           $("#loadmore1").removeAttr("hidden");
-          //$('#moreContent').empty();
           recipes.forEach(element => {
             var item = Object.values(element);
+            lastRecipe =  recipes.length;
             /*
             [0] -> id_recipe
             [1] -> title
@@ -909,14 +826,14 @@
               aux = true;
             }
           });
-            page_counter++;
-            console.log("Length: " + "{{size}}");
-            if(parseInt(page_counter) >= parseInt("{{size}}")){
-              page_counter = 0;
-              document.getElementById("loadmore1").setAttribute("hidden", "");
-            }
+          console.log("PAGE COUNTER: " + page_counter);
+          console.log("Length: " + "{{size}}");
+          if(parseInt(lastRecipe) == 1){
+            page_counter = 0;
+            document.getElementById("loadmore1").setAttribute("hidden", "");
+          }
         });
-      });
+      }
     });
   </script>
   <!-- Photo selector at add button -->

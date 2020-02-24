@@ -110,6 +110,7 @@ $(document).ready(function() {
           if(stepNumber>3){
             asdf.show();
           }
+          stepCounter--;
           stepNumber--; //still've some troubles, need to refresh with ajax(realtime)the counter var for each h3 on top
           $(this).parent().remove();
         });
