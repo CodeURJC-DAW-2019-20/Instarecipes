@@ -1,13 +1,19 @@
 package com.proyect.instarecipes.views;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Set;
 
+import javax.management.Query;
+
 import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.security.ImageService;
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.models.Comment;
@@ -24,6 +30,7 @@ import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -72,6 +79,7 @@ public class IndexController {
         model.addAttribute("categoriesList", allCategories);
         model.addAttribute("allergensList", allAllergens);
         
+        personalFilter(model);
         return "index";
     }
 
@@ -82,6 +90,7 @@ public class IndexController {
         model.addAttribute("id", userSession.getLoggedUser().getId());//THIS IS ONLY A TEST
         model.addAttribute("size", recipes.size());
         model.addAttribute("recipes", recipes);
+        personalFilter(model);
         return "index";
     }
     @GetMapping("/login")
@@ -100,9 +109,10 @@ public class IndexController {
 	public void addAttributes(Model model) {
 		boolean logged = userSession.getLoggedUser() != null;
         model.addAttribute("logged", logged);
-		if(logged){
+        
+        if(logged){             
 			model.addAttribute("user",userSession.getLoggedUser().getUsername());
-			model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
+            model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
 		}
 	}
 
@@ -156,4 +166,38 @@ public class IndexController {
 
         return "index";
     }
+
+    public void personalFilter(Model model){
+
+        List<Recipe> recipes = recipesRepository.findAll();
+        boolean logged = userSession.getLoggedUser() != null;    
+        ArrayList<Recipe> filtered = new ArrayList<Recipe>(3); //list to show on index.html
+        if(logged){
+            User user = userSession.getLoggedUser();
+            
+            String myAllergen =user.getAllergens(); // allergen's user
+
+            for(int pubs=0; pubs<recipes.size();pubs++){
+                Set<Allergen> ReciAllergens = recipes.get(pubs).getAllergens();
+                boolean check=false;
+                for(Allergen a : ReciAllergens){
+                    String allergen = a.getAllergen();
+                    if(allergen==myAllergen);
+                    check= true;
+                    System.out.println("alergeno "+ allergen);  
+                }
+                if(!check)
+                    filtered.add(recipes.get(pubs));     
+            }
+            List<Recipe> filteredfinally= filtered.subList(1,3);       
+            model.addAttribute("filteredRecipe", filteredfinally);
+        }
+        else{
+            List<Recipe> xd= recipesRepository.FindByLikes();
+            List<Recipe> notLogged = xd.subList(1,3);
+            model.addAttribute("notTrending", notLogged);
+        }
+    }
+
+
 }
