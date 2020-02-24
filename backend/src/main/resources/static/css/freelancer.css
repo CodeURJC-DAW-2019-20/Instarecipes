@@ -728,6 +728,14 @@ input.remove
   border-bottom-right-radius: 3rem;
   background-color: rgb(240, 248, 255, 0.7);
 }
+.img-blur2{
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: blur(1px);
+  object-fit: cover;
+}
 
 .img-blur{
   -webkit-filter: blur(5px);

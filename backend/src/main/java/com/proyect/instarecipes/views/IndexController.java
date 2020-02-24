@@ -6,11 +6,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.Set;
-
-import javax.management.Query;
 
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.Step;
@@ -31,8 +27,6 @@ import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -163,7 +157,6 @@ public class IndexController {
         recipesRepository.save(r);
         imageService.saveImage("recipes", r.getId(), imageFile);
         // Steps selector //
-        // System.out.println("Step: " + listOfSteps.get(0));
         stepsRepository.save(new Step(r, 1, firstStepString));
         if(stepsString != null){
             List<String> listOfSteps = Arrays.asList(stepsString.split("ab#12#45-3,"));
@@ -178,8 +171,6 @@ public class IndexController {
         List<Recipe> recipes = recipesRepository.findAll();
         model.addAttribute("recipes", recipes);
         model.addAttribute("size", recipes.size());
-        // Page<Recipe> firstsRecipes = recipesRepository.findAllRecipes(PageRequest.of(0,3));
-        // List<Recipe> recipeList = (List<Recipe>)firstsRecipes.getContent();
         List<Recipe> subRecipe = recipes.subList(0, 3);
         model.addAttribute("subRecipe",subRecipe);
 
@@ -191,32 +182,37 @@ public class IndexController {
 
     public void personalFilter(Model model){
 
-        List<Recipe> recipes = recipesRepository.findAll();
-        boolean logged = userSession.getLoggedUser() != null;    
+        List<Recipe> recipes = recipesRepository.FindByLikes();
+        boolean logged = userSession.isLoggedUser();    
         ArrayList<Recipe> filtered = new ArrayList<Recipe>(3); //list to show on index.html
         if(logged){
             User user = userSession.getLoggedUser();
-            
             String myAllergen =user.getAllergens(); // allergen's user
-
             for(int pubs=0; pubs<recipes.size();pubs++){
                 Set<Allergen> ReciAllergens = recipes.get(pubs).getAllergens();
                 boolean check=false;
                 for(Allergen a : ReciAllergens){
                     String allergen = a.getAllergen();
-                    if(allergen==myAllergen);
-                    check= true;
-                    System.out.println("alergeno "+ allergen);  
+                    if(allergen.equalsIgnoreCase(myAllergen))
+                        check = true;
                 }
                 if(!check)
                     filtered.add(recipes.get(pubs));     
             }
-            List<Recipe> filteredfinally= filtered.subList(1,3);       
+            List<Recipe> filteredfinally= new ArrayList<>();
+            int max = 3; // our max trending recipes
+            for(int i=0;i<max;i++){
+                filteredfinally.add(filtered.get(i));
+            }
             model.addAttribute("filteredRecipe", filteredfinally);
         }
         else{
-            List<Recipe> xd= recipesRepository.FindByLikes();
-            List<Recipe> notLogged = xd.subList(1,3);
+            List<Recipe> xdList= recipesRepository.FindByLikes();
+            List<Recipe> notLogged = new ArrayList<>();
+            int maX = 3; // our max trending recipes
+            for(int i=0;i<maX;i++){
+                notLogged.add(xdList.get(i));
+            }
             model.addAttribute("notTrending", notLogged);
         }
     }
