@@ -10,9 +10,10 @@
 
   <title>Instarecipes • Profile</title>
   <!-- Images and icons-->
-  <link rel="icon" type="image/png" href="/images/icons/instarecipes.png"/>
+  <link rel="icon" type="image/png" href="/images/icons/instarecipes.png" />
 
   <!-- Custom fonts for this theme -->
+ 
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
@@ -20,12 +21,14 @@
   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
-		
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="/css/style.css">
+
   <!-- Theme CSS -->
   <link href="/css/freelancer.css" rel="stylesheet">
   <link href="/css/modern-business.css" rel="stylesheet">
+ 
   <!--Graphics xd-->
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
@@ -36,13 +39,14 @@
   <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container" style="margin-left: 30px;">
       <div id="img-navbar-container">
-        <img class="img-navbar d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="">
+        <img class="img-navbar d-flex mr-3 rounded-circle profile-border"
+          src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="">
       </div>
       <a class="navbar-brand js-scroll-trigger" href="/profile">&nbsp;Profile</a>
-      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" 
-      type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" 
-      aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><i class="fa fa-bars" style="font-size: x-large;"></i></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto" style="margin-right: 10%;">
@@ -51,19 +55,21 @@
           </li>
           {{^logged}}
           <li class="nav-item col-3">
-            <a class="nav-link js-scroll-trigger" href="#page-top"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+            <a class="nav-link js-scroll-trigger" href="#page-top"><i class="fas fa-user"
+                style="font-size: xx-large;"></i></a>
           </li>
           {{/logged}}
           <li class="nav-item col-3">
             <a class="nav-link" href="/ranking"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
           </li>
           <li class="nav-item col-3">
-            <a class="nav-link js-scroll-trigger" href="#publications"><i class="fas fa-book" style="font-size: xx-large;"></i></a>
+            <a class="nav-link js-scroll-trigger" href="#publications"><i class="fas fa-book"
+                style="font-size: xx-large;"></i></a>
           </li>
         </ul>
         <form class="example" action="/search">
-          <input type="text" href="#" placeholder="Search.." name="search"/>
-          <button type="submit">
+          <input type="text" href="#" placeholder="Search.." name="search" />
+          <button type="submit" style="background-color: #1abc9c;">
             <i class="fa fa-search"></i>
           </button>
         </form>
@@ -71,13 +77,14 @@
     </div>
     <div class="login-container">
       {{#logged}}
-        <form action="/logout" method="post">
-          <button type="submit" class="nav-link nav-log btn-dark" style="color:white;font-weight: normal;font-size: 15px;">Logout</button>
-          <input type="hidden" name="_csrf" value="{{token}}"/>
-        </form>
+      <form action="/logout" method="post">
+        <button type="submit" class="nav-link nav-log btn-dark"
+          style="color:white;font-weight: normal;font-size: 15px;">Logout</button>
+        <input type="hidden" name="_csrf" value="{{token}}" />
+      </form>
       {{/logged}}
       {{^logged}}
-        <a class="nav-link nav-log" href="/login" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+      <a class="nav-link nav-log" href="/login" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
       {{/logged}}
     </div>
   </nav>
@@ -94,19 +101,24 @@
         <h1><a href="/index" class="logo">Manage</a></h1>
         <ul class="list-unstyled components mb-5">
           <li id="text-content" class="active">
-            <a onclick="contentDiv()" href="#"><span class="fa fa-user mr-3" style="width: 20px;text-align: center;"></span>Profile</a>
+            <a onclick="contentDiv()" href="#"><span class="fa fa-user mr-3"
+                style="width: 20px;text-align: center;"></span>Profile</a>
           </li>
           <li id="text-request">
-            <a onclick="requestDiv()" href="#"><span class="fa fa-bell mr-3" style="width: 20px;text-align: center;"></span>Requests</a>
+            <a onclick="requestDiv()" href="#"><span class="fa fa-bell mr-3"
+                style="width: 20px;text-align: center;"></span>Requests</a>
           </li>
           <li id="text-users">
-            <a onclick="usersDiv()" href="#"><span class="fa fa-users mr-3" style="width: 20px;text-align: center;"></span>Users</a>
+            <a onclick="usersDiv()" href="#"><span class="fa fa-users mr-3"
+                style="width: 20px;text-align: center;"></span>Users</a>
           </li>
           <li id="text-recipes">
-            <a onclick="recipesDiv()" href="#"><span class="fa fa-book mr-3" style="width: 20px;text-align: center;"></span>Recipes</a>
+            <a onclick="recipesDiv()" href="#"><span class="fa fa-book mr-3"
+                style="width: 20px;text-align: center;"></span>Recipes</a>
           </li>
           <li id="text-reports">
-            <a onclick="reportsDiv()" href="#"><span class="fa fa-exclamation mr-3" style="width: 20px;text-align: center;"></span>Reports</a>
+            <a onclick="reportsDiv()" href="#"><span class="fa fa-exclamation mr-3"
+                style="width: 20px;text-align: center;"></span>Reports</a>
           </li>
         </ul>
       </div>
@@ -116,36 +128,39 @@
     <div id="content" class="p-4 p-md-5 pt-5" style="padding:0 !important">
       <!-- Masthead -->
       <header class="masthead bg-primary text-white text-center"
-      style="background-image: url(/temp/backgrounds/image-{{actualUser.id}}.jpg); background-repeat: no-repeat; background-size: cover;">
+        style="background-image: url(/temp/backgrounds/image-{{actualUser.id}}.jpg); background-repeat: no-repeat; background-size: cover;">
         <div class="container d-flex align-items-center flex-column">
           <!-- Masthead Avatar Image -->
           <div class="rounded-circle">
-            <img style="object-fit: cover;" class="masthead-avatar mb-5 d-flex mr-3 profile-border" src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="Show profile photo" data-toggle="modal"
-            data-target="#showAvatar">
+            <img style="object-fit: cover;" class="masthead-avatar mb-5 d-flex mr-3 profile-border"
+              src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="Show profile photo" data-toggle="modal"
+              data-target="#showAvatar">
           </div>
-            <div style="position: relative;width: 100%;height: fit-content;">
-              <!-- Request ingredient/category button -->
-              <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;right: 25%;">
-                <img src='../images/icons/request_icon.png' data-toggle="modal" data-target="#opened-request-button" width="50%" style="height: 50px; width: 50px;cursor: pointer;" />
-              </div>
-              <!-- Statistics button-->
-              <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;left: 25%;">
-                <button id="open-stadistics-button" type="button" class="stadistics-button" data-toggle="modal" data-target="#opened-stadistics-button" style="background-color: transparent;">
-                  <span aria-hidden="true">
-                    <img src='/images/icons/stadistics-button.png' width="50%" style="height: 50px; width: 50px;" />
-                  </span>
-                </button>
-              </div>
+          <div style="position: relative;width: 100%;height: fit-content;">
+            <!-- Request ingredient/category button -->
+            <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;right: 25%;">
+              <img src='../images/icons/request_icon.png' data-toggle="modal" data-target="#opened-request-button"
+                width="50%" style="height: 50px; width: 50px;cursor: pointer;" />
             </div>
+            <!-- Statistics button-->
+            <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;left: 25%;">
+              <button id="open-stadistics-button" type="button" class="stadistics-button" data-toggle="modal"
+                data-target="#opened-stadistics-button" style="background-color: transparent;">
+                <span aria-hidden="true">
+                  <img src='/images/icons/stadistics-button.png' width="50%" style="height: 50px; width: 50px;" />
+                </span>
+              </button>
+            </div>
+          </div>
           <!-- Masthead Heading -->
           <h3 class="text-uppercase mb-0">{{actualUser.name}}&nbsp;{{actualUser.surname}}</h3>
           <h6>@{{actualUser.username}}</h6>
           <!-- Icon Divider -->
           <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
-              <div class="divider-custom-icon">
-                <i class="fas fa-star"></i>
-              </div>
+            <div class="divider-custom-icon">
+              <i class="fas fa-star"></i>
+            </div>
             <div class="divider-custom-line"></div>
           </div>
           <!-- Masthead Subheading -->
@@ -153,19 +168,22 @@
             <p class="masthead-subheading font-weight-light mb-0">{{actualUser.info}}</p>
           </div>
           {{^admin}}
-            {{#followButton}}
-              <div class="unfollow-div-button" style="background-color: transparent;">
-                <button type="button" class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</button>
-              </div>
-            {{/followButton}}
-            {{^followButton}}
-              <div class="follow-div-button" style="background-color: transparent;">
-                <button type="button" class="btn btn-primary" style="background-color: #1abc9c; color: white;">Follow</button>
-              </div>
-            {{/followButton}}
+          {{#followButton}}
+          <div class="unfollow-div-button" style="background-color: transparent;">
+            <button type="button" class="btn btn-primary"
+              style="background-color: white; color: #1abc9c ;">Following</button>
+          </div>
+          {{/followButton}}
+          {{^followButton}}
+          <div class="follow-div-button" style="background-color: transparent;">
+            <button type="button" class="btn btn-primary"
+              style="background-color: #1abc9c; color: white;">Follow</button>
+          </div>
+          {{/followButton}}
           {{/admin}}
           <!-- Statistics button pannel -->
-          <div class="publications-modal modal fade" id="opened-stadistics-button" tabindex="-1" role="dialog" aria-labelledby="publicationsModal6Label" aria-hidden="true">
+          <div class="publications-modal modal fade" id="opened-stadistics-button" tabindex="-1" role="dialog"
+            aria-labelledby="publicationsModal6Label" aria-hidden="true">
             <div id="graphics-canvas" class="modal-dialog modal-xl" role="document">
               <div class="modal-dialog modal-xl" role="document" style="width: 50%;">
                 <div class="modal-content" style="width: 100%;">
@@ -180,11 +198,11 @@
                       <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Statistics</h2>
                       <!-- Icon Divider -->
                       <div class="divider-custom"></div>
-                        <!-- LIKES Divider -->
+                      <!-- LIKES Divider -->
                       <h2 class="underlined-texts">LIKES</h2>
                       <div id="canvasLikes" style="width: 100%;height: auto; align-items: center;justify-self: center;">
-                        <input value="{{idkwtp}}" id="idkwtp" hidden/>
-                        <input value="{{likesGraphics}}" id="Grapilotes" hidden/>
+                        <input value="{{idkwtp}}" id="idkwtp" hidden />
+                        <input value="{{likesGraphics}}" id="Grapilotes" hidden />
                       </div>
                     </div>
                   </div>
@@ -239,7 +257,7 @@
         </table>
         <!-- Request button pannel -->
         <div class="publications-modal modal fade" id="opened-request-button" tabindex="-1" role="dialog"
-        aria-labelledby="publicationsModal6Label" aria-hidden="true">
+          aria-labelledby="publicationsModal6Label" aria-hidden="true">
           <div id="example" class="modal-dialog modal-xl" style="width: 40%;" role="document">
             <div class="modal-content">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -264,9 +282,11 @@
                       <option>Category</option>
                       <option>Cooking style</option>
                     </select>
-                    <input type='text' name="content" placeholder='Value' class="btn btn-outline-primary" style="margin-top: 20px;width: 80%;height: 80px;font-size: 50px;">
-                    <input type='submit' value='Send' class="btn btn-primary" style="margin-top: 40px;width: 50%;height: 60%;">
-                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                    <input type='text' name="content" placeholder='Value' class="btn btn-outline-primary"
+                      style="margin-top: 20px;width: 80%;height: 80px;font-size: 50px;">
+                    <input type='submit' value='Send' class="btn btn-primary"
+                      style="margin-top: 40px;width: 50%;height: 60%;">
+                    <input type="hidden" name="_csrf" value="{{token}}" />
                   </form>
                 </div>
               </div>
@@ -290,108 +310,146 @@
           <!-- publications Grid Items -->
           <div class="row">
             {{#publications}}
-              <!-- publications Item 1 -->
-              <div class="col-md-6 col-lg-4">
-                <div class="publications-item mx-auto" data-toggle="modal" data-target="#publicationsModal{{id}}">
-                  <div class="likes-comments">
-                    <div class="row" style="margin-right: 0;margin-left: 0;">
-                      <div class="col-3">
-                        <img class="icon-fluid" src="/images/icons/like_pressed.png" alt="">
-                      </div>
-                      <div class="col-3">
-                        <p class="icon-fluid pub-date-text">{{likes}}</p>
-                      </div>
-                      <div class="col-3">
-                        <img class="icon-fluid" src="/images/icons/dialogue.png" alt="">
-                      </div>
-                      <div class="col-3">
-                        <p class="icon-fluid pub-date-text">{{n_comments}}</p>
-                      </div>
+            <!-- publications Item 1 -->
+            <div class="col-md-6 col-lg-4">
+              <div class="publications-item mx-auto" data-toggle="modal" data-target="#publicationsModal{{id}}">
+                <div class="likes-comments">
+                  <div class="row" style="margin-right: 0;margin-left: 0;">
+                    <div class="col-3">
+                      <img class="icon-fluid" src="/images/icons/like_pressed.png" alt="">
+                    </div>
+                    <div class="col-3">
+                      <p class="icon-fluid pub-date-text">{{likes}}</p>
+                    </div>
+                    <div class="col-3">
+                      <img class="icon-fluid" src="/images/icons/dialogue.png" alt="">
+                    </div>
+                    <div class="col-3">
+                      <p class="icon-fluid pub-date-text">{{n_comments}}</p>
                     </div>
                   </div>
-                  <div class="publications-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                    <div class="publications-item-caption-content text-center text-white">
-                      <img src="/images/icons/eye.png" />
-                    </div>
-                  </div>
-                  <img class="img-fluid" src="/temp/recipes/image-{{id}}.jpg" alt="">
-                  <p class="pub-date-text">27 min. ago</p>
                 </div>
+                <div class="publications-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                  <div class="publications-item-caption-content text-center text-white">
+                    <img src="/images/icons/eye.png" />
+                  </div>
+                </div>
+                <img class="img-fluid" src="/temp/recipes/image-{{id}}.jpg" alt="">
+                <p class="pub-date-text">27 min. ago</p>
               </div>
-              <!-- publications Modals -->
-              <div class="publications-modal modal fade" id="publicationsModal{{id}}" tabindex="-1" role="dialog"
-                aria-labelledby="publicationsModal1Label" aria-hidden="true">
-                <div class="modal-dialog modal-xl" role="document">
-                  <div class="modal-content">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">
-                        <i class="fas fa-times"></i>
-                      </span>
-                    </button>
-                    <div class="modal-body text-center">
-                      <div class="container">
-                        <div class="row justify-content-center">
-                          <div class="col-lg-12">
-                            <!-- publications Modal - Title -->
-                            <h2 class="publications-modal-title text-secondary text-uppercase mb-0">{{title}}</h2>
-                            <!-- Icon Divider -->
-                            <div class="divider-custom">
-                              <div class="divider-custom-line"></div>
-                              <div class="divider-custom-icon">
-                                <i class="fas fa-star"></i>
-                              </div>
-                              <div class="divider-custom-line"></div>
+            </div>
+            <!-- publications Modals -->
+            <div class="publications-modal modal fade" id="publicationsModal{{id}}" tabindex="-1" role="dialog"
+              aria-labelledby="publicationsModal1Label" aria-hidden="true">
+              <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                      <i class="fas fa-times"></i>
+                    </span>
+                  </button>
+                  <div class="modal-body text-center">
+                    <div class="container">
+                      <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                          <!-- publications Modal - Title -->
+                          <h2 class="publications-modal-title text-secondary text-uppercase mb-0">{{title}}</h2>
+                          <!-- Icon Divider -->
+                          <div class="divider-custom">
+                            <div class="divider-custom-line"></div>
+                            <div class="divider-custom-icon">
+                              <i class="fas fa-star"></i>
                             </div>
-                            <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
-                              <h3 class="underlined-text">INGREDIENTS</h3>
-                            </div>
-                            <div class="row" style="height: 300px;">
-                            <!-- publications Modal - Image -->
-                              <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
-                                <img class="img-fluid-preview rounded mb-5" src="/temp/recipes/image-{{id}}.jpg" alt="">
-                              </div>
-                              <div class="col-4" style="height: 300px;">
-                                <div class="nav-item dropdown scrolling">
-                                  {{#ingredients}}
-                                  <p class="dropdown-item">{{ingredient}}</p>
-                                  {{/ingredients}}
-                                </div>
-                              </div>
-                            </div>
-                            <h3 class="underlined-text" style="margin-top: 10px;color:rgba(0, 0, 0, 0.8)">INTRODUCTION</h3>
-                              <!-- publications Modal - Text -->
-                              <p class="mb-5" style="text-align:left;">{{description}}</p>
-                            <div class="row">
-                              <div class="col-4">
-                                <h3 class="underlined-text" style="color:rgba(0, 0, 0, 0.8)">CATEGORY</h3>
-                                {{#categories}}
-                                  <p class="mb-5">{{category}}</p>
-                                {{/categories}}
-                              </div>
-                              <div class="col-4">
-                                <h3 class="underlined-text" style="color:rgba(0, 0, 0, 0.8)">DIFICULTY</h3>
-                                <p class="mb-5">{{difficulty}}</p>
-                              </div>
-                              <div class="col-4">
-                                <h3 class="underlined-text" style="color:rgba(0, 0, 0, 0.8)">APROXIMATED TIME</h3>
-                                <p class="mb-5">{{duration}}</p>
-                              </div>
-                            </div>
-                            <a class="btn btn-primary" href="/recipes/{{id}}">
-                              <img class="rounded" src="/images/icons/go.png" alt="">
-                            </a>
+                            <div class="divider-custom-line"></div>
                           </div>
+                          <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
+                            <h3 class="underlined-text">INGREDIENTS</h3>
+                          </div>
+                          <div class="row" style="height: 300px;">
+                            <!-- publications Modal - Image -->
+                            <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
+                              <img class="img-fluid-preview rounded mb-5" src="/temp/recipes/image-{{id}}.jpg" alt="">
+                            </div>
+                            <div class="col-4" style="height: 300px;">
+                              <div class="nav-item dropdown scrolling">
+                                {{#ingredients}}
+                                <p class="dropdown-item">{{ingredient}}</p>
+                                {{/ingredients}}
+                              </div>
+                            </div>
+                          </div>
+                          <h3 class="underlined-text" style="margin-top: 10px;color:rgba(0, 0, 0, 0.8)">INTRODUCTION
+                          </h3>
+                          <!-- publications Modal - Text -->
+                          <p class="mb-5" style="text-align:left;">{{description}}</p>
+                          <div class="row">
+                            <div class="col-4">
+                              <h3 class="underlined-text" style="color:rgba(0, 0, 0, 0.8)">CATEGORY</h3>
+                              {{#categories}}
+                              <p class="mb-5">{{category}}</p>
+                              {{/categories}}
+                            </div>
+                            <div class="col-4">
+                              <h3 class="underlined-text" style="color:rgba(0, 0, 0, 0.8)">DIFICULTY</h3>
+                              <p class="mb-5">{{difficulty}}</p>
+                            </div>
+                            <div class="col-4">
+                              <h3 class="underlined-text" style="color:rgba(0, 0, 0, 0.8)">APROXIMATED TIME</h3>
+                              <p class="mb-5">{{duration}}</p>
+                            </div>
+                          </div>
+                          <a class="btn btn-primary" href="/recipes/{{id}}">
+                            <img class="rounded" src="/images/icons/go.png" alt="">
+                          </a>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
             {{/publications}}
           </div>
           <!-- /.row -->
         </div>
         <hr width="50%">
+        <div id="open-add-button" class='flotating-button'>
+          <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-add-button"
+            id="load-image-form" style="width: max-content">
+            <img src='images/icons/settings.png' width="50%" style="height: 50px; width: 50px;" />
+          </div>
+        </div>
+
+        <!-- Pop up settings(add avatar and background) -->
+
+        <div class="publications-modal modal fade" id="opened-add-button" tabindex="-1" role="dialog"
+          aria-labelledby="publicationsModal6Label" aria-hidden="true">
+          <div class="modal-dialog modal-xl" style="width: 70%;" role="document">
+            <div class="modal-content" style="width: 85%; margin: 3%; ">
+              <form method="" action="">
+                <div class="form-group" style="margin: 5%;">
+                  <div class="flex-col-c">
+                    <h1 style="color: black; text-align: center ;">Settings</h1>
+                  </div>
+                  <div class="form-group" style="background-color: #86c0b4; border-radius: 10px; margin: 5%; padding-bottom: 3%;">
+                    <!-- Load avatar and background -->
+                    <div class="col-lg-30" style="padding: 3%;">
+                      <span class="input-group-text" style="margin-bottom: 5px; font-family: cursive;">Upload a profile pic</span>
+                      <input class="form-control-file" type="file" name="fileAvatar" accept=".jpg, .jpeg" />
+                    </div>
+                    <div class="col-lg-30 " style="padding: 3%;"> 
+                      <span class="input-group-text" style="margin-bottom: 5px; font-family: cursive;">Upload a background image for your profile</span>
+                      <input class="form-control-file" type="file" name="fileBackground" accept=".jpg, .jpeg" />
+                    </div>
+                    <div class="send-btn" style="text-align: center;">
+                    <button type="submit" class="btn mb-2">Send Nudes</button>
+                  </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
     <!-- Page Request  -->
@@ -435,7 +493,7 @@
           <div class="row" style="margin-right: 50px;margin-bottom: 10px;">
             <div class="col-4">
               <p class="page-section-heading text-center text-uppercase text-secondary mb-0">User</p>
-            </div >
+            </div>
             <div class="col-3">
               <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Type</p>
             </div>
@@ -447,11 +505,13 @@
             </div>
           </div>
           <div class="scrolling container" style="height: 100%; width: 100%;background-color: rgba(0, 0, 0, 0.2);">
-          {{#allRequests}}
+            {{#allRequests}}
             <!-- Request x -->
-            <form class="row" style="align-items: center;" id="formItemRequest{{-index}}" action="/actionItemRequest" method="post">
+            <form class="row" style="align-items: center;" id="formItemRequest{{-index}}" action="/actionItemRequest"
+              method="post">
               <div class="col-2">
-                <img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{username.id}}.jpg" alt="">
+                <img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{username.id}}.jpg"
+                  alt="">
               </div>
               <div class="col-2">
                 <h6 style="text-align:left;">{{username.name}}&nbsp;{{username.surname}}</h6>
@@ -459,24 +519,31 @@
               </div>
               <div class="col-3">
                 <h6 class="btn-xl" type="text" style="text-align:left;">{{typeOfRequest}}</h6>
-                <input name="typeOfItemRequest" value="{{typeOfRequest}}" hidden/>
+                <input name="typeOfItemRequest" value="{{typeOfRequest}}" hidden />
               </div>
               <div class="col-3">
                 {{#itemExists}}
-                <h6 class="btn-xl" style="text-align:left; color: red;">{{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}</h6>
-                <input name="itemContent" value="{{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}" hidden/>
-                <p>{{typeOfRequest}}&nbsp;"{{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}"&nbsp;already exists!</p>
+                <h6 class="btn-xl" style="text-align:left; color: red;">
+                  {{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}</h6>
+                <input name="itemContent" value="{{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}"
+                  hidden />
+                <p>{{typeOfRequest}}&nbsp;"{{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}"&nbsp;already
+                  exists!</p>
                 {{/itemExists}}
                 {{^itemExists}}
-                <h6 class="btn-xl" style="text-align:left; color: green;">{{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}</h6>
-                <input name="itemContent" value="{{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}" hidden/>
+                <h6 class="btn-xl" style="text-align:left; color: green;">
+                  {{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}</h6>
+                <input name="itemContent" value="{{ingredientContent}}{{categoryContent}}{{cookingStyleContent}}"
+                  hidden />
                 {{/itemExists}}
               </div>
               <div class="col-2" style="display: flex; height:fit-content;">
-                <button type="submit" name="action" value="accept" class="btn btn-outline-primary fa fa-check" style="margin-right: 5%;border-radius: 50%;"></button>
-                <button type="submit" name="action" value="decline" class="btn btn-outline-danger fa fa-remove" style="border-radius: 50%;"></button>                  
+                <button type="submit" name="action" value="accept" class="btn btn-outline-primary fa fa-check"
+                  style="margin-right: 5%;border-radius: 50%;"></button>
+                <button type="submit" name="action" value="decline" class="btn btn-outline-danger fa fa-remove"
+                  style="border-radius: 50%;"></button>
                 <input name="id_request" value="{{id}}" type="hidden"></input>
-                <input type="hidden" name="_csrf" value="{{token}}"/>
+                <input type="hidden" name="_csrf" value="{{token}}" />
               </div>
             </form>
             <hr>
@@ -528,40 +595,67 @@
             <div class="scrolling container" style="height: 100%; width: 100%;background-color: rgba(0, 0, 0, 0.2);">
               <table style="text-align: center;">
                 <tr style="line-break: auto;">
-                  <th><p class="text-center text-uppercase text-secondary mb-0">User</p></th>
-                  <th><p class="text-center text-uppercase text-secondary mb-0">Date</p></th>
-                  <th><p class="text-center text-uppercase text-secondary mb-0">Followers</p></th>
-                  <th><p class="text-center text-uppercase text-secondary mb-0">Follows</p></th>
-                  <th><p class="text-center text-uppercase text-secondary mb-0">Recipes</p></th>
-                  <th><p class="text-center text-uppercase text-secondary mb-0">Likes</p></th>
-                  <th><p class="text-center text-uppercase text-secondary mb-0">Actions</p></th>
+                  <th>
+                    <p class="text-center text-uppercase text-secondary mb-0">User</p>
+                  </th>
+                  <th>
+                    <p class="text-center text-uppercase text-secondary mb-0">Date</p>
+                  </th>
+                  <th>
+                    <p class="text-center text-uppercase text-secondary mb-0">Followers</p>
+                  </th>
+                  <th>
+                    <p class="text-center text-uppercase text-secondary mb-0">Follows</p>
+                  </th>
+                  <th>
+                    <p class="text-center text-uppercase text-secondary mb-0">Recipes</p>
+                  </th>
+                  <th>
+                    <p class="text-center text-uppercase text-secondary mb-0">Likes</p>
+                  </th>
+                  <th>
+                    <p class="text-center text-uppercase text-secondary mb-0">Actions</p>
+                  </th>
                 </tr>
-                
+
                 <tr>
                   <hr>
                   {{#usersList}}
-                  <th><img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{id}}.jpg" alt="" style="width:100px; height: 100px; object-fit: cover;">
-                  <hr>
-                  <th> <h8 style="text-align:left; text-justify: auto;">{{name}}&nbsp;{{surname}}</h8>
-                  <a style="text-align:left;" href="/users/{{id}}">@{{username}}</a></th>
-                  
-                  <th><p style="text-align:center;">10/02/2011</p>
-                  <p style="text-align:center; color: green;">Active</p></th>
-                  <th><p>182</p></th>
+                  <th><img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{id}}.jpg" alt=""
+                      style="width:100px; height: 100px; object-fit: cover;">
+                    <hr>
+                  <th>
+                    <h8 style="text-align:left; text-justify: auto;">{{name}}&nbsp;{{surname}}</h8>
+                    <a style="text-align:left;" href="/users/{{id}}">@{{username}}</a>
+                  </th>
 
-                  <th><p>99</p></th>
+                  <th>
+                    <p style="text-align:center;">10/02/2011</p>
+                    <p style="text-align:center; color: green;">Active</p>
+                  </th>
+                  <th>
+                    <p>182</p>
+                  </th>
 
-                  <th><p>8</p></th>
+                  <th>
+                    <p>99</p>
+                  </th>
 
-                  <th><p>{{n_likes}}</p></th>
+                  <th>
+                    <p>8</p>
+                  </th>
+
+                  <th>
+                    <p>{{n_likes}}</p>
+                  </th>
 
                   <th style="border: 1px;">
                     <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
                       <option>...</option>
                       <option name="selectedSuspend{{id}}">Suspend</option>
-                  </select>
-              </tr>
-             
+                    </select>
+                </tr>
+
                 {{/usersList}}
               </table>
             </div>
@@ -578,7 +672,8 @@
           <!-- Masthead Subheading -->
           <div class="profile-about-separator">
             <!-- publications Section Heading -->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Recipes, ingredients, categories and cooking style</h2>
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Recipes, ingredients,
+              categories and cooking style</h2>
             <!-- Icon Divider -->
             <div class="divider-custom divider-light">
               <div class="divider-custom-line"></div>
@@ -620,7 +715,7 @@
           <div class="row container" style="margin-bottom: 10px;margin-right: 0;margin-left: 0;">
             <div class="col-4">
               <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Type</p>
-            </div >
+            </div>
             <div class="col-4">
               <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Item</p>
             </div>
@@ -695,15 +790,15 @@
               <!-- Id User -->
               <div class="col-1">
                 <p class="text-center text-uppercase text-secondary mb-0">#Id_User</p>
-              </div >
+              </div>
               <!-- User reported -->
               <div class="col-3">
                 <p class="text-center text-uppercase text-secondary mb-0">User reported</p>
-              </div >
+              </div>
               <!-- Date -->
               <div class="col-2">
                 <p class="text-center text-uppercase text-secondary mb-0">Date</p>
-              </div >
+              </div>
               <!-- Reason -->
               <div class="col-2">
                 <p class="text-center text-uppercase text-secondary mb-0">Reason</p>
@@ -731,7 +826,8 @@
                 <p style="text-align:center;">10/02/2011</p>
               </div>
               <div class="col-2">
-                <select class="btn btn-outline-secondary" style="border-radius: 0.8rem;-moz-appearance: none;-webkit-appearance: none;">
+                <select class="btn btn-outline-secondary"
+                  style="border-radius: 0.8rem;-moz-appearance: none;-webkit-appearance: none;">
                   <option>Comment</option>
                   <option>Recipe</option>
                   <option>User</option>
@@ -767,7 +863,8 @@
   </div>
 
   <!-- Profile avatar -->
-  <div class="publications-modal modal fade" id="showAvatar" tabindex="-1" role="dialog" aria-labelledby="publicationsModal1Label" aria-hidden="true">
+  <div class="publications-modal modal fade" id="showAvatar" tabindex="-1" role="dialog"
+    aria-labelledby="publicationsModal1Label" aria-hidden="true">
     <div class="modal-dialog modal-xm" role="document">
       <div class="modal-content" style="background-color: rgba(0, 0, 0, 0.8);">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -777,7 +874,8 @@
         </button>
         <div class="modal-body text-center">
           <div class="container">
-            <img class="img-fluid rounded mb-5" src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="" style="height: auto;">
+            <img class="img-fluid rounded mb-5" src="/temp/avatars/image-{{actualUser.id}}.jpg" alt=""
+              style="height: auto;">
           </div>
         </div>
       </div>
@@ -816,19 +914,19 @@
             <div class="col-lg-12" style="height: 100%">
               <div class="nav-item dropdown scrolling">
                 {{#following}}
-                  <!-- User x -->
-                  <div class="row">
-                    <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{id}}.jpg" alt="">
-                    </div>
-                    <div class="col-6">
-                      <h6 style="text-align:left;">{{name}}&nbsp;{{surname}}</h6>
-                      <p style="text-align:left;">@{{username}}</p>
-                    </div>
-                    <div class="col-4">
-                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
-                    </div>
+                <!-- User x -->
+                <div class="row">
+                  <div class="col-2">
+                    <img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{id}}.jpg" alt="">
                   </div>
+                  <div class="col-6">
+                    <h6 style="text-align:left;">{{name}}&nbsp;{{surname}}</h6>
+                    <p style="text-align:left;">@{{username}}</p>
+                  </div>
+                  <div class="col-4">
+                    <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
+                  </div>
+                </div>
                 {{/following}}
               </div>
             </div>
@@ -870,19 +968,19 @@
             <div class="col-lg-12" style="height: 100%">
               <div class="nav-item dropdown scrolling">
                 {{#followers}}
-                  <!-- User x -->
-                  <div class="row">
-                    <div class="col-2">
-                      <img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{id}}.jpg" alt="">
-                    </div>
-                    <div class="col-6">
-                      <h6 style="text-align:left;">{{name}}&nbsp;{{surname}}</h6>
-                      <p style="text-align:left;">@{{username}}</p>
-                    </div>
-                    <div class="col-4">
-                      <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
-                    </div>
+                <!-- User x -->
+                <div class="row">
+                  <div class="col-2">
+                    <img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{id}}.jpg" alt="">
                   </div>
+                  <div class="col-6">
+                    <h6 style="text-align:left;">{{name}}&nbsp;{{surname}}</h6>
+                    <p style="text-align:left;">@{{username}}</p>
+                  </div>
+                  <div class="col-4">
+                    <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
+                  </div>
+                </div>
                 {{/followers}}
               </div>
             </div>
@@ -904,7 +1002,7 @@
   <script src="/js/contact_me.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-  
+
   <!-- Custom scripts for this template -->
   <script src="/js/freelancer.min.js"></script>
   <script src="/js/jquery.min.js"></script>
