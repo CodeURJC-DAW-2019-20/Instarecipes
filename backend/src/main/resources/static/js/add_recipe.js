@@ -87,6 +87,8 @@ $(document).ready(function() {
                 +"border:1px solid rgba(0, 0, 0, 0.3);"
                 +"padding:10px;\">"
             +"</textarea>"
+             + "<label for=\"file-input\" class=\"btn-outline-primary\" style=\"border-radius:0.5rem\;border:1px solid rgb(23, 162, 184); align-self:center;z-index: 1050;text-align:center;padding:0;right:0;width:25%;position:absolute;cursor:pointer">
+             + "<input id=\"file-input"+stepCounter+"\" name=\"file-input"+stepCounter+"\" hidden type=\"file\" name=\"imageFile\" accept=\".jpg, .jpeg\" /><iclass=\"fa fa-camera\" styles=\"object-fit:cover;padding:5px\"></i></input>"
         );
         var removeButton = $("<div id=\"removeB"+stepCounter+"\" class=\"btn-danger\" style=\"border-radius:0.5rem;"
                 +"align-self:center;"
@@ -97,6 +99,11 @@ $(document).ready(function() {
                 +"padding:5px\"></i>"
             +"</div>"
         );
+        valortext = document.getElementById("textarea"+stepCounter);
+        valorimage = document.getElementById("file-input"+stepCounter);
+
+        console.log("texto: " + valortext);
+        console.log("imagen: " + valorimage);
         fieldWrapper.append(fStep);
         fieldWrapper.append(removeButton);
         stepNumber++;
