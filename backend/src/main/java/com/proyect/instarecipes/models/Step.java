@@ -20,7 +20,7 @@ public class Step{
     private int number;
     @Column(length = 500)
     private String content;
-    // private boolean image;
+    private boolean image;
 
     public Step(){
     }
@@ -63,8 +63,12 @@ public class Step{
         this.content = content;
     }
 
-    // public void setImage(boolean image){
-    //     this.image=image;
-    // }
+    public boolean isImage() {
+        return image;
+    }
+
+    public void setImage(boolean image) {
+        this.image = image;
+    }
 
 }
