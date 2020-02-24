@@ -8338,3 +8338,12 @@ a[data-toggle="collapse"] {
 
 .subscribe-form .form-control {
   background: #5356b1; }
+
+  .send-btn button{
+    background-color: black;
+    color: white;
+  }
+  .send-btn button:hover{
+    background-color: white;
+    color:black;
+  }
