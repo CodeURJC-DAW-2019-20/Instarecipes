@@ -11,7 +11,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StepsRepository extends JpaRepository<Step, Long> {
     @Query("SELECT s FROM Step s WHERE s.recipe = :recipe")
-    List<Step> findAllByRecipe(Recipe recipe);
-    @Query("SELECT s FROM Step s WHERE s.step = :text")
-    Optional<Step> findBytext(String text);
+	List<Step> findAllByRecipe(Recipe recipe);
 }

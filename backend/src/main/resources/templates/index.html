@@ -532,9 +532,14 @@
                       </label>
                     </div>
                     <input type="text" id="stepsString" name="stepsString" hidden/>
-                    <input type="file" id="stepsImage" name="stepsImage" hidden/>
                     <fieldset id="steps-form" class="nav-item dropdown wrap-input50 m-b-23"
                       style="text-align: initial;">
+                      <h3>Step 1*</h3>
+                      <hr>
+                      <div id="stepCountChar"></div>
+                      <textarea wrap="soft" id="firstStep" name="firstStepString" onkeyup="stepCountChar(this)" placeholder="A recipe must have at least 1 step :D"
+                        style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" required></textarea>
+                      <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </fieldset>
                     <hr>
                     <div id="add-step" class="btn btn-dark" style="width: 100%; border-radius: 0.8rem;background-color: teal;cursor: pointer;">
