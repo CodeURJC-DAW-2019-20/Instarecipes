@@ -1,7 +1,5 @@
 package com.proyect.instarecipes.views;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,9 +26,7 @@ import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.security.UserSession;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;

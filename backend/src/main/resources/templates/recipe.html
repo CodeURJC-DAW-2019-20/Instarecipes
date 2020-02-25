@@ -126,10 +126,41 @@
             </div>
             <div class="col-4">
               <ol class="likes-comments-simple-recipe">
-                <li><h3 class="font-weight-light"> {{recipe.likes}}</h3></li>
-                <li style="cursor: pointer;"><img class="focusHeart" id="unpressedLike" src="/images/icons/like_unpressed.png" height="80%" alt=""></li>
-                <li><h3 class="font-weight-light">{{n_comments}}</h3></li>
-                <li><a class="js-scroll-trigger rounded" href="#comments-section"><img src="/images/icons/dialogue.png" height="80%" alt=""></a></li>
+                <li>
+                  <h3 class="font-weight-light"> {{recipe.likes}}</h3>
+                </li>
+                <!-- Cuando esta seleccionado -->
+                {{#checked}}
+                <li style="cursor: pointer;">
+                  <form action="/recipes/{{id}}" method="POST">
+                    <input type="text" name="press" value="true" hidden/>
+                    <button type="submit">
+                      <input type="hidden" name="_csrf" value="{{token}}"/>
+                      <img class="focusHeart" id="pressedLike" src="/images/icons/like_pressed.png" height="80%" alt="">
+                    </button>  
+                  </form>
+                </li>
+                {{/checked}}
+                 <!-- Cuando  NO esta seleccionado -->
+                {{^checked}}
+                <li style="cursor: pointer;">
+                  <form action="/recipes/{{id}}" method="POST">
+                    <input type="text" name="unpress" value="false" hidden/>                  
+                    <button type="submit">
+                      <input type="hidden" name="_csrf" value="{{token}}"/>
+                      <img class="focusHeart" id="unpressedLike" src="/images/icons/like_unpressed.png" height="80%" alt="">
+                    </button>
+                  </form>
+                </li>
+                {{/checked}}
+                <li>
+                  <h3 class="font-weight-light">{{n_comments}}</h3>
+                </li>
+                <li>
+                  <a class="js-scroll-trigger rounded" href="#comments-section">
+                    <img src="/images/icons/dialogue.png" height="80%" alt="">
+                  </a>
+                </li>
               </ol>
             </div>
           </div>

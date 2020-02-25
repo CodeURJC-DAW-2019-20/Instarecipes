@@ -9,6 +9,7 @@ import com.proyect.instarecipes.models.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -47,4 +48,9 @@ public interface RecipesRepository extends JpaRepository<Recipe, Long> {
     
     @Query("SELECT r FROM Recipe r ORDER BY r.likes DESC")
     List<Recipe> FindByLikes();
+
+
+    @Modifying
+    @Query("UPDATE Recipe r SET r.likes= :likes WHERE r.id = :id")
+    void updateLikes(long id,int likes);
 }
