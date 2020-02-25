@@ -67,10 +67,13 @@ public class InitDatabase {
         User u2 = new User("user2", "manu@gmail.com", "pass", "Manuel", "Savater", "Konichiwa people !", "awp's", null, null, "ROLE_USER");
         User u3 = new User("user3", "trevodrap@hotmail.com", "pass", "Trevod", "Rap","Hello people !", "Toyacos", null, null, "ROLE_USER");
         User u4 = new User("admin", "hola@adios.com", "adminpass", "Hamsa", "Jefe", "Hi people !", "cerdo", null, null, "ROLE_USER", "ROLE_ADMIN");
-        Set<User> followers1 = groupStaff.groupFollowers(u2,u3,u4);
-        Set<User> following1 = groupStaff.groupFollowing(u2,u3,u4);
-        Set<User> followers2 = groupStaff.groupFollowers(u1,u3,u4);
+        
+        Set<User> following1 = groupStaff.groupFollowing(u2,u3);
         Set<User> following2 = groupStaff.groupFollowing(u1,u4);
+        
+        Set<User> followers1 = groupStaff.groupFollowers(u2,u3);
+        Set<User> followers2 = groupStaff.groupFollowers(u1,u4);
+        
         //Set followers
         u1.setFollowers(followers1);
         u2.setFollowers(followers2);

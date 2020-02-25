@@ -3,18 +3,26 @@ package com.proyect.instarecipes.controllers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.HashSet;
 
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
+import com.proyect.instarecipes.views.GroupStaff;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class UsersController{
@@ -51,6 +59,7 @@ public class UsersController{
         List<Recipe> recipes = recipesRepository.findByUsernameId(id);
         ArrayList<Integer> Laiks = new ArrayList<Integer>();
         ArrayList<String> titles = new ArrayList<String>();
+        
         int likes = 0;
         int pubs;
         
@@ -68,11 +77,74 @@ public class UsersController{
         model.addObject("publications", recipes);
         model.addObject("idkwtp", Laiks);
         model.addObject("likesGraphics", titles);
-        if(userSession.getLoggedUser().getId() != id){
-            model.addObject("followButton", true);
-        }else{
-            model.addObject("followButton", false);
+        
+        User u = userSession.getLoggedUser();
+        System.out.println("User: " + u);
+        List<User> following = usersRepository.findFollowing(u.getUsername());
+        System.out.println("Following: " + following);
+        boolean is_following = false;
+        for(User user: following){
+            System.out.println("User: " + user.getUsername());
+            if(user.getId() != id){
+                is_following=false;
+            }else{
+                is_following=true;
+            }
         }
+        boolean disable = false;
+        if(userSession.getLoggedUser().getId() != id){
+            model.addObject("followButton", is_following);
+        }
+        if(u.getId() == id){
+            disable = false;
+            model.addObject("disable", disable);
+        }else{
+            disable = true;
+            model.addObject("disable", disable);
+        }
+        
         return model;
+    
     }
+    @ModelAttribute
+	public void addAttributes(Model model) {
+		boolean logged = userSession.getLoggedUser() != null;
+        model.addAttribute("logged", logged);
+		if(logged){
+			model.addAttribute("user",userSession.getLoggedUser().getUsername());
+			model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
+		}
+	}
+
+    @PostMapping("/followAction/{id}")
+    public String followAction(@PathVariable Long id, Model model) {
+
+        // User u1 = userSession.getLoggedUser();
+        // // Optional<User> u2 = usersRepository.findById(id);
+        // // u1.addFollowing(u2.get());
+        // GroupStaff groupStaff = new GroupStaff();
+        // User u2 = new User("MARIANO", "MARIANO@MARIANO.MARIANO", "pass", "MARIANO", "MARIANO", "Hello World !!", "sida", null, null, "ROLE_USER");
+        // usersRepository.save(u2);
+        // User u3 = new User("user2", "manu@gmail.com", "pass", "Manuel", "Savater", "Konichiwa people !", "awp's", null, null, "ROLE_USER");
+        // User u4 = new User("user3", "trevodrap@hotmail.com", "pass", "Trevod", "Rap","Hello people !", "Toyacos", null, null, "ROLE_USER");
+        // Set<User> foll = groupStaff.groupFollowing(u2);
+        
+        // usersRepository.following(u1.getId(), foll);
+
+        
+        return "profile";
+    }
+
+    @PostMapping("/unfollowAction/{id}")
+    public String unfollowAction(@PathVariable Long id, Model model) {
+
+        User u1 = userSession.getLoggedUser();
+        Optional<User> u2 = usersRepository.findById(id);
+        u1.addFollower(u2.get());
+        u2.get().addFollowing(u1);
+        
+        
+        return "profile";
+    }
+    
 }

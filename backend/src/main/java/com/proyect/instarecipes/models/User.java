@@ -170,6 +170,15 @@ public class User{
 
 	public void addFollowing(User followed) {
         followed.addFollower(this);//i follow him, so i call addFollower() where im the parameter
+	}
+	
+	public void deleteFollower(User follower) {
+        followers.remove(follower); //he followed me, so i increment my followers list
+        follower.following.remove(this); //he followed me, so following list of him increments
+	}
+
+	public void deleteFollowing(User followed) {
+        followed.deleteFollower(this);//i follow him, so i call addFollower() where im the parameter
     }
 	/**				_____________________________				*/
 

@@ -167,20 +167,26 @@
           <div>
             <p class="masthead-subheading font-weight-light mb-0">{{actualUser.info}}</p>
           </div>
-          {{^admin}}
-          {{#followButton}}
-          <div class="unfollow-div-button" style="background-color: transparent;">
-            <button type="button" class="btn btn-primary"
-              style="background-color: white; color: #1abc9c ;">Following</button>
-          </div>
-          {{/followButton}}
-          {{^followButton}}
-          <div class="follow-div-button" style="background-color: transparent;">
-            <button type="button" class="btn btn-primary"
-              style="background-color: #1abc9c; color: white;">Follow</button>
-          </div>
-          {{/followButton}}
-          {{/admin}}
+          {{#disable}}
+            {{#followButton}}
+            <div class="unfollow-div-button" style="background-color: transparent;">
+              <form action="/unfollowAction/{{id}}" method="post">
+                <button type="submit" class="btn btn-primary"
+                style="background-color: white; color: #1abc9c;">Following</button>
+                <input type="hidden" name="_csrf" value="{{token}}" />
+              </form>
+            </div>
+            {{/followButton}}
+            {{^followButton}}
+            <div class="follow-div-button" style="background-color: transparent;">
+              <form action="/followAction/{{id}}" method="post">
+                <button type="submit" class="btn btn-primary"
+                  style="background-color: #1abc9c; color: white;">Follow</button>
+                  <input type="hidden" name="_csrf" value="{{token}}" />
+              </form>
+            </div>
+            {{/followButton}}
+          {{/disable}}
           <!-- Statistics button pannel -->
           <div class="publications-modal modal fade" id="opened-stadistics-button" tabindex="-1" role="dialog"
             aria-labelledby="publicationsModal6Label" aria-hidden="true">
