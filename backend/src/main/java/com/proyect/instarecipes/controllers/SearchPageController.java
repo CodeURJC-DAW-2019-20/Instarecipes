@@ -3,6 +3,7 @@ package com.proyect.instarecipes.controllers;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;
@@ -18,6 +19,8 @@ import com.proyect.instarecipes.repositories.RecipesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import ch.qos.logback.classic.pattern.ThreadConverter;
 
 import org.springframework.ui.Model;
 
@@ -75,7 +78,9 @@ public class SearchPageController {
         model.addAttribute("allAllergens", restOfAllergens);
 
         // Search by items
+        //List<Recipe> recipesFounded = recipesRepository.findAll();
         List<Recipe> recipesFounded = recipesRepository.findFilteredSearch(ingredientsSelected, categoriesSelected, allergensSelected, cookingStylesSelected);
+      //  List<Recipe> finallist = removeAllergens(recipesFounded,allergensSelected);
         if(recipesFounded.size()==0){
             model.addAttribute("notFound", true);
         }else{
@@ -85,6 +90,19 @@ public class SearchPageController {
 
         return "search";
     }
+
+  /*  private List<Recipe> removeAllergens(List<Recipe> recipesFounded, ArrayList<String> allergensSelected) {
+        List<Recipe> aux = recipesFounded;
+        for (int i = 0; i < allergensSelected.size(); i++) {
+            for (int j = 0; j < recipesFounded.size(); j++) {
+                if (recipesFounded.get(j).getIngredients().contains(allergensSelected.get(i))) {
+                    aux.remove(j);
+                }
+            }
+        }
+        System.out.println(aux);
+        return aux;
+    }*/
 
     // Better option filter db but so dificult
     private List<Category> restCategories(List<Category> all, ArrayList<String> categoriesSelected) {

@@ -16,25 +16,16 @@ signUp.onclick = function () {
         divSignUp.style.display = "none";
 
     }
-    else if (pass.value == "") {
+    else if (pass.value == ""){
         nopass.style.display = "block";
-        return true;
     }
     else if (!pass.value.match(cpass.value)) {
         divPass.style.display = "block";
-        if (!emailInfo.value.match(mailformat)) {
-            emailMsg.style.display = "block";
-            
-        }
-        if (pass.value == "") {
-            nopass.style.display = "block";
-          
-        }
-        return true;
+
     }
     else if (!emailInfo.value.match(mailformat)) {
         emailMsg.style.display = "block";
-        return true;
+
     }
 
     return false;

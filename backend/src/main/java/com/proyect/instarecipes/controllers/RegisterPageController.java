@@ -74,7 +74,9 @@ public class RegisterPageController {
                 e.printStackTrace();
             }
         }
+
     }
+    
 
     //this method aproach the @Autowired of userAuthProvider to autenticate user and password and setup autologged 
     private void authenticateUser(String username,String password,HttpServletRequest request) {
