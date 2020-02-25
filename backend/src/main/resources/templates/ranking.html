@@ -36,19 +36,23 @@ background: radial-gradient(ellipse farthest-corner at center top, #f39264 0%, #
       <div id="img-navbar-container">
         <img class="img-navbar" src="../images/icons/instarecipes.png" alt="">
       </div>
-      <a class="navbar-brand js-scroll-trigger" href="ranking" style="font-family: 'Bangers';" >&nbsp;Instarecipes</a>
+      <a class="navbar-brand js-scroll-trigger" href="/" style="font-family: 'Pacifico';">&nbsp;Instarecipes</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" 
       type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" 
       aria-expanded="false" aria-label="Toggle navigation">
         <span class="fas fa-bars"></span>
       </button>
+      <ul class="navbar-nav ml-auto" style="margin-right: 4%;">   
+      </ul>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto" style="margin-right: 20%;">
-          <li class="nav-item col-4">
-            <a class="nav-link js-scroll-trigger" href="/"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
+          <ul class="navbar-nav ml-auto" style="margin-right: 80%;">
+          <li class="nav-item col-2" style="max-width: 100%;">
+            <a class="nav-link js-scroll-trigger" href="/">
+              <i class="fas fa-home" style="font-size: xx-large;"></i>
+            </a>
           </li>
           {{#logged}}
-          <li class="nav-item col-4">
+          <li class="nav-item col-2" style="max-width: 100%;">
             <a class="nav-link" href="profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
           </li>
           {{/logged}}
