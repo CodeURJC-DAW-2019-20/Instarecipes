@@ -41,8 +41,6 @@
       return false;
     }
   </script>
-    <script src="../js/add_recipe.js"></script>
-
 </head>
 
 <body>
@@ -532,6 +530,7 @@
                     </div>
                     <!-- Here will go all other inputs images !! -->
                     <div id="divImageSteps" hidden></div>
+                    <input id="withImage" value="" name="withImage" hidden/>
                     <input type="text" id="stepsString" name="stepsString" hidden/>
                     <fieldset id="steps-form" class="nav-item dropdown wrap-input50 m-b-23"
                       style="text-align: initial;">
@@ -671,8 +670,9 @@
   <script src="../js/freelancer.min.js"></script>
 
   <!-- Add a recipe js -->
+  <script src="../js/add_recipe.js"></script>
   <script src="../js/filter_search_btn.js"></script>
-  <script src="../js/google_login.js"></script>
+
   <script type="text/javascript">
     $(document).ready(function () {
       var aux = false;
