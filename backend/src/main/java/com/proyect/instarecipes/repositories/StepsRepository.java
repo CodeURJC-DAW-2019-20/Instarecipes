@@ -8,12 +8,8 @@ import com.proyect.instarecipes.models.Step;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
 @Repository
 public interface StepsRepository extends JpaRepository<Step, Long> {
     @Query("SELECT s FROM Step s WHERE s.recipe = :recipe")
 	List<Step> findAllByRecipe(Recipe recipe);
-
-    @Query("SELECT s FROM Step s WHERE s.recipe = :r ORDER BY s.number ASC")
-	List<Step> findAllByRecipeOrderNumberStep(Long r);
 }

@@ -48,6 +48,7 @@ public class ProfilePageController{
         List<Recipe> recipes = recipesRepository.findByUsernameId(actual.getId());
         ArrayList<Integer> Laiks = new ArrayList<Integer>();
         ArrayList<String> titles = new ArrayList<String>();
+        //ArrayList<String> finallyTitles = new ArrayList<String>(Arrays.asList(recipes.toString().split(",")));
         int likes = 0;
         int pubs;
         
@@ -70,6 +71,7 @@ public class ProfilePageController{
         return "profile";
     }
 
+    
     @ModelAttribute
 	public void addAttributes(Model model) {
 		boolean logged = userSession.getLoggedUser() != null;
@@ -78,7 +80,10 @@ public class ProfilePageController{
 			model.addAttribute("user",userSession.getLoggedUser().getUsername());
 			model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
         }
-        List<Request> requestsList = requestsRepository.findAll();
-        model.addAttribute("allRequests", requestsList);
+        System.out.println("LISTA DE REQueST: " + requestsRepository.findAll());
+        // if(userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN")){
+            List<Request> requestsList = requestsRepository.findAll();
+            model.addAttribute("allRequests", requestsList);
+        // }
     }
 }

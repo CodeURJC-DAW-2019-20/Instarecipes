@@ -97,7 +97,7 @@ $(document).ready(function() {
                     +"width:25%;"
                     +"position:absolute;"
                     +"cursor:pointer\">"
-                    +"<input id=\"file-input"+stepCounter+"\" name=\"allImages\" hidden type=\"file\" accept=\".jpg, .jpeg\">"
+                    +"<input id=\"file-input"+stepCounter+"\" hidden type=\"file\" accept=\".jpg, .jpeg\">"
                 +"<i class=\"fa fa-camera\" aria-hidden=\"true\" styles=\"object-fit:cover;padding:5px\"></i>"
                 +"</input>"
             +"</label>"
@@ -159,18 +159,9 @@ $(document).ready(function() {
       cats.setAttribute("value", arrayCategories);
       console.log("Definitive Cat: " + cats.value);
 //STEPS
-      var div = $("#divImageSteps");
-      var contain = document.getElementById("withImage");
-      var cadena = "";
       for(var i=0; i<stepNumber-2; i++){
         var valor3 = $("#step"+i);
         if(valor3 != null){
-          var img = $("#file-input"+i);
-          if((img.val() != null)&&(img.val()!="")){
-            cadena = cadena + "1,";
-          }else{
-            cadena = cadena + "0,";
-          }
           var othersStps = valor3.val();
           if(i < stepNumber-3){
             othersStps = othersStps + "ab#12#45-3";
@@ -178,10 +169,18 @@ $(document).ready(function() {
           arraySteps.push(othersStps);
         }
       }
-      contain.setAttribute("value", cadena);
       var steps = document.getElementById("stepsString");
       steps.setAttribute("value", arraySteps);
     });
+    //photo steps
+    var divImageSteps = $("#divImageSteps");
+    for(var i=0; i<stepCounter;i++){
+      var photoSteps = document.getElementById("allImages"+i);
+      if($("#file-input"+i).val() != null ){
+        divImageSteps.append("<input name=\"allImages\" type=\"file\" value=\""
+        +$("#file-input"+i).val()+"\" accept=\".jpg, .jpeg\" hidden></input>")
+      }
+    }
     //--------------------------------------------------------//
   });
   function stepCountChar(val) {
