@@ -10,14 +10,16 @@
 
   <title>Instarecipes • Ranking</title>
   <!-- Images and icons-->
-  <link rel="icon" type="image/png" href="../images/icons/instarecipes.png"/>
+  <link rel="icon" type="image/png" href="../images/icons/instarecipes.png" />
 
   <!-- Custom fonts for this theme -->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
     type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Acme|Cinzel|Kanit|Gloria+Hallelujah|Pacifico|Bangers|Righteous&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Acme|Cinzel|Kanit|Gloria+Hallelujah|Pacifico|Bangers|Righteous&display=swap"
+    rel="stylesheet">
 
   <!-- Theme CSS -->
   <link href="../css/freelancer.css" rel="stylesheet">
@@ -36,15 +38,15 @@
         <img class="img-navbar" src="../images/icons/instarecipes.png" alt="">
       </div>
       <a class="navbar-brand js-scroll-trigger" href="/" style="font-family: 'Pacifico';">&nbsp;Instarecipes</a>
-      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" 
-      type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" 
-      aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
         <span class="fas fa-bars"></span>
       </button>
-      <ul class="navbar-nav ml-auto" style="margin-right: 4%;">   
+      <ul class="navbar-nav ml-auto" style="margin-right: 4%;">
       </ul>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto" style="margin-right: 80%;">
+        <ul class="navbar-nav ml-auto" style="margin-right: 80%;">
           <li class="nav-item col-2" style="max-width: 100%;">
             <a class="nav-link js-scroll-trigger" href="/">
               <i class="fas fa-home" style="font-size: xx-large;"></i>
@@ -60,41 +62,46 @@
     </div>
     <div class="login-container">
       {{#logged}}
-        <form action="/logout" method="post">
-          <button type="submit" class="nav-link nav-log btn-dark" style="color:white;font-weight: normal;font-size: 15px;">Logout</button>
-          <input type="hidden" name="_csrf" value="{{token}}"/>
-        </form>
+      <form action="/logout" method="post">
+        <button type="submit" class="nav-link nav-log btn-dark bg-primary"
+          style="color:white;font-weight: normal;font-size: 15px;">Logout</button>
+        <input type="hidden" name="_csrf" value="{{token}}" />
+      </form>
       {{/logged}}
       {{^logged}}
-        <a class="nav-link nav-log" href="login" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+      <a class="nav-link nav-log bg-primary" href="login" style="font-weight: normal;font-size: 15px;">Login / Sign
+        Up</a>
       {{/logged}}
     </div>
   </nav>
-  
+
   <header id="ranking-section" class="masthead bg-primary text-white text-center">
-    <div class="container d-flex align-items-center flex-column p-t-60 p-b-40">
-      <h3 class="text-uppercase mb-0">Top 10 Ranking</h3>
-      <table class="table" style="width: 80%; margin-left: 10%; margin-right: 10%; margin-top: 5%;margin-bottom: 10%; border-style: solid; background-color: azure;">
-        <thead>
-          <!-- <input value="{{rankingList}}" id="rankingList" hidden></input> -->
-          <tr style="background-color: #11da2b;">
-            <th scope="col">#</th>
-            <th scope="col">Username</th>
-            <th scope="col">Likes</th>
-          </tr>
-        </thead>
-        <tbody id="rankingBody">
-          {{#rankingList}}
-          <tr style="background-color: #affaa9;">
-            <th scope="row">{{-index}}</th>
-            {{#.}}
-            <td> {{.}}</td>
-            {{/.}}
-            <!-- <td>{{.}}</td> -->
-          </tr>
-          {{/rankingList}}
-        </tbody>
-      </table>
+    <div class="container d-flex align-items-center flex-column p-t-60 p-b-40" style="border-radius: 15px;">
+      <h3 class="text-uppercase mb-0" style="color: #E88880;">Top 10 Ranking</h3>
+      
+        <table class="table"
+          style="width: 80%; margin-left: 10%; margin-right: 10%; margin-top: 5%;margin-bottom: 10%; border-style: solid; background-color: azure; ">
+          <thead>
+            <!-- <input value="{{rankingList}}" id="rankingList" hidden></input> -->
+            <tr style="background-color: #11da2b;">
+              <th scope="col">#</th>
+              <th scope="col">Username</th>
+              <th scope="col">Likes</th>
+            </tr>
+          </thead>
+          <tbody id="rankingBody">
+            {{#rankingList}}
+            <tr style="background-color: #affaa9;">
+              <th scope="row">{{-index}}</th>
+              {{#.}}
+              <td> {{.}}</td>
+              {{/.}}
+              <!-- <td>{{.}}</td> -->
+            </tr>
+            {{/rankingList}}
+          </tbody>
+        </table>
+      
     </div>
   </header>
 
