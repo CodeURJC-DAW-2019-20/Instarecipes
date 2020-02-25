@@ -10118,6 +10118,10 @@ a.canvasjs-chart-credit{
 .masthead {
   padding-top: calc(6rem + 74px);
   padding-bottom: 6rem;
+  background-image: url(../images/backgrounds/ranking_bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .masthead .masthead-heading {
