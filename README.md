@@ -226,11 +226,11 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 |                           |                                 |                                            |
 
 > Textual description of the tasks performed in the phase.
-> * Upload recipe container.      
+> * Responsive pages.      
 > * Login and sign up restrictions.  
-> * User settings button.                      
-> * Validated email.  
-> * Responsive pages.
+> *                      
+> *   
+> * 
 
 
 ## Most worked files :newspaper: <a name="workedFiles"></a>
@@ -272,3 +272,7 @@ To access the website, you need:
 </p> 
 
 ##  Classes and templates diagrams </a><a name="CTdiagrams"></a>
+
+<p align="center">
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/templatesDiagram.png"
+</p> 
