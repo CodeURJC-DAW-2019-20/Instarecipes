@@ -15,12 +15,10 @@ import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.RequestsRepository;
 import com.proyect.instarecipes.repositories.StepsRepository;
-import com.proyect.instarecipes.repositories.UserLikeRecipeRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.ImageService;
 import com.proyect.instarecipes.views.GroupStaff;
 import com.proyect.instarecipes.models.User;
-import com.proyect.instarecipes.models.UserLikeRecipe;
 import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.models.Comment;
@@ -39,8 +37,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class InitDatabase {
 
-    @Autowired
-    private UserLikeRecipeRepository userlikeRecipeRepository;
     @Autowired
     private UsersRepository userRepository;
     @Autowired

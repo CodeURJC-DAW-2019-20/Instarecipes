@@ -3,7 +3,6 @@ package com.proyect.instarecipes.controllers;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;
@@ -20,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import ch.qos.logback.classic.pattern.ThreadConverter;
 
 import org.springframework.ui.Model;
 

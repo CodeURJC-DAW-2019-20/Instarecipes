@@ -1,5 +1,3 @@
-var myGoogleUser = ['test'];
-
 function renderButton() {
   gapi.signin2.render('my-signin2', {
     'scope': 'profile email',
@@ -27,7 +25,7 @@ function onSignIn(googleUser) {
     // The ID token we need to pass to your backend but we won't lol:
   var id_token = googleUser.getAuthResponse().id_token;
   console.log("ID Token: " + id_token);  
-    
+
     fullName = profile.getName();
     givenName = profile.getGivenName();
     familyName = profile.getFamilyName();
@@ -49,9 +47,8 @@ function onSignIn(googleUser) {
     isGUON.setAttribute("value", "yes");
 
   }
-  
+ 
   function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
@@ -72,4 +69,3 @@ function onSignIn(googleUser) {
       mail.setAttribute("value", email);
 
     }*/
-} 

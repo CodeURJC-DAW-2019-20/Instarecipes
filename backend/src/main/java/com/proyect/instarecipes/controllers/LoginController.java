@@ -1,7 +1,6 @@
 package com.proyect.instarecipes.controllers;
 
 import java.io.IOException;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.UsersRepository;
-import com.proyect.instarecipes.security.UserAuthProvider;
 import com.proyect.instarecipes.security.UserSession;
 
 import org.slf4j.Logger;
@@ -25,7 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-;
+
 
 @RestController
 public class LoginController {
@@ -57,7 +55,7 @@ public class LoginController {
 	}
 
 	@RequestMapping("/logout")
-	public ResponseEntity<Boolean> logOut(HttpSession session, @RequestParam String isgoogleuserON) {
+	public ResponseEntity<Boolean> logOut(HttpSession session) {
 
 		if (!userComponent.isLoggedUser()) {
 			log.info("No user logged");
@@ -73,13 +71,13 @@ public class LoginController {
 	public void loginGoogleUser(Model model, User user, HttpServletResponse response, HttpServletRequest request, @RequestParam String fullNameGU,
 			@RequestParam String givenNameGU, @RequestParam String familyNameGU, @RequestParam String profileImgGU,
 			@RequestParam String emailGU) throws IOException {
-		
+
 			List<String> roleUser = new ArrayList<>();
 			roleUser.add("ROLE_USER");
 
 		//does user exist?							
 		boolean userExists = usersRepository.findByEmail(emailGU) != null;
-		
+
 		if (!userExists) {
 			User googleUser = new User();
 
@@ -93,13 +91,13 @@ public class LoginController {
 			String[] firstSurname = familyNameGU.trim().split("\\s+");
 			String tryUsername = (givenNameGU + firstSurname[0]).toLowerCase();
 			if (usersRepository.findByUsername(tryUsername) == null) { //if doesn't exists in our database, we add it 
-				
+
 				googleUser.setUsername(tryUsername);
 
 			} else {		
 				String sumInt= Integer.toString(countUsers);
         		System.out.println(sumInt);
-        
+
        			String tryUsername2 = tryUsername + sumInt;
 
 				googleUser.setUsername(tryUsername2); //add to avoid possible future errors :)
@@ -115,7 +113,7 @@ public class LoginController {
 			registerPagerController.signUp(model, googleUser, request, response, null);
 		}
 
-		
+
 	}
 
 	protected String getSaltString() {

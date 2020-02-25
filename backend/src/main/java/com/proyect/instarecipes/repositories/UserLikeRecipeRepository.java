@@ -1,13 +1,8 @@
 package com.proyect.instarecipes.repositories;
 
-import java.util.List;
-import java.util.Optional;
-
-import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.UserLikeRecipe;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository

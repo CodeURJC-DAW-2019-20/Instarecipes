@@ -1,7 +1,10 @@
 package com.proyect.instarecipes.controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.Request;
@@ -9,6 +12,7 @@ import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.RequestsRepository;
+import com.proyect.instarecipes.security.ImageService;
 import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +20,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-public class ProfilePageController{
+public class ProfilePageController {
 
     @Autowired
     private UsersRepository usersRepository;
@@ -29,49 +36,59 @@ public class ProfilePageController{
     @Autowired
     private RequestsRepository requestsRepository;
 
-    @GetMapping("/profile") 
+    @Autowired
+    private ImageService imageService;
+
+    @GetMapping("/profile")
     public String profilePage(Model model) {
-        User actual =  userSession.getLoggedUser();
-        //User
+        User actual = userSession.getLoggedUser();
+        // User
         model.addAttribute("actualUser", actual);
-        //All users
+        // All users
         model.addAttribute("usersList", usersRepository.findAll());
-        //Number of followers
+        // Number of followers
         model.addAttribute("n_followers", usersRepository.findFollowers(actual.getUsername()).size());
-        //Number of following
+        // Number of following
         model.addAttribute("n_following", usersRepository.findFollowing(actual.getUsername()).size());
-        //Followers
+        // Followers
         model.addAttribute("followers", usersRepository.findFollowers(actual.getUsername()));
-        //Following
+        // Following
         model.addAttribute("following", usersRepository.findFollowing(actual.getUsername()));
-        //Number of publications and total likes
+        // Number of publications and total likes
         List<Recipe> recipes = recipesRepository.findByUsernameId(actual.getId());
         ArrayList<Integer> Laiks = new ArrayList<Integer>();
         ArrayList<String> titles = new ArrayList<String>();
-        //ArrayList<String> finallyTitles = new ArrayList<String>(Arrays.asList(recipes.toString().split(",")));
+        // ArrayList<String> finallyTitles = new
+        // ArrayList<String>(Arrays.asList(recipes.toString().split(",")));
         int likes = 0;
         int pubs;
-        
-        for(pubs=0; pubs<recipes.size();pubs++){
+
+        for (pubs = 0; pubs < recipes.size(); pubs++) {
             likes = likes + recipes.get(pubs).getLikes();
-            Laiks.add(recipes.get(pubs).getLikes()); //List of every user recipe LIKES!!
+            Laiks.add(recipes.get(pubs).getLikes()); // List of every user recipe LIKES!!
             titles.add(recipes.get(pubs).getTitle());
         }
         System.out.println(Laiks);
         System.out.println(titles);
-        
+
         model.addAttribute("n_publications", pubs);
         model.addAttribute("n_likes", likes);
-        //Publications
+        // Publications
         model.addAttribute("publications", recipes);
         model.addAttribute("idkwtp", Laiks);
         model.addAttribute("likesGraphics", titles);
-    
-        
+
         return "profile";
     }
 
-    
+    /*@PostMapping("/uploadImage")
+    public void uploadImage(Model model, User user, @RequestParam MultipartFile fileAvatarProfile) throws IOException {
+        User actual =  userSession.getLoggedUser();
+        System.out.println("LLEGO AQUI CON EL AVATAR");
+        
+        imageService.saveImage("avatars", actual.getId(), fileAvatarProfile);
+    }*/
+
     @ModelAttribute
 	public void addAttributes(Model model) {
 		boolean logged = userSession.getLoggedUser() != null;

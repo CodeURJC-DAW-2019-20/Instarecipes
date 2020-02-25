@@ -432,23 +432,27 @@
           aria-labelledby="publicationsModal6Label" aria-hidden="true">
           <div class="modal-dialog modal-xl" style="width: 70%;" role="document">
             <div class="modal-content" style="width: 85%; margin: 3%; ">
-              <form method="" action="">
+              <form method="post" action="/uploadImage" enctype="multipart/form-data">
+
                 <div class="form-group" style="margin: 5%;">
                   <div class="flex-col-c">
                     <h1 style="color: black; text-align: center ;">Settings</h1>
                   </div>
                   <div class="form-group" style="background-color: #86c0b4; border-radius: 10px; margin: 5%; padding-bottom: 3%;">
                     <!-- Load avatar and background -->
+
                     <div class="col-lg-30" style="padding: 3%;">
                       <span class="input-group-text" style="margin-bottom: 5px; font-family: cursive;">Upload a profile pic</span>
-                      <input class="form-control-file" type="file" name="fileAvatar" accept=".jpg, .jpeg" />
+                      <input type="file" name="fileAvatarProfile" accept=".jpg, .jpeg"/>
                     </div>
+
                     <div class="col-lg-30 " style="padding: 3%;"> 
                       <span class="input-group-text" style="margin-bottom: 5px; font-family: cursive;">Upload a background image for your profile</span>
                       <input class="form-control-file" type="file" name="fileBackground" accept=".jpg, .jpeg" />
                     </div>
+                    
                     <div class="send-btn" style="text-align: center;">
-                    <button type="submit" class="btn mb-2">Send Nudes</button>
+                    <button type="submit" class="btn mb-2">Send</button>
                   </div>
                   </div>
                 </div>

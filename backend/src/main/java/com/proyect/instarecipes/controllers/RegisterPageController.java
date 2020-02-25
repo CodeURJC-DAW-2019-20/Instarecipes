@@ -1,8 +1,6 @@
 package com.proyect.instarecipes.controllers;
 
-import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.User;
-import com.proyect.instarecipes.repositories.AllergensRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.ImageService;
 import com.proyect.instarecipes.security.UserAuthProvider;
