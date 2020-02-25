@@ -226,7 +226,7 @@ public class InitDatabase {
 
         //Recipes examples
         Set<Ingredient> ingredients1 = groupStaff.groupIngredients(i1,i4,i7);//pizzita
-        Set<Ingredient> ingredients2 = groupStaff.groupIngredients(i7,i10,i11); //fish
+        Set<Ingredient> ingredients2 = groupStaff.groupIngredients(i3,i7,i10,i11); //fish
         Set<Ingredient> ingredients3 = groupStaff.groupIngredients(i1,i4,i5,i7,i8); //thai
         Set<Ingredient> ingredients4 = groupStaff.groupIngredients(i2,i7,i8,i10,i12); //salad
         Set<Ingredient> ingredients5 = groupStaff.groupIngredients(i6,i7,i8,i9,i13,i14); //pasta
