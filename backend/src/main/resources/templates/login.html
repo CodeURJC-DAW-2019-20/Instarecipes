@@ -25,6 +25,7 @@
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<meta name="google-signin-scope" content="https://www.googleapis.com/auth/plus.login" />
+	<link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet'>
 
 </head>
 <body>
@@ -71,10 +72,25 @@
 					</span>
 				</div>
 				<!-- Google Login -->
+				<form action="/googleUser" method='POST'>
 				<div class="flex-c-m" style="margin-bottom: 3%">
-					<a id="google-button" class="g-signin2" data-onsuccess="onSignIn">
-					</a>
+					<button type="submit" id="google-button" class="g-signin2" data-onsuccess="onSignIn">
+					</button>
 				</div>
+				
+					<input type="text" id="fullNameGoogleUser"   value="" name="fullNameGU" 	hidden/> 	<!-- FULL NAME GOOGLE USER -->
+					<input type="text" id="givenNameGoogleUser"  value="" name="givenNameGU"    hidden/> 	<!-- GIVEN NAME GOOGLE USER -->
+					<input type="text" id="familyNameUser"       value="" name="familyNameGU"  	hidden/>	<!-- FAMILY NAME GOOGLE USER -->
+					<input type="text" id="profileImgGoogleUser" value="" name="profileImgGU"	hidden/>  	<!-- PROFILE IMAGE GOOGLE USER -->
+					<input type="text" id="emailGoogleUser"      value="" name="emailGU" 	  	hidden/>	<!-- EMAIL GOOGLE USER -->
+					<input type="text" id="googleUserON"		 value="" name="isgoogleuserON" hidden/> 
+					<div>
+						<button type="submit" class="nav-link nav-log btn-dark" style="border-radius: 10%; background-color: white; color: black; 
+						border-color: pink; border: dotted; width: 50%; height: 20%;">Go to Index page</button>
+					</div>
+					<input type="hidden" name="_csrf" value="{{token}}"/>
+				</form >
+				
 				<!-- Sign Up Button -->
 				<div class="flex-col-c">
 					<span class="txt1 p-b-17">
