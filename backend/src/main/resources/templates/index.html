@@ -254,6 +254,7 @@
       </div>
     </div>
 
+    {{#logged}}
     <!-- add recipe button -->
     <div id="open-add-button" class='flotating-button'>
       <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-add-button" id="load-recipe-btn"
@@ -261,6 +262,7 @@
         <img src='images/icons/flotating_button.png' width="50%" style="height: 50px; width: 50px;" />
       </div>
     </div>
+    {{/logged}}
 
     <!-- search button-->
     <div id="open-search-button" class="search-button" data-toggle="modal" data-target="#opened-search-button">
@@ -744,7 +746,7 @@
                 + "</a>"
                 + "</div>"
                 + "<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);\">"
-                + "<img class=\"d-flex mr-3 rounded-circle profile-border\" style=\"width:100%;\" src=\"temp/recipes/image-" + Object.values(item)[3] + ".jpg\">"
+                + "<img class=\"d-flex mr-3 rounded-circle profile-border\" style=\"width:100%;\" src=\"temp/avatars/image-" + Object.values(item)[3] + ".jpg\">"
                 + "<p>@" + Object.values(item)[4] + "</p>"
                 + "</div>"
                 + "</div>"
@@ -755,7 +757,7 @@
             } else {
               $('#recipes-container').append("<div class=\"row\">"
                 + "<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);\">"
-                + "<img class=\"d-flex mr-3 rounded-circle profile-border\" style=\"width:100%;\" src=\"temp/recipes/image-" + Object.values(item)[3] + ".jpg\">"
+                + "<img class=\"d-flex mr-3 rounded-circle profile-border\" style=\"width:100%;\" src=\"temp/avatars/image-" + Object.values(item)[3] + ".jpg\">"
                 + "<p>@" + Object.values(item)[4] + "</p>"
                 + "</div>"
                 + "<div class=\"col-md-4\">"

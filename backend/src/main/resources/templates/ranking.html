@@ -47,9 +47,16 @@ background: radial-gradient(ellipse farthest-corner at center top, #f39264 0%, #
           <li class="nav-item col-4">
             <a class="nav-link js-scroll-trigger" href="index"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
           </li>
+          {{#logged}}
           <li class="nav-item col-4">
-            <a class="nav-link" href="profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+            <a class="nav-link" href="/profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
           </li>
+          {{/logged}}
+          {{^logged}}
+          <li class="nav-item col-4">
+            <a class="nav-link" href="/login"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+          </li>
+          {{/logged}}
         </ul>
       </div>
     </div>

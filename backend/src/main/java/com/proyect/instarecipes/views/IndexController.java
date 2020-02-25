@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.Step;
 import com.proyect.instarecipes.models.User;
@@ -132,11 +134,11 @@ public class IndexController {
 	}
 
     @PostMapping("/")
-    public String postRecipe(Model model, Recipe recipe, @RequestParam MultipartFile imageFile, 
+    public void postRecipe(Model model, Recipe recipe, @RequestParam MultipartFile imageFile, 
     @RequestParam String ingredientsString, @RequestParam String categoriesString, 
     @RequestParam String firstStepString, @RequestParam(required = false) String stepsString, 
     @RequestParam(required = false, value = "allImages") MultipartFile[] allImages, 
-    @RequestParam(required = false, value = "withImage") String withImage) throws IOException{
+    @RequestParam(required = false, value = "withImage") String withImage, HttpServletResponse response) throws IOException{
         
         Recipe r = recipe;
         int i = 2;
@@ -211,7 +213,7 @@ public class IndexController {
         model.addAttribute("allergensList", allAllergens);
         model.addAttribute("id", userSession.getLoggedUser().getId());
 
-        return "index";
+        response.sendRedirect("index");
     }
 
     public void personalFilter(Model model){
