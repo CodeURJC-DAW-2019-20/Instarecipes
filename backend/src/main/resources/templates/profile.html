@@ -112,11 +112,11 @@
             <a onclick="usersDiv()" href="#"><span class="fa fa-users mr-3"
                 style="width: 20px;text-align: center;"></span>Users</a>
           </li>
-          <li id="text-recipes">
+          <li hidden id="text-recipes">
             <a onclick="recipesDiv()" href="#"><span class="fa fa-book mr-3"
                 style="width: 20px;text-align: center;"></span>Recipes</a>
           </li>
-          <li id="text-reports">
+          <li hidden id="text-reports">
             <a onclick="reportsDiv()" href="#"><span class="fa fa-exclamation mr-3"
                 style="width: 20px;text-align: center;"></span>Reports</a>
           </li>
@@ -595,7 +595,7 @@
             <div class="divider-custom-line"></div>
           </div>
           <form method="post" action="/suspendUsersRequest">
-            <div style="text-align: center;margin: 10px;">
+            <div hidden style="text-align: center;margin: 10px;">
               <button class="btn btn-danger" type="submit">Apply changes</button>
             </div>
             <div class="scrolling container" style="height: 100%; width: 100%;background-color: rgba(0, 0, 0, 0.2);">
@@ -620,7 +620,7 @@
                     <p class="text-center text-uppercase text-secondary mb-0">Likes</p>
                   </th>
                   <th>
-                    <p class="text-center text-uppercase text-secondary mb-0">Actions</p>
+                    <p hidden class="text-center text-uppercase text-secondary mb-0">Actions</p>
                   </th>
                 </tr>
 
@@ -656,7 +656,7 @@
                   </th>
 
                   <th style="border: 1px;">
-                    <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
+                    <select hidden class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
                       <option>...</option>
                       <option name="selectedSuspend{{id}}">Suspend</option>
                     </select>
