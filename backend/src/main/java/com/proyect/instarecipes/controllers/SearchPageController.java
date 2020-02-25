@@ -76,9 +76,7 @@ public class SearchPageController {
         model.addAttribute("allAllergens", restOfAllergens);
 
         // Search by items
-        //List<Recipe> recipesFounded = recipesRepository.findAll();
         List<Recipe> recipesFounded = recipesRepository.findFilteredSearch(ingredientsSelected, categoriesSelected, allergensSelected, cookingStylesSelected);
-      //  List<Recipe> finallist = removeAllergens(recipesFounded,allergensSelected);
         if(recipesFounded.size()==0){
             model.addAttribute("notFound", true);
         }else{
@@ -88,19 +86,6 @@ public class SearchPageController {
 
         return "search";
     }
-
-  /*  private List<Recipe> removeAllergens(List<Recipe> recipesFounded, ArrayList<String> allergensSelected) {
-        List<Recipe> aux = recipesFounded;
-        for (int i = 0; i < allergensSelected.size(); i++) {
-            for (int j = 0; j < recipesFounded.size(); j++) {
-                if (recipesFounded.get(j).getIngredients().contains(allergensSelected.get(i))) {
-                    aux.remove(j);
-                }
-            }
-        }
-        System.out.println(aux);
-        return aux;
-    }*/
 
     // Better option filter db but so dificult
     private List<Category> restCategories(List<Category> all, ArrayList<String> categoriesSelected) {

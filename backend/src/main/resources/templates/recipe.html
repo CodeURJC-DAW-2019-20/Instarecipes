@@ -90,34 +90,11 @@
         <div class="col-lg-8">
           <!-- Preview image -->
           <div id="carouselExampleIndicators" class="carousel slide">
-            <ol class="simple-recipe-indicators">
-              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"><img class="prev-img" src="/temp/recipes/image-{{id}}.jpg" alt=""></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1"><img class="prev-img" src="/temp/recipes/image-{{id}}.jpg" alt=""></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2"><img class="prev-img" src="/temp/recipes/image-{{id}}.jpg" alt=""></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="3"><img class="prev-img" src="/temp/recipes/image-{{id}}.jpg" alt=""></li>
-            </ol>
             <div class="carousel-inner" style="border-radius: 0.8rem;">
               <!-- Slide One - Set the background image for this slide in the line below -->
               <div class="carousel-item active" style="background-image: url('/temp/recipes/image-{{id}}.jpg')">
               </div>
-              <!-- Slide Two - Set the background image for this slide in the line below -->
-              <div class="carousel-item" style="background-image: url('/temp/recipes/image-{{id}}.jpg')">
-              </div>
-              <!-- Slide Three - Set the background image for this slide in the line below -->
-              <div class="carousel-item" style="background-image: url('/temp/recipes/image-{{id}}.jpg')">
-              </div>
-              <!-- Slide Four - Set the background image for this slide in the line below -->
-              <div class="carousel-item" style="background-image: url('/temp/recipes/image-{{id}}.jpg')">
-              </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
           </div>
           <!-- Date/Time -->
           <div class="row">
@@ -126,41 +103,10 @@
             </div>
             <div class="col-4">
               <ol class="likes-comments-simple-recipe">
-                <li>
-                  <h3 class="font-weight-light"> {{recipe.likes}}</h3>
-                </li>
-                <!-- Cuando esta seleccionado -->
-                {{#checked}}
-                <li style="cursor: pointer;">
-                  <form action="/recipes/{{id}}" method="POST">
-                    <input type="text" name="press" value="true" hidden/>
-                    <button type="submit">
-                      <input type="hidden" name="_csrf" value="{{token}}"/>
-                      <img class="focusHeart" id="pressedLike" src="/images/icons/like_pressed.png" height="80%" alt="">
-                    </button>  
-                  </form>
-                </li>
-                {{/checked}}
-                 <!-- Cuando  NO esta seleccionado -->
-                {{^checked}}
-                <li style="cursor: pointer;">
-                  <form action="/recipes/{{id}}" method="POST">
-                    <input type="text" name="unpress" value="false" hidden/>                  
-                    <button type="submit">
-                      <input type="hidden" name="_csrf" value="{{token}}"/>
-                      <img class="focusHeart" id="unpressedLike" src="/images/icons/like_unpressed.png" height="80%" alt="">
-                    </button>
-                  </form>
-                </li>
-                {{/checked}}
-                <li>
-                  <h3 class="font-weight-light">{{n_comments}}</h3>
-                </li>
-                <li>
-                  <a class="js-scroll-trigger rounded" href="#comments-section">
-                    <img src="/images/icons/dialogue.png" height="80%" alt="">
-                  </a>
-                </li>
+                <li><h3 class="font-weight-light"> {{recipe.likes}}</h3></li>
+                <li style="cursor: pointer;"><img class="focusHeart" id="unpressedLike" src="/images/icons/like_unpressed.png" height="80%" alt=""></li>
+                <li><h3 class="font-weight-light">{{n_comments}}</h3></li>
+                <li><a class="js-scroll-trigger rounded" href="#comments-section"><img src="/images/icons/dialogue.png" height="80%" alt=""></a></li>
               </ol>
             </div>
           </div>
@@ -240,41 +186,33 @@
       <p class="mb-0 font-weight-normal">{{recipe.description}}</p>
       <hr class="separator1">
       <!-- STEPS sections -->
-      {{#steps}}
-      <section>
-        <h1>Step {{-index}}</h1>
-        <!-- Post Content -->
-        <p class="lead">{{content}}</p>
-      </section>
-      {{/steps}}
-      <section hidden>
-          <h1>Step 2</h1>
-          <!-- Post Content -->
-          <div class="row">
-            <div class="col-8">
-              <p class="lead">texto</p>
+        <section>
+          {{#steps}}
+            <h1>Step {{-index}}</h1>
+            <!-- Post Content -->
+            <div class="row">
+              <div class="col-8">
+                <p class="lead">{{content}}</p>
+              </div>
+              <div class="col-4">
+                {{#image}}
+                  <img class="img-fluid rounded-lg prev-img" src="/temp/recipes/steps/{{recipe.id}}/image-{{number}}.jpg" alt="" style="cursor: pointer;">
+                {{/image}}
+              </div>
             </div>
-            <div class="col-4">
-                <img class="img-fluid rounded-lg prev-img" src="../images/potatoes.jpg" alt="" style="cursor: pointer;">
-            </div>
-          </div>
-      </section>
+          {{/steps}}
+        </section>
       <hr>
       <!-- Gallery section -->
       <section>
         <div class="row" style="text-align: center;">
-          <div class="col-md-3 col-sm-6 mb-4 centered-img" >
-            <img class="img-fluid rounded-lg prev-img" src="../images/Recipes/chicken_recipe.jpg" alt="" style="cursor: pointer;">
-          </div>
-          <div class="col-md-3 col-sm-6 mb-4 centered-img">
-            <img class="img-fluid rounded-lg prev-img" src="../images/Recipes/potatoes_chicken_recipe.jpg" alt="" style="cursor: pointer;">
-          </div>
-          <div class="col-md-3 col-sm-6 mb-4 centered-img">
-            <img class="img-fluid rounded-lg prev-img" src="../images/Recipes/potatoes_recipe.jpg" alt="" style="cursor: pointer;">
-          </div>
-          <div class="col-md-3 col-sm-6 mb-4 centered-img">
-            <img class="img-fluid rounded-lg prev-img" src="../images/Recipes/chicken_potatoes_recipe.jpg" alt="" style="cursor: pointer;">
-          </div>
+          {{#steps}}
+            {{#image}}
+              <div class="col-md-3 col-sm-6 mb-4 centered-img">
+                <img class="img-fluid rounded-lg prev-img" src="/temp/recipes/steps/{{recipe.id}}/image-{{number}}.jpg" alt="" style="cursor: pointer;">
+              </div>
+            {{/image}}
+          {{/steps}}
         </div>
       </section>
     </section>
@@ -293,7 +231,6 @@
             </form>
           </div>
       </div>
-
       {{#comments}}
       <!-- Comment with nested comments -->
       <div class="media mb-4">
