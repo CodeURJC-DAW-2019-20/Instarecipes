@@ -189,10 +189,10 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 | Manuel León Briz          | m.leon.2016@alumnos.urjc.es     | [@manuellb97](https://github.com/manuellb97)|
 |                           |                                 |                                             |
 
-> Textual description of the tasks performed in the phase.
+> This developer has been doing tasks which are focus on user's experience.
 > * Graphics done!.   
 > * Likes funcionality. 
-> * Fixed bugs.  
+> * Advanced Algorythm. 
 > * Reorder folders.  
 > * Navbar funcionalities. 
 
