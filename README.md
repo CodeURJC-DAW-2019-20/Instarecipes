@@ -154,7 +154,7 @@ Finally, we show the *first* navigation diagrams to make the connections between
 
 * **Main diagram** 
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Navigation%20Diagrams/Navigation%20Diagram%20(Pages).png">
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/Navigation%20Diagram%20(Pages).png">
 </p> 
 
 In the diagram we can see above, we observe that Home, User Profile, Ranking, Search User/Recipe and Login/Sign Up are always connected to each other, this is simply because they are in the navbar, ***but*** Login/Sign Up button has an arrow directed towards it, this means that you can go to the login and sign up section but once you're there, you cannot go to User Profile, Ranking and Search User/Recipe because there is no Navbar there. (*Obviously, you can go to the Home page* :house:) 
@@ -164,7 +164,7 @@ In the next diagram, you can see the main differences between the registered use
 All of them can access to their recipes, the recipes pages, go back to home... (*Main diagram*) **BUT** the administrator will have a menu where he can manage things like accept new ingredients, categories...
 
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Navigation%20Diagrams/Navigation%20Diagram%20(Profile).png">
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/Navigation%20Diagram%20(Profile).png">
 </p> 
 
 
@@ -177,7 +177,8 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 | Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       |[@lordkener](https://github.com/lordkener) |
 |                           |                                 |                                           |
 
-> Textual description of the tasks performed in the phase.
+> Textual description of the tasks performed in the phase.  
+
 > * Ranking and AJAX button.  
 > * Spring Security.  
 > * Init database.  
@@ -189,7 +190,8 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 | Manuel León Briz          | m.leon.2016@alumnos.urjc.es     | [@manuellb97](https://github.com/manuellb97)|
 |                           |                                 |                                             |
 
-> This developer has been doing tasks which are focus on user's experience.
+> This developer has been doing tasks which are focus on user's experience.   
+
 > * Graphics done!.   
 > * Likes funcionality. 
 > * Advanced Algorythm. 
@@ -201,7 +203,8 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 | José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  | [@trevod98](https://github.com/trevod98)   |
 |                           |                                 |                                            |
 
-> Textual description of the tasks performed in the phase.
+> Textual description of the tasks performed in the phase.  
+
 > * Images to BBDD.  
 > * Category, comment step and cooking style java classes.  
 > * Each step images. 
@@ -213,7 +216,8 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 | Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es | [@Muffinous](https://github.com/Muffinous) |
 |                           |                                 |                                            |
 
-> Textual description of the tasks performed in the phase.
+> Textual description of the tasks performed in the phase.  
+
 > * Filtered search button.  
 > * Conection between filtered search button and search page.
 > * Managment of new users (admin)  
@@ -225,7 +229,8 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 | Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  | [@dMurill0](https://github.com/dMurill0)   |
 |                           |                                 |                                            |
 
-> Textual description of the tasks performed in the phase.
+> Textual description of the tasks performed in the phase.  
+
 > * Responsive pages.      
 > * Login and sign up restrictions.  
 > *                      
