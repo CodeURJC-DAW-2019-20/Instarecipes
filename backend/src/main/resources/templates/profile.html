@@ -42,27 +42,29 @@
         <img class="img-navbar d-flex mr-3 rounded-circle profile-border"
           src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="">
       </div>
-      <a class="navbar-brand js-scroll-trigger" href="/profile">&nbsp;Profile</a>
+      <a class="navbar-brand js-scroll-trigger" href="/profile" style="font-family: 'Pacifico';";>&nbsp;Profile</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
         type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"><i class="fa fa-bars" style="font-size: x-large;"></i></span>
       </button>
+      <ul class="navbar-nav ml-auto" style="margin-right: 13%;">   
+      </ul>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto" style="margin-right: 10%;">
-          <li class="nav-item col-3">
+        <ul class="navbar-nav ml-auto" style="margin-right: 28%;">
+          <li class="nav-item col-2" style="max-width: 100%;">
             <a class="nav-link" href="/index"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
           </li>
           {{^logged}}
-          <li class="nav-item col-3">
+          <li class="nav-item col-2" style="max-width: 100%;">
             <a class="nav-link js-scroll-trigger" href="#page-top"><i class="fas fa-user"
                 style="font-size: xx-large;"></i></a>
           </li>
           {{/logged}}
-          <li class="nav-item col-3">
+          <li class="nav-item col-2" style="max-width: 100%;"> 
             <a class="nav-link" href="/ranking"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
           </li>
-          <li class="nav-item col-3">
+          <li class="nav-item col-2" style="max-width: 100%;">
             <a class="nav-link js-scroll-trigger" href="#publications"><i class="fas fa-book"
                 style="font-size: xx-large;"></i></a>
           </li>
@@ -432,23 +434,27 @@
           aria-labelledby="publicationsModal6Label" aria-hidden="true">
           <div class="modal-dialog modal-xl" style="width: 70%;" role="document">
             <div class="modal-content" style="width: 85%; margin: 3%; ">
-              <form method="" action="">
+              <form method="post" action="/uploadImage" enctype="multipart/form-data">
+
                 <div class="form-group" style="margin: 5%;">
                   <div class="flex-col-c">
                     <h1 style="color: black; text-align: center ;">Settings</h1>
                   </div>
                   <div class="form-group" style="background-color: #86c0b4; border-radius: 10px; margin: 5%; padding-bottom: 3%;">
                     <!-- Load avatar and background -->
+
                     <div class="col-lg-30" style="padding: 3%;">
                       <span class="input-group-text" style="margin-bottom: 5px; font-family: cursive;">Upload a profile pic</span>
-                      <input class="form-control-file" type="file" name="fileAvatar" accept=".jpg, .jpeg" />
+                      <input type="file" name="fileAvatarProfile" accept=".jpg, .jpeg"/>
                     </div>
+
                     <div class="col-lg-30 " style="padding: 3%;"> 
                       <span class="input-group-text" style="margin-bottom: 5px; font-family: cursive;">Upload a background image for your profile</span>
                       <input class="form-control-file" type="file" name="fileBackground" accept=".jpg, .jpeg" />
                     </div>
+                    
                     <div class="send-btn" style="text-align: center;">
-                    <button type="submit" class="btn mb-2">Send Nudes</button>
+                    <button type="submit" class="btn mb-2">Send</button>
                   </div>
                   </div>
                 </div>

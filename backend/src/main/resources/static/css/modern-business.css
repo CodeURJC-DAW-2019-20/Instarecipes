@@ -4,7 +4,7 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
  */
  body {
-  padding-top: 56px;
+  padding-top: 6px;
 }
   
 .carousel-item {
@@ -131,7 +131,7 @@ form.example::after {
 .btn-add-ingredient, .btn-add-category, .btn-add-allergen{
   width: 150px;
   height: fit-content;
-  background-color: teal;
+  background-color: #1abc9c;
   border-color: #343a40;
   justify-content: center;
   border-radius: 0.8rem;
