@@ -97,10 +97,7 @@ public class ProfilePageController {
 			model.addAttribute("user",userSession.getLoggedUser().getUsername());
 			model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
         }
-        System.out.println("LISTA DE REQueST: " + requestsRepository.findAll());
-        // if(userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN")){
-            List<Request> requestsList = requestsRepository.findAll();
-            model.addAttribute("allRequests", requestsList);
-        // }
+        List<Request> requestsList = requestsRepository.findAll();
+        model.addAttribute("allRequests", requestsList);
     }
 }

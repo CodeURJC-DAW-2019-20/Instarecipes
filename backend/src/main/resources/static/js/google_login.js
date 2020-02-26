@@ -51,21 +51,7 @@ function onSignIn(googleUser) {
   function signOut() {
     auth2.signOut().then(function () {
       console.log('User signed out.');
+      location.reload();
     });
-  }
 
-    //doesn't work :(
-    /*function passToHTML(fullName,givenName,familyName,imageUrl,email){
-      var full = document.getElementById("fullNameGoogleUser");
-      var gvnName = document.getElementById("givenNameGoogleUser");
-      var fmlyName = document.getElementById("familyNameUser");
-      var imgURL = document.getElementById("profileImgGoogleUser");
-      var mail = document.getElementById("emailGoogleUser");
-  
-      full.setAttribute("value", fullName);
-      gvnName.setAttribute("value", givenName);
-      fmlyName.setAttribute("value", familyName);
-      imgURL.setAttribute("value", imageUrl);
-      mail.setAttribute("value", email);
-
-    }*/
+    }

@@ -67,15 +67,19 @@ public class IndexController {
         List<CookingStyle> allCookingStyles = cookingStylesRepository.findAll();
         List<Category> allCategories = categoriesRepository.findAll();
         List<Allergen> allAllergens = allergensRepository.findAll();
-        
+
         model.addAttribute("size", recipes.size());
         model.addAttribute("recipes", recipes);
+        personalFilter(model);
+
         model.addAttribute("ingredientsList", allIngredients);
         model.addAttribute("cookingStylesList", allCookingStyles);
         model.addAttribute("categoriesList", allCategories);
         model.addAttribute("allergensList", allAllergens);
+        if(userSession.isLoggedUser()){
+            model.addAttribute("id", userSession.getLoggedUser().getId());
+        }
         
-        personalFilter(model);
         return "index";
     }
 
@@ -131,12 +135,13 @@ public class IndexController {
     public String postRecipe(Model model, Recipe recipe, @RequestParam MultipartFile imageFile, 
     @RequestParam String ingredientsString, @RequestParam String categoriesString, 
     @RequestParam String firstStepString, @RequestParam(required = false) String stepsString, 
-    @RequestParam(required = false) MultipartFile... allImages) throws IOException{
-        System.out.println("IMAGEN 1: " + imageFile);
-        System.out.println("IMAGEN 2: " + allImages + " SIZE: " + allImages.length);
+    @RequestParam(required = false, value = "allImages") MultipartFile[] allImages, 
+    @RequestParam(required = false, value = "withImage") String withImage) throws IOException{
+        
         Recipe r = recipe;
         int i = 2;
-        // Ingredients selector //
+        System.out.println("Booleanos: " + withImage);
+// Ingredients selector //
         List<String> listOfIngs = Arrays.asList(ingredientsString.split(","));
         Set<Ingredient> lastIngs = new HashSet<Ingredient>();
         for(String ings : listOfIngs){
@@ -145,8 +150,7 @@ public class IndexController {
                 lastIngs.add(ingredient.get());
             }
         }
-        // ---------------------------------------------------------------------------- //
-        // Ingredients selector //
+// Categories selector //
         List<String> listOfCats = Arrays.asList(categoriesString.split(","));
         Set<Category> lastCats = new HashSet<Category>();
         for(String cats : listOfCats){
@@ -155,44 +159,57 @@ public class IndexController {
                 lastCats.add(category.get());
             }
         }
+//Sets in recipe
         r.setCategories(lastCats);
         r.setIngredients(lastIngs);
         r.setImage(true);
         r.setUsername(userSession.getLoggedUser());
         recipesRepository.save(r);
         imageService.saveImage("recipes", r.getId(), imageFile);
-        int count = 1;
-        if(allImages != null){
-            for(MultipartFile mpf : allImages){
-                if(mpf != null && !mpf.isEmpty()){
-                    System.out.println("Paso " + count + " guardado como: "+ mpf);
-                    imageService.saveImage("recipes/steps/"+r.getId(), count, mpf);
-                    count++;
-                }
-            }
-        }
-        // Steps selector //
+//Steps selector
+        int j = 0;
         stepsRepository.save(new Step(r, 1, firstStepString));
-        System.out.println("Imagen unica: " + imageFile.toString());
-        // System.out.println("Las imagenes: " + allImages[0].toString());
-        if(stepsString != null){
-            List<String> listOfSteps = Arrays.asList(stepsString.split("ab#12#45-3,"));
-            for(String steps : listOfSteps){
-                if(steps != null){
-                    stepsRepository.save(new Step(r, i, steps));
-                    i++;
+        if(withImage.length()>0){
+            String stp = withImage.substring(0, withImage.length()-1);
+            List<String> listOfBools = Arrays.asList(stp.split(","));
+            System.out.println("Array de booleanos: " + listOfBools);
+            if(stepsString != null){
+                List<String> listOfSteps = Arrays.asList(stepsString.split("ab#12#45-3,"));
+                for(String steps : listOfSteps){
+                    if(steps != null){
+                        Step step_n = new Step(r, i, steps);
+                        if(listOfBools.get(j).equalsIgnoreCase("1")){
+                            imageService.saveImage("recipes/steps/"+r.getId(), j+2, allImages[j]);
+                           step_n.setImage(true);
+                        }else{
+                           step_n.setImage(false);
+                        }
+                        stepsRepository.save(step_n);
+                        j++;
+                        i++;
+                    }
                 }
             }
         }
-        //SHOW ELEMENTS
+//SHOWING ALL ELEMENTS TO MUSTACHE
         List<Recipe> recipes = recipesRepository.findAll();
         model.addAttribute("recipes", recipes);
         model.addAttribute("size", recipes.size());
         List<Recipe> subRecipe = recipes.subList(0, 3);
         model.addAttribute("subRecipe",subRecipe);
-
         List<Comment> comments = commentsRepository.findAllByRecipe(recipe);
         model.addAttribute("n_comments", comments.size());
+
+        List<Ingredient> allIngredients = ingredientsRepository.findAll();
+        List<CookingStyle> allCookingStyles = cookingStylesRepository.findAll();
+        List<Category> allCategories = categoriesRepository.findAll();
+        List<Allergen> allAllergens = allergensRepository.findAll();
+
+        model.addAttribute("ingredientsList", allIngredients);
+        model.addAttribute("cookingStylesList", allCookingStyles);
+        model.addAttribute("categoriesList", allCategories);
+        model.addAttribute("allergensList", allAllergens);
+        model.addAttribute("id", userSession.getLoggedUser().getId());
 
         return "index";
     }

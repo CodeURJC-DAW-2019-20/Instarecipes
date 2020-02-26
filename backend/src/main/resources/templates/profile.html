@@ -40,7 +40,7 @@
     <div class="container" style="margin-left: 30px;">
       <div id="img-navbar-container">
         <img class="img-navbar d-flex mr-3 rounded-circle profile-border"
-          src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="" style="height: 50px; object-fit: fill;">
+          src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="">
       </div>
       <a class="navbar-brand js-scroll-trigger" href="/profile" style="font-family: 'Pacifico';";>&nbsp;Profile</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
@@ -134,9 +134,9 @@
         <div class="container d-flex align-items-center flex-column">
           <!-- Masthead Avatar Image -->
           <div class="rounded-circle">
-            <img class="masthead-avatar mb-5 d-flex mr-3 profile-border"
+            <img style="object-fit: cover;" class="masthead-avatar mb-5 d-flex mr-3 profile-border"
               src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="Show profile photo" data-toggle="modal"
-              data-target="#showAvatar" style="object-fit: fill; border-radius: 150px; height: 220px;">
+              data-target="#showAvatar">
           </div>
           <div style="position: relative;width: 100%;height: fit-content;">
             <!-- Request ingredient/category button -->

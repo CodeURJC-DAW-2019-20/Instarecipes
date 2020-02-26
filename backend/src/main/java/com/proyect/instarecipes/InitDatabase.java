@@ -258,17 +258,6 @@ public class InitDatabase {
         Recipe r5 = new Recipe(u2, ingredients5, categories2, cookingStyles4, allergens4, "Vodka Sauce Pasta (Pasta Party!)", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese.. And don't worry, It won't taste like vodka!", 
         "1 h.", "Hard", 15);
 
-        //Users like recipes
-        // UserLikeRecipe uLike1 = new UserLikeRecipe(u2,r1,true);
-        // UserLikeRecipe uLike2 = new UserLikeRecipe(u1,r4,true);
-        // UserLikeRecipe uLike3 = new UserLikeRecipe(u2,r3,true);
-        // UserLikeRecipe uLike4 = new UserLikeRecipe(u1,r5,true);
-        
-        // userlikeRecipeRepository.save(uLike1);
-        // userlikeRecipeRepository.save(uLike2);
-        // userlikeRecipeRepository.save(uLike3);
-        // userlikeRecipeRepository.save(uLike4); 
-
         //Steps for r4(for example)
         Step step11 = new Step(r4, 1, "Preheat oven to 425 degrees F (220 degrees C). Lightly oil a large roasting pan.");
         Step step22 = new Step(r4, 2, "Place chicken pieces in large bowl. Season with salt, oregano, pepper, rosemary, and cayenne pepper. Add fresh lemon juice, olive oil, and garlic. Place potatoes in bowl with the chicken; stir together until chicken and potatoes are evenly coated with marinade.");
