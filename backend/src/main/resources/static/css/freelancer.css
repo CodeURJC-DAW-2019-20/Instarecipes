@@ -2630,9 +2630,9 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary {
-  color: #fff;
+  color: black;
   background-color: #1abc9c;
-  border-color: #1abc9c;
+  border-color: #343a40;
   
   cursor: pointer;
 }
@@ -10116,8 +10116,12 @@ a.canvasjs-chart-credit{
 }
 
 .masthead {
-  padding-top: calc(6rem + 74px);
-  padding-bottom: 6rem;
+  /*padding-top: calc(6rem + 74px);
+  padding-bottom: 6rem;*/
+  background-image: url(../images/backgrounds/ranking_bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .masthead .masthead-heading {
@@ -10137,7 +10141,7 @@ a.canvasjs-chart-credit{
 @media (min-width: 1200px) {
   .masthead {
     padding-top: calc(6rem + 24px);
-    padding-bottom: 3rem;
+    padding-bottom: 10rem;
   }
   .masthead .masthead-heading {
     font-size: 4rem;

@@ -40,26 +40,28 @@
     <div class="container" style="margin-left: 30px;">
       <div id="img-navbar-container">
         <img class="img-navbar d-flex mr-3 rounded-circle profile-border"
-          src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="">
+          src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="" style="height: 50px; object-fit: fill;">
       </div>
-      <a class="navbar-brand js-scroll-trigger" href="/profile">&nbsp;Profile</a>
+      <a class="navbar-brand js-scroll-trigger" href="/profile" style="font-family: 'Pacifico';";>&nbsp;Profile</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
         type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"><i class="fa fa-bars" style="font-size: x-large;"></i></span>
       </button>
+      <ul class="navbar-nav ml-auto" style="margin-right: 13%;">   
+      </ul>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto" style="margin-right: 10%;">
-          <li class="nav-item col-3">
+        <ul class="navbar-nav ml-auto" style="margin-right: 28%;">
+          <li class="nav-item col-3" style="max-width: 100%;">
             <a class="nav-link" href="/index"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
           </li>
           {{^logged}}
-          <li class="nav-item col-3">
+          <li class="nav-item col-3" style="max-width: 100%;">
             <a class="nav-link js-scroll-trigger" href="#page-top"><i class="fas fa-user"
                 style="font-size: xx-large;"></i></a>
           </li>
           {{/logged}}
-          <li class="nav-item col-3">
+          <li class="nav-item col-3" style="max-width: 100%;"> 
             <a class="nav-link" href="/ranking"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
           </li>
           <li class="nav-item col-3">
@@ -67,12 +69,12 @@
                 style="font-size: xx-large;"></i></a>
           </li>
         </ul>
-        <!-- <form class="example" action="/search">
+        <form class="example" action="/search">
           <input type="text" href="#" placeholder="Search.." name="search" />
           <button type="submit" style="background-color: #1abc9c;">
             <i class="fa fa-search"></i>
           </button>
-        </form> -->
+        </form>
       </div>
     </div>
     <div class="login-container">

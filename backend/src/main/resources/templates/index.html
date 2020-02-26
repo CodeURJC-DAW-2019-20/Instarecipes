@@ -58,7 +58,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto" style="margin-right: 20%;">
-          <li class="nav-item col-4" style="max-width: 100%;">
+          <li class="nav-item col-2" style="max-width: 100%;">
             <a class="nav-link js-scroll-trigger" href="#header-section"><i onmouseover="hover(this)"
                 onmouseout="normal(this)" class="fas fa-home" style="font-size: xx-large; color: #1abc9c"></i></a>
           </li>
@@ -84,12 +84,12 @@
           </li>
           {{/logged}}
         </ul>
-        <!-- <form class="example" action="/search">
+        <form class="example" action="/search">
           <input type="text" href="#" placeholder="Search.." name="search"/>
           <button type="submit" style="background-color: #1abc9c;">
             <i class="fa fa-search" ></i>
           </button>
-        </form> -->
+        </form>
       </div>
     </div>
     <div class="login-container">
@@ -422,7 +422,7 @@
                     </div>
                     <!-- ALLERGEN FILTER -->
                     <div class="col-6">
-                      <h3 class="underlined-text">ALLERGENS</h3>
+                      <h3 class="underlined-text">FREE ALLERGENS</h3>
                       <div class="row">
                         <table id="AllergensTable">
                           <tr>
@@ -553,7 +553,7 @@
                     <h3 class="underlined-text">Ingredients*</h3>
                     <p>Select ingredients:</p>
                     <div id="add-ingredient" class="btn btn-primary"
-                      style="width: 100%; border-radius: 0.8rem;background-color: mediumspringgreen;cursor: pointer;">
+                    style="width: 100%; border-radius: 0.8rem; cursor: pointer;">
                       <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                     </div>
                     <input id="ingredientsList" value="{{#ingredientsList}}{{ingredient}},{{/ingredientsList}}" hidden/>
@@ -565,8 +565,8 @@
                     <h3 class="underlined-text">Categories*</h3>
                     <p>Select categories:</p>
                     <div id="add-category" class="btn btn-secondary"
-                      style="width: 100%; border-radius: 0.8rem;background-color: steelblue;cursor: pointer;">
-                      <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                    style="width: 100%; border-radius: 0.8rem;background-color: #343a40; cursor: pointer;">
+                    <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                     </div>
                     <input id="categoriesList" value="{{#categoriesList}}{{category}},{{/categoriesList}}" hidden/>
                     <input id="categoriesString" name="categoriesString" hidden/>
@@ -746,7 +746,7 @@
                 + "</a>"
                 + "</div>"
                 + "<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);\">"
-                + "<img class=\"d-flex mr-3 rounded-circle profile-border\" style=\"width:100%;\" src=\"temp/avatars/image-" + Object.values(item)[3] + ".jpg\">"
+                + "<img class=\"d-flex mr-3 rounded-circle profile-border\" style=\width:100%;height:60px;\" src=\"temp/avatars/image-" + Object.values(item)[3] + ".jpg\">"
                 + "<p>@" + Object.values(item)[4] + "</p>"
                 + "</div>"
                 + "</div>"
@@ -757,7 +757,7 @@
             } else {
               $('#recipes-container').append("<div class=\"row\">"
                 + "<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);\">"
-                + "<img class=\"d-flex mr-3 rounded-circle profile-border\" style=\"width:100%;\" src=\"temp/avatars/image-" + Object.values(item)[3] + ".jpg\">"
+                + "<img class=\"d-flex mr-3 rounded-circle profile-border\" style=\"width:100%;height:60px;\" src=\"temp/avatars/image-" + Object.values(item)[3] + ".jpg\">"
                 + "<p>@" + Object.values(item)[4] + "</p>"
                 + "</div>"
                 + "<div class=\"col-md-4\">"
