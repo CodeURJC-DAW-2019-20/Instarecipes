@@ -310,20 +310,40 @@ public class InitDatabase {
         //Comments: User, Content, Subcomments, Likes
         //template
         /*              ALL THIS IS ONLY FOR RECIPE NUMBER 1               */
-        Comment comment1 = new Comment(u3, "Cool", null, 3, r1);
-        Comment comment2 = new Comment(u1, "This is awesome", null, 1, r1);
-                Comment comment3 = new Comment(u2, "Do you eat cheesse?", comment2, 2, r1);
-                        Comment comment4 = new Comment(u1, "Yes i do", comment3, 4, r1);
-                Comment comment5 = new Comment(u4, "Lol what a conversation, so original", comment2, 7, r1);
-                Comment comment6 = new Comment(u1, "Shut the fk up idiot", comment2, 0, r1);
+        Comment comment1 = new Comment(u3, "Cool", null, 3, r1, false, false);
+        Comment comment2 = new Comment(u1, "This is awesome", null, 1, r1, false, false);
         
-        //Save coments
+                Comment comment3 = new Comment(u2, "Do you eat cheesse?", null, 2, r1, false, true);
+                Comment comment4 = new Comment(u1, "Yes i do", null, 4, r1, false, true);
+                Comment comment5 = new Comment(u4, "Lol what a conversation, so original", null, 7, r1, false, true);
+                Comment comment6 = new Comment(u1, "Shut the fk up idiot", null, 0, r1, false, true);
+
+                Comment comment7 = new Comment(u2, "What happened in step 3?", null, 2, r1, false, false);
+                Comment comment8 = new Comment(u1, "Oh yes the comments are alright now", null, 4, r1, true, false);
+                Comment comment9 = new Comment(u4, "Hello @trevodrap", null, 7, r1, true, true);
+                Comment comment10 = new Comment(u1, "Hi m8 subscribe @trevodrap in my youtube channel", null, 0, r1, false, true);
+        
+        //Save subcomments
         commentsRepository.save(comment1);
-        commentsRepository.save(comment2); 
         commentsRepository.save(comment3);
         commentsRepository.save(comment4);
         commentsRepository.save(comment5);
         commentsRepository.save(comment6);
+        commentsRepository.save(comment7);
+        commentsRepository.save(comment9);
+        commentsRepository.save(comment10);
+        
+        Set<Comment> subComments2 = groupStaff.groupComments(comment3,comment4,comment5,comment6);
+        // Set<Comment> subComments3 = groupStaff.groupComments(comment9);
+        Set<Comment> subComments4 = groupStaff.groupComments(comment9, comment10);
+        //Save coments
+        comment2.setHasSubcomments(true);
+        comment2.setSubComments(subComments2);
+        commentsRepository.save(comment2);
+
+        comment8.setHasSubcomments(true);
+        comment8.setSubComments(subComments4);
+        commentsRepository.save(comment8);
 
         //THIS SHOULD BE ALWAYS LIKE THIS, THIS WILL UPDATE THE RECIPES WITH THE CORRESPONDING NUMBER OF COMMENTS
         for(Recipe recipe : recipesRepository.findAll()){
