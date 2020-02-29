@@ -54,23 +54,25 @@
 							<span class="label-input100">Email</span>
 							<input class="input100" type="text" name="email" id="email" aria-describedby="emailHelp"
 								placeholder="Email" required />
-							
+
 							<span class="focus-input100" data-symbol="&#xf206;"></span>
 						</div>
-						<div class="validation" id="email-val" role="alert" style="display: none; border-radius: 3px;" >
+						<div class="validation" id="email-val" role="alert" style="display: none; border-radius: 3px;">
 							<h6>Please enter a valid email.
 								example@email.com</h6>
 						</div>
 						<!-- Password input -->
 						<div class="wrap-input100 validate-input m-b-20" data-validate="Password is required">
 							<span class="label-input100">Password</span>
-							<input class="input100" type="password" name="password" placeholder="Password" id="pass" required />
+							<input class="input100" type="password" name="password" placeholder="Password" id="pass"
+								required />
 							<span class="focus-input100" data-symbol="&#xf190;"></span>
 						</div>
 						<!-- Confirm password input -->
 						<div class="wrap-input100 validate-input m-b-20" data-validate="Password doesn't match">
 							<span class="label-input100">Confirm Password</span>
-							<input class="input100" type="password" placeholder="Confirm your password" id="cpass" required />
+							<input class="input100" type="password" placeholder="Confirm your password" id="cpass"
+								required />
 							<span class="focus-input100" data-symbol="&#xf190;"></span>
 						</div>
 						<div class="validation" id="nopass" style="display: none;">
@@ -120,25 +122,27 @@
 						</div>
 						<div class="login100 p-l p-r p-t-25 " id="completeProfileDiv" style="display: none;">
 							<!-- Load image and select box -->
-							   <!--Avatar-->
-							   <div class="form-group" style="margin: 10%;">
+							<!--Avatar-->
+							<div class="form-group" style="margin: 10%;">
 								<h3 class="underlined-text text-secondary">Upload a profile pic</h3>
-								<div>								
-								  <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem;
-								  border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:15%;cursor:pointer">
-									<input id="file-input" hidden type="file" name="fileAvatar" accept=".jpg, .jpeg" />
-									<i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
-								  </label>
+								<div>
+									<label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem;
+									  border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:15%;cursor:pointer">
+										<input id="file-input" hidden type="file" name="fileAvatar"
+											accept=".jpg, .jpeg" />
+										<i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
+									</label>
 								</div>
-							  </div>
+							</div>
 							<div class="wrap-input100 validate-input m-b-20">
 								<h3 class="label-input100" style="text-align:center;">Allergens</h3>
-								<input name="allergens" list="allergenslist" class="form-control" type="text" placeholder="Select an allergen.." onkeypress="return false;">
-								 <datalist id="allergenslist">
-								 	{{#allergensSignUp}} 
-								  	<option value="{{allergen}}">{{allergen}}</option>
-								  	{{/allergensSignUp}}  
-								</datalist>                         
+								<input name="allergens" list="allergenslist" class="form-control" type="text"
+									placeholder="Select an allergen.." onkeypress="return false;">
+								<datalist id="allergenslist">
+									{{#allergensSignUp}}
+									<option value="{{allergen}}">{{allergen}}</option>
+									{{/allergensSignUp}}
+								</datalist>
 							</div>
 						</div>
 						<!-- Submit button -->

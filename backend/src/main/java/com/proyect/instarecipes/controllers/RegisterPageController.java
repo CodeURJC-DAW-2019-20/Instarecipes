@@ -54,7 +54,7 @@ public class RegisterPageController {
         }else{
             u.setAvatar(true);
             usersRepository.save(u);
-            File defaultBackground = new File("src/main/resources/static/images/backgrounds/background2.jpeg");
+            File defaultBackground = new File("src/main/resources/static/images/backgrounds/background2.jpg");
             FileInputStream inputB = new FileInputStream(defaultBackground);
             MultipartFile fileBackground = new MockMultipartFile("file2", defaultBackground.getName(), "image/jpeg", IOUtils.toByteArray(inputB));
             if(fileAvatar == null){
@@ -74,6 +74,19 @@ public class RegisterPageController {
             }
         }
     }
+
+   @PostMapping("/settings")
+    public void settings(User user, String info, HttpServletRequest request, HttpServletResponse response,
+            @RequestParam MultipartFile fileAvatar, @RequestParam MultipartFile fileBackground) throws IOException {
+                user.setInfo(info);
+                user.setAvatar(true);
+                user.setBackground(true);
+                usersRepository.save(user);
+                imageService.saveImage("avatars", user.getId(), fileAvatar);
+                imageService.saveImage("backgrounds", user.getId(), fileBackground);
+                response.sendRedirect("profile");
+            }
+
 
     //this method aproach the @Autowired of userAuthProvider to autenticate user and password and setup autologged 
     private void authenticateUser(String username,String password,HttpServletRequest request) {

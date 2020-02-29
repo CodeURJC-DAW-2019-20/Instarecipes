@@ -472,47 +472,54 @@
                         <hr>
                         <!-- Bio -->
                         <div class="wrap-input50 m-b-23" style="text-align: initial; margin-top: 3%;">
-                          <h3 class="underlined-text text-secondary">Bio</h3>                      
-                          <textarea type="text" name="bio"
+                          <h3 class="underlined-text text-secondary">Bio</h3>
+                          <textarea type="text" name="info"
                             style="padding:10px;width: 100%;height: 100px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
-                            placeholder="Type you bio here.." required></textarea>
+                            placeholder="Type your bio here.." required></textarea>
                         </div>
                         <!--Avatar-->
-                        <div class="form-group" style="margin: 10%;">
+                        <div class="form-group" style="margin-bottom: 5%;">
                           <h3 class="underlined-text text-secondary">Upload a profile pic</h3>
                           <div>
                             <p id="no-such-image">No such image selected yet</p>
-                            <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem;
-                            border:1px solid rgb(23, 162, 184); align-self:center;z-index: 1050;
-                            text-align:center;padding:0;right:0;width:25%;position:absolute;cursor:pointer">
+                            <label for="file-input" class="btn-outline-primary"
+                              style="border-radius:0.5rem;
+                            border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:15%;cursor:pointer">
                               <input id="file-input" hidden type="file" name="fileAvatar" accept=".jpg, .jpeg" />
                               <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                             </label>
                           </div>
                         </div>
+                        <img id="preview-img-file" src="" class="img-blur"
+                          style="object-fit:cover;height:150px;width:50%;border-radius: 0.5rem;" hidden />
                         <!--Background-->
-                        <div class="form-group">
+                        <div class="form-group" style="margin: 10%;">
                           <h3 class="underlined-text text-secondary">Select a background image</h3>
                           <div>
-                            <p id="no-such-image">No such image selected yet</p>
-                            <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem;
-                            border:1px solid rgb(23, 162, 184); align-self:center;z-index: 1050;
-                            text-align:center;padding:0;right:0;width:25%;position:absolute;cursor:pointer">
-                              <input id="file-input" hidden type="file" name="fileBackground" accept=".jpg, .jpeg" />
+                            <p id="no-bg-image">No such image selected yet</p>
+                            <label for="bg-input" class="btn-outline-primary"
+                              style="border-radius:0.5rem;
+                            border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:15%;cursor:pointer">
+                              <input id="bg-input" hidden type="file" name="fileBackground" accept=".jpg, .jpeg" />
                               <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                             </label>
+                            <img id="preview-bg-file" src="" class="img-blur2"
+                              style="object-fit:cover;height:80px;width:100%;border-radius: 0.5rem;" hidden />
                           </div>
                         </div>
+
                         <!--Allergens-->
                         <div class="wrap-input100 validate-input m-b-20">
-                          <h3 class="label-input100" style="text-align:center;">Allergens</h3>
-                          <input name="allergens" list="allergenslist" class="form-control" type="text"
-                            placeholder="Select an allergen.." onkeypress="return false;">
-                          <datalist id="allergenslist">
-                            {{#allergensSignUp}}
-                            <option value="{{allergen}}">{{allergen}}</option>
-                            {{/allergensSignUp}}
-                          </datalist>
+                          <table id="AllergensTable">
+                            <h3 class="label-input100" style="text-align:center;">Allergens</h3>
+                            <input name="allergens" list="allergenslist" class="form-control" type="text"
+                              placeholder="Select an allergen.." onkeypress="return false;">
+                            <datalist id="allergenslist">
+                              {{#allergensSignUp}}
+                              <option value="{{allergen}}">{{allergen}}</option>
+                              {{/allergensSignUp}}
+                            </datalist>
+                          </table>
                         </div>
                       </div>
                     </div>
@@ -1088,6 +1095,37 @@
   <script src="/js/main2.js"></script>
   <script src="/js/admin_Profile.js"></script>
   <script src="/js/statistics.js"></script>
+  <script>
+    document.getElementById('file-input').onchange = function (evt) {
+      var tgt = evt.target || window.event.srcElement,
+        files = tgt.files;
+      // FileReader support
+      if (FileReader && files && files.length) {
+        var fr = new FileReader();
+        fr.onload = function () {
+          document.getElementById("no-such-image").setAttribute("hidden", "");
+          document.getElementById("preview-img-file").removeAttribute("hidden");
+          document.getElementById("preview-img-file").src = fr.result;
+        }
+        fr.readAsDataURL(files[0]);
+      }
+    }
+
+    document.getElementById('bg-input').onchange = function (evt) {
+      var tar = evt.target || window.event.srcElement,
+        files = tar.files;
+      if (FileReader && files && files.length) {
+        var fre = new FileReader();
+        fre.onload = function () {
+          document.getElementById("no-bg-image").setAttribute("hidden", "");
+          document.getElementById("preview-bg-file").removeAttribute("hidden");
+          document.getElementById("preview-bg-file").src = fre.result;
+        }
+        fre.readAsDataURL(files[0]);
+      }
+
+    }
+  </script>
 
 </body>
 
