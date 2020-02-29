@@ -462,7 +462,7 @@
                           <div style="position: absolute;width: 100%;">
                             <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem; 
                             border:1px solid rgb(23, 162, 184); text-align:center;padding:0;right:0;width:30%;cursor:pointer">
-                              <input id="file-input" hidden type="file" name="avatar" accept=".jpg, .jpeg" />
+                              <input id="file-input" hidden type="file" name="avatarFile" accept=".jpg, .jpeg" />
                               <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                             </label>
                           </div>
@@ -476,7 +476,7 @@
                           <div style="position: absolute;width: 25%;right:1%;bottom: 0;">
                             <label for="bg-input" class="btn-outline-primary" style="border-radius:0.5rem;
                             border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:100%;cursor:pointer">
-                              <input id="bg-input" hidden type="file" name="background" accept=".jpg, .jpeg" />
+                              <input id="bg-input" hidden type="file" name="backgroundFile" accept=".jpg, .jpeg" />
                               <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                             </label>
                           </div>
@@ -512,7 +512,7 @@
                           <td><!-- Bio -->
                             <textarea type="text" name="info" style="margin-top:10px;padding:5px;width: 100%;height: 100px;
                             border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" placeholder="Type your bio here.." 
-                            required>{{actualUser.info}}</textarea>
+                            >{{actualUser.info}}</textarea>
                           </td>
                         </tr>
                         <tr>
@@ -522,9 +522,9 @@
                               placeholder="Select an allergen.." onkeypress="return false;">
                             <datalist id="allergenslist">
                               <option>{{actualUser.allergens}}</option>
-                              {{#allergensSignUp}}
+                              {{#allergensList}}
                               <option value="{{allergen}}">{{allergen}}</option>
-                              {{/allergensSignUp}}
+                              {{/allergensList}}
                             </datalist>
                           </td>
                         </tr>

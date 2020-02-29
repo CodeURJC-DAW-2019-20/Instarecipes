@@ -3,13 +3,17 @@ package com.proyect.instarecipes.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.Request;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.UsersRepository;
+import com.proyect.instarecipes.repositories.AllergensRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.RequestsRepository;
 import com.proyect.instarecipes.security.ImageService;
@@ -35,7 +39,8 @@ public class ProfilePageController {
     private UserSession userSession;
     @Autowired
     private RequestsRepository requestsRepository;
-
+    @Autowired
+    private AllergensRepository allergensRepository;
     @Autowired
     private ImageService imageService;
 
@@ -77,10 +82,31 @@ public class ProfilePageController {
         model.addAttribute("publications", recipes);
         model.addAttribute("idkwtp", Laiks);
         model.addAttribute("likesGraphics", titles);
+        List<Allergen> allergensList = allergensRepository.findAll();
+        model.addAttribute("allergensList", allergensList);
 
         return "profile";
     }
 
+
+    @PostMapping("/settings")
+    public void settings(@RequestParam String name,@RequestParam String surname,@RequestParam String info, @RequestParam String allergens, HttpServletResponse response, 
+            @RequestParam MultipartFile avatarFile, @RequestParam MultipartFile backgroundFile) throws IOException {
+
+        User u = userSession.getLoggedUser();
+        u.setName(name);
+        u.setSurname(surname);
+        u.setAllergens(allergens);
+        u.setInfo(info);
+        usersRepository.flush();
+        if(avatarFile != null)
+        imageService.saveImage("avatars", u.getId(), avatarFile);
+        if(backgroundFile != null)
+        imageService.saveImage("backgrounds", u.getId(), backgroundFile);
+        response.sendRedirect("profile");
+
+      
+    }
     /*@PostMapping("/uploadImage")
     public void uploadImage(Model model, User user, @RequestParam MultipartFile fileAvatarProfile) throws IOException {
         User actual =  userSession.getLoggedUser();
