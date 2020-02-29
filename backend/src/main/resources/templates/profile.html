@@ -13,7 +13,7 @@
   <link rel="icon" type="image/png" href="/images/icons/instarecipes.png" />
 
   <!-- Custom fonts for this theme -->
- 
+
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
@@ -28,7 +28,7 @@
   <!-- Theme CSS -->
   <link href="/css/freelancer.css" rel="stylesheet">
   <link href="/css/modern-business.css" rel="stylesheet">
- 
+
   <!--Graphics xd-->
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
@@ -40,15 +40,15 @@
     <div class="container" style="margin-left: 30px;">
       <div id="img-navbar-container">
         <img class="img-navbar d-flex mr-3 rounded-circle profile-border"
-          src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="">
+          src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="" style="height: 50px; object-fit: fill;">
       </div>
-      <a class="navbar-brand js-scroll-trigger" href="/profile" style="font-family: 'Pacifico';";>&nbsp;Profile</a>
+      <a class="navbar-brand js-scroll-trigger" href="/profile" style="font-family: 'Pacifico';" ;>&nbsp;Profile</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
         type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"><i class="fa fa-bars" style="font-size: x-large;"></i></span>
       </button>
-      <ul class="navbar-nav ml-auto" style="margin-right: 13%;">   
+      <ul class="navbar-nav ml-auto" style="margin-right: 13%;">
       </ul>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto" style="margin-right: 28%;">
@@ -61,7 +61,7 @@
                 style="font-size: xx-large;"></i></a>
           </li>
           {{/logged}}
-          <li class="nav-item col-2" style="max-width: 100%;"> 
+          <li class="nav-item col-2" style="max-width: 100%;">
             <a class="nav-link" href="/ranking"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
           </li>
           <li class="nav-item col-2" style="max-width: 100%;">
@@ -134,9 +134,9 @@
         <div class="container d-flex align-items-center flex-column">
           <!-- Masthead Avatar Image -->
           <div class="rounded-circle">
-            <img style="object-fit: cover;" class="masthead-avatar mb-5 d-flex mr-3 profile-border"
-              src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="Show profile photo" data-toggle="modal"
-              data-target="#showAvatar">
+            <img class="masthead-avatar mb-5 d-flex mr-3 profile-border" src="/temp/avatars/image-{{actualUser.id}}.jpg"
+              alt="Show profile photo" data-toggle="modal" data-target="#showAvatar"
+              style="object-fit: fill; border-radius: 150px; height: 220px;">
           </div>
           <div style="position: relative;width: 100%;height: fit-content;">
             <!-- Request ingredient/category button -->
@@ -170,24 +170,24 @@
             <p class="masthead-subheading font-weight-light mb-0">{{actualUser.info}}</p>
           </div>
           {{#disable}}
-            {{#followButton}}
-            <div class="unfollow-div-button" style="background-color: transparent;">
-              <form action="/unfollowAction/{{id}}" method="post">
-                <button type="submit" class="btn btn-primary"
+          {{#followButton}}
+          <div class="unfollow-div-button" style="background-color: transparent;">
+            <form action="/unfollowAction/{{id}}" method="post">
+              <button type="submit" class="btn btn-primary"
                 style="background-color: white; color: #1abc9c;">Following</button>
-                <input type="hidden" name="_csrf" value="{{token}}" />
-              </form>
-            </div>
-            {{/followButton}}
-            {{^followButton}}
-            <div class="follow-div-button" style="background-color: transparent;">
-              <form action="/followAction/{{id}}" method="post">
-                <button type="submit" class="btn btn-primary"
-                  style="background-color: #1abc9c; color: white;">Follow</button>
-                  <input type="hidden" name="_csrf" value="{{token}}" />
-              </form>
-            </div>
-            {{/followButton}}
+              <input type="hidden" name="_csrf" value="{{token}}" />
+            </form>
+          </div>
+          {{/followButton}}
+          {{^followButton}}
+          <div class="follow-div-button" style="background-color: transparent;">
+            <form action="/followAction/{{id}}" method="post">
+              <button type="submit" class="btn btn-primary"
+                style="background-color: #1abc9c; color: white;">Follow</button>
+              <input type="hidden" name="_csrf" value="{{token}}" />
+            </form>
+          </div>
+          {{/followButton}}
           {{/disable}}
           <!-- Statistics button pannel -->
           <div class="publications-modal modal fade" id="opened-stadistics-button" tabindex="-1" role="dialog"
@@ -424,41 +424,113 @@
         <div id="open-add-button" class='flotating-button'>
           <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-add-button"
             id="load-image-form" style="width: max-content">
-            <img src='images/icons/settings.png' width="50%" style="height: 50px; width: 50px;" />
+            <i class="fas fa-users-cog fa-5x"></i>
           </div>
         </div>
 
-        <!-- Pop up settings(add avatar and background) -->
+        <!-- Pop up settings(add avatar, background, bio and allergens) -->
 
         <div class="publications-modal modal fade" id="opened-add-button" tabindex="-1" role="dialog"
           aria-labelledby="publicationsModal6Label" aria-hidden="true">
-          <div class="modal-dialog modal-xl" style="width: 70%;" role="document">
-            <div class="modal-content" style="width: 85%; margin: 3%; ">
-              <form method="post" action="/uploadImage" enctype="multipart/form-data">
-
-                <div class="form-group" style="margin: 5%;">
-                  <div class="flex-col-c">
-                    <h1 style="color: black; text-align: center ;">Settings</h1>
-                  </div>
-                  <div class="form-group" style="background-color: #86c0b4; border-radius: 10px; margin: 5%; padding-bottom: 3%;">
-                    <!-- Load avatar and background -->
-
-                    <div class="col-lg-30" style="padding: 3%;">
-                      <span class="input-group-text" style="margin-bottom: 5px; font-family: cursive;">Upload a profile pic</span>
-                      <input type="file" name="fileAvatarProfile" accept=".jpg, .jpeg"/>
+          <!--change id-->
+          <div id="example" class="modal-dialog modal-xl" style="width: 60%;" role="document">
+            <div class="modal-content">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">
+                  <i class="fas fa-times"></i>
+                </span>
+              </button>
+              <div class="modal-body text-center">
+                <div class="container">
+                  <!-- publications Modal - Title -->
+                  <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Settings</h2>
+                  <!-- Icon Divider -->
+                  <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon">
+                      <i class="fas fa-users-cog"></i>
                     </div>
+                    <div class="divider-custom-line"></div>
+                  </div>
+                  <!-- Form -->
+                  <form method="post" action="/settings" enctype="multipart/form-data">
+                    <div class="row">
+                      <div class="col-10" style="justify-content: center; height: 100%;">
+                        <!-- Username -->
+                        <div class="wrap-input50 m-b-23" style="text-align: initial;">
 
-                    <div class="col-lg-30 " style="padding: 3%;"> 
-                      <span class="input-group-text" style="margin-bottom: 5px; font-family: cursive;">Upload a background image for your profile</span>
-                      <input class="form-control-file" type="file" name="fileBackground" accept=".jpg, .jpeg" />
+                          <h3 class="text-secondary"> <i class="fas fa-user"
+                              style="size: 50px;  margin-right: 20px;"></i>{{actualUser.username}}</h3>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="wrap-input50 m-b-23" style="text-align: initial;">
+                          <h3 class="text-secondary"><i class="fas fa-mail-bulk"
+                              style="size: 50px; margin-right: 15px;"></i>{{actualUser.email}}</h3>
+
+                        </div>
+                        <hr>
+                        <!-- Bio -->
+                        <div class="wrap-input50 m-b-23" style="text-align: initial; margin-top: 3%;">
+                          <h3 class="underlined-text text-secondary">Bio</h3>
+                          <textarea type="text" name="info"
+                            style="padding:10px;width: 100%;height: 100px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
+                            placeholder="Type your bio here.." required></textarea>
+                        </div>
+                        <!--Avatar-->
+                        <div class="form-group" style="margin-bottom: 5%;">
+                          <h3 class="underlined-text text-secondary">Upload a profile pic</h3>
+                          <div>
+                            <p id="no-such-image">No such image selected yet</p>
+                            <label for="file-input" class="btn-outline-primary"
+                              style="border-radius:0.5rem;
+                            border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:15%;cursor:pointer">
+                              <input id="file-input" hidden type="file" name="fileAvatar" accept=".jpg, .jpeg" />
+                              <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
+                            </label>
+                          </div>
+                        </div>
+                        <img id="preview-img-file" src="" class="img-blur"
+                          style="object-fit:cover;height:150px;width:50%;border-radius: 0.5rem;" hidden />
+                        <!--Background-->
+                        <div class="form-group" style="margin: 10%;">
+                          <h3 class="underlined-text text-secondary">Select a background image</h3>
+                          <div>
+                            <p id="no-bg-image">No such image selected yet</p>
+                            <label for="bg-input" class="btn-outline-primary"
+                              style="border-radius:0.5rem;
+                            border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:15%;cursor:pointer">
+                              <input id="bg-input" hidden type="file" name="fileBackground" accept=".jpg, .jpeg" />
+                              <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
+                            </label>
+                            <img id="preview-bg-file" src="" class="img-blur2"
+                              style="object-fit:cover;height:80px;width:100%;border-radius: 0.5rem;" hidden />
+                          </div>
+                        </div>
+
+                        <!--Allergens-->
+                        <div class="wrap-input100 validate-input m-b-20">
+                          <table id="AllergensTable">
+                            <h3 class="label-input100" style="text-align:center;">Allergens</h3>
+                            <input name="allergens" list="allergenslist" class="form-control" type="text"
+                              placeholder="Select an allergen.." onkeypress="return false;">
+                            <datalist id="allergenslist">
+                              {{#allergensSignUp}}
+                              <option value="{{allergen}}">{{allergen}}</option>
+                              {{/allergensSignUp}}
+                            </datalist>
+                          </table>
+                        </div>
+                      </div>
                     </div>
-                    
-                    <div class="send-btn" style="text-align: center;">
-                    <button type="submit" class="btn mb-2">Send</button>
-                  </div>
-                  </div>
+                    <button id="post-recipe" type='submit' class="btn btn-primary"
+                      style="margin-top: 20px; height: 50px;width: 10%;">
+                      Post
+                    </button>
+                    <input type="hidden" name="_csrf" value="{{token}}" />
+                  </form>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -1023,6 +1095,37 @@
   <script src="/js/main2.js"></script>
   <script src="/js/admin_Profile.js"></script>
   <script src="/js/statistics.js"></script>
+  <script>
+    document.getElementById('file-input').onchange = function (evt) {
+      var tgt = evt.target || window.event.srcElement,
+        files = tgt.files;
+      // FileReader support
+      if (FileReader && files && files.length) {
+        var fr = new FileReader();
+        fr.onload = function () {
+          document.getElementById("no-such-image").setAttribute("hidden", "");
+          document.getElementById("preview-img-file").removeAttribute("hidden");
+          document.getElementById("preview-img-file").src = fr.result;
+        }
+        fr.readAsDataURL(files[0]);
+      }
+    }
+
+    document.getElementById('bg-input').onchange = function (evt) {
+      var tar = evt.target || window.event.srcElement,
+        files = tar.files;
+      if (FileReader && files && files.length) {
+        var fre = new FileReader();
+        fre.onload = function () {
+          document.getElementById("no-bg-image").setAttribute("hidden", "");
+          document.getElementById("preview-bg-file").removeAttribute("hidden");
+          document.getElementById("preview-bg-file").src = fre.result;
+        }
+        fre.readAsDataURL(files[0]);
+      }
+
+    }
+  </script>
 
 </body>
 
