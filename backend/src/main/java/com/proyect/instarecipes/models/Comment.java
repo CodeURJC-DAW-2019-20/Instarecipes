@@ -7,9 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Comment{
@@ -17,10 +17,10 @@ public class Comment{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     private User userComment;
     
-    @Column(nullable = false)
+    @Column(nullable = false,length = 500)
     private String content;
 
     private boolean hasSubcomments;
@@ -32,18 +32,23 @@ public class Comment{
     @ManyToOne
     private Recipe recipe;
 
-    private long likes;
+    @ManyToMany
+    private Set<User> usersLiked;
 
+    private int likes; //THESE IS ONLY AN AUX
+    private boolean liked;
+    
     public Comment() {}
 
-    public Comment(User userComment, String content, Set<Comment> subComments, long likes, Recipe recipe, boolean hasSubcomments, boolean isSubcomment) {
+    public Comment(User userComment, String content, Set<Comment> subComments,
+     Recipe recipe, boolean hasSubcomments, boolean isSubcomment, Set<User> usersLiked) {
         this.userComment = userComment;
         this.content = content;
         this.subComments = subComments;
-        this.likes = likes;
         this.recipe = recipe;
         this.hasSubcomments = hasSubcomments;
         this.isSubcomment = isSubcomment;
+        this.usersLiked = usersLiked;
     }
 
     public Long getId() {
@@ -68,14 +73,6 @@ public class Comment{
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public long getLikes() {
-        return likes;
-    }
-
-    public void setLikes(long likes) {
-        this.likes = likes;
     }
 
     public Recipe getRecipe() {
@@ -109,5 +106,36 @@ public class Comment{
     public void setSubcomment(boolean isSubcomment) {
         this.isSubcomment = isSubcomment;
     }
+
+    public Set<User> getUsersLiked() {
+        return usersLiked;
+    }
+
+    public void setUsersLiked(Set<User> usersLiked) {
+        this.usersLiked = usersLiked;
+    }
+
+    public int getLikes() {
+        return this.likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes += likes;
+    }
+
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public void setLiked(boolean liked) {
+        this.liked = liked;
+    }
     
+    public void removeLikeUser(User u){
+        usersLiked.remove(u);
+    }
+
+	public void addLikeUser(User u) {
+        usersLiked.add(u);
+	}
 }

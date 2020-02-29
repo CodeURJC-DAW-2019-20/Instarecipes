@@ -58,7 +58,7 @@
         </ul>
         <form class="example" action="search.html" >
           <input type="text" placeholder="Search.." name="search">
-          <button type="submit"  style="background-color: #1abc9c;"><i class="fa fa-search""></i></button>
+          <button type="submit"  style="background-color: #1abc9c;"><i class="fa fa-search"></i></button>
         </form>
       </div>
     </div>
@@ -243,19 +243,115 @@
           <h5 class="card-header">Leave your comment:</h5>
           <div class="card-body">
             <form method="post" action="/postComment/{{id}}">
+              <div id="commentCountChar"></div>
               <div class="form-group">
-                <!-- THIS IS THE CONTENT -->
-                <textarea id="areaComment" class="form-control" name="content" rows="3"></textarea>
+                {{#logged}}
+                  <!-- THIS IS THE CONTENT -->
+                  <textarea id="areaComment" onkeyup="commentCountChar(this)" class="form-control" name="content" rows="3"></textarea>
+                {{/logged}}
+                {{^logged}}
+                  <!-- THIS IS THE CONTENT -->
+                  <textarea disabled class="form-control" rows="3">You must login before comment</textarea>
+                {{/logged}}
               </div>
               <!-- THIS IS THE PARENT -->
               <input id="parentComment" name="parentComment" hidden/>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              {{#logged}}
+                <button type="submit" class="btn btn-primary">Submit</button>
+              {{/logged}}
+              {{^logged}}
+                <button disabled type="submit" class="btn btn-primary">Submit</button>
+              {{/logged}}
               <input type="hidden" name="_csrf" value="{{token}}"/>
             </form>
           </div>
         </div>
-        {{#comments}}
-          {{#hasSubcomments}}
+      {{#comments}}
+        {{#hasSubcomments}}
+          <!-- Comment with nested comments -->
+          <div class="media mb-4">
+            <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" src="/temp/avatars/image-{{userComment.id}}.jpg" alt=""/>
+            <div class="media-body">
+              <h5 class="mt-0">{{userComment.name}}&nbsp;{{userComment.surname}}</h5>
+              <input readonly type="text" class="mt-0" value="@{{userComment.username}}" style="border-width: 0px;" id="userComment{{userComment.id}}"></input>
+              <p class="mt-0">{{content}}</p>
+              <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
+                <div class="col-4" style="height: 100%;">
+                  <p style="top: 0; align-self: center;">{{likes}}</p>
+                </div>
+                {{#logged}}
+                  <div class="col-4" style="cursor: pointer; height: 100%;">
+                    {{#isLiked}}
+                      <form action="/unlikeComment/{{id}}" method="POST">
+                        <button type="submit" style="width: inherit;border: 0px;">
+                          <img class="focusHeart" src="../images/icons/like_pressed.png" style="width: 20px;" alt="">
+                        </button>
+                        <input name="id_recipe" value="{{recipe.id}}" hidden/>
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                      </form>
+                      {{/isLiked}}
+                      {{^isLiked}}
+                      <form action="/likeComment/{{id}}" method="POST">
+                        <button type="submit" style="width: inherit;border: 0px;">
+                          <img class="focusHeart" src="../images/icons/like_unpressed.png" style="width: 20px;" alt="">
+                        </button>
+                        <input name="id_recipe" value="{{recipe.id}}" hidden/>
+                        <input type="hidden" name="_csrf" value="{{token}}"/>
+                      </form>
+                    {{/isLiked}}
+                  </div>
+                {{/logged}}
+                <div class="col-4" style="height: 100%;">
+                  <a href="#comments-section" onclick="parentComment({{userComment.id}},{{id}})"> <!-- LEAVE THIS AS AN ERROR, NOT PROBLEM-->
+                    <img src="../images/icons/dialogue.png" height="100%" alt="">
+                  </a>
+                </div>
+              </div>
+              {{^isSubcomment}}
+                {{#subComments}}
+                <!-- Subcomment -->
+                <div class="media mt-4">
+                  <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" src="/temp/avatars/image-{{userComment.id}}.jpg" alt=""/>
+                  <div class="media-body">
+                    <h5 class="mt-0">{{userComment.name}}&nbsp;{{userComment.surname}}</h5>
+                    <input readonly type="text" class="mt-0" value="@{{userComment.username}}" style="border-width: 0px;" id="userComment{{userComment.id}}"></input>
+                    <p class="mt-0">{{content}}</p>
+                    <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
+                      <div class="col-4" style="height: 100%;">
+                        <p style="top: 0; align-self: center;">{{likes}}</p>
+                      </div>
+                      {{#logged}}
+                        <div class="col-4" style="cursor: pointer; height: 100%;">
+                          {{#isLiked}}
+                          <form action="/unlikeComment/{{id}}" method="POST">
+                            <button type="submit" style="width: inherit;border: 0px;">
+                              <img class="focusHeart" src="../images/icons/like_pressed.png" style="width: 20px;" alt="">
+                            </button>
+                            <input name="id_recipe" value="{{recipe.id}}" hidden/>
+                            <input type="hidden" name="_csrf" value="{{token}}"/>
+                          </form>
+                          {{/isLiked}}
+                          {{^isLiked}}
+                          <form action="/likeComment/{{id}}" method="POST">
+                            <button type="submit" style="width: inherit;border: 0px;">
+                              <img class="focusHeart" src="../images/icons/like_unpressed.png" style="width: 20px;" alt="">
+                            </button>
+                            <input name="id_recipe" value="{{recipe.id}}" hidden/>
+                            <input type="hidden" name="_csrf" value="{{token}}"/>
+                          </form>
+                          {{/isLiked}}
+                        </div>
+                      {{/logged}}
+                    </div>
+                  </div>
+                </div>
+                {{/subComments}}
+              {{/isSubcomment}}
+            </div>
+          </div>
+        {{/hasSubcomments}}
+        {{^hasSubcomments}}
+          {{^isSubcomment}}
             <!-- Comment with nested comments -->
             <div class="media mb-4">
               <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" src="/temp/avatars/image-{{userComment.id}}.jpg" alt=""/>
@@ -267,71 +363,39 @@
                   <div class="col-4" style="height: 100%;">
                     <p style="top: 0; align-self: center;">{{likes}}</p>
                   </div>
-                  <div class="col-4" style="cursor: pointer; height: 100%;">
-                    <img class="focusHeart" src="../images/icons/like_unpressed.png" height="100%" alt="">
-                  </div>
+                  {{#logged}}
+                    <div class="col-4" style="cursor: pointer; height: 100%;">
+                      {{#isLiked}}
+                        <form action="/unlikeComment/{{id}}" method="POST">
+                          <button type="submit" style="width: inherit;border: 0px;">
+                            <img class="focusHeart" src="../images/icons/like_pressed.png" style="width: 20px;" alt="">
+                          </button>
+                          <input name="id_recipe" value="{{recipe.id}}" hidden/>
+                          <input type="hidden" name="_csrf" value="{{token}}"/>
+                        </form>
+                        {{/isLiked}}
+                        {{^isLiked}}
+                        <form action="/likeComment/{{id}}" method="POST">
+                          <button type="submit" style="width: inherit;border: 0px;">
+                            <img class="focusHeart" src="../images/icons/like_unpressed.png" style="width: 20px;" alt="">
+                          </button>
+                          <input name="id_recipe" value="{{recipe.id}}" hidden/>
+                          <input type="hidden" name="_csrf" value="{{token}}"/>
+                        </form>
+                        {{/isLiked}}
+                    </div>
+                  {{/logged}}
                   <div class="col-4" style="height: 100%;">
-                    <a href="#comments-section" onclick="parentComment({{userComment.id}})"> <!-- LEAVE THIS AS AN ERROR, NOT PROBLEM-->
+                    <a href="#comments-section" onclick="parentComment({{userComment.id}},{{id}})"> <!-- LEAVE THIS AS AN ERROR, NOT PROBLEM-->
                       <img src="../images/icons/dialogue.png" height="100%" alt="">
                     </a>
                   </div>
                 </div>
-                {{^isSubcomment}}
-                  {{#subComments}}
-                  <!-- Subcomment -->
-                  <div class="media mt-4">
-                    <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" src="/temp/avatars/image-{{userComment.id}}.jpg" alt=""/>
-                    <div class="media-body">
-                      <h5 class="mt-0">{{userComment.name}}&nbsp;{{userComment.surname}}</h5>
-                      <input readonly type="text" class="mt-0" value="@{{userComment.username}}" style="border-width: 0px;" id="userComment{{userComment.id}}"></input>
-                      <p class="mt-0">{{content}}</p>
-                      <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
-                        <div class="col-4" style="height: 100%;">
-                          <p style="top: 0; align-self: center;">{{likes}}</p>
-                        </div>
-                        <div class="col-4" style="cursor: pointer; height: 100%;">
-                          <img class="focusHeart" src="../images/icons/like_unpressed.png" height="100%" alt="">
-                        </div>
-                        <div class="col-4" style="height: 100%;">
-                          <a href="#comments-section" onclick="parentComment({{userComment.id}})"> <!-- LEAVE THIS AS AN ERROR, NOT PROBLEM-->
-                            <img src="../images/icons/dialogue.png" height="100%" alt="">
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {{/subComments}}
-                {{/isSubcomment}}
               </div>
             </div>
-          {{/hasSubcomments}}
-          {{^hasSubcomments}}
-            {{^isSubcomment}}
-              <!-- Comment with nested comments -->
-              <div class="media mb-4">
-                <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" src="/temp/avatars/image-{{userComment.id}}.jpg" alt=""/>
-                <div class="media-body">
-                  <h5 class="mt-0">{{userComment.name}}&nbsp;{{userComment.surname}}</h5>
-                  <input readonly type="text" class="mt-0" value="@{{userComment.username}}" style="border-width: 0px;" id="userComment{{userComment.id}}"></input>
-                  <p class="mt-0">{{content}}</p>
-                  <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
-                    <div class="col-4" style="height: 100%;">
-                      <p style="top: 0; align-self: center;">{{likes}}</p>
-                    </div>
-                    <div class="col-4" style="cursor: pointer; height: 100%;">
-                      <img class="focusHeart" src="../images/icons/like_unpressed.png" height="100%" alt="">
-                    </div>
-                    <div class="col-4" style="height: 100%;">
-                      <a href="#comments-section" onclick="parentComment({{userComment.id}})"> <!-- LEAVE THIS AS AN ERROR, NOT PROBLEM-->
-                        <img src="../images/icons/dialogue.png" height="100%" alt="">
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            {{/isSubcomment}}
-          {{/hasSubcomments}}
-        {{/comments}}
+          {{/isSubcomment}}
+        {{/hasSubcomments}}
+      {{/comments}}
       <hr width="50%">
       <!-- Ajax load more button -->
       <div class="loadmore-container">

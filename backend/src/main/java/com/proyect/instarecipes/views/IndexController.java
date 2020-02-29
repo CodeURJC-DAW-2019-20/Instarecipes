@@ -65,6 +65,10 @@ public class IndexController {
     public String indexPage(Model model) {
         //we create a list based on the database info!
         List<Recipe> recipes = recipesRepository.findAll();
+        for(Recipe r : recipes){
+            r.setN_comments(commentsRepository.countByRecipeId(r));
+        }
+        recipesRepository.flush();
         List<Ingredient> allIngredients = ingredientsRepository.findAll();
         List<CookingStyle> allCookingStyles = cookingStylesRepository.findAll();
         List<Category> allCategories = categoriesRepository.findAll();
@@ -89,6 +93,10 @@ public class IndexController {
     @GetMapping("/index")
     public String indexedPage(Model model) {
         List<Recipe> recipes = recipesRepository.findAll();
+        for(Recipe r : recipes){
+            r.setN_comments(commentsRepository.countByRecipeId(r));
+        }
+        recipesRepository.flush();
         List<Ingredient> allIngredients = ingredientsRepository.findAll();
         List<CookingStyle> allCookingStyles = cookingStylesRepository.findAll();
         List<Category> allCategories = categoriesRepository.findAll();

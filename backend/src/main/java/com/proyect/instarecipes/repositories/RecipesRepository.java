@@ -22,7 +22,7 @@ public interface RecipesRepository extends JpaRepository<Recipe, Long> {
     @Query("SELECT r FROM Recipe r WHERE r.id = :id_recipe")
     Recipe findRecipeById(Long id_recipe);
     
-    @Query("SELECT r.id, r.title, r.description, r.username.id, r.username.username, r.username.name, r.username.surname, r.likes" 
+    @Query("SELECT r.id, r.title, r.description, r.username.id, r.username.username, r.username.name, r.username.surname, r.likes, r.n_comments" 
     +" FROM Recipe r ORDER BY r.id DESC")
     Page<Recipe> findAllRecipes(Pageable page); 
 
