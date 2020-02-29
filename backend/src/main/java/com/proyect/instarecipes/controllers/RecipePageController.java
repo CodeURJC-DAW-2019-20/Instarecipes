@@ -67,7 +67,7 @@ public class RecipePageController {
         model.addAttribute("steps", steps);
 
         // Comments
-        List<Comment> comments = commentsRepository.findAllByRecipe(recipe);
+        List<Comment> comments = commentsRepository.findAllByRecipeOrderByLikes(recipe);
         System.out.println("Comentarios: " + comments.size());
         model.addAttribute("n_comments", comments.size());
         
@@ -77,10 +77,10 @@ public class RecipePageController {
                 boolean aux = false;
                 for(User uAux : comments.get(i).getUsersLiked()){
                     if(uAux.getId() == actual.getId()){
-                        System.out.println("SOY IGUAL");
                         aux = true;
                     }
                 }
+                System.out.println("Order: " + comments.get(i).getLikes());
                 comments.get(i).setLiked(aux);
             }
         }
@@ -105,9 +105,7 @@ public class RecipePageController {
                 commentsRepository.save(comment);
                 Set<Comment> ejem = new HashSet<>();
                 ejem = pComment.get().getSubComments();
-                System.out.println("Precom: " + ejem);
                 ejem.add(comment);
-                System.out.println("Postcom: " + ejem);
                 if(!pComment.get().isSubcomment()){
                     commentsRepository.setParentHasComment(true, parentComment);
                 }
@@ -119,22 +117,34 @@ public class RecipePageController {
             comment = new Comment(u, content, null, r, false, false, null);
             if(content != ""){
                 commentsRepository.save(comment);
-                System.out.println("Comentario actualizado");
             }
         }
+        commentsRepository.flush();
         response.sendRedirect("../recipes/"+id);
     }
     
     @PostMapping("/likeComment/{id}")
-    public void likeComment(@PathVariable Long id, Model model, @RequestParam String content, HttpServletResponse response,
-            @RequestParam(required = false, value = "parentComment") Long parentComment) throws IOException {
+    public void likeComment(@PathVariable Long id, @RequestParam Long id_recipe, HttpServletResponse response) throws IOException {
         
-        Comment comment = null;
-        User u = userSession.getLoggedUser();
-        Recipe r = recipesRepository.findRecipeById(id);
+        Optional<Comment> comment = commentsRepository.findById(id);
+        User actual = userSession.getLoggedUser();
+        Set<User> newList = comment.get().getUsersLiked();
+        boolean aux = true;
+        for(User uAux : newList){
+            if(uAux.getId() == actual.getId()){
+                aux = false;
+                break;
+            }
+        }
+        if(aux){
+            comment.get().setLiked(true);
+            comment.get().setLikes(1);
+            comment.get().addLikeUser(actual);
+            comment.get().setUsersLiked(newList);
+            commentsRepository.flush();
+        }
         
-        
-        response.sendRedirect("../recipes/"+id);
+        response.sendRedirect("../recipes/"+id_recipe);
     }
 
     @PostMapping("/unlikeComment/{id}")
@@ -142,15 +152,15 @@ public class RecipePageController {
         
         Optional<Comment> comment = commentsRepository.findById(id);
         User actual = userSession.getLoggedUser();
+        Set<User> newList = comment.get().getUsersLiked();
 
-        for(User uAux : comment.get().getUsersLiked()){
+        for(User uAux : newList){
             if(uAux.getId() == actual.getId()){
                 comment.get().setLiked(false);
-                System.out.println("Eliminado id: " + comment.get().getId());
-                System.out.println("Size 1: " + comment.get().getUsersLiked().size());
-                comment.get().removeLikeUser(actual);
-                // commentsRepository.deleteLikeComment()
-                System.out.println("Size 2: " + comment.get().getUsersLiked().size());
+                comment.get().setLikes(-1);
+                comment.get().removeLikeUser(uAux);
+                comment.get().setUsersLiked(newList);
+                commentsRepository.flush();
                 break;
             }
         }

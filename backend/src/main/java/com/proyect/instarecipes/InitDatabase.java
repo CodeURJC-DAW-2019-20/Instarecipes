@@ -327,15 +327,20 @@ public class InitDatabase {
 
         /*              ALL THIS IS ONLY FOR RECIPE NUMBER 1               */
         Comment comment1 = new Comment(u3, "Cool", null, r1, false, false, likes0);
+        comment1.setLikes(2);
         Comment comment2 = new Comment(u1, "This is awesome", null, r1, false, false, likes0);
+        comment2.setLikes(2);
         
         Comment comment3 = new Comment(u2, "Do you eat cheesse?", null, r1, false, true, likes1);
+        comment3.setLikes(3);
         Comment comment4 = new Comment(u1, "Yes i do", null, r1, false, true, null);
         Comment comment5 = new Comment(u4, "Lol what a conversation, so original ADMINLIKE", null, r1, false, true, likes2);
+        comment5.setLikes(4);
         Comment comment6 = new Comment(u1, "Shut the fk up idiot", null, r1, false, true, null);
 
         Comment comment7 = new Comment(u2, "What happened in step 3?", null, r1, false, false, null);
         Comment comment8 = new Comment(u1, "Oh yes the comments are alright now ADMINLIKE", null, r1, true, false, likes2);
+        comment8.setLikes(4);
         Comment comment9 = new Comment(u4, "Hello @trevodrap", null, r1, true, false, null);
         Comment comment10 = new Comment(u1, "Hi m8 subscribe @trevodrap in my youtube channel", null, r1, false, true, null);
         

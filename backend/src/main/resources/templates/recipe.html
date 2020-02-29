@@ -264,7 +264,7 @@
                   <div class="col-4" style="cursor: pointer; height: 100%;">
                     {{#isLiked}}
                       <form action="/unlikeComment/{{id}}" method="POST">
-                        <button type="submit" style="width: inherit;">
+                        <button type="submit" style="width: inherit;border: 0px;">
                           <img class="focusHeart" src="../images/icons/like_pressed.png" style="width: 20px;" alt="">
                         </button>
                         <input name="id_recipe" value="{{recipe.id}}" hidden/>
@@ -273,7 +273,7 @@
                       {{/isLiked}}
                       {{^isLiked}}
                       <form action="/likeComment/{{id}}" method="POST">
-                        <button type="submit" style="width: inherit;">
+                        <button type="submit" style="width: inherit;border: 0px;">
                           <img class="focusHeart" src="../images/icons/like_unpressed.png" style="width: 20px;" alt="">
                         </button>
                         <input name="id_recipe" value="{{recipe.id}}" hidden/>
@@ -305,7 +305,7 @@
                         <div class="col-4" style="cursor: pointer; height: 100%;">
                           {{#isLiked}}
                           <form action="/unlikeComment/{{id}}" method="POST">
-                            <button type="submit" style="width: inherit;">
+                            <button type="submit" style="width: inherit;border: 0px;">
                               <img class="focusHeart" src="../images/icons/like_pressed.png" style="width: 20px;" alt="">
                             </button>
                             <input name="id_recipe" value="{{recipe.id}}" hidden/>
@@ -314,7 +314,7 @@
                           {{/isLiked}}
                           {{^isLiked}}
                           <form action="/likeComment/{{id}}" method="POST">
-                            <button type="submit" style="width: inherit;">
+                            <button type="submit" style="width: inherit;border: 0px;">
                               <img class="focusHeart" src="../images/icons/like_unpressed.png" style="width: 20px;" alt="">
                             </button>
                             <input name="id_recipe" value="{{recipe.id}}" hidden/>
@@ -348,7 +348,7 @@
                     <div class="col-4" style="cursor: pointer; height: 100%;">
                       {{#isLiked}}
                         <form action="/unlikeComment/{{id}}" method="POST">
-                          <button type="submit" style="width: inherit;">
+                          <button type="submit" style="width: inherit;border: 0px;">
                             <img class="focusHeart" src="../images/icons/like_pressed.png" style="width: 20px;" alt="">
                           </button>
                           <input name="id_recipe" value="{{recipe.id}}" hidden/>
@@ -357,7 +357,7 @@
                         {{/isLiked}}
                         {{^isLiked}}
                         <form action="/likeComment/{{id}}" method="POST">
-                          <button type="submit" style="width: inherit;">
+                          <button type="submit" style="width: inherit;border: 0px;">
                             <img class="focusHeart" src="../images/icons/like_unpressed.png" style="width: 20px;" alt="">
                           </button>
                           <input name="id_recipe" value="{{recipe.id}}" hidden/>

@@ -20,12 +20,11 @@ public interface CommentsRepository extends JpaRepository<Comment, Long> {
     @Query("SELECT COUNT(*) FROM Comment c WHERE c.recipe= :id_recipe") 
     int countByRecipeId(Recipe id_recipe);
 
+
     List<Comment> findAllByRecipe(Recipe recipe);
-    
-    // @Transactional
-    // @Modifying
-    // @Query("UPDATE Comment c SET c.subComments = :new_list WHERE c.id = :cid")
-	// void newSubcomments(@Param("new_list") Set<Comment> new_list, @Param("cid") Long cid);
+
+    @Query("SELECT c FROM Comment c WHERE c.recipe=:recipe ORDER BY c.likes DESC")
+    List<Comment> findAllByRecipeOrderByLikes(Recipe recipe);
 
     @Query("SELECT c FROM Comment c WHERE c.id = :cid")
     Set<Comment> findSubCommentsById(Long cid);
@@ -37,5 +36,8 @@ public interface CommentsRepository extends JpaRepository<Comment, Long> {
 
     @Query("SELECT cl.usersLiked FROM Comment cl WHERE cl.id = :id")
 	Set<User> findLikeUsersList(Long id);
+
+    @Query("UPDATE Comment c SET c.usersLiked = :new_list WHERE c.id = :id_comment")
+	void updateLikesUsersList(Long id_comment, Set<User> new_list);
 
 }

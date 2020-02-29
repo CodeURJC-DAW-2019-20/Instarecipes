@@ -35,7 +35,7 @@ public class Comment{
     @ManyToMany
     private Set<User> usersLiked;
 
-    private int likes; //THIS IS ONLY AN AUX
+    private int likes; //THESE IS ONLY AN AUX
     private boolean liked;
     
     public Comment() {}
@@ -116,11 +116,11 @@ public class Comment{
     }
 
     public int getLikes() {
-        return usersLiked.size();
+        return this.likes;
     }
 
     public void setLikes(int likes) {
-        this.likes = likes;
+        this.likes += likes;
     }
 
     public boolean isLiked() {
@@ -134,4 +134,8 @@ public class Comment{
     public void removeLikeUser(User u){
         usersLiked.remove(u);
     }
+
+	public void addLikeUser(User u) {
+        usersLiked.add(u);
+	}
 }
