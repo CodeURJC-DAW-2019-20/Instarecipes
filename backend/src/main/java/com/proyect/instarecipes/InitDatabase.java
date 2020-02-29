@@ -3,9 +3,9 @@ package com.proyect.instarecipes;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.HashSet;
-import java.util.List;
+
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -88,6 +88,13 @@ public class InitDatabase {
         u3.setFollowing(following2);
         u4.setFollowing(following1);
 
+        //likes examples
+        Set<User> likes1 = groupStaff.groupLikes(u1,u2,u3);
+        Set<User> likes2 = groupStaff.groupLikes(u1,u3);
+        Set<User> likes3 = groupStaff.groupLikes(u2,u4);
+        Set<User> likes4 = groupStaff.groupLikes(u3);
+
+        
         //Avatar and backgrounds BOTS
         File avatarBots = new File("src/main/resources/static/images/icons/avatar.jpg");
         File backgroundBots = new File("src/main/resources/static/images/backgrounds/profile_background_example.jpeg");
@@ -251,15 +258,15 @@ public class InitDatabase {
         Set<Allergen> allergens5 = groupStaff.groupAllergens(a9); 
 
         Recipe r1 = new Recipe(u1, ingredients1, categories1, cookingStyles1, allergens1, "Homemade Pizza!", "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!", 
-        "15 min.", "Hard", 3);
+        "15 min.", "Hard", likes1);
         Recipe r2 = new Recipe(u1, ingredients2, categories2, cookingStyles2, allergens2, "Baked Fish with Lemon Cream Sauce", "Yup, just throw it all in one pan, bake it, and you end up with a tender juicy fish in a creamy lemon sauce.", 
-        "30 min.", "Hard", 10);
+        "30 min.", "Hard", likes2);
         Recipe r3 = new Recipe(u1, ingredients3, categories3, cookingStyles3, allergens3, "Thai Chicken Soup with Rice Noodles", "Cozy, comforting, and fragrant, this flavor-packed Thai chicken noodle soup will warm you right up.", 
-        "45 min.", "Hard", 22);
+        "45 min.", "Hard", likes3);
         Recipe r4 = new Recipe(u2, ingredients4, categories4, cookingStyles4, allergens5, "Avocado Salad", "This salad features ripe avocado slices covered in a fresh lime dressing, topped generously with a contrasting crisp-and-crunchy blend of chopped radish, onion, peppers, and herbs.", 
-        "15 min.", "Hard", 35);
+        "15 min.", "Hard", likes4);
         Recipe r5 = new Recipe(u2, ingredients5, categories2, cookingStyles4, allergens4, "Vodka Sauce Pasta (Pasta Party!)", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese.. And don't worry, It won't taste like vodka!", 
-        "1 h.", "Hard", 15);
+        "1 h.", "Hard", likes3);
 
         //Steps for r4(for example)
         Step step11 = new Step(r4, 1, "Preheat oven to 425 degrees F (220 degrees C). Lightly oil a large roasting pan.");
@@ -312,34 +319,34 @@ public class InitDatabase {
         
         //Comments: User, Content, Subcomments, Likes
         //template
-        Set<User> likes0 = new HashSet<>();
-        likes0.add(u1);
-        likes0.add(u2);
-        Set<User> likes1 = new HashSet<>();
-        likes1.add(u1);
-        likes1.add(u2);
-        likes1.add(u3);
-        Set<User> likes2 = new HashSet<>();
-        likes2.add(u1);
-        likes2.add(u2);
-        likes2.add(u3);
-        likes2.add(u4);
+        Set<User> likesC0 = new HashSet<>();
+        likesC0.add(u1);
+        likesC0.add(u2);
+        Set<User> likesC1 = new HashSet<>();
+        likesC1.add(u1);
+        likesC1.add(u2);
+        likesC1.add(u3);
+        Set<User> likesC2 = new HashSet<>();
+        likesC2.add(u1);
+        likesC2.add(u2);
+        likesC2.add(u3);
+        likesC2.add(u4);
 
         /*              ALL THIS IS ONLY FOR RECIPE NUMBER 1               */
-        Comment comment1 = new Comment(u3, "Cool", null, r1, false, false, likes0);
+        Comment comment1 = new Comment(u3, "Cool", null, r1, false, false, likesC0);
         comment1.setLikes(2);
-        Comment comment2 = new Comment(u1, "This is awesome", null, r1, false, false, likes0);
+        Comment comment2 = new Comment(u1, "This is awesome", null, r1, false, false, likesC0);
         comment2.setLikes(2);
         
-        Comment comment3 = new Comment(u2, "Do you eat cheesse?", null, r1, false, true, likes1);
+        Comment comment3 = new Comment(u2, "Do you eat cheesse?", null, r1, false, true, likesC1);
         comment3.setLikes(3);
         Comment comment4 = new Comment(u1, "Yes i do", null, r1, false, true, null);
-        Comment comment5 = new Comment(u4, "Lol what a conversation, so original ADMINLIKE", null, r1, false, true, likes2);
+        Comment comment5 = new Comment(u4, "Lol what a conversation, so original ADMINLIKE", null, r1, false, true, likesC2);
         comment5.setLikes(4);
         Comment comment6 = new Comment(u1, "Shut the fk up idiot", null, r1, false, true, null);
 
         Comment comment7 = new Comment(u2, "What happened in step 3?", null, r1, false, false, null);
-        Comment comment8 = new Comment(u1, "Oh yes the comments are alright now ADMINLIKE", null, r1, true, false, likes2);
+        Comment comment8 = new Comment(u1, "Oh yes the comments are alright now ADMINLIKE", null, r1, true, false, likesC2);
         comment8.setLikes(4);
         Comment comment9 = new Comment(u4, "Hello @trevodrap", null, r1, true, false, null);
         Comment comment10 = new Comment(u1, "Hi m8 subscribe @trevodrap in my youtube channel", null, r1, false, true, null);

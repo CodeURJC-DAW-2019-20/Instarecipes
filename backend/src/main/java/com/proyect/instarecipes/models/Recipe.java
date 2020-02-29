@@ -27,14 +27,16 @@ public class Recipe{
     private Set<CookingStyle> cookingStyles;
     @ManyToMany
     private Set<Allergen> allergens;
+    @ManyToMany
+    private Set<User> likesUsers;
 
     private String title;
     private String description;
     private String duration;
     private String difficulty;
     private boolean image;
-
     private int likes;
+
     private int n_comments;
     // private Image galery;
 
@@ -43,7 +45,7 @@ public class Recipe{
 
     //Constructor with all atributes
     public Recipe(User username, Set<Ingredient> ingredients, Set<Category> categories, Set<CookingStyle> cookingStyles,
-    Set<Allergen> allergens, String title, String description, String duration, String difficulty, int likes) {
+    Set<Allergen> allergens, String title, String description, String duration, String difficulty, Set<User> likesUsers) {
         this.username = username;
         this.ingredients = ingredients;
         this.categories = categories;
@@ -53,7 +55,8 @@ public class Recipe{
         this.duration = duration;
         this.difficulty = difficulty;
         this.allergens = allergens;
-        this.likes = likes;
+        this.likesUsers = likesUsers;
+        this.likes= likesUsers.size();
     }
     //GETTERS AND SETTERS
 
@@ -142,21 +145,35 @@ public class Recipe{
     public boolean getImage(){
         return this.image;
     }
-
-    public int getLikes() {
-        return likes;
-    }
-
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
-
     public int getN_comments() {
         return n_comments;
     }
 
     public void setN_comments(int n_comments) {
         this.n_comments = n_comments;
+    }
+
+	public Set<User> getLikesUsers() {
+		return likesUsers;
+	}
+	public void setLikesUsers(Set<User> likesUsers) {
+		this.likesUsers = likesUsers;
+	}
+
+    public int getLikes() {
+        likes = likesUsers.size();
+        return likes;
+    }
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+    public void addUser(User u){
+        likesUsers.add(u);
+        likes = likesUsers.size();
+    }
+    public void removeUser(User u){
+        likesUsers.remove(u);
+        likes= likesUsers.size();
     }
 
 }

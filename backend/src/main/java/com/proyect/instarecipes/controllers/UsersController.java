@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 
 import com.proyect.instarecipes.models.Recipe;
@@ -71,8 +70,7 @@ public class UsersController {
             Laiks.add(recipes.get(pubs).getLikes()); // List of every user recipe LIKES!!
             titles.add(recipes.get(pubs).getTitle());
         }
-        System.out.println(Laiks);
-        System.out.println(titles);
+
 
         model.addObject("n_publications", pubs);
         model.addObject("n_likes", likes);
@@ -82,12 +80,12 @@ public class UsersController {
         model.addObject("likesGraphics", titles);
 
         User u = userSession.getLoggedUser();
-        System.out.println("User: " + u);
+
         List<User> following = usersRepository.findFollowing(u.getUsername());
-        System.out.println("Following: " + following);
+
         boolean is_following = false;
         for (User user : following) {
-            System.out.println("User: " + user.getUsername());
+            
             if (user.getId() != id) {
                 is_following = false;
             } else {
@@ -148,19 +146,20 @@ public class UsersController {
     public void unfollowAction(@PathVariable Long id, Model model, HttpServletResponse response) throws IOException {
 
         User u1 = userSession.getLoggedUser();
-        System.out.println("Usuario 1: "+u1);
+       
         Optional<User> u2 = usersRepository.findById(id);
-        System.out.println("Usuario 1: "+u2.get());
+      
         List<User> followers_list = usersRepository.findFollowers(u1.getUsername());
         Set<User> followers=new HashSet<User>();
         for(User user:followers_list){
             followers.add(user);
         }
-        System.out.println("Usuario 1 followers: "+followers);
+        
         followers.add(u2.get());
+        //usersRepository.followers_update(u1.getId(), followers);
         // usersRepository.followers_update(u1.getId(), followers);
         //followers = usersRepository.findFollowers(u1.getUsername());
-        System.out.println("Usuario 1 followers actualizado: "+u1.getFollowers());
+        
         //u2.get().addFollowing(u1);
         
         

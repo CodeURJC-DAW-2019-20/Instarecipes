@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.Step;
 import com.proyect.instarecipes.models.User;
@@ -120,7 +122,6 @@ public class IndexController {
     public String signupPage(Model model){
         List<Allergen> allAllergensSingUp = allergensRepository.findAll();
         model.addAttribute("allergensSignUp", allAllergensSingUp);
-        System.out.println(allAllergensSingUp);
         
         return "signUp";
     }
@@ -140,15 +141,15 @@ public class IndexController {
 	}
 
     @PostMapping("/")
-    public String postRecipe(Model model, Recipe recipe, @RequestParam MultipartFile imageFile, 
+    public void postRecipe(Model model, Recipe recipe, @RequestParam MultipartFile imageFile, 
     @RequestParam String ingredientsString, @RequestParam String categoriesString, 
     @RequestParam String firstStepString, @RequestParam(required = false) String stepsString, 
     @RequestParam(required = false, value = "allImages") MultipartFile[] allImages, 
-    @RequestParam(required = false, value = "withImage") String withImage) throws IOException{
+    @RequestParam(required = false, value = "withImage") String withImage,HttpServletResponse response) throws IOException{
         
         Recipe r = recipe;
         int i = 2;
-        System.out.println("Booleanos: " + withImage);
+
 // Ingredients selector //
         List<String> listOfIngs = Arrays.asList(ingredientsString.split(","));
         Set<Ingredient> lastIngs = new HashSet<Ingredient>();
@@ -180,7 +181,7 @@ public class IndexController {
         if(withImage.length()>0){
             String stp = withImage.substring(0, withImage.length()-1);
             List<String> listOfBools = Arrays.asList(stp.split(","));
-            System.out.println("Array de booleanos: " + listOfBools);
+
             if(stepsString != null){
                 List<String> listOfSteps = Arrays.asList(stepsString.split("ab#12#45-3,"));
                 for(String steps : listOfSteps){
@@ -219,7 +220,7 @@ public class IndexController {
         model.addAttribute("allergensList", allAllergens);
         model.addAttribute("id", userSession.getLoggedUser().getId());
 
-        return "index";
+        response.sendRedirect("index");
     }
 
     public void personalFilter(Model model){
