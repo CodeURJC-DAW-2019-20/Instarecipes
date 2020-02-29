@@ -120,10 +120,17 @@
 						</div>
 						<div class="login100 p-l p-r p-t-25 " id="completeProfileDiv" style="display: none;">
 							<!-- Load image and select box -->
-							<div class="form-group">
-								<span class="label-input100">Upload a profile pic</span>
-								<input class="form-control-file" type="file" name="fileAvatar" accept=".jpg, .jpeg" />
-							</div>
+							   <!--Avatar-->
+							   <div class="form-group" style="margin: 10%;">
+								<h3 class="underlined-text text-secondary">Upload a profile pic</h3>
+								<div>								
+								  <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem;
+								  border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:15%;cursor:pointer">
+									<input id="file-input" hidden type="file" name="fileAvatar" accept=".jpg, .jpeg" />
+									<i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
+								  </label>
+								</div>
+							  </div>
 							<div class="wrap-input100 validate-input m-b-20">
 								<h3 class="label-input100" style="text-align:center;">Allergens</h3>
 								<input name="allergens" list="allergenslist" class="form-control" type="text" placeholder="Select an allergen.." onkeypress="return false;">
