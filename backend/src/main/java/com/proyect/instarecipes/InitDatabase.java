@@ -3,6 +3,9 @@ package com.proyect.instarecipes;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -309,19 +312,32 @@ public class InitDatabase {
         
         //Comments: User, Content, Subcomments, Likes
         //template
-        /*              ALL THIS IS ONLY FOR RECIPE NUMBER 1               */
-        Comment comment1 = new Comment(u3, "Cool", null, 3, r1, false, false);
-        Comment comment2 = new Comment(u1, "This is awesome", null, 1, r1, false, false);
-        
-                Comment comment3 = new Comment(u2, "Do you eat cheesse?", null, 2, r1, false, true);
-                Comment comment4 = new Comment(u1, "Yes i do", null, 4, r1, false, true);
-                Comment comment5 = new Comment(u4, "Lol what a conversation, so original", null, 7, r1, false, true);
-                Comment comment6 = new Comment(u1, "Shut the fk up idiot", null, 0, r1, false, true);
+        Set<User> likes0 = new HashSet<>();
+        likes0.add(u1);
+        likes0.add(u2);
+        Set<User> likes1 = new HashSet<>();
+        likes1.add(u1);
+        likes1.add(u2);
+        likes1.add(u3);
+        Set<User> likes2 = new HashSet<>();
+        likes2.add(u1);
+        likes2.add(u2);
+        likes2.add(u3);
+        likes2.add(u4);
 
-                Comment comment7 = new Comment(u2, "What happened in step 3?", null, 2, r1, false, false);
-                Comment comment8 = new Comment(u1, "Oh yes the comments are alright now", null, 4, r1, true, false);
-                Comment comment9 = new Comment(u4, "Hello @trevodrap", null, 7, r1, true, true);
-                Comment comment10 = new Comment(u1, "Hi m8 subscribe @trevodrap in my youtube channel", null, 0, r1, false, true);
+        /*              ALL THIS IS ONLY FOR RECIPE NUMBER 1               */
+        Comment comment1 = new Comment(u3, "Cool", null, r1, false, false, likes0);
+        Comment comment2 = new Comment(u1, "This is awesome", null, r1, false, false, likes0);
+        
+        Comment comment3 = new Comment(u2, "Do you eat cheesse?", null, r1, false, true, likes1);
+        Comment comment4 = new Comment(u1, "Yes i do", null, r1, false, true, null);
+        Comment comment5 = new Comment(u4, "Lol what a conversation, so original ADMINLIKE", null, r1, false, true, likes2);
+        Comment comment6 = new Comment(u1, "Shut the fk up idiot", null, r1, false, true, null);
+
+        Comment comment7 = new Comment(u2, "What happened in step 3?", null, r1, false, false, null);
+        Comment comment8 = new Comment(u1, "Oh yes the comments are alright now ADMINLIKE", null, r1, true, false, likes2);
+        Comment comment9 = new Comment(u4, "Hello @trevodrap", null, r1, true, false, null);
+        Comment comment10 = new Comment(u1, "Hi m8 subscribe @trevodrap in my youtube channel", null, r1, false, true, null);
         
         //Save subcomments
         commentsRepository.save(comment1);
