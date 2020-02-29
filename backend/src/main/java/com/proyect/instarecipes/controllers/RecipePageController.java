@@ -3,7 +3,7 @@ import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -17,8 +17,6 @@ import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.CommentsRepository;
 import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.security.UserSession;
-import com.proyect.instarecipes.views.GroupStaff;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,7 +69,7 @@ public class RecipePageController {
 
         // Comments
         List<Comment> comments = commentsRepository.findAllByRecipeOrderByLikes(recipe);
-        System.out.println("Comentarios: " + comments.size());
+
         model.addAttribute("n_comments", comments.size());
         
         User actual = userSession.getLoggedUser();
@@ -83,7 +81,7 @@ public class RecipePageController {
                         aux = true;
                     }
                 }
-                System.out.println("Order: " + comments.get(i).getLikes());
+
                 comments.get(i).setLiked(aux);
             }
         }
@@ -95,14 +93,12 @@ public class RecipePageController {
         Recipe auxRecipe = recipesRepository.findRecipeById(id);
         Set<User> recipelikes = auxRecipe.getLikesUsers();
         boolean pressed= false;
-        System.out.println("press is: "+pressed);
         for(User u : recipelikes){
             if(u.getId()==userLogged.getId()){                
                 pressed = true;
                 break;
             }
         }
-        System.out.println("press is: "+pressed);
         model.addAttribute("pressed", pressed);
 
         return "recipe";
@@ -148,16 +144,11 @@ public class RecipePageController {
         User user = userSession.getLoggedUser();       
         Recipe recipe = recipesRepository.findRecipeById(id);
         Set<User> recipeLikes = recipe.getLikesUsers();
-        System.out.println("tamaño joder "+ recipeLikes.size());
-        System.out.println("Mi nombre es "+ user.getUsername());      
+      
         for(User u : recipeLikes){
-            System.out.println("yo soy "+user.getId()+ " y tu eres "+ u.getId());
+
             if(u.getId() == user.getId()){
-                System.out.println("testigo "+recipe.getLikesUsers().size());
-                System.out.println("testigo likes "+recipe.getLikes());
                 recipe.removeUser(u);           
-                System.out.println("el real "+recipe.getLikesUsers().size());
-                System.out.println("likes "+recipe.getLikes());
                 recipesRepository.flush();
                 break;
             }
@@ -171,22 +162,19 @@ public class RecipePageController {
         User user = userSession.getLoggedUser();       
         Recipe recipe = recipesRepository.findRecipeById(id);
         Set<User> recipeLikes = recipe.getLikesUsers();
-        boolean check=false;
-        System.out.println("Mi nombre es "+ user.getUsername()); 
-        System.out.println("tamaño de "+ recipeLikes.size());
+        boolean check=false;       
         for(User u : recipeLikes){
             if(u.getId()==user.getId()){              
                 check= true;
                 break;
             }
         }
-        if(!check){
-            System.out.println("likes antes "+recipe.getLikes());
+        if(!check){           
             recipe.addUser(user);
             recipesRepository.flush();
-            System.out.println("likes despues "+recipe.getLikes());
         }
         response.sendRedirect("../recipes/"+id);
+    }
     
     @PostMapping("/likeComment/{id}")
     public void likeComment(@PathVariable Long id, @RequestParam Long id_recipe, HttpServletResponse response) throws IOException {

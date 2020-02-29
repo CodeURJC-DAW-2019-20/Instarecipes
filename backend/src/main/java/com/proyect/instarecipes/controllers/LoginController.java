@@ -95,7 +95,7 @@ public class LoginController {
 
 			} else {		
 				String sumInt= Integer.toString(countUsers);
-        		System.out.println(sumInt);
+;
 
        			String tryUsername2 = tryUsername + sumInt;
 

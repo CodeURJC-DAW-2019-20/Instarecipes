@@ -12,7 +12,6 @@ import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.RequestsRepository;
-import com.proyect.instarecipes.security.ImageService;
 import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +32,6 @@ public class ProfilePageController {
     private UserSession userSession;
     @Autowired
     private RequestsRepository requestsRepository;
-
-    @Autowired
-    private ImageService imageService;
 
     @GetMapping("/profile")
     public String profilePage(Model model) {
@@ -66,8 +62,7 @@ public class ProfilePageController {
             Laiks.add(recipes.get(pubs).getLikes()); // List of every user recipe LIKES!!
             titles.add(recipes.get(pubs).getTitle());
         }
-        System.out.println(Laiks);
-        System.out.println(titles);
+
 
         model.addAttribute("n_publications", pubs);
         model.addAttribute("n_likes", likes);
@@ -82,7 +77,7 @@ public class ProfilePageController {
     /*@PostMapping("/uploadImage")
     public void uploadImage(Model model, User user, @RequestParam MultipartFile fileAvatarProfile) throws IOException {
         User actual =  userSession.getLoggedUser();
-        System.out.println("LLEGO AQUI CON EL AVATAR");
+
         
         imageService.saveImage("avatars", actual.getId(), fileAvatarProfile);
     }*/

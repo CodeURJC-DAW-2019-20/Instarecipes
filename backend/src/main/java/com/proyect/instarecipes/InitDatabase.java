@@ -3,9 +3,9 @@ package com.proyect.instarecipes;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.HashSet;
-import java.util.List;
+
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
@@ -319,34 +319,34 @@ public class InitDatabase {
         
         //Comments: User, Content, Subcomments, Likes
         //template
-        Set<User> likes0 = new HashSet<>();
-        likes0.add(u1);
-        likes0.add(u2);
-        Set<User> likes1 = new HashSet<>();
-        likes1.add(u1);
-        likes1.add(u2);
-        likes1.add(u3);
-        Set<User> likes2 = new HashSet<>();
-        likes2.add(u1);
-        likes2.add(u2);
-        likes2.add(u3);
-        likes2.add(u4);
+        Set<User> likesC0 = new HashSet<>();
+        likesC0.add(u1);
+        likesC0.add(u2);
+        Set<User> likesC1 = new HashSet<>();
+        likesC1.add(u1);
+        likesC1.add(u2);
+        likesC1.add(u3);
+        Set<User> likesC2 = new HashSet<>();
+        likesC2.add(u1);
+        likesC2.add(u2);
+        likesC2.add(u3);
+        likesC2.add(u4);
 
         /*              ALL THIS IS ONLY FOR RECIPE NUMBER 1               */
-        Comment comment1 = new Comment(u3, "Cool", null, r1, false, false, likes0);
+        Comment comment1 = new Comment(u3, "Cool", null, r1, false, false, likesC0);
         comment1.setLikes(2);
-        Comment comment2 = new Comment(u1, "This is awesome", null, r1, false, false, likes0);
+        Comment comment2 = new Comment(u1, "This is awesome", null, r1, false, false, likesC0);
         comment2.setLikes(2);
         
-        Comment comment3 = new Comment(u2, "Do you eat cheesse?", null, r1, false, true, likes1);
+        Comment comment3 = new Comment(u2, "Do you eat cheesse?", null, r1, false, true, likesC1);
         comment3.setLikes(3);
         Comment comment4 = new Comment(u1, "Yes i do", null, r1, false, true, null);
-        Comment comment5 = new Comment(u4, "Lol what a conversation, so original ADMINLIKE", null, r1, false, true, likes2);
+        Comment comment5 = new Comment(u4, "Lol what a conversation, so original ADMINLIKE", null, r1, false, true, likesC2);
         comment5.setLikes(4);
         Comment comment6 = new Comment(u1, "Shut the fk up idiot", null, r1, false, true, null);
 
         Comment comment7 = new Comment(u2, "What happened in step 3?", null, r1, false, false, null);
-        Comment comment8 = new Comment(u1, "Oh yes the comments are alright now ADMINLIKE", null, r1, true, false, likes2);
+        Comment comment8 = new Comment(u1, "Oh yes the comments are alright now ADMINLIKE", null, r1, true, false, likesC2);
         comment8.setLikes(4);
         Comment comment9 = new Comment(u4, "Hello @trevodrap", null, r1, true, false, null);
         Comment comment10 = new Comment(u1, "Hi m8 subscribe @trevodrap in my youtube channel", null, r1, false, true, null);

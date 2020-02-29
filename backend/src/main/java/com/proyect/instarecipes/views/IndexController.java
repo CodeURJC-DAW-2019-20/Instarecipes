@@ -122,7 +122,6 @@ public class IndexController {
     public String signupPage(Model model){
         List<Allergen> allAllergensSingUp = allergensRepository.findAll();
         model.addAttribute("allergensSignUp", allAllergensSingUp);
-        System.out.println(allAllergensSingUp);
         
         return "signUp";
     }
@@ -150,7 +149,7 @@ public class IndexController {
         
         Recipe r = recipe;
         int i = 2;
-        System.out.println("Booleanos: " + withImage);
+
 // Ingredients selector //
         List<String> listOfIngs = Arrays.asList(ingredientsString.split(","));
         Set<Ingredient> lastIngs = new HashSet<Ingredient>();
@@ -182,7 +181,7 @@ public class IndexController {
         if(withImage.length()>0){
             String stp = withImage.substring(0, withImage.length()-1);
             List<String> listOfBools = Arrays.asList(stp.split(","));
-            System.out.println("Array de booleanos: " + listOfBools);
+
             if(stepsString != null){
                 List<String> listOfSteps = Arrays.asList(stepsString.split("ab#12#45-3,"));
                 for(String steps : listOfSteps){
