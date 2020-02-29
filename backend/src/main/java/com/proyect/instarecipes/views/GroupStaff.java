@@ -41,5 +41,8 @@ public class GroupStaff{
 
 	public Set<Allergen> groupAllergens(Allergen... allergens) {
 		return new HashSet<>(Arrays.asList(allergens));
-	}
+    }
+    public Set<User> groupLikes(User... users){
+        return new HashSet<>(Arrays.asList(users));
+    }
 }

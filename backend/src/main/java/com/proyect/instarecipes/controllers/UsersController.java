@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 
 import com.proyect.instarecipes.models.Recipe;
@@ -158,7 +157,7 @@ public class UsersController {
         }
         System.out.println("Usuario 1 followers: "+followers);
         followers.add(u2.get());
-        usersRepository.followers_update(u1.getId(), followers);
+        //usersRepository.followers_update(u1.getId(), followers);
         //followers = usersRepository.findFollowers(u1.getUsername());
         System.out.println("Usuario 1 followers actualizado: "+u1.getFollowers());
         //u2.get().addFollowing(u1);

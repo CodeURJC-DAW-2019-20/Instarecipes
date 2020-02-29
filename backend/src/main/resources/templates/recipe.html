@@ -104,7 +104,26 @@
             <div class="col-4">
               <ol class="likes-comments-simple-recipe">
                 <li><h3 class="font-weight-light"> {{recipe.likes}}</h3></li>
-                <li style="cursor: pointer;"><img class="focusHeart" id="unpressedLike" src="/images/icons/like_unpressed.png" height="80%" alt=""></li>
+                {{#pressed}}
+                <li style="cursor: pointer;">
+                  <form method="POST" action="/actionUnpressLike/{{id}}">
+                    <button type="submit" style="width: inherit;border: 0px;">
+                      <img class="focusHeart" src="../images/icons/like_pressed.png" width= "85%" alt="">
+                    </button>
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                  </form>
+                </li>
+                {{/pressed}}
+                {{^pressed}}
+                <li style="cursor: pointer;">
+                  <form method="POST" action="/actionPressLike/{{id}}">
+                    <button type="submit" style="width: inherit;border: 0px;">
+                      <img class="focusHeart" src="../images/icons/like_unpressed.png" width= "85%" alt="">
+                    </button>
+                    <input type="hidden" name="_csrf" value="{{token}}"/>
+                  </form>
+                </li>
+                {{/pressed}}
                 <li><h3 class="font-weight-light">{{n_comments}}</h3></li>
                 <li><a class="js-scroll-trigger rounded" href="#comments-section"><img src="/images/icons/dialogue.png" height="80%" alt=""></a></li>
               </ol>

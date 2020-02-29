@@ -85,6 +85,13 @@ public class InitDatabase {
         u3.setFollowing(following2);
         u4.setFollowing(following1);
 
+        //likes examples
+        Set<User> likes1 = groupStaff.groupLikes(u1,u2,u3);
+        Set<User> likes2 = groupStaff.groupLikes(u1,u3);
+        Set<User> likes3 = groupStaff.groupLikes(u2,u4);
+        Set<User> likes4 = groupStaff.groupLikes(u3);
+
+        
         //Avatar and backgrounds BOTS
         File avatarBots = new File("src/main/resources/static/images/icons/avatar.jpg");
         File backgroundBots = new File("src/main/resources/static/images/backgrounds/profile_background_example.jpeg");
@@ -248,15 +255,15 @@ public class InitDatabase {
         Set<Allergen> allergens5 = groupStaff.groupAllergens(a9); 
 
         Recipe r1 = new Recipe(u1, ingredients1, categories1, cookingStyles1, allergens1, "Homemade Pizza!", "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!", 
-        "15 min.", "Hard", 3);
+        "15 min.", "Hard", likes1);
         Recipe r2 = new Recipe(u1, ingredients2, categories2, cookingStyles2, allergens2, "Baked Fish with Lemon Cream Sauce", "Yup, just throw it all in one pan, bake it, and you end up with a tender juicy fish in a creamy lemon sauce.", 
-        "30 min.", "Hard", 10);
+        "30 min.", "Hard", likes2);
         Recipe r3 = new Recipe(u1, ingredients3, categories3, cookingStyles3, allergens3, "Thai Chicken Soup with Rice Noodles", "Cozy, comforting, and fragrant, this flavor-packed Thai chicken noodle soup will warm you right up.", 
-        "45 min.", "Hard", 22);
+        "45 min.", "Hard", likes3);
         Recipe r4 = new Recipe(u2, ingredients4, categories4, cookingStyles4, allergens5, "Avocado Salad", "This salad features ripe avocado slices covered in a fresh lime dressing, topped generously with a contrasting crisp-and-crunchy blend of chopped radish, onion, peppers, and herbs.", 
-        "15 min.", "Hard", 35);
+        "15 min.", "Hard", likes4);
         Recipe r5 = new Recipe(u2, ingredients5, categories2, cookingStyles4, allergens4, "Vodka Sauce Pasta (Pasta Party!)", "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese.. And don't worry, It won't taste like vodka!", 
-        "1 h.", "Hard", 15);
+        "1 h.", "Hard", likes3);
 
         //Steps for r4(for example)
         Step step11 = new Step(r4, 1, "Preheat oven to 425 degrees F (220 degrees C). Lightly oil a large roasting pan.");

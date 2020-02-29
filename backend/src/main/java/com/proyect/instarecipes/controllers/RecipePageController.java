@@ -3,7 +3,7 @@ import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -47,11 +47,14 @@ public class RecipePageController {
 
         // Number of publications and total likes
         List<Recipe> recipes = recipesRepository.findByUsernameId(user.getId());
+        
         int likes = 0;
         int pubs;
         for (pubs = 0; pubs < recipes.size(); pubs++) {
             likes = likes + recipes.get(pubs).getLikes();
         }
+        
+
         model.addAttribute("n_publications", pubs);
         model.addAttribute("n_likes", likes);
 
@@ -69,7 +72,25 @@ public class RecipePageController {
         List<Comment> comments = commentsRepository.findAllByRecipe(recipe);
         model.addAttribute("n_comments", comments.size());
         model.addAttribute("comments", comments);
+
+        //Update LikeRecipe
+        User userLogged = userSession.getLoggedUser(); 
+        Recipe auxRecipe = recipesRepository.findRecipeById(id);
+        Set<User> recipelikes = auxRecipe.getLikesUsers();
+        boolean pressed= false;
+        System.out.println("press is: "+pressed);
+        for(User u : recipelikes){
+            if(u.getId()==userLogged.getId()){                
+                pressed = true;
+                break;
+            }
+        }
+        System.out.println("press is: "+pressed);
+        model.addAttribute("pressed", pressed);
+
         return "recipe";
+
+        
     }
 
     @PostMapping("/postComment/{id}")
@@ -100,7 +121,52 @@ public class RecipePageController {
         }
         response.sendRedirect("../recipes/"+id);
     }
+    @PostMapping("/actionUnpressLike/{id}")
+    public void disLikedRecipe(Model model, @PathVariable Long id,HttpServletResponse response)throws IOException{
+        
+        User user = userSession.getLoggedUser();       
+        Recipe recipe = recipesRepository.findRecipeById(id);
+        Set<User> recipeLikes = recipe.getLikesUsers();
+        System.out.println("tamaño joder "+ recipeLikes.size());
+        System.out.println("Mi nombre es "+ user.getUsername());      
+        for(User u : recipeLikes){
+            System.out.println("yo soy "+user.getId()+ " y tu eres "+ u.getId());
+            if(u.getId() == user.getId()){
+                System.out.println("testigo "+recipe.getLikesUsers().size());
+                System.out.println("testigo likes "+recipe.getLikes());
+                recipe.removeUser(u);           
+                System.out.println("el real "+recipe.getLikesUsers().size());
+                System.out.println("likes "+recipe.getLikes());
+                recipesRepository.flush();
+                break;
+            }
+        }
+        response.sendRedirect("../recipes/"+id);
+    }
 
+    @PostMapping("/actionPressLike/{id}")
+    public void likedRecipe(Model model, @PathVariable Long id,HttpServletResponse response)throws IOException{
+        
+        User user = userSession.getLoggedUser();       
+        Recipe recipe = recipesRepository.findRecipeById(id);
+        Set<User> recipeLikes = recipe.getLikesUsers();
+        boolean check=false;
+        System.out.println("Mi nombre es "+ user.getUsername()); 
+        System.out.println("tamaño de "+ recipeLikes.size());
+        for(User u : recipeLikes){
+            if(u.getId()==user.getId()){              
+                check= true;
+                break;
+            }
+        }
+        if(!check){
+            System.out.println("likes antes "+recipe.getLikes());
+            recipe.addUser(user);
+            recipesRepository.flush();
+            System.out.println("likes despues "+recipe.getLikes());
+        }
+        response.sendRedirect("../recipes/"+id);
+    }
 
     @ModelAttribute
 	public void addAttributes(Model model) {
