@@ -54,7 +54,7 @@ public class RegisterPageController {
         }else{
             u.setAvatar(true);
             usersRepository.save(u);
-            File defaultBackground = new File("src/main/resources/static/images/backgrounds/profile_background_example.jpeg");
+            File defaultBackground = new File("src/main/resources/static/images/backgrounds/background2.jpeg");
             FileInputStream inputB = new FileInputStream(defaultBackground);
             MultipartFile fileBackground = new MockMultipartFile("file2", defaultBackground.getName(), "image/jpeg", IOUtils.toByteArray(inputB));
             if(fileAvatar == null){
