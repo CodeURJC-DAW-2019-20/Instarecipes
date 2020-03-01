@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 
 import com.proyect.instarecipes.models.Recipe;
@@ -71,8 +70,7 @@ public class UsersController {
             Laiks.add(recipes.get(pubs).getLikes()); // List of every user recipe LIKES!!
             titles.add(recipes.get(pubs).getTitle());
         }
-        System.out.println(Laiks);
-        System.out.println(titles);
+
 
         model.addObject("n_publications", pubs);
         model.addObject("n_likes", likes);
@@ -82,12 +80,12 @@ public class UsersController {
         model.addObject("likesGraphics", titles);
 
         User u = userSession.getLoggedUser();
-        System.out.println("User: " + u);
+
         List<User> following = usersRepository.findFollowing(u.getUsername());
-        System.out.println("Following: " + following);
+
         boolean is_following = false;
         for (User user : following) {
-            System.out.println("User: " + user.getUsername());
+            
             if (user.getId() != id) {
                 is_following = false;
             } else {

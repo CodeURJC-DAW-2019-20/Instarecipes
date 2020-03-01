@@ -22,7 +22,7 @@ public interface RecipesRepository extends JpaRepository<Recipe, Long> {
     @Query("SELECT r FROM Recipe r WHERE r.id = :id_recipe")
     Recipe findRecipeById(Long id_recipe);
     
-    @Query("SELECT r.id, r.title, r.description, r.username.id, r.username.username, r.username.name, r.username.surname, r.likes" 
+    @Query("SELECT r.id, r.title, r.description, r.username.id, r.username.username, r.username.name, r.username.surname, r.likes, r.n_comments" 
     +" FROM Recipe r ORDER BY r.id DESC")
     Page<Recipe> findAllRecipes(Pageable page); 
 
@@ -34,17 +34,15 @@ public interface RecipesRepository extends JpaRepository<Recipe, Long> {
     + "((ing.ingredient IN :ingredients) OR "
     + "(cat.category IN :categories) OR "
     + "(cok.cookingStyle IN :cookingStyles)) AND "
-    +"NOT (ale.allergen IN :allergens)")
+    + "NOT (ale.allergen IN :allergens)")
     List<Recipe> findFilteredSearch(ArrayList<String> ingredients, 
                                     ArrayList<String> categories, 
                                     ArrayList<String> allergens,
                                     ArrayList<String> cookingStyles);
-
-    @Query("SELECT DISTINCT r FROM Recipe r "
-        + "INNER JOIN r.allergens ale WHERE "
-        + "(ale.allergen IN :allergens)")
-        List<Recipe> findFilteredSearch2(ArrayList<String> allergens);
     
     @Query("SELECT r FROM Recipe r ORDER BY r.likes DESC")
     List<Recipe> FindByLikes();
+
+  //  @Query("SELECT r FROM Recipe r WHERE title LIKE "%word%"")
+  //  List<Recipe> findByTitle(String word);
 }

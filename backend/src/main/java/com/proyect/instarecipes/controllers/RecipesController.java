@@ -1,8 +1,10 @@
+
 package com.proyect.instarecipes.controllers;
 
 import java.util.List;
 
 import com.proyect.instarecipes.models.Recipe;
+
 import com.proyect.instarecipes.repositories.RecipesRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,6 @@ public class RecipesController{
 
     @GetMapping("/recipes")
     public List<Recipe> getRecipes(Model model, @RequestParam("page") int page_number, @RequestParam("size") int page_size){
-        System.out.println("Page: " + page_number + " Size: " + page_size);
         Page<Recipe> recipes = recipesRepository.findAllRecipes(PageRequest.of(page_number,page_size));
         List<Recipe> recipeList = (List<Recipe>)recipes.getContent();
         return recipeList;

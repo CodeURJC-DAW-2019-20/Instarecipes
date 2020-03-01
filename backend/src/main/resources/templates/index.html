@@ -36,7 +36,7 @@
       return false;
     }
     function normal(y) {
-      y.style.color = "#1abc9c";
+      y.style.color = "rgba(159, 193, 255, 0.726)";
       y.style.backgroundColor = none;
       return false;
     }
@@ -60,7 +60,7 @@
         <ul class="navbar-nav ml-auto" style="margin-right: 20%;">
           <li class="nav-item col-2" style="max-width: 100%;">
             <a class="nav-link js-scroll-trigger" href="#header-section"><i onmouseover="hover(this)"
-                onmouseout="normal(this)" class="fas fa-home" style="font-size: xx-large; color: #1abc9c"></i></a>
+                onmouseout="normal(this)" class="fas fa-home" style="font-size: xx-large; color: rgba(159, 193, 255, 0.726)"></i></a>
           </li>
           <li class="nav-item col-2" style="max-width: 100%;">
             {{#logged}}
@@ -84,12 +84,15 @@
           </li>
           {{/logged}}
         </ul>
-        <form class="example" action="/search">
-          <input type="text" href="#" placeholder="Search.." name="search"/>
-          <button type="submit" style="background-color: #1abc9c;">
+
+      <form class="example" action="/searchBar" method="POST">
+          <input type="text" placeholder="Search.." name="search"/>
+          <button type="submit" style="background-color: rgba(159, 193, 255, 0.726);">
             <i class="fa fa-search" ></i>
+            <input type="hidden" name="_csrf" value="{{token}}"/>
           </button>
-        </form>
+      </form>
+
       </div>
     </div>
     <div class="login-container">
@@ -259,7 +262,7 @@
     <div id="open-add-button" class='flotating-button'>
       <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-add-button" id="load-recipe-btn"
         style="width: max-content">
-        <img src='images/icons/flotating_button.png' width="50%" style="height: 50px; width: 50px;" />
+        <img src='images/icons/flotating_button2.png' width="50%" style="height: 50px; width: 50px;" />
       </div>
     </div>
     {{/logged}}

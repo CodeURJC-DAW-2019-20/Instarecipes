@@ -11,7 +11,9 @@
   <title>Instarecipes • Ranking</title>
   <!-- Images and icons-->
   <link rel="icon" type="image/png" href="../images/icons/instarecipes.png"/>
-
+  <!-- Fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+ 
   <!-- Custom fonts for this theme -->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -25,10 +27,11 @@
 
   <!-- Images and icons-->
   <link rel="icon" type="image/png" href="../images/icons/instarecipes.png" />
-
+ 
+ 
 </head>
 
-<body id="page-top" style="background-size: cover;background-image: url(../images/backgrounds/ranking_bg.jpg);">
+<body >
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container" style="margin-left: 30px;">
@@ -44,17 +47,17 @@
       <ul class="navbar-nav ml-auto" style="margin-right: 4%;">   
       </ul>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto" style="margin-right: 80%;">
+        <ul class="navbar-nav ml-auto" style="margin-right: 80%;">
+          
           <li class="nav-item col-2" style="max-width: 100%;">
             <a class="nav-link js-scroll-trigger" href="/">
               <i class="fas fa-home" style="font-size: xx-large;"></i>
             </a>
-          </li>
-          {{#logged}}
-          <li class="nav-item col-2" style="max-width: 100%;">
-            <a class="nav-link" href="profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
-          </li>
-          {{/logged}}
+            <li class="nav-item col-2" style="max-width: 100%;">
+              {{#logged}}
+              <a class="nav-link" href="profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+              {{/logged}}
+            </li>
         </ul>
       </div>
     </div>
@@ -70,40 +73,40 @@
       {{/logged}}
     </div>
   </nav>
-  
-  <header id="ranking-section" class="masthead bg-primary text-white text-center">
-    <div class="container d-flex align-items-center flex-column p-t-60 p-b-40">
-      <h3 class="text-uppercase mb-0" style="color: black;">Top 10 Ranking</h3>
-      <table class="table" style="width: 80%; margin-left: 10%; margin-right: 10%; margin-top: 5%;margin-bottom: 10%; border-style: solid; background-color: azure;">
-        <thead>
-          <!-- <input value="{{rankingList}}" id="rankingList" hidden></input> -->
-          <tr style="background-color: #11da2b;">
-            <th scope="col">#</th>
-            <th scope="col">Username</th>
-            <th scope="col">Likes</th>
-          </tr>
-        </thead>
-        <tbody id="rankingBody">
-          {{#rankingList}}
-          <tr style="background-color: #affaa9;">
-            <th scope="row">{{-index}}</th>
-            {{#.}}
-            <td> {{.}}</td>
-            {{/.}}
-            <!-- <td>{{.}}</td> -->
-          </tr>
-          {{/rankingList}}
-        </tbody>
-      </table>
-    </div>
-  </header>
 
-  <!-- Copyright Section 
-  <section class="copyright py-4 text-center text-white">
-    <div class="container">
-      <small>Copyright &copy; Instarecipes 2020</small>
+  <div class="masthead bg-primary text-white text-center">
+  <h3 class="text-uppercase mb-0">Top 10 Ranking</h3>
+    <table class="table" id="table-ranking">
+      <thead>
+        <!-- <input value="{{rankingList}}" id="rankingList" hidden></input> -->
+        <tr style="background-color: #878f99;">
+          <th scope="col">
+            <i class="fa fa-trophy" style="font-size:25px;color:gold"></i>
+          </th>
+          <th scope="col">Username</th>
+          <th scope="col">Likes</th>
+        </tr>
+      </thead>
+      <tbody id="rankingBody">
+        {{#rankingList}}
+        <tr style="background-color: #e6e2d3;">
+          <th scope="row">{{-index}}</th>
+          {{#.}}
+          <td> {{.}}</td>
+          {{/.}}
+          <!-- <td>{{.}}</td> -->
+        </tr>
+        {{/rankingList}}
+      </tbody>
+    </table>
     </div>
-  </section>-->
+
+  <!-- Copyright Section -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright © Instarecipes 2020</p>    </div>
+    </div>
+  </footer>
 
   <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
   <div class="scroll-to-top d-lg-none position-fixed ">

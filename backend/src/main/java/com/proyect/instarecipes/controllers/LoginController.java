@@ -29,11 +29,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
 	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
+	@Autowired
+	public RegisterPageController registerPagerController;
 
 	@Autowired
 	private UsersRepository usersRepository;
+
 	@Autowired
 	private UserSession userComponent;
+
+	private int countUsers = 1;
 
 	@RequestMapping("/login")
 	public ResponseEntity<User> logIn() {
@@ -72,40 +77,40 @@ public class LoginController {
 		//does user exist?							
 		boolean userExists = usersRepository.findByEmail(emailGU) != null;
 
-		// if (!userExists) {
-		// 	User googleUser = new User();
+		if (!userExists) {
+			User googleUser = new User();
 
-		// 	//SET INFO BECAUSE THE USER IS NEW!
-		// 	googleUser.setName(givenNameGU);
-		// 	googleUser.setSurname(familyNameGU);
-		// 	googleUser.setEmail(emailGU);
-		// 	googleUser.setRoles(roleUser);
+			//SET INFO BECAUSE THE USER IS NEW!
+			googleUser.setName(givenNameGU);
+			googleUser.setSurname(familyNameGU);
+			googleUser.setEmail(emailGU);
+			googleUser.setRoles(roleUser);
 
-		// 	//CHECK IF THE USERNAME CREATE BY NAME + FIRST SURNAME EXISTS
-		// 	String[] firstSurname = familyNameGU.trim().split("\\s+");
-		// 	String tryUsername = (givenNameGU + firstSurname[0]).toLowerCase();
-		// 	if (usersRepository.findByUsername(tryUsername) == null) { //if doesn't exists in our database, we add it 
+			//CHECK IF THE USERNAME CREATE BY NAME + FIRST SURNAME EXISTS
+			String[] firstSurname = familyNameGU.trim().split("\\s+");
+			String tryUsername = (givenNameGU + firstSurname[0]).toLowerCase();
+			if (usersRepository.findByUsername(tryUsername) == null) { //if doesn't exists in our database, we add it 
 
-		// 		googleUser.setUsername(tryUsername);
+				googleUser.setUsername(tryUsername);
 
-		// 	} else {		
-		// 		String sumInt= Integer.toString(countUsers);
-        // 		System.out.println(sumInt);
+			} else {		
+				String sumInt= Integer.toString(countUsers);
+;
 
-       	// 		String tryUsername2 = tryUsername + sumInt;
+       			String tryUsername2 = tryUsername + sumInt;
 
-		// 		googleUser.setUsername(tryUsername2); //add to avoid possible future errors :)
-		// 		countUsers++;
-		// 	}
+				googleUser.setUsername(tryUsername2); //add to avoid possible future errors :)
+				countUsers++;
+			}
 
-		// 	googleUser.setAvatar(false);
-		// 	googleUser.setBackground(false);
+			googleUser.setAvatar(false);
+			googleUser.setBackground(false);
 
-		// 	//GENERATE A RANDOM PASSWORD 
-		// 	googleUser.setPassword(getSaltString());
+			//GENERATE A RANDOM PASSWORD 
+			googleUser.setPassword(getSaltString());
 
-		// 	registerPagerController.signUp(model, googleUser, request, response, null);
-		// }
+			registerPagerController.signUp(model, googleUser, request, response, null);
+		}
 
 
 	}

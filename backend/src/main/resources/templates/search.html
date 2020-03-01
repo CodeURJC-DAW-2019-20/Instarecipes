@@ -10,6 +10,8 @@
 
   <title>Instarecipes</title>
   <link rel="icon" type="image/png" href="images/icons/instarecipes.png"/>
+   <!-- Fonts-->
+   <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,28 +32,41 @@
       <div id="img-navbar-container">
         <img class="img-navbar" src="images/icons/instarecipes.png" alt="">
       </div>
-      <a class="navbar-brand js-scroll-trigger" href="/">&nbsp;Instarecipes</a>
+      <a class="navbar-brand js-scroll-trigger" href="/" style="font-family: 'Pacifico';">&nbsp;Instarecipes</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" 
       type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" 
       aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto" style="margin-right: 20%;">
-          <li class="nav-item col-4">
+        <ul class="navbar-nav ml-auto" style="margin-right: 30%;">
+         
+          <li class="nav-item col-2" style="max-width: 100%;">
             <a class="nav-link" href="/"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
           </li>
-          <li class="nav-item col-4">
+          <li class="nav-item col-2" style="max-width: 100%;">
+            {{#logged}}
             <a class="nav-link" href="profile"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
+            {{/logged}}
           </li>
-          <li class="nav-item col-4">
-              <a class="nav-link" href="ranking"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
+          <li class="nav-item col-2" style="max-width: 100%;">
+            <a class="nav-link" href="ranking"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
           </li>
         </ul>
-        <form class="example" action="search" >
+
+        <form class="example" action="/searchBar" method="POST">
+          {{^searchByButton}}
+          <input type="text" placeholder="Search.." name="search" value="{{searchText}}">
+          {{/searchByButton}}
+          {{#searchByButton}}
           <input type="text" placeholder="Search.." name="search">
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
+          {{/searchByButton}}
+          <button type="submit" style="background-color: #1abc9c;">
+            <i class="fa fa-search" ></i>
+            <input type="hidden" name="_csrf" value="{{token}}"/>
+          </button>
+      </form>
+
       </div>
     </div>
     <div class="login-container">
@@ -81,9 +96,12 @@
       </li>
       <li class="breadcrumb-item active">Search</li>
     </ol>
-
+    
     <div class="row">
       <!-- Sidebar Widgets Column -->
+
+
+      {{#searchByButton}}
       <div class="col-4">
         <!-- Categories and Cooking Style Widget -->
         <div class="card my-4">
@@ -145,6 +163,11 @@
           </div>
         </div>
       </div>
+      {{/searchByButton}}
+      {{^searchByButton}}
+      <div class="col-2"></div>
+      {{/searchByButton}}
+
       <!-- Recipes Entries Column -->
       <div class="col-md-8">
         {{#notFound}}
