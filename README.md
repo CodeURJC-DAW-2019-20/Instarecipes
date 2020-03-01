@@ -179,11 +179,11 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 
 > Textual description of the tasks performed in the phase.  
 
-> * Ranking and AJAX button.  
-> * Spring Security.  
-> * Init database.  
-> * Reordered folders.  
-> * 'SEE DESCRIPTION' commit: user's publications, likes, comments...
+> * [Ranking and AJAX button.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/9f47d259722bccc486b3810782db22026b0e1d7e)
+> * [Spring Security.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/c44aea86a64a8b8fab03f3f39ae09ed341451c06) 
+> * [Init database.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/dd0061ca7a18937db7211a86f10988f1bcd76df7) 
+> * [Reordered folders.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/143fe7f301142b91ab4a18fa1f79f14c6a35f0cb)  
+> * ['SEE DESCRIPTION' commit: user's publications, likes, comments...](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/14b840ccaff16cb85096b52a93c97729f072deac)
 
 |                           |                                 |                                             |
 |---------------------------|---------------------------------|---------------------------------------------|
@@ -192,11 +192,11 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 
 > This developer has been doing tasks which are focus on user's experience.   
 
-> * Graphics done!.   
-> * Likes funcionality. 
-> * Advanced Algorythm. 
-> * Reorder folders.  
-> * Navbar funcionalities. 
+> * Graphics done!.(https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/711d7979202efc21c9715c1c589e694d41dd1206)
+> * Likes funcionality.(https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/f0e188d37ba45943fe74c37f38a01cd212b7534b)
+> * [Advanced Algorythm.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/a676d2aa4d11179b5cad73d90b0dd6aaf5fca655)
+> * Reorder folders.()  
+> * Navbar funcionalities.() 
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
@@ -216,13 +216,13 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 | Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es | [@Muffinous](https://github.com/Muffinous) |
 |                           |                                 |                                            |
 
-> Textual description of the tasks performed in the phase.  
+> This developer has been doing tasks to make the page more visual and functional. 
 
-> * Filtered search button.  
-> * Conection between filtered search button and search page.
-> * Managment of new users (admin)  
-> * Database conections.  
-> * Google Javascript and login. 
+> * [Filtered search button.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/00a60affdd26e5434d835c15fff0df2d49f2cee1)  
+> * [Conection between filtered search button and search page.]
+> * [Managment of new users](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/76641ca83b44e8376369425f0cfe00f32ca78b8e)  
+> * [Search an user (*and a recipe*)](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/3845cb804dd86dfcc736a7d72c5446dc83cae22c)  
+> * [Google Javascript and login.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/576538c3b37eef49f557898beecf10606b827ea7)
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
