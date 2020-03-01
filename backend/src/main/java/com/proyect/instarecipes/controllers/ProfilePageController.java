@@ -100,21 +100,17 @@ public class ProfilePageController {
         u.setAllergens(allergens);
         u.setInfo(info);
         usersRepository.flush();
-        if(avatarFile != null)
-        imageService.saveImage("avatars", u.getId(), avatarFile);
-        if(backgroundFile != null)
-        imageService.saveImage("backgrounds", u.getId(), backgroundFile);
+        if(!avatarFile.isEmpty()){
+            imageService.saveImage("avatars", u.getId(), avatarFile);
+        }
+        if(!backgroundFile.isEmpty()){
+            imageService.saveImage("backgrounds", u.getId(), backgroundFile);
+        }
+        
         response.sendRedirect("profile");
 
       
     }
-    /*@PostMapping("/uploadImage")
-    public void uploadImage(Model model, User user, @RequestParam MultipartFile fileAvatarProfile) throws IOException {
-        User actual =  userSession.getLoggedUser();
-
-        
-        imageService.saveImage("avatars", actual.getId(), fileAvatarProfile);
-    }*/
 
     @ModelAttribute
 	public void addAttributes(Model model) {

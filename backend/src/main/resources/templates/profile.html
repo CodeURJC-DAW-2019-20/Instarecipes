@@ -92,7 +92,7 @@
       {{/logged}}
     </div>
   </nav>
-  <div class="wrapper d-flex align-items-stretch">
+  <div class="wrapper d-flex align-items-stretch"  style="margin-top: 4.5%;">
     {{#admin}}
     <nav id="sidebar" class="active" style="margin-top:2%;background-color:rgba(0, 0, 0, 0.6)">
       <div class="custom-menu">
@@ -116,6 +116,7 @@
             <a onclick="usersDiv()" href="#"><span class="fa fa-users mr-3"
                 style="width: 20px;text-align: center;"></span>Users</a>
           </li>
+          
           <li id="text-recipes">
             <a onclick="recipesDiv()" href="#"><span class="fa fa-book mr-3"
                 style="width: 20px;text-align: center;"></span>Recipes</a>
@@ -423,13 +424,16 @@
           <!-- /.row -->
         </div>
         <hr width="50%">
+        {{^disable}}
+          {{^followButton}}
         <div id="open-add-button" class='flotating-button'>
           <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-settings-button"
             id="load-image-form" style="width: max-content">
             <i class="fas fa-users-cog fa-5x"></i>
           </div>
         </div>
-
+        {{/followButton}}
+        {{/disable}}
         <!-- Pop up settings(add avatar, background, bio and allergens) -->
 
         <div class="publications-modal modal fade" id="opened-settings-button" tabindex="-1" role="dialog"
@@ -464,7 +468,7 @@
                           <div style="position: absolute;width: 100%;">
                             <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem; 
                             border:1px solid rgb(23, 162, 184); text-align:center;padding:0;right:0;width:30%;cursor:pointer">
-                              <input id="file-input" hidden type="file" name="avatarFile" accept=".jpg, .jpeg" />
+                              <input id="file-input" value="/temp/avatars/image-{{actualUser.id}}.jpg" hidden type="file" name="avatarFile" accept=".jpg, .jpeg" />
                               <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                             </label>
                           </div>
@@ -478,7 +482,7 @@
                           <div style="position: absolute;width: 25%;right:1%;bottom: 0;">
                             <label for="bg-input" class="btn-outline-primary" style="border-radius:0.5rem;
                             border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:100%;cursor:pointer">
-                              <input id="bg-input" hidden type="file" name="backgroundFile" accept=".jpg, .jpeg" />
+                              <input id="bg-input" value="/temp/backgrounds/image-{{actualUser.id}}.jpg" hidden type="file" name="backgroundFile" accept=".jpg, .jpeg" />
                               <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                             </label>
                           </div>
@@ -533,7 +537,7 @@
                       </table>
                     </div>
                     <div style="width: 100%;">
-                      <button id="post-recipe" type='submit' class="btn btn-primary"
+                      <button type='submit' class="btn btn-primary"
                         style="margin-top: 20px; height: 50px;border: 1px solid rgb(23, 162, 184);">
                         Save changes
                       </button>
@@ -1106,7 +1110,7 @@
   <script src="/js/main2.js"></script>
   <script src="/js/admin_Profile.js"></script>
   <script src="/js/statistics.js"></script>
-  <script>
+  <script type="text/javascript">
     document.getElementById('file-input').onchange = function (evt) {
       var tgt = evt.target || window.event.srcElement,
         files = tgt.files;
@@ -1114,7 +1118,7 @@
       if (FileReader && files && files.length) {
         var fr = new FileReader();
         fr.onload = function () {
-          document.getElementById("preview-img-file").src = fr.result;
+            document.getElementById("preview-img-file").src = fr.result;
         }
         fr.readAsDataURL(files[0]);
       }
