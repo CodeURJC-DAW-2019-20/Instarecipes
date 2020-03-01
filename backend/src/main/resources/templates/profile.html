@@ -11,8 +11,8 @@
   <title>Instarecipes • Profile</title>
   <!-- Images and icons-->
   <link rel="icon" type="image/png" href="/images/icons/instarecipes.png" />
- <!-- Fonts-->
- <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+  <!-- Fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
   <!-- Custom fonts for this theme -->
 
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -33,7 +33,17 @@
   <!--Graphics xd-->
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-  
+
+  <!-- BIO js-->
+  <script language="javascript" type="text/javascript">
+    function limitText(limitField, limitCount, limitNum) {
+      if (limitField.value.length > limitNum) {
+        limitField.value = limitField.value.substring(0, limitNum);
+      } else {
+        limitCount.value = limitNum - limitField.value.length;
+      }
+    }
+  </script>
 </head>
 
 <body id="page-top">
@@ -41,8 +51,8 @@
   <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container" style="margin-left: 30px;">
       <div id="img-navbar-container">
-        <img class="img-navbar d-flex mr-3 rounded-circle" 
-          src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="" style="height: 50px;width: 50px; object-fit: cover;">
+        <img class="img-navbar d-flex mr-3 rounded-circle" src="/temp/avatars/image-{{actualUser.id}}.jpg" alt=""
+          style="height: 50px;width: 50px; object-fit: cover;">
       </div>
       <a class="navbar-brand js-scroll-trigger" href="/profile" style="font-family: 'Pacifico';" ;>&nbsp;Profile</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
@@ -95,7 +105,7 @@
       {{/logged}}
     </div>
   </nav>
-  <div class="wrapper d-flex align-items-stretch">
+  <div class="wrapper d-flex align-items-stretch"  style="margin-top: 4.5%;">
     {{#admin}}
     <nav id="sidebar" class="active" style="margin-top:2%;background-color:rgba(0, 0, 0, 0.6)">
       <div class="custom-menu">
@@ -121,12 +131,12 @@
           </li>
           <li id="text-recipes">
             <a onclick="recipesDiv()" href="#"><span class="fa fa-book mr-3"
-                style="width: 20px;text-align: center;"></span>Recipes</a>
+                style="width: 20px;text-align: center;"></span>Items</a>
           </li>
-          <li id="text-reports">
+          <!-- <li id="text-reports">
             <a onclick="reportsDiv()" href="#"><span class="fa fa-exclamation mr-3"
                 style="width: 20px;text-align: center;"></span>Reports</a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </nav>
@@ -145,12 +155,12 @@
           </div>
           <div style="position: relative;width: 100%;height: fit-content;">
             <!-- Request ingredient/category button -->
-            <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;right: 25%;">
+            <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;right: 3%;">
               <img src='../images/icons/request_icon.png' data-toggle="modal" data-target="#opened-request-button"
                 width="50%" style="height: 50px; width: 50px;cursor: pointer;" />
             </div>
             <!-- Statistics button-->
-            <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;left: 25%;">
+            <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;left: 3%;">
               <button id="open-stadistics-button" type="button" class="stadistics-button" data-toggle="modal"
                 data-target="#opened-stadistics-button" style="background-color: transparent;">
                 <span aria-hidden="true">
@@ -224,7 +234,7 @@
             </div>
           </div>
         </div>
-        <table>
+        <table style="margin-top: 5%;">
           <tr>
             <th>
               <h5 class="text-uppercase mb-0 font-weight-light">Publications</h5>
@@ -284,9 +294,6 @@
                   <!-- Icon Divider -->
                   <div class="divider-custom">
                     <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon">
-                      <i class="fas fa-star"></i>
-                    </div>
                   </div>
                   <form method="post" action="/sendItemRequest">
                     <select name="typeOfItem" style="width: 80%;font-size: 25px;">
@@ -376,7 +383,7 @@
                             <div class="divider-custom-line"></div>
                           </div>
                           <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
-                            <h3 class="underlined-text">INGREDIENTS</h3>
+                            <h3 class="underlined-text" style="color:rgba(0, 0, 0, 0.8)">INGREDIENTS</h3>
                           </div>
                           <div class="row" style="height: 300px;">
                             <!-- publications Modal - Image -->
@@ -426,13 +433,16 @@
           <!-- /.row -->
         </div>
         <hr width="50%">
+        {{^disable}}
+          {{^followButton}}
         <div id="open-add-button" class='flotating-button'>
           <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-settings-button"
             id="load-image-form" style="width: max-content">
             <i class="fas fa-users-cog fa-5x"></i>
           </div>
         </div>
-
+        {{/followButton}}
+        {{/disable}}
         <!-- Pop up settings(add avatar, background, bio and allergens) -->
 
         <div class="publications-modal modal fade" id="opened-settings-button" tabindex="-1" role="dialog"
@@ -463,11 +473,14 @@
                       <div class="col-6" style="position: absolute; z-index: 1050;left: 25%;top: 15%;">
                         <!--Avatar-->
                         <div style="position: relative;">
-                          <img id="preview-img-file" style="width:125px;height:125px;border-radius:50%;object-fit: cover;" src="/temp/avatars/image-{{actualUser.id}}.jpg" />
+                          <img id="preview-img-file"
+                            style="width:125px;height:125px;border-radius:50%;object-fit: cover;"
+                            src="/temp/avatars/image-{{actualUser.id}}.jpg" />
                           <div style="position: absolute;width: 100%;">
-                            <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem; 
+                            <label for="file-input" class="btn-outline-primary"
+                              style="border-radius:0.5rem; 
                             border:1px solid rgb(23, 162, 184); text-align:center;padding:0;right:0;width:30%;cursor:pointer">
-                              <input id="file-input" hidden type="file" name="avatarFile" accept=".jpg, .jpeg" />
+                              <input id="file-input" value="/temp/avatars/image-{{actualUser.id}}.jpg" hidden type="file" name="avatarFile" accept=".jpg, .jpeg" />
                               <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                             </label>
                           </div>
@@ -476,12 +489,13 @@
                       <div class="col-12">
                         <!--Background-->
                         <div style="position: relative;">
-                          <img id="preview-bg-file" src="/temp/backgrounds/image-{{actualUser.id}}.jpg" class="img-blur2"
-                              style="object-fit:cover;height:200px;width:100%;border-radius: 0.5rem;"/>
+                          <img id="preview-bg-file" src="/temp/backgrounds/image-{{actualUser.id}}.jpg"
+                            class="img-blur2" style="object-fit:cover;height:200px;width:100%;border-radius: 0.5rem;" />
                           <div style="position: absolute;width: 25%;right:1%;bottom: 0;">
-                            <label for="bg-input" class="btn-outline-primary" style="border-radius:0.5rem;
+                            <label for="bg-input" class="btn-outline-primary"
+                              style="border-radius:0.5rem;
                             border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:100%;cursor:pointer">
-                              <input id="bg-input" hidden type="file" name="backgroundFile" accept=".jpg, .jpeg" />
+                              <input id="bg-input" value="/temp/backgrounds/image-{{actualUser.id}}.jpg" hidden type="file" name="backgroundFile" accept=".jpg, .jpeg" />
                               <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                             </label>
                           </div>
@@ -492,37 +506,60 @@
                       <hr>
                       <!-- Username -->
                       <div class="wrap-input50 m-b-23" style="text-align: initial;">
-                        <p class="text-secondary"> <i class="fas fa-user" style="size: 50px;  margin-right: 20px;"></i>{{actualUser.username}}</p>
+                        <p class="text-secondary"> <i class="fas fa-user"
+                            style="size: 50px;  margin-right: 20px;"></i>{{actualUser.username}}</p>
                       </div>
                       <!-- Email -->
                       <div class="wrap-input50 m-b-23" style="text-align: initial;">
-                        <p class="text-secondary"><i class="fas fa-mail-bulk" style="size: 50px; margin-right: 15px;"></i>{{actualUser.email}}</p>
+                        <p class="text-secondary"><i class="fas fa-mail-bulk"
+                            style="size: 50px; margin-right: 15px;"></i>{{actualUser.email}}</p>
                       </div>
                       <hr>
                       <table>
                         <tr>
-                          <td style="width:25%"><h6 style="color: black;">Name</h6></td>
-                          <td><!-- Name -->
-                            <input type="text" name="name" class="text-secondary" style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;" value="{{actualUser.name}}"/>
+                          <td style="width:25%">
+                            <h6 style="color: black;">Name</h6>
+                          </td>
+                          <td>
+                            <!-- Name -->
+                            <input type="text" name="name" class="text-secondary"
+                              style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;"
+                              value="{{actualUser.name}}" />
                           </td>
                         </tr>
                         <tr>
-                          <td style="width:25%"><h6 style="color: black;">Surname</h6></td>
-                          <td><!-- Surname -->
-                            <input type="text" name="surname" class="text-secondary" style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;" value="{{actualUser.surname}}"/>
+                          <td style="width:25%">
+                            <h6 style="color: black;">Surname</h6>
+                          </td>
+                          <td>
+                            <!-- Surname -->
+                            <input type="text" name="surname" class="text-secondary"
+                              style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;"
+                              value="{{actualUser.surname}}" />
                           </td>
                         </tr>
                         <tr>
-                          <td style="width:25%"><h6 style="color: black;">Bio</h6></td>
-                          <td><!-- Bio -->
+                          <td style="width:25%">
+                            <h6 style="color: black;">Bio</h6>
+                          </td>
+                          <td>
+                            <!-- Bio -->
                             <textarea type="text" name="info" style="margin-top:10px;padding:5px;width: 100%;height: 100px;
-                            border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" placeholder="Type your bio here.." 
-                            >{{actualUser.info}}</textarea>
+                            border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
+                              onKeyDown="limitText(this.form.info,this.form.countdown,100)"
+                              onKeyUp="limitText(this.form.info,this.form.countdown,100);"
+                              placeholder="Type your bio here..">{{actualUser.info}}</textarea>
+                            <font size="1">(Maximum characters: 100)<br>
+                              You have <input readonly type="text" name="countdown" size="3" value="100" style="margin-bottom: 10px;"> characters
+                              left.</font>
                           </td>
                         </tr>
                         <tr>
-                          <td style="width:25%"><h6 style="color: black;">Allergens</h6></td>
-                          <td><!--Allergens-->
+                          <td style="width:25%">
+                            <h6 style="color: black;">Allergens</h6>
+                          </td>
+                          <td>
+                            <!--Allergens-->
                             <input name="allergens" list="allergenslist" class="form-control" type="text"
                               placeholder="Select an allergen.." onkeypress="return false;">
                             <datalist id="allergenslist">
@@ -536,7 +573,7 @@
                       </table>
                     </div>
                     <div style="width: 100%;">
-                      <button id="post-recipe" type='submit' class="btn btn-primary"
+                      <button type='submit' class="btn btn-primary"
                         style="margin-top: 20px; height: 50px;border: 1px solid rgb(23, 162, 184);">
                         Save changes
                       </button>
@@ -778,8 +815,8 @@
           <!-- Masthead Subheading -->
           <div class="profile-about-separator">
             <!-- publications Section Heading -->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Recipes, ingredients,
-              categories and cooking style</h2>
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
+              Ingredients, categories and cooking styles</h2>
             <!-- Icon Divider -->
             <div class="divider-custom divider-light">
               <div class="divider-custom-line" style="background-color: black;"></div>
@@ -796,19 +833,20 @@
         <div class="container">
           <p class="masthead-subheading font-weight-light mb-0">Select type</p>
           <div class="row">
-            <select class="col-5" style="height: 50px;">
-              <option>Recipes</option>
-              <option>Ingredients</option>
-              <option>Categories</option>
-              <option>Cooking style</option>
+            <select id="filter-item" class="col-5" style="height: 50px;">
+              <!-- <option>Recipes</option> -->
+              <option value="All">All</option>
+              <option value="Ingredients">Ingredients</option>
+              <option value="Categories">Categories</option>
+              <option value="Cooking style">Cooking style</option>
             </select>
-            <div class="col-2" style="text-align: center;align-self: center;">
+            <!-- <div class="col-2" style="text-align: center;align-self: center;">
               <i class="btn btn-outline-primary fa fa-plus" style="width: 100px;border-radius: 1rem;"></i>
-            </div>
-            <form class="example col-5" action="" style="height: 50px;">
+            </div> -->
+            <!-- <form class="example col-5" action="" style="height: 50px;">
               <input type="text" placeholder="Search type.." name="search">
               <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
+            </form> -->
           </div>
           <!-- Icon Divider -->
           <div class="divider-custom">
@@ -820,34 +858,112 @@
           </div>
           <div class="row container" style="margin-bottom: 10px;margin-right: 0;margin-left: 0;">
             <div class="col-4">
+              <p class="page-section-heading text-center text-uppercase text-secondary mb-0">No.</p>
+            </div>
+            <div class="col-4">
               <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Type</p>
             </div>
             <div class="col-4">
               <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Item</p>
             </div>
-            <div class="col-4">
+            <!-- <div class="col-4">
               <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Actions</p>
-            </div>
+            </div> -->
           </div>
           <div class="scrolling container" style="height: 100%;background-color: rgba(0, 0, 0, 0.2);">
-            <!-- Type x -->
-            <div class="row" style="align-items: center;">
-              <div class="col-4">
-                <h6 style="text-align:center;">Ingredient</h6>
-              </div>
-              <div class="col-4">
-                <p style="text-align:center;">Pepperoni</p>
-              </div>
-              <div class="col-4" style="display: flex; height:fit-content;justify-content:center; text-align: center;">
-                <div class="btn btn-outline-primary" style="border-radius: 50%;margin-right: 5px;">
-                  <i class=" fa fa-edit"></i>
+            <div id="itemsIng">
+              {{#ingredientsList}}
+              <!-- Type x -->
+              <div class="row" style="align-items: center;">
+                <div class="col-4">
+                  <h3 style="text-align:center;"># {{-index}}</h3>
                 </div>
-                <div class="btn btn-outline-danger" style="border-radius: 50%; margin-left: 5px;">
-                  <i class="fa fa-remove"></i>
+                <div class="col-4">
+                  <h6 style="text-align:center;">Ingredient</h6>
                 </div>
+                <div class="col-4">
+                  <p style="text-align:center;">{{ingredient}}</p>
+                </div>
+                <!-- <div class="col-4" style="display: flex; height:fit-content;justify-content:center; text-align: center;">
+                  <div class="btn btn-outline-primary" style="border-radius: 50%;margin-right: 5px;">
+                    <i class=" fa fa-edit"></i>
+                  </div>
+                  <div class="btn btn-outline-danger" style="border-radius: 50%; margin-left: 5px;">
+                    <form action="/removeItem" method="post">
+                      <button type="submit">
+                        <i class="fa fa-remove"></i>
+                      </button>
+                      <input name="ingredient" hidden value="{{ingredient}}"/>
+                      <input type="hidden" name="_csrf" value="{{token}}"/>
+                    </form>
+                  </div>
+                </div> -->
               </div>
+              <hr>
+              {{/ingredientsList}}
             </div>
-            <hr>
+            <div id="itemsCat">
+              {{#categoriesList}}
+              <!-- Type x -->
+              <div class="row" style="align-items: center;">
+                <div class="col-4">
+                  <h3 style="text-align:center;"># {{-index}}</h3>
+                </div>
+                <div class="col-4">
+                  <h6 style="text-align:center;">Category</h6>
+                </div>
+                <div class="col-4">
+                  <p style="text-align:center;">{{category}}</p>
+                </div>
+                <!-- <div class="col-4" style="display: flex; height:fit-content;justify-content:center; text-align: center;">
+                  <div class="btn btn-outline-primary" style="border-radius: 50%;margin-right: 5px;">
+                    <i class=" fa fa-edit"></i>
+                  </div>
+                  <div class="btn btn-outline-danger" style="border-radius: 50%; margin-left: 5px;">
+                    <form action="/removeItem" method="post">
+                      <button type="submit">
+                        <i class="fa fa-remove"></i>
+                      </button>
+                      <input name="category" hidden value="{{category}}"/>
+                      <input type="hidden" name="_csrf" value="{{token}}"/>
+                    </form>
+                  </div>
+                </div> -->
+              </div>
+              <hr>
+              {{/categoriesList}}
+            </div>
+            <div id="itemsCS">
+              {{#cookingStylesList}}
+              <!-- Type x -->
+              <div class="row" style="align-items: center;">
+                <div class="col-4">
+                  <h3 style="text-align:center;"># {{-index}}</h3>
+                </div>
+                <div class="col-4">
+                  <h6 style="text-align:center;">Cooking Style</h6>
+                </div>
+                <div class="col-4">
+                  <p style="text-align:center;">{{cookingStyle}}</p>
+                </div>
+                <!-- <div class="col-4" style="display: flex; height:fit-content;justify-content:center; text-align: center;">
+                  <div class="btn btn-outline-primary" style="border-radius: 50%;margin-right: 5px;">
+                    <i class=" fa fa-edit"></i>
+                  </div>
+                  <div class="btn btn-outline-danger" style="border-radius: 50%; margin-left: 5px;">
+                    <form action="/removeItem" method="post">
+                      <button type="submit">
+                        <i class="fa fa-remove"></i>
+                      </button>
+                      <input name="cookingStyle" hidden value="{{cookingStyle}}"/>
+                      <input type="hidden" name="_csrf" value="{{token}}"/>
+                    </form>
+                  </div>
+                </div> -->
+              </div>
+              <hr>
+              {{/cookingStylesList}}
+            </div>
           </div>
           <hr>
         </div>
@@ -1117,7 +1233,7 @@
   <script src="/js/main2.js"></script>
   <script src="/js/admin_Profile.js"></script>
   <script src="/js/statistics.js"></script>
-  <script>
+  <script type="text/javascript">
     document.getElementById('file-input').onchange = function (evt) {
       var tgt = evt.target || window.event.srcElement,
         files = tgt.files;
@@ -1125,7 +1241,7 @@
       if (FileReader && files && files.length) {
         var fr = new FileReader();
         fr.onload = function () {
-          document.getElementById("preview-img-file").src = fr.result;
+            document.getElementById("preview-img-file").src = fr.result;
         }
         fr.readAsDataURL(files[0]);
       }
@@ -1143,6 +1259,38 @@
       }
 
     }
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var itemCS = document.getElementById("itemsCS");
+      var itemIng = document.getElementById("itemsIng");
+      var itemCat = document.getElementById("itemsCat");
+
+      $('#filter-item').on('change', function(){
+          switch($('#filter-item option:selected').val()) {
+              case 'All':
+                itemCS.removeAttribute("hidden");
+                itemIng.removeAttribute("hidden");
+                itemCat.removeAttribute("hidden");
+              break;
+              case 'Ingredients':
+                itemCS.setAttribute("hidden", "true");
+                itemIng.removeAttribute("hidden");
+                itemCat.setAttribute("hidden", "true");
+              break;
+              case 'Categories':
+                itemCS.setAttribute("hidden", "true");
+                itemIng.setAttribute("hidden", "true");
+                itemCat.removeAttribute("hidden");
+              break;
+              case 'Cooking style':
+                itemCS.removeAttribute("hidden");
+                itemIng.setAttribute("hidden", "true");
+                itemCat.setAttribute("hidden", "true");
+              break;
+          }
+      });
+    });
   </script>
 
 </body>

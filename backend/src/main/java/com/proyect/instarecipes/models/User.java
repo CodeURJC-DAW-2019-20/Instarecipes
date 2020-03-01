@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -146,6 +147,24 @@ public class User{
 	public List<String> getRoles() { 
 		return roles;
 	}
+	public void addFollower(User u){
+		this.followers.add(u);
+	}
+	public void addFollowing(User u2){
+		this.following.add(u2);
+	}
+	public void removeFollowing(User u){
+        this.followers.remove(u);
+    }
+	public void removeFollower(User u){
+        this.followers.remove(u);
+	}
+	public void modifyFollower(Set<User> newFollowers){
+		this.followers=newFollowers;
+	}
+	public void modifyFollowing(Set<User> newFollowers){
+		this.followers=newFollowers;
+	}
 
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
@@ -163,23 +182,7 @@ public class User{
 	}
 	
 	/**				FOLLOWER / FOLLOWING METHODS				*/
-	public void addFollower(User follower) {
-        followers.add(follower); //he followed me, so i increment my followers list
-        follower.following.add(this); //he followed me, so following list of him increments
-	}
 
-	public void addFollowing(User followed) {
-        followed.addFollower(this);//i follow him, so i call addFollower() where im the parameter
-	}
-	
-	public void deleteFollower(User follower) {
-        followers.remove(follower); //he followed me, so i increment my followers list
-        follower.following.remove(this); //he followed me, so following list of him increments
-	}
-
-	public void deleteFollowing(User followed) {
-        followed.deleteFollower(this);//i follow him, so i call addFollower() where im the parameter
-    }
 	/**				_____________________________				*/
 
 	public boolean isBackground() {
