@@ -126,15 +126,14 @@
             <a onclick="usersDiv()" href="#"><span class="fa fa-users mr-3"
                 style="width: 20px;text-align: center;"></span>Users</a>
           </li>
-          
           <li id="text-recipes">
             <a onclick="recipesDiv()" href="#"><span class="fa fa-book mr-3"
-                style="width: 20px;text-align: center;"></span>Recipes</a>
+                style="width: 20px;text-align: center;"></span>Items</a>
           </li>
-          <li id="text-reports">
+          <!-- <li id="text-reports">
             <a onclick="reportsDiv()" href="#"><span class="fa fa-exclamation mr-3"
                 style="width: 20px;text-align: center;"></span>Reports</a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </nav>
@@ -384,7 +383,7 @@
                             <div class="divider-custom-line"></div>
                           </div>
                           <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
-                            <h3 class="underlined-text">INGREDIENTS</h3>
+                            <h3 class="underlined-text" style="color:rgba(0, 0, 0, 0.8)">INGREDIENTS</h3>
                           </div>
                           <div class="row" style="height: 300px;">
                             <!-- publications Modal - Image -->
@@ -808,8 +807,8 @@
           <!-- Masthead Subheading -->
           <div class="profile-about-separator">
             <!-- publications Section Heading -->
-            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Recipes, ingredients,
-              categories and cooking style</h2>
+            <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
+              Ingredients, categories and cooking styles</h2>
             <!-- Icon Divider -->
             <div class="divider-custom divider-light">
               <div class="divider-custom-line"></div>
@@ -826,19 +825,20 @@
         <div class="container">
           <p class="masthead-subheading font-weight-light mb-0">Select type</p>
           <div class="row">
-            <select class="col-5" style="height: 50px;">
-              <option>Recipes</option>
-              <option>Ingredients</option>
-              <option>Categories</option>
-              <option>Cooking style</option>
+            <select id="filter-item" class="col-5" style="height: 50px;">
+              <!-- <option>Recipes</option> -->
+              <option value="All">All</option>
+              <option value="Ingredients">Ingredients</option>
+              <option value="Categories">Categories</option>
+              <option value="Cooking style">Cooking style</option>
             </select>
-            <div class="col-2" style="text-align: center;align-self: center;">
+            <!-- <div class="col-2" style="text-align: center;align-self: center;">
               <i class="btn btn-outline-primary fa fa-plus" style="width: 100px;border-radius: 1rem;"></i>
-            </div>
-            <form class="example col-5" action="" style="height: 50px;">
+            </div> -->
+            <!-- <form class="example col-5" action="" style="height: 50px;">
               <input type="text" placeholder="Search type.." name="search">
               <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
+            </form> -->
           </div>
           <!-- Icon Divider -->
           <div class="divider-custom">
@@ -850,34 +850,112 @@
           </div>
           <div class="row container" style="margin-bottom: 10px;margin-right: 0;margin-left: 0;">
             <div class="col-4">
+              <p class="page-section-heading text-center text-uppercase text-secondary mb-0">No.</p>
+            </div>
+            <div class="col-4">
               <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Type</p>
             </div>
             <div class="col-4">
               <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Item</p>
             </div>
-            <div class="col-4">
+            <!-- <div class="col-4">
               <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Actions</p>
-            </div>
+            </div> -->
           </div>
           <div class="scrolling container" style="height: 100%;background-color: rgba(0, 0, 0, 0.2);">
-            <!-- Type x -->
-            <div class="row" style="align-items: center;">
-              <div class="col-4">
-                <h6 style="text-align:center;">Ingredient</h6>
-              </div>
-              <div class="col-4">
-                <p style="text-align:center;">Pepperoni</p>
-              </div>
-              <div class="col-4" style="display: flex; height:fit-content;justify-content:center; text-align: center;">
-                <div class="btn btn-outline-primary" style="border-radius: 50%;margin-right: 5px;">
-                  <i class=" fa fa-edit"></i>
+            <div id="itemsIng">
+              {{#ingredientsList}}
+              <!-- Type x -->
+              <div class="row" style="align-items: center;">
+                <div class="col-4">
+                  <h3 style="text-align:center;"># {{-index}}</h3>
                 </div>
-                <div class="btn btn-outline-danger" style="border-radius: 50%; margin-left: 5px;">
-                  <i class="fa fa-remove"></i>
+                <div class="col-4">
+                  <h6 style="text-align:center;">Ingredient</h6>
                 </div>
+                <div class="col-4">
+                  <p style="text-align:center;">{{ingredient}}</p>
+                </div>
+                <!-- <div class="col-4" style="display: flex; height:fit-content;justify-content:center; text-align: center;">
+                  <div class="btn btn-outline-primary" style="border-radius: 50%;margin-right: 5px;">
+                    <i class=" fa fa-edit"></i>
+                  </div>
+                  <div class="btn btn-outline-danger" style="border-radius: 50%; margin-left: 5px;">
+                    <form action="/removeItem" method="post">
+                      <button type="submit">
+                        <i class="fa fa-remove"></i>
+                      </button>
+                      <input name="ingredient" hidden value="{{ingredient}}"/>
+                      <input type="hidden" name="_csrf" value="{{token}}"/>
+                    </form>
+                  </div>
+                </div> -->
               </div>
+              <hr>
+              {{/ingredientsList}}
             </div>
-            <hr>
+            <div id="itemsCat">
+              {{#categoriesList}}
+              <!-- Type x -->
+              <div class="row" style="align-items: center;">
+                <div class="col-4">
+                  <h3 style="text-align:center;"># {{-index}}</h3>
+                </div>
+                <div class="col-4">
+                  <h6 style="text-align:center;">Category</h6>
+                </div>
+                <div class="col-4">
+                  <p style="text-align:center;">{{category}}</p>
+                </div>
+                <!-- <div class="col-4" style="display: flex; height:fit-content;justify-content:center; text-align: center;">
+                  <div class="btn btn-outline-primary" style="border-radius: 50%;margin-right: 5px;">
+                    <i class=" fa fa-edit"></i>
+                  </div>
+                  <div class="btn btn-outline-danger" style="border-radius: 50%; margin-left: 5px;">
+                    <form action="/removeItem" method="post">
+                      <button type="submit">
+                        <i class="fa fa-remove"></i>
+                      </button>
+                      <input name="category" hidden value="{{category}}"/>
+                      <input type="hidden" name="_csrf" value="{{token}}"/>
+                    </form>
+                  </div>
+                </div> -->
+              </div>
+              <hr>
+              {{/categoriesList}}
+            </div>
+            <div id="itemsCS">
+              {{#cookingStylesList}}
+              <!-- Type x -->
+              <div class="row" style="align-items: center;">
+                <div class="col-4">
+                  <h3 style="text-align:center;"># {{-index}}</h3>
+                </div>
+                <div class="col-4">
+                  <h6 style="text-align:center;">Cooking Style</h6>
+                </div>
+                <div class="col-4">
+                  <p style="text-align:center;">{{cookingStyle}}</p>
+                </div>
+                <!-- <div class="col-4" style="display: flex; height:fit-content;justify-content:center; text-align: center;">
+                  <div class="btn btn-outline-primary" style="border-radius: 50%;margin-right: 5px;">
+                    <i class=" fa fa-edit"></i>
+                  </div>
+                  <div class="btn btn-outline-danger" style="border-radius: 50%; margin-left: 5px;">
+                    <form action="/removeItem" method="post">
+                      <button type="submit">
+                        <i class="fa fa-remove"></i>
+                      </button>
+                      <input name="cookingStyle" hidden value="{{cookingStyle}}"/>
+                      <input type="hidden" name="_csrf" value="{{token}}"/>
+                    </form>
+                  </div>
+                </div> -->
+              </div>
+              <hr>
+              {{/cookingStylesList}}
+            </div>
           </div>
           <hr>
         </div>
@@ -1173,6 +1251,38 @@
       }
 
     }
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var itemCS = document.getElementById("itemsCS");
+      var itemIng = document.getElementById("itemsIng");
+      var itemCat = document.getElementById("itemsCat");
+
+      $('#filter-item').on('change', function(){
+          switch($('#filter-item option:selected').val()) {
+              case 'All':
+                itemCS.removeAttribute("hidden");
+                itemIng.removeAttribute("hidden");
+                itemCat.removeAttribute("hidden");
+              break;
+              case 'Ingredients':
+                itemCS.setAttribute("hidden", "true");
+                itemIng.removeAttribute("hidden");
+                itemCat.setAttribute("hidden", "true");
+              break;
+              case 'Categories':
+                itemCS.setAttribute("hidden", "true");
+                itemIng.setAttribute("hidden", "true");
+                itemCat.removeAttribute("hidden");
+              break;
+              case 'Cooking style':
+                itemCS.removeAttribute("hidden");
+                itemIng.setAttribute("hidden", "true");
+                itemCat.setAttribute("hidden", "true");
+              break;
+          }
+      });
+    });
   </script>
 
 </body>

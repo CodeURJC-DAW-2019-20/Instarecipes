@@ -10,11 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.proyect.instarecipes.models.Allergen;
+import com.proyect.instarecipes.models.Category;
+import com.proyect.instarecipes.models.CookingStyle;
+import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.Request;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.repositories.AllergensRepository;
+import com.proyect.instarecipes.repositories.CategoriesRepository;
+import com.proyect.instarecipes.repositories.CookingStylesRepository;
+import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.RequestsRepository;
 import com.proyect.instarecipes.security.ImageService;
@@ -43,6 +49,12 @@ public class ProfilePageController {
     private RequestsRepository requestsRepository;
     @Autowired
     private AllergensRepository allergensRepository;
+    @Autowired
+    private CookingStylesRepository cookingStylesRepository;
+    @Autowired
+    private IngredientsRepository ingredientsRepository;
+    @Autowired
+    private CategoriesRepository categoriesRepository;
     @Autowired
     private ImageService imageService;
 
@@ -76,7 +88,6 @@ public class ProfilePageController {
             titles.add(recipes.get(pubs).getTitle());
         }
 
-
         model.addAttribute("n_publications", pubs);
         model.addAttribute("n_likes", likes);
         // Publications
@@ -85,6 +96,13 @@ public class ProfilePageController {
         model.addAttribute("likesGraphics", titles);
         List<Allergen> allergensList = allergensRepository.findAll();
         model.addAttribute("allergensList", allergensList);
+
+        List<Category> catList = categoriesRepository.findAll();
+        List<Ingredient> ingList = ingredientsRepository.findAll();
+        List<CookingStyle> cSList = cookingStylesRepository.findAll();
+        model.addAttribute("ingredientsList", ingList);
+        model.addAttribute("cookingStylesList", cSList);
+        model.addAttribute("categoriesList", catList);
 
         return "profile";
     }
