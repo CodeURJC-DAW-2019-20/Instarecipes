@@ -195,8 +195,8 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 > * [Graphics done!.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/711d7979202efc21c9715c1c589e694d41dd1206)
 > * [Likes funcionality.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/f0e188d37ba45943fe74c37f38a01cd212b7534b)
 > * [Advanced Algorythm.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/a676d2aa4d11179b5cad73d90b0dd6aaf5fca655)
-> * Reorder folders.()  
-> * Navbar funcionalities.() 
+> * [Reorder folders.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/4a24c8d83165c2cc8feea2deb312e4c01ee5d7dc)  
+> * [A lot of database examples.]() 
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
@@ -208,8 +208,8 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 > * Images to BBDD.  
 > * Category, comment step and cooking style java classes.  
 > * Each step images. 
-> * Commit 4  
-> * Commit 5 
+> * 
+> * 
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
@@ -233,9 +233,9 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 
 > * Responsive pages.      
 > * [Login and sign up restrictions.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/f1a3943f5fcbe375255ace558febc8da9b8699ed)
-> *                      
-> *   
-> * 
+> * Settings pop-up                     
+> * Ranking.html  
+> * added Ingredient model
 
 
 ## Most worked files :newspaper: <a name="workedFiles"></a>
