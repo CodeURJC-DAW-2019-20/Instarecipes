@@ -105,6 +105,7 @@
       {{/logged}}
     </div>
   </nav>
+
   <div class="wrapper d-flex align-items-stretch"  style="margin-top: 4.5%;">
     {{#admin}}
     <nav id="sidebar" class="active" style="margin-top:2%;background-color:rgba(0, 0, 0, 0.6)">
@@ -172,6 +173,7 @@
           <!-- Masthead Heading -->
           <h3 class="text-uppercase mb-0">{{actualUser.name}}&nbsp;{{actualUser.surname}}</h3>
           <h6>@{{actualUser.username}}</h6>
+
           <!-- Icon Divider -->
           <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
@@ -654,7 +656,8 @@
               </div>
               <div class="col-2">
                 <h6 style="text-align:left;">{{username.name}}&nbsp;{{username.surname}}</h6>
-                <p style="text-align:left;">@{{username.username}}</p>
+                <a style="text-align:left;" href="/users/{{username.id}}">@{{username.username}}</a>
+
               </div>
               <div class="col-3">
                 <h6 class="btn-xl" type="text" style="text-align:left;">{{typeOfRequest}}</h6>
@@ -750,12 +753,7 @@
                   <th>
                     <p class="text-center text-uppercase text-secondary mb-0">Follows</p>
                   </th>
-                  <th>
-                    <p class="text-center text-uppercase text-secondary mb-0">Recipes</p>
-                  </th>
-                  <th>
-                    <p class="text-center text-uppercase text-secondary mb-0">Likes</p>
-                  </th>
+
                   <th>
                     <p class="text-center text-uppercase text-secondary mb-0">Actions</p>
                   </th>
@@ -770,6 +768,7 @@
                     <hr>
                   <th>
                     <h8 style="text-align:left; text-justify: auto;">{{name}}&nbsp;{{surname}}</h8>
+                    <br>
                     <a style="text-align:left;" href="/users/{{id}}">@{{username}}</a>
                   </th>
 
@@ -778,19 +777,11 @@
                     <p style="text-align:center; color: green;">Active</p>
                   </th>
                   <th>
-                    <p>182</p>
+                    <p>{{followersNum}}</p>
                   </th>
 
                   <th>
-                    <p>99</p>
-                  </th>
-
-                  <th>
-                    <p>8</p>
-                  </th>
-
-                  <th>
-                    <p>{{n_likes}}</p>
+                    <p>{{followingNum}}</p>
                   </th>
 
                   <th style="border: 1px;">
