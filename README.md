@@ -134,7 +134,7 @@ There is only one admin, and he will be the one that has full control over the i
 
 ### Complementary technology  
 One of the complementary technologies that we will use is the possibility of **logging in without email.**  
-It is almost always easier to sign up for a new site by accessing through your **Google, Facebook or even Twitter**, and the good thing about this is that practically almost everyone has a Google account, so we will facilitate the registration to new users with a **simple click**.
+It is almost always easier to sign up for a new site by accessing through your **Google account**, and the good thing about this is that practically almost everyone has a Google account, so we will facilitate the registration to new users with a **simple click**.
 
 <p align="center">
 <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/google-icon.png" width="50" height="50">  
