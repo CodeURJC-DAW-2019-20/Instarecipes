@@ -73,40 +73,41 @@
       {{/logged}}
     </div>
   </nav>
-
-  <div class="masthead bg-primary text-white text-center"  style="margin-top: 5%;">
-  <h3 class="text-uppercase mb-0">Top 10 Ranking</h3>
-    <table class="table" id="table-ranking">
-      <thead>
-        <!-- <input value="{{rankingList}}" id="rankingList" hidden></input> -->
-        <tr style="background-color: #878f99;">
-          <th scope="col">
-            <i class="fa fa-trophy" style="font-size:25px;color:gold"></i>
-          </th>
-          <th scope="col">Username</th>
-          <th scope="col">Likes</th>
-        </tr>
-      </thead>
-      <tbody id="rankingBody">
-        {{#rankingList}}
-        <tr style="background-color: #e6e2d3;">
-          <th scope="row">{{-index}}</th>
-          {{#.}}
-          <td> {{.}}</td>
-          {{/.}}
-          <!-- <td>{{.}}</td> -->
-        </tr>
-        {{/rankingList}}
-      </tbody>
-    </table>
+  <div style="margin-top: 15%;">
+  <video autoplay muted loop id="myVideo" style="position: fixed;z-index: -1; top: 10%; width: 100%; object-fit: cover;">
+    <source src="../images/backgrounds/ranking.mov" type="video/webm">
+  </video>
+  
+  <div class="container" style="height: 100%;">
+  <!-- <h3 class="text-uppercase mb-0">Top 10 Ranking</h3> -->
+  <div class="table" style="position: absolute;z-index: -1;height: 200px;width: 50%">
+    <!-- <img src="../images/backgrounds/r.png" style="width: 100%;"/> -->
   </div>
-
-  <!-- Copyright Section -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright © Instarecipes 2020</p>    </div>
+      <table class="table" id="table-ranking" style="margin: 20px;">
+        <thead>
+          <!-- <input value="{{rankingList}}" id="rankingList" hidden></input> -->
+          <tr style="background-color: #878f99;">
+            <th scope="col">
+              <i class="fa fa-trophy" style="font-size:25px;color:gold"></i>
+            </th>
+            <th scope="col">Username</th>
+            <th scope="col">Likes</th>
+          </tr>
+        </thead>
+        <tbody id="rankingBody">
+          {{#rankingList}}
+          <tr style="background-color: #e6e2d3;">
+            <th scope="row">{{-index}}</th>
+            {{#.}}
+            <td> {{.}}</td>
+            {{/.}}
+            <!-- <td>{{.}}</td> -->
+          </tr>
+          {{/rankingList}}
+        </tbody>
+      </table>
     </div>
-  </footer>
+</div>
 
   <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
   <div class="scroll-to-top d-lg-none position-fixed ">
