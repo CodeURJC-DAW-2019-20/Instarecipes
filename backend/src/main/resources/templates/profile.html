@@ -11,8 +11,8 @@
   <title>Instarecipes • Profile</title>
   <!-- Images and icons-->
   <link rel="icon" type="image/png" href="/images/icons/instarecipes.png" />
- <!-- Fonts-->
- <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+  <!-- Fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
   <!-- Custom fonts for this theme -->
 
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -33,7 +33,17 @@
   <!--Graphics xd-->
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-  
+
+  <!-- BIO js-->
+  <script language="javascript" type="text/javascript">
+    function limitText(limitField, limitCount, limitNum) {
+      if (limitField.value.length > limitNum) {
+        limitField.value = limitField.value.substring(0, limitNum);
+      } else {
+        limitCount.value = limitNum - limitField.value.length;
+      }
+    }
+  </script>
 </head>
 
 <body id="page-top">
@@ -41,8 +51,8 @@
   <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container" style="margin-left: 30px;">
       <div id="img-navbar-container">
-        <img class="img-navbar d-flex mr-3 rounded-circle" 
-          src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="" style="height: 50px;width: 50px; object-fit: cover;">
+        <img class="img-navbar d-flex mr-3 rounded-circle" src="/temp/avatars/image-{{actualUser.id}}.jpg" alt=""
+          style="height: 50px;width: 50px; object-fit: cover;">
       </div>
       <a class="navbar-brand js-scroll-trigger" href="/profile" style="font-family: 'Pacifico';" ;>&nbsp;Profile</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
@@ -142,12 +152,12 @@
           </div>
           <div style="position: relative;width: 100%;height: fit-content;">
             <!-- Request ingredient/category button -->
-            <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;right: 25%;">
+            <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;right: 3%;">
               <img src='../images/icons/request_icon.png' data-toggle="modal" data-target="#opened-request-button"
                 width="50%" style="height: 50px; width: 50px;cursor: pointer;" />
             </div>
             <!-- Statistics button-->
-            <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;left: 25%;">
+            <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;left: 3%;">
               <button id="open-stadistics-button" type="button" class="stadistics-button" data-toggle="modal"
                 data-target="#opened-stadistics-button" style="background-color: transparent;">
                 <span aria-hidden="true">
@@ -221,7 +231,7 @@
             </div>
           </div>
         </div>
-        <table>
+        <table style="margin-top: 5%;">
           <tr>
             <th>
               <h5 class="text-uppercase mb-0 font-weight-light">Publications</h5>
@@ -460,9 +470,12 @@
                       <div class="col-6" style="position: absolute; z-index: 1050;left: 25%;top: 15%;">
                         <!--Avatar-->
                         <div style="position: relative;">
-                          <img id="preview-img-file" style="width:125px;height:125px;border-radius:50%;object-fit: cover;" src="/temp/avatars/image-{{actualUser.id}}.jpg" />
+                          <img id="preview-img-file"
+                            style="width:125px;height:125px;border-radius:50%;object-fit: cover;"
+                            src="/temp/avatars/image-{{actualUser.id}}.jpg" />
                           <div style="position: absolute;width: 100%;">
-                            <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem; 
+                            <label for="file-input" class="btn-outline-primary"
+                              style="border-radius:0.5rem; 
                             border:1px solid rgb(23, 162, 184); text-align:center;padding:0;right:0;width:30%;cursor:pointer">
                               <input id="file-input" hidden type="file" name="avatarFile" accept=".jpg, .jpeg" />
                               <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
@@ -473,10 +486,11 @@
                       <div class="col-12">
                         <!--Background-->
                         <div style="position: relative;">
-                          <img id="preview-bg-file" src="/temp/backgrounds/image-{{actualUser.id}}.jpg" class="img-blur2"
-                              style="object-fit:cover;height:200px;width:100%;border-radius: 0.5rem;"/>
+                          <img id="preview-bg-file" src="/temp/backgrounds/image-{{actualUser.id}}.jpg"
+                            class="img-blur2" style="object-fit:cover;height:200px;width:100%;border-radius: 0.5rem;" />
                           <div style="position: absolute;width: 25%;right:1%;bottom: 0;">
-                            <label for="bg-input" class="btn-outline-primary" style="border-radius:0.5rem;
+                            <label for="bg-input" class="btn-outline-primary"
+                              style="border-radius:0.5rem;
                             border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:100%;cursor:pointer">
                               <input id="bg-input" hidden type="file" name="backgroundFile" accept=".jpg, .jpeg" />
                               <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
@@ -489,37 +503,60 @@
                       <hr>
                       <!-- Username -->
                       <div class="wrap-input50 m-b-23" style="text-align: initial;">
-                        <p class="text-secondary"> <i class="fas fa-user" style="size: 50px;  margin-right: 20px;"></i>{{actualUser.username}}</p>
+                        <p class="text-secondary"> <i class="fas fa-user"
+                            style="size: 50px;  margin-right: 20px;"></i>{{actualUser.username}}</p>
                       </div>
                       <!-- Email -->
                       <div class="wrap-input50 m-b-23" style="text-align: initial;">
-                        <p class="text-secondary"><i class="fas fa-mail-bulk" style="size: 50px; margin-right: 15px;"></i>{{actualUser.email}}</p>
+                        <p class="text-secondary"><i class="fas fa-mail-bulk"
+                            style="size: 50px; margin-right: 15px;"></i>{{actualUser.email}}</p>
                       </div>
                       <hr>
                       <table>
                         <tr>
-                          <td style="width:25%"><h6 style="color: black;">Name</h6></td>
-                          <td><!-- Name -->
-                            <input type="text" name="name" class="text-secondary" style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;" value="{{actualUser.name}}"/>
+                          <td style="width:25%">
+                            <h6 style="color: black;">Name</h6>
+                          </td>
+                          <td>
+                            <!-- Name -->
+                            <input type="text" name="name" class="text-secondary"
+                              style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;"
+                              value="{{actualUser.name}}" />
                           </td>
                         </tr>
                         <tr>
-                          <td style="width:25%"><h6 style="color: black;">Surname</h6></td>
-                          <td><!-- Surname -->
-                            <input type="text" name="surname" class="text-secondary" style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;" value="{{actualUser.surname}}"/>
+                          <td style="width:25%">
+                            <h6 style="color: black;">Surname</h6>
+                          </td>
+                          <td>
+                            <!-- Surname -->
+                            <input type="text" name="surname" class="text-secondary"
+                              style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;"
+                              value="{{actualUser.surname}}" />
                           </td>
                         </tr>
                         <tr>
-                          <td style="width:25%"><h6 style="color: black;">Bio</h6></td>
-                          <td><!-- Bio -->
+                          <td style="width:25%">
+                            <h6 style="color: black;">Bio</h6>
+                          </td>
+                          <td>
+                            <!-- Bio -->
                             <textarea type="text" name="info" style="margin-top:10px;padding:5px;width: 100%;height: 100px;
-                            border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" placeholder="Type your bio here.." 
-                            >{{actualUser.info}}</textarea>
+                            border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
+                              onKeyDown="limitText(this.form.info,this.form.countdown,100)"
+                              onKeyUp="limitText(this.form.info,this.form.countdown,100);"
+                              placeholder="Type your bio here..">{{actualUser.info}}</textarea>
+                            <font size="1">(Maximum characters: 100)<br>
+                              You have <input readonly type="text" name="countdown" size="3" value="100" style="margin-bottom: 10px;"> characters
+                              left.</font>
                           </td>
                         </tr>
                         <tr>
-                          <td style="width:25%"><h6 style="color: black;">Allergens</h6></td>
-                          <td><!--Allergens-->
+                          <td style="width:25%">
+                            <h6 style="color: black;">Allergens</h6>
+                          </td>
+                          <td>
+                            <!--Allergens-->
                             <input name="allergens" list="allergenslist" class="form-control" type="text"
                               placeholder="Select an allergen.." onkeypress="return false;">
                             <datalist id="allergenslist">
