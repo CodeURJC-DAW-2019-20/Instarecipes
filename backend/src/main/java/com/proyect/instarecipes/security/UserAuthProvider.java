@@ -42,12 +42,12 @@ public class UserAuthProvider implements AuthenticationProvider {
 		}else {
 
 			userSession.setLoggedUser(user);
-			System.out.println("Aqui es donde he llegado: " + userSession.isLoggedUser());
+		
 			List<GrantedAuthority> roles = new ArrayList<>();
 			for (String role : user.getRoles()) {
 				roles.add(new SimpleGrantedAuthority(role));
 			}
-			System.out.println("estoy cerca: " + roles.get(0));
+
 			//return new UsernamePasswordAuthenticationToken(user.getName(), password, roles);
 			return new UsernamePasswordAuthenticationToken(username, password, roles);
 		}

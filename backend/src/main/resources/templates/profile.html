@@ -41,8 +41,8 @@
   <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
     <div class="container" style="margin-left: 30px;">
       <div id="img-navbar-container">
-        <img class="img-navbar d-flex mr-3 rounded-circle profile-border"
-          src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="" style="height: 50px; object-fit: fill;">
+        <img class="img-navbar d-flex mr-3 rounded-circle" 
+          src="/temp/avatars/image-{{actualUser.id}}.jpg" alt="" style="height: 50px;width: 50px; object-fit: cover;">
       </div>
       <a class="navbar-brand js-scroll-trigger" href="/profile" style="font-family: 'Pacifico';" ;>&nbsp;Profile</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
@@ -136,9 +136,9 @@
         <div class="container d-flex align-items-center flex-column">
           <!-- Masthead Avatar Image -->
           <div class="rounded-circle">
-            <img class="masthead-avatar mb-5 d-flex mr-3 profile-border" src="/temp/avatars/image-{{actualUser.id}}.jpg"
+            <img class="masthead-avatar mb-5 d-flex mr-3" src="/temp/avatars/image-{{actualUser.id}}.jpg"
               alt="Show profile photo" data-toggle="modal" data-target="#showAvatar"
-              style="object-fit: fill; border-radius: 150px; height: 220px;">
+              style="object-fit: cover; border-radius: 50%; height: 220px;width: 220px;">
           </div>
           <div style="position: relative;width: 100%;height: fit-content;">
             <!-- Request ingredient/category button -->
@@ -424,7 +424,7 @@
         </div>
         <hr width="50%">
         <div id="open-add-button" class='flotating-button'>
-          <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-add-button"
+          <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-settings-button"
             id="load-image-form" style="width: max-content">
             <i class="fas fa-users-cog fa-5x"></i>
           </div>
@@ -432,11 +432,11 @@
 
         <!-- Pop up settings(add avatar, background, bio and allergens) -->
 
-        <div class="publications-modal modal fade" id="opened-add-button" tabindex="-1" role="dialog"
+        <div class="publications-modal modal fade" id="opened-settings-button" tabindex="-1" role="dialog"
           aria-labelledby="publicationsModal6Label" aria-hidden="true">
           <!--change id-->
           <div id="example" class="modal-dialog modal-xl" style="width: 60%;" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="width: inherit;left: 20%;">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">
                   <i class="fas fa-times"></i>
@@ -456,80 +456,89 @@
                   </div>
                   <!-- Form -->
                   <form method="post" action="/settings" enctype="multipart/form-data">
-                    <div class="row">
-                      <div class="col-10" style="justify-content: center; height: 100%;">
-                        <!-- Username -->
-                        <div class="wrap-input50 m-b-23" style="text-align: initial;">
-
-                          <h3 class="text-secondary"> <i class="fas fa-user"
-                              style="size: 50px;  margin-right: 20px;"></i>{{actualUser.username}}</h3>
-                        </div>
-
-                        <!-- Email -->
-                        <div class="wrap-input50 m-b-23" style="text-align: initial;">
-                          <h3 class="text-secondary"><i class="fas fa-mail-bulk"
-                              style="size: 50px; margin-right: 15px;"></i>{{actualUser.email}}</h3>
-
-                        </div>
-                        <hr>
-                        <!-- Bio -->
-                        <div class="wrap-input50 m-b-23" style="text-align: initial; margin-top: 3%;">
-                          <h3 class="underlined-text text-secondary">Bio</h3>
-                          <textarea type="text" name="info"
-                            style="padding:10px;width: 100%;height: 100px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
-                            placeholder="Type your bio here.." required></textarea>
-                        </div>
+                    <div class="row" style="position: relative;">
+                      <div class="col-6" style="position: absolute; z-index: 1050;left: 25%;top: 15%;">
                         <!--Avatar-->
-                        <div class="form-group" style="margin-bottom: 5%;">
-                          <h3 class="underlined-text text-secondary">Upload a profile pic</h3>
-                          <div>
-                            <p id="no-such-image">No such image selected yet</p>
-                            <label for="file-input" class="btn-outline-primary"
-                              style="border-radius:0.5rem;
-                            border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:15%;cursor:pointer">
-                              <input id="file-input" hidden type="file" name="fileAvatar" accept=".jpg, .jpeg" />
+                        <div style="position: relative;">
+                          <img id="preview-img-file" style="width:125px;height:125px;border-radius:50%;object-fit: cover;" src="/temp/avatars/image-{{actualUser.id}}.jpg" />
+                          <div style="position: absolute;width: 100%;">
+                            <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem; 
+                            border:1px solid rgb(23, 162, 184); text-align:center;padding:0;right:0;width:30%;cursor:pointer">
+                              <input id="file-input" hidden type="file" name="avatarFile" accept=".jpg, .jpeg" />
                               <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                             </label>
                           </div>
                         </div>
-                        <img id="preview-img-file" src="" class="img-blur"
-                          style="object-fit:cover;height:150px;width:50%;border-radius: 0.5rem;" hidden />
+                      </div>
+                      <div class="col-12">
                         <!--Background-->
-                        <div class="form-group" style="margin: 10%;">
-                          <h3 class="underlined-text text-secondary">Select a background image</h3>
-                          <div>
-                            <p id="no-bg-image">No such image selected yet</p>
-                            <label for="bg-input" class="btn-outline-primary"
-                              style="border-radius:0.5rem;
-                            border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:15%;cursor:pointer">
-                              <input id="bg-input" hidden type="file" name="fileBackground" accept=".jpg, .jpeg" />
+                        <div style="position: relative;">
+                          <img id="preview-bg-file" src="/temp/backgrounds/image-{{actualUser.id}}.jpg" class="img-blur2"
+                              style="object-fit:cover;height:200px;width:100%;border-radius: 0.5rem;"/>
+                          <div style="position: absolute;width: 25%;right:1%;bottom: 0;">
+                            <label for="bg-input" class="btn-outline-primary" style="border-radius:0.5rem;
+                            border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:100%;cursor:pointer">
+                              <input id="bg-input" hidden type="file" name="backgroundFile" accept=".jpg, .jpeg" />
                               <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                             </label>
-                            <img id="preview-bg-file" src="" class="img-blur2"
-                              style="object-fit:cover;height:80px;width:100%;border-radius: 0.5rem;" hidden />
                           </div>
-                        </div>
-
-                        <!--Allergens-->
-                        <div class="wrap-input100 validate-input m-b-20">
-                          <table id="AllergensTable">
-                            <h3 class="label-input100" style="text-align:center;">Allergens</h3>
-                            <input name="allergens" list="allergenslist" class="form-control" type="text"
-                              placeholder="Select an allergen.." onkeypress="return false;">
-                            <datalist id="allergenslist">
-                              {{#allergensSignUp}}
-                              <option value="{{allergen}}">{{allergen}}</option>
-                              {{/allergensSignUp}}
-                            </datalist>
-                          </table>
                         </div>
                       </div>
                     </div>
-                    <button id="post-recipe" type='submit' class="btn btn-primary"
-                      style="margin-top: 20px; height: 50px;width: 10%;">
-                      Post
-                    </button>
-                    <input type="hidden" name="_csrf" value="{{token}}" />
+                    <div>
+                      <hr>
+                      <!-- Username -->
+                      <div class="wrap-input50 m-b-23" style="text-align: initial;">
+                        <p class="text-secondary"> <i class="fas fa-user" style="size: 50px;  margin-right: 20px;"></i>{{actualUser.username}}</p>
+                      </div>
+                      <!-- Email -->
+                      <div class="wrap-input50 m-b-23" style="text-align: initial;">
+                        <p class="text-secondary"><i class="fas fa-mail-bulk" style="size: 50px; margin-right: 15px;"></i>{{actualUser.email}}</p>
+                      </div>
+                      <hr>
+                      <table>
+                        <tr>
+                          <td style="width:25%"><h6 style="color: black;">Name</h6></td>
+                          <td><!-- Name -->
+                            <input type="text" name="name" class="text-secondary" style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;" value="{{actualUser.name}}"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="width:25%"><h6 style="color: black;">Surname</h6></td>
+                          <td><!-- Surname -->
+                            <input type="text" name="surname" class="text-secondary" style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;" value="{{actualUser.surname}}"/>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="width:25%"><h6 style="color: black;">Bio</h6></td>
+                          <td><!-- Bio -->
+                            <textarea type="text" name="info" style="margin-top:10px;padding:5px;width: 100%;height: 100px;
+                            border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" placeholder="Type your bio here.." 
+                            >{{actualUser.info}}</textarea>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="width:25%"><h6 style="color: black;">Allergens</h6></td>
+                          <td><!--Allergens-->
+                            <input name="allergens" list="allergenslist" class="form-control" type="text"
+                              placeholder="Select an allergen.." onkeypress="return false;">
+                            <datalist id="allergenslist">
+                              <option>{{actualUser.allergens}}</option>
+                              {{#allergensList}}
+                              <option value="{{allergen}}">{{allergen}}</option>
+                              {{/allergensList}}
+                            </datalist>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <div style="width: 100%;">
+                      <button id="post-recipe" type='submit' class="btn btn-primary"
+                        style="margin-top: 20px; height: 50px;border: 1px solid rgb(23, 162, 184);">
+                        Save changes
+                      </button>
+                      <input type="hidden" name="_csrf" value="{{token}}" />
+                    </div>
                   </form>
                 </div>
               </div>
@@ -1105,8 +1114,6 @@
       if (FileReader && files && files.length) {
         var fr = new FileReader();
         fr.onload = function () {
-          document.getElementById("no-such-image").setAttribute("hidden", "");
-          document.getElementById("preview-img-file").removeAttribute("hidden");
           document.getElementById("preview-img-file").src = fr.result;
         }
         fr.readAsDataURL(files[0]);
@@ -1119,8 +1126,6 @@
       if (FileReader && files && files.length) {
         var fre = new FileReader();
         fre.onload = function () {
-          document.getElementById("no-bg-image").setAttribute("hidden", "");
-          document.getElementById("preview-bg-file").removeAttribute("hidden");
           document.getElementById("preview-bg-file").src = fre.result;
         }
         fre.readAsDataURL(files[0]);
