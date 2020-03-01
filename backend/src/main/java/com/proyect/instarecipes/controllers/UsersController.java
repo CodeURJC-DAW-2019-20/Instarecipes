@@ -122,49 +122,59 @@ public class UsersController {
     }
 
     @PostMapping("/followAction/{id}")
-    public String followAction(@PathVariable Long id, Model model) {
+    public void followAction(@PathVariable Long id, Model model, HttpServletResponse response)throws IOException {
+        User u1 = userSession.getLoggedUser();
+        System.out.println("Usuario 1: "+u1);
+        Optional<User> user1=usersRepository.findById(u1.getId());
+        Optional<User> u2 = usersRepository.findById(id);
+        System.out.println("Usuario 1: "+u2.get());
+        Set<User> setFollowing=usersRepository.findFollowingSet(u1.getUsername());
+        Set<User> setFollower=usersRepository.findFollowersSet(u2.get().getUsername());
+        //get the Set of following of our user and the Set of followers of the user that we are going to unfollow
 
-        // User u1 = userSession.getLoggedUser();
-        // // Optional<User> u2 = usersRepository.findById(id);
-        // // u1.addFollowing(u2.get());
-        // GroupStaff groupStaff = new GroupStaff();
-        // User u2 = new User("MARIANO", "MARIANO@MARIANO.MARIANO", "pass", "MARIANO",
-        // "MARIANO", "Hello World !!", "sida", null, null, "ROLE_USER");
-        // usersRepository.save(u2);
-        // User u3 = new User("user2", "manu@gmail.com", "pass", "Manuel", "Savater",
-        // "Konichiwa people !", "awp's", null, null, "ROLE_USER");
-        // User u4 = new User("user3", "trevodrap@hotmail.com", "pass", "Trevod",
-        // "Rap","Hello people !", "Toyacos", null, null, "ROLE_USER");
-        // Set<User> foll = groupStaff.groupFollowing(u2);
+        setFollower.add(user1.get());
+        setFollowing.add(u2.get());
 
-        // usersRepository.following(u1.getId(), foll);
+        u2.get().modifyFollower(setFollower);
+        u1.modifyFollowing(setFollowing);
+        usersRepository.flush();
+        
+        response.sendRedirect("../users/"+id);
 
-        return "profile";
+        
     }
 
     Console console = System.console();
 
     @PostMapping("/unfollowAction/{id}")
     public void unfollowAction(@PathVariable Long id, Model model, HttpServletResponse response) throws IOException {
-
         User u1 = userSession.getLoggedUser();
-        System.out.println("Usuario 1: "+u1);
         Optional<User> u2 = usersRepository.findById(id);
-        System.out.println("Usuario 1: "+u2.get());
-        List<User> followers_list = usersRepository.findFollowers(u1.getUsername());
-        Set<User> followers=new HashSet<User>();
-        for(User user:followers_list){
-            followers.add(user);
+        List<User> following=usersRepository.findFollowing(u1.getUsername());
+        List<User> follower=usersRepository.findFollowers(u2.get().getUsername());
+        Set<User> setFollowers=new HashSet<>();
+        Set<User> setFollowing=new HashSet<>();
+        //get the List of following of our user and the list of followers of the user that we are going to unfollow
+        for(User user:following){
+            if(user.getId()==id){
+                
+            }else{
+                setFollowing.add(user);
+            }
         }
-        System.out.println("Usuario 1 followers: "+followers);
-        followers.add(u2.get());
-        usersRepository.followers_update(u1.getId(), followers);
-        //followers = usersRepository.findFollowers(u1.getUsername());
-        System.out.println("Usuario 1 followers actualizado: "+u1.getFollowers());
-        //u2.get().addFollowing(u1);
+        for(User user:follower){
+            if(user.getId()==u1.getId()){
+                
+            }else{
+                setFollowers.add(user);
+            }
+        }
+        u2.get().modifyFollower(setFollowers);
+        u1.modifyFollowing(setFollowing);
+        usersRepository.flush();
         
+        response.sendRedirect("../users/"+id);
         
-        response.sendRedirect("/users/"+id);
     }
     
 }
