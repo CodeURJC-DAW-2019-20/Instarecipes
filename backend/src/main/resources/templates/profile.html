@@ -81,12 +81,15 @@
                 style="font-size: xx-large;"></i></a>
           </li>
         </ul>
-        <form class="example" action="/search">
-          <input type="text" href="#" placeholder="Search.." name="search" />
-          <button type="submit" style="background-color:rgba(159, 193, 255, 0.726);">
-            <i class="fa fa-search"></i>
+
+        <form class="example" action="/searchBar" method="POST">
+          <input type="text" placeholder="Search.." name="search"/>
+          <button type="submit" style="background-color: rgba(159, 193, 255, 0.726);">
+            <i class="fa fa-search" ></i>
+            <input type="hidden" name="_csrf" value="{{token}}"/>
           </button>
-        </form>
+      </form>
+
       </div>
     </div>
     <div class="login-container">
@@ -102,6 +105,7 @@
       {{/logged}}
     </div>
   </nav>
+
   <div class="wrapper d-flex align-items-stretch"  style="margin-top: 4.5%;">
     {{#admin}}
     <nav id="sidebar" class="active" style="margin-top:2%;background-color:rgba(0, 0, 0, 0.6)">
@@ -169,6 +173,7 @@
           <!-- Masthead Heading -->
           <h3 class="text-uppercase mb-0">{{actualUser.name}}&nbsp;{{actualUser.surname}}</h3>
           <h6>@{{actualUser.username}}</h6>
+
           <!-- Icon Divider -->
           <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
@@ -186,7 +191,7 @@
           <div class="unfollow-div-button" style="background-color: transparent;">
             <form action="/unfollowAction/{{id}}" method="post">
               <button type="submit" class="btn btn-primary"
-                style="background-color: white; color: #1abc9c;">Following</button>
+                style="background-color: white; color: rgba(255, 105, 137, 0.658);">Following</button>
               <input type="hidden" name="_csrf" value="{{token}}" />
             </form>
           </div>
@@ -195,7 +200,7 @@
           <div class="follow-div-button" style="background-color: transparent;">
             <form action="/followAction/{{id}}" method="post">
               <button type="submit" class="btn btn-primary"
-                style="background-color: #1abc9c; color: white;">Follow</button>
+                style="background-color: rgba(255, 105, 137, 0.658); color: white;">Follow</button>
               <input type="hidden" name="_csrf" value="{{token}}" />
             </form>
           </div>
@@ -291,9 +296,6 @@
                   <!-- Icon Divider -->
                   <div class="divider-custom">
                     <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon">
-                      <i class="fas fa-star"></i>
-                    </div>
                   </div>
                   <form method="post" action="/sendItemRequest">
                     <select name="typeOfItem" style="width: 80%;font-size: 25px;">
@@ -524,7 +526,7 @@
                             <!-- Name -->
                             <input type="text" name="name" class="text-secondary"
                               style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;"
-                              value="{{actualUser.name}}" />
+                              value="{{actualUser.name}}" required/>
                           </td>
                         </tr>
                         <tr>
@@ -535,7 +537,7 @@
                             <!-- Surname -->
                             <input type="text" name="surname" class="text-secondary"
                               style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;"
-                              value="{{actualUser.surname}}" />
+                              value="{{actualUser.surname}}" required/>
                           </td>
                         </tr>
                         <tr>
@@ -598,11 +600,11 @@
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">User's requests</h2>
             <!-- Icon Divider -->
             <div class="divider-custom divider-light">
-              <div class="divider-custom-line"></div>
+              <div class="divider-custom-line" style="background-color: black;" ></div>
               <div class="divider-custom-icon">
-                <i class="fas fa-star"></i>
+                <i class="fas fa-star" style="color: black;"></i>
               </div>
-              <div class="divider-custom-line"></div>
+              <div class="divider-custom-line" style="background-color: black;"></div>
             </div>
           </div>
         </div>
@@ -625,32 +627,37 @@
             </div>
             <div class="divider-custom-line"></div>
           </div>
-          <div class="row" style="margin-right: 50px;margin-bottom: 10px;">
-            <div class="col-4">
-              <p class="page-section-heading text-center text-uppercase text-secondary mb-0">User</p>
-            </div>
-            <div class="col-3">
-              <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Type</p>
-            </div>
-            <div class="col-3">
-              <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Value</p>
-            </div>
-            <div class="col-2">
-              <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Action</p>
-            </div>
-          </div>
+
           <div class="scrolling container" style="height: 100%; width: 100%;background-color: rgba(0, 0, 0, 0.2);">
+          <table style="text-align: center;">
+            <tr style="line-break: auto;">
+              <th>
+                <p class="text-center text-uppercase text-secondary mb-0">User</p>
+              </th>
+              <th>
+                <p class="text-center text-uppercase text-secondary mb-0">Type</p>
+              </th>
+              <th>
+                <p class="text-center text-uppercase text-secondary mb-0">Value</p>
+              </th>
+              <th>
+                <p class="text-center text-uppercase text-secondary mb-0">Action</p>
+              </th>
+            </tr>
+          </table>
+         <hr>
             {{#allRequests}}
             <!-- Request x -->
             <form class="row" style="align-items: center;" id="formItemRequest{{-index}}" action="/actionItemRequest"
               method="post">
               <div class="col-2">
                 <img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{username.id}}.jpg"
-                  alt="">
+                  alt="" style="width:100px; height: 100px; object-fit: cover;">
               </div>
               <div class="col-2">
                 <h6 style="text-align:left;">{{username.name}}&nbsp;{{username.surname}}</h6>
-                <p style="text-align:left;">@{{username.username}}</p>
+                <a style="text-align:left;" href="/users/{{username.id}}">@{{username.username}}</a>
+
               </div>
               <div class="col-3">
                 <h6 class="btn-xl" type="text" style="text-align:left;">{{typeOfRequest}}</h6>
@@ -699,11 +706,11 @@
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">User's details</h2>
             <!-- Icon Divider -->
             <div class="divider-custom divider-light">
-              <div class="divider-custom-line"></div>
+              <div class="divider-custom-line" style="background-color: black;"></div>
               <div class="divider-custom-icon">
-                <i class="fas fa-star"></i>
+                <i class="fas fa-star" style="color: black;"></i>
               </div>
-              <div class="divider-custom-line"></div>
+              <div class="divider-custom-line" style="background-color: black;"></div>
             </div>
           </div>
         </div>
@@ -727,11 +734,15 @@
             <div style="text-align: center;margin: 10px;">
               <button class="btn btn-danger" type="submit">Apply changes</button>
             </div>
+           
             <div class="scrolling container" style="height: 100%; width: 100%;background-color: rgba(0, 0, 0, 0.2);">
               <table style="text-align: center;">
                 <tr style="line-break: auto;">
                   <th>
                     <p class="text-center text-uppercase text-secondary mb-0">User</p>
+                  </th>
+                  <th>
+                    <p class="text-center text-uppercase text-secondary mb-0">Username</p>
                   </th>
                   <th>
                     <p class="text-center text-uppercase text-secondary mb-0">Date</p>
@@ -742,25 +753,22 @@
                   <th>
                     <p class="text-center text-uppercase text-secondary mb-0">Follows</p>
                   </th>
-                  <th>
-                    <p class="text-center text-uppercase text-secondary mb-0">Recipes</p>
-                  </th>
-                  <th>
-                    <p class="text-center text-uppercase text-secondary mb-0">Likes</p>
-                  </th>
+
                   <th>
                     <p class="text-center text-uppercase text-secondary mb-0">Actions</p>
                   </th>
                 </tr>
-
+              </table>
+              <table style="text-align: center;">
+                 <hr>
+                 {{#usersList}}
                 <tr>
-                  <hr>
-                  {{#usersList}}
                   <th><img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{id}}.jpg" alt=""
                       style="width:100px; height: 100px; object-fit: cover;">
                     <hr>
                   <th>
                     <h8 style="text-align:left; text-justify: auto;">{{name}}&nbsp;{{surname}}</h8>
+                    <br>
                     <a style="text-align:left;" href="/users/{{id}}">@{{username}}</a>
                   </th>
 
@@ -769,19 +777,11 @@
                     <p style="text-align:center; color: green;">Active</p>
                   </th>
                   <th>
-                    <p>182</p>
+                    <p>{{followersNum}}</p>
                   </th>
 
                   <th>
-                    <p>99</p>
-                  </th>
-
-                  <th>
-                    <p>8</p>
-                  </th>
-
-                  <th>
-                    <p>{{n_likes}}</p>
+                    <p>{{followingNum}}</p>
                   </th>
 
                   <th style="border: 1px;">
@@ -790,7 +790,6 @@
                       <option name="selectedSuspend{{id}}">Suspend</option>
                     </select>
                 </tr>
-
                 {{/usersList}}
               </table>
             </div>
@@ -811,11 +810,11 @@
               Ingredients, categories and cooking styles</h2>
             <!-- Icon Divider -->
             <div class="divider-custom divider-light">
-              <div class="divider-custom-line"></div>
+              <div class="divider-custom-line" style="background-color: black;"></div>
               <div class="divider-custom-icon">
-                <i class="fas fa-star"></i>
+                <i class="fas fa-star" style="color: black;"></i>
               </div>
-              <div class="divider-custom-line"></div>
+              <div class="divider-custom-line" style="background-color: black;"></div>
             </div>
           </div>
         </div>
@@ -842,11 +841,11 @@
           </div>
           <!-- Icon Divider -->
           <div class="divider-custom">
-            <div class="divider-custom-line"></div>
+            <div class="divider-custom-line" style="background-color: black;"></div>
             <div class="divider-custom-icon">
-              <i class="fas fa-star"></i>
+              <i class="fas fa-star" style="color: black;"></i>
             </div>
-            <div class="divider-custom-line"></div>
+            <div class="divider-custom-line" style="background-color: black;"></div>
           </div>
           <div class="row container" style="margin-bottom: 10px;margin-right: 0;margin-left: 0;">
             <div class="col-4">
@@ -972,11 +971,11 @@
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Annonymous reports</h2>
             <!-- Icon Divider -->
             <div class="divider-custom divider-light">
-              <div class="divider-custom-line"></div>
-              <div class="divider-custom-icon">
-                <i class="fas fa-star"></i>
+              <div class="divider-custom-line" style="background-color: black;"></div>
+              <div class="divider-custom-icon" >
+                <i class="fas fa-star" style="color: black;"></i>
               </div>
-              <div class="divider-custom-line"></div>
+              <div class="divider-custom-line" style="background-color: black;"></div>
             </div>
           </div>
         </div>

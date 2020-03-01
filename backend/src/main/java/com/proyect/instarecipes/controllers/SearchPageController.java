@@ -9,11 +9,13 @@ import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.AllergensRepository;
 import com.proyect.instarecipes.repositories.CategoriesRepository;
 import com.proyect.instarecipes.repositories.CookingStylesRepository;
 import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
+import com.proyect.instarecipes.repositories.UsersRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +39,8 @@ public class SearchPageController {
     private IngredientsRepository ingredientsRepository;
     @Autowired
     private RecipesRepository recipesRepository;
+    @Autowired
+    private UsersRepository usersRepository;
 
     @PostMapping("/search")
     public String searchPage(Model model, String ingredients, String categories, String cookingStyles,
@@ -141,9 +145,36 @@ public class SearchPageController {
       
     @PostMapping("/searchBar")
     public String searchBarPage(Model model, @RequestParam String search) {
-        
+    String firstLetter = search.substring(0,1);
         model.addAttribute("searchText", search);
+
+    if (firstLetter.equals("@")){
+        //IF THE USER SEARCH USERS
+        List<User> usersFounded = usersRepository.findAll();
+        List<User> trueUsers = new ArrayList<User>();
+
+        String userName = search.substring(1);
         
+        for (int i=0; i < usersFounded.size(); i++) {
+            String usernameUser = usersFounded.get(i).getUsername().toLowerCase(); //PUT THE TITLE WITH LOWER CASE
+            boolean isCoincidence = usernameUser.contains(userName.toLowerCase()); //COMPARE THE WORDS WITH LOWER CASE
+            if (isCoincidence) {
+                trueUsers.add(usersFounded.get(i));
+            }
+        }
+
+        if(usersFounded.size()==0){
+            model.addAttribute("notUsersFound", true);
+        }else{
+            model.addAttribute("notUsersFound", false);
+            model.addAttribute("usersFound", trueUsers);
+        }
+
+        // IF THE USER SEARCH RECIPES:
+    } else {
+        model.addAttribute("searchText", search);
+        model.addAttribute("notUsersFound", false);
+
         //SEARCHED VALUES TO A LIST       
         String[] words = search.split(" ");
         List<String> filteredWords = new ArrayList<String>();
@@ -179,9 +210,8 @@ public class SearchPageController {
             model.addAttribute("recipesFound", trueOnes);
         }
 
+    }
         model.addAttribute("searchByButton", false);
-
-
         return "search";
     }
 

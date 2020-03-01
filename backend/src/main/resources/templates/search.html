@@ -61,12 +61,11 @@
           {{#searchByButton}}
           <input type="text" placeholder="Search.." name="search">
           {{/searchByButton}}
-          <button type="submit" style="background-color: #1abc9c;">
+          <button type="submit" style="background-color: rgba(159, 193, 255, 0.726);">
             <i class="fa fa-search" ></i>
             <input type="hidden" name="_csrf" value="{{token}}"/>
           </button>
       </form>
-
       </div>
     </div>
     <div class="login-container">
@@ -99,7 +98,6 @@
     
     <div class="row">
       <!-- Sidebar Widgets Column -->
-
 
       {{#searchByButton}}
       <div class="col-4">
@@ -164,12 +162,18 @@
         </div>
       </div>
       {{/searchByButton}}
+      
       {{^searchByButton}}
       <div class="col-2"></div>
       {{/searchByButton}}
 
       <!-- Recipes Entries Column -->
+      {{^searchByButton}}
+      <div class="row">
+      {{/searchByButton}}
+      {{#searchByButton}}
       <div class="col-md-8">
+      {{/searchByButton}}
         {{#notFound}}
           <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match any recipes.</h1>
           <h3>Try it with another filters!</h3>
@@ -208,17 +212,36 @@
           {{/recipesFound}}
         {{/notFound}}
       </div>
-    </div>
+
+      <!-- Users Entries Column -->
+      <div class="col-md-8">
+        {{#notUsersFound}}
+          <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match any users.</h1>
+          <h3>Try it with another one!</h3>
+        {{/notUsersFound}}
+        {{^notUsersFound}}
+        {{#usersFound}}
+        <!-- Recipe Post -->
+        <div class="card mb-2">
+          <div class="row">
+            <div class="col-4" style="text-align: center; align-self: center; overflow-wrap: break-word;">
+              <h5>{{info}}&nbsp;</h5>
+            </div>
+            <div class="col-4" style="text-align: center; align-self: center;">
+              <h5>{{name}}&nbsp;{{surname}}</h5>
+              <p><a href="/users/{{id}}">@{{username}}</a></p>
+            </div>
+            <img class="d-flex mr-3 rounded-circle profile-border\" src="/temp/avatars/image-{{id}}.jpg" style="align-self: center; width: 100px; height: 100px;">
+          </div>
+        </div>
+        {{/usersFound}}
+        {{/notUsersFound}}
+      </div>
+
     <!-- /.row -->
   </div>
   <!-- /.container -->
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
