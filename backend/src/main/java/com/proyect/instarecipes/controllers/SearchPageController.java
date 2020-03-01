@@ -18,6 +18,9 @@ import com.proyect.instarecipes.repositories.RecipesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import ch.qos.logback.classic.pattern.ThreadConverter;
 
 import org.springframework.ui.Model;
 
@@ -38,7 +41,8 @@ public class SearchPageController {
     @PostMapping("/search")
     public String searchPage(Model model, String ingredients, String categories, String cookingStyles,
             String allergens) {
-
+                
+        model.addAttribute("searchByButton", true);
         ArrayList<String> cookingStylesSelected = new ArrayList<String>(Arrays.asList(cookingStyles.split(",")));
         if (cookingStylesSelected.get(0) != "") { // fix the bug when only 1 is selected :)
             model.addAttribute("cookingStyles", cookingStylesSelected);
@@ -134,5 +138,54 @@ public class SearchPageController {
         }
         return aux;
     }
+      
+    @PostMapping("/searchBar")
+    public String searchBarPage(Model model, @RequestParam String search) {
+        
+        model.addAttribute("searchText", search);
+        
+        //SEARCHED VALUES TO A LIST       
+        String[] words = search.split(" ");
+        List<String> filteredWords = new ArrayList<String>();
+        String[] quitWords = {"with","and","or","without", "in", "to", "&", "for", "on", "minutes", "min"};
 
+        for (int i=0; i<words.length;i++){
+            //words[i].toLowerCase().contains("with")
+            if (!stringContainsItemFromList(words[i].toLowerCase(),quitWords)) {
+                filteredWords.add(words[i]);
+            }
+            
+        }
+
+        List<Recipe> recipesFounded2 = recipesRepository.findAll();
+        List<Recipe> trueOnes = new ArrayList<Recipe>(); 
+
+        for (int i=0; i < filteredWords.size(); i++){
+            String palabrita = filteredWords.get(i);
+            for (int j=0; j < recipesFounded2.size(); j++) {
+                String titleRecipe = recipesFounded2.get(j).getTitle().toLowerCase().replaceAll("[^a-zA-Z]"," "); //PUT THE TITLE WITHOUT SPECIAL CHARACTERS AND LOWER CASE
+                boolean isCoincidence = titleRecipe.contains(palabrita.toLowerCase().replaceAll("[^a-zA-Z]"," ")); //COMPARE THE WORDS WITHOUT SPECIAL CHARACTERS AND LOWER CASE
+           
+                if (isCoincidence) {
+                    trueOnes.add(recipesFounded2.get(j));
+                }
+            }
+        }
+
+        if(trueOnes.size()==0){
+            model.addAttribute("notFound", true);
+        }else{
+            model.addAttribute("notFound", false);
+            model.addAttribute("recipesFound", trueOnes);
+        }
+
+        model.addAttribute("searchByButton", false);
+
+
+        return "search";
+    }
+
+    public static boolean stringContainsItemFromList(String inputStr, String[] items) {
+        return Arrays.stream(items).parallel().anyMatch(inputStr::contains);
+    }
 }

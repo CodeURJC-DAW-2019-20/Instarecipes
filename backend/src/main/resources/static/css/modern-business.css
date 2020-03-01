@@ -46,11 +46,11 @@
 
 .flotating-button {
   position:fixed;
-  width: auto;
 	bottom: 10%;
   left: 92%;
   cursor: pointer;
 }
+
 /* Style the search field */
 form.example input[type=text] {
   padding: 10px;
@@ -92,7 +92,7 @@ form.example::after {
 [ Search button design ]*/
 .search-button{
   position: fixed;
-  background: #4bd863;
+  background:  rgb(112, 162, 255);
   border-radius: 50%;
   padding: 10px;
   bottom: 2%;
@@ -131,7 +131,7 @@ form.example::after {
 .btn-add-ingredient, .btn-add-category, .btn-add-allergen{
   width: 150px;
   height: fit-content;
-  background-color: #1abc9c;
+  background-color: rgba(100, 149, 237, 0.5);
   border-color: #343a40;
   justify-content: center;
   border-radius: 0.8rem;
@@ -147,16 +147,25 @@ form.example::after {
 .stadistics-button:hover {color: white;}
 .search-btn:hover {color: white;}
 /*Ingredients*/
-.btn-add-ingredient:hover {background: rgb(8, 206, 206);}
+.btn-add-ingredient:hover {
+  background: rgba(159, 193, 255, 0.726);
+  border-color: rgba(250, 111, 141, 0.5);
+}
 .btn-delete-ingredients:hover {background: rgb(252, 78, 78);}
 .btn-delete-line:hover {background: rgb(252, 78, 78);}
 
 /*Categories*/
-.btn-add-category:hover {background: rgb(8, 206, 206);}
+.btn-add-category:hover {
+  background: rgba(159, 193, 255, 0.726);
+  border-color: rgba(250, 111, 141, 0.5);
+}
 .btn-delete-categories:hover {background: rgb(252, 78, 78);}
 
 /*allergens*/
-.btn-add-allergen:hover{background: rgb(8, 206, 206);}
+.btn-add-allergen:hover {
+  background: rgba(159, 193, 255, 0.726);
+  border-color: rgba(250, 111, 141, 0.5);
+}
 .btn-delete-allergens:hover{background: rgb(252, 78, 78);}
 
 .success {color: green;}
@@ -164,3 +173,20 @@ form.example::after {
 .warning {color: orange;}
 .danger {color: red;}
 .default {color: black;}
+
+/* RANKING TABLE */
+#table-ranking {
+  width: 80%; 
+  margin-left: 10%; 
+  margin-right: 10%; 
+  margin-top: 5%;
+  margin-bottom: 10%; 
+  border-style: solid; 
+  background-color: azure;
+  border-width: 5px;
+  border-top-color: rgb(104, 181, 253);
+  border-bottom-color: rgb(248, 120, 195);  
+  border-left-color: #EFEA5A;  
+  border-right-color: #EFEA5A;  
+
+}

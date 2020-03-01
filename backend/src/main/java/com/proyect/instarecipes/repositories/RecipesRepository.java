@@ -34,17 +34,15 @@ public interface RecipesRepository extends JpaRepository<Recipe, Long> {
     + "((ing.ingredient IN :ingredients) OR "
     + "(cat.category IN :categories) OR "
     + "(cok.cookingStyle IN :cookingStyles)) AND "
-    +"NOT (ale.allergen IN :allergens)")
+    + "NOT (ale.allergen IN :allergens)")
     List<Recipe> findFilteredSearch(ArrayList<String> ingredients, 
                                     ArrayList<String> categories, 
                                     ArrayList<String> allergens,
                                     ArrayList<String> cookingStyles);
-
-    @Query("SELECT DISTINCT r FROM Recipe r "
-        + "INNER JOIN r.allergens ale WHERE "
-        + "(ale.allergen IN :allergens)")
-        List<Recipe> findFilteredSearch2(ArrayList<String> allergens);
     
     @Query("SELECT r FROM Recipe r ORDER BY r.likes DESC")
     List<Recipe> FindByLikes();
+
+  //  @Query("SELECT r FROM Recipe r WHERE title LIKE "%word%"")
+  //  List<Recipe> findByTitle(String word);
 }
