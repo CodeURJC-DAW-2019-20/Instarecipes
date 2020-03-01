@@ -233,9 +233,9 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 
 > * Responsive pages.      
 > * Login and sign up restrictions.  
-> *                      
-> *   
-> * 
+> * Settings pop-up                     
+> * Ranking.html  
+> * added Ingredient model
 
 
 ## Most worked files :newspaper: <a name="workedFiles"></a>
