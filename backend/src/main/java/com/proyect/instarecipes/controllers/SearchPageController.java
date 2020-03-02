@@ -60,8 +60,10 @@ public class SearchPageController {
             model.addAttribute("allergens", allergensSelected);
         }
         ArrayList<String> ingredientsSelected = new ArrayList<String>(Arrays.asList(ingredients.split(",")));
+        System.out.println("LOS INGREDIENTES: "+ ingredientsSelected);
         if (ingredientsSelected.get(0) != "") {
             model.addAttribute("ingredients", ingredientsSelected);
+            
         }
 
         List<Category> allCategories = categoriesRepository.findAll();
@@ -84,6 +86,7 @@ public class SearchPageController {
 
         // Search by items
         List<Recipe> recipesFounded = recipesRepository.findFilteredSearch(ingredientsSelected, categoriesSelected, allergensSelected, cookingStylesSelected);
+        System.out.println("LAS RECETAS: "+ recipesFounded.toString());
         if(recipesFounded.size()==0){
             model.addAttribute("notFound", true);
         }else{
@@ -197,7 +200,7 @@ public class SearchPageController {
                 String titleRecipe = recipesFounded2.get(j).getTitle().toLowerCase().replaceAll("[^a-zA-Z]"," "); //PUT THE TITLE WITHOUT SPECIAL CHARACTERS AND LOWER CASE
                 boolean isCoincidence = titleRecipe.contains(palabrita.toLowerCase().replaceAll("[^a-zA-Z]"," ")); //COMPARE THE WORDS WITHOUT SPECIAL CHARACTERS AND LOWER CASE
            
-                if (isCoincidence) {
+                if ((isCoincidence) && (!isAlreadyIn(trueOnes, recipesFounded2.get(j).getId()))) {
                     trueOnes.add(recipesFounded2.get(j));
                 }
             }
@@ -213,6 +216,19 @@ public class SearchPageController {
     }
         model.addAttribute("searchByButton", false);
         return "search";
+    }
+
+    public static boolean isAlreadyIn (List<Recipe> recipeList, Long recipeId){
+        boolean founded = false;
+
+        for (int i=0; i< recipeList.size(); i++){
+            if (recipeList.get(i).getId() == recipeId) {
+                System.out.println("ya esta dentro bro");
+                founded = true;
+            }
+        }
+
+        return founded;
     }
 
     public static boolean stringContainsItemFromList(String inputStr, String[] items) {

@@ -171,6 +171,7 @@
       {{^searchByButton}}
       <div class="row">
       {{/searchByButton}}
+      
       {{#searchByButton}}
       <div class="col-md-8">
       {{/searchByButton}}
@@ -181,7 +182,14 @@
         {{^notFound}}
           {{#recipesFound}}
           <!-- Recipe Post -->
+         
+          {{^searchByButton}}
+          <div class="row">
+          {{/searchByButton}}
+          
+          {{#searchByButton}}
           <div class="card mb-4">
+          {{/searchByButton}}
             <img class="card-img-top" src="/temp/recipes/image-{{id}}.jpg" alt="Card image cap">
             <div class="card-body">
               <h2 class="card-title">{{title}}</h2>
@@ -210,15 +218,17 @@
             </div>
           </div>
           {{/recipesFound}}
+          </div>
         {{/notFound}}
       </div>
-
+        
       <!-- Users Entries Column -->
       <div class="col-md-8">
         {{#notUsersFound}}
           <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match any users.</h1>
           <h3>Try it with another one!</h3>
         {{/notUsersFound}}
+
         {{^notUsersFound}}
         {{#usersFound}}
         <!-- Recipe Post -->
