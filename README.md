@@ -95,7 +95,7 @@ Here you can found a list of existing features in Instarecipes.
 > * Add visual elements (videos, images...).
 > * Trending recipes. *There will be a ranking with 3 recipes with the highest amount of likes in a certain time.*
 > * Posibility of Sign up. 
->    * By Facebook, Google or email.
+>    * By Google.
 > * Ban available to users. *Because of 'trolls' comments or recipes.*
 
 ### Entities <a name="entities"></a>
@@ -134,10 +134,10 @@ There is only one admin, and he will be the one that has full control over the i
 
 ### Complementary technology  
 One of the complementary technologies that we will use is the possibility of **logging in without email.**  
-It is almost always easier to sign up for a new site by accessing through your **Google, Facebook or even Twitter**, and the good thing about this is that practically almost everyone has a Google account, so we will facilitate the registration to new users with a **simple click**.
+It is almost always easier to sign up for a new site by accessing through your **Google account**, and the good thing about this is that practically almost everyone has a Google account, so we will facilitate the registration to new users with a **simple click**.
 
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/google-icon.png" width="50" height="50"> <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/facebook-icon.png" width="50" height="50"> <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/twitter-icon.png" width="50" height="50"> 
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/google-icon.png" width="50" height="50">  
 </p>  
 
 ### Algorithm or advanced query  <a name="algorithm"></a>
@@ -266,6 +266,10 @@ To access the website, you need:
 > * Click 'Start..' button, go to your navegator and put: http://localhost:8443 and enjoy! (***We will change it to https soon***)
 
 ## Navigation Diagrams <a name="navDiagrams2"></a>
+In this section we can see how our navigation diagram has changed, now, you can search an user or a recipe using the search bar. 
+When you are in the search page, recipe page or profile page, the navbar is still visible: This gives the user the possibility to go home, profile (*if it is a registered user*) or go to see the ranking.  
+
+If the user wants to register or log in, he will click on the Login / Sign up button and will be redirected to the login screen, through which he can access the sign up.  
 
 <p align="center">
 <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/Navigation%20Diagram%20(Pages-Updated).png"></p> 
@@ -273,7 +277,7 @@ To access the website, you need:
 ## Database diagrams <a name="dbDiagram"></a>
 
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/databaseDiagram.png"
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/databaseDiagramNew.png"
 </p> 
 
 ##  Classes and templates diagrams </a><a name="CTdiagrams"></a>
