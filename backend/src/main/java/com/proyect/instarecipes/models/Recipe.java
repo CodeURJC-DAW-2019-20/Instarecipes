@@ -100,6 +100,14 @@ public class Recipe{
         this.cookingStyles = cookingStyles;
     }
 
+    public Set<Allergen> getAllergens() {
+        return this.allergens;
+    }
+
+    public void setAllergens(Set<Allergen> alergens) {
+        this.allergens = alergens;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -132,13 +140,6 @@ public class Recipe{
         this.difficulty = difficulty;
     }
 
-    public Set<Allergen> getAllergens() {
-        return this.allergens;
-    }
-
-    public void setAllergens(Set<Allergen> alergens) {
-        this.allergens = alergens;
-    }
     public void setImage(boolean image){
         this.image=image;
     }

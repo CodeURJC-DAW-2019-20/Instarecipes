@@ -45,8 +45,7 @@ public class SearchPageController {
     private UserSession userSession;
 
     @PostMapping("/search")
-    public String searchPage(Model model, String ingredients, String categories, String cookingStyles,
-            String allergens) {
+    public String searchPage(Model model, @RequestParam(required = false) String ingredients, @RequestParam(required = false) String categories, @RequestParam(required = false) String cookingStyles, @RequestParam(required = false) String allergens) {
                 
         model.addAttribute("searchByButton", true);
         ArrayList<String> cookingStylesSelected = new ArrayList<String>(Arrays.asList(cookingStyles.split(",")));
@@ -62,10 +61,8 @@ public class SearchPageController {
             model.addAttribute("allergens", allergensSelected);
         }
         ArrayList<String> ingredientsSelected = new ArrayList<String>(Arrays.asList(ingredients.split(",")));
-        System.out.println("LOS INGREDIENTES: "+ ingredientsSelected);
         if (ingredientsSelected.get(0) != "") {
             model.addAttribute("ingredients", ingredientsSelected);
-            
         }
 
         List<Category> allCategories = categoriesRepository.findAll();
@@ -87,8 +84,7 @@ public class SearchPageController {
         model.addAttribute("allAllergens", restOfAllergens);
 
         // Search by items
-        List<Recipe> recipesFounded = recipesRepository.findFilteredSearch(ingredientsSelected, categoriesSelected, allergensSelected, cookingStylesSelected);
-        System.out.println("LAS RECETAS: "+ recipesFounded.toString());
+        List<Recipe> recipesFounded = recipesRepository.findFilteredSearch(ingredientsSelected, categoriesSelected, cookingStylesSelected, allergensSelected);
         if(recipesFounded.size()==0){
             model.addAttribute("notFound", true);
         }else{

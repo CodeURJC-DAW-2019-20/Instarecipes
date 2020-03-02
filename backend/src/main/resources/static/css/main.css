@@ -105,7 +105,7 @@ a:hover {
 }
 
 input:checked + .slider {
-  background-color: #1abc9c;
+  background-color: rgba(255, 105, 138, 0.733);
 }
 
 input:focus + .slider {
@@ -562,8 +562,8 @@ iframe {
  
 .validation{
   border-radius: 10px;
-  background-color: #f44336;
-  color: white;
+  color: #f44336;
+  font-size: smaller;
   padding: 5px;
 }
 
