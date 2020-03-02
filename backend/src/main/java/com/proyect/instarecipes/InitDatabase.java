@@ -176,6 +176,7 @@ public class InitDatabase {
         userRepository.save(u8);
         userRepository.save(u9);
         userRepository.save(u10);
+        userRepository.save(u11);
         //Save avatars
         imageService.saveImage("avatars", u1.getId(), userAvatar);
         imageService.saveImage("avatars", u2.getId(), userAvatar);

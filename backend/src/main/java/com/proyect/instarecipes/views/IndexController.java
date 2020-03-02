@@ -164,7 +164,7 @@ public class IndexController {
         Set<Category> lastCats = new HashSet<Category>();
         for(String cats : listOfCats){
             Optional<Category> category = categoriesRepository.findByCategory(cats);
-            if(category != null){
+            if(category.isPresent()){
                 lastCats.add(category.get());
             }
         }
