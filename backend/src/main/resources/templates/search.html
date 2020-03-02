@@ -65,7 +65,7 @@
             <i class="fa fa-search" ></i>
             <input type="hidden" name="_csrf" value="{{token}}"/>
           </button>
-      </form>
+        </form>
       </div>
     </div>
     <div class="login-container">
@@ -169,7 +169,7 @@
 
       <!-- Recipes Entries Column -->
       {{^searchByButton}}
-      <div class="row">
+      <div class="row" style="margin: 5px;width: 100%;">
       {{/searchByButton}}
       
       {{#searchByButton}}
@@ -189,7 +189,7 @@
               <p class="card-text">{{description}}</p>
               <div class="row">
                 <div class="col-2" style="align-self: flex-end;">
-                  <img class="d-flex mr-3 rounded-circle profile-border\" src="/temp/avatars/image-{{username.id}}.jpg">
+                  <img class="d-flex mr-3 rounded-circle profile-border" style="align-self: center; width: 100px; height: 100px;" src="/temp/avatars/image-{{username.id}}.jpg">
                 </div>
                 <div class="col-4" style="align-self: flex-end;">
                   <h5>{{username.name}}&nbsp;{{username.surname}}</h5>

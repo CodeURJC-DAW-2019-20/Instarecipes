@@ -8,9 +8,17 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.proyect.instarecipes.models.Category;
+import com.proyect.instarecipes.models.CookingStyle;
+import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.models.Request;
 import com.proyect.instarecipes.models.User;
+import com.proyect.instarecipes.repositories.CategoriesRepository;
+import com.proyect.instarecipes.repositories.CookingStylesRepository;
+import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
+import com.proyect.instarecipes.repositories.RequestsRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
 
@@ -32,6 +40,14 @@ public class UsersController {
     private UsersRepository usersRepository;
     @Autowired
     private RecipesRepository recipesRepository;
+    @Autowired
+    private CookingStylesRepository cookingStylesRepository;
+    @Autowired
+    private IngredientsRepository ingredientsRepository;
+    @Autowired
+    private CategoriesRepository categoriesRepository;
+    @Autowired
+    private RequestsRepository requestsRepository;
     @Autowired
     private UserSession userSession;
 
@@ -70,7 +86,12 @@ public class UsersController {
             Laiks.add(recipes.get(pubs).getLikes()); // List of every user recipe LIKES!!
             titles.add(recipes.get(pubs).getTitle());
         }
-
+        List<Category> catList = categoriesRepository.findAll();
+        List<Ingredient> ingList = ingredientsRepository.findAll();
+        List<CookingStyle> cSList = cookingStylesRepository.findAll();
+        model.addObject("ingredientsList", ingList);
+        model.addObject("cookingStylesList", cSList);
+        model.addObject("categoriesList", catList);
 
         model.addObject("n_publications", pubs);
         model.addObject("n_likes", likes);
@@ -80,7 +101,6 @@ public class UsersController {
         model.addObject("likesGraphics", titles);
 
         User u = userSession.getLoggedUser();
-
         List<User> following = usersRepository.findFollowing(u.getUsername());
 
         boolean is_following = false;
@@ -117,6 +137,8 @@ public class UsersController {
             model.addAttribute("user", userSession.getLoggedUser().getUsername());
             model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
         }
+        List<Request> requestsList = requestsRepository.findAll();
+        model.addAttribute("allRequests", requestsList);
     }
 
     @PostMapping("/followAction/{id}")

@@ -34,10 +34,16 @@
 					<div id="signUpDiv">
 						<!-- Back buttons -->
 						<div class="login100 p-l p-r p-t-5 p-b-35 ">
-							<a href="login"><span style="font-size: 32px; display:contents; "
-									class="fa fa-arrow-left"></a></span>
-							<a href="/"><span style="font-size: 32px; float:right; margin-left: 50%;"
-									class="fa fa-close"></a></span>
+							<a href="login">
+								<span style="font-size: 32px; display:contents;color: rgba(112, 162, 255, 0.856);"
+									class="fa fa-arrow-left">
+								</span>
+							</a>
+							<a href="/">
+								<span style="font-size: 32px; float:right; margin-left: 50%; color: rgba(112, 162, 255, 0.856);"
+									class="fa fa-close">
+								</span>
+							</a>
 						</div>
 						<span class="login100-form-title p-b-30">
 							Sign Up
@@ -58,8 +64,7 @@
 							<span class="focus-input100" data-symbol="&#xf206;"></span>
 						</div>
 						<div class="validation" id="email-val" role="alert" style="display: none; border-radius: 3px;">
-							<h6>Please enter a valid email.
-								example@email.com</h6>
+							<p style="color: red;">Please enter a valid email like example@email.com</p>
 						</div>
 						<!-- Password input -->
 						<div class="wrap-input100 validate-input m-b-20" data-validate="Password is required">
@@ -76,10 +81,10 @@
 							<span class="focus-input100" data-symbol="&#xf190;"></span>
 						</div>
 						<div class="validation" id="nopass" style="display: none;">
-							<h6>Please set a password</h6>
+							<p style="color: red;">Please set a password</p>
 						</div>
 						<div class="validation" id="conf-pass" style="display: none;">
-							<h6>The password doesnt match!</h6>
+							<p style="color: red;">The password doesnt match!</p>
 						</div>
 						<!-- Complete sign up button -->
 						<div class="container-login100-form-btn m-t-55">
@@ -124,18 +129,21 @@
 							<!-- Load image and select box -->
 							<!--Avatar-->
 							<div class="form-group" style="margin: 10%;">
-								<h3 class="underlined-text text-secondary">Upload a profile pic</h3>
-								<div>
-									<label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem;
-									  border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:15%;cursor:pointer">
-										<input id="file-input" hidden type="file" name="fileAvatar"
-											accept=".jpg, .jpeg" />
-										<i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
-									</label>
+								<div style="position: relative;">
+									<img id="preview-img-file"
+										style="width:125px;height:125px;border-radius:50%;object-fit: cover;margin-left: 25%;"
+										src="/images/icons/avatar.jpg" />
+									<div style="position: absolute;width: 100%;">
+										<label for="file-input" class="btn-outline-secondary"
+										style="border-radius:0.5rem;margin-left:34% ;
+										border:1px solid rgb(197, 49, 202); text-align:center;padding:0;right:0;width:30%;cursor:pointer">
+										<input id="file-input" value="/images/icons/avatar.jpg" hidden type="file" name="fileAvatar" accept=".jpg, .jpeg" />
+										<i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i> 
+										</label>
+									</div>
 								</div>
 							</div>
 							<div class="wrap-input100 validate-input m-b-20">
-								<h3 class="label-input100" style="text-align:center;">Allergens</h3>
 								<input name="allergens" list="allergenslist" class="form-control" type="text"
 									placeholder="Select an allergen.." onkeypress="return false;">
 								<datalist id="allergenslist">
@@ -184,6 +192,20 @@
 				}
 			});
 		})
+	</script>
+	<script type="text/javascript">
+		document.getElementById('file-input').onchange = function (evt) {
+		  var tgt = evt.target || window.event.srcElement,
+			files = tgt.files;
+		  // FileReader support
+		  if (FileReader && files && files.length) {
+			var fr = new FileReader();
+			fr.onload = function () {
+				document.getElementById("preview-img-file").src = fr.result;
+			}
+			fr.readAsDataURL(files[0]);
+		  }
+		}
 	</script>
 
 </body>

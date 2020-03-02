@@ -81,15 +81,13 @@
                 style="font-size: xx-large;"></i></a>
           </li>
         </ul>
-
         <form class="example" action="/searchBar" method="POST">
           <input type="text" placeholder="Search.." name="search"/>
           <button type="submit" style="background-color: rgba(159, 193, 255, 0.726);">
             <i class="fa fa-search" ></i>
             <input type="hidden" name="_csrf" value="{{token}}"/>
           </button>
-      </form>
-
+        </form>
       </div>
     </div>
     <div class="login-container">
@@ -612,13 +610,13 @@
       <!-- Publications Section -->
       <section class="page-section publications" id="publications">
         <div class="container">
-          <p class="masthead-subheading font-weight-light mb-0">Search type of item</p>
+          <!-- <p class="masthead-subheading font-weight-light mb-0">Search type of item</p>
           <select id="typeOfRequests" style="height: 50px;width: 300px;">
             <option value="allRequests">All</option>
             <option value="ingredientsRequestsOrders">Ingredients</option>
             <option value="categoriesRequestsOrders">Categories</option>
             <option value="cookingStylesRequests">Cooking style</option>
-          </select>
+          </select> -->
           <!-- Icon Divider -->
           <div class="divider-custom">
             <div class="divider-custom-line"></div>
@@ -627,7 +625,6 @@
             </div>
             <div class="divider-custom-line"></div>
           </div>
-
           <div class="scrolling container" style="height: 100%; width: 100%;background-color: rgba(0, 0, 0, 0.2);">
           <table style="text-align: center;">
             <tr style="line-break: auto;">
@@ -718,9 +715,12 @@
       <!-- Users Section -->
       <section class="page-section publications" id="publications">
         <div class="container">
-          <form class="example" action="">
-            <input type="text" placeholder="Search user.." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
+          <form class="example" action="/searchBar" method="POST">
+            <input type="text" placeholder="Search.." name="search"/>
+            <button type="submit" style="background-color: rgba(159, 193, 255, 0.726);">
+              <i class="fa fa-search" ></i>
+              <input type="hidden" name="_csrf" value="{{token}}"/>
+            </button>
           </form>
           <!-- Icon Divider -->
           <div class="divider-custom">
@@ -732,9 +732,8 @@
           </div>
           <form method="post" action="/suspendUsersRequest">
             <div style="text-align: center;margin: 10px;">
-              <button class="btn btn-danger" type="submit">Apply changes</button>
+              <!-- <button class="btn btn-danger" type="submit">Apply changes</button> -->
             </div>
-           
             <div class="scrolling container" style="height: 100%; width: 100%;background-color: rgba(0, 0, 0, 0.2);">
               <table style="text-align: center;">
                 <tr style="line-break: auto;">
@@ -753,43 +752,40 @@
                   <th>
                     <p class="text-center text-uppercase text-secondary mb-0">Follows</p>
                   </th>
-
-                  <th>
+                  <!-- <th>
                     <p class="text-center text-uppercase text-secondary mb-0">Actions</p>
-                  </th>
+                  </th> -->
                 </tr>
               </table>
               <table style="text-align: center;">
                  <hr>
                  {{#usersList}}
                 <tr>
-                  <th><img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{id}}.jpg" alt=""
-                      style="width:100px; height: 100px; object-fit: cover;">
-                    <hr>
+                  <th>
+                    <img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{id}}.jpg" alt=""
+                            style="width:100px; height: 100px; object-fit: cover;">
+                  <hr>
                   <th>
                     <h8 style="text-align:left; text-justify: auto;">{{name}}&nbsp;{{surname}}</h8>
                     <br>
                     <a style="text-align:left;" href="/users/{{id}}">@{{username}}</a>
                   </th>
-
                   <th>
-                    <p style="text-align:center;">10/02/2011</p>
+                    <!-- <p style="text-align:center;">10/02/2011</p> -->
                     <p style="text-align:center; color: green;">Active</p>
                   </th>
                   <th>
                     <p>{{followersNum}}</p>
                   </th>
-
                   <th>
                     <p>{{followingNum}}</p>
                   </th>
-
-                  <th style="border: 1px;">
+                  <!-- <th style="border: 1px;">
                     <select class="btn btn-outline-danger" style="margin-right: 5%;border-radius: 0.8rem;">
                       <option>...</option>
                       <option name="selectedSuspend{{id}}">Suspend</option>
                     </select>
-                </tr>
+                  </tr> -->
                 {{/usersList}}
               </table>
             </div>
@@ -1128,9 +1124,9 @@
               <div class="nav-item dropdown scrolling">
                 {{#following}}
                 <!-- User x -->
-                <div class="row">
+                <div class="row" style="margin: 0px;">
                   <div class="col-2">
-                    <img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{id}}.jpg" alt="">
+                    <img class="d-flex mr-3 rounded-circle profile-border" style="width: 50px;height: 50px;" src="/temp/avatars/image-{{id}}.jpg" alt="">
                   </div>
                   <div class="col-6">
                     <h6 style="text-align:left;">{{name}}&nbsp;{{surname}}</h6>
@@ -1182,9 +1178,9 @@
               <div class="nav-item dropdown scrolling">
                 {{#followers}}
                 <!-- User x -->
-                <div class="row">
+                <div class="row" style="margin: 0px;">
                   <div class="col-2">
-                    <img class="d-flex mr-3 rounded-circle profile-border" src="/temp/avatars/image-{{id}}.jpg" alt="">
+                    <img class="d-flex mr-3 rounded-circle profile-border" style="width: 50px;height: 50px;" src="/temp/avatars/image-{{id}}.jpg" alt="">
                   </div>
                   <div class="col-6">
                     <h6 style="text-align:left;">{{name}}&nbsp;{{surname}}</h6>

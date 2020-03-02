@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 @Repository
 public interface AllergensRepository extends JpaRepository<Allergen, Long> {
 
-    @Query("SELECT a FROM Allergen a WHERE a.allergen = :allergen")
-    Optional<Allergen> findByCategory(String allergen);
+    // @Query("SELECT a FROM Allergen a WHERE a.allergen = :allergen")
+    // Optional<Allergen> findByCategory(String allergen);
 
 }
