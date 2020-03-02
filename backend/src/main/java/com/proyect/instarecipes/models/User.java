@@ -40,7 +40,10 @@ public class User{
 	private boolean background;
 	private boolean avatar;
 	private String allergens;
-	
+
+	private int followingNum;
+	private int followersNum;
+
 	@Column(nullable = false)
 	private String info;
 	
@@ -199,5 +202,25 @@ public class User{
 	public void setAvatar(boolean avatar) {
 		this.avatar = avatar;
 	}
+
+	public int getFollowingNum() {
+		followingNum = following.size();
+		return followingNum;
+	}
+
+	public void setFollowingNum(int followingNum) {
+		this.followingNum = followingNum;
+	}
+
+	public int getFollowersNum() {
+		followersNum = followers.size();
+		return followersNum;
+	}
+
+	public void setFollowersNum(int followersNum) {
+		this.followersNum = followersNum;
+	}
+
+	
 
 }

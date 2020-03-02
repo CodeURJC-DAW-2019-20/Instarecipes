@@ -5,7 +5,6 @@ import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.ImageService;
 import com.proyect.instarecipes.security.UserAuthProvider;
 
-
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
@@ -76,8 +75,6 @@ public class RegisterPageController {
             }
         }
     }
-
-  
 
     // this method aproach the @Autowired of userAuthProvider to autenticate user
     // and password and setup autologged

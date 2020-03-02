@@ -8,11 +8,17 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import com.proyect.instarecipes.models.Allergen;
+import com.proyect.instarecipes.models.Category;
+import com.proyect.instarecipes.models.CookingStyle;
+import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.Request;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.repositories.AllergensRepository;
+import com.proyect.instarecipes.repositories.CategoriesRepository;
+import com.proyect.instarecipes.repositories.CookingStylesRepository;
+import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.RequestsRepository;
 import com.proyect.instarecipes.security.ImageService;
@@ -42,6 +48,12 @@ public class ProfilePageController {
     @Autowired
     private AllergensRepository allergensRepository;
     @Autowired
+    private CookingStylesRepository cookingStylesRepository;
+    @Autowired
+    private IngredientsRepository ingredientsRepository;
+    @Autowired
+    private CategoriesRepository categoriesRepository;
+    @Autowired
     private ImageService imageService;
 
     @GetMapping("/profile")
@@ -63,8 +75,6 @@ public class ProfilePageController {
         List<Recipe> recipes = recipesRepository.findByUsernameId(actual.getId());
         ArrayList<Integer> Laiks = new ArrayList<Integer>();
         ArrayList<String> titles = new ArrayList<String>();
-        // ArrayList<String> finallyTitles = new
-        // ArrayList<String>(Arrays.asList(recipes.toString().split(",")));
         int likes = 0;
         int pubs;
 
@@ -73,7 +83,6 @@ public class ProfilePageController {
             Laiks.add(recipes.get(pubs).getLikes()); // List of every user recipe LIKES!!
             titles.add(recipes.get(pubs).getTitle());
         }
-
 
         model.addAttribute("n_publications", pubs);
         model.addAttribute("n_likes", likes);
@@ -84,9 +93,15 @@ public class ProfilePageController {
         List<Allergen> allergensList = allergensRepository.findAll();
         model.addAttribute("allergensList", allergensList);
 
+        List<Category> catList = categoriesRepository.findAll();
+        List<Ingredient> ingList = ingredientsRepository.findAll();
+        List<CookingStyle> cSList = cookingStylesRepository.findAll();
+        model.addAttribute("ingredientsList", ingList);
+        model.addAttribute("cookingStylesList", cSList);
+        model.addAttribute("categoriesList", catList);
+
         return "profile";
     }
-
 
     @PostMapping("/settings")
     public void settings(@RequestParam String name,@RequestParam String surname,@RequestParam String info, @RequestParam String allergens, HttpServletResponse response, 
@@ -104,10 +119,7 @@ public class ProfilePageController {
         if(!backgroundFile.isEmpty()){
             imageService.saveImage("backgrounds", u.getId(), backgroundFile);
         }
-        
         response.sendRedirect("profile");
-
-      
     }
 
     @ModelAttribute

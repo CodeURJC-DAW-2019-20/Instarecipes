@@ -85,6 +85,7 @@ public class LoginController {
 			googleUser.setSurname(familyNameGU);
 			googleUser.setEmail(emailGU);
 			googleUser.setRoles(roleUser);
+			googleUser.setAllergens("Nuts");
 
 			//CHECK IF THE USERNAME CREATE BY NAME + FIRST SURNAME EXISTS
 			String[] firstSurname = familyNameGU.trim().split("\\s+");

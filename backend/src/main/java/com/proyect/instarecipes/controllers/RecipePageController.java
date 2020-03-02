@@ -72,38 +72,34 @@ public class RecipePageController {
 
         model.addAttribute("n_comments", comments.size());
         
-        User actual = userSession.getLoggedUser();
-        if(actual!=null){
-            for(int i=0;i<comments.size();i++){ //algoritm to check if the actual use liked that comment
-                boolean aux = false;
-                for(User uAux : comments.get(i).getUsersLiked()){
-                    if(uAux.getId() == actual.getId()){
-                        aux = true;
+        if(userSession.isLoggedUser()){
+            User actual = userSession.getLoggedUser();
+            if(actual!=null){
+                for(int i=0;i<comments.size();i++){ //algoritm to check if the actual use liked that comment
+                    boolean aux = false;
+                    for(User uAux : comments.get(i).getUsersLiked()){
+                        if(uAux.getId() == actual.getId()){
+                            aux = true;
+                        }
                     }
+                    comments.get(i).setLiked(aux);
                 }
-
-                comments.get(i).setLiked(aux);
             }
-        }
-        
-        model.addAttribute("comments", comments);
-
-        //Update LikeRecipe
-        User userLogged = userSession.getLoggedUser(); 
-        Recipe auxRecipe = recipesRepository.findRecipeById(id);
-        Set<User> recipelikes = auxRecipe.getLikesUsers();
-        boolean pressed= false;
-        for(User u : recipelikes){
-            if(u.getId()==userLogged.getId()){                
-                pressed = true;
-                break;
+            //Update LikeRecipe
+            User userLogged = userSession.getLoggedUser(); 
+            Recipe auxRecipe = recipesRepository.findRecipeById(id);
+            Set<User> recipelikes = auxRecipe.getLikesUsers();
+            boolean pressed= false;
+            for(User u : recipelikes){
+                if(u.getId()==userLogged.getId()){                
+                    pressed = true;
+                    break;
+                }
             }
-        }
-        model.addAttribute("pressed", pressed);
-
+            model.addAttribute("pressed", pressed);
+            }
+            model.addAttribute("comments", comments);
         return "recipe";
-
-        
     }
 
     @PostMapping("/postComment/{id}")

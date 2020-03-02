@@ -95,7 +95,7 @@ Here you can found a list of existing features in Instarecipes.
 > * Add visual elements (videos, images...).
 > * Trending recipes. *There will be a ranking with 3 recipes with the highest amount of likes in a certain time.*
 > * Posibility of Sign up. 
->    * By Facebook, Google or email.
+>    * By Google.
 > * Ban available to users. *Because of 'trolls' comments or recipes.*
 
 ### Entities <a name="entities"></a>
@@ -134,10 +134,10 @@ There is only one admin, and he will be the one that has full control over the i
 
 ### Complementary technology  
 One of the complementary technologies that we will use is the possibility of **logging in without email.**  
-It is almost always easier to sign up for a new site by accessing through your **Google, Facebook or even Twitter**, and the good thing about this is that practically almost everyone has a Google account, so we will facilitate the registration to new users with a **simple click**.
+It is almost always easier to sign up for a new site by accessing through your **Google account**, and the good thing about this is that practically almost everyone has a Google account, so we will facilitate the registration to new users with a **simple click**.
 
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/google-icon.png" width="50" height="50"> <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/facebook-icon.png" width="50" height="50"> <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/twitter-icon.png" width="50" height="50"> 
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/google-icon.png" width="50" height="50">  
 </p>  
 
 ### Algorithm or advanced query  <a name="algorithm"></a>
@@ -179,11 +179,11 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 
 > Textual description of the tasks performed in the phase.  
 
-> * Ranking and AJAX button.  
-> * Spring Security.  
-> * Init database.  
-> * Reordered folders.  
-> * 'SEE DESCRIPTION' commit: user's publications, likes, comments...
+> * [Ranking and AJAX button.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/9f47d259722bccc486b3810782db22026b0e1d7e)
+> * [Spring Security.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/c44aea86a64a8b8fab03f3f39ae09ed341451c06) 
+> * [Init database.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/dd0061ca7a18937db7211a86f10988f1bcd76df7) 
+> * [Reordered folders.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/143fe7f301142b91ab4a18fa1f79f14c6a35f0cb)  
+> * ['SEE DESCRIPTION' commit: user's publications, likes, comments...](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/14b840ccaff16cb85096b52a93c97729f072deac)
 
 |                           |                                 |                                             |
 |---------------------------|---------------------------------|---------------------------------------------|
@@ -192,11 +192,11 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 
 > This developer has been doing tasks which are focus on user's experience.   
 
-> * Graphics done!.   
-> * Likes funcionality. 
-> * Advanced Algorythm. 
-> * Reorder folders.  
-> * Navbar funcionalities. 
+> * [Graphics done!.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/711d7979202efc21c9715c1c589e694d41dd1206)
+> * [Likes funcionality.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/f0e188d37ba45943fe74c37f38a01cd212b7534b)
+> * [Advanced Algorythm.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/a676d2aa4d11179b5cad73d90b0dd6aaf5fca655)
+> * [Reorder folders.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/4a24c8d83165c2cc8feea2deb312e4c01ee5d7dc)  
+> * [A lot of database examples.]() 
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
@@ -208,21 +208,21 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 > * Images to BBDD.  
 > * Category, comment step and cooking style java classes.  
 > * Each step images. 
-> * Commit 4  
-> * Commit 5 
+> * 
+> * 
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
 | Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es | [@Muffinous](https://github.com/Muffinous) |
 |                           |                                 |                                            |
 
-> Textual description of the tasks performed in the phase.  
+> This developer has been doing tasks to make the page more visual and functional. 
 
-> * Filtered search button.  
-> * Conection between filtered search button and search page.
-> * Managment of new users (admin)  
-> * Database conections.  
-> * Google Javascript and login. 
+> * [Filtered search button.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/00a60affdd26e5434d835c15fff0df2d49f2cee1)  
+> * [Conection between filtered search button and search page.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/00a60affdd26e5434d835c15fff0df2d49f2cee1)
+> * [Managment of new users](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/76641ca83b44e8376369425f0cfe00f32ca78b8e)  
+> * [Search an user (*and a recipe*)](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/3845cb804dd86dfcc736a7d72c5446dc83cae22c)  
+> * [Google Javascript and login.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/576538c3b37eef49f557898beecf10606b827ea7)
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
@@ -232,10 +232,10 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 > Textual description of the tasks performed in the phase.  
 
 > * Responsive pages.      
-> * Login and sign up restrictions.  
-> *                      
-> *   
-> * 
+> * [Login and sign up restrictions.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/f1a3943f5fcbe375255ace558febc8da9b8699ed)
+> * Settings pop-up                     
+> * Ranking.html  
+> * added Ingredient model
 
 
 ## Most worked files :newspaper: <a name="workedFiles"></a>
@@ -266,6 +266,10 @@ To access the website, you need:
 > * Click 'Start..' button, go to your navegator and put: http://localhost:8443 and enjoy! (***We will change it to https soon***)
 
 ## Navigation Diagrams <a name="navDiagrams2"></a>
+In this section we can see how our navigation diagram has changed, now, you can search an user or a recipe using the search bar. 
+When you are in the search page, recipe page or profile page, the navbar is still visible: This gives the user the possibility to go home, profile (*if it is a registered user*) or go to see the ranking.  
+
+If the user wants to register or log in, he will click on the Login / Sign up button and will be redirected to the login screen, through which he can access the sign up.  
 
 <p align="center">
 <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/Navigation%20Diagram%20(Pages-Updated).png"></p> 
@@ -273,7 +277,7 @@ To access the website, you need:
 ## Database diagrams <a name="dbDiagram"></a>
 
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/databaseDiagram.png"
+<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/databaseDiagramNew.png"
 </p> 
 
 ##  Classes and templates diagrams </a><a name="CTdiagrams"></a>
