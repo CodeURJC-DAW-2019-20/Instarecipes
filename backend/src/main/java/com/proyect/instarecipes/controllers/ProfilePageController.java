@@ -4,9 +4,7 @@ package com.proyect.instarecipes.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.proyect.instarecipes.models.Allergen;
@@ -77,8 +75,6 @@ public class ProfilePageController {
         List<Recipe> recipes = recipesRepository.findByUsernameId(actual.getId());
         ArrayList<Integer> Laiks = new ArrayList<Integer>();
         ArrayList<String> titles = new ArrayList<String>();
-        // ArrayList<String> finallyTitles = new
-        // ArrayList<String>(Arrays.asList(recipes.toString().split(",")));
         int likes = 0;
         int pubs;
 
@@ -107,7 +103,6 @@ public class ProfilePageController {
         return "profile";
     }
 
-
     @PostMapping("/settings")
     public void settings(@RequestParam String name,@RequestParam String surname,@RequestParam String info, @RequestParam String allergens, HttpServletResponse response, 
             @RequestParam MultipartFile avatarFile, @RequestParam MultipartFile backgroundFile) throws IOException {
@@ -124,10 +119,7 @@ public class ProfilePageController {
         if(!backgroundFile.isEmpty()){
             imageService.saveImage("backgrounds", u.getId(), backgroundFile);
         }
-        
         response.sendRedirect("profile");
-
-      
     }
 
     @ModelAttribute

@@ -16,13 +16,13 @@ import com.proyect.instarecipes.repositories.CookingStylesRepository;
 import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
+import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import ch.qos.logback.classic.pattern.ThreadConverter;
 
 import org.springframework.ui.Model;
 
@@ -41,6 +41,8 @@ public class SearchPageController {
     private RecipesRepository recipesRepository;
     @Autowired
     private UsersRepository usersRepository;
+    @Autowired
+    private UserSession userSession;
 
     @PostMapping("/search")
     public String searchPage(Model model, String ingredients, String categories, String cookingStyles,
@@ -233,5 +235,14 @@ public class SearchPageController {
 
     public static boolean stringContainsItemFromList(String inputStr, String[] items) {
         return Arrays.stream(items).parallel().anyMatch(inputStr::contains);
+    }
+    @ModelAttribute
+    public void addAttributes(Model model) {
+        boolean logged = userSession.getLoggedUser() != null;
+        model.addAttribute("logged", logged);
+        if (logged) {
+            model.addAttribute("user", userSession.getLoggedUser().getUsername());
+            model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
+        }
     }
 }

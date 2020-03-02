@@ -155,11 +155,11 @@
           </div>       
         </div>
          <!-- Button Filter Widget -->
-        <div class="card-body">
+        <!-- <div class="card-body">
           <div class="input-group">
             <button class="btn btn-secondary" style="width: 100%;" type="button">FILTER</button>
           </div>
-        </div>
+        </div> -->
       </div>
       {{/searchByButton}}
       
@@ -182,14 +182,7 @@
         {{^notFound}}
           {{#recipesFound}}
           <!-- Recipe Post -->
-         
-          {{^searchByButton}}
-          <div class="row">
-          {{/searchByButton}}
-          
-          {{#searchByButton}}
-          <div class="card mb-4">
-          {{/searchByButton}}
+          <div class="card mb-4" style="width: 100%;">
             <img class="card-img-top" src="/temp/recipes/image-{{id}}.jpg" alt="Card image cap">
             <div class="card-body">
               <h2 class="card-title">{{title}}</h2>
@@ -213,9 +206,9 @@
                 </div>
               </div>
             </div>
-            <div class="card-footer text-muted">
+            <!-- <div class="card-footer text-muted">
               Posted on 17/01/2020
-            </div>
+            </div> -->
           </div>
           {{/recipesFound}}
           </div>

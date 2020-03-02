@@ -357,7 +357,7 @@
                   </div>
                 </div>
                 <img class="img-fluid" src="/temp/recipes/image-{{id}}.jpg" alt="">
-                <p class="pub-date-text">27 min. ago</p>
+                <!-- <p class="pub-date-text">27 min. ago</p> -->
               </div>
             </div>
             <!-- publications Modals -->
@@ -1137,7 +1137,7 @@
                     <p style="text-align:left;">@{{username}}</p>
                   </div>
                   <div class="col-4">
-                    <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
+                    <a href="/users/{{id}}" class="btn btn-primary" style="background-color: white; color: #1abc9c ;">View profile</a>
                   </div>
                 </div>
                 {{/following}}
@@ -1191,7 +1191,7 @@
                     <p style="text-align:left;">@{{username}}</p>
                   </div>
                   <div class="col-4">
-                    <div class="btn btn-primary" style="background-color: white; color: #1abc9c ;">Following</div>
+                    <a href="/users/{{id}}" class="btn btn-primary" style="background-color: white; color: #1abc9c ;">View profile</a>
                   </div>
                 </div>
                 {{/followers}}
