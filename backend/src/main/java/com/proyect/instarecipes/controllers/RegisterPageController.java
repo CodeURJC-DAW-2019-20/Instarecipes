@@ -4,7 +4,7 @@ import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.ImageService;
 import com.proyect.instarecipes.security.UserAuthProvider;
-import com.proyect.instarecipes.security.UserSession;
+
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -20,8 +20,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import ch.qos.logback.classic.pattern.ThreadConverter;
-
 import org.springframework.ui.Model;
 
 @Controller
