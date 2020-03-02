@@ -41,6 +41,7 @@
       return false;
     }
   </script>
+
 </head>
 
 <body>
@@ -60,7 +61,8 @@
         <ul class="navbar-nav ml-auto" style="margin-right: 20%;">
           <li class="nav-item col-2" style="max-width: 100%;">
             <a class="nav-link js-scroll-trigger" href="#header-section"><i onmouseover="hover(this)"
-                onmouseout="normal(this)" class="fas fa-home" style="font-size: xx-large; color: rgba(159, 193, 255, 0.726)"></i></a>
+                onmouseout="normal(this)" class="fas fa-home"
+                style="font-size: xx-large; color: rgba(159, 193, 255, 0.726)"></i></a>
           </li>
           <li class="nav-item col-2" style="max-width: 100%;">
             {{#logged}}
@@ -85,13 +87,13 @@
           {{/logged}}
         </ul>
 
-      <form class="example" action="/searchBar" method="POST">
-          <input type="text" placeholder="Search.." name="search"/>
+        <form class="example" action="/searchBar" method="POST">
+          <input type="text" placeholder="Search.." name="search" />
           <button type="submit" style="background-color: rgba(159, 193, 255, 0.726);">
-            <i class="fa fa-search" ></i>
-            <input type="hidden" name="_csrf" value="{{token}}"/>
+            <i class="fa fa-search"></i>
+            <input type="hidden" name="_csrf" value="{{token}}" />
           </button>
-      </form>
+        </form>
 
       </div>
     </div>
@@ -122,110 +124,112 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         {{#logged}}
-          {{#filteredRecipe}}
-            <!-- Slide One - Set the background image for this slide in the line below -->
-            <div id="carruselDeportivo{{-index}}" class="carousel-item active">
-              <img src="/temp/recipes/image-{{id}}.jpg" class="img-blur" width="100%">
-              <div class="trending-pub">
-                <div class="row" style="height: 100%; margin-left: 0; margin-right: 0;">
-                  <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2); @media only screen and (max-width: 800px){
+        {{#filteredRecipe}}
+        <!-- Slide One - Set the background image for this slide in the line below -->
+        <div id="carruselDeportivo{{-index}}" class="carousel-item active">
+          <img src="/temp/recipes/image-{{id}}.jpg" class="img-blur" width="100%">
+          <div class="trending-pub">
+            <div class="row" style="height: 100%; margin-left: 0; margin-right: 0;">
+              <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2); @media only screen and (max-width: 800px){
                     display:none;
                     }">
-                    <img class="d-flex mr-3 rounded-circle profile-border" width="50%" src="/temp/avatars/image-{{username.id}}.jpg" alt="">
-                  </div>
-                  <div class="col-md-4">
-                    <h3>Introduction</h3>
-                    <p>{{description}}</p>
-                    <a class="btn btn-primary" href="/recipes/{{id}}">Read
-                      <span class="glyphicon glyphicon-chevron-right">
-                      </span>
-                    </a>
-                  </div>
-                  <div class="col-md-7" style="height: inherit; padding-left: 0; padding-right: 0;">
-                    <a href="#">
-                      <img class="rounded mb-3 mb-md-0" src="/temp/recipes/image-{{id}}.jpg"
-                        style="object-fit: cover;" height="100%" width="100%" alt="">
-                    </a>
-                    <div class="likes-comments-top-right">
-                      <div class="row" style="margin-right: 0;margin-left: 0;">
-                        <div class="col-3">
-                          <img class="icon-fluid" src="images/icons/like_pressed.png" alt="">
-                        </div>
-                        <div class="col-3">
-                          <p class="icon-fluid pub-date-text">{{likes}}</p>
-                        </div>
-                        <div class="col-3">
-                          <img class="icon-fluid" src="images/icons/dialogue.png" alt="">
-                        </div>
-                        <div class="col-3">
-                          <p class="icon-fluid pub-date-text">{{n_comments}}</p>
-                        </div>
-                      </div>
+                <img class="d-flex mr-3 rounded-circle profile-border" width="50%"
+                  src="/temp/avatars/image-{{username.id}}.jpg" alt="">
+              </div>
+              <div class="col-md-4">
+                <h3>Introduction</h3>
+                <p>{{description}}</p>
+                <a class="btn btn-primary" href="/recipes/{{id}}">Read
+                  <span class="glyphicon glyphicon-chevron-right">
+                  </span>
+                </a>
+              </div>
+              <div class="col-md-7" style="height: inherit; padding-left: 0; padding-right: 0;">
+                <a href="#">
+                  <img class="rounded mb-3 mb-md-0" src="/temp/recipes/image-{{id}}.jpg" style="object-fit: cover;"
+                    height="100%" width="100%" alt="">
+                </a>
+                <div class="likes-comments-top-right">
+                  <div class="row" style="margin-right: 0;margin-left: 0;">
+                    <div class="col-3">
+                      <img class="icon-fluid" src="images/icons/like_pressed.png" alt="">
+                    </div>
+                    <div class="col-3">
+                      <p class="icon-fluid pub-date-text">{{likes}}</p>
+                    </div>
+                    <div class="col-3">
+                      <img class="icon-fluid" src="images/icons/dialogue.png" alt="">
+                    </div>
+                    <div class="col-3">
+                      <p class="icon-fluid pub-date-text">{{n_comments}}</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="carousel-caption d-none d-md-block">
-                <h3>{{title}}</h3>
-                <p>Trending No. {{-index}}</p>
-              </div>
             </div>
-          {{/filteredRecipe}}
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h3>{{title}}</h3>
+            <p>Trending No. {{-index}}</p>
+          </div>
+        </div>
+        {{/filteredRecipe}}
         {{/logged}}
         {{^logged}}
-          {{#notTrending}}
-            <!-- Slide One - Set the background image for this slide in the line below -->
-            <div id="carruselDeportivo{{-index}}" class="carousel-item active">
-              <img src="/temp/recipes/image-{{id}}.jpg" class="img-blur" width="100%">
-              <div class="trending-pub">
-                <div class="row" style="height: 100%; margin-left: 0; margin-right: 0;">
-                  <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2); @media only screen and (max-width: 800px){
+        {{#notTrending}}
+        <!-- Slide One - Set the background image for this slide in the line below -->
+        <div id="carruselDeportivo{{-index}}" class="carousel-item active">
+          <img src="/temp/recipes/image-{{id}}.jpg" class="img-blur" width="100%">
+          <div class="trending-pub">
+            <div class="row" style="height: 100%; margin-left: 0; margin-right: 0;">
+              <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2); @media only screen and (max-width: 800px){
                     display:none;
                     }">
-                    <img class="d-flex mr-3 rounded-circle profile-border" width="50%" src="/temp/avatars/image-{{username.id}}.jpg" alt="">
-                  </div>
-                  <div class="col-md-4">
-                    <h3>Introduction</h3>
-                    <p>{{description}}</p>
-                    <a class="btn btn-primary" href="/recipes/{{id}}">Read
-                      <span class="glyphicon glyphicon-chevron-right">
-                      </span>
-                    </a>
-                  </div>
-                  <div class="col-md-7" style="height: inherit; padding-left: 0; padding-right: 0;">
-                    <a href="#">
-                      <img class="rounded mb-3 mb-md-0" src="/temp/recipes/image-{{id}}.jpg"
-                        style="object-fit: cover;" height="100%" width="100%" alt="">
-                    </a>
-                    <div class="likes-comments-top-right">
-                      <div class="row" style="margin-right: 0;margin-left: 0;">
-                        <div class="col-3">
-                          <img class="icon-fluid" src="images/icons/like_pressed.png" alt="">
-                        </div>
-                        <div class="col-3">
-                          <p class="icon-fluid pub-date-text">{{likes}}</p>
-                        </div>
-                        <div class="col-3">
-                          <img class="icon-fluid" src="images/icons/dialogue.png" alt="">
-                        </div>
-                        <div class="col-3">
-                          <p class="icon-fluid pub-date-text">{{n_comments}}</p>
-                        </div>
-                      </div>
+                <img class="d-flex mr-3 rounded-circle profile-border" width="50%"
+                  src="/temp/avatars/image-{{username.id}}.jpg" alt="">
+              </div>
+              <div class="col-md-4">
+                <h3>Introduction</h3>
+                <p>{{description}}</p>
+                <a class="btn btn-primary" href="/recipes/{{id}}">Read
+                  <span class="glyphicon glyphicon-chevron-right">
+                  </span>
+                </a>
+              </div>
+              <div class="col-md-7" style="height: inherit; padding-left: 0; padding-right: 0;">
+                <a href="#">
+                  <img class="rounded mb-3 mb-md-0" src="/temp/recipes/image-{{id}}.jpg" style="object-fit: cover;"
+                    height="100%" width="100%" alt="">
+                </a>
+                <div class="likes-comments-top-right">
+                  <div class="row" style="margin-right: 0;margin-left: 0;">
+                    <div class="col-3">
+                      <img class="icon-fluid" src="images/icons/like_pressed.png" alt="">
+                    </div>
+                    <div class="col-3">
+                      <p class="icon-fluid pub-date-text">{{likes}}</p>
+                    </div>
+                    <div class="col-3">
+                      <img class="icon-fluid" src="images/icons/dialogue.png" alt="">
+                    </div>
+                    <div class="col-3">
+                      <p class="icon-fluid pub-date-text">{{n_comments}}</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="carousel-caption d-none d-md-block">
-                <h3>{{title}}</h3>
-                <p>Trending No. {{-index}}</p>
-              </div>
             </div>
-          {{/notTrending}}
+          </div>
+          <div class="carousel-caption d-none d-md-block">
+            <h3>{{title}}</h3>
+            <p>Trending No. {{-index}}</p>
+          </div>
+        </div>
+        {{/notTrending}}
         {{/logged}}
       </div>
       <script type="text/javascript">
-        $(document).ready(function(){
+        $(document).ready(function () {
           document.getElementById("carruselDeportivo2").classList.remove("active");
           document.getElementById("carruselDeportivo3").classList.remove("active");
         });
@@ -244,7 +248,8 @@
   <!-- Page Content -->
   <!-- The video -->
   <div>
-    <video autoplay muted loop id="myVideo" style="position: fixed;z-index: -1; top: 10%; opacity:0.6; width: 100%; object-fit: cover;">
+    <video autoplay muted loop id="myVideo"
+      style="position: fixed;z-index: -1; top: 10%; opacity:0.6; width: 100%; object-fit: cover;">
       <source src="../images/backgrounds/index.mp4" type="video/mp4">
     </video>
     <div class="container">
@@ -278,7 +283,7 @@
           <div class="search-btn fas fa-search" href="#"></div>
         </div>
       </div>
-    
+
       <!-- Search button pannel -->
       <div class="publications-modal modal fade" id="opened-search-button" tabindex="-1" role="dialog"
         aria-labelledby="publicationsModal6Label" aria-hidden="true">
@@ -312,8 +317,11 @@
                           <table id="IngredientsTable">
                             <tr>
                               <td>
-                              <!--"Ingredient-Name"-->
-                                <input name="ingredients" type="text" list="ingredientslist" placeholder="Select an ingredient.." style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" onkeypress="return false;">
+                                <!--"Ingredient-Name"-->
+                                <input name="ingredients" type="text" list="ingredientslist"
+                                  placeholder="Select an ingredient.."
+                                  style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;"
+                                  onkeypress="return false;">
                                 <datalist id="ingredientslist">
                                   {{#ingredientsList}}
                                   <option value="{{ingredient}}">{{ingredient}}</option>
@@ -354,7 +362,10 @@
                           <table id="CookingStyleTable">
                             <tr>
                               <td>
-                                <input name="cookingStyles" type="text" list="cookingStyleslist" placeholder="Select a category.." style="width: 90%; border-radius: 0.5rem;border-width: 0.5px;" onkeypress="return false;">
+                                <input name="cookingStyles" type="text" list="cookingStyleslist"
+                                  placeholder="Select a category.."
+                                  style="width: 90%; border-radius: 0.5rem;border-width: 0.5px;"
+                                  onkeypress="return false;">
                                 <datalist id="cookingStyleslist">
                                   {{#cookingStylesList}}
                                   <option value="{{cookingStyle}}">{{cookingStyle}}</option>
@@ -394,23 +405,27 @@
                         <h3 class="underlined-text">CATEGORIES</h3>
                         <div class="row">
                           <table id="CategoriesTable">
-                          <tr>  
-                            <td>
-                              <input name="categories" type="text" list="categorieslist" placeholder="Select a category.." style="width: 90%; border-radius: 0.5rem;border-width: 0.5px;" onkeypress="return false;">
-                              <datalist id="categorieslist">
-                                {{#categoriesList}}
-                                <option value="{{category}}">{{category}}</option>
-                                {{/categoriesList}}
-                              </datalist>
-                            </td>
-                            <td>
-                              <button id="Cat-delete-button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCategory(this)">
-                                <span aria-hidden="true">
-                                  <i class="fas fa-trash"></i>
-                                </span>
-                              </button>  
-                            </td> 
-                          </tr>
+                            <tr>
+                              <td>
+                                <input name="categories" type="text" list="categorieslist"
+                                  placeholder="Select a category.."
+                                  style="width: 90%; border-radius: 0.5rem;border-width: 0.5px;"
+                                  onkeypress="return false;">
+                                <datalist id="categorieslist">
+                                  {{#categoriesList}}
+                                  <option value="{{category}}">{{category}}</option>
+                                  {{/categoriesList}}
+                                </datalist>
+                              </td>
+                              <td>
+                                <button id="Cat-delete-button" class="btn-delete-line"
+                                  style="color: white;font-size: inherit;" onclick="delRowCategory(this)">
+                                  <span aria-hidden="true">
+                                    <i class="fas fa-trash"></i>
+                                  </span>
+                                </button>
+                              </td>
+                            </tr>
                           </table>
                         </div>
                         <hr>
@@ -435,7 +450,10 @@
                           <table id="AllergensTable">
                             <tr>
                               <td>
-                                <input name="allergens" type="text" list="allergenslist" placeholder="Select an allergen.." style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;" onkeypress="return false;">
+                                <input name="allergens" type="text" list="allergenslist"
+                                  placeholder="Select an allergen.."
+                                  style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;"
+                                  onkeypress="return false;">
                                 <datalist id="allergenslist">
                                   {{#allergensList}}
                                   <option value="{{allergen}}">{{allergen}}</option>
@@ -528,31 +546,39 @@
                           style="padding:10px;width: 100%;height: 100px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
                           placeholder="Type a introduction here.." required></textarea>
                       </div>
-                      <img id="preview-img-file" src="" class="img-blur2" style="object-fit:cover;height:100px;width:100%;border-radius: 0.5rem;" hidden/>
+                      <img id="preview-img-file" src="" class="img-blur2"
+                        style="object-fit:cover;height:100px;width:100%;border-radius: 0.5rem;" hidden />
                       <div>
                         <p id="no-such-image">No such image selected yet</p>
                         <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem;
                             border:1px solid rgb(23, 162, 184); align-self:center;z-index: 1050;
                             text-align:center;padding:0;right:0;width:25%;position:absolute;cursor:pointer">
-                          <input id="file-input" hidden type="file" name="imageFile" accept=".jpg, .jpeg"/>
+                          <input id="file-input" hidden type="file" name="imageFile" accept=".jpg, .jpeg" required />
                           <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                         </label>
                       </div>
+                      <div class="validation" id="image-validation" role="alert" style="border-radius: 3px; color:red;">
+                        <i class="fa fa-exclamation-triangle"></i><i class="fa fa-exclamation-triangle"></i>
+                        <h6>Please enter a photo of your recipe!!</h6>
+                      </div>
                       <!-- Here will go all other inputs images !! -->
                       <div id="divImageSteps" hidden></div>
-                      <input id="withImage" value="" name="withImage" hidden/>
-                      <input type="text" id="stepsString" name="stepsString" hidden/>
+                      <input id="withImage" value="" name="withImage" hidden />
+                      <input type="text" id="stepsString" name="stepsString" hidden />
                       <fieldset id="steps-form" class="nav-item dropdown wrap-input50 m-b-23"
                         style="text-align: initial;">
                         <h3>Step 1*</h3>
                         <hr>
                         <div id="stepCountChar"></div>
-                        <textarea wrap="soft" id="firstStep" name="firstStepString" onkeyup="stepCountChar(this)" placeholder="A recipe must have at least 1 step :D"
-                          style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" required></textarea>
+                        <textarea wrap="soft" id="firstStep" name="firstStepString" onkeyup="stepCountChar(this)"
+                          placeholder="A recipe must have at least 1 step :D"
+                          style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
+                          required></textarea>
                         <span class="focus-input100" data-symbol="&#xf206;"></span>
                       </fieldset>
                       <hr>
-                      <div id="add-step" class="btn btn-dark" style="width: 100%; border-radius: 0.8rem;background-color: teal;cursor: pointer;">
+                      <div id="add-step" class="btn btn-dark"
+                        style="width: 100%; border-radius: 0.8rem;background-color: teal;cursor: pointer;">
                         <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                       </div>
                     </div>
@@ -564,21 +590,28 @@
                         style="width: 100%; border-radius: 0.8rem; cursor: pointer;">
                         <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                       </div>
-                      <input id="ingredientsList" value="{{#ingredientsList}}{{ingredient}},{{/ingredientsList}}" hidden/>
-                      <input id="ingredientsString" name="ingredientsString" hidden/>
+                      <input id="ingredientsList" value="{{#ingredientsList}}{{ingredient}},{{/ingredientsList}}"
+                        hidden />
+                      <input id="ingredientsString" name="ingredientsString" hidden required/>
+                      <div class="validation" id="ingredient-val" role="alert"
+                        style="display: none; margin-top:5px; margin-bottom: 5px; border-radius: 3px; color: red;">
+                        <i class="fa fa-exclamation-triangle"></i><i class="fa fa-exclamation-triangle"></i>
+                        <h6>Please enter an ingredient atleast for your recipe</h6>
+                      </div>
                       <fieldset id="ingredients-form" class="nav-item dropdown scrolling" style="height: 300px;">
                       </fieldset>
                       <hr>
                       <!-- Categories section -->
-                      <h3 class="underlined-text">Categories*</h3>
+                      <h3 class="underlined-text">Categories</h3>
                       <p>Select categories:</p>
                       <div id="add-category" class="btn btn-secondary"
                         style="width: 100%; border-radius: 0.8rem;background-color: #343a40; cursor: pointer;">
                         <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                       </div>
-                      <input id="categoriesList" value="{{#categoriesList}}{{category}},{{/categoriesList}}" hidden/>
-                      <input id="categoriesString" name="categoriesString" hidden/>
-                      <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;" name="categories">
+                      <input id="categoriesList" value="{{#categoriesList}}{{category}},{{/categoriesList}}" hidden />
+                      <input id="categoriesString" name="categoriesString" hidden />
+                      <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;"
+                        name="categories">
                       </fieldset>
                       <hr>
                       <!-- Difficulty section stars -->
@@ -619,10 +652,11 @@
                       </select>
                     </div>
                   </div>
-                  <button id="post-recipe" type='submit' class="btn btn-primary" style="margin-top: 20px; height: 50px;width: 10%;">
+                  <button id="post-recipe" type='submit' class="btn btn-primary"
+                    style="margin-top: 20px; height: 50px;width: 10%;">
                     Post
                   </button>
-                  <input type="hidden" name="_csrf" value="{{token}}"/>
+                  <input type="hidden" name="_csrf" value="{{token}}" />
                 </form>
               </div>
             </div>
@@ -635,28 +669,28 @@
 
   <!-- Test JS -->
   <script type="text/javascript">
-  $(document).ready(function(){
-    var icon = document.getElementById("open-add-button");
-    var bgTouch = document.getElementById("opened-add-button");
-    var aux = true;
-    icon.onclick = function (e) {
-      if (aux) {
-        icon.style.zIndex = "1051"; //has to be in front of the faded background, this z faded is 1050
-        icon.classList.add("rotate45");
-        icon.classList.remove("rotate0");
-        aux = false;
-      } else {
-        secondTime();
+    $(document).ready(function () {
+      var icon = document.getElementById("open-add-button");
+      var bgTouch = document.getElementById("opened-add-button");
+      var aux = true;
+      icon.onclick = function (e) {
+        if (aux) {
+          icon.style.zIndex = "1051"; //has to be in front of the faded background, this z faded is 1050
+          icon.classList.add("rotate45");
+          icon.classList.remove("rotate0");
+          aux = false;
+        } else {
+          secondTime();
+        }
       }
-    }
-    function secondTime() {
-      icon.style.zIndex = "750";
-      icon.classList.add("rotate0");
-      icon.classList.remove("rotate45");
-      aux = true;
-    }
-    bgTouch.onclick = secondTime;
-  });
+      function secondTime() {
+        icon.style.zIndex = "750";
+        icon.classList.add("rotate0");
+        icon.classList.remove("rotate45");
+        aux = true;
+      }
+      bgTouch.onclick = secondTime;
+    });
   </script>
 
   <!-- Bootstrap core JavaScript -->
@@ -676,6 +710,9 @@
   <script src="../js/add_recipe.js"></script>
   <script src="../js/filter_search_btn.js"></script>
 
+  <!-- Add recipe validation -->
+  <script src="../js/recipe_validation.js"></script>
+
   <script type="text/javascript">
     $(document).ready(function () {
       var aux = false;
@@ -691,7 +728,7 @@
         loadMoreAjax(page_counter, aux, page_size);
         page_counter++;
       });
-      function loadMoreAjax(page_counter, aux, page_size){
+      function loadMoreAjax(page_counter, aux, page_size) {
         $.ajax({
           url: "http://localhost:8443/recipes", //para filtrar busqueda se añade +value
           data: {
@@ -703,7 +740,7 @@
           $("#loadmore1").removeAttr("hidden");
           recipes.forEach(element => {
             var item = Object.values(element);
-            lastRecipe =  recipes.length;
+            lastRecipe = recipes.length;
             /*
             [0] -> id_recipe
             [1] -> title
@@ -799,7 +836,7 @@
           });
           console.log("PAGE COUNTER: " + page_counter);
           console.log("Length: " + "{{size}}");
-          if(parseInt(lastRecipe) == 1){
+          if (parseInt(lastRecipe) == 1) {
             page_counter = 0;
             document.getElementById("loadmore1").setAttribute("hidden", "");
           }
@@ -829,7 +866,42 @@
       }
     }
   </script>
+  <script type="text/javascript">
+    var image_val = document.getElementById("image-validation");
+    var ingredient_val = document.getElementById("ingredient-val");
 
+    image_val.style.display = "none";
+    $(document).ready(function () {
+    
+      $('#post-recipe').bind("click", function () {
+        var imgVal = $('#file-input').val();
+        var ingredient = $('#ingredientsString').val();
+        if ((imgVal == '') && (ingredient == '')) {         
+          image_val.style.display = "block";
+          ingredient_val.style.display = "block";
+        }
+        else if (imgVal == '') {                       
+          image_val.style.display = "block";
+          if (ingredient != '')
+            ingredient_val.style.display = "none";
+          else if (ingredient == '') {
+            ingredient_val.style.display = "block";
+          }
+        }
+        else if (imgVal != '') {
+          image_val.style.display = "none";
+          if (ingredient != '') {
+            ingredient_val.style.display = "none";
+          }
+          else if (ingredient == '') {
+            ingredient_val.style.display = "block";
+          }
+        }
+        
+      });
+     
+    });
+  </script>
 </body>
 
 </html>
