@@ -196,7 +196,7 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 > * [Likes funcionality.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/f0e188d37ba45943fe74c37f38a01cd212b7534b)
 > * [Advanced Algorythm.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/a676d2aa4d11179b5cad73d90b0dd6aaf5fca655)
 > * [Reorder folders.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/4a24c8d83165c2cc8feea2deb312e4c01ee5d7dc)  
-> * [A lot of database examples.]() 
+> * [A lot of database examples.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/a722f6e4c5f135315937ed6ff8089f5a1bdf9eff) 
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
@@ -205,11 +205,11 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 
 > Textual description of the tasks performed in the phase.  
 
-> * Images to BBDD.  
-> * Category, comment step and cooking style java classes.  
-> * Each step images. 
-> * 
-> * 
+> * [Follow-unfollow solved](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/f331e35f22e886e8852ff1bf0f110dc84bbeca61)
+> * [Steps images](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/c04e9ada7b688799cc0e71637299010dfd5af1cf)
+> * [ImageService](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/c711381d189e6cc882bf8976abb9d73c155ffeca)
+> * [Category, comment step and cooking style java classes.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/9610c760555ce684cf0e62cb64f686c5fbe8e276)
+> * [Image_to bbdd](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/44b5060031dc67eba856cc1634654ef295612e6a)
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
