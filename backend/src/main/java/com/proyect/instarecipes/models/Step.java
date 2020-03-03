@@ -7,8 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Step{
+
+    public interface Simple{}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,9 +21,14 @@ public class Step{
     @ManyToOne
     private Recipe recipe;
     
+    @JsonView(Simple.class)
     private int number;
+
+    @JsonView(Simple.class)
     @Column(length = 500)
     private String content;
+
+    @JsonView(Simple.class)
     private boolean image;
 
     public Step(){
