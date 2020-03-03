@@ -66,18 +66,18 @@ public class InitDatabase {
         GroupStaff groupStaff = new GroupStaff();
 
         //Users examples
-        User u1 = new User("user1", "pepe@grillo.com", "pass", "Pepe", "Grillo", "Hello World !!", "Nuts", null, null, "ROLE_USER");
-        User u2 = new User("user2", "manu@gmail.com", "pass", "Manuel", "Savater", "Konichiwa people !", "Milk", null, null, "ROLE_USER");
-        User u3 = new User("user3", "trevodrap@hotmail.com", "pass", "Trevod", "Rap","Hello people !", "Peanuts", null, null, "ROLE_USER");
-        User u4 = new User("admin", "hola@adios.com", "adminpass", "Hamsa", "Jefe", "Hi people !", "cerdo", null, null, "ROLE_USER", "ROLE_ADMIN");
-        User u5 = new User("user5", "pepito@gmail.com","pass","Pedro","Ramírez","This isn't real","Soy",null,null,"ROLE_USER");
+        User u1 = new User("pepegrillo", "pepe@grillo.com", "pass", "Pepe", "Grillo", "Hello World!! I hope you enjoy my recipes!", "Nuts", null, null, "ROLE_USER");
+        User u2 = new User("manusav96", "manu@gmail.com", "pass", "Manuel", "Savater", "Konichiwa people! I eat sushi every single day.", "Milk", null, null, "ROLE_USER");
+        User u3 = new User("trevrap", "trevodrap@hotmail.com", "pass", "Trevod", "Rap", "I'm a big fan of desserts, follow me and you will see it!", "Peanuts", null, null, "ROLE_USER");
+        User u4 = new User("admin", "hola@adios.com", "adminpass", "Hamsa", "Jefe", "Hi people! Don't mess with me. I'm the boss hehe.", "cerdo", null, null, "ROLE_USER", "ROLE_ADMIN");
+        User u5 = new User("pepitoram", "pepito@gmail.com","pass","Pedro","Ramírez","This isn't real","Soy",null,null,"ROLE_USER");
 
-        User u6 = new User("user6", "anuelAA@gmail.com", "pass", "Anuel", "AA", "Mera woooo", "Mustard", null, null, "ROLE_USER");
-        User u7 = new User("user7", "badbunny@gmail.com", "pass", "Benito", "Puto Amo", "#YHLQMDLG", "Wheat", null, null, "ROLE_USER");
+        User u6 = new User("anuelbb", "anuelAA@gmail.com", "pass", "Anuel", "AA", "Mera woooo", "Mustard", null, null, "ROLE_USER");
+        User u7 = new User("heisenberg", "badbunny@gmail.com", "pass", "Benito", "Boss", "#YHLQMDLG", "Wheat", null, null, "ROLE_USER");
         User u8 = new User("user8", "ozuna@hotmail.com", "pass", "El Negrito", "Ojos Claros","Woooo", "Peanuts", null, null, "ROLE_USER");
-        User u9 = new User("user9", "ocelote@dios.com", "pass", "Spanish", "Rocket", "Hi mum i'm famous", null, null, null, "ROLE_USER");
-        User u10 = new User("user10", "s1mple@gmail.com","pass","Pedro","Ramírez","wtf is this user",null ,null,null,"ROLE_USER");
-        User u11 = new User("user11", "electronic@grillo.com", "pass", "Pepe", "Grillo", "Python>Java", "Eggs", null, null, "ROLE_USER");
+        User u9 = new User("oceloteLVP", "ocelote@dios.com", "pass", "Spanish", "Rocket", "Hi mum i'm famous", null, null, null, "ROLE_USER");
+        User u10 = new User("rodriram", "s1mple@gmail.com","pass","Rodrigo","Ramírez","wtf is this user",null ,null,null,"ROLE_USER");
+        User u11 = new User("ifelse", "electronic@grillo.com", "pass", "Pepe", "Grillo", "Python>Java", "Eggs", null, null, "ROLE_USER");
 
         Set<User> following1 = groupStaff.groupFollowing(u2,u4,u6,u7,u10);
         Set<User> following2 = groupStaff.groupFollowing(u1,u3,u5,u8,u9);
@@ -129,11 +129,11 @@ public class InitDatabase {
         Set<User> likes6 = groupStaff.groupLikes(u10,u11);
  
          //Avatar and backgrounds BOTS
-        File avatarBots = new File("src/main/resources/static/images/icons/avatar.jpg");
+        /*File avatarBots = new File("src/main/resources/static/images/icons/avatar.jpg");*/
         File backgroundBots = new File("src/main/resources/static/images/backgrounds/profile_background_example.jpeg");
-        FileInputStream aBots = new FileInputStream(avatarBots);
+        //FileInputStream aBots = new FileInputStream(avatarBots);
         FileInputStream bBots = new FileInputStream(backgroundBots);
-        MultipartFile userAvatar = new MockMultipartFile("file2", avatarBots.getName(), "image/jpeg", IOUtils.toByteArray(aBots));
+        //MultipartFile userAvatar = new MockMultipartFile("file2", avatarBots.getName(), "image/jpeg", IOUtils.toByteArray(aBots));
         MultipartFile userBackground = new MockMultipartFile("file3", backgroundBots.getName(), "image/jpeg", IOUtils.toByteArray(bBots));
         
         //Set avatars
@@ -178,7 +178,7 @@ public class InitDatabase {
         userRepository.save(u10);
         userRepository.save(u11);
         //Save avatars
-        imageService.saveImage("avatars", u1.getId(), userAvatar);
+        /*imageService.saveImage("avatars", u1.getId(), userAvatar);
         imageService.saveImage("avatars", u2.getId(), userAvatar);
         imageService.saveImage("avatars", u3.getId(), userAvatar);
         imageService.saveImage("avatars", u4.getId(), userAvatar);
@@ -188,7 +188,7 @@ public class InitDatabase {
         imageService.saveImage("avatars", u8.getId(), userAvatar);
         imageService.saveImage("avatars", u9.getId(), userAvatar);
         imageService.saveImage("avatars", u10.getId(), userAvatar);
-        imageService.saveImage("avatars", u11.getId(), userAvatar);
+        imageService.saveImage("avatars", u11.getId(), userAvatar);*/
 
 
         //Save backgrounds

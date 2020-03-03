@@ -2,6 +2,8 @@ package com.proyect.instarecipes.controllers;
 
 import javax.servlet.http.HttpSession;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,18 +14,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.UsersRepository;
+import com.proyect.instarecipes.security.ImageService;
 import com.proyect.instarecipes.security.UserSession;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class LoginController {
@@ -38,6 +44,9 @@ public class LoginController {
 	@Autowired
 	private UserSession userComponent;
 
+	@Autowired 
+	private ImageService imageService;
+	
 	private int countUsers = 1;
 
 	@RequestMapping("/login")
@@ -68,8 +77,7 @@ public class LoginController {
 
 	@PostMapping("/googleUser")
 	public void loginGoogleUser(Model model, User user, HttpServletResponse response, HttpServletRequest request, @RequestParam String fullNameGU,
-			@RequestParam String givenNameGU, @RequestParam String familyNameGU, @RequestParam String profileImgGU,
-			@RequestParam String emailGU) throws IOException {
+			@RequestParam String givenNameGU, @RequestParam String familyNameGU, @RequestParam String emailGU) throws IOException {
 
 			List<String> roleUser = new ArrayList<>();
 			roleUser.add("ROLE_USER");
@@ -80,12 +88,18 @@ public class LoginController {
 		if (!userExists) {
 			User googleUser = new User();
 
+			//IMAGE
+			File fileGoogle = new File("src/main/resources/static/images/icons/google-image.jpg");
+			FileInputStream inputGoogle = new FileInputStream(fileGoogle);
+			MultipartFile imageFile2 = new MockMultipartFile("fileGoogle", fileGoogle.getName(), "image/jpg", IOUtils.toByteArray(inputGoogle));;
+			
 			//SET INFO BECAUSE THE USER IS NEW!
 			googleUser.setName(givenNameGU);
 			googleUser.setSurname(familyNameGU);
 			googleUser.setEmail(emailGU);
 			googleUser.setRoles(roleUser);
 			googleUser.setAllergens("Nuts");
+			googleUser.setAvatar(true);
 
 			//CHECK IF THE USERNAME CREATE BY NAME + FIRST SURNAME EXISTS
 			String[] firstSurname = familyNameGU.trim().split("\\s+");
@@ -110,7 +124,8 @@ public class LoginController {
 			//GENERATE A RANDOM PASSWORD 
 			googleUser.setPassword(getSaltString());
 
-			registerPagerController.signUp(model, googleUser, request, response, null);
+			registerPagerController.signUp(model, googleUser, request, response, imageFile2);
+			//imageService.saveImage("avatars", googleUser.getId(), imageFile2);
 		}
 
 
