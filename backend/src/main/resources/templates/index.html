@@ -614,6 +614,24 @@
                         name="categories">
                       </fieldset>
                       <hr>
+                      <!-- Cooking Style section -->
+                      <h3 class="underlined-text">Cooking Style</h3>
+                      <select name="cookingStyle" class="form-control" id="exampleFormControlSelect3">
+                        <option>-- Select --</option>
+                        {{#cookingStylesList}}
+                          <option>{{cookingStyle}}</option>
+                        {{/cookingStylesList}}
+                      </select>
+                      <hr>
+                      <!-- Allergen section -->
+                      <h3 class="underlined-text">Allergen</h3>
+                      <select name="allergen" class="form-control" id="exampleFormControlSelect2">
+                        <option>-- Select --</option>
+                        {{#allergensList}}
+                        <option>{{allergen}}</option>
+                        {{/allergensList}}
+                      </select>
+                      <hr>
                       <!-- Difficulty section stars -->
                       <h3 class="underlined-text">Difficulty</h3>
                       <p>Select difficulty:</p>

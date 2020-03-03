@@ -145,73 +145,72 @@ public class SearchPageController {
     }
       
     @PostMapping("/searchBar")
-    public String searchBarPage(Model model, @RequestParam String search) {
-    String firstLetter = search.substring(0,1);
-        model.addAttribute("searchText", search);
-
-    if (firstLetter.equals("@")){
-        //IF THE USER SEARCH USERS
-        List<User> usersFounded = usersRepository.findAll();
-        List<User> trueUsers = new ArrayList<User>();
-
-        String userName = search.substring(1);
-        
-        for (int i=0; i < usersFounded.size(); i++) {
-            String usernameUser = usersFounded.get(i).getUsername().toLowerCase(); //PUT THE TITLE WITH LOWER CASE
-            boolean isCoincidence = usernameUser.contains(userName.toLowerCase()); //COMPARE THE WORDS WITH LOWER CASE
-            if (isCoincidence) {
-                trueUsers.add(usersFounded.get(i));
-            }
-        }
-
-        if(usersFounded.size()==0){
-            model.addAttribute("notUsersFound", true);
+    public String searchBarPage(Model model, @RequestParam(required = false) String search) {
+        if(search == null || search == ""){
+            model.addAttribute("nothingFound", true);
         }else{
-            model.addAttribute("notUsersFound", false);
-            model.addAttribute("usersFound", trueUsers);
-        }
+            model.addAttribute("nothingFound", false);
+            String firstLetter = search.substring(0,1);
+            model.addAttribute("searchText", search);
 
-        // IF THE USER SEARCH RECIPES:
-    } else {
-        model.addAttribute("searchText", search);
-        model.addAttribute("notUsersFound", false);
+            if (firstLetter.equals("@")){
+                //IF THE USER SEARCH USERS
+                List<User> usersFounded = usersRepository.findAll();
+                List<User> trueUsers = new ArrayList<User>();
 
-        //SEARCHED VALUES TO A LIST       
-        String[] words = search.split(" ");
-        List<String> filteredWords = new ArrayList<String>();
-        String[] quitWords = {"with","and","or","without", "in", "to", "&", "for", "on", "minutes", "min"};
+                String userName = search.substring(1);
+                
+                for (int i=0; i < usersFounded.size(); i++) {
+                    String usernameUser = usersFounded.get(i).getUsername().toLowerCase(); //PUT THE TITLE WITH LOWER CASE
+                    boolean isCoincidence = usernameUser.contains(userName.toLowerCase()); //COMPARE THE WORDS WITH LOWER CASE
+                    if (isCoincidence) {
+                        trueUsers.add(usersFounded.get(i));
+                    }
+                }
 
-        for (int i=0; i<words.length;i++){
-            //words[i].toLowerCase().contains("with")
-            if (!stringContainsItemFromList(words[i].toLowerCase(),quitWords)) {
-                filteredWords.add(words[i]);
-            }
-            
-        }
+                if(trueUsers.isEmpty()){
+                    System.out.println("wTF: " + trueUsers);
+                    model.addAttribute("notUsersFound", true);
+                }else{
+                    model.addAttribute("notUsersFound", false);
+                    model.addAttribute("usersFound", trueUsers);
+                }
 
-        List<Recipe> recipesFounded2 = recipesRepository.findAll();
-        List<Recipe> trueOnes = new ArrayList<Recipe>(); 
-
-        for (int i=0; i < filteredWords.size(); i++){
-            String palabrita = filteredWords.get(i);
-            for (int j=0; j < recipesFounded2.size(); j++) {
-                String titleRecipe = recipesFounded2.get(j).getTitle().toLowerCase().replaceAll("[^a-zA-Z]"," "); //PUT THE TITLE WITHOUT SPECIAL CHARACTERS AND LOWER CASE
-                boolean isCoincidence = titleRecipe.contains(palabrita.toLowerCase().replaceAll("[^a-zA-Z]"," ")); //COMPARE THE WORDS WITHOUT SPECIAL CHARACTERS AND LOWER CASE
-           
-                if ((isCoincidence) && (!isAlreadyIn(trueOnes, recipesFounded2.get(j).getId()))) {
-                    trueOnes.add(recipesFounded2.get(j));
+                // IF THE USER SEARCH RECIPES:
+            } else {
+                model.addAttribute("searchText", search);
+                model.addAttribute("notUsersFound", false);
+                //SEARCHED VALUES TO A LIST       
+                String[] words = search.split(" ");
+                List<String> filteredWords = new ArrayList<String>();
+                String[] quitWords = {"with","and","or","without", "in", "to", "&", "for", "on", "minutes", "min"};
+                for (int i=0; i<words.length;i++){
+                    //words[i].toLowerCase().contains("with")
+                    if (!stringContainsItemFromList(words[i].toLowerCase(),quitWords)) {
+                        filteredWords.add(words[i]);
+                    }
+                    
+                }
+                List<Recipe> recipesFounded2 = recipesRepository.findAll();
+                List<Recipe> trueOnes = new ArrayList<Recipe>(); 
+                for (int i=0; i < filteredWords.size(); i++){
+                    String palabrita = filteredWords.get(i);
+                    for (int j=0; j < recipesFounded2.size(); j++) {
+                        String titleRecipe = recipesFounded2.get(j).getTitle().toLowerCase().replaceAll("[^a-zA-Z]"," "); //PUT THE TITLE WITHOUT SPECIAL CHARACTERS AND LOWER CASE
+                        boolean isCoincidence = titleRecipe.contains(palabrita.toLowerCase().replaceAll("[^a-zA-Z]"," ")); //COMPARE THE WORDS WITHOUT SPECIAL CHARACTERS AND LOWER CASE
+                        if ((isCoincidence) && (!isAlreadyIn(trueOnes, recipesFounded2.get(j).getId()))) {
+                            trueOnes.add(recipesFounded2.get(j));
+                        }
+                    }
+                }
+                if(trueOnes.size()==0){
+                    model.addAttribute("notFound", true);
+                }else{
+                    model.addAttribute("notFound", false);
+                    model.addAttribute("recipesFound", trueOnes);
                 }
             }
         }
-
-        if(trueOnes.size()==0){
-            model.addAttribute("notFound", true);
-        }else{
-            model.addAttribute("notFound", false);
-            model.addAttribute("recipesFound", trueOnes);
-        }
-
-    }
         model.addAttribute("searchByButton", false);
         return "search";
     }

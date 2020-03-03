@@ -142,7 +142,8 @@ public class IndexController {
 
     @PostMapping("/")
     public void postRecipe(Model model, Recipe recipe, @RequestParam MultipartFile imageFile, 
-    @RequestParam String ingredientsString, @RequestParam String categoriesString, 
+    @RequestParam String ingredientsString, @RequestParam String categoriesString,
+    @RequestParam String cookingStyle, @RequestParam String allergen, 
     @RequestParam String firstStepString, @RequestParam(required = false) String stepsString, 
     @RequestParam(required = false, value = "allImages") MultipartFile[] allImages, 
     @RequestParam(required = false, value = "withImage") String withImage,HttpServletResponse response) throws IOException{
@@ -168,9 +169,18 @@ public class IndexController {
                 lastCats.add(category.get());
             }
         }
+        if(allergen != "-- Select --"){
+            Set<Allergen> all = allergensRepository.findByName(allergen);
+            r.setAllergens(all);
+        }
+        if(cookingStyle != "-- Select --"){
+            Set<CookingStyle> cStyle = cookingStylesRepository.findByName(cookingStyle);
+            r.setCookingStyles(cStyle);
+        }
 //Sets in recipe
         r.setCategories(lastCats);
         r.setIngredients(lastIngs);
+
         r.setImage(true);
         r.setUsername(userSession.getLoggedUser());
         recipesRepository.save(r);

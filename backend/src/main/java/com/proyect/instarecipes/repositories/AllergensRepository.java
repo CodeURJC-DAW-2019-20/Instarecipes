@@ -1,6 +1,7 @@
 package com.proyect.instarecipes.repositories;
 
 import java.util.Optional;
+import java.util.Set;
 
 import com.proyect.instarecipes.models.Allergen;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,6 +11,9 @@ import org.springframework.data.jpa.repository.Query;
 
 @Repository
 public interface AllergensRepository extends JpaRepository<Allergen, Long> {
+
+    @Query("SELECT a FROM Allergen a WHERE a.allergen = :allergen")
+	Set<Allergen> findByName(String allergen);
 
     // @Query("SELECT a FROM Allergen a WHERE a.allergen = :allergen")
     // Optional<Allergen> findByCategory(String allergen);

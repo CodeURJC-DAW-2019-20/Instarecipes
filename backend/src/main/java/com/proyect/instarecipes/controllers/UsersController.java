@@ -52,79 +52,83 @@ public class UsersController {
     private UserSession userSession;
 
     @GetMapping("/users/{id}")
-    public ModelAndView anotherUserProfile(@PathVariable Long id) {
-        ModelAndView model = new ModelAndView("profile");
-        Optional<User> actual = usersRepository.findById(id);
-        // User
-        model.addObject("actualUser", actual.get());
-        model.addObject("logged", userSession.isLoggedUser());
-        if (userSession.isLoggedUser() && actual.get().getRoles().contains("ROLE_ADMIN")) {
-            model.addObject("admin", true);
-        } else {
-            model.addObject("user", true);
-        }
-        // All users
-        model.addObject("usersList", usersRepository.findAll());
-        // Number of followers
-        model.addObject("n_followers", usersRepository.findFollowers(actual.get().getUsername()).size());
-        // Number of following
-        model.addObject("n_following", usersRepository.findFollowing(actual.get().getUsername()).size());
-        // Followers
-        model.addObject("followers", usersRepository.findFollowers(actual.get().getUsername()));
-        // Following
-        model.addObject("following", usersRepository.findFollowing(actual.get().getUsername()));
-        // Number of publications and total likes
-        List<Recipe> recipes = recipesRepository.findByUsernameId(id);
-        ArrayList<Integer> Laiks = new ArrayList<Integer>();
-        ArrayList<String> titles = new ArrayList<String>();
-
-        int likes = 0;
-        int pubs;
-
-        for (pubs = 0; pubs < recipes.size(); pubs++) {
-            likes = likes + recipes.get(pubs).getLikes();
-            Laiks.add(recipes.get(pubs).getLikes()); // List of every user recipe LIKES!!
-            titles.add(recipes.get(pubs).getTitle());
-        }
-        List<Category> catList = categoriesRepository.findAll();
-        List<Ingredient> ingList = ingredientsRepository.findAll();
-        List<CookingStyle> cSList = cookingStylesRepository.findAll();
-        model.addObject("ingredientsList", ingList);
-        model.addObject("cookingStylesList", cSList);
-        model.addObject("categoriesList", catList);
-
-        model.addObject("n_publications", pubs);
-        model.addObject("n_likes", likes);
-        // Publications
-        model.addObject("publications", recipes);
-        model.addObject("idkwtp", Laiks);
-        model.addObject("likesGraphics", titles);
-
-        User u = userSession.getLoggedUser();
-        List<User> following = usersRepository.findFollowing(u.getUsername());
-
-        boolean is_following = false;
-        for (User user : following) {
-            
-            if (user.getId() != id) {
-                is_following = false;
+    public ModelAndView anotherUserProfile(@PathVariable Long id, HttpServletResponse response) throws IOException{
+        ModelAndView model = null;
+        if(!userSession.isLoggedUser()){
+            response.sendRedirect("/login");
+        }else{
+            model = new ModelAndView("profile");
+            Optional<User> actual = usersRepository.findById(id);
+            // User
+            model.addObject("actualUser", actual.get());
+            model.addObject("logged", userSession.isLoggedUser());
+            if (userSession.isLoggedUser() && actual.get().getRoles().contains("ROLE_ADMIN")) {
+                model.addObject("admin", true);
             } else {
-                is_following = true;
-                break;
+                model.addObject("user", true);
+            }
+            // All users
+            model.addObject("usersList", usersRepository.findAll());
+            // Number of followers
+            model.addObject("n_followers", usersRepository.findFollowers(actual.get().getUsername()).size());
+            // Number of following
+            model.addObject("n_following", usersRepository.findFollowing(actual.get().getUsername()).size());
+            // Followers
+            model.addObject("followers", usersRepository.findFollowers(actual.get().getUsername()));
+            // Following
+            model.addObject("following", usersRepository.findFollowing(actual.get().getUsername()));
+            // Number of publications and total likes
+            List<Recipe> recipes = recipesRepository.findByUsernameId(id);
+            ArrayList<Integer> Laiks = new ArrayList<Integer>();
+            ArrayList<String> titles = new ArrayList<String>();
+
+            int likes = 0;
+            int pubs;
+
+            for (pubs = 0; pubs < recipes.size(); pubs++) {
+                likes = likes + recipes.get(pubs).getLikes();
+                Laiks.add(recipes.get(pubs).getLikes()); // List of every user recipe LIKES!!
+                titles.add(recipes.get(pubs).getTitle());
+            }
+            List<Category> catList = categoriesRepository.findAll();
+            List<Ingredient> ingList = ingredientsRepository.findAll();
+            List<CookingStyle> cSList = cookingStylesRepository.findAll();
+            model.addObject("ingredientsList", ingList);
+            model.addObject("cookingStylesList", cSList);
+            model.addObject("categoriesList", catList);
+
+            model.addObject("n_publications", pubs);
+            model.addObject("n_likes", likes);
+            // Publications
+            model.addObject("publications", recipes);
+            model.addObject("idkwtp", Laiks);
+            model.addObject("likesGraphics", titles);
+
+            User u = userSession.getLoggedUser();
+            List<User> following = usersRepository.findFollowing(u.getUsername());
+
+            boolean is_following = false;
+            for (User user : following) {
+                
+                if (user.getId() != id) {
+                    is_following = false;
+                } else {
+                    is_following = true;
+                    break;
+                }
+            }
+            boolean disable = false;
+            if (userSession.getLoggedUser().getId() != id) {
+                model.addObject("followButton", is_following);
+            }
+            if (u.getId() == id) {
+                disable = false;
+                model.addObject("disable", disable);
+            } else {
+                disable = true;
+                model.addObject("disable", disable);
             }
         }
-        boolean disable = false;
-        if (userSession.getLoggedUser().getId() != id) {
-            model.addObject("followButton", is_following);
-        }
-        if (u.getId() == id) {
-            disable = false;
-            model.addObject("disable", disable);
-        } else {
-            disable = true;
-            model.addObject("disable", disable);
-        }
-
         return model;
 
     }

@@ -40,7 +40,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto" style="margin-right: 30%;">
-         
           <li class="nav-item col-2" style="max-width: 100%;">
             <a class="nav-link" href="/"><i class="fas fa-home" style="font-size: xx-large;"></i></a>
           </li>
@@ -53,14 +52,18 @@
             <a class="nav-link" href="ranking"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
           </li>
         </ul>
-
         <form class="example" action="/searchBar" method="POST">
-          {{^searchByButton}}
-          <input type="text" placeholder="Search.." name="search" value="{{searchText}}">
-          {{/searchByButton}}
-          {{#searchByButton}}
-          <input type="text" placeholder="Search.." name="search">
-          {{/searchByButton}}
+          {{#nothingFound}}
+            <input type="text" placeholder="Search.." name="search">
+          {{/nothingFound}}
+          {{^nothingFound}}
+            {{^searchByButton}}
+              <input type="text" placeholder="Search.." name="search" value="{{searchText}}">
+            {{/searchByButton}}
+            {{#searchByButton}}
+              <input type="text" placeholder="Search.." name="search">
+            {{/searchByButton}}
+          {{/nothingFound}}
           <button type="submit" style="background-color: rgba(159, 193, 255, 0.726);">
             <i class="fa fa-search" ></i>
             <input type="hidden" name="_csrf" value="{{token}}"/>
@@ -97,8 +100,15 @@
     </ol>
     
     <div class="row">
+      {{#nothingFound}}
+        <div>
+          <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match anything.</h1>
+          <br/>
+          <h3>Try it again!</h3>
+        </div>
+      {{/nothingFound}}
       <!-- Sidebar Widgets Column -->
-
+      {{^nothingFound}}
       {{#searchByButton}}
       <div class="col-4">
         <!-- Categories and Cooking Style Widget -->
@@ -169,15 +179,17 @@
 
       <!-- Recipes Entries Column -->
       {{^searchByButton}}
-      <div class="row" style="margin: 5px;width: 100%;">
+        <div class="row" style="margin: 5px;width: 100%;">
       {{/searchByButton}}
       
       {{#searchByButton}}
-      <div class="col-md-8">
+        <div class="col-md-8">
       {{/searchByButton}}
         {{#notFound}}
+        <div>
           <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match any recipes.</h1>
           <h3>Try it with another filters!</h3>
+        </div>
         {{/notFound}}
         {{^notFound}}
           {{#recipesFound}}
@@ -211,36 +223,55 @@
             </div> -->
           </div>
           {{/recipesFound}}
-          </div>
         {{/notFound}}
       </div>
-      {{#logged}}  
-      <!-- Users Entries Column -->
-      <div class="col-md-8">
-        {{#notUsersFound}}
-          <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match any users.</h1>
-          <h3>Try it with another one!</h3>
-        {{/notUsersFound}}
-
-        {{^notUsersFound}}
-        {{#usersFound}}
-        <!-- Recipe Post -->
-        <div class="card mb-2">
-          <div class="row">
-            <div class="col-4" style="text-align: center; align-self: center; overflow-wrap: break-word;">
-              <h5>{{info}}&nbsp;</h5>
-            </div>
-            <div class="col-4" style="text-align: center; align-self: center;">
-              <h5>{{name}}&nbsp;{{surname}}</h5>
-              <p><a href="/users/{{id}}">@{{username}}</a></p>
-            </div>
-            <img class="d-flex mr-3 rounded-circle profile-border\" src="/temp/avatars/image-{{id}}.jpg" style="align-self: center; width: 100px; height: 100px;">
-          </div>
-        </div>
-        {{/usersFound}}
-        {{/notUsersFound}}
+      {{#searchByButton}}
       </div>
-      {{/logged}}  
+      {{/searchByButton}} 
+      <!-- Users Entries Column -->
+      <div class="col-md-12">
+        {{#logged}} 
+          {{#notUsersFound}}
+            <div>
+              <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match any users.</h1>
+              <h3>Try it with another one!</h3>
+            </div>
+          {{/notUsersFound}}
+          {{^notUsersFound}}
+            {{#usersFound}}
+              <!-- User X -->
+              <div class="card mb-2">
+                <div class="row" style="margin: 20px;">
+                  <div class="col-4" style="text-align: center; align-self: center; overflow-wrap: break-word;">
+                    <h5>{{info}}&nbsp;</h5>
+                  </div>
+                  <div class="col-4" style="text-align: center; align-self: center;">
+                    <h5>{{name}}&nbsp;{{surname}}</h5>
+                    <p><a href="/users/{{id}}">@{{username}}</a></p>
+                  </div>
+                  <img class="d-flex mr-3 rounded-circle profile-border\" src="/temp/avatars/image-{{id}}.jpg" style="align-self: center; width: 100px; height: 100px;">
+                </div>
+              </div>
+            {{/usersFound}}
+          {{/notUsersFound}}
+        {{/logged}}
+        {{^logged}}
+          {{#notUsersFound}}
+            <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match any users.</h1>
+            <h3>Try it after logging in!</h3>
+          {{/notUsersFound}}
+          {{^recipesFound}}
+            {{^notUsersFound}}
+              {{^notFound}}
+                <h1 style="color: rgba(0, 0, 0, 0.7);">Users found, but..</h1>
+                <h3>Try it after logging in!</h3>
+              {{/notFound}}
+            {{/notUsersFound}}
+          {{/recipesFound}}
+
+        {{/logged}}
+      </div>
+      {{/nothingFound}}
     <!-- /.row -->
   </div>
   <!-- /.container -->
