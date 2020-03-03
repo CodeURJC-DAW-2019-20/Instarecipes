@@ -177,7 +177,7 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 | Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       |[@lordkener](https://github.com/lordkener) |
 |                           |                                 |                                           |
 
-> Textual description of the tasks performed in the phase.  
+> This developer has been doing a lot of functionalities and helping the rest of us!
 
 > * [Ranking and AJAX button.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/9f47d259722bccc486b3810782db22026b0e1d7e)
 > * [Spring Security.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/c44aea86a64a8b8fab03f3f39ae09ed341451c06) 
