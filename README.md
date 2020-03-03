@@ -207,9 +207,9 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 
 > * [Follow-unfollow solved](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/f331e35f22e886e8852ff1bf0f110dc84bbeca61)
 > * [Steps images](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/c04e9ada7b688799cc0e71637299010dfd5af1cf)
-> * [ImageService](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/c711381d189e6cc882bf8976abb9d73c155ffeca)
+> * [ImageService](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/9594bd4a9a2b60bd808e72602d05e13c36055e97)
 > * [Category, comment step and cooking style java classes.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/9610c760555ce684cf0e62cb64f686c5fbe8e276)
-> * [Image_to bbdd](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/44b5060031dc67eba856cc1634654ef295612e6a)
+> * [Image_to bbdd](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/3b1d60fff04dadc9d206cb26b30ad0bbf3847472)
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
