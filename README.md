@@ -231,11 +231,11 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 
 > Textual description of the tasks performed in the phase.  
 
-> * Responsive pages.      
+> * [Add recipe validation](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/937a910661a7ad591f38e2385135ecf8fe4dd1a1)
 > * [Login and sign up restrictions.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/f1a3943f5fcbe375255ace558febc8da9b8699ed)
-> * Settings pop-up                     
-> * Ranking.html  
-> * added Ingredient model
+> * [Settings pop-up](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/b2232de6102957d29f24d042db95df00ea1735c8)                   
+> * profile desing changed+bio countdown
+> * [added Ingredient model](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/dc5747abb3b486338b08ec2e7c8f3b6ccf47548b)
 
 
 ## Most worked files :newspaper: <a name="workedFiles"></a>
@@ -263,7 +263,7 @@ To access the website, you need:
 >>  * Spring Boot Extension Pack.  
 >>  * Java Extension Pack.  
 >>  * Maven for Java.  
-> * Click 'Start..' button, go to your navegator and put: http://localhost:8443 and enjoy! (***We will change it to https soon***)
+> * Click 'Start..' button, go to your navegator and put: http://localhost:8443 and enjoy! (***or  https://localhost:8443***)
 
 ## Navigation Diagrams <a name="navDiagrams2"></a>
 In this section we can see how our navigation diagram has changed, now, you can search an user or a recipe using the search bar. 
