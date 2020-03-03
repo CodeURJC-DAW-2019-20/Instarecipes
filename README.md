@@ -234,7 +234,7 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 > * [Add recipe validation](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/937a910661a7ad591f38e2385135ecf8fe4dd1a1)
 > * [Login and sign up restrictions.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/f1a3943f5fcbe375255ace558febc8da9b8699ed)
 > * [Settings pop-up](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/b2232de6102957d29f24d042db95df00ea1735c8)                   
-> * Ranking.html
+> * profile desing changed+bio countdown
 > * [added Ingredient model](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/dc5747abb3b486338b08ec2e7c8f3b6ccf47548b)
 
 
