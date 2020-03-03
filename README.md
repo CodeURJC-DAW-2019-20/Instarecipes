@@ -231,11 +231,11 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 
 > Textual description of the tasks performed in the phase.  
 
-> * [Add recipe validation] (https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/937a910661a7ad591f38e2385135ecf8fe4dd1a1)
+> * [Add recipe validation](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/937a910661a7ad591f38e2385135ecf8fe4dd1a1)
 > * [Login and sign up restrictions.](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/f1a3943f5fcbe375255ace558febc8da9b8699ed)
 > * [Settings pop-up](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/dc49b99d7fdd17e22981dcbfd3b26caefadaad74)                   
-> * profile desing changed+bio countdown (https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/aaca3f85c7d31bbabc483097f4d524196ca6573d)
-> * [added Ingredient model](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/68a041271da8eaa7a281780fd09a7a99a7ceb5da)
+ > * [Profile desing changed+bio countdown](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/aaca3f85c7d31bbabc483097f4d524196ca6573d)
+> * [Added Ingredient model](https://github.com/CodeURJC-DAW-2019-20/webapp8/commit/68a041271da8eaa7a281780fd09a7a99a7ceb5da)
 
 
 ## Most worked files :newspaper: <a name="workedFiles"></a>
