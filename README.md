@@ -241,7 +241,7 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 ## Most worked files :newspaper: <a name="workedFiles"></a>
 |                           |                                 |                                 |
 |---------------------------|---------------------------------|---------------------------------|
-| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  |                                 |
+| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  |profile.html, login.js, ProfilePageController.java, index.html, login.html                                 |
 | Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       |security folder, initDatabase.java, add_recipe.js, profile.html, RequestController.java                                |
 | Manuel León Briz          | m.leon.2016@alumnos.urjc.es     |statistics.js, initDatabase.java,  indexController.java, profile.html, recipe.html                              |
 | José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  |                                 |
