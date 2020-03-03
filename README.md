@@ -263,7 +263,7 @@ To access the website, you need:
 >>  * Spring Boot Extension Pack.  
 >>  * Java Extension Pack.  
 >>  * Maven for Java.  
-> * Click 'Start..' button, go to your navegator and put: http://localhost:8443 and enjoy! (***We will change it to https soon***)
+> * Click 'Start..' button, go to your navegator and put: http://localhost:8443 and enjoy! (***or  https://localhost:8443***)
 
 ## Navigation Diagrams <a name="navDiagrams2"></a>
 In this section we can see how our navigation diagram has changed, now, you can search an user or a recipe using the search bar. 
