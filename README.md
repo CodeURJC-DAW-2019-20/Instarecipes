@@ -169,7 +169,7 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 
 
 
-# Web with HTML generated on server and AJAX <a 
+# Web with HTML generated on server and AJAX 
 
 ## Most important commits :newspaper: <a name="importantComm"></a>
 |                           |                                 |                                           |
