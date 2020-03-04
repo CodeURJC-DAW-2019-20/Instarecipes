@@ -220,7 +220,6 @@ public class SearchPageController {
 
         for (int i=0; i< recipeList.size(); i++){
             if (recipeList.get(i).getId() == recipeId) {
-                System.out.println("ya esta dentro bro");
                 founded = true;
             }
         }
