@@ -5,26 +5,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Ingredient {
-
+    public interface Item{}
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonView(Item.class)
     private String ingredient;
-    private String quantity;
 
     public Ingredient() {
     }
-    //only add ingredient
+    
     public Ingredient(String ingredient) {
         this.ingredient = ingredient;
-    }
-
-    public Ingredient(String ingredient, String quantity) {
-        this.ingredient = ingredient;
-        this.quantity = quantity;
     }
 
     public Long getId() {
@@ -41,14 +38,6 @@ public class Ingredient {
 
     public void setName(String ingredient) {
         this.ingredient = ingredient;
-    }
-
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
     }
 
     public String getIngredient() {

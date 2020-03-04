@@ -15,44 +15,46 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class Recipe{
 
     public interface IndexView{}
+    public interface RecipeView{}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    //Index Views
     @JsonView(IndexView.class)
     @ManyToOne
     private User username;
+    @JsonView(IndexView.class)
+    private String title;
+    @JsonView(IndexView.class)
+    private String description;
+    @JsonView(IndexView.class)
+    private int likes;
+    @JsonView(IndexView.class)
+    private int n_comments;
 
-    @ManyToMany
-    private Set<Ingredient> ingredients;
-    @ManyToMany
-    private Set<Category> categories;
     @ManyToMany
     private Set<CookingStyle> cookingStyles;
     @ManyToMany
     private Set<Allergen> allergens;
+
     @ManyToMany
     private Set<User> likesUsers;
 
-    ///
-    @JsonView(IndexView.class)
-    private String title;
-    //
-    @JsonView(IndexView.class)
-    private String description;
+    //Recipe Views
+    @JsonView(RecipeView.class)
+    @ManyToMany
+    private Set<Ingredient> ingredients;
+    @JsonView(RecipeView.class)
+    @ManyToMany
+    private Set<Category> categories;
+    @JsonView(RecipeView.class)
     private String duration;
+    @JsonView(RecipeView.class)
     private String difficulty;
+    @JsonView(RecipeView.class)
     private boolean image;
-    //
-    @JsonView(IndexView.class)
-    private int likes;
-
-    //
-    @JsonView(IndexView.class)
-    private int n_comments;
-    // private Image galery;
 
     //Empty contructor
     public Recipe(){}

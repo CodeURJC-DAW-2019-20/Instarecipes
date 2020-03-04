@@ -24,13 +24,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Entity
 public class User{
 
-	public interface SimpleUser{}
+	public interface Username{}
+	public interface NameSurname{}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@JsonView(SimpleUser.class)
+	@JsonView(Username.class)
 	@Column(nullable = false, unique = true)
 	private String username;
 	
@@ -40,12 +41,18 @@ public class User{
 	private String password;
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
+	
+	@JsonView(NameSurname.class)
 	@Column(nullable = false)
 	private String name;
+	@JsonView(NameSurname.class)
 	@Column(nullable = false)
 	private String surname;
 	private boolean background;
+
+	@JsonView(Username.class)
 	private boolean avatar;
+
 	private String allergens;
 
 	private int followingNum;

@@ -29,7 +29,7 @@ import com.proyect.instarecipes.repositories.RecipesRepository;
 @RequestMapping("/api/recipes")
 public class IndexRestController{
 
-    public interface Main extends User.SimpleUser, Recipe.IndexView{}
+    public interface Main extends User.Username, Recipe.IndexView{}
 
     // private Map<Long, Item> items = new ConcurrentHashMap<>();
     @Autowired
