@@ -9,13 +9,19 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Recipe{
+
+    public interface IndexView{}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @JsonView(IndexView.class)
     @ManyToOne
     private User username;
 
@@ -30,13 +36,21 @@ public class Recipe{
     @ManyToMany
     private Set<User> likesUsers;
 
+    ///
+    @JsonView(IndexView.class)
     private String title;
+    //
+    @JsonView(IndexView.class)
     private String description;
     private String duration;
     private String difficulty;
     private boolean image;
+    //
+    @JsonView(IndexView.class)
     private int likes;
 
+    //
+    @JsonView(IndexView.class)
     private int n_comments;
     // private Image galery;
 

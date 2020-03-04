@@ -20,12 +20,16 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 
 @RestController
 @RequestMapping("/api/recipes")
-public class MainApiRest{
+public class IndexRestController{
+
+    public interface Main extends User.SimpleUser, Recipe.IndexView{}
 
     // private Map<Long, Item> items = new ConcurrentHashMap<>();
     @Autowired
@@ -33,10 +37,11 @@ public class MainApiRest{
 
 	// private AtomicLong lastId = new AtomicLong();
 
-	@GetMapping("/")
-	public Collection<Recipe> recipes() {
-		return recipesRepository.findAll();
-	}
+    // @JsonView(MainApiRest.Main.class)
+	// @GetMapping("/")
+	// public Collection<Recipe> recipes() {
+	// 	return recipesRepository.findAll();
+	// }
 
 	// @PostMapping("/")
 	// @ResponseStatus(HttpStatus.CREATED)
@@ -65,8 +70,9 @@ public class MainApiRest{
 	// 	}
 	// }
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Recipe> getItem(@PathVariable long id) {
+    @JsonView(IndexRestController.Main.class)
+	@GetMapping("/")
+	public ResponseEntity<Recipe> getItem(@RequestParam long id) {
 
 		Optional<Recipe> recipe = recipesRepository.findById(id);
 
