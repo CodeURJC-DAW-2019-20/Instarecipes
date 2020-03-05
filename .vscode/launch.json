@@ -1,22 +1,22 @@
 {
     "configurations": [
+        //{
+            //"type": "java",
+            //"name": "Spring Boot-Application<instarecipes>",
+            //"request": "launch",
+            //"cwd": "${workspaceFolder}",
+            //"console": "internalConsole",
+            //"mainClass": "com.proyect.instarecipes.instarecipes.Application",
+            //"projectName": "instarecipes",
+          //  "args": ""
+        //},
         {
-            "type": "java",
-            "name": "Spring Boot-Application<instarecipes>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
-            "mainClass": "com.proyect.instarecipes.instarecipes.Application",
-            "projectName": "instarecipes",
-            "args": ""
-        },
-        // {
-        //     "type": "java",
-        //     "name": "CodeLens (Launch) - Application",
-        //     "request": "launch",
-        //     "mainClass": "com.proyect.instarecipes.Application",
-        //     "projectName": "instarecipes"
-        // },
+             "type": "java",
+             "name": "CodeLens (Launch) - Application",
+             "request": "launch",
+             "mainClass": "com.proyect.instarecipes.Application",
+             "projectName": "instarecipes"
+         },
         {
             "type": "java",
             "name": "Spring Boot-Application<instarecipes>",

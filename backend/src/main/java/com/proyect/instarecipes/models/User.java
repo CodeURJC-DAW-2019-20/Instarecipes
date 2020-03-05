@@ -26,6 +26,7 @@ public class User{
 
 	public interface Username{}
 	public interface NameSurname{}
+	public interface UserRanking{}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
