@@ -89,7 +89,6 @@ public class IndexController {
         return "index";
     }
 
-    
     @GetMapping("/index")
     public String indexedPage(Model model) {
         List<Recipe> recipes = recipesRepository.findAll();
@@ -114,10 +113,12 @@ public class IndexController {
         
         return "index";
     }
+    
     @GetMapping("/login")
     public String loginPage() {
         return "login";
     }
+
     @GetMapping("/signUp")
     public String signupPage(Model model){
         List<Allergen> allAllergensSingUp = allergensRepository.findAll();
@@ -125,10 +126,12 @@ public class IndexController {
         
         return "signUp";
     }
+
     @GetMapping("/search")
     public String searchPage(){
         return "search-page";
     }
+    
     @ModelAttribute
 	public void addAttributes(Model model) {
 		boolean logged = userSession.getLoggedUser() != null;

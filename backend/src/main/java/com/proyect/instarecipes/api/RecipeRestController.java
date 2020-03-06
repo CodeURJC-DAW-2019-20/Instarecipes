@@ -64,7 +64,7 @@ public class RecipeRestController{
     @PostMapping("/recipePressLike")
     public ResponseEntity<Recipe> likeRecipe(@RequestParam Long id_recipe, Long id_user){
         if (id_recipe != null){
-            return new ResponseEntity<>(recipeService.pressRecipeUnlike(id_recipe, usersRepository.findById(id_user).get()),HttpStatus.OK);
+            return new ResponseEntity<>(recipeService.pressRecipeLike(id_recipe, usersRepository.findById(id_user).get()),HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
