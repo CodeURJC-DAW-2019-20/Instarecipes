@@ -19,7 +19,7 @@ public class Recipe{
     public interface RecipeView{} //ingredients, categories, 
     public interface RecipeExtra{} //difficulty, duration
     public interface RecipeACS {} //allergens, cooking styles
-
+    public interface rankinglikes{}
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -43,7 +43,7 @@ public class Recipe{
     @JsonView(RecipeACS.class)
     @ManyToMany
     private Set<Allergen> allergens;
-
+    @JsonView(rankinglikes.class)
     @ManyToMany
     private Set<User> likesUsers;
 
