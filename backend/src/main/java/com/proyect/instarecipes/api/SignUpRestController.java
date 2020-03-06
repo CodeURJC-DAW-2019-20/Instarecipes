@@ -20,12 +20,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RestController
 @RequestMapping("/api/signUp")
 public class SignUpRestController{
-    // public interface fastReg extends User.fastRegister{}
-    
+  //  public interface fastReg extends User.fastRegister{}
     @Autowired 
     UsersRepository usersRepository;
 
-    // @JsonView(SignUpRestController.fastReg.class)
+    //@JsonView(SignUpRestController.fastReg.class)
     @PostMapping(value = "signUp/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> aulaVirtual( String username, String email, String password, String name, String surname , HttpServletRequest request){
         User user = new User(username, email, password, name, surname, null, null, null, null, "ROLE_USER");
