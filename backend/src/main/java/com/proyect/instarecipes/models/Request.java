@@ -7,8 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Request{
+
+    public interface RequestItems  {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,15 +20,19 @@ public class Request{
     
     @OneToOne
     private User username;
-
+    @JsonView(RequestItems.class)
     @Column(nullable = true)
     private String typeOfRequest;
+    @JsonView(RequestItems.class)
     @Column(nullable = true)
     private String ingredientContent;
+    @JsonView(RequestItems.class)
     @Column(nullable = true)
     private String cookingStyleContent;
+    @JsonView(RequestItems.class)
     @Column(nullable = true)
     private String categoryContent;
+    @JsonView(RequestItems.class)
     @Column(nullable = true)
     private boolean itemExists;
 
