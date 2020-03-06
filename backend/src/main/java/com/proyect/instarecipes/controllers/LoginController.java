@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.UsersRepository;
-import com.proyect.instarecipes.security.ImageService;
 import com.proyect.instarecipes.security.UserSession;
 
 import org.apache.commons.io.IOUtils;
@@ -43,9 +42,6 @@ public class LoginController {
 
 	@Autowired
 	private UserSession userComponent;
-
-	@Autowired 
-	private ImageService imageService;
 	
 	private int countUsers = 1;
 
