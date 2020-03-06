@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -21,24 +23,36 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class User{
+
+	public interface Username{}
+	public interface NameSurname{}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@JsonView(Username.class)
 	@Column(nullable = false, unique = true)
 	private String username;
+	
 	@Column(nullable = false, unique = true)
 	private String email;
 	@Column(nullable = false)
 	private String password;
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
+	
+	@JsonView(NameSurname.class)
 	@Column(nullable = false)
 	private String name;
+	@JsonView(NameSurname.class)
 	@Column(nullable = false)
 	private String surname;
 	private boolean background;
+
+	@JsonView(Username.class)
 	private boolean avatar;
+
 	private String allergens;
 
 	private int followingNum;

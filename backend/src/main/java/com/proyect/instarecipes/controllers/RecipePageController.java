@@ -4,9 +4,7 @@ import com.proyect.instarecipes.repositories.RecipesRepository;
 
 import java.io.IOException;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
@@ -14,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.proyect.instarecipes.models.Comment;
 import com.proyect.instarecipes.models.Step;
 import com.proyect.instarecipes.models.User;
-import com.proyect.instarecipes.repositories.CommentsRepository;
-import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.security.UserSession;
+import com.proyect.instarecipes.service.RecipeService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,45 +31,28 @@ public class RecipePageController {
     @Autowired
     private RecipesRepository recipesRepository;
     @Autowired
-    private StepsRepository stepsRepository;
-    @Autowired
-    private CommentsRepository commentsRepository;
+    private RecipeService recipeService;
 
     @GetMapping("/recipes/{id}")
     public String searchPage(Model model, @PathVariable Long id) {
-        
         // User of the recipe
-        User user = recipesRepository.findUsernameByRecipeId(id);
+        User user = recipeService.getUserRecipe(id);
         model.addAttribute("user", user);
-
-        // Number of publications and total likes
-        List<Recipe> recipes = recipesRepository.findByUsernameId(user.getId());
-        
-        int likes = 0;
-        int pubs;
-        for (pubs = 0; pubs < recipes.size(); pubs++) {
-            likes = likes + recipes.get(pubs).getLikes();
-        }
-        
-
-        model.addAttribute("n_publications", pubs);
-        model.addAttribute("n_likes", likes);
-
+        // Number of publications(0) and total likes(1)
+        List<Integer> likesAndComments = recipeService.getRecipeLikesAndPublications(user.getId());
+        model.addAttribute("n_publications", likesAndComments.get(0));
+        model.addAttribute("n_likes", likesAndComments.get(1));
         // Recipe
-        Recipe recipe = recipesRepository.findRecipeById(id);
+        Recipe recipe = recipeService.getRecipe(id);
         model.addAttribute("recipe", recipe);
         model.addAttribute("id", recipe.getId());
-
         // Number of all steps
-        List<Step> steps = stepsRepository.findAllByRecipe(recipe);
+        List<Step> steps = recipeService.getRecipeSteps(recipe);
         model.addAttribute("n_steps", steps.size());
         model.addAttribute("steps", steps);
-
         // Comments
-        List<Comment> comments = commentsRepository.findAllByRecipeOrderByLikes(recipe);
-
+        List<Comment> comments = recipeService.getRecipeComments(recipe);
         model.addAttribute("n_comments", comments.size());
-        
         if(userSession.isLoggedUser()){
             User actual = userSession.getLoggedUser();
             if(actual!=null){
@@ -97,123 +78,43 @@ public class RecipePageController {
                 }
             }
             model.addAttribute("pressed", pressed);
-            }
-            model.addAttribute("comments", comments);
+        }
+        model.addAttribute("comments", comments);
         return "recipe";
     }
 
     @PostMapping("/postComment/{id}")
     public void postComment(@PathVariable Long id, Model model, @RequestParam String content, HttpServletResponse response,
             @RequestParam(required = false, value = "parentComment") Long parentComment) throws IOException {
-        
-        Comment comment = null;
-        User u = userSession.getLoggedUser();
-        Recipe r = recipesRepository.findRecipeById(id);
-        
-        if(parentComment != null){ //Subcomment
-            Optional<Comment> pComment = commentsRepository.findById(parentComment);
-            comment = new Comment(u, content, null, r, false, true, null);//get the comment
-            if(content != ""){
-                commentsRepository.save(comment);
-                Set<Comment> ejem = new HashSet<>();
-                ejem = pComment.get().getSubComments();
-                ejem.add(comment);
-                if(!pComment.get().isSubcomment()){
-                    commentsRepository.setParentHasComment(true, parentComment);
-                }
-                else{
-                    commentsRepository.setParentHasComment(false, parentComment);
-                }
-            }
-        }else{ //Normal comment
-            comment = new Comment(u, content, null, r, false, false, null);
-            if(content != ""){
-                commentsRepository.save(comment);
-            }
-        }
-        commentsRepository.flush();
+        recipeService.postComment(id, content, parentComment, null);
         response.sendRedirect("../recipes/"+id);
     }
-    @PostMapping("/actionUnpressLike/{id}")
-    public void disLikedRecipe(Model model, @PathVariable Long id,HttpServletResponse response)throws IOException{
-        
-        User user = userSession.getLoggedUser();       
-        Recipe recipe = recipesRepository.findRecipeById(id);
-        Set<User> recipeLikes = recipe.getLikesUsers();
-      
-        for(User u : recipeLikes){
 
-            if(u.getId() == user.getId()){
-                recipe.removeUser(u);           
-                recipesRepository.flush();
-                break;
-            }
-        }
+    @PostMapping("/actionUnpressLike/{id}")
+    public void disLikedRecipe(Model model, @PathVariable Long id,HttpServletResponse response) throws IOException{
+        User user = userSession.getLoggedUser();       
+        recipeService.pressRecipeUnlike(id, user);
         response.sendRedirect("../recipes/"+id);
     }
 
     @PostMapping("/actionPressLike/{id}")
     public void likedRecipe(Model model, @PathVariable Long id,HttpServletResponse response)throws IOException{
-        
         User user = userSession.getLoggedUser();       
-        Recipe recipe = recipesRepository.findRecipeById(id);
-        Set<User> recipeLikes = recipe.getLikesUsers();
-        boolean check=false;       
-        for(User u : recipeLikes){
-            if(u.getId()==user.getId()){              
-                check= true;
-                break;
-            }
-        }
-        if(!check){           
-            recipe.addUser(user);
-            recipesRepository.flush();
-        }
+        recipeService.pressRecipeUnlike(id, user);
         response.sendRedirect("../recipes/"+id);
     }
     
     @PostMapping("/likeComment/{id}")
     public void likeComment(@PathVariable Long id, @RequestParam Long id_recipe, HttpServletResponse response) throws IOException {
-        
-        Optional<Comment> comment = commentsRepository.findById(id);
-        User actual = userSession.getLoggedUser();
-        Set<User> newList = comment.get().getUsersLiked();
-        boolean aux = true;
-        for(User uAux : newList){
-            if(uAux.getId() == actual.getId()){
-                aux = false;
-                break;
-            }
-        }
-        if(aux){
-            comment.get().setLiked(true);
-            comment.get().setLikes(1);
-            comment.get().addLikeUser(actual);
-            comment.get().setUsersLiked(newList);
-            commentsRepository.flush();
-        }
-        
+        User user = userSession.getLoggedUser();
+        recipeService.likeComment(id_recipe, user);
         response.sendRedirect("../recipes/"+id_recipe);
     }
 
     @PostMapping("/unlikeComment/{id}")
     public void unlikeComment(@PathVariable Long id, @RequestParam Long id_recipe, HttpServletResponse response) throws IOException {
-        
-        Optional<Comment> comment = commentsRepository.findById(id);
         User actual = userSession.getLoggedUser();
-        Set<User> newList = comment.get().getUsersLiked();
-
-        for(User uAux : newList){
-            if(uAux.getId() == actual.getId()){
-                comment.get().setLiked(false);
-                comment.get().setLikes(-1);
-                comment.get().removeLikeUser(uAux);
-                comment.get().setUsersLiked(newList);
-                commentsRepository.flush();
-                break;
-            }
-        }
-        
+        recipeService.unlikeComment(id_recipe, actual);
         response.sendRedirect("../recipes/"+id_recipe);
     }
 

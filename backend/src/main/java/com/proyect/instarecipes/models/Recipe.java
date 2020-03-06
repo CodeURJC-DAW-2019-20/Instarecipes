@@ -8,37 +8,60 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
-public class Recipe{
+public class Recipe{  
+    public interface RecipePlus{} //likes and comments
+    public interface RecipeBasic{} //title, description, username, image
+    public interface RecipeView{} //ingredients, categories, 
+    public interface RecipeExtra{} //difficulty, duration
+    public interface RecipeACS {} //allergens, cooking styles
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //Index Views
+    @JsonView(RecipeBasic.class)
     @ManyToOne
     private User username;
+    @JsonView(RecipeBasic.class)
+    private String title;
+    @JsonView(RecipeBasic.class)
+    private String description;
+    @JsonView(RecipePlus.class)
+    private int likes;
+    @JsonView(RecipePlus.class)
+    private int n_comments;
 
-    @ManyToMany
-    private Set<Ingredient> ingredients;
-    @ManyToMany
-    private Set<Category> categories;
+    @JsonView(RecipeACS.class)
     @ManyToMany
     private Set<CookingStyle> cookingStyles;
+    @JsonView(RecipeACS.class)
     @ManyToMany
     private Set<Allergen> allergens;
+
     @ManyToMany
     private Set<User> likesUsers;
 
-    private String title;
-    private String description;
+    //Recipe Views
+    @JsonView(RecipeView.class)
+    @ManyToMany
+    private Set<Ingredient> ingredients;
+    @JsonView(RecipeView.class)
+    @ManyToMany
+    private Set<Category> categories;
+    @JsonView(RecipeExtra.class)
     private String duration;
+    @JsonView(RecipeExtra.class)
     private String difficulty;
+    @JsonView(RecipeBasic.class)
     private boolean image;
-    private int likes;
 
-    private int n_comments;
-    // private Image galery;
+
 
     //Empty contructor
     public Recipe(){}
