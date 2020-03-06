@@ -12,23 +12,21 @@ import com.proyect.instarecipes.repositories.UsersRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
 
 
 @RestController
-@RequestMapping("/api/signUp")
+@RequestMapping("/api")
 public class SignUpRestController{
-    public interface fastReg extends User.fastRegister{}
-    
+    public interface showNewUser extends User.NameSurname, User.Username, User.allergen, User.email{}
     @Autowired 
     UsersRepository usersRepository;
 
-    @JsonView(SignUpRestController.fastReg.class)
-    @PostMapping(value = "signUp/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> aulaVirtual( String username, String email, String password, String name, String surname , HttpServletRequest request){
-        User user = new User(username, email, password, name, surname, null, null, null, null, "ROLE_USER");
+    @JsonView(SignUpRestController.showNewUser.class)
+    @RequestMapping("/signUp")
+    public ResponseEntity<User> aulaVirtual(@RequestParam String username,@RequestParam String email, @RequestParam String password,@RequestParam  String name,
+    @RequestParam String surname,@RequestParam String allergen, HttpServletRequest request){
+        User user = new User(username, email, password, name, surname, "this is my info", allergen, null, null, "ROLE_USER");
         return new ResponseEntity<>(user, HttpStatus.OK);
     }    
 }
