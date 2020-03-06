@@ -26,7 +26,7 @@ import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 
 @RestController
-@RequestMapping("/api/recipes")
+@RequestMapping("/api/")
 public class IndexRestController{
 
     public interface Main extends User.Username, Recipe.IndexView{}
@@ -70,18 +70,18 @@ public class IndexRestController{
 	// 	}
 	// }
 
-    @JsonView(IndexRestController.Main.class)
-	@GetMapping("/")
-	public ResponseEntity<Recipe> getItem(@RequestParam long id) {
+    // @JsonView(IndexRestController.Main.class)
+	// @GetMapping("/")
+	// public ResponseEntity<Recipe> getItem(@RequestParam Long id) {
 
-		Optional<Recipe> recipe = recipesRepository.findById(id);
+	// 	Optional<Recipe> recipe = recipesRepository.findById(id);
 
-		if (recipe.get() != null) {
-			return new ResponseEntity<>(recipe.get(), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
+	// 	if (recipe.get() != null) {
+	// 		return new ResponseEntity<>(recipe.get(), HttpStatus.OK);
+	// 	} else {
+	// 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	// 	}
+	// }
 
 	// @DeleteMapping("/{id}")
 	// public ResponseEntity<Recipe> borraItem(@PathVariable long id) {

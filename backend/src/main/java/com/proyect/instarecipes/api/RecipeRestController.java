@@ -1,9 +1,7 @@
 package com.proyect.instarecipes.api;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.proyect.instarecipes.models.Ingredient;
@@ -14,12 +12,12 @@ import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.CommentsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
+import com.proyect.instarecipes.service.RecipeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,68 +35,79 @@ public class RecipeRestController{
     @Autowired
     private CommentsRepository commentsRepository;
     @Autowired
+    private RecipeService recipeService;
+    @Autowired
     private UsersRepository usersRepository;
 
     @JsonView(RecipeRestController.SimpleRecipe.class)
-    @GetMapping("/{id}")
-    public ResponseEntity<Recipe> getRecipe(@PathVariable long id){
-        Optional<Recipe> recipe = recipesRepository.findById(id);
-        if (recipe.get() != null){
-            return new ResponseEntity<>(recipe.get(), HttpStatus.OK);
+    @GetMapping("/")
+    public ResponseEntity<Recipe> getRecipe(@RequestParam Long id){
+        if (id != null){
+            return new ResponseEntity<>(recipesRepository.findById(id).get(), HttpStatus.OK);
         } else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
+    @JsonView(RecipeRestController.SimpleRecipe.class)
+    @PostMapping("/recipeUnpressLike")
+    public ResponseEntity<Recipe> unlikeRecipe(@RequestParam Long id_recipe, @RequestParam Long id_user){
+        if (id_recipe != null){
+            return new ResponseEntity<>(recipeService.pressRecipeUnlike(id_recipe, usersRepository.findById(id_user).get()), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @JsonView(RecipeRestController.SimpleRecipe.class)
+    @PostMapping("/recipePressLike")
+    public ResponseEntity<Recipe> likeRecipe(@RequestParam Long id_recipe, Long id_user){
+        if (id_recipe != null){
+            return new ResponseEntity<>(recipeService.pressRecipeUnlike(id_recipe, usersRepository.findById(id_user).get()),HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /* COMMENTS SECTION */
+
     @JsonView(RecipeRestController.CommentsRecipe.class)
-    @GetMapping("/comments/{id}")
-    public ResponseEntity<List<Comment>> getComments(@PathVariable long id){
-        Optional<Recipe> recipe = recipesRepository.findById(id);
-        List<Comment> commentsList = commentsRepository.findAllByRecipe(recipe.get());
-        if (commentsList != null){
-            return new ResponseEntity<>(commentsList, HttpStatus.OK);
-        } else{
+    @PostMapping("/commentPressLike")
+    public ResponseEntity<Comment> likeComment(@RequestParam Long id_recipe, Long id_user){
+        if (id_recipe != null){
+            return new ResponseEntity<>(recipeService.likeComment(id_recipe, usersRepository.findById(id_user).get()),HttpStatus.OK);
+        }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @JsonView(RecipeRestController.CommentsRecipe.class)
-    @PostMapping("/")
+    @PostMapping("/commentUnpressLike")
+    public ResponseEntity<Comment> unlikeComment(@RequestParam Long id_recipe, Long id_user){
+        if (id_recipe != null){
+            return new ResponseEntity<>(recipeService.unlikeComment(id_recipe, usersRepository.findById(id_user).get()),HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @JsonView(RecipeRestController.CommentsRecipe.class)
+    @GetMapping("/comments/")
+    public ResponseEntity<List<Comment>> getComments(@RequestParam Long id){
+        Optional<Recipe> recipe = recipesRepository.findById(id);
+        if (recipe != null){
+            return new ResponseEntity<>(commentsRepository.findAllByRecipe(recipe.get()), HttpStatus.OK);
+        } else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @JsonView(RecipeRestController.CommentsRecipe.class)
+    @PostMapping("/comments/")
     public ResponseEntity<Comment> setComments(@RequestParam(required = false) Long id, @RequestParam(required = false) String username,
     @RequestParam(required = false) String content, @RequestParam(required = false) Long parentComment){
-
-        Comment comment = null;
-        System.out.println("Username: " + username);
-        User u = usersRepository.findByUsername(username);
-        System.out.println("Id: " + u.getId());
-        Recipe r = recipesRepository.findRecipeById(id);
-
-        if(parentComment != null){ //Subcomment
-            Optional<Comment> pComment = commentsRepository.findById(parentComment);
-            comment = new Comment(u, content, null, r, false, true, null);//get the comment
-            if(content != ""){
-                commentsRepository.save(comment);
-                Set<Comment> ejem = new HashSet<>();
-                ejem = pComment.get().getSubComments();
-                ejem.add(comment);
-                if(!pComment.get().isSubcomment()){
-                    commentsRepository.setParentHasComment(true, parentComment);
-                }
-                else{
-                    commentsRepository.setParentHasComment(false, parentComment);
-                }
-            }
-        }else{ //Normal comment
-            comment = new Comment(u, content, null, r, false, false, null);
-            if(content != ""){
-                commentsRepository.save(comment);
-
-            }
-        }
-        commentsRepository.flush();
-
         if (content != null){
-            return new ResponseEntity<>(comment, HttpStatus.OK);
+            return new ResponseEntity<>(recipeService.postComment(id, content, parentComment, username), HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
