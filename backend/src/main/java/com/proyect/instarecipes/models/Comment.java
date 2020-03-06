@@ -11,21 +11,29 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Comment{
+    public interface RecipeView{}
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonView(RecipeView.class)
     @ManyToOne
     private User userComment;
     
+    @JsonView(RecipeView.class)
     @Column(nullable = false,length = 500)
     private String content;
 
+    @JsonView(RecipeView.class)
     private boolean hasSubcomments;
+    @JsonView(RecipeView.class)
     private boolean isSubcomment;
 
+    @JsonView(RecipeView.class)
     @OneToMany
     private Set<Comment> subComments;
 
@@ -35,7 +43,9 @@ public class Comment{
     @ManyToMany
     private Set<User> usersLiked;
 
+    @JsonView(RecipeView.class)
     private int likes; //THESE IS ONLY AN AUX
+    @JsonView(RecipeView.class)
     private boolean liked;
     
     public Comment() {}
