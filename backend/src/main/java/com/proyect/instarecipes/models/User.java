@@ -24,43 +24,40 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Entity
 public class User{
 
-	public interface UserSimple{} 			//username,email,password
-	public interface UserExtended{}			 //name,surname,background,avatar,allergens,followingNum, followerNum, info
+	public interface Username{}
+	public interface NameSurname{}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	//Username views
-	@JsonView(UserSimple.class)
+	@JsonView(Username.class)
 	@Column(nullable = false, unique = true)
 	private String username;
-	@JsonView(UserSimple.class)
+	
 	@Column(nullable = false, unique = true)
 	private String email;
- 	@Column(nullable = false)
+	@Column(nullable = false)
 	private String password;
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 	
-	//UserExtended views
-	@JsonView(UserExtended.class)
+	@JsonView(NameSurname.class)
 	@Column(nullable = false)
 	private String name;
-	@JsonView(UserExtended.class)
+	@JsonView(NameSurname.class)
 	@Column(nullable = false)
 	private String surname;
-	@JsonView(UserExtended.class)
 	private boolean background;
-	@JsonView(UserExtended.class)
+
+	@JsonView(Username.class)
 	private boolean avatar;
-	@JsonView(UserExtended.class)
+
 	private String allergens;
-	@JsonView(UserExtended.class)
+
 	private int followingNum;
-	@JsonView(UserExtended.class)
 	private int followersNum;
-	@JsonView(UserExtended.class)
+
 	@Column(nullable = false)
 	private String info;
 	
