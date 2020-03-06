@@ -8,6 +8,7 @@ import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.models.Comment;
 import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.models.Step;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.CommentsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
@@ -29,7 +30,8 @@ public class RecipeRestController{
 
     public interface SimpleRecipe extends Recipe.RecipeView, 
     Recipe.RecipeBasic, Recipe.RecipePlus, Recipe.RecipeExtra, Ingredient.Item, Category.Item, User.Username, User.NameSurname{}
-    public interface CommentsRecipe extends Comment.RecipeView, User.NameSurname, User.Username{}
+    public interface CommentsRecipe extends Comment.RecipeView, User.NameSurname, User.Username, Recipe.RecipeView{}
+    public interface RecipeSteps extends Step.StepsView{}
 
     @Autowired
     private RecipesRepository recipesRepository;
@@ -42,9 +44,20 @@ public class RecipeRestController{
 
     @JsonView(RecipeRestController.SimpleRecipe.class)
     @GetMapping("/")
-    public ResponseEntity<Recipe> getRecipe(@RequestParam Long id){
-        if (id != null){
-            return new ResponseEntity<>(recipesRepository.findById(id).get(), HttpStatus.OK);
+    public ResponseEntity<Recipe> getRecipe(@RequestParam Long id_recipe){
+        if (id_recipe != null){
+            return new ResponseEntity<>(recipeService.getRecipe(id_recipe), HttpStatus.OK);
+        } else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // get recipe steps
+    @JsonView(RecipeRestController.RecipeSteps.class)
+    @GetMapping("/steps")
+    public ResponseEntity<List<Step>> getSteps(@RequestParam Long id_recipe){
+        if (id_recipe != null){
+            return new ResponseEntity<>(recipeService.getRecipeSteps(id_recipe), HttpStatus.OK);
         } else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -74,9 +87,9 @@ public class RecipeRestController{
 
     @JsonView(RecipeRestController.CommentsRecipe.class)
     @PostMapping("/commentPressLike")
-    public ResponseEntity<Comment> likeComment(@RequestParam Long id_recipe, Long id_user){
-        if (id_recipe != null){
-            return new ResponseEntity<>(recipeService.likeComment(id_recipe, usersRepository.findById(id_user).get()),HttpStatus.OK);
+    public ResponseEntity<Comment> likeComment(@RequestParam Long id_comment,@RequestParam Long id_user){
+        if (id_comment != null){
+            return new ResponseEntity<>(recipeService.likeComment(id_comment, usersRepository.findById(id_user).get()),HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -84,9 +97,9 @@ public class RecipeRestController{
 
     @JsonView(RecipeRestController.CommentsRecipe.class)
     @PostMapping("/commentUnpressLike")
-    public ResponseEntity<Comment> unlikeComment(@RequestParam Long id_recipe, Long id_user){
-        if (id_recipe != null){
-            return new ResponseEntity<>(recipeService.unlikeComment(id_recipe, usersRepository.findById(id_user).get()),HttpStatus.OK);
+    public ResponseEntity<Comment> unlikeComment(@RequestParam Long id_comment,@RequestParam Long id_user){
+        if (id_comment != null){
+            return new ResponseEntity<>(recipeService.unlikeComment(id_comment, usersRepository.findById(id_user).get()),HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -94,8 +107,8 @@ public class RecipeRestController{
 
     @JsonView(RecipeRestController.CommentsRecipe.class)
     @GetMapping("/comments/")
-    public ResponseEntity<List<Comment>> getComments(@RequestParam Long id){
-        Optional<Recipe> recipe = recipesRepository.findById(id);
+    public ResponseEntity<List<Comment>> getComments(@RequestParam Long id_recipe){
+        Optional<Recipe> recipe = recipesRepository.findById(id_recipe);
         if (recipe != null){
             return new ResponseEntity<>(commentsRepository.findAllByRecipe(recipe.get()), HttpStatus.OK);
         } else{
@@ -105,10 +118,10 @@ public class RecipeRestController{
     
     @JsonView(RecipeRestController.CommentsRecipe.class)
     @PostMapping("/comments/")
-    public ResponseEntity<Comment> setComments(@RequestParam(required = false) Long id, @RequestParam(required = false) String username,
+    public ResponseEntity<Comment> setComments(@RequestParam(required = false) Long id_recipe, @RequestParam(required = false) String username,
     @RequestParam(required = false) String content, @RequestParam(required = false) Long parentComment){
         if (content != null){
-            return new ResponseEntity<>(recipeService.postComment(id, content, parentComment, username), HttpStatus.OK);
+            return new ResponseEntity<>(recipeService.postComment(id_recipe, content, parentComment, username), HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

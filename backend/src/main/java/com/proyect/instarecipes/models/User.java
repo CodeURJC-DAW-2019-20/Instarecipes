@@ -24,16 +24,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Entity
 public class User{
 
-<<<<<<< HEAD
 	public interface Username{}
 	public interface NameSurname{}
 	public interface UserRanking{}
-
-=======
-	public interface Username{}   //username,avatar
-	public interface NameSurname{} //name,surname
 	public interface UserExtra{}
->>>>>>> 4bf4e04fe3b426ba4b1e7f868f5458027ff66248
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

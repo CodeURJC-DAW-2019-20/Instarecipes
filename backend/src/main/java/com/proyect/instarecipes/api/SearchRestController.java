@@ -23,21 +23,21 @@ import com.proyect.instarecipes.service.SearchService;
 
 @RestController
 @RequestMapping("/api/search")
-public class SearchPageRestController {
+public class SearchRestController {
 
 	public interface SearchInfo extends Recipe.RecipeBasic, Recipe.RecipeView, Recipe.RecipeACS, User.Username, User.NameSurname,
-	 Ingredient.Item, Category.Item, Allergen.Item, CookingStyle.Item{}
+	 					Ingredient.Item, Category.Item, Allergen.Item, CookingStyle.Item{}
 
 	@Autowired
 	private SearchService searchService;
 
 	
-    @JsonView(SearchPageRestController.SearchInfo.class)
+    @JsonView(SearchRestController.SearchInfo.class)
 	@PostMapping("/filtered")
 	public ResponseEntity<List<Recipe>> getFilteredRecipes(@RequestParam(required = false) String ingredients, 
-    @RequestParam(required = false) String categories, @RequestParam(required = false) 
-    String cookingStyles, @RequestParam(required = false) String allergens) {
-		
+    		@RequestParam(required = false) String categories, @RequestParam(required = false) 
+    			String cookingStyles, @RequestParam(required = false) String allergens) {
+
 		ArrayList<String> cookingStylesSelected = searchService.getItem(cookingStyles);
 		ArrayList<String> categoriesSelected = searchService.getItem(categories);
         ArrayList<String> allergensSelected = searchService.getItem(allergens);
@@ -57,24 +57,22 @@ public class SearchPageRestController {
 	}
 
 
-    @JsonView(SearchPageRestController.SearchInfo.class)
+    @JsonView(SearchRestController.SearchInfo.class)
 	@PostMapping("/navbar/users")
 	public ResponseEntity<List<User>> getUserSearch(@RequestParam(required = false) String search){
 		String firstLetter = search.substring(0,1);
-
-            if (firstLetter.equals("@")){
-				List<User> trueUsers = searchService.getTrueUsers(search);
-				return new ResponseEntity<>(trueUsers, HttpStatus.OK);
-			} else {
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}
+		if (firstLetter.equals("@")){
+			List<User> trueUsers = searchService.getTrueUsers(search);
+			return new ResponseEntity<>(trueUsers, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
-	@JsonView(SearchPageRestController.SearchInfo.class)
+	@JsonView(SearchRestController.SearchInfo.class)
 	@PostMapping("/navbar/recipes") 
 	public ResponseEntity<List<Recipe>> getRecipeSearch(@RequestParam(required = false) String search){
 		String firstLetter = search.substring(0,1);
-
 		if (!firstLetter.equals("@")){
 			List<Recipe> trueRecipes = searchService.getTrueRecipes(search);
 			return new ResponseEntity<>(trueRecipes, HttpStatus.OK);

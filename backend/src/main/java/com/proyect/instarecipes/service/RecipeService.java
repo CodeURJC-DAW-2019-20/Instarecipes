@@ -58,8 +58,9 @@ public class RecipeService{
         return array;
     }
 
-    public List<Step> getRecipeSteps(Recipe recipe){
-        return stepsRepository.findAllByRecipe(recipe);
+    public List<Step> getRecipeSteps(Long id_recipe){
+        Optional<Recipe> recipe = recipesRepository.findById(id_recipe);
+        return stepsRepository.findAllByRecipe(recipe.get());
     }
 
     public Recipe pressRecipeUnlike(Long id_recipe, User user){
@@ -92,8 +93,8 @@ public class RecipeService{
         return recipe;
     }
 
-    public Comment likeComment(Long id_recipe, User user){
-        Optional<Comment> comment = commentsRepository.findById(id_recipe);
+    public Comment likeComment(Long id_comment, User user){
+        Optional<Comment> comment = commentsRepository.findById(id_comment);
         Set<User> newList = comment.get().getUsersLiked();
         boolean aux = true;
         for(User uAux : newList){
@@ -112,8 +113,8 @@ public class RecipeService{
         return comment.get();
     }
 
-    public Comment unlikeComment(Long id_recipe, User user){
-        Optional<Comment> comment = commentsRepository.findById(id_recipe);
+    public Comment unlikeComment(Long id_comment, User user){
+        Optional<Comment> comment = commentsRepository.findById(id_comment);
         Set<User> newList = comment.get().getUsersLiked();
         for(User uAux : newList){
             if(uAux.getId() == user.getId()){
@@ -131,7 +132,7 @@ public class RecipeService{
     public Comment postComment(Long id, String content, Long parentComment, String username){
         Comment comment = null;
         User u = null;
-        if(username == null){
+        if(username != null){
             u = usersRepository.findByUsername(username);
         }else{
             u = userSession.getLoggedUser();
