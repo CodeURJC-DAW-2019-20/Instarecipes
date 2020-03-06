@@ -20,8 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RestController
 @RequestMapping("/api/signUp")
 public class SignUpRestController{
-   // public interface fastReg extends User.fastRegister{}
-    
+  //  public interface fastReg extends User.fastRegister{}
     @Autowired 
     UsersRepository usersRepository;
 

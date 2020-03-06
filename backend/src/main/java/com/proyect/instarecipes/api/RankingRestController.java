@@ -28,9 +28,9 @@ public class RankingRestController{
     @Autowired
     private RankingService rankingService;
 
-    interface RankingData extends Recipe.rankinglikes, User.Username{}
+    interface RankingData extends Recipe.Rankinglikes, User.Username{}
 
-    @JsonView(RankingData.class)
+    @JsonView(RankingRestController.RankingData.class)
     @GetMapping("/")
     public ResponseEntity<List<Recipe>> getRanking(@RequestParam long page,@RequestParam long size){
         List<Recipe> newRanking=rankingService.showRanking();
