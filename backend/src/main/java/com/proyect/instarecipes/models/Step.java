@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 public class Step{
 
-    public interface Simple{}
+    public interface StepsView{}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +21,14 @@ public class Step{
     @ManyToOne
     private Recipe recipe;
     
-    @JsonView(Simple.class)
+    @JsonView(StepsView.class)
     private int number;
 
-    @JsonView(Simple.class)
+    @JsonView(StepsView.class)
     @Column(length = 500)
     private String content;
 
-    @JsonView(Simple.class)
+    @JsonView(StepsView.class)
     private boolean image;
 
     public Step(){

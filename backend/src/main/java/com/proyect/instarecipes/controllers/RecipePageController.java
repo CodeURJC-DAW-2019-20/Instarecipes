@@ -47,7 +47,7 @@ public class RecipePageController {
         model.addAttribute("recipe", recipe);
         model.addAttribute("id", recipe.getId());
         // Number of all steps
-        List<Step> steps = recipeService.getRecipeSteps(recipe);
+        List<Step> steps = recipeService.getRecipeSteps(recipe.getId());
         model.addAttribute("n_steps", steps.size());
         model.addAttribute("steps", steps);
         // Comments

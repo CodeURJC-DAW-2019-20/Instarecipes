@@ -1,29 +1,14 @@
 package com.proyect.instarecipes.controllers;
 
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
-
-import com.proyect.instarecipes.models.Allergen;
-import com.proyect.instarecipes.models.Category;
-import com.proyect.instarecipes.models.CookingStyle;
-import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.Request;
 import com.proyect.instarecipes.models.User;
-import com.proyect.instarecipes.repositories.UsersRepository;
-import com.proyect.instarecipes.repositories.AllergensRepository;
-import com.proyect.instarecipes.repositories.CategoriesRepository;
-import com.proyect.instarecipes.repositories.CookingStylesRepository;
-import com.proyect.instarecipes.repositories.IngredientsRepository;
-import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.RequestsRepository;
-import com.proyect.instarecipes.security.ImageService;
 import com.proyect.instarecipes.security.UserSession;
-
+import com.proyect.instarecipes.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,23 +23,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class ProfilePageController {
 
     @Autowired
-    private UsersRepository usersRepository;
-    @Autowired
-    private RecipesRepository recipesRepository;
-    @Autowired
     private UserSession userSession;
     @Autowired
     private RequestsRepository requestsRepository;
     @Autowired
-    private AllergensRepository allergensRepository;
-    @Autowired
-    private CookingStylesRepository cookingStylesRepository;
-    @Autowired
-    private IngredientsRepository ingredientsRepository;
-    @Autowired
-    private CategoriesRepository categoriesRepository;
-    @Autowired
-    private ImageService imageService;
+    private ProfileService profileService;
 
     @GetMapping("/profile")
     public String profilePage(Model model) {
@@ -62,44 +35,28 @@ public class ProfilePageController {
         // User
         model.addAttribute("actualUser", actual);
         // All users
-        model.addAttribute("usersList", usersRepository.findAll());
+        model.addAttribute("usersList", profileService.getAllUser());
         // Number of followers
-        model.addAttribute("n_followers", usersRepository.findFollowers(actual.getUsername()).size());
+        model.addAttribute("n_followers", profileService.getFollowersCount(actual.getUsername()));
         // Number of following
-        model.addAttribute("n_following", usersRepository.findFollowing(actual.getUsername()).size());
+        model.addAttribute("n_following", profileService.getFollowingCount(actual.getUsername()));
         // Followers
-        model.addAttribute("followers", usersRepository.findFollowers(actual.getUsername()));
+        model.addAttribute("followers", profileService.getAllFollowers(actual.getUsername()));
         // Following
-        model.addAttribute("following", usersRepository.findFollowing(actual.getUsername()));
+        model.addAttribute("following", profileService.getAllFollowing(actual.getUsername()));
         // Number of publications and total likes
-        List<Recipe> recipes = recipesRepository.findByUsernameId(actual.getId());
-        ArrayList<Integer> Laiks = new ArrayList<Integer>();
-        ArrayList<String> titles = new ArrayList<String>();
-        int likes = 0;
-        int pubs;
-
-        for (pubs = 0; pubs < recipes.size(); pubs++) {
-            likes = likes + recipes.get(pubs).getLikes();
-            Laiks.add(recipes.get(pubs).getLikes()); // List of every user recipe LIKES!!
-            titles.add(recipes.get(pubs).getTitle());
-        }
-
-        model.addAttribute("n_publications", pubs);
-        model.addAttribute("n_likes", likes);
+        List<Recipe> recipes = profileService.getByUsernameId(actual.getId());
+        List<Integer> details = profileService.getUserRecipeDetails(actual.getId());       
+        model.addAttribute("n_publications", details.get(0));
+        model.addAttribute("n_likes", details.get(1));
         // Publications
         model.addAttribute("publications", recipes);
-        model.addAttribute("idkwtp", Laiks);
-        model.addAttribute("likesGraphics", titles);
-        List<Allergen> allergensList = allergensRepository.findAll();
-        model.addAttribute("allergensList", allergensList);
-
-        List<Category> catList = categoriesRepository.findAll();
-        List<Ingredient> ingList = ingredientsRepository.findAll();
-        List<CookingStyle> cSList = cookingStylesRepository.findAll();
-        model.addAttribute("ingredientsList", ingList);
-        model.addAttribute("cookingStylesList", cSList);
-        model.addAttribute("categoriesList", catList);
-
+        model.addAttribute("idkwtp", profileService.getLaiks(recipes));
+        model.addAttribute("likesGraphics", profileService.getTitles(recipes));
+        model.addAttribute("allergensList", profileService.getAllAllergens());
+        model.addAttribute("ingredientsList", profileService.getAllIngredients());
+        model.addAttribute("cookingStylesList", profileService.getAllCookingStyles());
+        model.addAttribute("categoriesList", profileService.getAllCategories());
         return "profile";
     }
 
@@ -108,17 +65,7 @@ public class ProfilePageController {
             @RequestParam MultipartFile avatarFile, @RequestParam MultipartFile backgroundFile) throws IOException {
 
         User u = userSession.getLoggedUser();
-        u.setName(name);
-        u.setSurname(surname);
-        u.setAllergens(allergens);
-        u.setInfo(info);
-        usersRepository.flush();
-        if(!avatarFile.isEmpty()){
-            imageService.saveImage("avatars", u.getId(), avatarFile);
-        }
-        if(!backgroundFile.isEmpty()){
-            imageService.saveImage("backgrounds", u.getId(), backgroundFile);
-        }
+        profileService.updateUser(u, avatarFile, backgroundFile, name, surname, allergens, info);
         response.sendRedirect("profile");
     }
 

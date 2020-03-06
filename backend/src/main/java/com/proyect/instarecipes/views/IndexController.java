@@ -27,6 +27,8 @@ import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.security.UserSession;
+import com.proyect.instarecipes.service.IndexService;
+import com.proyect.instarecipes.service.ProfileService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,87 +61,78 @@ public class IndexController {
     private UserSession userSession;
     @Autowired
     private ImageService imageService;
+    @Autowired
+    private IndexService indexService;
+    @Autowired
+    private ProfileService profileService;
 
     
     @GetMapping("/")
-    public String indexPage(Model model) {
-        //we create a list based on the database info!
-        List<Recipe> recipes = recipesRepository.findAll();
-        for(Recipe r : recipes){
-            r.setN_comments(commentsRepository.countByRecipeId(r));
-        }
-        recipesRepository.flush();
-        List<Ingredient> allIngredients = ingredientsRepository.findAll();
-        List<CookingStyle> allCookingStyles = cookingStylesRepository.findAll();
-        List<Category> allCategories = categoriesRepository.findAll();
-        List<Allergen> allAllergens = allergensRepository.findAll();
-
+    public String indexNotLogged(Model model) {
+        List<Recipe> recipes = indexService.getAllRecipes();
         model.addAttribute("size", recipes.size());
         model.addAttribute("recipes", recipes);
-        personalFilter(model);
-
-        model.addAttribute("ingredientsList", allIngredients);
-        model.addAttribute("cookingStylesList", allCookingStyles);
-        model.addAttribute("categoriesList", allCategories);
-        model.addAttribute("allergensList", allAllergens);
+        boolean logged = userSession.isLoggedUser();
+        List<Recipe> trending = null;
+        if(logged){
+            User user = userSession.getLoggedUser();
+            trending = indexService.personalFilter(logged, user);
+            model.addAttribute("filteredRecipe", trending);
+        }else{
+            trending = indexService.personalFilter(logged, null);
+            model.addAttribute("notTrending", trending);
+        }
+        model.addAttribute("ingredientsList", profileService.getAllIngredients());
+        model.addAttribute("cookingStylesList", profileService.getAllCookingStyles());
+        model.addAttribute("categoriesList", profileService.getAllCategories());
+        model.addAttribute("allergensList", profileService.getAllAllergens());
         if(userSession.isLoggedUser()){
             model.addAttribute("id", userSession.getLoggedUser().getId());
         }
-        
         return "index";
     }
 
-    
     @GetMapping("/index")
-    public String indexedPage(Model model) {
-        List<Recipe> recipes = recipesRepository.findAll();
-        for(Recipe r : recipes){
-            r.setN_comments(commentsRepository.countByRecipeId(r));
-        }
-        recipesRepository.flush();
-        List<Ingredient> allIngredients = ingredientsRepository.findAll();
-        List<CookingStyle> allCookingStyles = cookingStylesRepository.findAll();
-        List<Category> allCategories = categoriesRepository.findAll();
-        List<Allergen> allAllergens = allergensRepository.findAll();
-
+    public String indexLogged(Model model) {
+        List<Recipe> recipes = indexService.getAllRecipes();
         model.addAttribute("size", recipes.size());
         model.addAttribute("recipes", recipes);
-        personalFilter(model);
-
-        model.addAttribute("ingredientsList", allIngredients);
-        model.addAttribute("cookingStylesList", allCookingStyles);
-        model.addAttribute("categoriesList", allCategories);
-        model.addAttribute("allergensList", allAllergens);
+        boolean logged = userSession.isLoggedUser();
+        List<Recipe> trending = null;
+        if(logged){
+            User user = userSession.getLoggedUser();
+            trending = indexService.personalFilter(logged, user);
+            model.addAttribute("filteredRecipe", trending);
+        }else{
+            trending = indexService.personalFilter(logged, null);
+            model.addAttribute("notTrending", trending);
+        }
+        model.addAttribute("ingredientsList", profileService.getAllIngredients());
+        model.addAttribute("cookingStylesList", profileService.getAllCookingStyles());
+        model.addAttribute("categoriesList", profileService.getAllCategories());
+        model.addAttribute("allergensList", profileService.getAllAllergens());
         model.addAttribute("id", userSession.getLoggedUser().getId());
         
         return "index";
     }
+    
     @GetMapping("/login")
     public String loginPage() {
         return "login";
     }
+
     @GetMapping("/signUp")
     public String signupPage(Model model){
-        List<Allergen> allAllergensSingUp = allergensRepository.findAll();
-        model.addAttribute("allergensSignUp", allAllergensSingUp);
-        
+        model.addAttribute("allergensSignUp", profileService.getAllAllergens());
         return "signUp";
     }
+
     @GetMapping("/search")
     public String searchPage(){
-        return "search-page";
+        return "search";
     }
-    @ModelAttribute
-	public void addAttributes(Model model) {
-		boolean logged = userSession.getLoggedUser() != null;
-        model.addAttribute("logged", logged);
-        
-        if(logged){             
-			model.addAttribute("user",userSession.getLoggedUser().getUsername());
-            model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
-		}
-	}
-
+    
+    //para hacer
     @PostMapping("/")
     public void postRecipe(Model model, Recipe recipe, @RequestParam MultipartFile imageFile, 
     @RequestParam String ingredientsString, @RequestParam String categoriesString,
@@ -233,42 +226,16 @@ public class IndexController {
         response.sendRedirect("index");
     }
 
-    public void personalFilter(Model model){
-
-        List<Recipe> recipes = recipesRepository.FindByLikes();
-        boolean logged = userSession.isLoggedUser();    
-        ArrayList<Recipe> filtered = new ArrayList<Recipe>(3); //list to show on index.html
-        if(logged){
-            User user = userSession.getLoggedUser();
-            String myAllergen =user.getAllergens(); // allergen's user
-            for(int pubs=0; pubs<recipes.size();pubs++){
-                Set<Allergen> ReciAllergens = recipes.get(pubs).getAllergens();
-                boolean check=false;
-                for(Allergen a : ReciAllergens){
-                    String allergen = a.getAllergen();
-                    if(allergen.equalsIgnoreCase(myAllergen))
-                        check = true;
-                }
-                if(!check)
-                    filtered.add(recipes.get(pubs));     
-            }
-            List<Recipe> filteredfinally= new ArrayList<>();
-            int max = 3; // our max trending recipes
-            for(int i=0;i<max;i++){
-                filteredfinally.add(filtered.get(i));
-            }
-            model.addAttribute("filteredRecipe", filteredfinally);
-        }
-        else{
-            List<Recipe> xdList= recipesRepository.FindByLikes();
-            List<Recipe> notLogged = new ArrayList<>();
-            int maX = 3; // our max trending recipes
-            for(int i=0;i<maX;i++){
-                notLogged.add(xdList.get(i));
-            }
-            model.addAttribute("notTrending", notLogged);
-        }
-    }
+    @ModelAttribute
+	public void addAttributes(Model model) {
+		boolean logged = userSession.getLoggedUser() != null;
+        model.addAttribute("logged", logged);
+        
+        if(logged){             
+			model.addAttribute("user",userSession.getLoggedUser().getUsername());
+            model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
+		}
+	}
 
 
 }

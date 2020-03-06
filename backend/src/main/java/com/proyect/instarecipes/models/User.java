@@ -30,6 +30,8 @@ public class User{
 	public interface email{}
 	public interface allergen{}
 
+	public interface UserRanking{}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

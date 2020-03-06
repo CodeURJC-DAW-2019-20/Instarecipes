@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,68 +31,30 @@ import com.proyect.instarecipes.repositories.RecipesRepository;
 public class IndexRestController{
 	public interface Main extends User.Username, Recipe.RecipeBasic, Recipe.RecipePlus{}
 
-    // private Map<Long, Item> items = new ConcurrentHashMap<>();
     @Autowired
-    private RecipesRepository recipesRepository;
+	private RecipesRepository recipesRepository;
+	
+	@JsonView(IndexRestController.Main.class)
+	@GetMapping("/")
+	public ResponseEntity<List<Recipe>> getRecentUsersPublicationsNotLogged(){
+		return null; // para hacer
+	}
 
-	// private AtomicLong lastId = new AtomicLong();
+	@JsonView(IndexRestController.Main.class)
+	@GetMapping("/index")
+	public ResponseEntity<List<Recipe>> getRecentUsersPublicationsLogged(){
+		return null; // para hacer
+	}
 
-    // @JsonView(MainApiRest.Main.class)
-	// @GetMapping("/")
-	// public Collection<Recipe> recipes() {
-	// 	return recipesRepository.findAll();
-	// }
+	@JsonView(IndexRestController.Main.class)
+	@GetMapping("/trending")
+	public ResponseEntity<List<Recipe>> getTrendingAlgorithm(){
+		return null; // para hacer
+	}
 
-	// @PostMapping("/")
-	// @ResponseStatus(HttpStatus.CREATED)
-	// public Item nuevoItem(@RequestBody Item item) {
-
-	// 	long id = lastId.incrementAndGet();
-	// 	item.setId(id);
-	// 	items.put(id, item);
-
-	// 	return item;
-	// }
-
-	// @PutMapping("/{id}")
-	// public ResponseEntity<Item> actulizaItem(@PathVariable long id, @RequestBody Item itemActualizado) {
-
-	// 	Item item = items.get(id);
-
-	// 	if (item != null) {
-
-	// 		itemActualizado.setId(id);
-	// 		items.put(id, itemActualizado);
-
-	// 		return new ResponseEntity<>(itemActualizado, HttpStatus.OK);
-	// 	} else {
-	// 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	// 	}
-	// }
-
-    // @JsonView(IndexRestController.Main.class)
-	// @GetMapping("/")
-	// public ResponseEntity<Recipe> getItem(@RequestParam Long id) {
-
-	// 	Optional<Recipe> recipe = recipesRepository.findById(id);
-
-	// 	if (recipe.get() != null) {
-	// 		return new ResponseEntity<>(recipe.get(), HttpStatus.OK);
-	// 	} else {
-	// 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	// 	}
-	// }
-
-	// @DeleteMapping("/{id}")
-	// public ResponseEntity<Recipe> borraItem(@PathVariable long id) {
-
-	// 	Optional<Recipe> recipe = recipesRepository.findById(id);
-
-	// 	if (recipe.get() != null) {
-	// 		return new ResponseEntity<>(recipe.get(), HttpStatus.OK);
-	// 	} else {
-	// 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	// 	}
-	// }
-
+	@JsonView(IndexRestController.Main.class)
+	@PostMapping("/index")
+	public ResponseEntity<List<Recipe>> postRecipe(){
+		return null; // para hacer
+	}
 }
