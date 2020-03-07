@@ -21,6 +21,7 @@ import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.RequestsRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
+import com.proyect.instarecipes.service.UsersService;
 
 import java.io.Console;
 import java.io.IOException;
@@ -50,6 +51,8 @@ public class UsersWebController {
     private RequestsRepository requestsRepository;
     @Autowired
     private UserSession userSession;
+    @Autowired
+    private UsersService usersService;
 
     @GetMapping("/users/{id}")
     public ModelAndView anotherUserProfile(@PathVariable Long id, HttpServletResponse response) throws IOException{
@@ -58,7 +61,7 @@ public class UsersWebController {
             response.sendRedirect("/login");
         }else{
             model = new ModelAndView("profile");
-            Optional<User> actual = usersRepository.findById(id);
+            Optional<User> actual = usersService.getActualUser(id);
             // User
             model.addObject("actualUser", actual.get());
             model.addObject("logged", userSession.isLoggedUser());
