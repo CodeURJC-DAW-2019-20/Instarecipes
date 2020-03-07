@@ -26,8 +26,11 @@ public class User{
 
 	public interface Username{}
 	public interface NameSurname{}
+	public interface UserExtraInfo{}
+	public interface email{}
+	public interface allergen{}
+
 	public interface UserRanking{}
-	public interface UserExtra{}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,33 +39,40 @@ public class User{
 	@JsonView(Username.class)
 	@Column(nullable = false, unique = true)
 	private String username;
-	@JsonView(UserExtra.class)
+	
+	@JsonView(email.class)
 	@Column(nullable = false, unique = true)
 	private String email;
+
 	@Column(nullable = false)
 	private String password;
-	@JsonView(UserExtra.class)
+
+	@JsonView(UserExtraInfo.class)
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 	
 	@JsonView(NameSurname.class)
 	@Column(nullable = false)
 	private String name;
+
 	@JsonView(NameSurname.class)
 	@Column(nullable = false)
 	private String surname;
-	@JsonView(UserExtra.class)
+
+	@JsonView(UserExtraInfo.class)
 	private boolean background;
 
 	@JsonView(Username.class)
 	private boolean avatar;
-	@JsonView(UserExtra.class)
+
+	@JsonView(allergen.class)
 	private String allergens;
-	@JsonView(UserExtra.class)
+
 	private int followingNum;
-	@JsonView(UserExtra.class)
+
 	private int followersNum;
-	@JsonView(UserExtra.class)
+
+	@JsonView(UserExtraInfo.class)
 	@Column(nullable = false)
 	private String info;
 	

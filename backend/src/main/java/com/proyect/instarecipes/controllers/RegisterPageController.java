@@ -78,7 +78,7 @@ public class RegisterPageController {
 
     // this method aproach the @Autowired of userAuthProvider to autenticate user
     // and password and setup autologged
-    private void authenticateUser(String username, String password, HttpServletRequest request) {
+    public void authenticateUser(String username, String password, HttpServletRequest request) {
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
         request.getSession();
         authToken.setDetails(new WebAuthenticationDetails(request));
