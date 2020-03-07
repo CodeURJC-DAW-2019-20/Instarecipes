@@ -19,6 +19,9 @@ public class Recipe{
     public interface RecipeExtra{} //difficulty, duration
     public interface RecipeACS {} //allergens, cooking styles
     public interface Rankinglikes{}
+    public interface IDRecipe{}
+    
+    @JsonView(IDRecipe.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
