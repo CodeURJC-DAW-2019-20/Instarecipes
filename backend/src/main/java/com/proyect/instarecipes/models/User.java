@@ -30,8 +30,11 @@ public class User{
 	public interface Email{}
 	public interface Allergen{}
 	public interface FF{}
+	public interface IDUser{}
+
 	public interface UserRanking{}
 	
+	@JsonView(IDUser.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

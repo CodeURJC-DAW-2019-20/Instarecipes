@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.RecipesRepository;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class RecipesRestController{
-
+    public interface Main extends User.Username, Recipe.RecipeBasic, Recipe.RecipePlus, Recipe.IDRecipe, User.IDUser{}
     @Autowired
     private RecipesRepository recipesRepository;
     @Autowired
@@ -31,6 +32,7 @@ public class RecipesRestController{
     @Autowired
     private UserSession userSession;
 
+    @JsonView(RecipesRestController.Main.class)
     @GetMapping("/recipes")
     public List<Recipe> getRecipes(Model model, @RequestParam("page") int page_number, @RequestParam("size") int page_size){
         Page<Recipe> recipes = null;
