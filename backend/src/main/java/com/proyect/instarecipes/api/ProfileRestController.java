@@ -25,7 +25,7 @@ import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.service.ProfileService;
-import com.proyect.instarecipes.service.RequestsService;
+import com.proyect.instarecipes.service.RequestService;
 
 @RestController
 @RequestMapping("/api/profile")
@@ -40,7 +40,7 @@ public class ProfileRestController {
 	@Autowired
 	private ProfileService profileservice;
 	@Autowired
-	private RequestsService requestservice;
+	private RequestService requestservice;
 
 	@JsonView(ProfileRestController.UserProfile.class)							
 	@GetMapping("/")
@@ -109,7 +109,7 @@ public class ProfileRestController {
 	public ResponseEntity <User> updateProfile(@PathVariable Long id, @RequestBody User profileupdated) throws IOException {
 		User u = usersRepository.findById(id).get();
 		if (id != null) {
-			return new ResponseEntity<>(profileservice.updateUser(u, profileservice.getName(id), profileservice.getSurName(id),
+			return new ResponseEntity<>(profileservice.updateUser(u,null,null, profileservice.getName(id), profileservice.getSurName(id),
 					profileservice.getAllergen(id), profileservice.getInfo(id)), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

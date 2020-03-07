@@ -106,18 +106,18 @@ public class ProfileService {
         return cookingStylesRepository.findAll();
     }
 
-    public User updateUser(User user,String name, String surname, String allergens, String info)throws IOException{
+    public User updateUser(User user, MultipartFile avatarFile, MultipartFile backgroundFile, String name, String surname, String allergens, String info)throws IOException{
         user.setName(name);
         user.setSurname(surname);
         user.setAllergens(allergens);
         user.setInfo(info);
         usersRepository.flush();
-       /*  if(!avatarFile.isEmpty()){
+        if(!avatarFile.isEmpty()){
             imageService.saveImage("avatars", user.getId(), avatarFile);
         }
         if(!backgroundFile.isEmpty()){
             imageService.saveImage("backgrounds", user.getId(), backgroundFile);
-        } */
+        }
         return user;
     }
     public ArrayList<Integer> getLaiks(List<Recipe> recipes){
