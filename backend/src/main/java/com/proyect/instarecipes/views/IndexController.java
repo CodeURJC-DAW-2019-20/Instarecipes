@@ -72,16 +72,11 @@ public class IndexController {
         List<Recipe> recipes = indexService.getAllRecipes();
         model.addAttribute("size", recipes.size());
         model.addAttribute("recipes", recipes);
-        boolean logged = userSession.isLoggedUser();
-        List<Recipe> trending = null;
-        if(logged){
-            User user = userSession.getLoggedUser();
-            trending = indexService.personalFilter(logged, user);
-            model.addAttribute("filteredRecipe", trending);
-        }else{
-            trending = indexService.personalFilter(logged, null);
-            model.addAttribute("notTrending", trending);
-        }
+    
+        List<Recipe> trending = indexService.getRecipesUserNotLogged();
+        model.addAttribute("filteredRecipe", trending);
+        model.addAttribute("notTrending", trending);
+        
         model.addAttribute("ingredientsList", profileService.getAllIngredients());
         model.addAttribute("cookingStylesList", profileService.getAllCookingStyles());
         model.addAttribute("categoriesList", profileService.getAllCategories());
@@ -97,16 +92,12 @@ public class IndexController {
         List<Recipe> recipes = indexService.getAllRecipes();
         model.addAttribute("size", recipes.size());
         model.addAttribute("recipes", recipes);
-        boolean logged = userSession.isLoggedUser();
-        List<Recipe> trending = null;
-        if(logged){
-            User user = userSession.getLoggedUser();
-            trending = indexService.personalFilter(logged, user);
-            model.addAttribute("filteredRecipe", trending);
-        }else{
-            trending = indexService.personalFilter(logged, null);
-            model.addAttribute("notTrending", trending);
-        }
+        
+        List<Recipe> trending = indexService.getRecipesUserNotLogged();
+
+        model.addAttribute("filteredRecipe", trending);
+        model.addAttribute("notTrending", trending);
+        
         model.addAttribute("ingredientsList", profileService.getAllIngredients());
         model.addAttribute("cookingStylesList", profileService.getAllCookingStyles());
         model.addAttribute("categoriesList", profileService.getAllCategories());

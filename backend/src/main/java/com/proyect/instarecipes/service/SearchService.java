@@ -10,10 +10,6 @@ import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.User;
-import com.proyect.instarecipes.repositories.AllergensRepository;
-import com.proyect.instarecipes.repositories.CategoriesRepository;
-import com.proyect.instarecipes.repositories.CookingStylesRepository;
-import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 
@@ -25,34 +21,10 @@ public class SearchService {
     @Autowired
     private RecipesRepository recipesRepository;
     @Autowired
-    private CategoriesRepository categoriesRepository;
-    @Autowired
-    private CookingStylesRepository cookingStylesRepository;
-    @Autowired
-    private AllergensRepository allergensRepository;
-    @Autowired
-    private IngredientsRepository ingredientsRepository;
-    @Autowired
     private UsersRepository usersRepository;
 
     public ArrayList<String> getItem(String item) {
         return new ArrayList<String>(Arrays.asList(item.split(",")));
-    }
-
-    public List<Category> getAllCategories() {
-        return categoriesRepository.findAll();
-    }
-
-    public List<CookingStyle> getAllCookingStyles() {
-        return cookingStylesRepository.findAll();
-    }
-
-    public List<Ingredient> getAllIngredients() {
-        return ingredientsRepository.findAll();
-    }
-
-    public List<Allergen> getAllAllergens(){
-        return allergensRepository.findAll();
     }
 
     public List<Recipe> getFilteredRecipes(ArrayList<String> ing, ArrayList<String> cat, ArrayList<String> cS, ArrayList<String> al) {
@@ -169,8 +141,7 @@ public class SearchService {
     }
 
     public List<Recipe> getAllRecipes(){
-        List<Recipe> recipesFounded2 = recipesRepository.findAll();
-        return recipesFounded2;
+        return recipesRepository.findAll();
     }
 
 
