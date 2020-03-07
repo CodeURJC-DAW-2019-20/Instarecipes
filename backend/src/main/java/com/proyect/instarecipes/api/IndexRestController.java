@@ -27,7 +27,7 @@ import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/index")
 public class IndexRestController{
 	public interface Main extends User.Username, Recipe.RecipeBasic, Recipe.RecipePlus{}
 
@@ -36,8 +36,9 @@ public class IndexRestController{
 	
 	@JsonView(IndexRestController.Main.class)
 	@GetMapping("/")
-	public ResponseEntity<List<Recipe>> getRecentUsersPublicationsNotLogged(){
-		return null; // para hacer
+	public ResponseEntity<Boolean> getRecentUsersPublicationsNotLogged(){
+		Boolean yo = true;
+		return new ResponseEntity<>(yo,HttpStatus.OK); // para hacer
 	}
 
 	@JsonView(IndexRestController.Main.class)

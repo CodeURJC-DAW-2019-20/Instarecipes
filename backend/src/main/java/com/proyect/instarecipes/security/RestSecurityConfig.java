@@ -23,13 +23,17 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/login").authenticated();
 		
 		// URLs that need authentication to access to it
-		// http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/books/").hasRole("USER");
+		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/index/").hasRole("USER");
 		// http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/books/**").hasRole("ADMIN");
 		// http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/books/**").hasRole("ADMIN");
 		// http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/books/**").hasRole("ADMIN");		
 		
 		// Other URLs can be accessed without authentication
 		http.authorizeRequests().anyRequest().permitAll();
+
+		//Login form
+		http.formLogin().usernameParameter("username");
+        http.formLogin().passwordParameter("password");
 
 		// Disable CSRF protection (it is difficult to implement in REST APIs)
 		http.csrf().disable();

@@ -22,9 +22,9 @@ import com.proyect.instarecipes.repositories.UsersRepository;
 @RestController
 @RequestMapping("/api/profile")
 public class ProfileRestController {
-	public interface UserProfile extends User.NameSurname,User.Username, User.UserExtra,
+	public interface UserProfile extends User.NameSurname,User.Username, User.UserExtraInfo, User.Email, User.Allergen, User.FF,
 		Ingredient.Item, CookingStyle.Item, Category.Item{}
-	public interface AdminProfile extends User.NameSurname,User.Username, User.UserExtra,
+	public interface AdminProfile extends User.NameSurname,User.Username, User.UserExtraInfo, User.Email, User.Allergen, User.FF,
 		Request.RequestItems,Ingredient.Item, CookingStyle.Item, Category.Item{}
 	
 	@Autowired

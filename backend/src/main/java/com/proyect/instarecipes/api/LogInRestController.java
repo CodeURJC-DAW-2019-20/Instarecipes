@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.proyect.instarecipes.models.User;
+import com.proyect.instarecipes.repositories.UsersRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,25 +21,29 @@ import org.slf4j.LoggerFactory;
 
 
 @RestController
-public class LogInRestController{
-    public interface ShowUser extends User.NameSurname, User.UserExtraInfo, User.Username, User.allergen, User.email{} 
+public class LoginRestController{
+    public interface ShowUser extends User.NameSurname, User.UserExtraInfo, User.Username, User.Allergen, User.Email, User.FF{} 
     
     @Autowired
     private UserSession userComponent;
+	@Autowired
+	private UsersRepository usersRepository;
+    private static final Logger log = LoggerFactory.getLogger(LoginRestController.class);
 
-    private static final Logger log = LoggerFactory.getLogger(LogInRestController.class);
-
-    @JsonView(LogInRestController.ShowUser.class)
+    @JsonView(LoginRestController.ShowUser.class)
     @RequestMapping("/api/login")
 	public ResponseEntity<User> logIn() {
-		if (!userComponent.isLoggedUser()) {
-			log.info("Not user logged");
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		} else {
-			User loggedUser = userComponent.getLoggedUser();
-			log.info("Logged as " + loggedUser.getName());
-			return new ResponseEntity<>(loggedUser, HttpStatus.OK);
-		}
+			if (!userComponent.isLoggedUser()) {
+				log.info("Not user logged");
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			} else {
+				User loggedUser = userComponent.getLoggedUser();
+				User u = usersRepository.findByUsername(loggedUser.getUsername());
+				log.info("Logged as " + loggedUser.getName());
+				log.info("My followers "+ loggedUser.getFollowersNum());
+				log.info("I am following "+ loggedUser.getFollowingNum());
+				return new ResponseEntity<>(u, HttpStatus.OK);
+			}
 	}
 	@RequestMapping("/api/logout")
 	public ResponseEntity<Boolean> logOut(HttpSession session) {

@@ -27,8 +27,9 @@ public class User{
 	public interface Username{}
 	public interface NameSurname{}
 	public interface UserExtraInfo{}
-	public interface email{}
-	public interface allergen{}
+	public interface Email{}
+	public interface Allergen{}
+	public interface FF{}
 
 	public interface UserRanking{}
 	
@@ -40,7 +41,7 @@ public class User{
 	@Column(nullable = false, unique = true)
 	private String username;
 	
-	@JsonView(email.class)
+	@JsonView(Email.class)
 	@Column(nullable = false, unique = true)
 	private String email;
 
@@ -65,37 +66,41 @@ public class User{
 	@JsonView(Username.class)
 	private boolean avatar;
 
-	@JsonView(allergen.class)
+	@JsonView(Allergen.class)
 	private String allergens;
 
+	@JsonView(FF.class)
 	private int followingNum;
 
+	@JsonView(FF.class)
 	private int followersNum;
 
 	@JsonView(UserExtraInfo.class)
 	@Column(nullable = false)
 	private String info;
-	
+
+
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<User> followers; //Set is like a collection of an objets that the items couldn't be repeated
+	
 	@ManyToMany(mappedBy = "followers")
 	private Set<User> following;
 	
-	public User() {
-	}
-	
+	public User() {}
+
 	public User(String username, String email, String password, String name, String surname, String info,
 			String allergens, Set<User> followers, Set<User> following, String... roles) { //THIS ROLE PARAM NECESSARY HAS TO BE AT THE END OF THE COSTRUCTOR
 		this.username = username;
 		this.email = email;
-		this.password = new BCryptPasswordEncoder().encode(password);;
-		this.roles = new ArrayList<>(Arrays.asList(roles));;
+		this.password = new BCryptPasswordEncoder().encode(password);
+		this.roles = new ArrayList<>(Arrays.asList(roles));
 		this.name = name;
 		this.surname = surname;
 		this.info = info;
 		this.allergens = allergens;
 		this.followers = followers;
 		this.following = following;
+		
 	}
 
 	//this constructor will be called once the user logged in
@@ -166,35 +171,19 @@ public class User{
 	}
 	public void setFollowers(Set<User> followers) {
 		this.followers = followers;
+		this.followersNum = this.followers.size();
 	}
 
 	public Set<User> getFollowing() {
 		return following;
 	} 
-	public void setFollowing(Set<User> following) {
-		this.following = following;
+	public void setFollowing(Set<User> following1) {
+		this.following = following1;
+		this.followingNum = following.size();
 	}
 
 	public List<String> getRoles() { 
 		return roles;
-	}
-	public void addFollower(User u){
-		this.followers.add(u);
-	}
-	public void addFollowing(User u2){
-		this.following.add(u2);
-	}
-	public void removeFollowing(User u){
-        this.followers.remove(u);
-    }
-	public void removeFollower(User u){
-        this.followers.remove(u);
-	}
-	public void modifyFollower(Set<User> newFollowers){
-		this.followers=newFollowers;
-	}
-	public void modifyFollowing(Set<User> newFollowers){
-		this.followers=newFollowers;
 	}
 
 	public void setRoles(List<String> roles) {
@@ -232,8 +221,7 @@ public class User{
 		this.avatar = avatar;
 	}
 
-	public int getFollowingNum() {
-		followingNum = following.size();
+	public int getFollowingNum() {	
 		return followingNum;
 	}
 
@@ -242,14 +230,11 @@ public class User{
 	}
 
 	public int getFollowersNum() {
-		followersNum = followers.size();
 		return followersNum;
 	}
 
 	public void setFollowersNum(int followersNum) {
 		this.followersNum = followersNum;
 	}
-
-	
 
 }

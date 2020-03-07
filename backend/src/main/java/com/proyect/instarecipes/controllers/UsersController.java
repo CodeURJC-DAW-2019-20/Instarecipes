@@ -148,20 +148,30 @@ public class UsersController {
     @PostMapping("/followAction/{id}")
     public void followAction(@PathVariable Long id, Model model, HttpServletResponse response)throws IOException {
         User u1 = userSession.getLoggedUser();
-        System.out.println("Usuario 1: "+u1);
-        Optional<User> user1=usersRepository.findById(u1.getId());
+
+        Optional<User> user1 = usersRepository.findById(u1.getId());
         Optional<User> u2 = usersRepository.findById(id);
-        System.out.println("Usuario 1: "+u2.get());
-        Set<User> setFollowing=usersRepository.findFollowingSet(u1.getUsername());
-        Set<User> setFollower=usersRepository.findFollowersSet(u2.get().getUsername());
+
+        List<User> listfollowing = usersRepository.findFollowing(u1.getUsername());
+        List<User> listfollowers = usersRepository.findFollowers(u2.get().getUsername());
+        Set<User> setFollowing= new HashSet<>();
+        Set<User> setFollower= new HashSet<>();
         //get the Set of following of our user and the Set of followers of the user that we are going to unfollow
 
-        setFollower.add(user1.get());
-        setFollowing.add(u2.get());
+        listfollowers.add(user1.get());
+        for( User u : listfollowers){
+            setFollower.add(u);
+        }
+        u2.get().setFollowers(setFollower);
+        usersRepository.followerNum(u2.get().getId(), setFollower.size());
 
-        u2.get().modifyFollower(setFollower);
-        u1.modifyFollowing(setFollowing);
-        usersRepository.flush();
+        listfollowing.add(u2.get()); 
+        for( User u : listfollowing){
+            setFollowing.add(u);
+        }
+        u1.setFollowing(setFollowing);
+        usersRepository.followingNum(u1.getId(), setFollowing.size());   
+        usersRepository.flush();       
         
         response.sendRedirect("../users/"+id);
 
@@ -184,8 +194,12 @@ public class UsersController {
                 
             }else{
                 setFollowing.add(user);
+                
             }
         }
+        u1.setFollowing(setFollowing);
+        usersRepository.followingNum(u1.getId(), setFollowing.size());
+        usersRepository.flush();
         for(User user:follower){
             if(user.getId()==u1.getId()){
                 
@@ -193,8 +207,8 @@ public class UsersController {
                 setFollowers.add(user);
             }
         }
-        u2.get().modifyFollower(setFollowers);
-        u1.modifyFollowing(setFollowing);
+        u2.get().setFollowers(setFollowers);
+        usersRepository.followerNum(u2.get().getId(), setFollowers.size());
         usersRepository.flush();
         
         response.sendRedirect("../users/"+id);
