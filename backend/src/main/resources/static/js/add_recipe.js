@@ -173,7 +173,7 @@ $(document).ready(function() {
           }
           var othersStps = valor3.val();
           if(i < stepNumber-3){
-            othersStps = othersStps + "ab#12#45-3";
+            othersStps = othersStps + "ab_12_45_3";
           }
           arraySteps.push(othersStps);
         }

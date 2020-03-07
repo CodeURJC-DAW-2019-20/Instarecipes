@@ -46,8 +46,9 @@ public interface RecipesRepository extends JpaRepository<Recipe, Long> {
     List<Recipe> FindByLikes();
 
     @Query("SELECT DISTINCT r.id, r.title, r.description, r.username.id, r.username.username, r.username.name, "
-     +"r.username.surname, r.likes, r.n_comments FROM Recipe r WHERE r.username.id IN :fList")
-	Page<Recipe> findAllRecipesByFollowing(@Param("fList") ArrayList<Long> fList, Pageable page);
+     +"r.username.surname, r.likes, r.n_comments FROM Recipe r "
+     +"WHERE r.username.id IN :fList OR r.username.id = :id_user ORDER BY r.id DESC")
+	Page<Recipe> findAllRecipesByFollowing(@Param("fList") ArrayList<Long> fList,@Param("id_user") Long id_user, Pageable page);
 
   //  @Query("SELECT r FROM Recipe r WHERE title LIKE "%word%"")
   //  List<Recipe> findByTitle(String word);

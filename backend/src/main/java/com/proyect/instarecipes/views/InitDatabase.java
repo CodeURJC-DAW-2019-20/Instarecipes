@@ -382,7 +382,14 @@ public class InitDatabase {
         "1 h.","Medium",likes6);
         Recipe r8 = new Recipe(u3, ingredients8, categories7, cookingStyles5, allergens8, "Vegan Chocolate Ice Cream", "You are making hummus or some other dish with chickpeas and you are just wasting the chickpea water? How dare you! Didn't you know it can form the basis of some the most delicious, light, and foamy vegan ice creams and mousses?",
         "30 min.","Medium", likes2);
-       
+        r1.setImage(true);
+        r2.setImage(true);
+        r3.setImage(true);
+        r4.setImage(true);
+        r5.setImage(true);
+        r6.setImage(true);
+        r7.setImage(true);
+        r8.setImage(true);
         recipesRepository.save(r1);
         recipesRepository.save(r2);
         recipesRepository.save(r3);

@@ -79,14 +79,15 @@ public class RecipeService{
     public Recipe pressRecipeLike(Long id_recipe, User user){
         Recipe recipe = recipesRepository.findRecipeById(id_recipe);
         Set<User> recipeLikes = recipe.getLikesUsers();
-        boolean check=false;       
+        boolean check=false;
         for(User u : recipeLikes){
             if(u.getId()==user.getId()){              
                 check= true;
+                System.out.println("Hola valgo id: " + u.getId());
                 break;
             }
         }
-        if(!check){           
+        if(!check){         
             recipe.addUser(user);
             recipesRepository.flush();
         }
@@ -97,8 +98,8 @@ public class RecipeService{
         Optional<Comment> comment = commentsRepository.findById(id_comment);
         Set<User> newList = comment.get().getUsersLiked();
         boolean aux = true;
-        for(User uAux : newList){
-            if(uAux.getId() == user.getId()){
+        for(User u : newList){
+            if(u.getId() == user.getId()){
                 aux = false;
                 break;
             }
@@ -107,7 +108,6 @@ public class RecipeService{
             comment.get().setLiked(true);
             comment.get().setLikes(1);
             comment.get().addLikeUser(user);
-            comment.get().setUsersLiked(newList);
             commentsRepository.flush();
         }
         return comment.get();
@@ -116,12 +116,11 @@ public class RecipeService{
     public Comment unlikeComment(Long id_comment, User user){
         Optional<Comment> comment = commentsRepository.findById(id_comment);
         Set<User> newList = comment.get().getUsersLiked();
-        for(User uAux : newList){
-            if(uAux.getId() == user.getId()){
+        for(User u : newList){
+            if(u.getId() == user.getId()){
                 comment.get().setLiked(false);
                 comment.get().setLikes(-1);
-                comment.get().removeLikeUser(uAux);
-                comment.get().setUsersLiked(newList);
+                comment.get().removeLikeUser(u);
                 commentsRepository.flush();
                 break;
             }
@@ -160,7 +159,6 @@ public class RecipeService{
             }
         }
         commentsRepository.flush();
-
         return comment;
     }
 

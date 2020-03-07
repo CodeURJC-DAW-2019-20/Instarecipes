@@ -78,8 +78,7 @@ public class IndexWebController {
     @RequestParam(required = false, value = "allImages") MultipartFile[] allImages, 
     @RequestParam(required = false, value = "withImage") String withImage,HttpServletResponse response) throws IOException{
         
-        Recipe r = indexService.postRecipe(recipe, ingredientsString, categoriesString, cookingStyle, allergen);
-        recipesRepository.save(r);
+        Recipe r = indexService.postRecipe(userSession.getLoggedUser(), recipe, ingredientsString, categoriesString, cookingStyle, allergen);
         imageService.saveImage("recipes", r.getId(), imageFile);
         stepsRepository.save(new Step(r, 1, firstStepString));
         if(withImage.length()>0){
@@ -88,7 +87,7 @@ public class IndexWebController {
             int i = 2;
             int j = 0;
             if(stepsString != null){
-                List<String> listOfSteps = Arrays.asList(stepsString.split("ab#12#45-3,"));
+                List<String> listOfSteps = Arrays.asList(stepsString.split("ab_12_45_3,"));
                 for(String steps : listOfSteps){
                     if(steps != null){
                         Step step_n = new Step(r, i, steps);

@@ -100,21 +100,21 @@ public class RecipeWebController {
     @PostMapping("/actionPressLike/{id}")
     public void likedRecipe(Model model, @PathVariable Long id,HttpServletResponse response)throws IOException{
         User user = userSession.getLoggedUser();       
-        recipeService.pressRecipeUnlike(id, user);
+        recipeService.pressRecipeLike(id, user);
         response.sendRedirect("../recipes/"+id);
     }
     
     @PostMapping("/likeComment/{id}")
     public void likeComment(@PathVariable Long id, @RequestParam Long id_recipe, HttpServletResponse response) throws IOException {
         User user = userSession.getLoggedUser();
-        recipeService.likeComment(id_recipe, user);
+        recipeService.likeComment(id, user);
         response.sendRedirect("../recipes/"+id_recipe);
     }
 
     @PostMapping("/unlikeComment/{id}")
     public void unlikeComment(@PathVariable Long id, @RequestParam Long id_recipe, HttpServletResponse response) throws IOException {
-        User actual = userSession.getLoggedUser();
-        recipeService.unlikeComment(id_recipe, actual);
+        User user = userSession.getLoggedUser();
+        recipeService.unlikeComment(id, user);
         response.sendRedirect("../recipes/"+id_recipe);
     }
 

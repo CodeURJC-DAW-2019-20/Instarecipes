@@ -124,7 +124,7 @@ public class IndexService{
         return personalFilter(user.get());
     }
 
-    public Recipe postRecipe(Recipe recipe, String ingredientsString, String categoriesString, String cookingStyle, String allergen){
+    public Recipe postRecipe(User user, Recipe recipe, String ingredientsString, String categoriesString, String cookingStyle, String allergen){
 
         // Ingredients selector //
         List<String> listOfIngs = Arrays.asList(ingredientsString.split(","));
@@ -156,7 +156,8 @@ public class IndexService{
         }
         //Sets in recipe
         recipe.setImage(true);
-        recipe.setUsername(userSession.getLoggedUser());
+        recipe.setUsername(user);
+        recipesRepository.save(recipe);
         return recipe;
     }
 

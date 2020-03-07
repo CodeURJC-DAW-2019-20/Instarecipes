@@ -16,10 +16,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api")
 public class RecipesRestController{
 
     @Autowired
@@ -39,7 +41,7 @@ public class RecipesRestController{
             for(User u : fList){
                 list1.add(u.getId());
             }
-            recipes = recipesRepository.findAllRecipesByFollowing(list1,PageRequest.of(page_number,page_size));
+            recipes = recipesRepository.findAllRecipesByFollowing(list1, user.getId(),PageRequest.of(page_number,page_size));
         }else{
             recipes = recipesRepository.findAllRecipes(PageRequest.of(page_number,page_size));
         }
