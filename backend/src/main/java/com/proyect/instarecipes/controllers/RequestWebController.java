@@ -15,6 +15,7 @@ import com.proyect.instarecipes.repositories.CookingStylesRepository;
 import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RequestsRepository;
 import com.proyect.instarecipes.security.UserSession;
+import com.proyect.instarecipes.service.RequestsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,49 +33,37 @@ public class RequestWebController {
     private CategoriesRepository categoriesRepository;
     @Autowired
     private CookingStylesRepository cookingStylesRepository;
-
+    @Autowired
+    private RequestsService requestsService;
     @Autowired
     private UserSession userSession;
 
     @PostMapping("/sendItemRequest")
     public void sentItemRequest(@RequestParam("typeOfItem") String typeOfItem, @RequestParam("content") String content,
             HttpServletResponse response) {
-        User user = userSession.getLoggedUser();
+        User user = requestsService.getUser();
         Request request;
         boolean exists = false;
-        List<Ingredient> ingredientsList = ingredientsRepository.findAll();
-        List<Category> categoriesList = categoriesRepository.findAll();
-        List<CookingStyle> cookingStylesList = cookingStylesRepository.findAll();
-        if (typeOfItem.contains("Ingredient")) {
-            request = new Request(user, typeOfItem, content, null, null, false);
-            for(Ingredient ingredient : ingredientsList){
-                if(ingredient.getIngredient().equalsIgnoreCase(request.getIngredientContent())){
-                    exists = true;
-                    break;
-                }
-            }
-            request.setItemExists(exists);
-            requestsRepository.save(request);
-        }else if (typeOfItem.contains("Cooking style")) {
-            request = new Request(user, typeOfItem, null, content, null, false);
-            for(CookingStyle cookingStyle : cookingStylesList){
-                if(cookingStyle.getCookingStyle().equalsIgnoreCase(request.getCookingStyleContent())){
-                    exists = true;
-                    break;
-                }
-            }
-            request.setItemExists(exists);
-            requestsRepository.save(request);
+        List<Ingredient> ingredientsList = requestsService.getIngredients();
+        List<Category> categoriesList = requestsService.getCategories();
+        List<CookingStyle> cookingStylesList = requestsService.getCookingStyles();
+        //funcion extraer ingredientes,categorias y cookingStyle user request
+        if (requestsService.isIngredient(typeOfItem)) {
+            request = requestsService.getNewRequest(user, typeOfItem,content);
+            exists=requestsService.existIngredient(ingredientsList,request);
+            //funcion comprobando si existe la receta colocarla en service
+            requestsService.saveItem(request,exists);
+        }else if (requestsService.isCookingStyle(typeOfItem)) {
+            request = requestsService.getNewRequest(user, typeOfItem, content);
+            exists=requestsService.existCookingStyle(cookingStylesList,request);
+
+            //funcion comprobando si existe la cookingStyle colocarla en servic
+            requestsService.saveItem(request,exists);
         }else if (typeOfItem.contains("Category")) {
-            request = new Request(user, typeOfItem, null, null, content, false);
-            for(Category category : categoriesList){
-                if(category.getCategory().equalsIgnoreCase(request.getCategoryContent())){
-                    exists = true;
-                    break;
-                }
-            }
-            request.setItemExists(exists);
-            requestsRepository.save(request);
+            request = requestsService.getNewRequest(user, typeOfItem, content);
+            exists=requestsService.existCategory(categoriesList,request);
+
+            requestsService.saveItem(request,exists);
         }else {
             System.out.println("SELECT A TYPE OF REQUEST ITEM !!");
         }
@@ -93,26 +82,24 @@ public class RequestWebController {
     HttpServletResponse response){
         System.out.println("ACTION: "+action);
         System.out.println("Type of request: "+typeOfRequest);
-        if(action.equalsIgnoreCase("accept")){
-            if(typeOfRequest.equalsIgnoreCase("Ingredient")){
-                System.out.println("INGREDIENT ADDED");
-                Ingredient i = new Ingredient(itemContent);
-                ingredientsRepository.save(i);
-                requestsRepository.deleteById(id_request);
-            }else if(typeOfRequest.equalsIgnoreCase("Category")){
-                Category i = new Category(itemContent);
-                System.out.println("CATEGORY ADDED");
-                categoriesRepository.save(i);
-                requestsRepository.deleteById(id_request);
-            }else if(typeOfRequest.equalsIgnoreCase("Cooking style")){
-                System.out.println("COOKING STYLE ADDED");
-                CookingStyle i = new CookingStyle(itemContent);
-                cookingStylesRepository.save(i);
-                requestsRepository.deleteById(id_request);
+        boolean actionAccepted=requestsService.actionIsAccepted(action);
+        boolean actionDecline=requestsService.actionIsDecline(action);
+        if(actionAccepted){
+            if(requestsService.isEqualIngredient(typeOfRequest)){
+                requestsService.addItem(0, itemContent, id_request);
+                //añadir ingrediente
+            }else if(requestsService.isEqualCategory(typeOfRequest)){
+                requestsService.addItem(1, itemContent, id_request);
+                //añadir categoria
+            }else if(requestsService.isEqualCookingStyle(typeOfRequest)){
+                requestsService.addItem(2, itemContent, id_request);
+                //añadir cookingStyle
             }
-        }else if(action.equalsIgnoreCase("decline")){
-            System.out.println("DECLINED");
-            requestsRepository.deleteById(id_request);
+            //si aceptamos el item tenemos que seguir una serie de funciones para añadirlo en 
+            //su correspondiente sitio
+        }else if(actionDecline){
+            requestsService.declineItem(id_request);
+            //eliminamos el item a traves del id
         }
         try {
             response.sendRedirect("profile");
