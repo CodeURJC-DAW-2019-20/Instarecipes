@@ -153,6 +153,7 @@
               style="object-fit: cover; border-radius: 50%; height: 220px;width: 220px;">
           </div>
           <div style="position: relative;width: 100%;height: fit-content;">
+            {{^disable}}
             <!-- Request ingredient/category button -->
             <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;right: 3%;">
               <img src='../images/icons/request_icon.png' data-toggle="modal" data-target="#opened-request-button"
@@ -167,6 +168,7 @@
                 </span>
               </button>
             </div>
+            {{/disable}}
           </div>
           <!-- Masthead Heading -->
           <h3 class="text-uppercase mb-0">{{actualUser.name}}&nbsp;{{actualUser.surname}}</h3>
