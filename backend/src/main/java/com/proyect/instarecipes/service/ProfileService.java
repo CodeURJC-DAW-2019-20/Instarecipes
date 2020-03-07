@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;
@@ -44,9 +44,24 @@ public class ProfileService {
     public List<User> getAllUser(){
         return usersRepository.findAll(); 
     }
+    public String getName(Long id){
+        return usersRepository.findById(id).get().getName();
+    }
+
+    public String getSurName(Long id){
+        return usersRepository.findById(id).get().getSurname();
+    }
+
+    public String getInfo(Long id){
+        return usersRepository.findById(id).get().getInfo();
+    }
 
     public int getFollowersCount(String username){
         return usersRepository.findFollowers(username).size(); 
+    }
+
+    public String getAllergen(Long id){
+        return usersRepository.findById(id).get().getAllergens();
     }
 
     public int getFollowingCount(String username){

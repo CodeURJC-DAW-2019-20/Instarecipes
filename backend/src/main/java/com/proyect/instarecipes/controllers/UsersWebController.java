@@ -21,6 +21,7 @@ import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.RequestsRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
+import com.proyect.instarecipes.service.ProfileService;
 import com.proyect.instarecipes.service.UsersService;
 
 import java.io.Console;
@@ -53,6 +54,8 @@ public class UsersWebController {
     private UserSession userSession;
     @Autowired
     private UsersService usersService;
+    @Autowired
+    private ProfileService profileService;
 
     @GetMapping("/users/{id}")
     public ModelAndView anotherUserProfile(@PathVariable Long id, HttpServletResponse response) throws IOException{
@@ -81,21 +84,18 @@ public class UsersWebController {
             // Following
             model.addObject("following", usersRepository.findFollowing(actual.get().getUsername()));
             // Number of publications and total likes
-            List<Recipe> recipes = recipesRepository.findByUsernameId(id);
-            ArrayList<Integer> Laiks = new ArrayList<Integer>();
-            ArrayList<String> titles = new ArrayList<String>();
+            List<Recipe> recipes = profileService.getByUsernameId(id);
+            
+            ArrayList<Integer> Laiks = usersService.getRecipesLikes(recipes);
+            ArrayList<String> titles = usersService.getRecipesTitles(recipes);
 
-            int likes = 0;
-            int pubs;
+            int likes = usersService.getAllPubsLikes(recipes);
+            int pubs = recipes.size();
 
-            for (pubs = 0; pubs < recipes.size(); pubs++) {
-                likes = likes + recipes.get(pubs).getLikes();
-                Laiks.add(recipes.get(pubs).getLikes()); // List of every user recipe LIKES!!
-                titles.add(recipes.get(pubs).getTitle());
-            }
-            List<Category> catList = categoriesRepository.findAll();
-            List<Ingredient> ingList = ingredientsRepository.findAll();
-            List<CookingStyle> cSList = cookingStylesRepository.findAll();
+            List<Category> catList = profileService.getAllCategories();
+            List<Ingredient> ingList = profileService.getAllIngredients();
+            List<CookingStyle> cSList = profileService.getAllCookingStyles();
+
             model.addObject("ingredientsList", ingList);
             model.addObject("cookingStylesList", cSList);
             model.addObject("categoriesList", catList);
@@ -108,29 +108,16 @@ public class UsersWebController {
             model.addObject("likesGraphics", titles);
 
             User u = userSession.getLoggedUser();
-            List<User> following = usersRepository.findFollowing(u.getUsername());
+            List<User> following = usersService.getFollowingUsers(u);
+            
+            boolean is_following = usersService.getIsFollowing(following, id);
 
-            boolean is_following = false;
-            for (User user : following) {
-                
-                if (user.getId() != id) {
-                    is_following = false;
-                } else {
-                    is_following = true;
-                    break;
-                }
-            }
-            boolean disable = false;
+            boolean disable = usersService.getDisable(u, id);
             if (userSession.getLoggedUser().getId() != id) {
                 model.addObject("followButton", is_following);
             }
-            if (u.getId() == id) {
-                disable = false;
-                model.addObject("disable", disable);
-            } else {
-                disable = true;
-                model.addObject("disable", disable);
-            }
+           
+            model.addObject("disable", disable);
         }
         return model;
 
@@ -144,7 +131,7 @@ public class UsersWebController {
             model.addAttribute("user", userSession.getLoggedUser().getUsername());
             model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
         }
-        List<Request> requestsList = requestsRepository.findAll();
+        List<Request> requestsList = usersService.getRequestList();
         model.addAttribute("allRequests", requestsList);
     }
 

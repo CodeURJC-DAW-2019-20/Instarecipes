@@ -16,16 +16,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-public class LoginRestController{
-    public interface ShowUser extends User.NameSurname, User.UserExtraInfo, User.Username, User.Allergen, User.Email, User.FF{} 
-    
-    @Autowired
-    private UserSession userComponent;
+public class LogInRestController {
+	public interface ShowUser
+			extends User.NameSurname, User.UserExtraInfo, User.Username, User.Allergen, User.Email, User.FF {
+	}
+
+	@Autowired
+	private UserSession userComponent;
 	@Autowired
 	private UsersRepository usersRepository;
-    private static final Logger log = LoggerFactory.getLogger(LoginRestController.class);
+	private static final Logger log = LoggerFactory.getLogger(LogInRestController.class);
 
-    @JsonView(LoginRestController.ShowUser.class)
+	@JsonView(LogInRestController.ShowUser.class)
     @RequestMapping("/api/login")
 	public ResponseEntity<User> logIn() {
 		if (userComponent.isLoggedUser()) {
