@@ -25,32 +25,65 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.RecipesRepository;
+import com.proyect.instarecipes.security.UserSession;
+import com.proyect.instarecipes.service.IndexService;
 
 @RestController
-@RequestMapping("/api/index")
+@RequestMapping("/api")
 public class IndexRestController{
 	public interface Main extends User.Username, Recipe.RecipeBasic, Recipe.RecipePlus{}
 
     @Autowired
 	private RecipesRepository recipesRepository;
-	
+	@Autowired
+	private IndexService indexService;
+	@Autowired
+    private UserSession userSession;
+
 	@JsonView(IndexRestController.Main.class)
 	@GetMapping("/")
-	public ResponseEntity<Boolean> getRecentUsersPublicationsNotLogged(){
-		Boolean yo = true;
-		return new ResponseEntity<>(yo,HttpStatus.OK); // para hacer
+	public ResponseEntity<List<Recipe>> getRecentUsersPublicationsNotLogged(){
+		return null;
+        // List<Recipe> trending = indexService.getRecipesUserNotLogged();
+        // if (trending != null) {
+		// 	return new ResponseEntity<>(trending, HttpStatus.OK);
+		// } else {
+		// 	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		// }
 	}
 
 	@JsonView(IndexRestController.Main.class)
 	@GetMapping("/index")
 	public ResponseEntity<List<Recipe>> getRecentUsersPublicationsLogged(){
-		return null; // para hacer
+		return null;
+		// List<Recipe> trending = indexService.getRecipesUserLogged(username);
+        // if (trending != null) {
+		// 	return new ResponseEntity<>(trending, HttpStatus.OK);
+		// } else {
+		// 	return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		// }
+	}
+
+	@JsonView(IndexRestController.Main.class)
+	@GetMapping("/trending/logged")
+	public ResponseEntity<List<Recipe>> getTrendingAlgorithmLogged(){
+		List<Recipe> trending = indexService.getRecipesUserNotLogged();
+        if (trending != null) {
+			return new ResponseEntity<>(trending, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@JsonView(IndexRestController.Main.class)
 	@GetMapping("/trending")
-	public ResponseEntity<List<Recipe>> getTrendingAlgorithm(){
-		return null; // para hacer
+	public ResponseEntity<List<Recipe>> getTrendingAlgorithmNotLogged(String username){
+		List<Recipe> trending = indexService.getRecipesUserLogged(username);
+        if (trending != null) {
+			return new ResponseEntity<>(trending, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@JsonView(IndexRestController.Main.class)

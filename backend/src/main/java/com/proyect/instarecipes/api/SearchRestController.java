@@ -43,10 +43,10 @@ public class SearchRestController {
         ArrayList<String> allergensSelected = searchService.getItem(allergens);
         ArrayList<String> ingredientsSelected = searchService.getItem(ingredients);
 
-		// List<Category> restOfCategories = searchService.restCategories(searchService.getAllCategories(), categoriesSelected);
-        // List<CookingStyle> restOfCookingStyles = searchService.restCookingStyles(searchService.getAllCookingStyles(), cookingStylesSelected);
-        // List<Ingredient> restOfIngredients = searchService.restIngredients(searchService.getAllIngredients(), ingredientsSelected);
-        // List<Allergen> restOfAllergens = searchService.restAllergens(searchService.getAllAllergens(), allergensSelected);
+		// List<Category> restOfCategories = searchService.restCategories(profileService.getAllCategories(), categoriesSelected);
+        // List<CookingStyle> restOfCookingStyles = searchService.restCookingStyles(profileService.getAllCookingStyles(), cookingStylesSelected);
+        // List<Ingredient> restOfIngredients = searchService.restIngredients(profileService.getAllIngredients(), ingredientsSelected);
+        // List<Allergen> restOfAllergens = searchService.restAllergens(profileService.getAllAllergens(), allergensSelected);
 
 		List<Recipe> recipesFounded = searchService.getFilteredRecipes(ingredientsSelected, categoriesSelected, cookingStylesSelected, allergensSelected);
 		if (recipesFounded != null) {

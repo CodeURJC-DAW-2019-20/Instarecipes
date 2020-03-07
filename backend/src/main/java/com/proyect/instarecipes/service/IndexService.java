@@ -17,6 +17,7 @@ import com.proyect.instarecipes.repositories.CookingStylesRepository;
 import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.StepsRepository;
+import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,8 @@ public class IndexService{
     private StepsRepository stepsRepository;
     @Autowired
     private UserSession userSession;
+    @Autowired 
+    private UsersRepository usersRepository;
 
     public List<Recipe> getAllRecipes(){
         //we create a list based on the database info!
@@ -100,6 +103,32 @@ public class IndexService{
             }
             return notLogged;
         }
+    }
+
+    public List<Recipe> getRecipesUserNotLogged () {
+        boolean logged = userSession.isLoggedUser();
+        List<Recipe> trending = null;
+        if(logged){
+            User user = userSession.getLoggedUser();
+            trending = personalFilter(logged, user);
+        }else{
+            trending = personalFilter(logged, null);
+        }
+    return trending;
+    }
+
+    public List<Recipe> getRecipesUserLogged (String username) {
+        User user = usersRepository.findByUsername(username);
+        userSession.setLoggedUser(user);
+        boolean logged = userSession.isLoggedUser();
+        List<Recipe> trending = null;
+        if(logged){
+            //User user = userSession.getLoggedUser();
+            trending = personalFilter(logged, user);
+        }else{
+            trending = personalFilter(logged, null);
+        }
+    return trending;
     }
 
 }

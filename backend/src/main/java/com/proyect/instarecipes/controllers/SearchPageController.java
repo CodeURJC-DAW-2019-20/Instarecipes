@@ -10,6 +10,7 @@ import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.security.UserSession;
+import com.proyect.instarecipes.service.ProfileService;
 import com.proyect.instarecipes.service.SearchService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class SearchPageController {
     private UserSession userSession;
     @Autowired
     private SearchService searchService;
+    @Autowired 
+    private ProfileService profileService;
 
     @PostMapping("/search")
     public String searchPage(Model model, @RequestParam(required = false) String ingredients, 
@@ -51,10 +54,10 @@ public class SearchPageController {
             model.addAttribute("ingredients", ingredientsSelected);
         }
 
-        List<Category> restOfCategories = searchService.restCategories(searchService.getAllCategories(), categoriesSelected);
-        List<CookingStyle> restOfCookingStyles = searchService.restCookingStyles(searchService.getAllCookingStyles(), cookingStylesSelected);
-        List<Ingredient> restOfIngredients = searchService.restIngredients(searchService.getAllIngredients(), ingredientsSelected);
-        List<Allergen> restOfAllergens = searchService.restAllergens(searchService.getAllAllergens(), allergensSelected);
+        List<Category> restOfCategories = searchService.restCategories(profileService.getAllCategories(), categoriesSelected);
+        List<CookingStyle> restOfCookingStyles = searchService.restCookingStyles(profileService.getAllCookingStyles(), cookingStylesSelected);
+        List<Ingredient> restOfIngredients = searchService.restIngredients(profileService.getAllIngredients(), ingredientsSelected);
+        List<Allergen> restOfAllergens = searchService.restAllergens(profileService.getAllAllergens(), allergensSelected);
 
         // Return all the items
         model.addAttribute("allCategories", restOfCategories);

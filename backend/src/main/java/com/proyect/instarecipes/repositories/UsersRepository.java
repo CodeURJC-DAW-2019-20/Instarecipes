@@ -1,6 +1,7 @@
 package com.proyect.instarecipes.repositories;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import com.proyect.instarecipes.models.User;
@@ -13,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface UsersRepository extends JpaRepository<User, Long> {
-
+	
 	User findByUsername(String name);
 	User findByEmail(String name);
 	@Query("DELETE FROM User u  WHERE u.id= :id")
