@@ -757,24 +757,13 @@
           document.getElementById("loadmore2").setAttribute("hidden", "");
           $("#loadmore1").removeAttr("hidden");
           recipes.forEach(element => {
-            var item = Object.values(element);
+            var item = JSON.parse(JSON.stringify(element));
             lastRecipe = recipes.length;
-            /*
-            [0] -> id_recipe
-            [1] -> title
-            [2] -> description
-            [3] -> id_user
-            [4] -> username
-            [5] -> name
-            [6] -> surname
-            [7] -> likes
-            [8] -> n_comments
-            */
             if (aux) {
               $('#recipes-container').append("<div class=\"row\">"
                 + "<div class=\"col-md-7\">"
                 + "<a href=\"#\">"
-                + "<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"temp/recipes/image-" + Object.values(item)[0] + ".jpg\">"
+                + "<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"temp/recipes/image-" + item.id + ".jpg\">"
                 + "</a>"
                 + "<div class=\"likes-comments-top-left\">"
                 + "<div class=\"row\" style=\"margin-right: 0;margin-left: 0;\">"
@@ -782,28 +771,28 @@
                 + "<img class=\"icon-fluid\" src=\"../images/icons/like_pressed.png\">"
                 + "</div>"
                 + "<div class=\"col-3\">"
-                + "<p class=\"icon-fluid pub-date-text\">" + Object.values(item)[7] + "</p>"
+                + "<p class=\"icon-fluid pub-date-text\">" + item.likes + "</p>"
                 + "</div>"
                 + "<div class=\"col-3\">"
                 + "<img class=\"icon-fluid\" src=\"../images/icons/dialogue.png\">"
                 + "</div>"
                 + "<div class=\"col-3\">"
-                + "<p class=\"icon-fluid pub-date-text\">" + Object.values(item)[8] + "</p>"
+                + "<p class=\"icon-fluid pub-date-text\">" + item.n_comments + "</p>"
                 + "</div>"
                 + "</div>"
                 + "</div>"
-                + "<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">" + Object.values(item)[1] + "</h3></div>"
+                + "<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">" + item.title + "</h3></div>"
                 + "</div>"
                 + "<div class=\"col-md-4\">"
                 + "<h3>Introduction</h3>"
-                + "<p style=\"word-break: break-all;\">" + Object.values(item)[2] + "</p>"
-                + "<a class=\"btn btn-primary\" href=\"/recipes/" + Object.values(item)[0] + "\">Read"
+                + "<p style=\"word-break: break-all;\">" + item.description + "</p>"
+                + "<a class=\"btn btn-primary\" href=\"/recipes/" + item.id + "\">Read"
                 + "<span class=\"glyphicon glyphicon-chevron-right\"></span>"
                 + "</a>"
                 + "</div>"
                 + "<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);\">"
-                + "<img class=\"d-flex mr-3 rounded-circle profile-border\" style=\"width:100%;height:60px;\" src=\"temp/avatars/image-" + Object.values(item)[3] + ".jpg\">"
-                + "<p>@" + Object.values(item)[4] + "</p>"
+                + "<img class=\"d-flex mr-3 rounded-circle profile-border\" style=\"width:100%;height:60px;\" src=\"temp/avatars/image-" + item.username.id + ".jpg\">"
+                + "<p>@" + item.username.username + "</p>"
                 + "</div>"
                 + "</div>"
                 + "<!-- /.row -->"
@@ -813,19 +802,19 @@
             } else {
               $('#recipes-container').append("<div class=\"row\">"
                 + "<div class=\"col-lg-1\" style=\"width:50%;align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);\">"
-                + "<img class=\"d-flex mr-3 rounded-circle profile-border\" style=\"width:100%;height:60px;\" src=\"temp/avatars/image-" + Object.values(item)[3] + ".jpg\">"
-                + "<p>@" + Object.values(item)[4] + "</p>"
+                + "<img class=\"d-flex mr-3 rounded-circle profile-border\" style=\"width:100%;height:60px;\" src=\"temp/avatars/image-" + item.username.id + ".jpg\">"
+                + "<p>@" + item.username.username + "</p>"
                 + "</div>"
                 + "<div class=\"col-md-4\">"
                 + "<h3>Introduction</h3>"
-                + "<p style=\"word-break: break-all;\">" + Object.values(item)[2] + "</p>"
-                + "<a class=\"btn btn-primary\" href=\"/recipes/" + Object.values(item)[0] + "\">Read"
+                + "<p style=\"word-break: break-all;\">" + item.description + "</p>"
+                + "<a class=\"btn btn-primary\" href=\"/recipes/" + item.id + "\">Read"
                 + "<span class=\"glyphicon glyphicon-chevron-right\"></span>"
                 + "</a>"
                 + "</div>"
                 + "<div class=\"col-md-7\">"
                 + "<a href=\"#\">"
-                + "<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"temp/recipes/image-" + Object.values(item)[0] + ".jpg\">"
+                + "<img class=\"img-fluid rounded mb-3 mb-md-0\" src=\"temp/recipes/image-" + item.id + ".jpg\">"
                 + "</a>"
                 + "<div class=\"likes-comments-top-right\">"
                 + "<div class=\"row\" style=\"margin-right: 0;margin-left: 0;\">"
@@ -833,17 +822,17 @@
                 + "<img class=\"icon-fluid\" src=\"../images/icons/like_pressed.png\">"
                 + "</div>"
                 + "<div class=\"col-3\">"
-                + "<p class=\"icon-fluid pub-date-text\">" + Object.values(item)[7] + "</p>"
+                + "<p class=\"icon-fluid pub-date-text\">" + item.likes + "</p>"
                 + "</div>"
                 + "<div class=\"col-3\">"
                 + "<img class=\"icon-fluid\" src=\"../images/icons/dialogue.png\">"
                 + "</div>"
                 + "<div class=\"col-3\">"
-                + "<p class=\"icon-fluid pub-date-text\">" + Object.values(item)[8] + "</p>"
+                + "<p class=\"icon-fluid pub-date-text\">" + item.n_comments + "</p>"
                 + "</div>"
                 + "</div>"
                 + "</div>"
-                + "<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">" + Object.values(item)[1] + "</h3></div>"
+                + "<div class=\"bottom-text-image rounded mb-3 mb-md-0\"><h3 style=\"word-break: break-all;\">" + item.title + "</h3></div>"
                 + "</div>"
                 + "</div>"
                 + "<!-- /.row -->"
@@ -877,13 +866,9 @@
         }
         fr.readAsDataURL(files[0]);
       }
-      // Not supported
-      else {
-        // fallback -- perhaps submit the input to an iframe and temporarily store
-        // them on the server until the user's session ends.
-      }
     }
   </script>
+  
   <script type="text/javascript">
     var image_val = document.getElementById("image-validation");
     var ingredient_val = document.getElementById("ingredient-val");
@@ -915,9 +900,7 @@
             ingredient_val.style.display = "block";
           }
         }
-        
       });
-     
     });
   </script>
 </body>

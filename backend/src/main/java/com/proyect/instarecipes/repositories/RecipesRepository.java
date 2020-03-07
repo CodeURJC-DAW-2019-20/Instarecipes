@@ -23,8 +23,7 @@ public interface RecipesRepository extends JpaRepository<Recipe, Long> {
     @Query("SELECT r FROM Recipe r WHERE r.id = :id_recipe")
     Recipe findRecipeById(Long id_recipe);
     
-    @Query("SELECT r.id, r.title, r.description, r.username.id, r.username.username, r.username.name, r.username.surname, r.likes, r.n_comments" 
-    +" FROM Recipe r ORDER BY r.id DESC")
+    @Query("SELECT r FROM Recipe r ORDER BY r.id DESC")
     Page<Recipe> findAllRecipes(Pageable page); 
 
     @Query("SELECT r.username.username, SUM(r.likes) AS total FROM Recipe r GROUP BY r.username.username ORDER BY total DESC")
@@ -45,8 +44,7 @@ public interface RecipesRepository extends JpaRepository<Recipe, Long> {
     @Query("SELECT r FROM Recipe r ORDER BY r.likes DESC")
     List<Recipe> FindByLikes();
 
-    @Query("SELECT DISTINCT r.id, r.title, r.description, r.username.id, r.username.username, r.username.name, "
-     +"r.username.surname, r.likes, r.n_comments FROM Recipe r "
+    @Query("SELECT DISTINCT r FROM Recipe r "
      +"WHERE r.username.id IN :fList OR r.username.id = :id_user ORDER BY r.id DESC")
 	Page<Recipe> findAllRecipesByFollowing(@Param("fList") ArrayList<Long> fList,@Param("id_user") Long id_user, Pageable page);
 
