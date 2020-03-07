@@ -53,8 +53,8 @@ public class RecipeService{
             n_likes = n_likes + recipes.get(n_publications).getLikes();
         }
         List<Integer> array = new ArrayList<>();
-        array.add(n_likes); // 1st position -> likes
-        array.add(n_publications); // 1st position -> likes
+        array.add(n_publications); // 1st position -> pubs
+        array.add(n_likes); // 2st position -> likes
         return array;
     }
 
