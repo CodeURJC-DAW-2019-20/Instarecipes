@@ -30,7 +30,6 @@ public class User{
 	public interface Email{}
 	public interface Allergen{}
 	public interface FF{}
-
 	public interface UserRanking{}
 	
 	@Id
