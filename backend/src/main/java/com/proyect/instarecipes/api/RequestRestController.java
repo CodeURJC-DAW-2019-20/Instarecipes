@@ -30,6 +30,7 @@ import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.RequestsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -73,7 +74,7 @@ public class RequestRestController {
 
             //funcion comprobando si existe la cookingStyle colocarla en servic
             requestsService.saveItem(request,exists);
-        }else if (typeOfItem.contains("Category")) {
+        }else if (requestsService.isCategory(typeOfItem)) {
             request = requestsService.getNewRequest(user, typeOfItem, content);
             exists=requestsService.existCategory(categoriesList,request);
             status=true;
@@ -83,6 +84,50 @@ public class RequestRestController {
         }
         if (status) {
 			return new ResponseEntity<>(request, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+    }
+    
+    @JsonView(RequestRestController.PostItem.class)
+    @PostMapping("/actionItemRequest")
+    public ResponseEntity<List<Request>>  acceptItemRequest(@RequestParam("typeOfItemRequest") String typeOfRequest, 
+    @RequestParam("itemContent") String itemContent,
+    @RequestParam("action") String action, 
+    @RequestParam("id_request") Long id_request,
+    @RequestParam("page") int page_number, @RequestParam("size") int page_size,
+    HttpServletResponse response){
+        boolean status =false;
+        System.out.println("ACTION: "+action);
+        System.out.println("Type of request: "+typeOfRequest);
+        boolean actionAccepted=requestsService.actionIsAccepted(action);
+        boolean actionDecline=requestsService.actionIsDecline(action);
+        if(actionAccepted){
+            if(requestsService.isEqualIngredient(typeOfRequest)){
+                requestsService.addItem(0, itemContent, id_request);
+                status=true;
+                //añadir ingrediente
+            }else if(requestsService.isEqualCategory(typeOfRequest)){
+                requestsService.addItem(1, itemContent, id_request);
+                status=true;
+                //añadir categoria
+            }else if(requestsService.isEqualCookingStyle(typeOfRequest)){
+                requestsService.addItem(2, itemContent, id_request);
+                status=true;
+                //añadir cookingStyle
+            }
+            //si aceptamos el item tenemos que seguir una serie de funciones para añadirlo en 
+            //su correspondiente sitio
+        }else if(actionDecline){
+            requestsService.declineItem(id_request);
+            status=true;
+            //eliminamos el item a traves del id
+        }
+        Page<Request> request = requestsService.getRequests(page_number,page_size);
+        List<Request> requestList = (List<Request>)request.getContent();
+        if (status) {
+            //String response_="the item was "+typeOfRequest+" and has been "+action;
+			return new ResponseEntity<>(requestList, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
