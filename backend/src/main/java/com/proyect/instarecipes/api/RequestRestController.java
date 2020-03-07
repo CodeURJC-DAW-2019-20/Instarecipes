@@ -27,7 +27,7 @@ import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
-import com.proyect.instarecipes.service.RequestsService;
+import com.proyect.instarecipes.service.RequestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -46,7 +46,7 @@ public class RequestRestController {
     public interface PostItem extends Request.RequestItems{}
 
     @Autowired
-    private RequestsService requestsService;
+    private RequestService requestsService;
 
     @JsonView(RequestRestController.PostItem.class)
     @PostMapping("/sendItemRequest")
@@ -88,7 +88,7 @@ public class RequestRestController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
     }
-    
+
     @JsonView(RequestRestController.PostItem.class)
     @PostMapping("/actionItemRequest")
     public ResponseEntity<List<Request>>  acceptItemRequest(@RequestParam("typeOfItemRequest") String typeOfRequest, 
