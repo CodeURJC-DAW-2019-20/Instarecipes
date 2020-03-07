@@ -1,11 +1,15 @@
 package com.proyect.instarecipes.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;
+import com.proyect.instarecipes.models.Comment;
 import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
@@ -16,7 +20,6 @@ import com.proyect.instarecipes.repositories.CommentsRepository;
 import com.proyect.instarecipes.repositories.CookingStylesRepository;
 import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
-import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
 
@@ -39,8 +42,6 @@ public class IndexService{
     @Autowired
     private CategoriesRepository categoriesRepository;
     @Autowired
-    private StepsRepository stepsRepository;
-    @Autowired
     private UserSession userSession;
     @Autowired 
     private UsersRepository usersRepository;
@@ -55,25 +56,34 @@ public class IndexService{
         return recipes;
     }
 
+    public List<Comment> getRecipeComments(Recipe recipe){
+        return commentsRepository.findAllByRecipe(recipe);
+    }
+
     public List<Recipe> getRecentRecipes(){
         return null;//para hacer
     }
+    
     public List<Category> getSelectedCategories(){
         return null;//para hacer
     }
+    
     public List<Ingredient> getSelectedIngredients(){
         return null;//para hacer
     }
+    
     public List<Allergen> getSelectedAllergens(){
         return null;//para hacer
     }
+    
     public List<CookingStyle> getSelectedCookingStyles(){
         return null;//para hacer
     }
     
-    public List<Recipe> personalFilter(boolean logged, User user){
+    public List<Recipe> personalFilter(User user){
         List<Recipe> recipes = recipesRepository.FindByLikes();    
         ArrayList<Recipe> filtered = new ArrayList<Recipe>(3); //list to show on index.html
+        boolean logged = user != null;
         if(logged){
             String myAllergen =user.getAllergens(); // allergen's user
             for(int pubs=0; pubs<recipes.size();pubs++){
@@ -106,29 +116,48 @@ public class IndexService{
     }
 
     public List<Recipe> getRecipesUserNotLogged () {
-        boolean logged = userSession.isLoggedUser();
-        List<Recipe> trending = null;
-        if(logged){
-            User user = userSession.getLoggedUser();
-            trending = personalFilter(logged, user);
-        }else{
-            trending = personalFilter(logged, null);
-        }
-    return trending;
+        return personalFilter(null);
     }
 
-    public List<Recipe> getRecipesUserLogged (String username) {
-        User user = usersRepository.findByUsername(username);
-        userSession.setLoggedUser(user);
-        boolean logged = userSession.isLoggedUser();
-        List<Recipe> trending = null;
-        if(logged){
-            //User user = userSession.getLoggedUser();
-            trending = personalFilter(logged, user);
-        }else{
-            trending = personalFilter(logged, null);
+    public List<Recipe> getRecipesUserLogged(Long id_user) {
+        Optional<User> user = usersRepository.findById(id_user);
+        return personalFilter(user.get());
+    }
+
+    public Recipe postRecipe(Recipe recipe, String ingredientsString, String categoriesString, String cookingStyle, String allergen){
+
+        // Ingredients selector //
+        List<String> listOfIngs = Arrays.asList(ingredientsString.split(","));
+        Set<Ingredient> lastIngs = new HashSet<>();
+        for(String ings : listOfIngs){
+            Optional<Ingredient> ingredient = ingredientsRepository.findByIngredient(ings);
+            if(ingredient != null){
+                lastIngs.add(ingredient.get());
+            }
         }
-    return trending;
+        recipe.setIngredients(lastIngs);
+        // Categories selector //
+        List<String> listOfCats = Arrays.asList(categoriesString.split(","));
+        Set<Category> lastCats = new HashSet<>();
+        for(String cats : listOfCats){
+            Optional<Category> category = categoriesRepository.findByCategory(cats);
+            if(category.isPresent()){
+                lastCats.add(category.get());
+            }
+        }
+        recipe.setCategories(lastCats);
+        if(allergen != "-- Select --"){
+            Set<Allergen> all = allergensRepository.findByName(allergen);
+            recipe.setAllergens(all);
+        }
+        if(cookingStyle != "-- Select --"){
+            Set<CookingStyle> cStyle = cookingStylesRepository.findByName(cookingStyle);
+            recipe.setCookingStyles(cStyle);
+        }
+        //Sets in recipe
+        recipe.setImage(true);
+        recipe.setUsername(userSession.getLoggedUser());
+        return recipe;
     }
 
 }

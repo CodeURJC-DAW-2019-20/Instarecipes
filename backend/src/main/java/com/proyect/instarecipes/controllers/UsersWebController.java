@@ -35,7 +35,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class UsersController {
+public class UsersWebController {
     @Autowired
     private UsersRepository usersRepository;
     @Autowired

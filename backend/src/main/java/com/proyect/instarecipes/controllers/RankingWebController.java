@@ -1,29 +1,30 @@
 package com.proyect.instarecipes.controllers;
 
+import java.util.List;
+import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.security.UserSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class ErrorPageController implements ErrorController  {
- 
+public class RankingWebController{
     @Autowired
     private UserSession userSession;
+    @Autowired
+    private RecipesRepository recipesRepository;
 
-    @RequestMapping("/error")
-    public String handleError() {
-        //do something like logging
-        return "error";
-    }
- 
-    @Override
-    public String getErrorPath() {
-        return "/error";
+    @GetMapping("/ranking")
+    public String showRanking(Model model){
+        Page<Recipe> rankingPage = recipesRepository.findTopTen(PageRequest.of(0, 10));
+        List<Recipe> ranking = rankingPage.getContent();
+        model.addAttribute("rankingList", ranking);
+        return "ranking";
     }
 
     @ModelAttribute

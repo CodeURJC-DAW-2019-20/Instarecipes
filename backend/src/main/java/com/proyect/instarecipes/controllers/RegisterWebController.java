@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-public class RegisterPageController {
+public class RegisterWebController {
 
     @Autowired   
     private UsersRepository usersRepository;

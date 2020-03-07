@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 @Controller
-public class RecipePageController {
+public class RecipeWebController {
     @Autowired
     private UserSession userSession;
     @Autowired

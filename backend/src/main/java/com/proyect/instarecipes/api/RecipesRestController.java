@@ -1,5 +1,5 @@
 
-package com.proyect.instarecipes.controllers;
+package com.proyect.instarecipes.api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class RecipesController{
+public class RecipesRestController{
 
     @Autowired
     private RecipesRepository recipesRepository;
@@ -39,12 +39,10 @@ public class RecipesController{
             for(User u : fList){
                 list1.add(u.getId());
             }
-            // System.out.println("Set: " + list1);
             recipes = recipesRepository.findAllRecipesByFollowing(list1,PageRequest.of(page_number,page_size));
         }else{
             recipes = recipesRepository.findAllRecipes(PageRequest.of(page_number,page_size));
         }
-
         List<Recipe> recipeList = (List<Recipe>)recipes.getContent();
         return recipeList;
     } 

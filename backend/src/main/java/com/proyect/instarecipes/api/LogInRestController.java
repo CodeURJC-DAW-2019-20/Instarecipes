@@ -9,16 +9,11 @@ import com.proyect.instarecipes.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
-
 import com.proyect.instarecipes.security.UserSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-
 
 @RestController
 public class LoginRestController{
@@ -33,24 +28,24 @@ public class LoginRestController{
     @JsonView(LoginRestController.ShowUser.class)
     @RequestMapping("/api/login")
 	public ResponseEntity<User> logIn() {
-			if (!userComponent.isLoggedUser()) {
-				log.info("Not user logged");
-				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-			} else {
-				User loggedUser = userComponent.getLoggedUser();
-				User u = usersRepository.findByUsername(loggedUser.getUsername());
-				log.info("Logged as " + loggedUser.getName());
-				log.info("My followers "+ loggedUser.getFollowersNum());
-				log.info("I am following "+ loggedUser.getFollowingNum());
-				return new ResponseEntity<>(u, HttpStatus.OK);
-			}
+		if (userComponent.isLoggedUser()) {
+			log.info("Not user logged");
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}else{
+			User loggedUser = userComponent.getLoggedUser();
+			User u = usersRepository.findByUsername(loggedUser.getUsername());
+			log.info("Logged as " + loggedUser.getName());
+			log.info("My followers "+ loggedUser.getFollowersNum());
+			log.info("I am following "+ loggedUser.getFollowingNum());
+			return new ResponseEntity<>(u, HttpStatus.OK);
+		}
 	}
 	@RequestMapping("/api/logout")
 	public ResponseEntity<Boolean> logOut(HttpSession session) {
 		if (!userComponent.isLoggedUser()) {
 			log.info("No user logged");
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		} else {
+		}else{
 			session.invalidate();
 			log.info("Logged out");
 			return new ResponseEntity<>(true, HttpStatus.OK);

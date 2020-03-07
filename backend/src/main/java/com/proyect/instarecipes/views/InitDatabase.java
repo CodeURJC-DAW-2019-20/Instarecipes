@@ -1,4 +1,4 @@
-package com.proyect.instarecipes;
+package com.proyect.instarecipes.views;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,7 +20,6 @@ import com.proyect.instarecipes.repositories.RequestsRepository;
 import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.ImageService;
-import com.proyect.instarecipes.views.GroupStaff;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;

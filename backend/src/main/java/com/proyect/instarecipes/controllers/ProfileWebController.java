@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller
-public class ProfilePageController {
+public class ProfileWebController {
 
     @Autowired
     private UserSession userSession;

@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 @Controller
-public class SearchPageController {
+public class SearchWebController {
 
     @Autowired
     private UserSession userSession;
