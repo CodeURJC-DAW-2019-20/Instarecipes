@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -81,6 +82,8 @@ public class User{
 	@Column(nullable = false)
 	private String info;
 
+	@Lob
+    private byte[] image;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<User> followers; //Set is like a collection of an objets that the items couldn't be repeated
@@ -191,10 +194,13 @@ public class User{
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-	// public void setImage(boolean image){
-    //     this.image=image;
-    // }
+	 public void setImage(byte[] image){
+         this.image=image;
+     }
 
+	public byte[] getImage() {
+		return this.image;
+	}
 	public String toString(){
         if(this.roles.contains("ROLE_ADMIN")){
             return "admin";
