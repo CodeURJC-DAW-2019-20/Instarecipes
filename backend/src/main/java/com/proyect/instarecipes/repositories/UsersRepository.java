@@ -26,7 +26,7 @@ public interface UsersRepository extends JpaRepository<User, Long> {
 	@Query("SELECT following FROM User u WHERE u.username = :name")
 	List<User> findFollowing(String name);
 
-	@Query("SELECT User FROM User u WHERE u.id = :id")
+	@Query("SELECT u FROM User u WHERE u.id = :id")
 	Optional<User> findById(long id);
 
 	@Query("SELECT following FROM User u WHERE u.username = :name")

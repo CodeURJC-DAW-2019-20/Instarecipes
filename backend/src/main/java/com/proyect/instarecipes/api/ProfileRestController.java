@@ -38,7 +38,10 @@ import static org.springframework.http.MediaType.IMAGE_JPEG;
 @RequestMapping("/api/profile")
 public class ProfileRestController {
 	public interface UserProfile extends User.NameSurname, User.Username, User.UserExtraInfo, User.Email, User.Allergen,
-			User.FF, Ingredient.Item, CookingStyle.Item, Category.Item, Request.RequestItems {
+			User.FF, Ingredient.Item, CookingStyle.Item, Category.Item {
+	}
+
+	public interface RequestItemView extends User.NameSurname, User.Username, Request.RequestItems {
 	}
 
 	public interface AdminProfile extends User.NameSurname, User.Username, User.UserExtraInfo, User.Email,
@@ -52,7 +55,7 @@ public class ProfileRestController {
 	@Autowired
 	private RequestService requestService;
 	@Autowired
-    private UserSession userSession;
+	private UserSession userSession;
 
 	@JsonView(ProfileRestController.UserProfile.class)
 	@GetMapping("/")
@@ -118,64 +121,67 @@ public class ProfileRestController {
 
 	@JsonView(ProfileRestController.UserProfile.class)
 	@PutMapping("/")
-	public ResponseEntity<User> updateProfile(@PathVariable Long id, @RequestBody User profileupdated)
+	public ResponseEntity<User> updateProfile(@RequestParam Long id, @RequestParam String name, @RequestParam String surname, @RequestParam String allergen, @RequestParam String info,
+	 @RequestParam  MultipartFile avatar, @RequestParam MultipartFile background )
 			throws IOException {
 		User u = usersRepository.findById(id).get();
 		if (id != null) {
-			return new ResponseEntity<>(profileservice.updateUser(u,null,null, profileservice.getName(id), profileservice.getSurName(id),
-					profileservice.getAllergen(id), profileservice.getInfo(id)), HttpStatus.OK);
+			return new ResponseEntity<>(profileservice.updateUser(u,avatar,background, name, surname,
+					allergen,info), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
-	@JsonView(ProfileRestController.UserProfile.class)
+	@JsonView(ProfileRestController.RequestItemView.class)
 	@PostMapping("/request")
-	public ResponseEntity<Request> requestItem(@RequestParam("typeOfItem") String typeOfItem,
-			@RequestParam("content") String content, HttpServletResponse response) {
-		User user = requestService.getUser();
+	public ResponseEntity<Request> requestItem(@RequestParam Long id_user,
+			@RequestParam("typeOfItem") String typeOfItem, @RequestParam("content") String content,
+			HttpServletResponse response) {
+		Optional<User> user = usersRepository.findById(id_user);
 		Request req = null;
 		if (requestService.isIngredient(typeOfItem)) {
-			req = requestService.getNewRequest(user, typeOfItem, content, 0);
+			req = requestService.getNewRequest(user.get(), typeOfItem, content, 0);
 			return new ResponseEntity<>(req, HttpStatus.OK);
 		} else if (requestService.isCategory(typeOfItem)) {
-			req = requestService.getNewRequest(user, typeOfItem, content, 1);
+			req = requestService.getNewRequest(user.get(), typeOfItem, content, 1);
 			return new ResponseEntity<>(req, HttpStatus.OK);
 		} else if (requestService.isCookingStyle(typeOfItem)) {
-			req = requestService.getNewRequest(user, typeOfItem, content, 2);
+			req = requestService.getNewRequest(user.get(), typeOfItem, content, 2);
 			return new ResponseEntity<>(req, HttpStatus.OK);
 		} else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping(value = "/{id}/image")
-    public ResponseEntity<byte[]> getProfileImage(@RequestParam("id") Long id) {
-        Optional<User> User = usersRepository.findById(id);
-        if (!User.isPresent()){
-			 return new ResponseEntity<>(HttpStatus.NOT_FOUND);}
-		else{
-        User profile = User.get();
-        byte[] image = profile.getImage();
-        return new ResponseEntity<>(image, HttpStatus.OK);}
-    }
-
-    @PostMapping(value = "/{id}/image")
-    public ResponseEntity<byte[]> setProfileImage(@PathVariable Long id, @RequestParam MultipartFile image) throws IOException {
-        Optional<User> User = usersRepository.findById(id);
-        if (!User.isPresent()){
-			 return new ResponseEntity<>(HttpStatus.NOT_FOUND);}
-		else{
-			 User profile = User.get();
-			 User u = userSession.getLoggedUser();
-        if(u != null && u.getId() == id) {
-			profile.setImage(image.getBytes());
-			usersRepository.save(profile);
-            return new ResponseEntity<>(profile.getImage(), HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+	public ResponseEntity<byte[]> getProfileImage(@RequestParam("id") Long id) {
+		Optional<User> User = usersRepository.findById(id);
+		if (!User.isPresent()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			User profile = User.get();
+			byte[] image = profile.getImage();
+			return new ResponseEntity<>(image, HttpStatus.OK);
 		}
 	}
-    }
 
+	@PostMapping(value = "/{id}/image")
+	public ResponseEntity<byte[]> setProfileImage(@PathVariable Long id, @RequestParam MultipartFile image)
+			throws IOException {
+		Optional<User> User = usersRepository.findById(id);
+		if (!User.isPresent()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			User profile = User.get();
+			User u = userSession.getLoggedUser();
+			if (u != null && u.getId() == id) {
+				profile.setImage(image.getBytes());
+				usersRepository.save(profile);
+				return new ResponseEntity<>(profile.getImage(), HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			}
+		}
+	}
 
 }
