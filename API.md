@@ -40,7 +40,7 @@ Keep reading to know how!
          `GET`
    
    * ##### Success Response:
-         ```
+         
           {
              "username": "pepegrillo",
              "email": "pepe@grillo.com",
@@ -56,7 +56,7 @@ Keep reading to know how!
              "followersNum": 7,
              "info": "Hello World!! I hope you enjoy my recipes!"
            }
-         ```
+         
   
   * ##### Error response:
 
@@ -74,16 +74,89 @@ Keep reading to know how!
          `GET`
    
    * ##### Success Response:
-         ```
+         
          true
-         ```
-  
+         
   * ##### Error response:
 
 	**Code**: 401 UNAUTHORIZED  
 	
-   ## Registered users <a name="registeredreq"></a>
+## Registered users <a name="registeredreq"></a>
 The following queries will be preceded by /user or /profile. 
   
-### Obtain user data
-Resource to show all users with their data.
+### Obtain logged user data
+> Resource to show the logged user with his data.
+* ##### URL:
+        ```
+        </users/{id} >  
+        ```
+### Obtain the data of another user
+> Resource to show another user with his data.
+   * ##### URL:
+        ```
+        </users/{id} >  
+        ```
+   * ##### Method:  
+         `GET`
+   
+   * ##### Success Response:
+         
+         true
+         
+  * ##### Error response:
+
+	**Code**: 401 NOT_FOUND 
+	> if user not founded 
+	
+	**Code**: 401 NETWORK_AUTHENTICATION_REQUIRED
+	> if the user that makes the search is not logged
+
+## Obtain trending for registered users.
+> Resource to show the trending (advanced algorithm).
+* ##### URL:
+        ```
+        </trending >  
+        ```
+* ##### Method:  
+         `GET`
+   
+   * ##### Success Response:
+    ```
+    {
+	"username": {
+	    "username": "pepegrillo",
+	    "avatar": true
+	},
+	"title": "Homemade Pizza!",
+	"description": "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!",
+	"likes": 9,
+	"n_comments": 10,
+	"image": true
+    },
+    {
+	"username": {
+	    "username": "pepegrillo",
+	    "avatar": true
+	},
+	"title": "Baked Fish with Lemon Cream Sauce",
+	"description": "Yup, just throw it all in one pan, bake it, and you end up with a tender juicy fish in a creamy lemon 	                 sauce.",  
+	"likes": 9,  
+	"n_comments": 0,  
+	"image": true  
+    },  
+    {  
+	"username": {  
+	    "username": "trevrap",  
+	    "avatar": true  
+	},  
+	"title": "Vegan Chocolate Ice Cream",  
+	"description": "You are making hummus or some other dish with chickpeas and you are just wasting the chickpea water? How 		 dare you! Didn't you know it can form the basis of some the most delicious, light, and foamy vegan ice creams and 	                 mousses?",  
+	"likes": 9,  
+	"n_comments": 0,  
+	"image": true  
+    }   
+    ``` 
+  * ##### Error response:
+
+	**Code**: 401 NOT_FOUND 
+	
