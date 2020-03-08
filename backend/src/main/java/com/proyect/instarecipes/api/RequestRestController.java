@@ -1,49 +1,31 @@
 package com.proyect.instarecipes.api;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;
-import com.proyect.instarecipes.models.Comment;
 import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Ingredient;
-import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.Request;
 import com.proyect.instarecipes.models.User;
-import com.proyect.instarecipes.models.Category;
-import com.proyect.instarecipes.repositories.AllergensRepository;
-import com.proyect.instarecipes.repositories.CategoriesRepository;
-import com.proyect.instarecipes.repositories.CommentsRepository;
-import com.proyect.instarecipes.repositories.CookingStylesRepository;
-import com.proyect.instarecipes.repositories.IngredientsRepository;
-import com.proyect.instarecipes.repositories.RecipesRepository;
-import com.proyect.instarecipes.repositories.UsersRepository;
-import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.RequestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/profile")
 public class RequestRestController {
 
-    public interface PostItem extends Request.RequestItems{}
+    public interface PostItem extends Request.RequestItems, User.Username, User.NameSurname {}
 
     @Autowired
     private RequestService requestsService;
@@ -60,19 +42,19 @@ public class RequestRestController {
         List<Ingredient> ingredientsList = requestsService.getIngredients();
         List<Category> categoriesList = requestsService.getCategories();
         List<CookingStyle> cookingStylesList = requestsService.getCookingStyles();
-        //funcion extraer ingredientes,categorias y cookingStyle user request
+        // function to get ingredients, categories and cookingstyles (user request)
         if (requestsService.isIngredient(typeOfItem)) {
             request = requestsService.getNewRequest(user, typeOfItem,content,0);
             exists=requestsService.existIngredient(ingredientsList,request);
             status=true;
-            //funcion comprobando si existe la receta colocarla en service
+            //function to verify if the ingredient already exists.
             requestsService.saveItem(request,exists);
         }else if (requestsService.isCookingStyle(typeOfItem)) {
             request = requestsService.getNewRequest(user, typeOfItem, content,1);
             exists=requestsService.existCookingStyle(cookingStylesList,request);
             status=true;
 
-            //funcion comprobando si existe la cookingStyle colocarla en servic
+            //function to verify if the cookingstyle already exists.
             requestsService.saveItem(request,exists);
         }else if (requestsService.isCategory(typeOfItem)) {
             request = requestsService.getNewRequest(user, typeOfItem, content,2);
@@ -106,22 +88,21 @@ public class RequestRestController {
             if(requestsService.isEqualIngredient(typeOfRequest)){
                 requestsService.addItem(0, itemContent, id_request);
                 status=true;
-                //añadir ingrediente
+                //add ingrediente
             }else if(requestsService.isEqualCategory(typeOfRequest)){
                 requestsService.addItem(1, itemContent, id_request);
                 status=true;
-                //añadir categoria
+                //add categoria
             }else if(requestsService.isEqualCookingStyle(typeOfRequest)){
                 requestsService.addItem(2, itemContent, id_request);
                 status=true;
-                //añadir cookingStyle
+                //add cookingStyle
             }
-            //si aceptamos el item tenemos que seguir una serie de funciones para añadirlo en 
-            //su correspondiente sitio
+            //if we accept the item we have to follow a serue of functions to put it right
         }else if(actionDecline){
             requestsService.declineItem(id_request);
             status=true;
-            //eliminamos el item a traves del id
+            //we delete the item through his id
         }
         Page<Request> request = requestsService.getRequests(page_number,page_size);
         List<Request> requestList = (List<Request>)request.getContent();
