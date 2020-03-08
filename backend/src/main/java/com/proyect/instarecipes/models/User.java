@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.ArrayList;
@@ -25,22 +26,22 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Entity
 public class User{
 
-	public interface Username{}
+	public interface Username{} //Avatar
 	public interface NameSurname{}
-	public interface UserExtraInfo{}
+	public interface UserExtraInfo{} //roles, background and info
 	public interface Email{}
 	public interface Allergen{}
-	public interface FF{}
+	public interface FF{} //integers
 	public interface IDUser{}
-
+	public interface FFSets{} 
 	public interface UserRanking{}
-	
+
 	@JsonView(IDUser.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@JsonView(Username.class)
+
+	@JsonView({Username.class, FFSets.class})
 	@Column(nullable = false, unique = true)
 	private String username;
 	
@@ -55,18 +56,18 @@ public class User{
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 	
-	@JsonView(NameSurname.class)
+	@JsonView({NameSurname.class, FFSets.class})
 	@Column(nullable = false)
 	private String name;
 
-	@JsonView(NameSurname.class)
+	@JsonView({NameSurname.class, FFSets.class})
 	@Column(nullable = false)
 	private String surname;
 
 	@JsonView(UserExtraInfo.class)
 	private boolean background;
 
-	@JsonView(Username.class)
+	@JsonView({Username.class, FFSets.class})
 	private boolean avatar;
 
 	@JsonView(Allergen.class)
@@ -83,11 +84,13 @@ public class User{
 	private String info;
 
 	@Lob
-    private byte[] image;
-
+	private byte[] image;
+	
+	@JsonView(FFSets.class)
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<User> followers; //Set is like a collection of an objets that the items couldn't be repeated
 	
+	@JsonView(FFSets.class)
 	@ManyToMany(mappedBy = "followers")
 	private Set<User> following;
 	
