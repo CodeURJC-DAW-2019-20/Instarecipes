@@ -40,7 +40,6 @@ public class IndexService {
     private CookingStylesRepository cookingStylesRepository;
     @Autowired
     private AllergensRepository allergensRepository;
-
     @Autowired
     private CommentsRepository commentsRepository;
     @Autowired

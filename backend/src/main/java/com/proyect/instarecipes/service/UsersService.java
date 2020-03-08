@@ -24,9 +24,7 @@ public class UsersService {
     private RequestsRepository requestsRepository;
     @Autowired 
     private UserSession userSession;
-    @Autowired
-    private UsersService usersService;
-    
+
 
     public Optional<User> getActualUser(Long id) {
         return usersRepository.findById(id);
@@ -95,9 +93,9 @@ public class UsersService {
         List<User> following = null;
         if (userSession.isLoggedUser()){
             User u1 = userSession.getLoggedUser();
-            Optional<User> u2 = usersService.getActualUser(id);
-            following= usersService.getFollowingUsers(u1);
-            List<User> follower= usersService.getFollowersUsers(u2.get());
+            Optional<User> u2 = this.getActualUser(id);
+            following= this.getFollowingUsers(u1);
+            List<User> follower= this.getFollowersUsers(u2.get());
             Set<User> setFollowers=new HashSet<>();
             Set<User> setFollowing=new HashSet<>();
             //get the List of following of our user and the list of followers of the user that we are going to unfollow
