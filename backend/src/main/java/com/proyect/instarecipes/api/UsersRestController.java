@@ -10,6 +10,7 @@ import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.User;
+import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.UsersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,63 +32,81 @@ public class UsersRestController {
 
     @Autowired
     private UsersService usersService;
+    @Autowired
+    private UserSession usersession;
 
     @JsonView(UsersRestController.AnotherUserProfile.class)
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id) throws IOException {
+      if (usersession.isLoggedUser()){
         Optional<User> actual = usersService.getActualUser(id);
-		if (id != null) {
-			return new ResponseEntity<>(actual.get(), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+        if (id != null) {
+          return new ResponseEntity<>(actual.get(), HttpStatus.OK);
+        } else {
+          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+      }else {
+        return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+      }
     }
 
     @JsonView(UsersRestController.UsersFF.class)
     @GetMapping("/{id}/followers")
     public ResponseEntity<List<User>> getUserFollowers(@PathVariable Long id) throws IOException {
-        Optional<User> actual = usersService.getActualUser(id);
-        List<User> followers = usersService.getFollowersUsers(actual.get());
-        
-		if (id != null) {
-			return new ResponseEntity<>(followers, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+      Optional<User> actual = usersService.getActualUser(id);
+      List<User> followers = usersService.getFollowersUsers(actual.get());
+      if (usersession.isLoggedUser()){
+        if (id != null) {
+          return new ResponseEntity<>(followers, HttpStatus.OK);
+        } else {
+          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+      }else {
+        return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+      }
     }
 
     @JsonView(UsersRestController.UsersFF.class)
     @GetMapping("/{id}/following")
     public ResponseEntity<List<User>> getUserFollowing(@PathVariable Long id) throws IOException {
+      if (usersession.isLoggedUser()){
         Optional<User> actual = usersService.getActualUser(id);
         List<User> following = usersService.getFollowingUsers(actual.get());
-        
-		if (id != null) {
-			return new ResponseEntity<>(following, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+        if (id != null) {
+          return new ResponseEntity<>(following, HttpStatus.OK);
+        } else {
+          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+      }else {
+        return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+      }
     }
 
     @JsonView(UsersRestController.UsersFF.class)
     @PutMapping("/{id}/followAction")
     public ResponseEntity<List<User>> followAction(@PathVariable Long id)throws IOException {
+      if (usersession.isLoggedUser()){
         if (id != null) {
-			return new ResponseEntity<>(usersService.pressFollow(id), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+          return new ResponseEntity<>(usersService.pressFollow(id), HttpStatus.OK);
+        } else {
+          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+      }else {
+        return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+      }
     }
 
     @JsonView(UsersRestController.UsersFF.class)
     @PutMapping("/{id}/unfollowAction")
     public ResponseEntity<List<User>> unfollowAction(@PathVariable Long id) throws IOException {
+      if (usersession.isLoggedUser()){
         if (id != null) {
-			return new ResponseEntity<>(usersService.pressUnfollow(id), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+          return new ResponseEntity<>(usersService.pressUnfollow(id), HttpStatus.OK);
+        } else {
+          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+      }else {
+        return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+      }
     }
-
-
 }
