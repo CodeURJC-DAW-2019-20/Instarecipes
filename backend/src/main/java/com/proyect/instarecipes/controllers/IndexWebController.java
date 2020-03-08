@@ -29,13 +29,7 @@ import org.springframework.ui.Model;
 public class IndexWebController {
 
     @Autowired
-    private RecipesRepository recipesRepository;
-    @Autowired
-    private StepsRepository stepsRepository;
-    @Autowired
     private UserSession userSession;
-    @Autowired
-    private ImageService imageService;
     @Autowired
     private IndexService indexService;
     @Autowired
@@ -78,47 +72,24 @@ public class IndexWebController {
     @RequestParam(required = false, value = "allImages") MultipartFile[] allImages, 
     @RequestParam(required = false, value = "withImage") String withImage,HttpServletResponse response) throws IOException{
         
-        Recipe r = indexService.postRecipe(userSession.getLoggedUser(), recipe, ingredientsString, categoriesString, cookingStyle, allergen);
-        imageService.saveImage("recipes", r.getId(), imageFile);
-        stepsRepository.save(new Step(r, 1, firstStepString));
-        if(withImage.length()>0){
-            String stp = withImage.substring(0, withImage.length()-1);
-            List<String> listOfBools = Arrays.asList(stp.split(","));
-            int i = 2;
-            int j = 0;
-            if(stepsString != null){
-                List<String> listOfSteps = Arrays.asList(stepsString.split("ab_12_45_3,"));
-                for(String steps : listOfSteps){
-                    if(steps != null){
-                        Step step_n = new Step(r, i, steps);
-                        if(listOfBools.get(j).equalsIgnoreCase("1")){
-                            imageService.saveImage("recipes/steps/"+r.getId(), j+2, allImages[j]);
-                           step_n.setImage(true);
-                        }else{
-                           step_n.setImage(false);
-                        }
-                        stepsRepository.save(step_n);
-                        j++;
-                        i++;
-                    }
-                }
-            }
-        }
+        // Recipe r = 
+        indexService.postRecipe(userSession.getLoggedUser(), recipe, ingredientsString, categoriesString,
+            cookingStyle, allergen, firstStepString, stepsString, withImage,imageFile, allImages);
 
         //SHOWING ALL ELEMENTS TO MUSTACHE
-        List<Recipe> recipes = indexService.getAllRecipes();
-        model.addAttribute("recipes", recipes);
-        model.addAttribute("size", recipes.size());
-        List<Recipe> subRecipe = recipes.subList(0, 3);
-        model.addAttribute("subRecipe",subRecipe);
-        List<Comment> comments = indexService.getRecipeComments(recipe);
-        model.addAttribute("n_comments", comments.size());
+        // List<Recipe> recipes = indexService.getAllRecipes();
+        // model.addAttribute("recipes", recipes);
+        // model.addAttribute("size", recipes.size());
+        // List<Recipe> subRecipe = recipes.subList(0, 3);
+        // model.addAttribute("subRecipe",subRecipe);
+        // List<Comment> comments = indexService.getRecipeComments(recipe);
+        // model.addAttribute("n_comments", comments.size());
 
-        model.addAttribute("ingredientsList", profileService.getAllIngredients());
-        model.addAttribute("cookingStylesList", profileService.getAllCookingStyles());
-        model.addAttribute("categoriesList", profileService.getAllCategories());
-        model.addAttribute("allergensList", profileService.getAllAllergens());
-        model.addAttribute("id", userSession.getLoggedUser().getId());
+        // model.addAttribute("ingredientsList", profileService.getAllIngredients());
+        // model.addAttribute("cookingStylesList", profileService.getAllCookingStyles());
+        // model.addAttribute("categoriesList", profileService.getAllCategories());
+        // model.addAttribute("allergensList", profileService.getAllAllergens());
+        // model.addAttribute("id", userSession.getLoggedUser().getId());
 
         response.sendRedirect("index");
     }
