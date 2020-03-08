@@ -1,14 +1,9 @@
 package com.proyect.instarecipes.controllers;
 
-import java.util.List;
-import com.proyect.instarecipes.models.Recipe;
-import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.RankingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +14,8 @@ public class RankingWebController{
 
     @Autowired
     private RankingService rankingService;
+    @Autowired
+    private UserSession userSession;
 
     @GetMapping("/ranking")
     public String showRanking(Model model){
@@ -28,11 +25,12 @@ public class RankingWebController{
 
     @ModelAttribute
 	public void addAttributes(Model model) {
-		boolean logged =rankingService.islogged();
+		boolean logged = userSession.isLoggedUser();
         model.addAttribute("logged", logged);
 		if(logged){
-			model.addAttribute("user",rankingService.getUserLogged());
-			model.addAttribute("admin", rankingService.isAdmin());
+			model.addAttribute("user", userSession.getLoggedUser().getUsername());
+			model.addAttribute("admin", userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN"));
 		}
 	}
+
 }

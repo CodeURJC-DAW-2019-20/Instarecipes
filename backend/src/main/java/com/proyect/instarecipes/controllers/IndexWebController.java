@@ -1,17 +1,11 @@
 package com.proyect.instarecipes.controllers;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
 import com.proyect.instarecipes.models.Recipe;
-import com.proyect.instarecipes.models.Step;
-import com.proyect.instarecipes.security.ImageService;
-import com.proyect.instarecipes.models.Comment;
-import com.proyect.instarecipes.repositories.RecipesRepository;
-import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.IndexService;
 import com.proyect.instarecipes.service.ProfileService;

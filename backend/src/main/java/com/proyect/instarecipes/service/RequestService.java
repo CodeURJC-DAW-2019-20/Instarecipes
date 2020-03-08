@@ -89,14 +89,10 @@ public class RequestService {
         switch (caso) {
             case 0:
                 request = new Request(user, typeOfItem, content, null, null, false);
-                
-
             case 1:
                 request = new Request(user, typeOfItem, null, content, null, false);
-
             case 2:
                 request = new Request(user, typeOfItem, null, null, content, false);
-
         }
         if (request!=null)
             requestsRepository.save(request);
