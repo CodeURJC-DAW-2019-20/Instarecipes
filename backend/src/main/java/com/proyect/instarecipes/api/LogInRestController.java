@@ -15,17 +15,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
+@RequestMapping("/api")
 public class LogInRestController {
 	public interface ShowUser
-			extends User.NameSurname, User.UserExtraInfo, User.Username, User.Allergen, User.Email, User.FF {
-	}
+			extends User.NameSurname, User.UserExtraInfo, User.Username, User.Allergen, User.Email, User.FF {}
 
 	@Autowired
 	private UserSession userComponent;
 	private static final Logger log = LoggerFactory.getLogger(LogInRestController.class);
 
 	@JsonView(LogInRestController.ShowUser.class)
-    @RequestMapping("/api/login")
+    @RequestMapping("/login")
 	public ResponseEntity<User> logIn() {
 		if (!userComponent.isLoggedUser()) {
 			log.info("Not user logged");
@@ -40,7 +40,7 @@ public class LogInRestController {
 		}
 	}
 	
-	@RequestMapping("/api/logout")
+	@RequestMapping("/logout")
 	public ResponseEntity<Boolean> logOut(HttpSession session) {
 		if (!userComponent.isLoggedUser()) {
 			log.info("No user logged");

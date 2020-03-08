@@ -79,7 +79,7 @@ public class IndexRestController {
 	}
 
 	// POSTING RECIPE (AS LOGGED) ->
-	// id_user, title, description, difficulty, duration, withImage,
+	// title, description, difficulty, duration, withImage,
 	// firstStepString,
 	// ingredientsString, categoriesString, cookingStyle, allergen, stepsString
 	@JsonView(IndexRestController.PostRecipe.class)

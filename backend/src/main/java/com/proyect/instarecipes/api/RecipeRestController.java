@@ -13,6 +13,7 @@ import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.CommentsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
+import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.RecipeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,8 @@ public class RecipeRestController{
     private RecipeService recipeService;
     @Autowired
     private UsersRepository usersRepository;
+    @Autowired
+    private UserSession userSession;
 
     @JsonView(RecipeRestController.SimpleRecipe.class)
     @GetMapping("/")
@@ -118,12 +121,16 @@ public class RecipeRestController{
     
     @JsonView(RecipeRestController.CommentsRecipe.class)
     @PostMapping("/comments/")
-    public ResponseEntity<Comment> setComments(@RequestParam(required = false) Long id_recipe, @RequestParam(required = false) String username,
+    public ResponseEntity<Comment> setComments(@RequestParam(required = false) Long id_recipe,
     @RequestParam(required = false) String content, @RequestParam(required = false) Long parentComment){
-        if (content != null){
-            return new ResponseEntity<>(recipeService.postComment(id_recipe, content, parentComment, username), HttpStatus.OK);
+        if(userSession.isLoggedUser()){
+            if (content != null){
+                return new ResponseEntity<>(recipeService.postComment(id_recipe, content, parentComment, userSession.getLoggedUser()), HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         }else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
         }
     }
 

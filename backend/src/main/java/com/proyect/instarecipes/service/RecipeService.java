@@ -13,8 +13,6 @@ import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.CommentsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.StepsRepository;
-import com.proyect.instarecipes.repositories.UsersRepository;
-import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,13 +23,9 @@ public class RecipeService{
     @Autowired
     private RecipesRepository recipesRepository;
     @Autowired
-    private UsersRepository usersRepository;
-    @Autowired
     private CommentsRepository commentsRepository;
     @Autowired
     private StepsRepository stepsRepository;
-    @Autowired
-    private UserSession userSession;
     
     public List<Comment> getRecipeComments(Recipe recipe){
         return commentsRepository.findAllByRecipeOrderByLikes(recipe);
@@ -128,18 +122,12 @@ public class RecipeService{
         return comment.get();
     }
     
-    public Comment postComment(Long id, String content, Long parentComment, String username){
+    public Comment postComment(Long id, String content, Long parentComment, User user){
         Comment comment = null;
-        User u = null;
-        if(username != null){
-            u = usersRepository.findByUsername(username);
-        }else{
-            u = userSession.getLoggedUser();
-        }
         Recipe r = recipesRepository.findRecipeById(id);
         if(parentComment != null){ //Subcomment
             Optional<Comment> pComment = commentsRepository.findById(parentComment);
-            comment = new Comment(u, content, null, r, false, true, null);//get the comment
+            comment = new Comment(user, content, null, r, false, true, null);//get the comment
             if(content != ""){
                 commentsRepository.save(comment);
                 Set<Comment> ejem = new HashSet<>();
@@ -147,13 +135,12 @@ public class RecipeService{
                 ejem.add(comment);
                 if(!pComment.get().isSubcomment()){
                     commentsRepository.setParentHasComment(true, parentComment);
-                }
-                else{
+                }else{
                     commentsRepository.setParentHasComment(false, parentComment);
                 }
             }
         }else{ //Normal comment
-            comment = new Comment(u, content, null, r, false, false, null);
+            comment = new Comment(user, content, null, r, false, false, null);
             if(content != ""){
                 commentsRepository.save(comment);
             }

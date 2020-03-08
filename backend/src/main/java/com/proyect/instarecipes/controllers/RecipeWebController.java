@@ -86,7 +86,7 @@ public class RecipeWebController {
     @PostMapping("/postComment/{id}")
     public void postComment(@PathVariable Long id, Model model, @RequestParam String content, HttpServletResponse response,
             @RequestParam(required = false, value = "parentComment") Long parentComment) throws IOException {
-        recipeService.postComment(id, content, parentComment, null);
+        recipeService.postComment(id, content, parentComment, userSession.getLoggedUser());
         response.sendRedirect("../recipes/"+id);
     }
 
