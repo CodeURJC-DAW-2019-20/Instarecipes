@@ -23,7 +23,13 @@ This is the main project's repository, where you can found folders like **Code**
  * [New navigation diagrams](#navDiagrams2)
  * [Database diagrams](#dbDiagram)  
  * [Classes and templates diagrams](#CTdiagrams)  
-  
+ 
+ **PHASE 3** 
+ * [Most important commits](#importantComm3)  
+ * [Most worked files](#workedFiles3)   
+ * [API documentation](#apidoc)
+ * [Classes and templates diagrams](#CTdiagrams3)  
+ 
 # Page layout with HTML and CSS <a name="phase1"></a>
 
 ## Members :busts_in_silhouette: <a name="members"></a>
@@ -280,8 +286,21 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/databaseDiagramNew.png"
 </p> 
 
-##  Classes and templates diagrams </a><a name="CTdiagrams"></a>
+##  Classes and templates diagrams <a name="CTdiagrams"></a>
 
 <p align="center">
 <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/templatesDiagram.png"
 </p> 
+
+
+# API REST AND DOCKER.
+
+## Most important commits :newspaper: <a name="importantComm3"></a>
+
+## Most worked files :newspaper: <a name="workedFiles3"></a> 
+
+## API documentation <a name="apidoc"></a>
+
+You can see our [API documentation](https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/API_Documentation.md) in another .md. There you will find information about our APIs requests by every single user type.
+
+##  Classes and templates diagrams <a name="CTdiagrams3"></a>
