@@ -30,7 +30,7 @@ public class LogInRestController {
 	@JsonView(LogInRestController.ShowUser.class)
     @RequestMapping("/api/login")
 	public ResponseEntity<User> logIn() {
-		if (userComponent.isLoggedUser()) {
+		if (!userComponent.isLoggedUser()) {
 			log.info("Not user logged");
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}else{

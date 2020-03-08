@@ -65,12 +65,6 @@ public class ProfileRestController {
 	}
 
 	@JsonView(ProfileRestController.UserProfile.class)
-	@GetMapping("/{id}")
-	public User getUser(@PathVariable long id) {
-		return usersRepository.findById(id).get();
-	}
-
-	@JsonView(ProfileRestController.UserProfile.class)
 	@GetMapping("/username")
 	public Collection<String> getUsernames() {
 		return usersRepository.findAll().stream().map(b -> b.getUsername()).collect(Collectors.toList());
