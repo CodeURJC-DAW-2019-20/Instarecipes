@@ -28,6 +28,7 @@ import com.proyect.instarecipes.security.ImageService;
 import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -67,10 +68,6 @@ public class IndexService {
 
     public List<Comment> getRecipeComments(Recipe recipe) {
         return commentsRepository.findAllByRecipe(recipe);
-    }
-
-    public List<Recipe> getRecentRecipes() {
-        return null;// para hacer
     }
 
     public List<Category> getSelectedCategories() {
@@ -123,13 +120,19 @@ public class IndexService {
         }
     }
 
-    public List<Recipe> getRecipesUserNotLogged() {
-        return personalFilter(null);
-    }
-
-    public List<Recipe> getRecipesUserLogged(Long id_user) {
-        Optional<User> user = usersRepository.findById(id_user);
-        return personalFilter(user.get());
+    public List<Recipe> getRecentRecipesUserLogged(int page, int size) {
+        List<Recipe> recipe = null;
+        if(userSession.isLoggedUser()){
+            User u = userSession.getLoggedUser();
+            ArrayList<Long> fList = new ArrayList<>();
+            for(User user : usersRepository.findFollowing(u.getUsername())){
+                fList.add(user.getId());
+            }
+            recipe = recipesRepository.findAllRecipesByFollowing(fList, u.getId(), PageRequest.of(page, size)).getContent();
+        }else{
+            recipe = null;
+        }
+        return recipe;
     }
 
     public Recipe postRecipe(User user, Recipe recipe, String ingredientsString, String categoriesString,

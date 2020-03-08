@@ -113,10 +113,10 @@ public class IndexWebController {
         model.addAttribute("categoriesList", profileService.getAllCategories());
         model.addAttribute("allergensList", profileService.getAllAllergens());
         if(userSession.isLoggedUser()){
-            model.addAttribute("filteredRecipe", indexService.getRecipesUserLogged(userSession.getLoggedUser().getId()));
+            model.addAttribute("filteredRecipe", indexService.personalFilter(userSession.getLoggedUser()));
             model.addAttribute("id", userSession.getLoggedUser().getId());
         }else{
-            model.addAttribute("notTrending", indexService.getRecipesUserNotLogged());
+            model.addAttribute("notTrending", indexService.personalFilter(null));
         }
     }
 

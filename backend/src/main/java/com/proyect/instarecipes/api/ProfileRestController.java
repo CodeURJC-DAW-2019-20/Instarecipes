@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -111,6 +112,13 @@ public class ProfileRestController {
 	public User getAdmin(@RequestParam Long id) {
 		Optional<User> u = usersRepository.findById(id);
 		return u.get();
+	}
+
+	@JsonView(ProfileRestController.AdminProfile.class)
+	@GetMapping("/admin/users")
+	public List <User> getUsersList() {
+		List <User> u = usersRepository.findAll();
+		return u;
 	}
 
 	@JsonView(ProfileRestController.UserProfile.class)
