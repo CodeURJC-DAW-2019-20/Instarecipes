@@ -5,10 +5,13 @@
 * [About our API](#about)  
 * [How to use it and type of requests available](#useandrequests)  
 * [Requests](#requests)  
+  * [Authentication](#authentication)  
+  	* [Login](#login)
+	* [Logout](#logout) 
+  * [By registered users](#registeredreq) 
   * [By anonymous users](#anonymousreq)  
-  * [By registered users](#registeredreq)  
   * [By administrator user](#adminreq)  
-  * [Anonymous](#anonymousUser)  
+  * [Recipes requests](#recipesreq)  
  
 
 ## Introduction <a name="intro"></a>
@@ -25,8 +28,8 @@ Keep reading to know how!
 
 ## Our API requests <a name="requests"></a>
 
-  ### Authentication  
-   login :
+  ## Authentication <a name="authentication"></a> 
+   #### login : <a name="login"></a>
    > Allows a user to log in.
    
    * ##### URL:
@@ -58,3 +61,29 @@ Keep reading to know how!
   * ##### Error response:
 
 	**Code**: 401 UNAUTHORIZED
+
+
+   #### logout : <a name="logout"></a>
+   > Allows a user to logout.
+   
+   * ##### URL:
+        ```
+        </logout >  
+        ```
+   * ##### Method:  
+         `GET`
+   
+   * ##### Success Response:
+         ```
+         true
+         ```
+  
+  * ##### Error response:
+
+	**Code**: 401 UNAUTHORIZED  
+	
+   ## Registered users <a name="registeredreq"></a>
+The following queries will be preceded by /user or /profile. 
+  
+### Obtain user data
+Resource to show all users with their data.
