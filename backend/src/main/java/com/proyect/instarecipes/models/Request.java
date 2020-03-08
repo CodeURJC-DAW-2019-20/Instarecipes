@@ -17,7 +17,7 @@ public class Request{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+    @JsonView(RequestItems.class)
     @OneToOne
     private User username;
     @JsonView(RequestItems.class)

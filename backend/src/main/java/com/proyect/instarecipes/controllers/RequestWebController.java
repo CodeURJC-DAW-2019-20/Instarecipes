@@ -49,18 +49,18 @@ public class RequestWebController {
         List<CookingStyle> cookingStylesList = requestsService.getCookingStyles();
         //funcion extraer ingredientes,categorias y cookingStyle user request
         if (requestsService.isIngredient(typeOfItem)) {
-            request = requestsService.getNewRequest(user, typeOfItem,content);
+            request = requestsService.getNewRequest(user, typeOfItem,content,0);
             exists=requestsService.existIngredient(ingredientsList,request);
             //funcion comprobando si existe la receta colocarla en service
             requestsService.saveItem(request,exists);
         }else if (requestsService.isCookingStyle(typeOfItem)) {
-            request = requestsService.getNewRequest(user, typeOfItem, content);
+            request = requestsService.getNewRequest(user, typeOfItem, content,1);
             exists=requestsService.existCookingStyle(cookingStylesList,request);
 
             //funcion comprobando si existe la cookingStyle colocarla en servic
             requestsService.saveItem(request,exists);
         }else if (typeOfItem.contains("Category")) {
-            request = requestsService.getNewRequest(user, typeOfItem, content);
+            request = requestsService.getNewRequest(user, typeOfItem, content,2);
             exists=requestsService.existCategory(categoriesList,request);
 
             requestsService.saveItem(request,exists);
