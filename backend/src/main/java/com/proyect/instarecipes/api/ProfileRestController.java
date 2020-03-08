@@ -1,6 +1,6 @@
 package com.proyect.instarecipes.api;
 
-
+import org.apache.tomcat.util.http.parser.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
@@ -27,8 +28,11 @@ import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.repositories.UsersRepository;
+import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.ProfileService;
-import com.proyect.instarecipes.service.RequestsService;
+import com.proyect.instarecipes.service.RequestService;
+
+import static org.springframework.http.MediaType.IMAGE_JPEG;
 
 @RestController
 @RequestMapping("/api/profile")
@@ -46,7 +50,9 @@ public class ProfileRestController {
 	@Autowired
 	private ProfileService profileservice;
 	@Autowired
-	private RequestsService requestsService;
+	private RequestService requestService;
+	@Autowired
+    private UserSession userSession;
 
 	@JsonView(ProfileRestController.UserProfile.class)
 	@GetMapping("/")
@@ -116,9 +122,8 @@ public class ProfileRestController {
 			throws IOException {
 		User u = usersRepository.findById(id).get();
 		if (id != null) {
-			return new ResponseEntity<>(profileservice.updateUser(u, profileservice.getName(id),
-					profileservice.getSurName(id), profileservice.getAllergen(id), profileservice.getInfo(id)),
-					HttpStatus.OK);
+			return new ResponseEntity<>(profileservice.updateUser(u,null,null, profileservice.getName(id), profileservice.getSurName(id),
+					profileservice.getAllergen(id), profileservice.getInfo(id)), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -128,19 +133,49 @@ public class ProfileRestController {
 	@PostMapping("/request")
 	public ResponseEntity<Request> requestItem(@RequestParam("typeOfItem") String typeOfItem,
 			@RequestParam("content") String content, HttpServletResponse response) {
-		User user = requestsService.getUser();
+		User user = requestService.getUser();
 		Request req = null;
-		if (requestsService.isIngredient(typeOfItem)) {
-			req = requestsService.getNewRequest(user, typeOfItem, content, 0);
+		if (requestService.isIngredient(typeOfItem)) {
+			req = requestService.getNewRequest(user, typeOfItem, content, 0);
 			return new ResponseEntity<>(req, HttpStatus.OK);
-		} else if (requestsService.isCategory(typeOfItem)) {
-			req = requestsService.getNewRequest(user, typeOfItem, content, 1);
+		} else if (requestService.isCategory(typeOfItem)) {
+			req = requestService.getNewRequest(user, typeOfItem, content, 1);
 			return new ResponseEntity<>(req, HttpStatus.OK);
-		} else if (requestsService.isCookingStyle(typeOfItem)) {
-			req = requestsService.getNewRequest(user, typeOfItem, content, 2);
+		} else if (requestService.isCookingStyle(typeOfItem)) {
+			req = requestService.getNewRequest(user, typeOfItem, content, 2);
 			return new ResponseEntity<>(req, HttpStatus.OK);
 		} else
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
+
+	@GetMapping(value = "/{id}/image")
+    public ResponseEntity<byte[]> getProfileImage(@RequestParam("id") Long id) {
+        Optional<User> User = usersRepository.findById(id);
+        if (!User.isPresent()){
+			 return new ResponseEntity<>(HttpStatus.NOT_FOUND);}
+		else{
+        User profile = User.get();
+        byte[] image = profile.getImage();
+        return new ResponseEntity<>(image, HttpStatus.OK);}
+    }
+
+    @PostMapping(value = "/{id}/image")
+    public ResponseEntity<byte[]> setProfileImage(@PathVariable Long id, @RequestParam MultipartFile image) throws IOException {
+        Optional<User> User = usersRepository.findById(id);
+        if (!User.isPresent()){
+			 return new ResponseEntity<>(HttpStatus.NOT_FOUND);}
+		else{
+			 User profile = User.get();
+			 User u = userSession.getLoggedUser();
+        if(u != null && u.getId() == id) {
+			profile.setImage(image.getBytes());
+			usersRepository.save(profile);
+            return new ResponseEntity<>(profile.getImage(), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+	}
+    }
+
 
 }

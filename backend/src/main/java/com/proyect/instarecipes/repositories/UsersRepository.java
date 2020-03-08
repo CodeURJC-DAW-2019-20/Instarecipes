@@ -1,6 +1,7 @@
 package com.proyect.instarecipes.repositories;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import com.proyect.instarecipes.models.User;
@@ -24,6 +25,9 @@ public interface UsersRepository extends JpaRepository<User, Long> {
 
 	@Query("SELECT following FROM User u WHERE u.username = :name")
 	List<User> findFollowing(String name);
+
+	@Query("SELECT User FROM User u WHERE u.id = :id")
+	Optional<User> findById(long id);
 
 	@Query("SELECT following FROM User u WHERE u.username = :name")
 	Set<User> findFollowingSet(String name);

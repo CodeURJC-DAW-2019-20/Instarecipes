@@ -25,10 +25,12 @@ import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RequestsService {
+public class RequestService {
 
     @Autowired
     private RequestsRepository requestsRepository;
@@ -81,19 +83,19 @@ public class RequestsService {
         return typeOfRequest.equalsIgnoreCase("Cooking style");
     }
 
-    public Request getNewRequest(User user, String typeOfItem,String content, int caso){
+    public Request getNewRequest(User user, String typeOfItem, String content, int caso) {
         Request request = null;
-        
-        switch (caso){
+
+        switch (caso) {
             case 0:
-            request =new Request(user, typeOfItem, content, null, null, false);
+                request = new Request(user, typeOfItem, content, null, null, false);
 
             case 1:
-            request =new Request(user, typeOfItem, null, content, null, false);
-  
+                request = new Request(user, typeOfItem, null, content, null, false);
+
             case 2:
-            request =new Request(user, typeOfItem, null,  null, content,false);
-   
+                request = new Request(user, typeOfItem, null, null, content, false);
+
         }
         return request;
     }
@@ -172,4 +174,7 @@ public class RequestsService {
         requestsRepository.deleteById(id_request);
     }
 
+    public Page<Request> getRequests(int page_number, int page_size) {
+        return requestsRepository.findAllRequests(PageRequest.of(page_number, page_size));
+    }
 }

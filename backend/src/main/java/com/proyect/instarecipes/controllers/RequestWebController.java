@@ -15,7 +15,7 @@ import com.proyect.instarecipes.repositories.CookingStylesRepository;
 import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RequestsRepository;
 import com.proyect.instarecipes.security.UserSession;
-import com.proyect.instarecipes.service.RequestsService;
+import com.proyect.instarecipes.service.RequestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +34,7 @@ public class RequestWebController {
     @Autowired
     private CookingStylesRepository cookingStylesRepository;
     @Autowired
-    private RequestsService requestsService;
+    private RequestService requestsService;
     @Autowired
     private UserSession userSession;
 
