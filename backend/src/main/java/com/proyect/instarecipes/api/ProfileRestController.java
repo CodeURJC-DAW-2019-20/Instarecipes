@@ -153,9 +153,8 @@ public class ProfileRestController {
 			 User profile = User.get();
 			 User u = userSession.getLoggedUser();
         if(u != null && u.getId() == id) {
-            profile.setImage(image.getBytes());
-			//userService.saveUser(profile);
-			//crear un metodo que te guarde y actualice el usuario, usarlo tambien de cara a cuando se registre un usuario
+			profile.setImage(image.getBytes());
+			usersRepository.save(profile);
             return new ResponseEntity<>(profile.getImage(), HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
