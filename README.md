@@ -291,16 +291,96 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 <p align="center">
 <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/templatesDiagram.png"
 </p> 
-
+ 
 
 # API REST AND DOCKER.
 
-## Most important commits :newspaper: <a name="importantComm3"></a>
+## Most important commits :newspaper: <a name="importantComm3"></a>  
+
+|                           |                                 |                                            |
+|---------------------------|---------------------------------|--------------------------------------------|
+| Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es | [@Muffinous](https://github.com/Muffinous) |
+|                           |                                 |                                            |
+
+> This developer has been doing ... 
+
+> * [Users API finished](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/f72b48bac5c0cd05c0a4727e4aea32449d9070d4)
+> * [Update UsersRestController](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/0693c7ac48d4be20de654becbf50993507730b3f)
+> * [Index trending](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/c3c27f26e14cd516c31ac82c83e5e5bc7de5b09b)
+> * [Search filered API](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/ee41238ba5f17aa8475a3d62d7310e38b29c210f)
+> * 
+
+|                           |                                 |                                           |
+|---------------------------|---------------------------------|-------------------------------------------|
+| Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       |[@lordkener](https://github.com/lordkener) |
+|                           |                                 |                                           |
+
+> This developer has been doing ... 
+
+> * [Index 100%](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/7b304686db1faae068832bbe499bebd061354cdb)
+> * [Posting a recipe with images](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/681bf7d9c8f447da17b516d5d445f0936ec2095c)
+> * [Initializing REST Controllers](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/5f927c3db5ca4f73b071d50f0ffebba398ba46e2)
+> * [Recipe page controller](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/91249c7132e27d1c08e7ee5f76b1f852ce7ba5db)
+> * [Index Service, REST and Controller](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/ccc0ee859085a47152696f9760499cd3a77ec130)
+
+|                           |                                 |                                             |
+|---------------------------|---------------------------------|---------------------------------------------|
+| Manuel León Briz          | m.leon.2016@alumnos.urjc.es     | [@manuellb97](https://github.com/manuellb97)|
+|                           |                                 |                                             |
+
+> This developer has been doing ... 
+
+> * [Every postman's operation has been tested and approved.](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/9d684f39a75a2f7af98a43c5dcb2990f9ea91f3f)
+> * [Follow, unfollow API](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/ac69760003c8ab9fd8fbf6dcd8954b010a747e86)
+> * [Category API Rest](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/23a26b4e742a2dcd9e5e88126f40762e7e059d55)
+> * [Login and Signup API](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/2f3d563f96595b7a424fa5f34806d093f1750b98)
+> * 
+
+|                           |                                 |                                            |
+|---------------------------|---------------------------------|--------------------------------------------|
+| José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  | [@trevod98](https://github.com/trevod98)   |
+|                           |                                 |                                            |
+
+> This developer has been doing ... 
+
+> * 
+> *
+> * 
+> *  
+> * 
+
+|                           |                                 |                                            |
+|---------------------------|---------------------------------|--------------------------------------------|
+| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  | [@dMurill0](https://github.com/dMurill0)   |
+|                           |                                 |                                            |
+
+> This developer has been doing ... 
+
+> * 
+> *
+> * 
+> *  
+> * 
+
 
 ## Most worked files :newspaper: <a name="workedFiles3"></a> 
+|                           |                                 |                                 |
+|---------------------------|---------------------------------|---------------------------------|
+| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  |                                 |
+| Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       |                                 |
+| Manuel León Briz          | m.leon.2016@alumnos.urjc.es     |                                 |
+| José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  |                                 |
+| Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es | SearchService, SearchRestController, IndexRestController, UsersRestController and  Services                               |
+|                           |                                 |                                 |  
+
 
 ## API documentation <a name="apidoc"></a>
 
 You can see our [API documentation](https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/API.md) in another .md.   There you will find information about our APIs requests by every single user type.
 
 ##  Classes and templates diagrams <a name="CTdiagrams3"></a>
+> In this section you can see how our diagram has changed. 
+
+<p align="center">
+<img src="https://github.com/CodeURJC-DAW-2019-20/Instarecipes/blob/master/Images/Diagrams/TemplatesModelDiagram.png"
+</p> 

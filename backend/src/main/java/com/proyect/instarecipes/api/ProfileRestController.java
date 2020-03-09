@@ -54,9 +54,12 @@ public class ProfileRestController {
 
 	@JsonView(ProfileRestController.UserProfile.class)
 	@GetMapping("/")
-	public User getUser(@RequestParam Long id) {
-		Optional<User> u = usersRepository.findById(id);
-		return u.get();
+	public ResponseEntity<User> getUser() {
+		if(userSession.isLoggedUser()){
+			return new ResponseEntity<>(userSession.getLoggedUser(), HttpStatus.OK);
+		}else{
+			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+		}
 	}
 
 	@JsonView(ProfileRestController.UserProfile.class)
