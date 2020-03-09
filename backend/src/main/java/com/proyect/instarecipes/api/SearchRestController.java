@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.User;
+import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.models.Allergen;
@@ -30,7 +31,8 @@ public class SearchRestController {
 
 	@Autowired
 	private SearchService searchService;
-
+	@Autowired
+	private UserSession userSession;
 	
     @JsonView(SearchRestController.SearchInfo.class)
 	@PostMapping("/filtered")
@@ -43,11 +45,6 @@ public class SearchRestController {
         ArrayList<String> allergensSelected = searchService.getItem(allergens);
         ArrayList<String> ingredientsSelected = searchService.getItem(ingredients);
 
-		// List<Category> restOfCategories = searchService.restCategories(profileService.getAllCategories(), categoriesSelected);
-        // List<CookingStyle> restOfCookingStyles = searchService.restCookingStyles(profileService.getAllCookingStyles(), cookingStylesSelected);
-        // List<Ingredient> restOfIngredients = searchService.restIngredients(profileService.getAllIngredients(), ingredientsSelected);
-        // List<Allergen> restOfAllergens = searchService.restAllergens(profileService.getAllAllergens(), allergensSelected);
-
 		List<Recipe> recipesFounded = searchService.getFilteredRecipes(ingredientsSelected, categoriesSelected, cookingStylesSelected, allergensSelected);
 		if (recipesFounded != null) {
 			return new ResponseEntity<>(recipesFounded, HttpStatus.OK);
@@ -56,24 +53,26 @@ public class SearchRestController {
 		}
 	}
 
-
     @JsonView(SearchRestController.SearchInfo.class)
 	@PostMapping("/navbar/users")
 	public ResponseEntity<List<User>> getUserSearch(@RequestParam(required = false) String search){
-		String firstLetter = search.substring(0,1);
-		if (firstLetter.equals("@")){
-			List<User> trueUsers = searchService.getTrueUsers(search);
-			return new ResponseEntity<>(trueUsers, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		if(userSession.isLoggedUser()){
+			String firstLetter = search.substring(0,1);
+			if (firstLetter.equals("@")){
+				List<User> trueUsers = searchService.getTrueUsers(search);
+				return new ResponseEntity<>(trueUsers, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}else{
+			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
 		}
 	}
 
 	@JsonView(SearchRestController.SearchInfo.class)
 	@PostMapping("/navbar/recipes") 
 	public ResponseEntity<List<Recipe>> getRecipeSearch(@RequestParam(required = false) String search){
-		String firstLetter = search.substring(0,1);
-		if (!firstLetter.equals("@")){
+		if (search != null){
 			List<Recipe> trueRecipes = searchService.getTrueRecipes(search);
 			return new ResponseEntity<>(trueRecipes, HttpStatus.OK);
 		} else {

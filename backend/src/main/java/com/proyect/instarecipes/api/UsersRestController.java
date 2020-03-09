@@ -53,9 +53,9 @@ public class UsersRestController {
     @JsonView(UsersRestController.UsersFF.class)
     @GetMapping("/{id}/followers")
     public ResponseEntity<List<User>> getUserFollowers(@PathVariable Long id) throws IOException {
-      Optional<User> actual = usersService.getActualUser(id);
-      List<User> followers = usersService.getFollowersUsers(actual.get());
       if (usersession.isLoggedUser()){
+        Optional<User> actual = usersService.getActualUser(id);
+        List<User> followers = usersService.getFollowersUsers(actual.get());
         if (id != null) {
           return new ResponseEntity<>(followers, HttpStatus.OK);
         } else {
