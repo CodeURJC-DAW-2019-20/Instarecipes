@@ -1,0 +1,1398 @@
+{
+	"info": {
+		"_postman_id": "3def7831-ae65-4fc3-aa7a-d197c7e1c430",
+		"name": "InstarecipesPostman",
+		"description": "Complete postman's operations as examples REST requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "IndexRestController",
+			"item": [
+				{
+					"name": "Posting a recipe with images",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "mul",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "imageFile",
+									"type": "file",
+									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/601246091_640x360.jpg"
+								},
+								{
+									"key": "allImages",
+									"description": "(required = false)",
+									"type": "file",
+									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/590328413_640x360.jpg"
+								},
+								{
+									"key": "allImages",
+									"description": "(required = false)",
+									"type": "file",
+									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/1.jpg"
+								},
+								{
+									"key": "allImages",
+									"description": "(required = false)",
+									"type": "file",
+									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/6.jpg"
+								},
+								{
+									"key": "allImages",
+									"description": "(required = false)",
+									"type": "file",
+									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/10.jpg"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8443/api/index?title=aso 1p&description=Bueno aqui esta lo de postear la receta definitiva&difficulty=Easy&duration=30 min.&withImage=1,1,1,0,&firstStepString=paso 1, jejeje&ingredientsString=Potatoes&categoriesString=Mediterranean&cookingStyle=Vegan&allergen=Soy&stepsString=paso 2 ejejjejeab_12_45_3,paso 3 toma yaaaab_12_45_3,paso 4 sisisisiab_12_45_3,paso 5 jijijiiiab_12_45_3,",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "aso 1p"
+								},
+								{
+									"key": "description",
+									"value": "Bueno aqui esta lo de postear la receta definitiva"
+								},
+								{
+									"key": "difficulty",
+									"value": "Easy"
+								},
+								{
+									"key": "duration",
+									"value": "30 min."
+								},
+								{
+									"key": "withImage",
+									"value": "1,1,1,0,",
+									"description": "(required = false), should coincide with stepsString and images in order with the 1 values order"
+								},
+								{
+									"key": "firstStepString",
+									"value": "paso 1, jejeje"
+								},
+								{
+									"key": "ingredientsString",
+									"value": "Potatoes"
+								},
+								{
+									"key": "categoriesString",
+									"value": "Mediterranean",
+									"description": "(required = false)"
+								},
+								{
+									"key": "cookingStyle",
+									"value": "Vegan",
+									"description": "(required = false)"
+								},
+								{
+									"key": "allergen",
+									"value": "Soy",
+									"description": "(required = false)"
+								},
+								{
+									"key": "stepsString",
+									"value": "paso 2 ejejjejeab_12_45_3,paso 3 toma yaaaab_12_45_3,paso 4 sisisisiab_12_45_3,paso 5 jijijiiiab_12_45_3,",
+									"description": "(required = false)"
+								}
+							]
+						},
+						"description": "Here we can post a recipe, with images as MultipartFile"
+					},
+					"response": []
+				},
+				{
+					"name": "Index recent users publications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								""
+							]
+						},
+						"description": "As a list of recipes, as annonymous user"
+					},
+					"response": []
+				},
+				{
+					"name": "Index recent users publications as logged",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/index?page=0&size=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"index"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "4"
+								}
+							]
+						},
+						"description": "Now as logged user, appears his own publications and following users publications"
+					},
+					"response": []
+				},
+				{
+					"name": "Trending recipes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/trending?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"trending"
+							],
+							"query": [
+								{
+									"key": "id_user",
+									"value": "3",
+									"description": "He is allergic to peanuts.",
+									"disabled": true
+								},
+								{
+									"key": "id_user",
+									"value": "5",
+									"description": "This is @pepitoram and he is allergic to soy. ",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "LogInRestController",
+			"item": [
+				{
+					"name": "Login as user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "pepegrillo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8443/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "As normal user"
+					},
+					"response": []
+				},
+				{
+					"name": "Login as admin",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "adminpass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "With privilegies"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"logout"
+							]
+						},
+						"description": "Logout and convert as an annonymous user"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ProfileRestController",
+			"item": [
+				{
+					"name": "Update profile",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "background",
+									"type": "file",
+									"src": []
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8443/api/profile/update?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"update"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Elver",
+									"disabled": true
+								},
+								{
+									"key": "surname",
+									"value": "Galarga",
+									"disabled": true
+								},
+								{
+									"key": "allergen",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "info",
+									"value": "Hola caracola",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request to Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8443/api/profile/admin/request?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"admin",
+								"request"
+							],
+							"query": [
+								{
+									"key": "typeOfItem",
+									"value": "Category",
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": "russian",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send item request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/profile/sendItemRequest?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"sendItemRequest"
+							],
+							"query": [
+								{
+									"key": "typeOfItem",
+									"value": "Ingredient",
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": "ice",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept item request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8443/api/profile/actionItemRequest?typeOfItemRequest=Ingredient&itemContent=Potatoes&action=decline&id_request=1&page=0&size=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"actionItemRequest"
+							],
+							"query": [
+								{
+									"key": "typeOfItemRequest",
+									"value": "Ingredient",
+									"description": "required= true"
+								},
+								{
+									"key": "itemContent",
+									"value": "Potatoes",
+									"description": "required= true"
+								},
+								{
+									"key": "action",
+									"value": "decline",
+									"description": "required= true"
+								},
+								{
+									"key": "id_request",
+									"value": "1",
+									"description": "required= true"
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"description": "required= true"
+								},
+								{
+									"key": "size",
+									"value": "10",
+									"description": "required= true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin request User List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/profile/admin/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Who is the Admin",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "adminpass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8443/api/profile/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "RankingRestController",
+			"item": [
+				{
+					"name": "Ranking per pages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/ranking/?page=1&size=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"ranking",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "RecipeRestController",
+			"item": [
+				{
+					"name": "Like to comment",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ifelse",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8443/api/recipes/comments/1/PressLike",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"comments",
+								"1",
+								"PressLike"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dislike to comment",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ifelse",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8443/api/recipes/comments/1/UnpressLike",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"comments",
+								"1",
+								"UnpressLike"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like to recipe",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ifelse",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8443/api/recipes/1/recipePressLike",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"1",
+								"recipePressLike"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dislike to recipe",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ifelse",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8443/api/recipes/1/recipeUnpressLike",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"1",
+								"recipeUnpressLike"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Recipe by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8443/api/recipes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Steps from a recipe",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8443/api/recipes/4/steps",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"4",
+								"steps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Comments from a recipe",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ifelse",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8443/api/recipes/1/comments/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"1",
+								"comments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post a comment on a recipe by id",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8443/api/recipes/1/comments/?content=A nice recipe for a lazy weekend&parentComment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes",
+								"1",
+								"comments",
+								""
+							],
+							"query": [
+								{
+									"key": "content",
+									"value": "A nice recipe for a lazy weekend"
+								},
+								{
+									"key": "parentComment",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "SearchRestController",
+			"item": [
+				{
+					"name": "Search a recipe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/search/navbar/recipes?search=thai soup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"search",
+								"navbar",
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "thai soup"
+								},
+								{
+									"key": "search",
+									"value": "pizza",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "chocolate vegan",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search an user ",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/search/navbar/users?search=@pepegrillo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"search",
+								"navbar",
+								"users"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "@pepegrillo"
+								},
+								{
+									"key": "search",
+									"value": "@",
+									"description": "All users ",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "@trevrap",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Using '@' you can search an user. "
+					},
+					"response": []
+				},
+				{
+					"name": "Filtered search recipe",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "pepegrillo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/search/filtered?ingredients=Vodka&categories=&cookingStyles=Italian&allergens=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"search",
+								"filtered"
+							],
+							"query": [
+								{
+									"key": "ingredients",
+									"value": "Vodka"
+								},
+								{
+									"key": "categories",
+									"value": ""
+								},
+								{
+									"key": "cookingStyles",
+									"value": "Italian"
+								},
+								{
+									"key": "allergens",
+									"value": ""
+								}
+							]
+						},
+						"description": "This is an example of filter a recipe by the fields that specify it.By ingredients, categories, cooking styles or allergens."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "RecipesRestController",
+			"item": [
+				{
+					"name": "List of recipes on index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/recipes?page=0&size=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"recipes"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "SignUpRestController",
+			"item": [
+				{
+					"name": "Sign Up",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "ifelse",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/593089750_640x360.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8443/api/signUp?",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"signUp"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "juan",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "holaquetal@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "pass",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "juanp",
+									"disabled": true
+								},
+								{
+									"key": "surname",
+									"value": "Pedro",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "Instarecipes> Instagram",
+									"disabled": true
+								},
+								{
+									"key": "allergen",
+									"value": "Nuts",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "UsersRestController",
+			"item": [
+				{
+					"name": "Users profiles.",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/users/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users following",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/users/4/following",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"4",
+								"following"
+							]
+						},
+						"description": "List of users."
+					},
+					"response": []
+				},
+				{
+					"name": "Users followers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/users/4/followers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"4",
+								"followers"
+							]
+						},
+						"description": "List of users."
+					},
+					"response": []
+				},
+				{
+					"name": "Follow an user action.",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/users/11/followAction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"11",
+								"followAction"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"description": "11 is the empty user!",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unfollow an user action",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/users/11/unfollowAction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"11",
+								"unfollowAction"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1fc1aa41-f8c7-481d-b4a4-aa0d0849ec90",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9f70517c-5c3f-4c74-b0a9-dfd276a1f981",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
