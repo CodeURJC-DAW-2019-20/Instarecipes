@@ -637,6 +637,61 @@ The following queries will be preceded by /user or /profile.
 	**Code**: 401 NETWORK_AUTHENTICATION_REQUIRED  
 	> if the user that makes the search is not logged
 
+### Users followers 
+* ##### URL:
+
+        </users/11/following >  
+	
+* ##### Method:  
+         `GET`
+
+* ##### Success Response: 
+	```
+     {
+        "id": ,
+        "username": "",
+        "name": "",
+        "surname": "",
+        "avatar": 
+    },
+    {
+        "id": ,
+        "username": "",
+        "name": "",
+        "surname": "",
+        "avatar": 
+    },
+    {
+        "id": ,
+        "username": "",
+        "name": "",
+        "surname": "",
+        "avatar": 
+    },
+    {
+        "id": ,
+        "username": "",
+        "name": "",
+        "surname": "",
+        "avatar": 
+    },
+    {
+        "id": ,
+        "username": "",
+        "name": " ",
+        "surname": " ",
+        "avatar": 
+    }
+	```
+	
+* ##### Error response:  
+
+	**Code**: 401 NOT_FOUND    
+	> if user not founded 
+	
+	**Code**: 401 NETWORK_AUTHENTICATION_REQUIRED  
+	> if the user that makes the search is not logged
+
 ## Anonymous users <a name="anonymousreq"></a>
 The following queries will be preceded by /. 
 
