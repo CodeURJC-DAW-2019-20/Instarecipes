@@ -212,6 +212,22 @@ The following queries will be preceded by /user or /profile.
 	**Code**: 401 NETWORK_AUTHENTICATION_REQUIRED
 	> if the user that makes the search is not logged
 
+### Update logged user profile. 
+> Resource to post a recipe with **images**.
+ 
+ * ##### URL: 
+ 
+        </profile/update >  
+
+* ##### Method: 		
+        `PUT`
+   
+* ##### Success response: 
+
+
+* ##### Error response:
+
+
 ### Obtain the data of another user
 > Resource to show another user with his data.
 * ##### URL:
@@ -232,6 +248,30 @@ The following queries will be preceded by /user or /profile.
 	
 	**Code**: 401 NETWORK_AUTHENTICATION_REQUIRED
 	> if the user that makes the search is not logged
+
+### Make a request to the admin
+> Resource to show another user with his data.
+
+* ##### URL:
+
+        </users/{id} >  
+	
+* ##### Method:  
+         `POST`
+   
+* ##### Success Response:
+         
+         true
+         
+* ##### Error response:
+
+	**Code**: 401 NOT_FOUND 
+	> if user not founded 
+	
+	**Code**: 401 NETWORK_AUTHENTICATION_REQUIRED
+	> if the user that makes the search is not logged
+
+
 
 ### Obtain the recent users publications
 
@@ -293,6 +333,94 @@ The following queries will be preceded by /user or /profile.
  * ##### Error response:
 
 	**Code**: 401 NOT_FOUND 
+
+### Post a recipe 
+> Resource to post a recipe with **images**.
+ 
+ * ##### URL: 
+
+
+* ##### Method: 
+
+* ##### Success response: 
+	```
+	{
+	"name": "Update profile",
+	"request": {
+		"auth": {
+			"type": "noauth"
+		},
+		"method": "PUT",
+		"header": [
+			{
+				"key": "Content-Type",
+				"value": "application/json",
+				"type": "text"
+			},
+			{
+				"key": "Content-Type",
+				"value": "multipart/form-data",
+				"type": "text"
+			}
+		],
+		"body": {
+			"mode": "formdata",
+			"formdata": [
+				{
+					"key": "avatar",
+					"type": "file",
+					"src": []
+				},
+				{
+					"key": "background",
+					"type": "file",
+					"src": []
+				}
+			],
+			"options": {
+				"formdata": {}
+			}
+		},
+		"url": {
+			"raw": "http://localhost:8443/api/profile/update?",
+			"protocol": "http",
+			"host": [
+				"localhost"
+			],
+			"port": "8443",
+			"path": [
+				"api",
+				"profile",
+				"update"
+			],
+			"query": [
+				{
+					"key": "name",
+					"value": "Elver",
+					"disabled": true
+				},
+				{
+					"key": "surname",
+					"value": "Galarga",
+					"disabled": true
+				},
+				{
+					"key": "allergen",
+					"value": null,
+					"disabled": true
+				},
+				{
+					"key": "info",
+					"value": "Hola caracola",
+					"disabled": true
+				}
+			]
+		}
+	},
+	"response": []
+	}
+	```
+
 
 ### Search an user
 > Resource to search an user.
