@@ -162,7 +162,7 @@ public class RequestService {
         requestsRepository.deleteById(id_request);
     }
 
-    public Page<Request> getRequests(int page_number, int page_size) {
-        return requestsRepository.findAllRequests(PageRequest.of(page_number, page_size));
+    public List<Request> getRequests() {
+        return requestsRepository.findAll();
     }
 }

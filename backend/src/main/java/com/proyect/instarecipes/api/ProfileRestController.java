@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,15 +65,36 @@ public class ProfileRestController {
 
 	@JsonView(ProfileRestController.UserProfile.class)
 	@PutMapping("/update")
-	public ResponseEntity<User> updateProfile(@RequestParam(required = false) String name, @RequestParam(required = false) String surname, 
-	@RequestParam(required = false) String allergen, @RequestParam(required = false) String info, @RequestParam(required = false)  MultipartFile avatar,
+	public ResponseEntity<User> updateProfile(@RequestBody User user, @RequestParam(required = false)  MultipartFile avatar,
 	 @RequestParam(required = false) MultipartFile background )
 			throws IOException {
+		String name, surname, allergen, info;
+		
+		if(user.getName() != null){
+			name = user.getName();
+		}else{
+			name = userSession.getLoggedUser().getName();
+		}
+		if(user.getSurname() != null){
+			surname = user.getSurname();
+		}else{
+			surname = userSession.getLoggedUser().getSurname();
+		}
+		if(user.getAllergens() != null){
+			allergen = user.getAllergens();
+		}else{
+			allergen = userSession.getLoggedUser().getAllergens();
+		}
+		if(user.getInfo() != null){
+			info = user.getInfo();
+		}else{
+			info = userSession.getLoggedUser().getInfo();
+		}
 		if(userSession.isLoggedUser()){
 			User u = usersRepository.findById(userSession.getLoggedUser().getId()).get();
 			if (userSession.getLoggedUser().getId() != null) {
 				return new ResponseEntity<>(profileservice.updateUser(u,avatar,background, name, surname,
-						allergen,info), HttpStatus.OK);
+				allergen, info), HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
@@ -123,6 +145,20 @@ public class ProfileRestController {
 		}
 	}
 	
+	@JsonView(ProfileRestController.RequestItemView.class)
+	@GetMapping("/admin/request")
+	public ResponseEntity<List<Request>> requestItem(){
+		if(userSession.isLoggedUser()){
+			if(userSession.getLoggedUser().getRoles().contains("ROLE_ADMIN")){
+				return new ResponseEntity<>(requestService.getRequests(), HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.LOCKED);
+			}
+		}else{
+			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+		}
+	}
+
 	@JsonView(ProfileRestController.RequestItemView.class)
 	@PostMapping("/admin/request")
 	public ResponseEntity<Request> requestItem(@RequestParam("typeOfItem") String typeOfItem, @RequestParam("content") String content,
@@ -226,11 +262,9 @@ public class ProfileRestController {
             status=true;
             //we delete the item through his id
         }
-        Page<Request> request = requestService.getRequests(page_number,page_size);
-        List<Request> requestList = (List<Request>)request.getContent();
         if (status) {
             //String response_="the item was "+typeOfRequest+" and has been "+action;
-			return new ResponseEntity<>(requestList, HttpStatus.OK);
+			return new ResponseEntity<>(requestService.getRequests(), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
