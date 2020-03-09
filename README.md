@@ -291,13 +291,88 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 <p align="center">
 <img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/templatesDiagram.png"
 </p> 
-
+ 
 
 # API REST AND DOCKER.
 
-## Most important commits :newspaper: <a name="importantComm3"></a>
+## Most important commits :newspaper: <a name="importantComm3"></a>  
+
+|                           |                                 |                                            |
+|---------------------------|---------------------------------|--------------------------------------------|
+| Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es | [@Muffinous](https://github.com/Muffinous) |
+|                           |                                 |                                            |
+
+> This developer has been doing ... 
+
+> * [Users API finished](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/f72b48bac5c0cd05c0a4727e4aea32449d9070d4)
+> *
+> * 
+> *  
+> * 
+
+|                           |                                 |                                           |
+|---------------------------|---------------------------------|-------------------------------------------|
+| Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       |[@lordkener](https://github.com/lordkener) |
+|                           |                                 |                                           |
+
+> This developer has been doing ... 
+
+> * 
+> *
+> * 
+> *  
+> * 
+
+|                           |                                 |                                             |
+|---------------------------|---------------------------------|---------------------------------------------|
+| Manuel León Briz          | m.leon.2016@alumnos.urjc.es     | [@manuellb97](https://github.com/manuellb97)|
+|                           |                                 |                                             |
+
+> This developer has been doing ... 
+
+> * 
+> *
+> * 
+> *  
+> * 
+
+|                           |                                 |                                            |
+|---------------------------|---------------------------------|--------------------------------------------|
+| José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  | [@trevod98](https://github.com/trevod98)   |
+|                           |                                 |                                            |
+
+> This developer has been doing ... 
+
+> * 
+> *
+> * 
+> *  
+> * 
+
+|                           |                                 |                                            |
+|---------------------------|---------------------------------|--------------------------------------------|
+| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  | [@dMurill0](https://github.com/dMurill0)   |
+|                           |                                 |                                            |
+
+> This developer has been doing ... 
+
+> * 
+> *
+> * 
+> *  
+> * 
+
 
 ## Most worked files :newspaper: <a name="workedFiles3"></a> 
+|                           |                                 |                                 |
+|---------------------------|---------------------------------|---------------------------------|
+| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  |                                 |
+| Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       |                                 |
+| Manuel León Briz          | m.leon.2016@alumnos.urjc.es     |                                 |
+| José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  |                                 |
+| Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es |                                 |
+|                           |                                 |                                 |  
+
 
 ## API documentation <a name="apidoc"></a>
 
