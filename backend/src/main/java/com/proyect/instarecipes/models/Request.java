@@ -32,8 +32,9 @@ public class Request{
     @JsonView(RequestItems.class)
     @Column(nullable = true)
     private String categoryContent;
+
+    
     @JsonView(RequestItems.class)
-    @Column(nullable = true)
     private boolean itemExists;
 
     // @Column(nullable = true)
