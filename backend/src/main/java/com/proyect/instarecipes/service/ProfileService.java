@@ -93,10 +93,18 @@ public class ProfileService {
     public User updateUser(User user, MultipartFile avatarFile, 
     MultipartFile backgroundFile, String name, String surname, String allergens, 
     String info)throws IOException{
-        user.setName(name);
-        user.setSurname(surname);
-        user.setAllergens(allergens);
-        user.setInfo(info);
+        if(!name.equals(null)) {
+            user.setName(name);
+        }
+        if(!surname.equals(null)) {
+            user.setSurname(surname);
+        }
+        if(!allergens.equals(null)) {
+            user.setAllergens(allergens);
+        if(!info.equals(null)) {
+            user.setInfo(info);
+        }
+
         usersRepository.flush();
         if(!avatarFile.isEmpty()){
             imageService.saveImage("avatars", user.getId(), avatarFile);

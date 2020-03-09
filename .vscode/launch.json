@@ -10,13 +10,6 @@
             "projectName": "instarecipes",
             "args": ""
         },
-        // {
-        //     "type": "java",
-        //     "name": "CodeLens (Launch) - Application",
-        //     "request": "launch",
-        //     "mainClass": "com.proyect.instarecipes.Application",
-        //     "projectName": "instarecipes"
-        // },
         {
             "type": "java",
             "name": "Spring Boot-Application<instarecipes>",
@@ -34,6 +27,15 @@
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "mainClass": "MavenWrapperDownloader",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Application",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.proyect.instarecipes.Application",
             "args": ""
         }
     ]
