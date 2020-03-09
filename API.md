@@ -58,9 +58,21 @@ Keep reading to know how!
   * You only can send GET, POST and PUT requests.    
   * All API queries are preceded by **/api**.  
 
+**IMPORTANT**  
+
+Our API works with Basic Auth authorization, so if you want to login as admin or normal user go to authorization.   
+The credentials are:    
+- **Admin**:  
+	> Username: admin  
+	> Password: adminpass  
+- **Normal user**:  
+	> Username: pepegrillo  
+	> Password: pass  
+
 ## Our API requests <a name="requests"></a>
 
 ## Authentication <a name="authentication"></a> 
+
 #### login : <a name="login"></a>
    > Allows a user to log in.
    
