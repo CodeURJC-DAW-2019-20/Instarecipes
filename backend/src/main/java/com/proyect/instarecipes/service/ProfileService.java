@@ -101,10 +101,10 @@ public class ProfileService {
         }
         if(!allergens.equals(null)) {
             user.setAllergens(allergens);
+        }
         if(!info.equals(null)) {
             user.setInfo(info);
         }
-
         usersRepository.flush();
         if(!avatarFile.isEmpty()){
             imageService.saveImage("avatars", user.getId(), avatarFile);
