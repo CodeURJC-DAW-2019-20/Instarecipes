@@ -42,7 +42,6 @@ public class UsersRestController {
     @Autowired
     private UsersRepository usersRepository;
 
-
     @JsonView(UsersRestController.AnotherUserProfile.class)
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id) throws IOException {
@@ -125,33 +124,36 @@ public class UsersRestController {
         return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
       }
     }
+    
+	@GetMapping(value = "/{id}/image",produces = MediaType.IMAGE_JPEG_VALUE)
+  public ResponseEntity<byte[]> getProfileImage(@RequestParam("id") Long id) {
+      Optional<User> User = usersRepository.findById(id);
+      if (!User.isPresent()){
+     return new ResponseEntity<>(HttpStatus.NOT_FOUND);}
+  else{
+      User profile = User.get();
+      byte[] image = profile.getImage();
+      return new ResponseEntity<>(image, HttpStatus.OK);}
+  }
 
-    @GetMapping(value = "/{id}/image",produces = MediaType.IMAGE_JPEG_VALUE)
-    public ResponseEntity<byte[]> getProfileImage(@RequestParam("id") Long id) {
-        Optional<User> User = usersRepository.findById(id);
-        if (!User.isPresent()){
-             return new ResponseEntity<>(HttpStatus.NOT_FOUND);}
-        else{
-        User profile = User.get();
-        byte[] image = profile.getImage();
-        return new ResponseEntity<>(image, HttpStatus.OK);}
-    }
+  @PostMapping(value = "/{id}/image",produces = MediaType.IMAGE_JPEG_VALUE)
+  public ResponseEntity<byte[]> setProfileImage(@PathVariable Long id, @RequestParam MultipartFile image) throws IOException {
+      Optional<User> User = usersRepository.findById(id);
+      if (!User.isPresent()){
+     return new ResponseEntity<>(HttpStatus.NOT_FOUND);}
+  else{
+     User profile = User.get();
+     User u = usersession.getLoggedUser();
+      if(u != null && u.getId() == id) {
+          profile.setImage(image.getBytes());
+    //userService.saveUser(profile);
+    //crear un metodo que te guarde y actualice el usuario, usarlo tambien de cara a cuando se registre un usuario
+          return new ResponseEntity<>(profile.getImage(), HttpStatus.OK);
+      }else{
+          return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+  }
+}
+  }
 
-    @PostMapping(value = "/{id}/image",produces = MediaType.IMAGE_JPEG_VALUE)
-    public ResponseEntity<byte[]> setProfileImage(@PathVariable Long id, @RequestParam MultipartFile image) throws IOException {
-        Optional<User> User = usersRepository.findById(id);
-        if (!User.isPresent()){
-             return new ResponseEntity<>(HttpStatus.NOT_FOUND);}
-        else{
-             User profile = User.get();
-             User u = usersession.getLoggedUser();
-        if(u != null && u.getId() == id) {
-            profile.setImage(image.getBytes());
-            usersRepository.save(profile);
-            return new ResponseEntity<>(profile.getImage(), HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-    }
-	}
+
 }
