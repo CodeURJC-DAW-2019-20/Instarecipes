@@ -1,27 +1,16 @@
 package com.proyect.instarecipes.service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import com.proyect.instarecipes.models.Category;
-import com.proyect.instarecipes.models.Comment;
 import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Ingredient;
-import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.Request;
-import com.proyect.instarecipes.models.Step;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.CategoriesRepository;
-import com.proyect.instarecipes.repositories.CommentsRepository;
 import com.proyect.instarecipes.repositories.CookingStylesRepository;
 import com.proyect.instarecipes.repositories.IngredientsRepository;
-import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.RequestsRepository;
-import com.proyect.instarecipes.repositories.StepsRepository;
-import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;

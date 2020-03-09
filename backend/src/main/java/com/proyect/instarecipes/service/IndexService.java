@@ -170,8 +170,9 @@ public class IndexService {
         recipe.setImage(true);
         recipe.setUsername(user);
         recipesRepository.save(recipe);
-
-        imageService.saveImage("recipes", recipe.getId(), imageFile);
+        if(imageFile != null){
+            imageService.saveImage("recipes", recipe.getId(), imageFile);
+        }
         stepsRepository.save(new Step(recipe, 1, firstStepString));
         if(withImage.length()>0){
             String stp = withImage.substring(0, withImage.length()-1);

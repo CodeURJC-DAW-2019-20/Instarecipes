@@ -10,11 +10,6 @@ import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Request;
 import com.proyect.instarecipes.models.User;
-import com.proyect.instarecipes.repositories.CategoriesRepository;
-import com.proyect.instarecipes.repositories.CookingStylesRepository;
-import com.proyect.instarecipes.repositories.IngredientsRepository;
-import com.proyect.instarecipes.repositories.RequestsRepository;
-import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.RequestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class RequestWebController {
 
     @Autowired
-    private RequestsRepository requestsRepository;
-    @Autowired
-    private IngredientsRepository ingredientsRepository;
-    @Autowired
-    private CategoriesRepository categoriesRepository;
-    @Autowired
-    private CookingStylesRepository cookingStylesRepository;
-    @Autowired
     private RequestService requestsService;
-    @Autowired
-    private UserSession userSession;
 
     @PostMapping("/sendItemRequest")
     public void sentItemRequest(@RequestParam("typeOfItem") String typeOfItem, @RequestParam("content") String content,
@@ -107,14 +92,6 @@ public class RequestWebController {
             e.printStackTrace();
         }
     }
-    
-
-
-
-
-
-
-
 
     @PostMapping("/suspendUsersRequest")
     public void actionUsersRequest(@RequestParam("typeOfItemRequest") String typeOfRequest, 

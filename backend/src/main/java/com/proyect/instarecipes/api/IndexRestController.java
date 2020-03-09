@@ -3,10 +3,10 @@ package com.proyect.instarecipes.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -16,16 +16,16 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.proyect.instarecipes.models.Recipe;
-import com.proyect.instarecipes.models.Step;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.IndexService;
+import com.proyect.instarecipes.views.RecipeDTO;
 
 @RestController
 @RequestMapping("/api")
 public class IndexRestController {
 	public interface Main extends User.Username, Recipe.RecipeBasic, Recipe.RecipePlus {}
-	public interface PostRecipe extends User.Username, Recipe.RecipeBasic, Recipe.RecipePlus, Step.StepsView {}
+	public interface PostRecipe extends User.Username, RecipeDTO.PostRecipeView {}
 
 	@Autowired
 	private IndexService indexService;
@@ -79,29 +79,62 @@ public class IndexRestController {
 	}
 
 	// POSTING RECIPE (AS LOGGED) ->
-	// title, description, difficulty, duration, withImage,
-	// firstStepString,
-	// ingredientsString, categoriesString, cookingStyle, allergen, stepsString
 	@JsonView(IndexRestController.PostRecipe.class)
 	@PostMapping("/index")
-	public ResponseEntity<Recipe> postRecipe(@RequestParam String title,
-			@RequestParam String description, @RequestParam String difficulty, @RequestParam String duration,
-			@RequestParam(required = false) String withImage, @RequestParam String firstStepString,
-			@RequestParam String ingredientsString, @RequestParam(required = false) String categoriesString,
-			@RequestParam(required = false) String cookingStyle, @RequestParam(required = false) String allergen,
-			@RequestParam(required = false) String stepsString, @RequestParam(required = false) MultipartFile imageFile,
-			@RequestParam(required = false) MultipartFile[] allImages)
-			throws IOException {
-		
-		Recipe recipe = new Recipe(null, new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), title, description, duration, difficulty, new HashSet<>());
-		System.out.println(recipe);
-		Recipe r = indexService.postRecipe(userSession.getLoggedUser(),recipe, ingredientsString, categoriesString,
-			cookingStyle, allergen, firstStepString, stepsString, withImage,imageFile, allImages);
-        if (r != null) {
-			return new ResponseEntity<>(r, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<RecipeDTO> postRecipe(@RequestBody RecipeDTO recipeDTO) throws IOException {
+		if(userSession.isLoggedUser()){
+			String withImage = "";
+			for(String wI : recipeDTO.getWithImage()){
+				withImage += wI+",";
+			}
+			String ingredientsString = "";
+			for(String iS : recipeDTO.getIngredients()){
+				ingredientsString += iS+",";
+			}
+			ingredientsString = ingredientsString.substring(0, ingredientsString.length()-1);
+			String categoriesString = "";
+			for(String c : recipeDTO.getCategories()){
+				categoriesString += c+",";
+			}
+			categoriesString = categoriesString.substring(0, categoriesString.length()-1);
+			String cookingStyle = "";
+			for(String cS : recipeDTO.getCookingStyles()){
+				cookingStyle += cS+",";
+			}
+			cookingStyle = cookingStyle.substring(0, cookingStyle.length()-1);
+			String stepsString = "";
+			for(String sS : recipeDTO.getSteps()){
+				stepsString += sS+"ab_12_45_3,";
+			}
+			recipeDTO.setUser(userSession.getLoggedUser());
+			Recipe recipe = new Recipe(null, new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), 
+			recipeDTO.getTitle(), recipeDTO.getDescription(), recipeDTO.getDuration(), recipeDTO.getDifficulty(), new HashSet<>());
+			Recipe r = indexService.postRecipe(userSession.getLoggedUser(),recipe, ingredientsString, categoriesString,
+				cookingStyle, recipeDTO.getAllergen(), recipeDTO.getFirstStep(), stepsString, withImage, null, null);
+			if (r != null) {
+				return new ResponseEntity<>(recipeDTO, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}else{
+			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
 		}
+		
 	}
+
+	// @JsonView(IndexRestController.PostRecipe.class)
+	// @PostMapping("/index/{id}/image")
+	// public ResponseEntity<Recipe> postRecipeImage(@PathVariable Long id, RecipeDTO recipeto) throws IOException {
+		
+	// 	// Recipe recipe = new Recipe(null, new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), title, description, duration, difficulty, new HashSet<>());
+	// 	System.out.println(recipe);
+	// 	Recipe r = indexService.postRecipe(userSession.getLoggedUser(),recipe, ingredientsString, categoriesString,
+	// 		cookingStyle, allergen, firstStepString, stepsString, withImage,imageFile, allImages);
+    //     if (r != null) {
+	// 		return new ResponseEntity<>(r, HttpStatus.OK);
+	// 	} else {
+	// 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	// 	}
+	// }
 
 }
