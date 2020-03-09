@@ -10,17 +10,22 @@ import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.User;
+import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.UsersService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/users")
@@ -34,6 +39,8 @@ public class UsersRestController {
     private UsersService usersService;
     @Autowired
     private UserSession usersession;
+    @Autowired
+    private UsersRepository usersRepository;
 
     @JsonView(UsersRestController.AnotherUserProfile.class)
     @GetMapping("/{id}")
@@ -117,4 +124,36 @@ public class UsersRestController {
         return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
       }
     }
+    
+	@GetMapping(value = "/{id}/image",produces = MediaType.IMAGE_JPEG_VALUE)
+  public ResponseEntity<byte[]> getProfileImage(@RequestParam("id") Long id) {
+      Optional<User> User = usersRepository.findById(id);
+      if (!User.isPresent()){
+     return new ResponseEntity<>(HttpStatus.NOT_FOUND);}
+  else{
+      User profile = User.get();
+      byte[] image = profile.getImage();
+      return new ResponseEntity<>(image, HttpStatus.OK);}
+  }
+
+  @PostMapping(value = "/{id}/image",produces = MediaType.IMAGE_JPEG_VALUE)
+  public ResponseEntity<byte[]> setProfileImage(@PathVariable Long id, @RequestParam MultipartFile image) throws IOException {
+      Optional<User> User = usersRepository.findById(id);
+      if (!User.isPresent()){
+     return new ResponseEntity<>(HttpStatus.NOT_FOUND);}
+  else{
+     User profile = User.get();
+     User u = usersession.getLoggedUser();
+      if(u != null && u.getId() == id) {
+          profile.setImage(image.getBytes());
+    //userService.saveUser(profile);
+    //crear un metodo que te guarde y actualice el usuario, usarlo tambien de cara a cuando se registre un usuario
+          return new ResponseEntity<>(profile.getImage(), HttpStatus.OK);
+      }else{
+          return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+  }
+}
+  }
+
+
 }

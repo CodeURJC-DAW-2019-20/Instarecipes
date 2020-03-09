@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -134,11 +135,10 @@ public class RecipeRestController{
     
     @JsonView(RecipeRestController.CommentsRecipe.class)
     @PostMapping("/{id_recipe}/comments/")
-    public ResponseEntity<Comment> setComments(@PathVariable(required = false) Long id_recipe,
-    @RequestParam(required = false) String content, @RequestParam(required = false) Long parentComment){
+    public ResponseEntity<Comment> setComments(@PathVariable(required = false) Long id_recipe, @RequestBody CommentDto commentdto){
         if(userSession.isLoggedUser()){
-            if (content != null){
-                return new ResponseEntity<>(recipeService.postComment(id_recipe, content, parentComment, userSession.getLoggedUser()), HttpStatus.OK);
+            if (commentdto.getContent() != null){
+                return new ResponseEntity<>(recipeService.postComment(id_recipe, commentdto.getContent(), commentdto.getParentComment(), userSession.getLoggedUser()), HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }

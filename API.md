@@ -13,7 +13,7 @@
     * [For registered users](#regtrending)
   	* [For anonymous users](#anontrending)
   * [Index page](#indexpage)
-    * [For registered users](#registeredreq))
+    * [For registered users](#registeredreq)
         * [Posting a recipe with images](#postrecipe)
         * [Recent publications](#recentpubslog)
     * [For anonymous users](#anonymousreq)
@@ -257,7 +257,7 @@ The following queries will be preceded by /api
 
 ### For registered users <a name="registeredreq"></a>
 
-### Post a recipe 
+### Post a recipe <a name="postrecipe"></a>
 > Resource to post a recipe with **images**.
 
  * ##### URL: 
@@ -311,7 +311,7 @@ The following queries will be preceded by /api
 	**Code**: 401 NETWORK_AUTHENTICATION_REQUIRED
 	> if the user that makes the search is not logged
 
-### Obtain the recent users publications
+### Obtain the recent users publications <a name="recentpubslog"></a>
 
 * ##### URL:
 
@@ -322,50 +322,52 @@ The following queries will be preceded by /api
 
 * ##### Success Response: 
     ```
-            "username": {
-            "username": "pepegrillo",
-            "avatar": true
-        },
-        "title": "Vinagreta",
-        "description": "This is the fking vinagreta",
-        "likes": 0,
-        "n_comments": 0,
-        "image": true
-    },
-    {
-        "username": {
-            "username": "pepegrillo",
-            "avatar": true
-        },
-        "title": "Olives and Sun-Dried Tomato Couscous",
-        "description": "A delicate, flavorful dish that will satisfy vegans and carnivores alike!.",
-        "likes": 2,
-        "n_comments": 0,
-        "image": true
-    },
-    {
-        "username": {
-            "username": "admin",
-            "avatar": true
-        },
-        "title": "Cheddar Cheese Sauce",
-        "description": "Everyone loves cheese sauce over veggies, or for dipping. But of course there are all the pitfalls of eating cow dairy products. Here is a raw, live, vegan alternative that really stands up for applause!",
-        "likes": 6,
-        "n_comments": 0,
-        "image": true
-    },
-    {
-        "username": {
-            "username": "manusav96",
-            "avatar": true
-        },
-        "title": "Vodka Sauce Pasta (Pasta Party!)",
-        "description": "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese.. And don't worry, It won't taste like vodka!",
-        "likes": 2,
-        "n_comments": 0,
-        "image": true
-    }
-    ]
+      [
+      	  {
+		    "username": {
+		    "username": "pepegrillo",
+		    "avatar": true
+		},
+		"title": "Vinagreta",
+		"description": "This is the fking vinagreta",
+		"likes": 0,
+		"n_comments": 0,
+		"image": true
+	    },
+	    {
+		"username": {
+		    "username": "pepegrillo",
+		    "avatar": true
+		},
+		"title": "Olives and Sun-Dried Tomato Couscous",
+		"description": "A delicate, flavorful dish that will satisfy vegans and carnivores alike!.",
+		"likes": 2,
+		"n_comments": 0,
+		"image": true
+	    },
+	    {
+		"username": {
+		    "username": "admin",
+		    "avatar": true
+		},
+		"title": "Cheddar Cheese Sauce",
+		"description": "Everyone loves cheese sauce over veggies, or for dipping. But of course there are all the pitfalls of eating cow dairy products. Here is a raw, live, vegan alternative that really stands up for applause!",
+		"likes": 6,
+		"n_comments": 0,
+		"image": true
+	    },
+	    {
+		"username": {
+		    "username": "manusav96",
+		    "avatar": true
+		},
+		"title": "Vodka Sauce Pasta (Pasta Party!)",
+		"description": "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese.. And don't worry, It won't taste like vodka!",
+		"likes": 2,
+		"n_comments": 0,
+		"image": true
+	    }
+	 ]
     ```
     
  * ##### Error response:
@@ -375,7 +377,7 @@ The following queries will be preceded by /api
 
 ### For anonymous users <a name="anonymousreq"></a>
 
-### Obtain the recent users publications
+### Obtain the recent users publications <a name="recentpubs"></a>
 
 * ##### URL:
 
