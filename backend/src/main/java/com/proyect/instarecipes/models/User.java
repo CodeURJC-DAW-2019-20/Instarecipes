@@ -109,6 +109,22 @@ public class User{
 		this.following = following;
 		
 	}
+	
+	public User(String username, String email, String password, String name, String surname, String info,
+			String allergens, Set<User> followers, Set<User> following, byte[] image, String... roles) { //THIS ROLE PARAM NECESSARY HAS TO BE AT THE END OF THE COSTRUCTOR
+		this.username = username;
+		this.email = email;
+		this.password = new BCryptPasswordEncoder().encode(password);
+		this.roles = new ArrayList<>(Arrays.asList(roles));
+		this.name = name;
+		this.surname = surname;
+		this.info = info;
+		this.allergens = allergens;
+		this.followers = followers;
+		this.following = following;
+		this.image=image;
+	}
+
 
 	//this constructor will be called once the user logged in
     public User(String name) {
@@ -197,7 +213,8 @@ public class User{
 		this.roles = roles;
 	}
 	 public void setImage(byte[] image){
-         this.image=image;
+		 this.image=image;
+		 
      }
 
 	public byte[] getImage() {
