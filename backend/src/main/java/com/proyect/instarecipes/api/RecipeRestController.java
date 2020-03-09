@@ -95,7 +95,7 @@ public class RecipeRestController{
     /* COMMENTS SECTION */
 
     @JsonView(RecipeRestController.CommentsRecipe.class)
-    @PostMapping("/comments/{id_comment}/PressLike")
+    @PostMapping("/{id_recipe}/comments/{id_comment}/PressLike")
     public ResponseEntity<Comment> likeComment(@PathVariable Long id_comment){
         if(userSession.isLoggedUser()){
             if (id_comment != null){
@@ -108,7 +108,7 @@ public class RecipeRestController{
         }
     }
     @JsonView(RecipeRestController.CommentsRecipe.class)
-    @PostMapping("/comments/{id_comment}/UnpressLike")
+    @PostMapping("/{id_recipe}/comments/{id_comment}/UnpressLike")
     public ResponseEntity<Comment> unlikeComment(@PathVariable Long id_comment){
         if(userSession.isLoggedUser()){
             if (id_comment != null){

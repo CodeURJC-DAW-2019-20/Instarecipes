@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,8 +54,8 @@ public class SearchRestController {
 	}
 
     @JsonView(SearchRestController.SearchInfo.class)
-	@PostMapping("/navbar/users")
-	public ResponseEntity<List<User>> getUserSearch(@RequestBody(required = false) String search){
+	@GetMapping("/navbar/users")
+	public ResponseEntity<List<User>> getUserSearch(@RequestParam(required = false) String search){
 		if(userSession.isLoggedUser()){
 			String firstLetter = search.substring(0,1);
 			if (firstLetter.equals("@")){
@@ -69,8 +70,8 @@ public class SearchRestController {
 	}
 
 	@JsonView(SearchRestController.SearchInfo.class)
-	@PostMapping("/navbar/recipes") 
-	public ResponseEntity<List<Recipe>> getRecipeSearch(@RequestBody(required = false) String search){
+	@GetMapping("/navbar/recipes") 
+	public ResponseEntity<List<Recipe>> getRecipeSearch(@RequestParam(required = false) String search){
 		if (search != null){
 			List<Recipe> trueRecipes = searchService.getTrueRecipes(search);
 			return new ResponseEntity<>(trueRecipes, HttpStatus.OK);
