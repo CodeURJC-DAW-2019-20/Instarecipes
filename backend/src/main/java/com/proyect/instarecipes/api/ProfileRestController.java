@@ -25,6 +25,7 @@ import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.repositories.UsersRepository;
+import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.ProfileService;
 import com.proyect.instarecipes.service.RequestService;
 
@@ -48,6 +49,8 @@ public class ProfileRestController {
 	private ProfileService profileservice;
 	@Autowired
 	private RequestService requestService;
+	@Autowired
+	private UserSession userSession;
 
 	@JsonView(ProfileRestController.UserProfile.class)
 	@GetMapping("/")
@@ -57,16 +60,21 @@ public class ProfileRestController {
 	}
 
 	@JsonView(ProfileRestController.UserProfile.class)
-	@PutMapping("/")
-	public ResponseEntity<User> updateProfile(@RequestParam Long id, @RequestParam String name, @RequestParam String surname, @RequestParam String allergen, @RequestParam String info,
-	 @RequestParam  MultipartFile avatar, @RequestParam MultipartFile background )
+	@PutMapping("/update")
+	public ResponseEntity<User> updateProfile(@RequestParam(required = false) String name, @RequestParam(required = false) String surname, 
+	@RequestParam(required = false) String allergen, @RequestParam(required = false) String info, @RequestParam(required = false)  MultipartFile avatar,
+	 @RequestParam(required = false) MultipartFile background )
 			throws IOException {
-		User u = usersRepository.findById(id).get();
-		if (id != null) {
-			return new ResponseEntity<>(profileservice.updateUser(u,avatar,background, name, surname,
-					allergen,info), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		if(userSession.isLoggedUser()){
+			User u = usersRepository.findById(userSession.getLoggedUser().getId()).get();
+			if (userSession.getLoggedUser().getId() != null) {
+				return new ResponseEntity<>(profileservice.updateUser(u,avatar,background, name, surname,
+						allergen,info), HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		}else{
+			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
 		}
 	}
 
@@ -74,36 +82,74 @@ public class ProfileRestController {
 
 	@JsonView(ProfileRestController.UserProfile.class)
 	@GetMapping("/admin")
-	public User getAdmin(@RequestParam Long id) {
-		Optional<User> u = usersRepository.findById(id);
-		return u.get();
+	public ResponseEntity<User> getAdmin() {
+		if(userSession.isLoggedUser()){
+			boolean isAdmin = false;
+			for(String s : userSession.getLoggedUser().getRoles()){
+				if(s.equals("ROLE_ADMIN"))
+					isAdmin = true;				
+			}
+			if(isAdmin){
+				User u = userSession.getLoggedUser();
+				return new ResponseEntity<>(u, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.LOCKED);
+			}
+		}else {
+			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+		}
 	}
 
 	@JsonView(ProfileRestController.AdminProfile.class)
 	@GetMapping("/admin/users")
-	public List <User> getUsersList() {
-		List <User> u = usersRepository.findAll();
-		return u;
+	public ResponseEntity<List<User>> getUsersList() {
+		if(userSession.isLoggedUser()){
+			boolean isAdmin = false;
+			for(String s : userSession.getLoggedUser().getRoles()){
+				if(s.equals("ROLE_ADMIN"))
+					isAdmin = true;				
+			}
+			if(isAdmin){
+				List <User> u = usersRepository.findAll();
+				return new ResponseEntity<>(u,HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.LOCKED);
+			}
+		}else{
+			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+		}
 	}
 	
 	@JsonView(ProfileRestController.RequestItemView.class)
 	@PostMapping("/admin/request")
-	public ResponseEntity<Request> requestItem(@RequestParam Long id_user,
-			@RequestParam("typeOfItem") String typeOfItem, @RequestParam("content") String content,
+	public ResponseEntity<Request> requestItem(@RequestParam("typeOfItem") String typeOfItem, @RequestParam("content") String content,
 			HttpServletResponse response) {
-		Optional<User> user = usersRepository.findById(id_user);
-		Request req = null;
-		if (requestService.isIngredient(typeOfItem)) {
-			req = requestService.getNewRequest(user.get(), typeOfItem, content, 0);
-			return new ResponseEntity<>(req, HttpStatus.OK);
-		} else if (requestService.isCategory(typeOfItem)) {
-			req = requestService.getNewRequest(user.get(), typeOfItem, content, 1);
-			return new ResponseEntity<>(req, HttpStatus.OK);
-		} else if (requestService.isCookingStyle(typeOfItem)) {
-			req = requestService.getNewRequest(user.get(), typeOfItem, content, 2);
-			return new ResponseEntity<>(req, HttpStatus.OK);
-		} else
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		if(userSession.isLoggedUser()){
+			boolean isAdmin = false;
+			for(String s : userSession.getLoggedUser().getRoles()){
+				if(s.equals("ROLE_ADMIN"))
+					isAdmin = true;				
+			}
+			if(isAdmin){
+				Optional<User> user = usersRepository.findById(userSession.getLoggedUser().getId());
+				Request req = null;
+				if (requestService.isIngredient(typeOfItem)) {
+					req = requestService.getNewRequest(user.get(), typeOfItem, content, 0);
+					return new ResponseEntity<>(req, HttpStatus.OK);
+				} else if (requestService.isCategory(typeOfItem)) {
+					req = requestService.getNewRequest(user.get(), typeOfItem, content, 1);
+					return new ResponseEntity<>(req, HttpStatus.OK);
+				} else if (requestService.isCookingStyle(typeOfItem)) {
+					req = requestService.getNewRequest(user.get(), typeOfItem, content, 2);
+					return new ResponseEntity<>(req, HttpStatus.OK);
+				} else
+					return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			} else{
+				return new ResponseEntity<>(HttpStatus.LOCKED);
+			}
+		} else{
+			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+		}
 	}
 
     @JsonView(ProfileRestController.PostItem.class)
@@ -149,26 +195,23 @@ public class ProfileRestController {
 
     @JsonView(ProfileRestController.PostItem.class)
     @PostMapping("/actionItemRequest")
-    public ResponseEntity<List<Request>>  acceptItemRequest(@RequestParam("typeOfItemRequest") String typeOfRequest, 
+    public ResponseEntity<List<Request>> acceptItemRequest (@RequestParam("typeOfItemRequest") String typeOfRequest, 
     @RequestParam("itemContent") String itemContent,
     @RequestParam("action") String action, 
     @RequestParam("id_request") Long id_request,
-    @RequestParam("page") int page_number, @RequestParam("size") int page_size,
-    HttpServletResponse response){
+    @RequestParam("page") int page_number, @RequestParam("size") int page_size){
         boolean status =false;
-        System.out.println("ACTION: "+action);
-        System.out.println("Type of request: "+typeOfRequest);
         boolean actionAccepted=requestService.actionIsAccepted(action);
         boolean actionDecline=requestService.actionIsDecline(action);
         if(actionAccepted){
             if(requestService.isEqualIngredient(typeOfRequest)){
                 requestService.addItem(0, itemContent, id_request);
                 status=true;
-                //add ingrediente
+                //add ingredient
             }else if(requestService.isEqualCategory(typeOfRequest)){
                 requestService.addItem(1, itemContent, id_request);
                 status=true;
-                //add categoria
+                //add category
             }else if(requestService.isEqualCookingStyle(typeOfRequest)){
                 requestService.addItem(2, itemContent, id_request);
                 status=true;

@@ -301,6 +301,6 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 
 ## API documentation <a name="apidoc"></a>
 
-You can see our [API documentation](https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/API_Documentation.md) in another .md. There you will find information about our APIs requests by every single user type.
+You can see our [API documentation](https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/API.md) in another .md.   There you will find information about our APIs requests by every single user type.
 
 ##  Classes and templates diagrams <a name="CTdiagrams3"></a>
