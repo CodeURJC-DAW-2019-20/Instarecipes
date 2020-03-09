@@ -50,6 +50,14 @@ public class UsersRestController {
       }
     }
 
+  //   @GetMapping(value = "/{id}/image")
+	// public ResponseEntity<byte[]> getProfileImage(@RequestParam("id") Long id) {
+	// 	Optional<User> User = usersRepository.findById(id);
+	// 	if (!User.isPresent()) {
+  //     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+  //   }
+  // }
+
     @JsonView(UsersRestController.UsersFF.class)
     @GetMapping("/{id}/followers")
     public ResponseEntity<List<User>> getUserFollowers(@PathVariable Long id) throws IOException {
