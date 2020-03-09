@@ -12,7 +12,6 @@ import com.proyect.instarecipes.models.Step;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.CommentsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
-import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.RecipeService;
 
@@ -41,8 +40,6 @@ public class RecipeRestController{
     private CommentsRepository commentsRepository;
     @Autowired
     private RecipeService recipeService;
-    @Autowired
-    private UsersRepository usersRepository;
     @Autowired
     private UserSession userSession;
 
