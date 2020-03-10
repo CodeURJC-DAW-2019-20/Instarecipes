@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.models.Step;
 import com.proyect.instarecipes.models.User;
+import com.proyect.instarecipes.repositories.RecipesRepository;
+import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.IndexService;
 import com.proyect.instarecipes.views.RecipeDTO;
@@ -34,6 +38,10 @@ public class IndexRestController {
 	private IndexService indexService;
 	@Autowired
 	private UserSession userSession;
+	@Autowired
+	private StepsRepository stepsRepository;
+	@Autowired
+	private RecipesRepository recipesRepository;
 
 	// RECENT USERS PUBLICATIONS (AS ANNONYMOUS)
 	@JsonView(IndexRestController.Main.class)
@@ -141,4 +149,30 @@ public class IndexRestController {
 		}
 	}
 
+	@GetMapping(value = "/index/{id}/image/{step}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> getRecipeMainImage(@PathVariable Long id,@PathVariable int step) {
+        Optional<Recipe> recipe = recipesRepository.findById(id);
+        int num;
+        if(step==1){
+             num=0;
+        }else{
+            num=1;
+        }
+        if (!recipe.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            Recipe recipenew = recipe.get();
+            switch (num) {
+                case 0:
+                    byte[] imagerecipe = recipenew.getMainImage();
+                    return new ResponseEntity<>(imagerecipe, HttpStatus.OK);
+                case 1:
+                    Step s = stepsRepository.findByRecipeIdAndNumber(recipenew.getId(),step);
+                    byte[]  imagestep = s.getStepImage();
+                    return new ResponseEntity<>(imagestep, HttpStatus.OK);
+                default:
+                    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }       
+    }
 }

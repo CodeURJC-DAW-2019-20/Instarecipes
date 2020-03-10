@@ -1,6 +1,5 @@
 package com.proyect.instarecipes.models;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 import javax.persistence.Entity;
