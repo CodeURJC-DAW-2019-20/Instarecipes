@@ -30,6 +30,7 @@ public class Comment{
 
     @JsonView(RecipeView.class)
     private boolean hasSubcomments;
+    
     @JsonView(RecipeView.class)
     private boolean isSubcomment;
 

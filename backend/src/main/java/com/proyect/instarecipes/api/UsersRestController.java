@@ -40,7 +40,7 @@ public class UsersRestController {
     @Autowired
     private UserSession usersession;
     @Autowired
-  	private UsersRepository usersRepository;
+    private UsersRepository usersRepository;
 
     @JsonView(UsersRestController.AnotherUserProfile.class)
     @GetMapping("/{id}")
