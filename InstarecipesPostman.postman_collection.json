@@ -17,54 +17,13 @@
 							{
 								"key": "Content-Type",
 								"name": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
+								"value": "application/json",
 								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "multipart/form-data",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "mul",
-								"type": "text",
-								"disabled": true
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "imageFile",
-									"type": "file",
-									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/601246091_640x360.jpg"
-								},
-								{
-									"key": "allImages",
-									"description": "(required = false)",
-									"type": "file",
-									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/590328413_640x360.jpg"
-								},
-								{
-									"key": "allImages",
-									"description": "(required = false)",
-									"type": "file",
-									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/1.jpg"
-								},
-								{
-									"key": "allImages",
-									"description": "(required = false)",
-									"type": "file",
-									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/6.jpg"
-								},
-								{
-									"key": "allImages",
-									"description": "(required = false)",
-									"type": "file",
-									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/10.jpg"
-								}
-							],
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Vinagreta\",\n    \"description\": \"This is the fking vinagreta\",\n    \"difficulty\": \"izi\",\n    \"duration\": \"44 min.\",\n    \"firstStep\": \"Hola cabrones de micaelos\",\n    \"allergen\": \"Nuts\",\n    \"withImage\": [\n        \"0\",\n        \"0\"\n    ],\n    \"steps\": [\n        \"Esto es el paso 2\",\n        \"Esto es el paso 3\"\n    ],\n    \"ingredients\": [\n        \"Potatoes\"\n    ],\n    \"categories\": [\n        \"Dinner\"\n    ],\n    \"cookingStyles\": [\n        \"Mediterranean\"\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -72,7 +31,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8443/api/index?title=aso 1p&description=Bueno aqui esta lo de postear la receta definitiva&difficulty=Easy&duration=30 min.&withImage=1,1,1,0,&firstStepString=paso 1, jejeje&ingredientsString=Potatoes&categoriesString=Mediterranean&cookingStyle=Vegan&allergen=Soy&stepsString=paso 2 ejejjejeab_12_45_3,paso 3 toma yaaaab_12_45_3,paso 4 sisisisiab_12_45_3,paso 5 jijijiiiab_12_45_3,",
+							"raw": "http://localhost:8443/api/index",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -81,57 +40,6 @@
 							"path": [
 								"api",
 								"index"
-							],
-							"query": [
-								{
-									"key": "title",
-									"value": "aso 1p"
-								},
-								{
-									"key": "description",
-									"value": "Bueno aqui esta lo de postear la receta definitiva"
-								},
-								{
-									"key": "difficulty",
-									"value": "Easy"
-								},
-								{
-									"key": "duration",
-									"value": "30 min."
-								},
-								{
-									"key": "withImage",
-									"value": "1,1,1,0,",
-									"description": "(required = false), should coincide with stepsString and images in order with the 1 values order"
-								},
-								{
-									"key": "firstStepString",
-									"value": "paso 1, jejeje"
-								},
-								{
-									"key": "ingredientsString",
-									"value": "Potatoes"
-								},
-								{
-									"key": "categoriesString",
-									"value": "Mediterranean",
-									"description": "(required = false)"
-								},
-								{
-									"key": "cookingStyle",
-									"value": "Vegan",
-									"description": "(required = false)"
-								},
-								{
-									"key": "allergen",
-									"value": "Soy",
-									"description": "(required = false)"
-								},
-								{
-									"key": "stepsString",
-									"value": "paso 2 ejejjejeab_12_45_3,paso 3 toma yaaaab_12_45_3,paso 4 sisisisiab_12_45_3,paso 5 jijijiiiab_12_45_3,",
-									"description": "(required = false)"
-								}
 							]
 						},
 						"description": "Here we can post a recipe, with images as MultipartFile"
@@ -196,7 +104,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8443/api/trending?",
+							"raw": "http://localhost:8443/api/trending",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -205,20 +113,6 @@
 							"path": [
 								"api",
 								"trending"
-							],
-							"query": [
-								{
-									"key": "id_user",
-									"value": "3",
-									"description": "He is allergic to peanuts.",
-									"disabled": true
-								},
-								{
-									"key": "id_user",
-									"value": "5",
-									"description": "This is @pepitoram and he is allergic to soy. ",
-									"disabled": true
-								}
 							]
 						}
 					},
@@ -240,13 +134,13 @@
 							"type": "basic",
 							"basic": [
 								{
-									"key": "password",
-									"value": "pass",
+									"key": "username",
+									"value": "pepegrillo",
 									"type": "string"
 								},
 								{
-									"key": "username",
-									"value": "pepegrillo",
+									"key": "password",
+									"value": "pass",
 									"type": "string"
 								}
 							]
@@ -255,14 +149,10 @@
 						"header": [],
 						"body": {
 							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "",
-									"value": "",
-									"type": "text",
-									"disabled": true
-								}
-							]
+							"formdata": [],
+							"options": {
+								"formdata": {}
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8443/api/login",
@@ -375,13 +265,10 @@
 									"type": "file",
 									"src": []
 								}
-							],
-							"options": {
-								"formdata": {}
-							}
+							]
 						},
 						"url": {
-							"raw": "http://localhost:8443/api/profile/update?",
+							"raw": "http://localhost:8443/api/profile/update",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -419,79 +306,6 @@
 					"response": []
 				},
 				{
-					"name": "Request to Admin",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8443/api/profile/admin/request?",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"profile",
-								"admin",
-								"request"
-							],
-							"query": [
-								{
-									"key": "typeOfItem",
-									"value": "Category",
-									"disabled": true
-								},
-								{
-									"key": "content",
-									"value": "russian",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Send item request",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8443/api/profile/sendItemRequest?",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"profile",
-								"sendItemRequest"
-							],
-							"query": [
-								{
-									"key": "typeOfItem",
-									"value": "Ingredient",
-									"disabled": true
-								},
-								{
-									"key": "content",
-									"value": "ice",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Accept item request",
 					"request": {
 						"method": "POST",
@@ -503,7 +317,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8443/api/profile/actionItemRequest?typeOfItemRequest=Ingredient&itemContent=Potatoes&action=decline&id_request=1&page=0&size=10",
+							"raw": "http://localhost:8443/api/profile/actionItemRequest?typeOfItemRequest=Ingredient&itemContent=Potatoes&action=decline&id_request&page=0&size=10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -532,7 +346,7 @@
 								},
 								{
 									"key": "id_request",
-									"value": "1",
+									"value": null,
 									"description": "required= true"
 								},
 								{
@@ -613,6 +427,390 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "View actual profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/profile/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User requests list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/profile/admin/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"admin",
+								"request"
+							]
+						},
+						"description": "All the items"
+					},
+					"response": []
+				},
+				{
+					"name": "Admin action request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/profile/actionItemRequest?typeOfItemRequest=Ingredient&itemContent=Potatoes&action=decline&id_request=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"actionItemRequest"
+							],
+							"query": [
+								{
+									"key": "typeOfItemRequest",
+									"value": "Ingredient"
+								},
+								{
+									"key": "itemContent",
+									"value": "Potatoes"
+								},
+								{
+									"key": "action",
+									"value": "decline"
+								},
+								{
+									"key": "id_request",
+									"value": "2"
+								}
+							]
+						},
+						"description": "admin choose between request"
+					},
+					"response": []
+				},
+				{
+					"name": "Get image profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "image/jpeg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8443/api/users/2/image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"2",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8443/api/profile/admin/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"admin",
+								"request"
+							],
+							"query": [
+								{
+									"key": "typeOfItem",
+									"value": "Category",
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": "russian",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_imageProfile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "image/jpeg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/manue/Desktop/mono.jpg",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8443/api/users/12/image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"12",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post image profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "image/jpeg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/manue/Desktop/mono.jpg"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8443/api/users/12/image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"12",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send item Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"typeOfRequest\": \"Ingredient\",\n\"content\": \"brocoli\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8443/api/profile/sendItemRequest",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"sendItemRequest"
+							],
+							"query": [
+								{
+									"key": "typeOfItem",
+									"value": "Ingredient",
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": "Brocoli",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post images recipe",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "image/jpeg",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "image/jpeg",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "a",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "imageFile",
+									"type": "file",
+									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/adobe.png"
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8443/api/index/6/image/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"index",
+								"6",
+								"image",
+								"2"
+							]
+						},
+						"description": "Posting one by one"
+					},
+					"response": []
+				},
+				{
+					"name": "Get images recipe",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "image/jpeg",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "image/jpeg",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "a",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8443/api/index/6/image/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"index",
+								"6",
+								"image",
+								"2"
+							]
+						},
+						"description": "Get a images with recipe"
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -683,8 +881,15 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8443/api/recipes/comments/1/PressLike",
+							"raw": "http://localhost:8443/api/recipes/1/comments/1/PressLike",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -693,6 +898,7 @@
 							"path": [
 								"api",
 								"recipes",
+								"1",
 								"comments",
 								"1",
 								"PressLike"
@@ -728,7 +934,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8443/api/recipes/comments/1/UnpressLike",
+							"raw": "http://localhost:8443/api/recipes/1/comments/1/UnpressLike",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -737,6 +943,7 @@
 							"path": [
 								"api",
 								"recipes",
+								"1",
 								"comments",
 								"1",
 								"UnpressLike"
@@ -843,7 +1050,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8443/api/recipes/1",
+							"raw": "http://localhost:8443/api/recipes/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -852,7 +1059,7 @@
 							"path": [
 								"api",
 								"recipes",
-								"1"
+								"4"
 							]
 						}
 					},
@@ -933,6 +1140,21 @@
 				{
 					"name": "Post a comment on a recipe by id",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "pepegrillo",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [
 							{
@@ -941,8 +1163,12 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\t\"content\": \"A nice recipe for a lazy weekend\",\n\t\"parentComment\": \"\"\n}"
+						},
 						"url": {
-							"raw": "http://localhost:8443/api/recipes/1/comments/?content=A nice recipe for a lazy weekend&parentComment",
+							"raw": "http://localhost:8443/api/recipes/1/comments/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -954,16 +1180,6 @@
 								"1",
 								"comments",
 								""
-							],
-							"query": [
-								{
-									"key": "content",
-									"value": "A nice recipe for a lazy weekend"
-								},
-								{
-									"key": "parentComment",
-									"value": null
-								}
 							]
 						}
 					},
@@ -978,10 +1194,17 @@
 				{
 					"name": "Search a recipe",
 					"request": {
-						"method": "POST",
-						"header": [],
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8443/api/search/navbar/recipes?search=thai soup",
+							"raw": "http://localhost:8443/api/search/navbar/recipes",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -996,16 +1219,12 @@
 							"query": [
 								{
 									"key": "search",
-									"value": "thai soup"
-								},
-								{
-									"key": "search",
 									"value": "pizza",
 									"disabled": true
 								},
 								{
 									"key": "search",
-									"value": "chocolate vegan",
+									"value": "thai soup",
 									"disabled": true
 								}
 							]
@@ -1015,11 +1234,27 @@
 				},
 				{
 					"name": "Search an user ",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
-						"header": [],
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8443/api/search/navbar/users?search=@pepegrillo",
+							"raw": "http://localhost:8443/api/search/navbar/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1034,17 +1269,18 @@
 							"query": [
 								{
 									"key": "search",
-									"value": "@pepegrillo"
-								},
-								{
-									"key": "search",
-									"value": "@",
-									"description": "All users ",
+									"value": "@pepegrillo",
 									"disabled": true
 								},
 								{
 									"key": "search",
-									"value": "@trevrap",
+									"value": "@",
+									"description": "All users",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
 									"disabled": true
 								}
 							]
@@ -1072,9 +1308,22 @@
 							]
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ingredients\": \"Potatoes,Lettuce\",\n    \"categories\": \"\",\n    \"cookingStyles\": \"\",\n    \"allergens\": \"\"\n}",
+							"options": {
+								"raw": {}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8443/api/search/filtered?ingredients=Vodka&categories=&cookingStyles=Italian&allergens=",
+							"raw": "http://localhost:8443/api/search/filtered",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1084,24 +1333,6 @@
 								"api",
 								"search",
 								"filtered"
-							],
-							"query": [
-								{
-									"key": "ingredients",
-									"value": "Vodka"
-								},
-								{
-									"key": "categories",
-									"value": ""
-								},
-								{
-									"key": "cookingStyles",
-									"value": "Italian"
-								},
-								{
-									"key": "allergens",
-									"value": ""
-								}
 							]
 						},
 						"description": "This is an example of filter a recipe by the fields that specify it.By ingredients, categories, cooking styles or allergens."
@@ -1154,19 +1385,7 @@
 					"name": "Sign Up",
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "pass",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "ifelse",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [
@@ -1174,25 +1393,17 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "multipart/form-data",
-								"type": "text"
 							}
 						],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "avatar",
-									"type": "file",
-									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/593089750_640x360.jpg"
-								}
-							]
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"juan\",\n\t\"email\": \"juanp@gmail.com\",\n\t\"password\": \"pass\",\n\t\"name\": \"juanP\",\n\t\"surname\": \"Camilo\",\n\t\"info\": \"Yes, we can\",\n\t\"allergens\": \"Nuts\"\n}",
+							"options": {
+								"formdata": {}
+							}
 						},
 						"url": {
-							"raw": "http://localhost:8443/api/signUp?",
+							"raw": "http://localhost:8443/api/signup",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1200,44 +1411,7 @@
 							"port": "8443",
 							"path": [
 								"api",
-								"signUp"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": "juan",
-									"disabled": true
-								},
-								{
-									"key": "email",
-									"value": "holaquetal@gmail.com",
-									"disabled": true
-								},
-								{
-									"key": "password",
-									"value": "pass",
-									"disabled": true
-								},
-								{
-									"key": "name",
-									"value": "juanp",
-									"disabled": true
-								},
-								{
-									"key": "surname",
-									"value": "Pedro",
-									"disabled": true
-								},
-								{
-									"key": "description",
-									"value": "Instarecipes> Instagram",
-									"disabled": true
-								},
-								{
-									"key": "allergen",
-									"value": "Nuts",
-									"disabled": true
-								}
+								"signup"
 							]
 						}
 					},
