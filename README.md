@@ -343,11 +343,11 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 
 > This developer has been doing ... 
 
-> * 
-> * 
-> * 
-> * 
-> *
+> * [Images profile](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/a67db881bab4c27c297fe2e34faf384ce1bb84a5)
+> * [RequestRest service and controller](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/1a8973d9efc777a8daa2cc7526b7712ccbdef3a3)
+> * [Final ranking](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/31c52c3d7abb9544abb398cb69715e4fe3a89ce8)
+> * [Dockerfile and App](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/aa762cb9f1e3ee53f23266dee21327b5af8437e5)
+> * [Docker compose](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/bb72a511800ddd366fc70675ba2ceab9a7cdcb16)
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
@@ -366,10 +366,10 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 ## Most worked files :newspaper: <a name="workedFiles3"></a> 
 |                           |                                 |                                 |
 |---------------------------|---------------------------------|---------------------------------|
-| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  | profileRestController, profileService , requestService                               |
-| Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       | profileRestController, indexRestController, searchRestController, Services and CommentRestController                                |
-| Manuel León Briz          | m.leon.2016@alumnos.urjc.es     | login, signup, profileRestController, indexRestController and Services                               |
-| José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  |                                 |
+| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  | ProfileRestController, ProfileService , RequestService                               |
+| Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       | ProfileRestController, IndexRestController, searchRestController, Services and CommentRestController                                |
+| Manuel León Briz          | m.leon.2016@alumnos.urjc.es     | Login, Signup, profileRestController, indexRestController and Services                               |
+| José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  | Profile, UsersRestController, RequestRestController, User and Request                              |
 | Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es | SearchService, SearchRestController, IndexRestController, UsersRestController and  Services                               |
 |                           |                                 |                                 |  
 
