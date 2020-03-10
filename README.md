@@ -344,10 +344,10 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 > This developer has been doing ... 
 
 > * 
+> * 
+> * 
+> * 
 > *
-> * 
-> *  
-> * 
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
@@ -356,17 +356,17 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 
 > This developer has been doing ... 
 
-> * 
-> *
-> * 
-> *  
-> * 
+> * [update profile api] (https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/60c7a47106526fc1f96f5a2e2c432e8eb968b604)
+> * [request profile done] (https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/77bfefbe105c8d49feebbbaada84018e66de8276)
+> * [settings and request method] (https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/fdc3fa8ebaddd774bb58efc3149e15e753079530)
+> * [added ProfileService] (https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/4bf4e04fe3b426ba4b1e7f868f5458027ff66248)
+> * [adding some GET request to profile API] (https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/f2b98466e74f099773029fd8d30034edff982e74)
 
 
 ## Most worked files :newspaper: <a name="workedFiles3"></a> 
 |                           |                                 |                                 |
 |---------------------------|---------------------------------|---------------------------------|
-| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  |                                 |
+| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  |  profileRestController, profileService , requestService                               |
 | Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       | profileRestController, indexRestController, searchRestController, Services and CommentRestController                                |
 | Manuel León Briz          | m.leon.2016@alumnos.urjc.es     | login, signup, profileRestController, indexRestController and Services                               |
 | José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  |                                 |
