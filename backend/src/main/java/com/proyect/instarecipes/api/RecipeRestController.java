@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -136,7 +135,7 @@ public class RecipeRestController{
     
     @JsonView(RecipeRestController.CommentsRecipe.class)
     @PostMapping("/{id_recipe}/comments/")
-    public ResponseEntity<Comment> setComments(@PathVariable(required = false) Long id_recipe, @RequestBody CommentDto commentdto){
+    public ResponseEntity<Comment> setComments(@PathVariable(required = false) Long id_recipe, @RequestBody CommentDTO commentdto){
         if(userSession.isLoggedUser()){
             if (commentdto.getContent() != null){
                 return new ResponseEntity<>(recipeService.postComment(id_recipe, commentdto.getContent(), commentdto.getParentComment(), userSession.getLoggedUser()), HttpStatus.OK);

@@ -2,13 +2,16 @@ package com.proyect.instarecipes.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -122,19 +125,20 @@ public class IndexRestController {
 		
 	}
 
-	// @JsonView(IndexRestController.PostRecipe.class)
-	// @PostMapping("/index/{id}/image")
-	// public ResponseEntity<Recipe> postRecipeImage(@PathVariable Long id, RecipeDTO recipeto) throws IOException {
-		
-	// 	// Recipe recipe = new Recipe(null, new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), title, description, duration, difficulty, new HashSet<>());
-	// 	System.out.println(recipe);
-	// 	Recipe r = indexService.postRecipe(userSession.getLoggedUser(),recipe, ingredientsString, categoriesString,
-	// 		cookingStyle, allergen, firstStepString, stepsString, withImage,imageFile, allImages);
-    //     if (r != null) {
-	// 		return new ResponseEntity<>(r, HttpStatus.OK);
-	// 	} else {
-	// 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	// 	}
-	// }
+	@JsonView(IndexRestController.PostRecipe.class)
+	@PostMapping(value = "/index/{id}/image/{step}", produces = MediaType.IMAGE_JPEG_VALUE)
+	public ResponseEntity<byte[]> postRecipeImage(@PathVariable Long id, @PathVariable int step, 
+	@RequestParam MultipartFile imageFile)throws IOException {
+		if(userSession.isLoggedUser()){
+			byte[] image = indexService.postRecipeImages(userSession.getLoggedUser(), id, step, imageFile);
+			if(image != null){
+				return new ResponseEntity<>(image, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.CONFLICT);
+			}
+		}else{
+			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+		}
+	}
 
 }
