@@ -2090,7 +2090,15 @@ The following queries will be preceded by /api.
 * ##### Success Response: 
      ```
     [
-        
+       {
+	"username": "juan",
+	"email": "juanp@gmail.com",
+	"password": "pass",
+	"name": "juanP",
+	"surname": "Camilo",
+	"info": "Yes, we can",
+	"allergens": "Nuts"
+	}  
     ]
     ```
     
@@ -2098,8 +2106,6 @@ The following queries will be preceded by /api.
 
 	**Code**: CONFLICT
 	> if the user already exists.
-
-
 
 
 
