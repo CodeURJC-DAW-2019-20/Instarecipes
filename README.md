@@ -367,8 +367,8 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 |                           |                                 |                                 |
 |---------------------------|---------------------------------|---------------------------------|
 | Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  |                                 |
-| Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       |                                 |
-| Manuel León Briz          | m.leon.2016@alumnos.urjc.es     |                                 |
+| Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       | profileRestController, indexRestController, searchRestController, Services and CommentRestController                                |
+| Manuel León Briz          | m.leon.2016@alumnos.urjc.es     | login, signup, profileRestController, indexRestController and Services                               |
 | José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  |                                 |
 | Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es | SearchService, SearchRestController, IndexRestController, UsersRestController and  Services                               |
 |                           |                                 |                                 |  
