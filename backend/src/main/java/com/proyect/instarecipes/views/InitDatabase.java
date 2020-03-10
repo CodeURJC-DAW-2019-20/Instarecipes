@@ -63,20 +63,68 @@ public class InitDatabase {
     @PostConstruct
     private void initDatabase() throws IOException {
         GroupStaff groupStaff = new GroupStaff();
-
         //Users examples
-        User u1 = new User("pepegrillo", "pepe@grillo.com", "pass", "Pepe", "Grillo", "Hello World!! I hope you enjoy my recipes!", "Nuts", null, null, "ROLE_USER");
-        User u2 = new User("manusav96", "manu@gmail.com", "pass", "Manuel", "Savater", "Konichiwa people! I eat sushi every single day.", "Milk", null, null, "ROLE_USER");
-        User u3 = new User("trevrap", "trevodrap@hotmail.com", "pass", "Trevod", "Rap", "I'm a big fan of desserts, follow me and you will see it!", "Peanuts", null, null, "ROLE_USER");
-        User u4 = new User("admin", "hola@adios.com", "adminpass", "Hamsa", "Jefe", "Hi people! Don't mess with me. I'm the boss hehe.", "cerdo", null, null, "ROLE_USER", "ROLE_ADMIN");
-        User u5 = new User("pepitoram", "pepito@gmail.com","pass","Pedro","Ramírez","This isn't real","Soy",null,null,"ROLE_USER");
+        File avatarBots1 = new File("src/main/resources/static/images/profileimage/image-1.jpg");
+        File avatarBots2 = new File("src/main/resources/static/images/profileimage/image-2.jpg");
+        File avatarBots3 = new File("src/main/resources/static/images/profileimage/image-3.jpg");
+        File avatarBots4 = new File("src/main/resources/static/images/profileimage/image-4.jpg");
+        File avatarBots5 = new File("src/main/resources/static/images/profileimage/image-5.jpg");
+        File avatarBots6 = new File("src/main/resources/static/images/profileimage/image-6.jpg");
+        File avatarBots7 = new File("src/main/resources/static/images/profileimage/image-7.jpg");
+        File avatarBots8 = new File("src/main/resources/static/images/profileimage/image-8.jpg");
+        File avatarBots9 = new File("src/main/resources/static/images/profileimage/image-9.jpg");
+        File avatarBots10 = new File("src/main/resources/static/images/profileimage/image-10.jpg");
+        File avatarBots11 = new File("src/main/resources/static/images/profileimage/image-11.jpg");
 
-        User u6 = new User("anuelbb", "anuelAA@gmail.com", "pass", "Anuel", "AA", "Mera woooo", "Mustard", null, null, "ROLE_USER");
-        User u7 = new User("heisenberg", "badbunny@gmail.com", "pass", "Benito", "Boss", "#YHLQMDLG", "Wheat", null, null, "ROLE_USER");
-        User u8 = new User("user8", "ozuna@hotmail.com", "pass", "El Negrito", "Ojos Claros","Woooo", "Peanuts", null, null, "ROLE_USER");
-        User u9 = new User("oceloteLVP", "ocelote@dios.com", "pass", "Spanish", "Rocket", "Hi mum i'm famous", null, null, null, "ROLE_USER");
-        User u10 = new User("rodriram", "s1mple@gmail.com","pass","Rodrigo","Ramírez","wtf is this user",null ,null,null,"ROLE_USER");
-        User u11 = new User("ifelse", "electronic@grillo.com", "pass", "Pepe", "Grillo", "Python>Java", "Eggs", null, null, "ROLE_USER");
+        FileInputStream aBots1 = new FileInputStream(avatarBots1);
+        FileInputStream aBots2 = new FileInputStream(avatarBots2);
+        FileInputStream aBots3 = new FileInputStream(avatarBots3);
+        FileInputStream aBots4 = new FileInputStream(avatarBots4);
+        FileInputStream aBots5 = new FileInputStream(avatarBots5);
+        FileInputStream aBots6 = new FileInputStream(avatarBots6);
+        FileInputStream aBots7 = new FileInputStream(avatarBots7);
+        FileInputStream aBots8 = new FileInputStream(avatarBots8);
+        FileInputStream aBots9 = new FileInputStream(avatarBots9);
+        FileInputStream aBots10 = new FileInputStream(avatarBots10);
+        FileInputStream aBots11 = new FileInputStream(avatarBots11);
+
+        MultipartFile userAvatar1 = new MockMultipartFile("file1", avatarBots1.getName(), "image/jpeg", IOUtils.toByteArray(aBots1));
+        MultipartFile userAvatar2 = new MockMultipartFile("file2", avatarBots2.getName(), "image/jpeg", IOUtils.toByteArray(aBots2));
+        MultipartFile userAvatar3 = new MockMultipartFile("file3", avatarBots3.getName(), "image/jpeg", IOUtils.toByteArray(aBots3));
+        MultipartFile userAvatar4 = new MockMultipartFile("file4", avatarBots4.getName(), "image/jpeg", IOUtils.toByteArray(aBots4));
+        MultipartFile userAvatar5 = new MockMultipartFile("file5", avatarBots5.getName(), "image/jpeg", IOUtils.toByteArray(aBots5));
+        MultipartFile userAvatar6 = new MockMultipartFile("file6", avatarBots6.getName(), "image/jpeg", IOUtils.toByteArray(aBots6));
+        MultipartFile userAvatar7 = new MockMultipartFile("file7", avatarBots7.getName(), "image/jpeg", IOUtils.toByteArray(aBots7));
+        MultipartFile userAvatar8 = new MockMultipartFile("file8", avatarBots8.getName(), "image/jpeg", IOUtils.toByteArray(aBots8));
+        MultipartFile userAvatar9 = new MockMultipartFile("file9", avatarBots9.getName(), "image/jpeg", IOUtils.toByteArray(aBots9));
+        MultipartFile userAvatar10 = new MockMultipartFile("file10", avatarBots10.getName(), "image/jpeg", IOUtils.toByteArray(aBots10));
+        MultipartFile userAvatar11 = new MockMultipartFile("file11", avatarBots11.getName(), "image/jpeg", IOUtils.toByteArray(aBots11));
+
+        byte[] avatarBytes1 = userAvatar1.getBytes();
+        byte[] avatarBytes2 = userAvatar2.getBytes();
+        byte[] avatarBytes3 = userAvatar3.getBytes();
+        byte[] avatarBytes4 = userAvatar4.getBytes();
+        byte[] avatarBytes5 = userAvatar5.getBytes();
+        byte[] avatarBytes6 = userAvatar6.getBytes();
+        byte[] avatarBytes7 = userAvatar7.getBytes();
+        byte[] avatarBytes8 = userAvatar8.getBytes();
+        byte[] avatarBytes9 = userAvatar9.getBytes();
+        byte[] avatarBytes10 = userAvatar10.getBytes();
+        byte[] avatarBytes11 = userAvatar11.getBytes();
+
+
+        User u1 = new User("pepegrillo", "pepe@grillo.com", "pass", "Pepe", "Grillo", "Hello World!! I hope you enjoy my recipes!", "Nuts", null, null,avatarBytes1, "ROLE_USER");
+        User u2 = new User("manusav96", "manu@gmail.com", "pass", "Manuel", "Savater", "Konichiwa people! I eat sushi every single day.", "Milk", null, null,avatarBytes2, "ROLE_USER");
+        User u3 = new User("trevrap", "trevodrap@hotmail.com", "pass", "Trevod", "Rap", "I'm a big fan of desserts, follow me and you will see it!", "Peanuts", null, null,avatarBytes3, "ROLE_USER");
+        User u4 = new User("admin", "hola@adios.com", "adminpass", "Hamsa", "Jefe", "Hi people! Don't mess with me. I'm the boss hehe.", "cerdo", null, null,avatarBytes4, "ROLE_USER", "ROLE_ADMIN");
+        User u5 = new User("pepitoram", "pepito@gmail.com","pass","Pedro","Ramírez","This isn't real","Soy",null,null,avatarBytes5,"ROLE_USER");
+
+        User u6 = new User("anuelbb", "anuelAA@gmail.com", "pass", "Anuel", "AA", "Mera woooo", "Mustard", null, null,avatarBytes6, "ROLE_USER");
+        User u7 = new User("heisenberg", "badbunny@gmail.com", "pass", "Benito", "Boss", "#YHLQMDLG", "Wheat", null, null,avatarBytes7, "ROLE_USER");
+        User u8 = new User("user8", "ozuna@hotmail.com", "pass", "El Negrito", "Ojos Claros","Woooo", "Peanuts", null, null,avatarBytes8, "ROLE_USER");
+        User u9 = new User("oceloteLVP", "ocelote@dios.com", "pass", "Spanish", "Rocket", "Hi mum i'm famous", null, null, null,avatarBytes9, "ROLE_USER");
+        User u10 = new User("rodriram", "s1mple@gmail.com","pass","Rodrigo","Ramírez","wtf is this user",null ,null,null,avatarBytes10,"ROLE_USER");
+        User u11 = new User("ifelse", "electronic@grillo.com", "pass", "Pepe", "Grillo", "Python>Java", "Eggs", null, null,avatarBytes11, "ROLE_USER");
 
         Set<User> following1 = groupStaff.groupFollowing(u2,u4,u6,u7,u10);
         Set<User> following2 = groupStaff.groupFollowing(u1,u3,u5,u8,u9);
@@ -128,9 +176,7 @@ public class InitDatabase {
         Set<User> likes6 = groupStaff.groupLikes(u10,u11);
  
          //Avatar and backgrounds BOTS
-        /*File avatarBots = new File("src/main/resources/static/images/icons/avatar.jpg");*/
         File backgroundBots = new File("src/main/resources/static/images/backgrounds/profile_background_example.jpeg");
-        //FileInputStream aBots = new FileInputStream(avatarBots);
         FileInputStream bBots = new FileInputStream(backgroundBots);
         //MultipartFile userAvatar = new MockMultipartFile("file2", avatarBots.getName(), "image/jpeg", IOUtils.toByteArray(aBots));
         MultipartFile userBackground = new MockMultipartFile("file3", backgroundBots.getName(), "image/jpeg", IOUtils.toByteArray(bBots));
@@ -176,19 +222,6 @@ public class InitDatabase {
         userRepository.save(u9);
         userRepository.save(u10);
         userRepository.save(u11);
-        //Save avatars
-        /*imageService.saveImage("avatars", u1.getId(), userAvatar);
-        imageService.saveImage("avatars", u2.getId(), userAvatar);
-        imageService.saveImage("avatars", u3.getId(), userAvatar);
-        imageService.saveImage("avatars", u4.getId(), userAvatar);
-        imageService.saveImage("avatars", u5.getId(), userAvatar);
-        imageService.saveImage("avatars", u6.getId(), userAvatar);
-        imageService.saveImage("avatars", u7.getId(), userAvatar);
-        imageService.saveImage("avatars", u8.getId(), userAvatar);
-        imageService.saveImage("avatars", u9.getId(), userAvatar);
-        imageService.saveImage("avatars", u10.getId(), userAvatar);
-        imageService.saveImage("avatars", u11.getId(), userAvatar);*/
-
 
         //Save backgrounds
         imageService.saveImage("backgrounds", u1.getId(), userBackground);

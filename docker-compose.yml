@@ -1,0 +1,32 @@
+version: "1"
+services:
+  instarecipes:
+    image: Instarecipes/webapp8:latest
+    restart: always
+    ports:
+      - "8443:8443"
+    networks:
+      - Instarecipes-network
+    environment:
+      WAIT_HOSTS: mysql:3306
+    depends_on:
+      - mysqldb
+ 
+  mysqldb:
+    image: mysql:8
+    restart: on-failure
+    ports:
+      - "5000:3306"
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=root--execute 
+      interval: 3s
+      timeout: 40s
+      retries: 15
+    networks:
+      - Instarecipes-network
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=instarecipes_db  
+
+networks:
+  Instarecipes-network: 

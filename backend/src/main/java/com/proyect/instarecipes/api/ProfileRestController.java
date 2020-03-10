@@ -189,34 +189,40 @@ public class ProfileRestController {
 		boolean status = false;
 		User user = requestService.getUser();
 		boolean exists = false;
-		List<Ingredient> ingredientsList = requestService.getIngredients();
-		List<Category> categoriesList = requestService.getCategories();
-		List<CookingStyle> cookingStylesList = requestService.getCookingStyles();
-		// function to get ingredients, categories and cookingstyles (user request)
-		if (requestService.isIngredient(request.getTypeOfRequest())) {
-			request = requestService.getNewRequest(user, request.getTypeOfRequest(), request.getIngredientContent(), 0);
-			exists = requestService.existIngredient(ingredientsList, request);
-			status = true;
-			// function to verify if the ingredient already exists.
-			requestService.saveItem(request, exists);
-		} else if (requestService.isCookingStyle(request.getTypeOfRequest())) {
-			request = requestService.getNewRequest(user, request.getTypeOfRequest(), request.getCookingStyleContent(),
-					1);
-			exists = requestService.existCookingStyle(cookingStylesList, request);
-			status = true;
+		if (userSession.isLoggedUser()) {
+			List<Ingredient> ingredientsList = requestService.getIngredients();
+			List<Category> categoriesList = requestService.getCategories();
+			List<CookingStyle> cookingStylesList = requestService.getCookingStyles();
+			// function to get ingredients, categories and cookingstyles (user request)
+			if (requestService.isIngredient(request.getTypeOfRequest())) {
+				request = requestService.getNewRequest(user, request.getTypeOfRequest(), request.getIngredientContent(),
+						0);
+				exists = requestService.existIngredient(ingredientsList, request);
+				status = true;
+				// function to verify if the ingredient already exists.
+				requestService.saveItem(request, exists);
+			} else if (requestService.isCookingStyle(request.getTypeOfRequest())) {
+				request = requestService.getNewRequest(user, request.getTypeOfRequest(),
+						request.getCookingStyleContent(), 1);
+				exists = requestService.existCookingStyle(cookingStylesList, request);
+				status = true;
 
-			// function to verify if the cookingstyle already exists.
-			requestService.saveItem(request, exists);
-		} else if (requestService.isCategory(request.getTypeOfRequest())) {
-			request = requestService.getNewRequest(user, request.getTypeOfRequest(), request.getCategoryContent(), 2);
-			exists = requestService.existCategory(categoriesList, request);
-			status = true;
-			requestService.saveItem(request, exists);
-		}
-		if (status) {
-			return new ResponseEntity<>(request, HttpStatus.OK);
+				// function to verify if the cookingstyle already exists.
+				requestService.saveItem(request, exists);
+			} else if (requestService.isCategory(request.getTypeOfRequest())) {
+				request = requestService.getNewRequest(user, request.getTypeOfRequest(), request.getCategoryContent(),
+						2);
+				exists = requestService.existCategory(categoriesList, request);
+				status = true;
+				requestService.saveItem(request, exists);
+			}
+			if (status) {
+				return new ResponseEntity<>(request, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
 		}
     }
 
@@ -252,8 +258,8 @@ public class ProfileRestController {
         if (status) {
             //String response_="the item was "+typeOfRequest+" and has been "+action;
 			return new ResponseEntity<>(requestService.getRequests(), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else{
+			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
 		}
 	}
 

@@ -20,6 +20,7 @@ import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 
@@ -29,10 +30,6 @@ public class SignUpRestController{
     public interface showNewUser extends User.NameSurname, User.Username, User.Allergen, User.Email, User.UserExtraInfo, User.FF{}
     @Autowired 
     UsersRepository usersRepository;
-    @Autowired
-    private ImageService imageService;
-    @Autowired 
-    private UserSession usersession;
 
     @JsonView(SignUpRestController.showNewUser.class)
     @RequestMapping("/signup")
@@ -54,18 +51,6 @@ public class SignUpRestController{
         } else{
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
-    }
-    @JsonView(SignUpRestController.showNewUser.class)
-    @PostMapping("/signup/image") 
-    public ResponseEntity<User> uploadImage(@RequestParam MultipartFile avatar) throws IOException{
-    if(usersession.isLoggedUser()){
-        User user =usersession.getLoggedUser();
-        user.setAvatar(true);
-        imageService.saveImage("avatars", user.getId(), avatar);
-        return new ResponseEntity<>(user,HttpStatus.OK);
-    }
-    return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
-
     }
 
 }
