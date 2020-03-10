@@ -307,7 +307,7 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 > * [Update UsersRestController](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/0693c7ac48d4be20de654becbf50993507730b3f)
 > * [Index trending](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/c3c27f26e14cd516c31ac82c83e5e5bc7de5b09b)
 > * [Search filered API](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/ee41238ba5f17aa8475a3d62d7310e38b29c210f)
-> * 
+> * [Api documentation](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/74ccae6beacb2445f37bb43666c283b9203e2647)
 
 |                           |                                 |                                           |
 |---------------------------|---------------------------------|-------------------------------------------|
@@ -333,7 +333,7 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 > * [Follow, unfollow API](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/ac69760003c8ab9fd8fbf6dcd8954b010a747e86)
 > * [Category API Rest](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/23a26b4e742a2dcd9e5e88126f40762e7e059d55)
 > * [Login and Signup API](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/2f3d563f96595b7a424fa5f34806d093f1750b98)
-> * 
+> * [Postman operations](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/cb0f2be5212b272654b94ef3bb1062d0f6cd8a5b)
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
