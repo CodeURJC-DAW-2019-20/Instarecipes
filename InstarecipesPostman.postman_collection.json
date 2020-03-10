@@ -125,6 +125,42 @@
 			"name": "LogInRestController",
 			"item": [
 				{
+					"name": "Login as admin",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "adminpass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "With privilegies"
+					},
+					"response": []
+				},
+				{
 					"name": "Login as user",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -171,42 +207,6 @@
 					"response": []
 				},
 				{
-					"name": "Login as admin",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "adminpass",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "admin",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8443/api/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"login"
-							]
-						},
-						"description": "With privilegies"
-					},
-					"response": []
-				},
-				{
 					"name": "Logout",
 					"request": {
 						"method": "GET",
@@ -234,41 +234,21 @@
 			"name": "ProfileRestController",
 			"item": [
 				{
-					"name": "Update profile",
+					"name": "Send item Request",
 					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							},
-							{
-								"key": "Content-Type",
-								"value": "multipart/form-data",
-								"type": "text"
-							}
-						],
+						"method": "POST",
+						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "avatar",
-									"type": "file",
-									"src": []
-								},
-								{
-									"key": "background",
-									"type": "file",
-									"src": []
+							"mode": "raw",
+							"raw": "{\n\"typeOfRequest\": \"Ingredient\",\n\"ingredientContent\": \"brocoli\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
-							"raw": "http://localhost:8443/api/profile/update",
+							"raw": "http://localhost:8443/api/profile/sendItemRequest",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -277,47 +257,19 @@
 							"path": [
 								"api",
 								"profile",
-								"update"
-							],
-							"query": [
-								{
-									"key": "name",
-									"value": "Elver",
-									"disabled": true
-								},
-								{
-									"key": "surname",
-									"value": "Galarga",
-									"disabled": true
-								},
-								{
-									"key": "allergen",
-									"value": null,
-									"disabled": true
-								},
-								{
-									"key": "info",
-									"value": "Hola caracola",
-									"disabled": true
-								}
+								"sendItemRequest"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Accept item request",
+					"name": "Admin action request",
 					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
+						"method": "GET",
+						"header": [],
 						"url": {
-							"raw": "http://localhost:8443/api/profile/actionItemRequest?typeOfItemRequest=Ingredient&itemContent=Potatoes&action=decline&id_request&page=0&size=10",
+							"raw": "http://localhost:8443/api/profile/actionItemRequest?typeOfItemRequest=Ingredient&itemContent=Potatoes&action=decline&id_request=2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -331,36 +283,23 @@
 							"query": [
 								{
 									"key": "typeOfItemRequest",
-									"value": "Ingredient",
-									"description": "required= true"
+									"value": "Ingredient"
 								},
 								{
 									"key": "itemContent",
-									"value": "Potatoes",
-									"description": "required= true"
+									"value": "Potatoes"
 								},
 								{
 									"key": "action",
-									"value": "decline",
-									"description": "required= true"
+									"value": "decline"
 								},
 								{
 									"key": "id_request",
-									"value": null,
-									"description": "required= true"
-								},
-								{
-									"key": "page",
-									"value": "0",
-									"description": "required= true"
-								},
-								{
-									"key": "size",
-									"value": "10",
-									"description": "required= true"
+									"value": "2"
 								}
 							]
-						}
+						},
+						"description": "admin choose between request"
 					},
 					"response": []
 				},
@@ -473,115 +412,7 @@
 					"response": []
 				},
 				{
-					"name": "Admin action request",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8443/api/profile/actionItemRequest?typeOfItemRequest=Ingredient&itemContent=Potatoes&action=decline&id_request=2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"profile",
-								"actionItemRequest"
-							],
-							"query": [
-								{
-									"key": "typeOfItemRequest",
-									"value": "Ingredient"
-								},
-								{
-									"key": "itemContent",
-									"value": "Potatoes"
-								},
-								{
-									"key": "action",
-									"value": "decline"
-								},
-								{
-									"key": "id_request",
-									"value": "2"
-								}
-							]
-						},
-						"description": "admin choose between request"
-					},
-					"response": []
-				},
-				{
 					"name": "Get image profile",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "image/jpeg",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8443/api/users/2/image",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"users",
-								"2",
-								"image"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Request list",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8443/api/profile/admin/request",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"profile",
-								"admin",
-								"request"
-							],
-							"query": [
-								{
-									"key": "typeOfItem",
-									"value": "Category",
-									"disabled": true
-								},
-								{
-									"key": "content",
-									"value": "russian",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get_imageProfile",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -603,10 +434,13 @@
 									"src": "/C:/Users/manue/Desktop/mono.jpg",
 									"disabled": true
 								}
-							]
+							],
+							"options": {
+								"formdata": {}
+							}
 						},
 						"url": {
-							"raw": "http://localhost:8443/api/users/12/image",
+							"raw": "http://localhost:8443/api/users/1/image",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -615,8 +449,83 @@
 							"path": [
 								"api",
 								"users",
-								"12",
+								"1",
 								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update profile",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "background",
+									"type": "file",
+									"src": []
+								}
+							],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8443/api/profile/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"update"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Elver",
+									"disabled": true
+								},
+								{
+									"key": "surname",
+									"value": "Galarga",
+									"disabled": true
+								},
+								{
+									"key": "allergen",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "info",
+									"value": "Hola caracola",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -664,48 +573,6 @@
 					"response": []
 				},
 				{
-					"name": "Send item Request",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\"typeOfRequest\": \"Ingredient\",\n\"content\": \"brocoli\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8443/api/profile/sendItemRequest",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"profile",
-								"sendItemRequest"
-							],
-							"query": [
-								{
-									"key": "typeOfItem",
-									"value": "Ingredient",
-									"disabled": true
-								},
-								{
-									"key": "content",
-									"value": "Brocoli",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Post images recipe",
 					"request": {
 						"method": "POST",
@@ -736,10 +603,7 @@
 									"type": "file",
 									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/adobe.png"
 								}
-							],
-							"options": {
-								"formdata": {}
-							}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:8443/api/index/6/image/2",
@@ -788,10 +652,7 @@
 						],
 						"body": {
 							"mode": "formdata",
-							"formdata": [],
-							"options": {
-								"formdata": {}
-							}
+							"formdata": []
 						},
 						"url": {
 							"raw": "http://localhost:8443/api/index/6/image/2",
@@ -1165,7 +1026,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \n\t\"content\": \"A nice recipe for a lazy weekend\",\n\t\"parentComment\": \"\"\n}"
+							"raw": "{ \n\t\"content\": \"A nice recipe for a lazy weekend\",\n\t\"parentComment\": \"\"\n}",
+							"options": {
+								"raw": {}
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8443/api/recipes/1/comments/",
@@ -1399,7 +1263,7 @@
 							"mode": "raw",
 							"raw": "{\n\t\"username\": \"juan\",\n\t\"email\": \"juanp@gmail.com\",\n\t\"password\": \"pass\",\n\t\"name\": \"juanP\",\n\t\"surname\": \"Camilo\",\n\t\"info\": \"Yes, we can\",\n\t\"allergens\": \"Nuts\"\n}",
 							"options": {
-								"formdata": {}
+								"raw": {}
 							}
 						},
 						"url": {
