@@ -170,9 +170,8 @@ In the next diagram, you can see the main differences between the registered use
 All of them can access to their recipes, the recipes pages, go back to home... (*Main diagram*) **BUT** the administrator will have a menu where he can manage things like accept new ingredients, categories...
 
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/Navigation%20Diagram%20(Profile).png">
+<img src="https://github.com/CodeURJC-DAW-2019-20/Instarecipes/blob/master/Images/Diagrams/Navigation%20Diagram%20(Profile).png">
 </p> 
-
 
 
 # Web with HTML generated on server and AJAX 
@@ -283,13 +282,13 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 ## Database diagrams <a name="dbDiagram"></a>
 
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/databaseDiagramNew.png"
+<img src="https://github.com/CodeURJC-DAW-2019-20/Instarecipes/blob/master/Images/Diagrams/databaseDiagramNew.png"
 </p> 
 
 ##  Classes and templates diagrams <a name="CTdiagrams"></a>
 
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/templatesDiagram.png"
+<img src="https://github.com/CodeURJC-DAW-2019-20/Instarecipes/blob/master/Images/Diagrams/templatesDiagram.png"
 </p> 
  
 
