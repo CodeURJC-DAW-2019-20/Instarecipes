@@ -14,8 +14,6 @@ import com.proyect.instarecipes.repositories.RequestsRepository;
 import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -162,7 +160,7 @@ public class RequestService {
         requestsRepository.deleteById(id_request);
     }
 
-    public Page<Request> getRequests(int page_number, int page_size) {
-        return requestsRepository.findAllRequests(PageRequest.of(page_number, page_size));
+    public List<Request> getRequests() {
+        return requestsRepository.findAll();
     }
 }

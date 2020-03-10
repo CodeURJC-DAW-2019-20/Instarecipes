@@ -69,22 +69,6 @@ public class IndexService {
         return commentsRepository.findAllByRecipe(recipe);
     }
 
-    public List<Category> getSelectedCategories() {
-        return null;// para hacer
-    }
-
-    public List<Ingredient> getSelectedIngredients() {
-        return null;// para hacer
-    }
-
-    public List<Allergen> getSelectedAllergens() {
-        return null;// para hacer
-    }
-
-    public List<CookingStyle> getSelectedCookingStyles() {
-        return null;// para hacer
-    }
-
     public List<Recipe> personalFilter(User user) {
         List<Recipe> recipes = recipesRepository.FindByLikes();
         ArrayList<Recipe> filtered = new ArrayList<Recipe>(3); // list to show on index.html
@@ -197,8 +181,29 @@ public class IndexService {
                 }
             }
         }
-        
         return recipe;
     }
 
+    public byte[] postRecipeImages(User user, Long id_recipe, int n_step, MultipartFile image) throws IOException{
+        Recipe recipe = recipesRepository.findById(id_recipe).get();
+        if(recipesRepository.findUsernameByRecipeId(id_recipe).getId() == user.getId()){
+            byte[] img = image.getBytes();
+            if(n_step <= stepsRepository.findAll().size()){
+                Step s = stepsRepository.findByRecipeIdAndNumber(id_recipe, n_step);
+                if(n_step == 1){
+                    recipe.setMainImage(img);
+                    imageService.saveImage("recipes/steps/"+recipe.getId(), 1, image);
+                }else{
+                    s.setStepImage(image.getBytes());
+                    imageService.saveImage("recipes/steps"+recipe.getId(), n_step, image);
+                }
+                stepsRepository.flush();
+                return img;
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        }
+    }
 }

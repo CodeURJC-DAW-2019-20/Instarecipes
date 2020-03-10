@@ -2,21 +2,28 @@ package com.proyect.instarecipes.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.proyect.instarecipes.models.Recipe;
+import com.proyect.instarecipes.models.Step;
 import com.proyect.instarecipes.models.User;
+import com.proyect.instarecipes.repositories.RecipesRepository;
+import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.IndexService;
 import com.proyect.instarecipes.views.RecipeDTO;
@@ -31,6 +38,10 @@ public class IndexRestController {
 	private IndexService indexService;
 	@Autowired
 	private UserSession userSession;
+	@Autowired
+	private StepsRepository stepsRepository;
+	@Autowired
+	private RecipesRepository recipesRepository;
 
 	// RECENT USERS PUBLICATIONS (AS ANNONYMOUS)
 	@JsonView(IndexRestController.Main.class)
@@ -122,19 +133,46 @@ public class IndexRestController {
 		
 	}
 
-	// @JsonView(IndexRestController.PostRecipe.class)
-	// @PostMapping("/index/{id}/image")
-	// public ResponseEntity<Recipe> postRecipeImage(@PathVariable Long id, RecipeDTO recipeto) throws IOException {
-		
-	// 	// Recipe recipe = new Recipe(null, new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(), title, description, duration, difficulty, new HashSet<>());
-	// 	System.out.println(recipe);
-	// 	Recipe r = indexService.postRecipe(userSession.getLoggedUser(),recipe, ingredientsString, categoriesString,
-	// 		cookingStyle, allergen, firstStepString, stepsString, withImage,imageFile, allImages);
-    //     if (r != null) {
-	// 		return new ResponseEntity<>(r, HttpStatus.OK);
-	// 	} else {
-	// 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	// 	}
-	// }
+	@JsonView(IndexRestController.PostRecipe.class)
+	@PostMapping(value = "/index/{id}/image/{step}", produces = MediaType.IMAGE_JPEG_VALUE)
+	public ResponseEntity<byte[]> postRecipeImage(@PathVariable Long id, @PathVariable int step, 
+	@RequestParam MultipartFile imageFile)throws IOException {
+		if(userSession.isLoggedUser()){
+			byte[] image = indexService.postRecipeImages(userSession.getLoggedUser(), id, step, imageFile);
+			if(image != null){
+				return new ResponseEntity<>(image, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.CONFLICT);
+			}
+		}else{
+			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+		}
+	}
 
+	@GetMapping(value = "/index/{id}/image/{step}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> getRecipeMainImage(@PathVariable Long id,@PathVariable int step) {
+        Optional<Recipe> recipe = recipesRepository.findById(id);
+        int num;
+        if(step==1){
+             num=0;
+        }else{
+            num=1;
+        }
+        if (!recipe.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            Recipe recipenew = recipe.get();
+            switch (num) {
+                case 0:
+                    byte[] imagerecipe = recipenew.getMainImage();
+                    return new ResponseEntity<>(imagerecipe, HttpStatus.OK);
+                case 1:
+                    Step s = stepsRepository.findByRecipeIdAndNumber(recipenew.getId(),step);
+                    byte[]  imagestep = s.getStepImage();
+                    return new ResponseEntity<>(imagestep, HttpStatus.OK);
+                default:
+                    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }       
+    }
 }

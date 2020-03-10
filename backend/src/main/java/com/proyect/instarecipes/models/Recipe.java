@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -63,8 +64,9 @@ public class Recipe{
     @JsonView(RecipeBasic.class)
     private boolean image;
 
-
-
+    @Lob
+    private byte[] mainImage;
+    
     //Empty contructor
     public Recipe(){}
 
@@ -200,6 +202,14 @@ public class Recipe{
     public void removeUser(User u){
         likesUsers.remove(u);
         likes= likesUsers.size();
+    }
+
+    public byte[] getMainImage() {
+        return mainImage;
+    }
+
+    public void setMainImage(byte[] mainImage) {
+        this.mainImage = mainImage;
     }
 
 }
