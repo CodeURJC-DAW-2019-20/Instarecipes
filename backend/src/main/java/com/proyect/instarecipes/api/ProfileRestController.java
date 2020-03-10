@@ -227,7 +227,7 @@ public class ProfileRestController {
     }
 
     @JsonView(ProfileRestController.PostItem.class)
-    @PostMapping("/actionItemRequest")
+    @GetMapping("/actionItemRequest")
     public ResponseEntity<List<Request>> acceptItemRequest (@RequestParam("typeOfItemRequest") String typeOfRequest, 
     @RequestParam("itemContent") String itemContent,
     @RequestParam("action") String action, 

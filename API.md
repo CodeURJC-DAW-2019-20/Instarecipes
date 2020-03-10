@@ -400,107 +400,107 @@ The following queries will be preceded by /api
 
 * ##### Success Response: 
     ```
-[
-    {
-        "username": {
-            "username": "pepegrillo",
-            "avatar": true
-        },
-        "title": "Homemade Pizza!",
-        "description": "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!",
-        "likes": 9,
-        "n_comments": 10,
-        "image": true
-    },
-    {
-        "username": {
-            "username": "pepegrillo",
-            "avatar": true
-        },
-        "title": "Baked Fish with Lemon Cream Sauce",
-        "description": "Yup, just throw it all in one pan, bake it, and you end up with a tender juicy fish in a creamy lemon sauce.",
-        "likes": 9,
-        "n_comments": 0,
-        "image": true
-    },
-    {
-        "username": {
-            "username": "pepegrillo",
-            "avatar": true
-        },
-        "title": "Thai Chicken Soup with Rice Noodles",
-        "description": "Cozy, comforting, and fragrant, this flavor-packed Thai chicken noodle soup will warm you right up.",
-        "likes": 2,
-        "n_comments": 0,
-        "image": true
-    },
-    {
-        "username": {
-            "username": "manusav96",
-            "avatar": true
-        },
-        "title": "Avocado Salad",
-        "description": "This salad features ripe avocado slices covered in a fresh lime dressing, topped generously with a contrasting crisp-and-crunchy blend of chopped radish, onion, peppers, and herbs.",
-        "likes": 1,
-        "n_comments": 0,
-        "image": true
-    },
-    {
-        "username": {
-            "username": "manusav96",
-            "avatar": true
-        },
-        "title": "Vodka Sauce Pasta (Pasta Party!)",
-        "description": "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese.. And don't worry, It won't taste like vodka!",
-        "likes": 2,
-        "n_comments": 0,
-        "image": true
-    },
-    {
-        "username": {
-            "username": "admin",
-            "avatar": true
-        },
-        "title": "Cheddar Cheese Sauce",
-        "description": "Everyone loves cheese sauce over veggies, or for dipping. But of course there are all the pitfalls of eating cow dairy products. Here is a raw, live, vegan alternative that really stands up for applause!",
-        "likes": 6,
-        "n_comments": 0,
-        "image": true
-    },
-    {
-        "username": {
-            "username": "pepegrillo",
-            "avatar": true
-        },
-        "title": "Olives and Sun-Dried Tomato Couscous",
-        "description": "A delicate, flavorful dish that will satisfy vegans and carnivores alike!.",
-        "likes": 2,
-        "n_comments": 0,
-        "image": true
-    },
-    {
-        "username": {
-            "username": "trevrap",
-            "avatar": true
-        },
-        "title": "Vegan Chocolate Ice Cream",
-        "description": "You are making hummus or some other dish with chickpeas and you are just wasting the chickpea water? How dare you! Didn't you know it can form the basis of some the most delicious, light, and foamy vegan ice creams and mousses?",
-        "likes": 9,
-        "n_comments": 0,
-        "image": true
-    },
-    {
-        "username": {
-            "username": "pepegrillo",
-            "avatar": true
-        },
-        "title": "Vinagreta",
-        "description": "This is the fking vinagreta",
-        "likes": 0,
-        "n_comments": 0,
-        "image": true
-    }
-]
+	[
+	    {
+		"username": {
+		    "username": "pepegrillo",
+		    "avatar": true
+		},
+		"title": "Homemade Pizza!",
+		"description": "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!",
+		"likes": 9,
+		"n_comments": 10,
+		"image": true
+	    },
+	    {
+		"username": {
+		    "username": "pepegrillo",
+		    "avatar": true
+		},
+		"title": "Baked Fish with Lemon Cream Sauce",
+		"description": "Yup, just throw it all in one pan, bake it, and you end up with a tender juicy fish in a creamy lemon sauce.",
+		"likes": 9,
+		"n_comments": 0,
+		"image": true
+	    },
+	    {
+		"username": {
+		    "username": "pepegrillo",
+		    "avatar": true
+		},
+		"title": "Thai Chicken Soup with Rice Noodles",
+		"description": "Cozy, comforting, and fragrant, this flavor-packed Thai chicken noodle soup will warm you right up.",
+		"likes": 2,
+		"n_comments": 0,
+		"image": true
+	    },
+	    {
+		"username": {
+		    "username": "manusav96",
+		    "avatar": true
+		},
+		"title": "Avocado Salad",
+		"description": "This salad features ripe avocado slices covered in a fresh lime dressing, topped generously with a contrasting crisp-and-crunchy blend of chopped radish, onion, peppers, and herbs.",
+		"likes": 1,
+		"n_comments": 0,
+		"image": true
+	    },
+	    {
+		"username": {
+		    "username": "manusav96",
+		    "avatar": true
+		},
+		"title": "Vodka Sauce Pasta (Pasta Party!)",
+		"description": "Corn, Tomato, and Avocado Pasta Salad. Grab your favorite pasta, fresh cherry tomatoes, sweet corn, basil, cheddar cheese.. And don't worry, It won't taste like vodka!",
+		"likes": 2,
+		"n_comments": 0,
+		"image": true
+	    },
+	    {
+		"username": {
+		    "username": "admin",
+		    "avatar": true
+		},
+		"title": "Cheddar Cheese Sauce",
+		"description": "Everyone loves cheese sauce over veggies, or for dipping. But of course there are all the pitfalls of eating cow dairy products. Here is a raw, live, vegan alternative that really stands up for applause!",
+		"likes": 6,
+		"n_comments": 0,
+		"image": true
+	    },
+	    {
+		"username": {
+		    "username": "pepegrillo",
+		    "avatar": true
+		},
+		"title": "Olives and Sun-Dried Tomato Couscous",
+		"description": "A delicate, flavorful dish that will satisfy vegans and carnivores alike!.",
+		"likes": 2,
+		"n_comments": 0,
+		"image": true
+	    },
+	    {
+		"username": {
+		    "username": "trevrap",
+		    "avatar": true
+		},
+		"title": "Vegan Chocolate Ice Cream",
+		"description": "You are making hummus or some other dish with chickpeas and you are just wasting the chickpea water? How dare you! Didn't you know it can form the basis of some the most delicious, light, and foamy vegan ice creams and mousses?",
+		"likes": 9,
+		"n_comments": 0,
+		"image": true
+	    },
+	    {
+		"username": {
+		    "username": "pepegrillo",
+		    "avatar": true
+		},
+		"title": "Vinagreta",
+		"description": "This is the fking vinagreta",
+		"likes": 0,
+		"n_comments": 0,
+		"image": true
+	    }
+	]
     ```
     
  * ##### Error response:
@@ -601,174 +601,174 @@ The following queries will be preceded by /api/profile
 
  * ##### Success Response:
     ```       
-[
-    {
-        "username": "pepegrillo",
-        "email": "pepe@grillo.com",
-        "roles": [
-            "ROLE_USER"
-        ],
-        "name": "Pepe",
-        "surname": "Grillo",
-        "background": true,
-        "avatar": true,
-        "allergens": "Nuts",
-        "followingNum": 5,
-        "followersNum": 7,
-        "info": "Hello World!! I hope you enjoy my recipes!"
-    },
-    {
-        "username": "admin",
-        "email": "hola@adios.com",
-        "roles": [
-            "ROLE_USER",
-            "ROLE_ADMIN"
-        ],
-        "name": "Hamsa",
-        "surname": "Jefe",
-        "background": true,
-        "avatar": true,
-        "allergens": "cerdo",
-        "followingNum": 5,
-        "followersNum": 3,
-        "info": "Hi people! Don't mess with me. I'm the boss hehe."
-    },
-    {
-        "username": "trevrap",
-        "email": "trevodrap@hotmail.com",
-        "roles": [
-            "ROLE_USER"
-        ],
-        "name": "Trevod",
-        "surname": "Rap",
-        "background": true,
-        "avatar": true,
-        "allergens": "Peanuts",
-        "followingNum": 5,
-        "followersNum": 3,
-        "info": "I'm a big fan of desserts, follow me and you will see it!"
-    },
-    {
-        "username": "anuelbb",
-        "email": "anuelAA@gmail.com",
-        "roles": [
-            "ROLE_USER"
-        ],
-        "name": "Anuel",
-        "surname": "AA",
-        "background": true,
-        "avatar": true,
-        "allergens": "Mustard",
-        "followingNum": 5,
-        "followersNum": 3,
-        "info": "Mera woooo"
-    },
-    {
-        "username": "pepitoram",
-        "email": "pepito@gmail.com",
-        "roles": [
-            "ROLE_USER"
-        ],
-        "name": "Pedro",
-        "surname": "Ramírez",
-        "background": true,
-        "avatar": true,
-        "allergens": "Soy",
-        "followingNum": 6,
-        "followersNum": 3,
-        "info": "This isn't real"
-    },
-    {
-        "username": "manusav96",
-        "email": "manu@gmail.com",
-        "roles": [
-            "ROLE_USER"
-        ],
-        "name": "Manuel",
-        "surname": "Savater",
-        "background": true,
-        "avatar": true,
-        "allergens": "Milk",
-        "followingNum": 5,
-        "followersNum": 5,
-        "info": "Konichiwa people! I eat sushi every single day."
-    },
-    {
-        "username": "oceloteLVP",
-        "email": "ocelote@dios.com",
-        "roles": [
-            "ROLE_USER"
-        ],
-        "name": "Spanish",
-        "surname": "Rocket",
-        "background": true,
-        "avatar": true,
-        "allergens": null,
-        "followingNum": 1,
-        "followersNum": 3,
-        "info": "Hi mum i'm famous"
-    },
-    {
-        "username": "heisenberg",
-        "email": "badbunny@gmail.com",
-        "roles": [
-            "ROLE_USER"
-        ],
-        "name": "Benito",
-        "surname": "Boss",
-        "background": true,
-        "avatar": true,
-        "allergens": "Wheat",
-        "followingNum": 2,
-        "followersNum": 3,
-        "info": "#YHLQMDLG"
-    },
-    {
-        "username": "user8",
-        "email": "ozuna@hotmail.com",
-        "roles": [
-            "ROLE_USER"
-        ],
-        "name": "El Negrito",
-        "surname": "Ojos Claros",
-        "background": true,
-        "avatar": true,
-        "allergens": "Peanuts",
-        "followingNum": 1,
-        "followersNum": 3,
-        "info": "Woooo"
-    },
-    {
-        "username": "rodriram",
-        "email": "s1mple@gmail.com",
-        "roles": [
-            "ROLE_USER"
-        ],
-        "name": "Rodrigo",
-        "surname": "Ramírez",
-        "background": true,
-        "avatar": true,
-        "allergens": null,
-        "followingNum": 1,
-        "followersNum": 3,
-        "info": "wtf is this user"
-    },
-    {
-        "username": "ifelse",
-        "email": "electronic@grillo.com",
-        "roles": [
-            "ROLE_USER"
-        ],
-        "name": "Pepe",
-        "surname": "Grillo",
-        "background": false,
-        "avatar": true,
-        "allergens": "Eggs",
-        "followingNum": 0,
-        "followersNum": 0,
-        "info": "Python>Java"
-    }
-]
+	[
+	    {
+		"username": "pepegrillo",
+		"email": "pepe@grillo.com",
+		"roles": [
+		    "ROLE_USER"
+		],
+		"name": "Pepe",
+		"surname": "Grillo",
+		"background": true,
+		"avatar": true,
+		"allergens": "Nuts",
+		"followingNum": 5,
+		"followersNum": 7,
+		"info": "Hello World!! I hope you enjoy my recipes!"
+	    },
+	    {
+		"username": "admin",
+		"email": "hola@adios.com",
+		"roles": [
+		    "ROLE_USER",
+		    "ROLE_ADMIN"
+		],
+		"name": "Hamsa",
+		"surname": "Jefe",
+		"background": true,
+		"avatar": true,
+		"allergens": "cerdo",
+		"followingNum": 5,
+		"followersNum": 3,
+		"info": "Hi people! Don't mess with me. I'm the boss hehe."
+	    },
+	    {
+		"username": "trevrap",
+		"email": "trevodrap@hotmail.com",
+		"roles": [
+		    "ROLE_USER"
+		],
+		"name": "Trevod",
+		"surname": "Rap",
+		"background": true,
+		"avatar": true,
+		"allergens": "Peanuts",
+		"followingNum": 5,
+		"followersNum": 3,
+		"info": "I'm a big fan of desserts, follow me and you will see it!"
+	    },
+	    {
+		"username": "anuelbb",
+		"email": "anuelAA@gmail.com",
+		"roles": [
+		    "ROLE_USER"
+		],
+		"name": "Anuel",
+		"surname": "AA",
+		"background": true,
+		"avatar": true,
+		"allergens": "Mustard",
+		"followingNum": 5,
+		"followersNum": 3,
+		"info": "Mera woooo"
+	    },
+	    {
+		"username": "pepitoram",
+		"email": "pepito@gmail.com",
+		"roles": [
+		    "ROLE_USER"
+		],
+		"name": "Pedro",
+		"surname": "Ramírez",
+		"background": true,
+		"avatar": true,
+		"allergens": "Soy",
+		"followingNum": 6,
+		"followersNum": 3,
+		"info": "This isn't real"
+	    },
+	    {
+		"username": "manusav96",
+		"email": "manu@gmail.com",
+		"roles": [
+		    "ROLE_USER"
+		],
+		"name": "Manuel",
+		"surname": "Savater",
+		"background": true,
+		"avatar": true,
+		"allergens": "Milk",
+		"followingNum": 5,
+		"followersNum": 5,
+		"info": "Konichiwa people! I eat sushi every single day."
+	    },
+	    {
+		"username": "oceloteLVP",
+		"email": "ocelote@dios.com",
+		"roles": [
+		    "ROLE_USER"
+		],
+		"name": "Spanish",
+		"surname": "Rocket",
+		"background": true,
+		"avatar": true,
+		"allergens": null,
+		"followingNum": 1,
+		"followersNum": 3,
+		"info": "Hi mum i'm famous"
+	    },
+	    {
+		"username": "heisenberg",
+		"email": "badbunny@gmail.com",
+		"roles": [
+		    "ROLE_USER"
+		],
+		"name": "Benito",
+		"surname": "Boss",
+		"background": true,
+		"avatar": true,
+		"allergens": "Wheat",
+		"followingNum": 2,
+		"followersNum": 3,
+		"info": "#YHLQMDLG"
+	    },
+	    {
+		"username": "user8",
+		"email": "ozuna@hotmail.com",
+		"roles": [
+		    "ROLE_USER"
+		],
+		"name": "El Negrito",
+		"surname": "Ojos Claros",
+		"background": true,
+		"avatar": true,
+		"allergens": "Peanuts",
+		"followingNum": 1,
+		"followersNum": 3,
+		"info": "Woooo"
+	    },
+	    {
+		"username": "rodriram",
+		"email": "s1mple@gmail.com",
+		"roles": [
+		    "ROLE_USER"
+		],
+		"name": "Rodrigo",
+		"surname": "Ramírez",
+		"background": true,
+		"avatar": true,
+		"allergens": null,
+		"followingNum": 1,
+		"followersNum": 3,
+		"info": "wtf is this user"
+	    },
+	    {
+		"username": "ifelse",
+		"email": "electronic@grillo.com",
+		"roles": [
+		    "ROLE_USER"
+		],
+		"name": "Pepe",
+		"surname": "Grillo",
+		"background": false,
+		"avatar": true,
+		"allergens": "Eggs",
+		"followingNum": 0,
+		"followersNum": 0,
+		"info": "Python>Java"
+	    }
+	]
     ```  
 
 * ##### Error response:

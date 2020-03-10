@@ -170,9 +170,8 @@ In the next diagram, you can see the main differences between the registered use
 All of them can access to their recipes, the recipes pages, go back to home... (*Main diagram*) **BUT** the administrator will have a menu where he can manage things like accept new ingredients, categories...
 
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/Navigation%20Diagram%20(Profile).png">
+<img src="https://github.com/CodeURJC-DAW-2019-20/Instarecipes/blob/master/Images/Diagrams/Navigation%20Diagram%20(Profile).png">
 </p> 
-
 
 
 # Web with HTML generated on server and AJAX 
@@ -283,13 +282,13 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 ## Database diagrams <a name="dbDiagram"></a>
 
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/databaseDiagramNew.png"
+<img src="https://github.com/CodeURJC-DAW-2019-20/Instarecipes/blob/master/Images/Diagrams/databaseDiagramNew.png"
 </p> 
 
 ##  Classes and templates diagrams <a name="CTdiagrams"></a>
 
 <p align="center">
-<img src="https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/Images/Diagrams/templatesDiagram.png"
+<img src="https://github.com/CodeURJC-DAW-2019-20/Instarecipes/blob/master/Images/Diagrams/templatesDiagram.png"
 </p> 
  
 
@@ -308,7 +307,7 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 > * [Update UsersRestController](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/0693c7ac48d4be20de654becbf50993507730b3f)
 > * [Index trending](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/c3c27f26e14cd516c31ac82c83e5e5bc7de5b09b)
 > * [Search filered API](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/ee41238ba5f17aa8475a3d62d7310e38b29c210f)
-> * 
+> * [Api documentation](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/74ccae6beacb2445f37bb43666c283b9203e2647)
 
 |                           |                                 |                                           |
 |---------------------------|---------------------------------|-------------------------------------------|
@@ -334,7 +333,7 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 > * [Follow, unfollow API](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/ac69760003c8ab9fd8fbf6dcd8954b010a747e86)
 > * [Category API Rest](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/23a26b4e742a2dcd9e5e88126f40762e7e059d55)
 > * [Login and Signup API](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/2f3d563f96595b7a424fa5f34806d093f1750b98)
-> * 
+> * [Postman operations](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/cb0f2be5212b272654b94ef3bb1062d0f6cd8a5b)
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
@@ -343,11 +342,11 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 
 > This developer has been doing ... 
 
-> * 
-> *
-> * 
-> *  
-> * 
+> * [Images profile](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/a67db881bab4c27c297fe2e34faf384ce1bb84a5)
+> * [RequestRest service and controller](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/1a8973d9efc777a8daa2cc7526b7712ccbdef3a3)
+> * [Final ranking](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/31c52c3d7abb9544abb398cb69715e4fe3a89ce8)
+> * [Dockerfile and App](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/aa762cb9f1e3ee53f23266dee21327b5af8437e5)
+> * [Docker compose](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/bb72a511800ddd366fc70675ba2ceab9a7cdcb16)
 
 |                           |                                 |                                            |
 |---------------------------|---------------------------------|--------------------------------------------|
@@ -356,20 +355,20 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 
 > This developer has been doing ... 
 
-> * 
-> *
-> * 
-> *  
-> * 
+> * [Update profile api](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/60c7a47106526fc1f96f5a2e2c432e8eb968b604)
+> * [Request profile done](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/77bfefbe105c8d49feebbbaada84018e66de8276)
+> * [Settings and request method](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/fdc3fa8ebaddd774bb58efc3149e15e753079530)
+> * [Added ProfileService](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/4bf4e04fe3b426ba4b1e7f868f5458027ff66248)
+> * [Adding some GET request to profile API](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/f2b98466e74f099773029fd8d30034edff982e74)
 
 
 ## Most worked files :newspaper: <a name="workedFiles3"></a> 
 |                           |                                 |                                 |
 |---------------------------|---------------------------------|---------------------------------|
-| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  |                                 |
-| Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       |                                 |
-| Manuel León Briz          | m.leon.2016@alumnos.urjc.es     |                                 |
-| José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  |                                 |
+| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  | ProfileRestController, ProfileService , RequestService                               |
+| Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       | ProfileRestController, IndexRestController, searchRestController, Services and CommentRestController                                |
+| Manuel León Briz          | m.leon.2016@alumnos.urjc.es     | Login, Signup, profileRestController, indexRestController and Services                               |
+| José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  | Profile, UsersRestController, RequestRestController, User and Request                              |
 | Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es | SearchService, SearchRestController, IndexRestController, UsersRestController and  Services                               |
 |                           |                                 |                                 |  
 
