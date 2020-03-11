@@ -135,21 +135,15 @@ public class RequestService {
     public void addItem(int type, String itemContent, long id_request) {
         switch (type) {
             case 0:
-                System.out.println("INGREDIENT ADDED");
-                Ingredient i = new Ingredient(itemContent);
-                ingredientsRepository.save(i);
+                ingredientsRepository.save(new Ingredient(itemContent));
                 requestsRepository.deleteById(id_request);
                 break;
             case 1:
-                Category j = new Category(itemContent);
-                System.out.println("CATEGORY ADDED");
-                categoriesRepository.save(j);
+                categoriesRepository.save(new Category(itemContent));
                 requestsRepository.deleteById(id_request);
                 break;
             case 2:
-                System.out.println("COOKING STYLE ADDED");
-                CookingStyle k = new CookingStyle(itemContent);
-                cookingStylesRepository.save(k);
+                cookingStylesRepository.save(new CookingStyle(itemContent));
                 requestsRepository.deleteById(id_request);
                 break;
         }

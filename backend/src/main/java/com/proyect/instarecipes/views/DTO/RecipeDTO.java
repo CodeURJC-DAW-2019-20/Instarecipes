@@ -1,4 +1,4 @@
-package com.proyect.instarecipes.views;
+package com.proyect.instarecipes.views.DTO;
 
 import java.util.ArrayList;
 

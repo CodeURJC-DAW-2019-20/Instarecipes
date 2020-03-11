@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,9 +23,10 @@ public class RankingRestController{
     @Autowired
     private RankingService rankingService;
 
+    // AJAX PAGEABLE RANKING
     @JsonView(RankingRestController.RankingData.class)
     @GetMapping("/")
-    public ResponseEntity<List<Recipe>> getRanking(@RequestParam long page,@RequestParam long size){
+    public ResponseEntity<List<Recipe>> getRanking(){
         List<Recipe> newRanking=rankingService.showRanking();
         if (newRanking != null){
             return new ResponseEntity<>(newRanking, HttpStatus.OK);

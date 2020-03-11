@@ -1,8 +1,9 @@
 package com.proyect.instarecipes.api;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
-import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.proyect.instarecipes.models.Category;
@@ -20,35 +21,33 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/users")
 public class UsersRestController {
     public interface AnotherUserProfile extends Recipe.RecipeBasic, User.NameSurname, User.Username, User.UserExtraInfo,
-            User.Email, User.Allergen, User.FF, Ingredient.Item, CookingStyle.Item, Category.Item {}
+    User.Email, User.Allergen, User.FF, Ingredient.Item, CookingStyle.Item, Category.Item {}
     public interface RequestInt extends Ingredient.Item, CookingStyle.Item, Category.Item {}
     public interface UsersFF extends User.NameSurname, User.Username, User.IDUser {}
 
     @Autowired
     private UsersService usersService;
     @Autowired
-    private UserSession usersession;
+    private UserSession userSession;
     @Autowired
     private UsersRepository usersRepository;
 
+    // SHOW ANOTHER USER PROFILE
     @JsonView(UsersRestController.AnotherUserProfile.class)
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id) throws IOException {
-      if (usersession.isLoggedUser()){
-        Optional<User> actual = usersService.getActualUser(id);
+      if (userSession.isLoggedUser()){
+        User actual = usersService.getActualUser(id).get();
         if (id != null) {
-          return new ResponseEntity<>(actual.get(), HttpStatus.OK);
+          return new ResponseEntity<>(actual, HttpStatus.OK);
         } else {
           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -57,20 +56,13 @@ public class UsersRestController {
       }
     }
 
-  //   @GetMapping(value = "/{id}/image")
-	// public ResponseEntity<byte[]> getProfileImage(@RequestParam("id") Long id) {
-	// 	Optional<User> User = usersRepository.findById(id);
-	// 	if (!User.isPresent()) {
-  //     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-  //   }
-  // }
-
+    // LIST OF THE USER'S FOLLOWERS 
     @JsonView(UsersRestController.UsersFF.class)
     @GetMapping("/{id}/followers")
     public ResponseEntity<List<User>> getUserFollowers(@PathVariable Long id) throws IOException {
-      if (usersession.isLoggedUser()){
-        Optional<User> actual = usersService.getActualUser(id);
-        List<User> followers = usersService.getFollowersUsers(actual.get());
+      if (userSession.isLoggedUser()){
+        User actual = usersService.getActualUser(id).get();
+        List<User> followers = usersService.getFollowersUsers(actual);
         if (id != null) {
           return new ResponseEntity<>(followers, HttpStatus.OK);
         } else {
@@ -81,12 +73,13 @@ public class UsersRestController {
       }
     }
 
+    // LIST OF THE USER'S FOLLOWING
     @JsonView(UsersRestController.UsersFF.class)
     @GetMapping("/{id}/following")
     public ResponseEntity<List<User>> getUserFollowing(@PathVariable Long id) throws IOException {
-      if (usersession.isLoggedUser()){
-        Optional<User> actual = usersService.getActualUser(id);
-        List<User> following = usersService.getFollowingUsers(actual.get());
+      if (userSession.isLoggedUser()){
+        User actual = usersService.getActualUser(id).get();
+        List<User> following = usersService.getFollowingUsers(actual);
         if (id != null) {
           return new ResponseEntity<>(following, HttpStatus.OK);
         } else {
@@ -97,10 +90,11 @@ public class UsersRestController {
       }
     }
 
+    // LIST OF THE USER'S FOLLOWERS AFTER PRESS FOLLOW ACTION
     @JsonView(UsersRestController.UsersFF.class)
     @PutMapping("/{id}/followAction")
-    public ResponseEntity<List<User>> followAction(@PathVariable Long id)throws IOException {
-      if (usersession.isLoggedUser()){
+    public ResponseEntity<List<User>> followAction(@PathVariable Long id) throws IOException {
+      if (userSession.isLoggedUser()){
         if (id != null) {
           return new ResponseEntity<>(usersService.pressFollow(id), HttpStatus.OK);
         } else {
@@ -111,10 +105,11 @@ public class UsersRestController {
       }
     }
 
+    // LIST OF THE USER'S FOLLOWERS AFTER PRESS UNFOLLOW ACTION
     @JsonView(UsersRestController.UsersFF.class)
     @PutMapping("/{id}/unfollowAction")
     public ResponseEntity<List<User>> unfollowAction(@PathVariable Long id) throws IOException {
-      if (usersession.isLoggedUser()){
+      if (userSession.isLoggedUser()){
         if (id != null) {
           return new ResponseEntity<>(usersService.pressUnfollow(id), HttpStatus.OK);
         } else {
@@ -125,40 +120,21 @@ public class UsersRestController {
       }
     }
     
-	@GetMapping(value = "/{id}/image",produces = MediaType.IMAGE_JPEG_VALUE)
-  public ResponseEntity<byte[]> getProfileImage(@PathVariable Long id) {
-      Optional<User> User = usersRepository.findById(id);
-      if (!User.isPresent()){
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);}
-      else{
-        User profile = User.get();
-        if(profile.getImage() != null){
-          return new ResponseEntity<>(profile.getImage(), HttpStatus.OK);
+    //SHOW THE IMAGE OF ANOTHER USER
+    @GetMapping(value = "/{id}/image",produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> getProfileImage(@PathVariable Long id) throws IOException {
+        if(userSession.isLoggedUser()){
+          User user = usersRepository.findById(id).get();
+          if(user.getImage().length > 0){
+            byte[] image = user.getImage();
+            return new ResponseEntity<>(image, HttpStatus.OK);
+          }else{
+            File file = new File("temp/avatars/image-"+user.getId()+".jpg");
+            return new ResponseEntity<>(Files.readAllBytes(file.toPath()), HttpStatus.OK);
+          }
         }else{
-          return new ResponseEntity<>(HttpStatus.CONFLICT);
+          return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
         }
-      }
-  }
-
-  @PostMapping(value = "/{id}/image",produces = MediaType.IMAGE_JPEG_VALUE)
-  public ResponseEntity<byte[]> setProfileImage(@PathVariable Long id, @RequestBody MultipartFile image) throws IOException {
-      Optional<User> User = usersRepository.findById(id);
-      if (!User.isPresent()){
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-      }
-      else{
-        User profile = User.get();
-        User u = usersession.getLoggedUser();
-        if(u.getId() == profile.getId()){
-          profile.setAvatar(true);
-          profile.setImage(image.getBytes());
-          usersRepository.flush();
-          return new ResponseEntity<>(profile.getImage(), HttpStatus.OK);
-        }else{
-          return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-      }
-  }
-
-
+    }
+    
 }

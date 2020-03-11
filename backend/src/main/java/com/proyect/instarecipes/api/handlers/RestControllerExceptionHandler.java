@@ -1,4 +1,4 @@
-package com.proyect.instarecipes.api;
+package com.proyect.instarecipes.api.handlers;
 
 import java.util.NoSuchElementException;
 

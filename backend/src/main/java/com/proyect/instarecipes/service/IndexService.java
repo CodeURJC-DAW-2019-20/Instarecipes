@@ -191,12 +191,14 @@ public class IndexService {
             if(n_step <= stepsRepository.findAll().size()){
                 Step s = stepsRepository.findByRecipeIdAndNumber(id_recipe, n_step);
                 if(n_step == 1){
+                    System.out.println("hola tio que tal");
                     recipe.setMainImage(img);
-                    imageService.saveImage("recipes/steps/"+recipe.getId(), 1, image);
+                    imageService.saveImage("recipes", recipe.getId(), image);
                 }else{
                     s.setStepImage(image.getBytes());
-                    imageService.saveImage("recipes/steps"+recipe.getId(), n_step, image);
+                    imageService.saveImage("recipes/steps/"+recipe.getId(), n_step, image);
                 }
+                s.setImage(true);
                 stepsRepository.flush();
                 return img;
             }else{

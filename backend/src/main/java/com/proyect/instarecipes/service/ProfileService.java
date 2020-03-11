@@ -18,9 +18,11 @@ import com.proyect.instarecipes.repositories.IngredientsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.ImageService;
+import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
@@ -39,6 +41,8 @@ public class ProfileService {
     private UsersRepository usersRepository;
     @Autowired
     private ImageService imageService;
+    @Autowired
+    private UserSession userSession;
     
     public List<User> getAllUser(){
         return usersRepository.findAll(); 
@@ -90,31 +94,38 @@ public class ProfileService {
         return cookingStylesRepository.findAll();
     }
 
-    public User updateUser(User user, MultipartFile avatarFile, 
-    MultipartFile backgroundFile, String name, String surname, String allergens, 
-    String info)throws IOException{
-        if(!name.equals(null)) {
-            user.setName(name);
+    public User updateUser(User user){
+        User u = usersRepository.findById(userSession.getLoggedUser().getId()).get();
+        if(!user.getName().equals(null)) {
+            u.setName(user.getName());
         }
-        if(!surname.equals(null)) {
-            user.setSurname(surname);
+        if(!user.getSurname().equals(null)) {
+            u.setSurname(user.getSurname());
         }
-        if(!allergens.equals(null)) {
-            user.setAllergens(allergens);
+        if(!user.getAllergens().equals(null)) {
+            u.setAllergens(user.getAllergens());
         }
-        if(!info.equals(null)) {
-            user.setInfo(info);
+        if(!user.getInfo().equals(null)) {
+            u.setInfo(user.getInfo());
         }
         usersRepository.flush();
-        if(!avatarFile.isEmpty()){
-            imageService.saveImage("avatars", user.getId(), avatarFile);
-        }
-        if(!backgroundFile.isEmpty()){
-            imageService.saveImage("backgrounds", user.getId(), backgroundFile);
-        }
-        return user;
+        return u;
     }
     
+    public byte[] updateUserAvatar(@RequestParam MultipartFile avatar) throws IOException{
+        if(!avatar.isEmpty()){
+            imageService.saveImage("avatars", userSession.getLoggedUser().getId(), avatar);
+            return avatar.getBytes();
+        }else return null;
+    }
+
+    public byte[] updateUserBackground(@RequestParam MultipartFile background) throws IOException{
+        if(!background.isEmpty()){
+            imageService.saveImage("backgrounds", userSession.getLoggedUser().getId(), background);
+            return background.getBytes();
+        }else return null;
+    }
+
     public ArrayList<Integer> getLaiks(List<Recipe> recipes){
         ArrayList<Integer> Laiks = new ArrayList<Integer>();
         for (int i = 0; i < recipes.size(); i++) {

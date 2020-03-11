@@ -111,7 +111,7 @@ public class InitDatabase {
         byte[] avatarBytes9 = userAvatar9.getBytes();
         byte[] avatarBytes10 = userAvatar10.getBytes();
         byte[] avatarBytes11 = userAvatar11.getBytes();
-
+        
 
         User u1 = new User("pepegrillo", "pepe@grillo.com", "pass", "Pepe", "Grillo", "Hello World!! I hope you enjoy my recipes!", "Nuts", null, null,avatarBytes1, "ROLE_USER");
         User u2 = new User("manusav96", "manu@gmail.com", "pass", "Manuel", "Savater", "Konichiwa people! I eat sushi every single day.", "Milk", null, null,avatarBytes2, "ROLE_USER");
@@ -160,7 +160,6 @@ public class InitDatabase {
         u3.setFollowers(followers2);
         u4.setFollowers(followers1);
         u5.setFollowers(followers2);
-
         u6.setFollowers(followers1);
         u7.setFollowers(followers1);
         u8.setFollowers(followers2);
@@ -187,13 +186,11 @@ public class InitDatabase {
         u3.setAvatar(true);
         u4.setAvatar(true);
         u5.setAvatar(true);
-
         u6.setAvatar(true);
         u7.setAvatar(true);
         u8.setAvatar(true);
         u9.setAvatar(true);
         u10.setAvatar(true);
-
         u11.setAvatar(true);
 
         //Set backgrounds
@@ -202,7 +199,6 @@ public class InitDatabase {
         u3.setBackground(true);
         u4.setBackground(true);
         u5.setBackground(true);
-
         u6.setBackground(true);
         u7.setBackground(true);
         u8.setBackground(true);
@@ -223,6 +219,18 @@ public class InitDatabase {
         userRepository.save(u10);
         userRepository.save(u11);
 
+        //Save avatars
+        imageService.saveImage("avatars", u1.getId(), userAvatar1);
+        imageService.saveImage("avatars", u2.getId(), userAvatar2);
+        imageService.saveImage("avatars", u3.getId(), userAvatar3);
+        imageService.saveImage("avatars", u4.getId(), userAvatar4);
+        imageService.saveImage("avatars", u5.getId(), userAvatar5);
+        imageService.saveImage("avatars", u6.getId(), userAvatar6);
+        imageService.saveImage("avatars", u7.getId(), userAvatar7);
+        imageService.saveImage("avatars", u8.getId(), userAvatar8);
+        imageService.saveImage("avatars", u9.getId(), userAvatar9);
+        imageService.saveImage("avatars", u10.getId(), userAvatar10);
+        imageService.saveImage("avatars", u11.getId(), userAvatar11);
         //Save backgrounds
         imageService.saveImage("backgrounds", u1.getId(), userBackground);
         imageService.saveImage("backgrounds", u2.getId(), userBackground);

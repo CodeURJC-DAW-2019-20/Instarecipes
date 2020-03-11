@@ -13,7 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +28,7 @@ import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.StepsRepository;
 import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.IndexService;
-import com.proyect.instarecipes.views.RecipeDTO;
+import com.proyect.instarecipes.views.DTO.RecipeDTO;
 
 @RestController
 @RequestMapping("/api")
@@ -89,7 +91,7 @@ public class IndexRestController {
 		}
 	}
 
-	// POSTING RECIPE (AS LOGGED) ->
+	// POSTING RECIPE (AS LOGGED)
 	@JsonView(IndexRestController.PostRecipe.class)
 	@PostMapping("/index")
 	public ResponseEntity<RecipeDTO> postRecipe(@RequestBody RecipeDTO recipeDTO) throws IOException {
@@ -133,6 +135,7 @@ public class IndexRestController {
 		
 	}
 
+	// POST AN IMAGE OF ONE STEP OF ONE RECIPE
 	@JsonView(IndexRestController.PostRecipe.class)
 	@PostMapping(value = "/index/{id}/image/{step}", produces = MediaType.IMAGE_JPEG_VALUE)
 	public ResponseEntity<byte[]> postRecipeImage(@PathVariable Long id, @PathVariable int step, 
@@ -150,7 +153,7 @@ public class IndexRestController {
 	}
 
 	@GetMapping(value = "/index/{id}/image/{step}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public ResponseEntity<byte[]> getRecipeMainImage(@PathVariable Long id,@PathVariable int step) {
+    public ResponseEntity<byte[]> getRecipeMainImage(@PathVariable Long id,@PathVariable int step) throws IOException {
         Optional<Recipe> recipe = recipesRepository.findById(id);
         int num;
         if(step==1){
@@ -164,15 +167,20 @@ public class IndexRestController {
             Recipe recipenew = recipe.get();
             switch (num) {
                 case 0:
-                    byte[] imagerecipe = recipenew.getMainImage();
-                    return new ResponseEntity<>(imagerecipe, HttpStatus.OK);
+					File file = new File("temp/recipes/image-"+recipenew.getId()+".jpg");
+                    return new ResponseEntity<>(Files.readAllBytes(file.toPath()), HttpStatus.OK);
                 case 1:
                     Step s = stepsRepository.findByRecipeIdAndNumber(recipenew.getId(),step);
-                    byte[]  imagestep = s.getStepImage();
-                    return new ResponseEntity<>(imagestep, HttpStatus.OK);
+					if(s!=null){
+						byte[]  imagestep = s.getStepImage();
+						return new ResponseEntity<>(imagestep, HttpStatus.OK);
+					}else{
+						return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+					}
                 default:
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }       
     }
+
 }

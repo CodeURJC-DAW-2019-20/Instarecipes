@@ -21,28 +21,27 @@ public class LogInRestController {
 			extends User.NameSurname, User.UserExtraInfo, User.Username, User.Allergen, User.Email, User.FF {}
 
 	@Autowired
-	private UserSession userComponent;
+	private UserSession userSession;
 	private static final Logger log = LoggerFactory.getLogger(LogInRestController.class);
 
+	// LOGIN
 	@JsonView(LogInRestController.ShowUser.class)
     @RequestMapping("/login")
 	public ResponseEntity<User> logIn() {
-		if (!userComponent.isLoggedUser()) {
-			log.info("Not user logged");
+		if (!userSession.isLoggedUser()) {
+			log.info("NOT LOGGED USER");
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}else{
-			User loggedUser = userComponent.getLoggedUser();
-			// User u = usersRepository.findByUsername(loggedUser.getUsername());
+			User loggedUser = userSession.getLoggedUser();
 			log.info("Logged as " + loggedUser.getName());
-			log.info("My followers "+ loggedUser.getFollowersNum());
-			log.info("I am following "+ loggedUser.getFollowingNum());
 			return new ResponseEntity<>(loggedUser, HttpStatus.OK);
 		}
 	}
 	
+	// LOGOUT
 	@RequestMapping("/logout")
 	public ResponseEntity<Boolean> logOut(HttpSession session) {
-		if (!userComponent.isLoggedUser()) {
+		if (!userSession.isLoggedUser()) {
 			log.info("No user logged");
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}else{

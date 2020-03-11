@@ -748,7 +748,7 @@
       });
       function loadMoreAjax(page_counter, aux, page_size) {
         $.ajax({
-          url: "http://localhost:8443/api/recipes", //para filtrar busqueda se añade +value
+          url: "http://localhost:8443/api/recipes/", //para filtrar busqueda se añade +value
           data: {
             page: page_counter,
             size: page_size,

@@ -28,7 +28,6 @@ public class IndexWebController {
     private IndexService indexService;
     @Autowired
     private ProfileService profileService;
-
     
     @GetMapping("/")
     public String indexNotLogged(Model model) {
@@ -66,24 +65,8 @@ public class IndexWebController {
     @RequestParam(required = false, value = "allImages") MultipartFile[] allImages, 
     @RequestParam(required = false, value = "withImage") String withImage,HttpServletResponse response) throws IOException{
         
-        // Recipe r = 
         indexService.postRecipe(userSession.getLoggedUser(), recipe, ingredientsString, categoriesString,
             cookingStyle, allergen, firstStepString, stepsString, withImage,imageFile, allImages);
-
-        //SHOWING ALL ELEMENTS TO MUSTACHE
-        // List<Recipe> recipes = indexService.getAllRecipes();
-        // model.addAttribute("recipes", recipes);
-        // model.addAttribute("size", recipes.size());
-        // List<Recipe> subRecipe = recipes.subList(0, 3);
-        // model.addAttribute("subRecipe",subRecipe);
-        // List<Comment> comments = indexService.getRecipeComments(recipe);
-        // model.addAttribute("n_comments", comments.size());
-
-        // model.addAttribute("ingredientsList", profileService.getAllIngredients());
-        // model.addAttribute("cookingStylesList", profileService.getAllCookingStyles());
-        // model.addAttribute("categoriesList", profileService.getAllCategories());
-        // model.addAttribute("allergensList", profileService.getAllAllergens());
-        // model.addAttribute("id", userSession.getLoggedUser().getId());
 
         response.sendRedirect("index");
     }

@@ -25,6 +25,7 @@ public class SignUpRestController{
     @Autowired 
     UsersRepository usersRepository;
 
+    // SIGN UP A NEW USER
     @JsonView(SignUpRestController.showNewUser.class)
     @RequestMapping("/signup")
     public ResponseEntity<User> SignUp(@RequestBody User user1)throws IOException{ 

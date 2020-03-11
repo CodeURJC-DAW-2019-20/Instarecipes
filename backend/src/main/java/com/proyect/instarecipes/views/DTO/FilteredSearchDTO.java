@@ -1,4 +1,4 @@
-package com.proyect.instarecipes.api;
+package com.proyect.instarecipes.views.DTO;
 
 public class FilteredSearchDTO {
     private String ingredients;

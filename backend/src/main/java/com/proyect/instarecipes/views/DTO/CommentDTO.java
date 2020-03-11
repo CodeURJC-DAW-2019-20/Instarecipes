@@ -1,6 +1,6 @@
-package com.proyect.instarecipes.api;
+package com.proyect.instarecipes.views.DTO;
 
-public class CommentDto {
+public class CommentDTO {
     private String content;
     private Long ParentComment;
 

@@ -7,6 +7,7 @@ import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.Request;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.RequestsRepository;
+import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,15 @@ public class ProfileWebController {
     @Autowired
     private UserSession userSession;
     @Autowired
+    private UsersRepository usersRepository;
+    @Autowired
     private RequestsRepository requestsRepository;
     @Autowired
     private ProfileService profileService;
 
     @GetMapping("/profile")
     public String profilePage(Model model) {
-        User actual = userSession.getLoggedUser();
+        User actual = usersRepository.findById(userSession.getLoggedUser().getId()).get();
         // User
         model.addAttribute("actualUser", actual);
         // All users
@@ -63,9 +66,14 @@ public class ProfileWebController {
     @PostMapping("/settings")
     public void settings(@RequestParam String name,@RequestParam String surname,@RequestParam String info, @RequestParam String allergens, HttpServletResponse response, 
             @RequestParam MultipartFile avatarFile, @RequestParam MultipartFile backgroundFile) throws IOException {
-
-        User u = userSession.getLoggedUser();
-        profileService.updateUser(u, avatarFile, backgroundFile, name, surname, allergens, info);
+        User u = new User();
+        u.setName(name);
+        u.setSurname(surname);
+        u.setInfo(info);
+        u.setAllergens(allergens);
+        profileService.updateUser(u);
+        profileService.updateUserAvatar(avatarFile);
+        profileService.updateUserBackground(backgroundFile);
         response.sendRedirect("profile");
     }
 
