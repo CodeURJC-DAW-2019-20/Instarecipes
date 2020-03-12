@@ -386,7 +386,7 @@ Download and install docker from [this](https://www.docker.com/products/docker-d
 
 **2nd.**
 
-Prepare [Dokerfile](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/blob/master/Dockerfile) wich is the file that we would archieve the necessary resources and dependencies after build the image.
+Prepare [Dokerfile](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/blob/master/backend/Docker) wich is the file that we would archieve the necessary resources and dependencies after build the image.
 
 **3rd.**
 
