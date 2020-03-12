@@ -1,4 +1,4 @@
-# Group 13 of DAW   ![Active](https://img.shields.io/badge/version-0.1-blue)
+# Group 8 of DAW   ![Active](https://img.shields.io/badge/version-0.1-blue)
 This is the main project's repository, where you can found folders like **Code**'s folder, that contains all the stuff related to the application developing code, or the **Prototype**'s folder, where you will be able to see our first ideas and some sketches used to carry out the web application.
 
 # Table of contents
@@ -28,6 +28,7 @@ This is the main project's repository, where you can found folders like **Code**
  * [Most important commits](#importantComm3)  
  * [Most worked files](#workedFiles3)   
  * [API documentation](#apidoc)
+ * [Docker steps](#dockersteps)
  * [Classes and templates diagrams](#CTdiagrams3)  
  
 # Page layout with HTML and CSS <a name="phase1"></a>
@@ -376,6 +377,73 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 ## API documentation <a name="apidoc"></a>
 
 You can see our [API documentation](https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/API.md) in another .md.   There you will find information about our APIs requests by every single user type.
+
+## Docker steps <a name="dockersteps"></a>
+
+**1st.**
+
+Download and install docker from [this](https://www.docker.com/products/docker-desktop) url.
+
+**2nd.**
+
+Prepare [Dokerfile](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/blob/master/Dockerfile) wich is the file that we would archieve the necessary resources and dependencies after build the image.
+
+**3rd.**
+
+Create the network because we need to connect the container.
+
+> docker network create insta-network
+
+**4th.**
+
+Now we can create and run the container based on MySQL database.
+
+> docker container run --name insta-mysql --network insta-network -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=instarecipes -d mysql:8
+
+**5th.**
+
+Before continue with docker, we need to change the *application.properties*:
+
+> spring.datasource.url=jdbc:mysql://insta-mysql:3306/instarecipes?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+
+**6th.**
+
+And the *pom.xml*:
+
+> &lt;properties&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;java.version&gt;1.8&lt;/java.version&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;start-class&gt;com.proyect.instarecipes.DemoApplication&lt;/start-class&gt;<br />
+&lt;/properties&gt;
+
+**7th.**
+
+Therefore, we could continue with the shell executing the following command to generate the *.jar* file:
+
+> docker run --rm -v "&lt;instarecipes project path&gt;":/usr/src/project -w /usr/src/project maven:alpine mvn package
+
+**8th.**
+
+Now we can build the image based in the Dockerfile (that should be created before this step), executing the following command in the shell:
+
+> docker image build -t lordkener/instarecipes -f Docker/Dockerfile . 
+
+*NOTE*: To execute this command, the shell environment has to be in the same path as the Dockerfile.
+
+**9th.**
+
+Then, now we have the image created, so we need to login to Dockerhub and publish our image into lordkener's account:
+
+> docker login<br />
+> docker push lordkener/instarecipes:latest
+
+**10th.**
+
+Create and run the container based on both images that we had created(insta-mysqldb & instarecipes), linked with insta-network:
+> docker container run --network insta-network --name insta-container -p 8443:8443 -d lordkener/instarecipes
+
+**11th. and last step**
+
+To set more conffortable, we should create the *docker-compose.yml* and finally, the *script.sh* that is better to execute when we're working with docker, avoiding to execute lane to lane everything again. And that is all forks!!
 
 ##  Classes and templates diagrams <a name="CTdiagrams3"></a>
 > In this section you can see how our diagram has changed. 
