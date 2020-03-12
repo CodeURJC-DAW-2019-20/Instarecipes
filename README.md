@@ -433,7 +433,7 @@ Now we can build the image based in the Dockerfile (that should be created befor
 
 Then, now we have the image created, so we need to login to Dockerhub and publish our image into lordkener's account:
 
-> docker login
+> docker login<br />
 > docker push lordkener/instarecipes:latest
 
 **10th.**
