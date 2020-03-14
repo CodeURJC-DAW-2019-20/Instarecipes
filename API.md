@@ -342,8 +342,8 @@ The following queries will be preceded by /api
 
 * #####	Params: 
 
-	**Key**: page  
-    **Key**: size  
+	**Key**: page    
+        **Key**: size    
 
 * ##### Method:  
          `GET`
@@ -411,8 +411,8 @@ The following queries will be preceded by /api
 
 * #####	Body: 
 
-	**Key**: imageFile
-    **Value**: File wanted 
+	**Key**: imageFile  
+        **Value**: File wanted   
 
 * ##### Method:  
          `POST`
@@ -1030,8 +1030,8 @@ The following queries will be preceded by /api/profile
 
 * #####	Body: 
 
-	**Key**: avatar
-    **Value**: File wanted 
+	**Key**: avatar  
+    **Value**: File wanted   
 
 * ##### Method:  
          `PUT`
@@ -2118,10 +2118,11 @@ The following queries will be preceded by /api/recipes.
         </{id_recipe}/comments/ >  
 
 * ##### Body example: 
-    { 
-        "content": "A nice recipe for a lazy weekend",
-        "parentComment": 7
-    }
+
+	    {   
+		"content": "A nice recipe for a lazy weekend",  
+		"parentComment": 7  
+	    }  
 
 
 * ##### Method:  
@@ -2165,7 +2166,7 @@ The following queries will be preceded by /api/search.
 	
 * ##### Params: 
 
-    **Key**: search (pizza, salad...)
+    **Key**: search (pizza, salad...)  
  
 * ##### Method:  
          `GET`
@@ -2238,7 +2239,7 @@ The following queries will be preceded by /api/search.
 
 * ##### Params: 
 
-    **Key**: search (@pepegrillo, @...)
+    **Key**: search (@pepegrillo, @...)  
  	
 * ##### Method:  
          `GET`
@@ -2271,12 +2272,12 @@ The following queries will be preceded by /api/search.
 
 * ##### Body example: 
 
-        {
-            "ingredients": "Potatoes,Lettuce",
-            "categories": "",
-            "cookingStyles": "",
-            "allergens": ""
-        }
+        {  
+            "ingredients": "Potatoes,Lettuce",  
+            "categories": "",  
+            "cookingStyles": "",  
+            "allergens": ""  
+        }  
  
 * ##### Method:  
          `POST`
