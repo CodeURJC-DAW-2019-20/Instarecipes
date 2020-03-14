@@ -627,10 +627,10 @@ The following queries will be preceded by /api/profile
 
 * ##### Params: 
 
-	**Key**: typeOfRequest (Ingredient, Category, Cooking Style)
-    **Key**: itemContent
-    **Key**: action (accept, decline)
-    **Key**: id_request
+	**Key**: typeOfRequest (Ingredient, Category, Cooking Style)  
+        **Key**: itemContent  
+   	**Key**: action (accept, decline)  
+    	**Key**: id_request  
 
 * ##### Method:  
          `GET`
@@ -985,12 +985,12 @@ The following queries will be preceded by /api/profile
 
 * ##### Body example: 
 
-    {
-        "name": "josito",
-        "surname": "Er shulito",
-        "info": "AK mOrEnIkooOoh_19",
-        "allergens": "Soy"
-    }
+	    {
+		"name": "josito",
+		"surname": "Er shulito",
+		"info": "AK mOrEnIkooOoh_19",
+		"allergens": "Soy"
+	    }
 
 
 * ##### Method:  
@@ -1502,8 +1502,8 @@ The following queries will be preceded by /api/recipes.
 
 * ##### Params: 
 
-	**Key**: page 
-    **Key**: size
+	**Key**: page   
+    	**Key**: size  
 
 * ##### Method:  
          `GET`
