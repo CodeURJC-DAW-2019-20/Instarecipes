@@ -378,11 +378,11 @@ If the user wants to register or log in, he will click on the Login / Sign up bu
 
 You can see our [API documentation](https://github.com/CodeURJC-DAW-2019-20/webapp8/blob/master/API.md) in another .md.   There you will find information about our APIs requests by every single user type.
 
-## Docker steps <i class="fa fa-docker"></i> <img width="5%" src="https://avatars3.githubusercontent.com/u/11618900?s=460&v=4">
+## Docker steps <i class="fa fa-docker"></i> <img width="5%" src="https://avatars3.githubusercontent.com/u/11618900?s=460&v=4"> <a name="dockersteps"></a>
 
 **1st.**
 
-Download and install docker from [this](https://www.docker.com/products/docker-desktop) url.
+Download and install docker from [this](https://www.docker.com/products/docker-desktop) url. 
 
 **2nd.**
 

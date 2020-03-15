@@ -9,18 +9,18 @@
 	* [Login](#login)  
 	* [Login as admin](#loginadmin)  
 	* [Logout](#logout)     
-  * [Trending](#trending)    
-	* [For registered users](#regtrending)    
- 	* [For anonymous users](#anontrending)  
   * [Index page](#indexpage)  
-	* [For registered users](#registeredreq)  
+	* [For registered users](#registeredreq) 
 		* [Posting a recipe with images](#postrecipe)  
-        	* [Recent publications](#recentpubslog)  
-        	* [Post one image to one recipe](#imagerecipe)  
+		* [Recent publications](#recentpubslog)  
+		* [Post one image to one recipe](#imagerecipe)  
 	* [For anonymous users](#anonymousreq)  
 		* [Recent publications](#recentpubs)  
 	* [For both](#indexboth)   
-		* [Get image from step](#getimagerecipe)  
+		* [Get image from step](#getimagerecipe) 
+		* [Trending](#trending)    
+			* [For registered users](#regtrending)    
+			* [For anonymous users](#anontrending) 
   * [Profile](#profile)  
 	* [By normal users](#normalusers)  
 		* [Profile](#profile)  
@@ -33,26 +33,34 @@
 	* [By both](#bothusers)
 		* [Update profile](#updateprofile)
 		* [Update profile avatar](#updateprofileavatar)    
-		* [Update profile avatar](#updateprofilebg)    
+		* [Update profile background](#updateprofilebg)    
 		* [Request an item](#requestitem)
 		* [View profile avatar](#profileAvatar)	
    * [Ranking](#rankingreq)     
    * [Recipes](#recipesreq)    
-	* [List of recipes index (Pageable)](#recipesPages)  
-	* [Like a comment](#likecomment)   
-	* [Unlike a comment](#unlikecomment)   
-	* [Like a recipe](#likerecipe)   
-	* [Unike a recipe](#unlikerecipe)  
-	* [Search a recipe by id](#recipeid)
-	* [Steps from a recipe](#recipesteps)
-	* [Steps from a recipe](#recipecomments)
-	* [Post a comment](#postcomments)
-   * [Filtered search](#filteredsearch)  
+		* [List of recipes index (Pageable)](#recipesPages)  
+		* [Like a comment](#likecomment)   
+		* [Unlike a comment](#unlikecomment)   
+		* [Like a recipe](#likerecipe)   
+		* [Unike a recipe](#unlikerecipe)  
+		* [Search a recipe by id](#recipeid)
+		* [Steps from a recipe](#recipesteps)
+		* [Steps from a recipe](#recipecomments)
+		* [Post a comment](#postcomments)
+   * [Filtered search](#filteredsearch)
+		* [Search a recipe](#searchrecipe)
+		* [Search an user](#searchuser)
+		* [Filtered search recipe](#filterrecipe)
    * [List of every recipe](#recipeslist)  
    * [Sign up](#signup)  
    * [More information about the users](#moreinfo)  
-	
-
+		* [Users profiles](#userprofiles)
+		* [User following list](#followinglist)
+		* [User followers list](#followerslist)
+		* [Follow an user](#followuser)
+		* [Unfollow an user](#unfollowuser)	
+		* [Show another user avatar](#usersAvatar)	
+		
 ## Introduction <a name="intro"></a>
 
 ## About our API <a name="about"></a>
@@ -168,110 +176,6 @@ The credentials are:
 
 	**Code**: 401 UNAUTHORIZED  
 	
-## Trending  
-
-**Trending for registered users** <a name="regtrending"></a>
-> Resource to show the trending (advanced algorithm).
-> *In this case, the user is allergic to soy*  
-
-* ##### URL:
-
-        </trending >  
-	
-* ##### Method:  
-         `GET`
-   
-* ##### Success Response:
-    ```
-    {
-        "username": {
-            "username": "pepegrillo",
-            "avatar": true
-        },
-        "title": "Baked Fish with Lemon Cream Sauce",
-        "description": "Yup, just throw it all in one pan, bake it, and you end up with a tender juicy fish in a creamy lemon sauce.",
-        "likes": 9,
-        "n_comments": 0,
-        "image": true
-    },
-    {
-        "username": {
-            "username": "trevrap",
-            "avatar": true
-        },
-        "title": "Vegan Chocolate Ice Cream",
-        "description": "You are making hummus or some other dish with chickpeas and you are just wasting the chickpea water? How dare you! Didn't you know it can form the basis of some the most delicious, light, and foamy vegan ice creams and mousses?",
-        "likes": 9,
-        "n_comments": 0,
-        "image": true
-    },
-    {
-        "username": {
-            "username": "admin",
-            "avatar": true
-        },
-        "title": "Cheddar Cheese Sauce",
-        "description": "Everyone loves cheese sauce over veggies, or for dipping. But of course there are all the pitfalls of eating cow dairy products. Here is a raw, live, vegan alternative that really stands up for applause!",
-        "likes": 6,
-        "n_comments": 0,
-        "image": true
-    }  
-    ``` 
-* ##### Error response:
-
-	**Code**: 401 NOT_FOUND   
-
-	
-**Trending for anonymous users** <a name="anontrending"></a>
-
-* ##### URL:
-        
-        </trending >  
-        
-* ##### Method:  
-         `GET`
-   
-* ##### Success Response:
-    ```
-    {
-	"username": {
-	    "username": "pepegrillo",
-	    "avatar": true
-	},
-	"title": "Homemade Pizza!",
-	"description": "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!",
-	"likes": 9,
-	"n_comments": 10,
-	"image": true
-    },
-    {
-	"username": {
-	    "username": "pepegrillo",
-	    "avatar": true
-	},
-	"title": "Baked Fish with Lemon Cream Sauce",
-	"description": "Yup, just throw it all in one pan, bake it, and you end up with a tender juicy fish in a creamy lemon 	                 sauce.",  
-	"likes": 9,  
-	"n_comments": 0,  
-	"image": true  
-    },  
-    {  
-	"username": {  
-	    "username": "trevrap",  
-	    "avatar": true  
-	},  
-	"title": "Vegan Chocolate Ice Cream",  
-	"description": "You are making hummus or some other dish with chickpeas and you are just wasting the chickpea water? How 		 dare you! Didn't you know it can form the basis of some the most delicious, light, and foamy vegan ice creams and 	                 mousses?",  
-	"likes": 9,  
-	"n_comments": 0,  
-	"image": true  
-    }   
-    ``` 
- * ##### Error response:
-
-	**Code**: 401 NOT_FOUND 
-	
-
 ## Index page <a name="indexpage"></a>
 The following queries will be preceded by /api
 
@@ -572,6 +476,108 @@ The following queries will be preceded by /api
 	**Code**: 401 NETWORK_AUTHENTICATION_REQUIRED
 	> if the recipe doesn't exist
 
+### Trending  
+
+**Trending for registered users** <a name="regtrending"></a>
+> Resource to show the trending (advanced algorithm).
+> *In this case, the user is allergic to soy*  
+
+* ##### URL:
+
+        </trending >  
+	
+* ##### Method:  
+         `GET`
+   
+* ##### Success Response:
+    ```
+    {
+        "username": {
+            "username": "pepegrillo",
+            "avatar": true
+        },
+        "title": "Baked Fish with Lemon Cream Sauce",
+        "description": "Yup, just throw it all in one pan, bake it, and you end up with a tender juicy fish in a creamy lemon sauce.",
+        "likes": 9,
+        "n_comments": 0,
+        "image": true
+    },
+    {
+        "username": {
+            "username": "trevrap",
+            "avatar": true
+        },
+        "title": "Vegan Chocolate Ice Cream",
+        "description": "You are making hummus or some other dish with chickpeas and you are just wasting the chickpea water? How dare you! Didn't you know it can form the basis of some the most delicious, light, and foamy vegan ice creams and mousses?",
+        "likes": 9,
+        "n_comments": 0,
+        "image": true
+    },
+    {
+        "username": {
+            "username": "admin",
+            "avatar": true
+        },
+        "title": "Cheddar Cheese Sauce",
+        "description": "Everyone loves cheese sauce over veggies, or for dipping. But of course there are all the pitfalls of eating cow dairy products. Here is a raw, live, vegan alternative that really stands up for applause!",
+        "likes": 6,
+        "n_comments": 0,
+        "image": true
+    }  
+    ``` 
+* ##### Error response:
+
+	**Code**: 401 NOT_FOUND   
+
+	
+**Trending for anonymous users** <a name="anontrending"></a>
+
+* ##### URL:
+        
+        </trending >  
+        
+* ##### Method:  
+         `GET`
+   
+* ##### Success Response:
+    ```
+    {
+	"username": {
+	    "username": "pepegrillo",
+	    "avatar": true
+	},
+	"title": "Homemade Pizza!",
+	"description": "BEST pizza made with a garlic-herb crust, simple tomato sauce, tons of sauteed veggies, and parmesan cheese. Thin crust, tons of flavor, and ridiculously satisfying!",
+	"likes": 9,
+	"n_comments": 10,
+	"image": true
+    },
+    {
+	"username": {
+	    "username": "pepegrillo",
+	    "avatar": true
+	},
+	"title": "Baked Fish with Lemon Cream Sauce",
+	"description": "Yup, just throw it all in one pan, bake it, and you end up with a tender juicy fish in a creamy lemon 	                 sauce.",  
+	"likes": 9,  
+	"n_comments": 0,  
+	"image": true  
+    },  
+    {  
+	"username": {  
+	    "username": "trevrap",  
+	    "avatar": true  
+	},  
+	"title": "Vegan Chocolate Ice Cream",  
+	"description": "You are making hummus or some other dish with chickpeas and you are just wasting the chickpea water? How 		 dare you! Didn't you know it can form the basis of some the most delicious, light, and foamy vegan ice creams and 	                 mousses?",  
+	"likes": 9,  
+	"n_comments": 0,  
+	"image": true  
+    }   
+    ``` 
+ * ##### Error response:
+
+	**Code**: 401 NOT_FOUND 
 
 ## Profile page <a name="profile"></a>
 The following queries will be preceded by /api/profile
@@ -2155,7 +2161,7 @@ The following queries will be preceded by /api/recipes.
 ## Filtered search. <a name="filteredsearch"></a>
 The following queries will be preceded by /api/search.
 
-### Search a recipe 
+### Search a recipe <a name="searchrecipe"></a>
 
 * ##### URL:
 
@@ -2228,7 +2234,7 @@ The following queries will be preceded by /api/search.
 	**Code**: 404 NOT_FOUND
 	> if there are no recipes founded
 
-### Search an user. 
+### Search an user. <a name="searchuser"></a>
 
 * ##### URL:
 
@@ -2261,7 +2267,7 @@ The following queries will be preceded by /api/search.
     **Code**: 511 NETWORK_AUTHENTICATION_REQUIRED
 	> if there is no logged user
 
-### Filtered search recipe. 
+### Filtered search recipe. <a name="filterrecipe"></a>
 
 * ##### URL:
 
@@ -2567,7 +2573,7 @@ The following queries will be preceded by /api.
 ## More information about the users. <a name="moreinfo"></a> 
 The following queries will be preceded by /api/users.
 
-### Users profiles.
+### Users profiles. <a name="userprofiles"></a>
 
 * ##### URL:
 
@@ -2605,7 +2611,7 @@ The following queries will be preceded by /api/users.
 	> if the user that makes the search is not logged
 
 
-### User following list.
+### User following list. <a name="followinglist"></a>
 
 * ##### URL:
 
@@ -2663,7 +2669,7 @@ The following queries will be preceded by /api/users.
 	**Code**: 511 NETWORK_AUTHENTICATION_REQUIRED
 	> if the user that makes the search is not logged
 
-### User followers list.
+### User followers list. <a name="followerslist"></a>
 
 * ##### URL:
 
@@ -2709,7 +2715,7 @@ The following queries will be preceded by /api/users.
 	**Code**: 511 NETWORK_AUTHENTICATION_REQUIRED
 	> if the user that makes the search is not logged
 
-### Follow an user.
+### Follow an user. <a name="followuser"></a>
 
 * ##### URL:
 
@@ -2775,7 +2781,7 @@ The following queries will be preceded by /api/users.
 	> if the user that makes the search is not logged
 
 
-### Unfollow an user.
+### Unfollow an user. <a name="unfollowuser"></a>
 
 * ##### URL:
 
