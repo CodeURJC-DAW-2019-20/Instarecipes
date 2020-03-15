@@ -48,14 +48,19 @@
 		* [Steps from a recipe](#recipecomments)
 		* [Post a comment](#postcomments)
    * [Filtered search](#filteredsearch)
-   		* [Search a recipe](#searchrecipe)
+		* [Search a recipe](#searchrecipe)
 		* [Search an user](#searchuser)
 		* [Filtered search recipe](#filterrecipe)
    * [List of every recipe](#recipeslist)  
    * [Sign up](#signup)  
    * [More information about the users](#moreinfo)  
-	
-
+		* [Users profiles](#userprofiles)
+		* [User following list](#followinglist)
+		* [User followers list](#followerslist)
+		* [Follow an user](#followuser)
+		* [Unfollow an user](#unfollowuser)	
+		* [Show another user avatar](#usersAvatar)	
+		
 ## Introduction <a name="intro"></a>
 
 ## About our API <a name="about"></a>
