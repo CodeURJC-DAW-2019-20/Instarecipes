@@ -13,10 +13,10 @@
 	* [For registered users](#regtrending)    
  	* [For anonymous users](#anontrending)  
   * [Index page](#indexpage)  
-	* [For registered users](#registeredreq)  
+	* [For registered users](#registeredreq) 
 		* [Posting a recipe with images](#postrecipe)  
-        	* [Recent publications](#recentpubslog)  
-        	* [Post one image to one recipe](#imagerecipe)  
+		* [Recent publications](#recentpubslog)  
+		* [Post one image to one recipe](#imagerecipe)  
 	* [For anonymous users](#anonymousreq)  
 		* [Recent publications](#recentpubs)  
 	* [For both](#indexboth)   
@@ -38,16 +38,19 @@
 		* [View profile avatar](#profileAvatar)	
    * [Ranking](#rankingreq)     
    * [Recipes](#recipesreq)    
-	* [List of recipes index (Pageable)](#recipesPages)  
-	* [Like a comment](#likecomment)   
-	* [Unlike a comment](#unlikecomment)   
-	* [Like a recipe](#likerecipe)   
-	* [Unike a recipe](#unlikerecipe)  
-	* [Search a recipe by id](#recipeid)
-	* [Steps from a recipe](#recipesteps)
-	* [Steps from a recipe](#recipecomments)
-	* [Post a comment](#postcomments)
-   * [Filtered search](#filteredsearch)  
+		* [List of recipes index (Pageable)](#recipesPages)  
+		* [Like a comment](#likecomment)   
+		* [Unlike a comment](#unlikecomment)   
+		* [Like a recipe](#likerecipe)   
+		* [Unike a recipe](#unlikerecipe)  
+		* [Search a recipe by id](#recipeid)
+		* [Steps from a recipe](#recipesteps)
+		* [Steps from a recipe](#recipecomments)
+		* [Post a comment](#postcomments)
+   * [Filtered search](#filteredsearch)
+   		* [Search a recipe](#searchrecipe)
+		* [Search an user](#searchuser)
+		* [Filtered search recipe](#filterrecipe)
    * [List of every recipe](#recipeslist)  
    * [Sign up](#signup)  
    * [More information about the users](#moreinfo)  
@@ -2155,7 +2158,7 @@ The following queries will be preceded by /api/recipes.
 ## Filtered search. <a name="filteredsearch"></a>
 The following queries will be preceded by /api/search.
 
-### Search a recipe 
+### Search a recipe <a name="searchrecipe"></a>
 
 * ##### URL:
 
@@ -2228,7 +2231,7 @@ The following queries will be preceded by /api/search.
 	**Code**: 404 NOT_FOUND
 	> if there are no recipes founded
 
-### Search an user. 
+### Search an user. <a name="searchuser"></a>
 
 * ##### URL:
 
@@ -2261,7 +2264,7 @@ The following queries will be preceded by /api/search.
     **Code**: 511 NETWORK_AUTHENTICATION_REQUIRED
 	> if there is no logged user
 
-### Filtered search recipe. 
+### Filtered search recipe. <a name="filterrecipe"></a>
 
 * ##### URL:
 
@@ -2567,7 +2570,7 @@ The following queries will be preceded by /api.
 ## More information about the users. <a name="moreinfo"></a> 
 The following queries will be preceded by /api/users.
 
-### Users profiles.
+### Users profiles. <a name="userprofiles"></a>
 
 * ##### URL:
 
@@ -2605,7 +2608,7 @@ The following queries will be preceded by /api/users.
 	> if the user that makes the search is not logged
 
 
-### User following list.
+### User following list. <a name="followinglist"></a>
 
 * ##### URL:
 
@@ -2663,7 +2666,7 @@ The following queries will be preceded by /api/users.
 	**Code**: 511 NETWORK_AUTHENTICATION_REQUIRED
 	> if the user that makes the search is not logged
 
-### User followers list.
+### User followers list. <a name="followerslist"></a>
 
 * ##### URL:
 
@@ -2709,7 +2712,7 @@ The following queries will be preceded by /api/users.
 	**Code**: 511 NETWORK_AUTHENTICATION_REQUIRED
 	> if the user that makes the search is not logged
 
-### Follow an user.
+### Follow an user. <a name="followuser"></a>
 
 * ##### URL:
 
@@ -2775,7 +2778,7 @@ The following queries will be preceded by /api/users.
 	> if the user that makes the search is not logged
 
 
-### Unfollow an user.
+### Unfollow an user. <a name="unfollowuser"></a>
 
 * ##### URL:
 
