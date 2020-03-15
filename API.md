@@ -1,9 +1,6 @@
 # Api Documentation
 
 ### Table of contents
-# Api Documentation
-
-### Table of contents
 * [Introduction](#intro)  
 * [About our API](#about)  
 * [How to use it and type of requests available](#useandrequests)  
