@@ -115,6 +115,9 @@ public class ProfileService {
     public byte[] updateUserAvatar(@RequestParam MultipartFile avatar) throws IOException{
         if(!avatar.isEmpty()){
             imageService.saveImage("avatars", userSession.getLoggedUser().getId(), avatar);
+            User u = userSession.getLoggedUser();
+            u.setImage(avatar.getBytes());
+            usersRepository.flush();
             return avatar.getBytes();
         }else return null;
     }
@@ -122,6 +125,9 @@ public class ProfileService {
     public byte[] updateUserBackground(@RequestParam MultipartFile background) throws IOException{
         if(!background.isEmpty()){
             imageService.saveImage("backgrounds", userSession.getLoggedUser().getId(), background);
+            User u = userSession.getLoggedUser();
+            u.setBackgroundImage(background.getBytes());
+            usersRepository.flush();
             return background.getBytes();
         }else return null;
     }

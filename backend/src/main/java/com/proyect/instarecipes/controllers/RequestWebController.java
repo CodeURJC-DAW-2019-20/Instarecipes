@@ -44,7 +44,7 @@ public class RequestWebController {
 
             //funcion comprobando si existe la cookingStyle colocarla en servic
             requestsService.saveItem(request,exists);
-        }else if (typeOfItem.contains("Category")) {
+        }else if (requestsService.isCategory(typeOfItem)) {
             request = requestsService.getNewRequest(user, typeOfItem, content,2);
             exists=requestsService.existCategory(categoriesList,request);
 

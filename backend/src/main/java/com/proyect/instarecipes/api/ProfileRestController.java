@@ -134,35 +134,36 @@ public class ProfileRestController {
 	@PostMapping("/sendItemRequest")
 	public ResponseEntity<Request> sentItemRequest(@RequestBody Request request) {
 		boolean status = false;
-		User user = requestService.getUser();
+		User user = usersRepository.findByUsername(requestService.getUser().getUsername());
 		boolean exists = false;
+		request.setUsername(user);
 		if (userSession.isLoggedUser()) {
 			List<Ingredient> ingredientsList = requestService.getIngredients();
 			List<Category> categoriesList = requestService.getCategories();
 			List<CookingStyle> cookingStylesList = requestService.getCookingStyles();
+			Request r = new Request();
 			// function to get ingredients, categories and cookingstyles (user request)
 			if (requestService.isIngredient(request.getTypeOfRequest())) {
-				request = requestService.getNewRequest(user, request.getTypeOfRequest(), 
+				r = requestService.getNewRequest(user, request.getTypeOfRequest(), 
 						request.getIngredientContent(), 0);
 				exists = requestService.existIngredient(ingredientsList, request);
 				status = true;
 				// function to verify if the ingredient already exists.
-				requestService.saveItem(request, exists);
 			} else if (requestService.isCookingStyle(request.getTypeOfRequest())) {
-				request = requestService.getNewRequest(user, request.getTypeOfRequest(),
+				r = requestService.getNewRequest(user, request.getTypeOfRequest(),
 						request.getCookingStyleContent(), 1);
 				exists = requestService.existCookingStyle(cookingStylesList, request);
 				status = true;
 				// function to verify if the cookingstyle already exists.
-				requestService.saveItem(request, exists);
 			} else if (requestService.isCategory(request.getTypeOfRequest())) {
-				request = requestService.getNewRequest(user, request.getTypeOfRequest(),
+				r = requestService.getNewRequest(user, request.getTypeOfRequest(),
 						request.getCategoryContent(), 2);
 				exists = requestService.existCategory(categoriesList, request);
 				status = true;
-				requestService.saveItem(request, exists);
 			}
 			if (status) {
+				request.setItemExists(exists);
+				requestService.saveItem(r, exists);
 				return new ResponseEntity<>(request, HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -59,19 +59,19 @@ public class RequestService {
     }
 
     public boolean isEqualIngredient(String typeOfRequest) {
-        return typeOfRequest.equalsIgnoreCase("Ingredient");
+        return typeOfRequest.equals("Ingredient");
     }
 
     public boolean isEqualCategory(String typeOfRequest) {
-        return typeOfRequest.equalsIgnoreCase("Category");
+        return typeOfRequest.equals("Category");
     }
 
     public boolean isEqualCookingStyle(String typeOfRequest) {
-        return typeOfRequest.equalsIgnoreCase("Cooking style");
+        return typeOfRequest.equals("Cooking style");
     }
 
     public Request getNewRequest(User user, String typeOfItem, String content, int caso) {
-        Request request = null;
+        Request request = new Request();
 
         switch (caso) {
             case 0:
@@ -81,15 +81,14 @@ public class RequestService {
             case 2:
                 request = new Request(user, typeOfItem, null, null, content, false);
         }
-        if (request!=null)
-            requestsRepository.save(request);
         return request;
     }
 
     public boolean existIngredient(List<Ingredient> ingredientsList, Request request) {
         boolean exists = false;
         for (Ingredient ingredient : ingredientsList) {
-            if (ingredient.getIngredient().equalsIgnoreCase(request.getIngredientContent())) {
+            if (ingredient.getIngredient().equalsIgnoreCase(request.getIngredientContent())
+            || ingredient.getIngredient().contains(request.getIngredientContent())) {
                 exists = true;
                 break;
             }
@@ -100,7 +99,8 @@ public class RequestService {
     public boolean existCategory(List<Category> categoryList, Request request) {
         boolean exists = false;
         for (Category category : categoryList) {
-            if (category.getCategory().equalsIgnoreCase(request.getCategoryContent())) {
+            if (category.getCategory().equalsIgnoreCase(request.getCategoryContent())
+            || category.getCategory().contains(request.getCategoryContent())) {
                 exists = true;
                 break;
             }
@@ -111,7 +111,8 @@ public class RequestService {
     public boolean existCookingStyle(List<CookingStyle> cookingStyles, Request request) {
         boolean exists = false;
         for (CookingStyle cookingStyle : cookingStyles) {
-            if (cookingStyle.getCookingStyle().equalsIgnoreCase(request.getCookingStyleContent())) {
+            if (cookingStyle.getCookingStyle().equalsIgnoreCase(request.getCookingStyleContent())
+            || cookingStyle.getCookingStyle().contains(request.getCookingStyleContent())) {
                 exists = true;
                 break;
             }

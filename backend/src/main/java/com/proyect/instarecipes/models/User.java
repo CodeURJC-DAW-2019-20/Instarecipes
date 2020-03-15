@@ -84,6 +84,8 @@ public class User{
 
 	@Lob
 	private byte[] image;
+	@Lob
+	private byte[] backgroundImage;
 	
 	@JsonView(FFSets.class)
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -262,6 +264,14 @@ public class User{
 
 	public void setFollowersNum(int followersNum) {
 		this.followersNum = followersNum;
+	}
+
+	public byte[] getBackgroundImage() {
+		return backgroundImage;
+	}
+
+	public void setBackgroundImage(byte[] backgroundImage) {
+		this.backgroundImage = backgroundImage;
 	}
 
 }
