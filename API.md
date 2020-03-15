@@ -33,7 +33,7 @@
 	* [By both](#bothusers)
 		* [Update profile](#updateprofile)
 		* [Update profile avatar](#updateprofileavatar)    
-		* [Update profile avatar](#updateprofilebg)    
+		* [Update profile background](#updateprofilebg)    
 		* [Request an item](#requestitem)
 		* [View profile avatar](#profileAvatar)	
    * [Ranking](#rankingreq)     
