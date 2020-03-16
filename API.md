@@ -640,21 +640,34 @@ The following queries will be preceded by /api/profile
     
 * ##### Success Response:
      ```     
-        [
-        {
-            "username": {
-                "username": "manusav96",
-                "name": "Manuel",
-                "surname": "Savater",
-                "avatar": true
-            },
-            "typeOfRequest": "Ingredient",
-            "ingredientContent": "Apple",
-            "cookingStyleContent": "",
-            "categoryContent": "",
-            "itemExists": false
-        }
-        ]
+	[
+	    {
+		"username": {
+		    "username": "manusav96",
+		    "name": "Manuel",
+		    "surname": "Savater",
+		    "avatar": true
+		},
+		"typeOfRequest": "Ingredient",
+		"ingredientContent": "Apple",
+		"cookingStyleContent": "",
+		"categoryContent": "",
+		"itemExists": false
+	    },
+	    {
+		"username": {
+		    "username": "pepegrillo",
+		    "name": "josito",
+		    "surname": "Er shulito",
+		    "avatar": true
+		},
+		"typeOfRequest": "Ingredient",
+		"ingredientContent": "Potatoes",
+		"cookingStyleContent": "",
+		"categoryContent": "",
+		"itemExists": true
+	    }
+	]
      ```   
 
 * ##### Error response:
