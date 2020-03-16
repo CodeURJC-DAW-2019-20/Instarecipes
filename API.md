@@ -1582,10 +1582,6 @@ The following queries will be preceded by /api/recipes.
         ]
     ```
     
-* ##### Error response:
-
-	**Code**: ACTUALIZAR
-
 
 ### Like a comment <a name="likecomment"></a>
 
