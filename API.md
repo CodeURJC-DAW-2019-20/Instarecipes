@@ -1107,7 +1107,7 @@ The following queries will be preceded by /api/profile
             "ingredientContent": "Potatoes",
             "cookingStyleContent": "",
             "categoryContent": "",
-            "itemExists": false
+            "itemExists": true
         }
     ```
         
