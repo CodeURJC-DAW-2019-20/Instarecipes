@@ -1087,7 +1087,7 @@ The following queries will be preceded by /api/profile
 
         {
             "typeOfRequest": "Ingredient",
-            "ingredientContent": "brocoli"
+            "ingredientContent": "Potatoes"
         }
  
 * ##### Method:  
@@ -1104,9 +1104,9 @@ The following queries will be preceded by /api/profile
                 "avatar": true
             },
             "typeOfRequest": "Ingredient",
-            "ingredientContent": "",
+            "ingredientContent": "Potatoes",
             "cookingStyleContent": "",
-            "categoryContent": "brocoli",
+            "categoryContent": "",
             "itemExists": false
         }
     ```
