@@ -11,7 +11,7 @@
 	* [Logout](#logout)     
   * [Index page](#indexpage)  
 	* [For registered users](#registeredreq) 
-		* [Posting a recipe with images](#postrecipe)  
+		* [Posting a recipe](#postrecipe)  
 		* [Recent publications](#recentpubslog)  
 		* [Post one image to one recipe](#imagerecipe)  
 	* [For anonymous users](#anonymousreq)  
