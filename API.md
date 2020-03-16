@@ -8,7 +8,8 @@
   * [Authentication](#authentication)  
 	* [Login](#login)  
 	* [Login as admin](#loginadmin)  
-	* [Logout](#logout)     
+	* [Logout](#logout)  
+  * [Sign up](#signup) 
   * [Index page](#indexpage)  
 	* [For registered users](#registeredreq) 
 		* [Posting a recipe](#postrecipe)  
@@ -51,8 +52,7 @@
 		* [Search a recipe](#searchrecipe)
 		* [Search an user](#searchuser)
 		* [Filtered search recipe](#filterrecipe)
-   * [List of every recipe](#recipeslist)  
-   * [Sign up](#signup)  
+   * [List of every recipe](#recipeslist)   
    * [More information about the users](#moreinfo)  
 		* [Users profiles](#userprofiles)
 		* [User following list](#followinglist)
@@ -175,6 +175,54 @@ The credentials are:
 * ##### Error response:
 
 	**Code**: 401 UNAUTHORIZED  
+	
+	
+## Sign up. <a name="signup"></a> 
+The following queries will be preceded by /api.
+
+* ##### URL:
+
+        </signup >  
+
+* ##### Body example: 
+
+        {
+            "username": "juan",
+            "email": "juanp@gmail.com",
+            "password": "pass",
+            "name": "juanP",
+            "surname": "Camilo",
+            "info": "Yes, we can",
+            "allergens": "Nuts"
+        }
+
+* ##### Method:  
+         `POST`
+
+* ##### Success Response: 
+     ```
+        {
+            "username": "juan",
+            "email": "juanp@gmail.com",
+            "roles": [
+                "ROLE_USER"
+            ],
+            "name": "juanP",
+            "surname": "Camilo",
+            "background": false,
+            "avatar": false,
+            "allergens": "Nuts",
+            "followingNum": 0,
+            "followersNum": 0,
+            "info": "Yes, we can"
+        }
+    ```
+    
+* ##### Error response:
+
+	**Code**: CONFLICT
+	> if the user already exists.	
+	
 	
 ## Index page <a name="indexpage"></a>
 The following queries will be preceded by /api
@@ -2532,52 +2580,6 @@ The following queries will be preceded by /api.
 	**Code**: NOT_FOUND
 	> if the recipe doesn't exist
 
-
-## Sign up. <a name="signup"></a> 
-The following queries will be preceded by /api.
-
-* ##### URL:
-
-        </signup >  
-
-* ##### Body example: 
-
-        {
-            "username": "juan",
-            "email": "juanp@gmail.com",
-            "password": "pass",
-            "name": "juanP",
-            "surname": "Camilo",
-            "info": "Yes, we can",
-            "allergens": "Nuts"
-        }
-
-* ##### Method:  
-         `POST`
-
-* ##### Success Response: 
-     ```
-        {
-            "username": "juan",
-            "email": "juanp@gmail.com",
-            "roles": [
-                "ROLE_USER"
-            ],
-            "name": "juanP",
-            "surname": "Camilo",
-            "background": false,
-            "avatar": false,
-            "allergens": "Nuts",
-            "followingNum": 0,
-            "followersNum": 0,
-            "info": "Yes, we can"
-        }
-    ```
-    
-* ##### Error response:
-
-	**Code**: CONFLICT
-	> if the user already exists.
 
 ## More information about the users. <a name="moreinfo"></a> 
 The following queries will be preceded by /api/users.
