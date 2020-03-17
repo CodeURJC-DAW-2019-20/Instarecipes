@@ -54,7 +54,8 @@ public class ProfileRestController {
 	@GetMapping("/")
 	public ResponseEntity<User> getUser() {
 		if (userSession.isLoggedUser()) {
-			return new ResponseEntity<>(userSession.getLoggedUser(), HttpStatus.OK);
+			User u = usersRepository.findByUsername(userSession.getLoggedUser().getUsername());
+			return new ResponseEntity<>(u, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
 		}
@@ -64,7 +65,7 @@ public class ProfileRestController {
 	@GetMapping(value = "/image", produces = MediaType.IMAGE_JPEG_VALUE)
 	public ResponseEntity<byte[]> getProfileImage() throws IOException {
 		if(userSession.isLoggedUser()){
-			User user = userSession.getLoggedUser();
+            User user = usersRepository.findByUsername(userSession.getLoggedUser().getUsername());
 			if(user.getImage().length > 0){
 				byte[] image = user.getImage();
 				return new ResponseEntity<>(image, HttpStatus.OK);

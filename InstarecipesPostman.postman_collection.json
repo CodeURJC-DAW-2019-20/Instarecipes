@@ -7,179 +7,6 @@
 	},
 	"item": [
 		{
-			"name": "Sign up",
-			"item": [
-				{
-					"name": "1- Sign up a new user",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"username\": \"juan\",\n\t\"email\": \"juanp@gmail.com\",\n\t\"password\": \"pass\",\n\t\"name\": \"juanP\",\n\t\"surname\": \"Camilo\",\n\t\"info\": \"Yes, we can\",\n\t\"allergens\": \"Nuts\"\n}",
-							"options": {
-								"raw": {}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8443/api/signup",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"signup"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "447c887d-5e98-4a0d-b866-77d3574b83ce",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "25200c59-e3cf-4c8b-a74e-c4c082f3eb63",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Login",
-			"item": [
-				{
-					"name": "1- Login as admin",
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "adminpass",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "admin",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8443/api/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"login"
-							]
-						},
-						"description": "With privilegies"
-					},
-					"response": []
-				},
-				{
-					"name": "2- Login as user",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "pepegrillo",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "pass",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [],
-							"options": {
-								"formdata": {}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8443/api/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"login"
-							]
-						},
-						"description": "As normal user"
-					},
-					"response": []
-				},
-				{
-					"name": "3- Logout",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8443/api/logout",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"logout"
-							]
-						},
-						"description": "Logout and convert as an annonymous user"
-					},
-					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
 			"name": "Index",
 			"item": [
 				{
@@ -309,7 +136,10 @@
 									"type": "file",
 									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/601246091_640x360.jpg"
 								}
-							]
+							],
+							"options": {
+								"formdata": {}
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8443/api/index/7/image/2",
@@ -325,7 +155,8 @@
 								"image",
 								"2"
 							]
-						}
+						},
+						"description": "logged as @pepegrillo"
 					},
 					"response": []
 				},
@@ -355,6 +186,115 @@
 								"2"
 							]
 						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "1- Login as admin",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "adminpass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "With privilegies"
+					},
+					"response": []
+				},
+				{
+					"name": "2- Login as user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "pepegrillo",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "pass",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"formdata": {}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8443/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "As normal user"
+					},
+					"response": []
+				},
+				{
+					"name": "3- Logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"logout"
+							]
+						},
+						"description": "Logout and convert as an annonymous user"
 					},
 					"response": []
 				}
@@ -413,7 +353,10 @@
 						],
 						"body": {
 							"mode": "formdata",
-							"formdata": []
+							"formdata": [],
+							"options": {
+								"formdata": {}
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8443/api/profile/image",
@@ -450,7 +393,7 @@
 							"mode": "raw",
 							"raw": "{\n\t\"name\": \"josito\",\n\t\"surname\": \"Er shulito\",\n\t\"info\": \"AK mOrEnIkooOoh_19\",\n\t\"allergens\": \"Soy\"\n}",
 							"options": {
-								"formdata": {}
+								"raw": {}
 							}
 						},
 						"url": {
@@ -488,7 +431,10 @@
 									"type": "file",
 									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/1551198561-Adobe_Stock_260x200.jpg"
 								}
-							]
+							],
+							"options": {
+								"formdata": {}
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8443/api/profile/update/avatar",
@@ -526,7 +472,10 @@
 									"type": "file",
 									"src": "/Users/hamsaaldrobi/Desktop/Fondo Resumen Morado-Púrpura - Video gratis en Pixabay_files/593089750_640x360.jpg"
 								}
-							]
+							],
+							"options": {
+								"formdata": {}
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8443/api/profile/update/background",
@@ -552,7 +501,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\"typeOfRequest\": \"Ingredient\",\n\"ingredientContent\": \"brocoli\"\n}",
+							"raw": "{\n    \"typeOfRequest\": \"Ingredient\",\n    \"ingredientContent\": \"patatoes\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -696,7 +645,10 @@
 						"header": [],
 						"body": {
 							"mode": "formdata",
-							"formdata": []
+							"formdata": [],
+							"options": {
+								"formdata": {}
+							}
 						},
 						"url": {
 							"raw": "http://localhost:8443/api/profile/actionItemRequest?typeOfRequest=Ingredient&itemContent=Potatoes&action=decline&id_request=2",
@@ -737,15 +689,15 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Users",
+			"name": "Ranking",
 			"item": [
 				{
-					"name": "1- Another User Profile",
+					"name": "1- Ranking of users",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8443/api/users/7",
+							"raw": "http://localhost:8443/api/ranking/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -753,120 +705,8 @@
 							"port": "8443",
 							"path": [
 								"api",
-								"users",
-								"7"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "2- Users Followers List",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8443/api/users/7/followers",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"users",
-								"7",
-								"followers"
-							]
-						},
-						"description": "List of users."
-					},
-					"response": []
-				},
-				{
-					"name": "3- Users Following List",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8443/api/users/7/following",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"users",
-								"7",
-								"following"
-							]
-						},
-						"description": "List of users."
-					},
-					"response": []
-				},
-				{
-					"name": "4- Follow an user action",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8443/api/users/7/followAction",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"users",
-								"7",
-								"followAction"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "5- Unfollow an user action",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8443/api/users/7/unfollowAction",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"users",
-								"7",
-								"unfollowAction"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "6- Show another User Avatar",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8443/api/users/7/image",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"users",
-								"7",
-								"image"
+								"ranking",
+								""
 							]
 						}
 					},
@@ -1291,15 +1131,31 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Ranking",
+			"name": "Sign up",
 			"item": [
 				{
-					"name": "1- Ranking of users",
+					"name": "1- Sign up a new user",
 					"request": {
-						"method": "GET",
-						"header": [],
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"juan\",\n\t\"email\": \"juanp@gmail.com\",\n\t\"password\": \"pass\",\n\t\"name\": \"juanP\",\n\t\"surname\": \"Camilo\",\n\t\"info\": \"Yes, we can\",\n\t\"allergens\": \"Nuts\"\n}",
+							"options": {
+								"raw": {}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8443/api/ranking/",
+							"raw": "http://localhost:8443/api/signup",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1307,8 +1163,168 @@
 							"port": "8443",
 							"path": [
 								"api",
-								"ranking",
-								""
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "447c887d-5e98-4a0d-b866-77d3574b83ce",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "25200c59-e3cf-4c8b-a74e-c4c082f3eb63",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "1- Another User Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/users/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2- Users Followers List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/users/7/followers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"7",
+								"followers"
+							]
+						},
+						"description": "List of users."
+					},
+					"response": []
+				},
+				{
+					"name": "3- Users Following List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/users/7/following",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"7",
+								"following"
+							]
+						},
+						"description": "List of users."
+					},
+					"response": []
+				},
+				{
+					"name": "4- Follow an user action",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/users/7/followAction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"7",
+								"followAction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5- Unfollow an user action",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/users/7/unfollowAction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"7",
+								"unfollowAction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6- Show another User Avatar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8443/api/users/7/image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"7",
+								"image"
 							]
 						}
 					},
