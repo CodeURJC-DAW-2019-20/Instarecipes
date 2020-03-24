@@ -84,6 +84,8 @@ public class User{
 
 	@Lob
 	private byte[] image;
+	@Lob
+	private byte[] imageBackground;
 	
 	@JsonView(FFSets.class)
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -212,14 +214,24 @@ public class User{
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-	 public void setImage(byte[] image){
-		 this.image=image;
-		 
-     }
+	
+	public void setImage(byte[] image){
+		 this.image=image; 
+    }
 
 	public byte[] getImage() {
 		return this.image;
 	}
+	
+	public void setImageBackground(byte[] imageBackground){
+		this.imageBackground=imageBackground;
+		
+	}
+
+   public byte[] getImageBackground() {
+	   return this.imageBackground;
+   }
+	
 	public String toString(){
         if(this.roles.contains("ROLE_ADMIN")){
             return "admin";

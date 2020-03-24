@@ -174,10 +174,9 @@ public class InitDatabase {
         Set<User> likes5 = groupStaff.groupLikes(u1,u3,u5,u7,u9,u11);
         Set<User> likes6 = groupStaff.groupLikes(u10,u11);
  
-         //Avatar and backgrounds BOTS
+        //Backgrounds BOTS
         File backgroundBots = new File("src/main/resources/static/images/backgrounds/profile_background_example.jpeg");
         FileInputStream bBots = new FileInputStream(backgroundBots);
-        //MultipartFile userAvatar = new MockMultipartFile("file2", avatarBots.getName(), "image/jpeg", IOUtils.toByteArray(aBots));
         MultipartFile userBackground = new MockMultipartFile("file3", backgroundBots.getName(), "image/jpeg", IOUtils.toByteArray(bBots));
         
         //Set avatars
@@ -192,6 +191,19 @@ public class InitDatabase {
         u9.setAvatar(true);
         u10.setAvatar(true);
         u11.setAvatar(true);
+
+        //Set bytes background
+        u1.setImageBackground(userBackground.getBytes());
+        u2.setImageBackground(userBackground.getBytes());
+        u3.setImageBackground(userBackground.getBytes());
+        u4.setImageBackground(userBackground.getBytes());
+        u5.setImageBackground(userBackground.getBytes());
+        u6.setImageBackground(userBackground.getBytes());
+        u7.setImageBackground(userBackground.getBytes());
+        u8.setImageBackground(userBackground.getBytes());
+        u9.setImageBackground(userBackground.getBytes());
+        u10.setImageBackground(userBackground.getBytes());
+        u11.setImageBackground(userBackground.getBytes());
 
         //Set backgrounds
         u1.setBackground(true);

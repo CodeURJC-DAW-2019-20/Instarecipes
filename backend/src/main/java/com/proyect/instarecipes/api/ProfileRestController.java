@@ -77,6 +77,23 @@ public class ProfileRestController {
 		}
 	}
 
+	//SHOW OWN BACKGROUND
+	@GetMapping(value = "/background", produces = MediaType.IMAGE_JPEG_VALUE)
+	public ResponseEntity<byte[]> getBackgroundImage() throws IOException {
+		if(userSession.isLoggedUser()){
+			User user = userSession.getLoggedUser();
+			if(user.getImageBackground().length > 0){
+				byte[] image = user.getImageBackground();
+				return new ResponseEntity<>(image, HttpStatus.OK);
+			}else{
+				File file = new File("temp/backgrounds/image-"+user.getId()+".jpg");
+				return new ResponseEntity<>(Files.readAllBytes(file.toPath()), HttpStatus.OK);
+			}
+		}else{
+			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+		}
+	}
+
 	// UPDATE OWN USER
 	@JsonView(ProfileRestController.UserProfile.class)
 	@PutMapping("/update")
@@ -97,27 +114,6 @@ public class ProfileRestController {
 			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
 		}
 	}
-
-	/*
-	// UPDATE OWN USER'S PROFILE IMAGE
-	@PostMapping(value = "/{id}/image", produces = MediaType.IMAGE_JPEG_VALUE)
-	public ResponseEntity<byte[]> setProfileImage(@PathVariable Long id, @RequestParam MultipartFile image)
-			throws IOException {
-		Optional<User> User = usersRepository.findById(id);
-		if (!User.isPresent()) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}else{
-			User profile = User.get();
-			User u = userSession.getLoggedUser();
-			if (u != null && u.getId() == id) {
-				profile.setImage(image.getBytes());
-				usersRepository.save(profile);
-				return new ResponseEntity<>(profile.getImage(), HttpStatus.OK);
-			} else {
-				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-			}
-		}
-	}*/
 
 	// UPDATE OWN USER PROFILE BACKGROUND
 	@PutMapping(value = "/update/background", produces = MediaType.IMAGE_JPEG_VALUE)
