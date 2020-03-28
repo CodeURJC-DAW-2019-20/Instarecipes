@@ -1,0 +1,209 @@
+<h1> {{title}} </h1>
+
+<!-- Search button pannel -->
+<!--
+<div class="publications-modal modal fade" id="opened-search-button" tabindex="-1" role="dialog"
+aria-labelledby="publicationsModal6Label" aria-hidden="true">
+<div id="filtered-search" class="modal-dialog modal-xl" role="document" style="width: 90%;">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+          <i class="fas fa-times"></i>
+        </span>
+      </button>
+      <div class="modal-body text-center">
+        <div class="container">
+          <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Filtered Search</h2>
+          <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon">
+              <img src='../images/icons/orange-search.png' width="50%" style="height: 50px; width: 50px;" />
+            </div>
+            <div class="divider-custom-line"></div>
+          </div>
+          <form action="/search" method="post">
+            <div class="row">
+              <div class="col-6">
+                <h3 class="underlined-text">INGREDIENTS</h3>
+                <div class="row">
+                  <table id="IngredientsTable">
+                    <tr>
+                      <td>
+                        <input name="ingredients" type="text" list="ingredientslist"
+                          placeholder="Select an ingredient.."
+                          style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;"
+                          onkeypress="return false;">
+                        <datalist id="ingredientslist">
+                          {{#ingredientsList}}
+                          <option value="{{ingredient}}">{{ingredient}}</option>
+                          {{/ingredientsList}}
+                        </datalist>
+                      </td>
+                      <td>
+                        <button id="Ing-delete-button" type="button" class="btn-delete-line"
+                          style="color: white; font-size: inherit;" onclick="delRowIngredient(this)">
+                          <span aria-hidden="true">
+                            <i class="fas fa-trash"></i>
+                          </span>
+                        </button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <hr>
+                <button id="Ing-add-button" type="button" class="btn-add-ingredient">
+                  <span aria-hidden="true">
+                    <i class="fa fa-plus add" aria-hidden="true" style="color: white; font-size: inherit;"></i>
+                    <h6 class="text">ADD</h6>
+                  </span>
+                </button>
+                <button id="Ing-delete-all-button" type="button" class="btn-delete-ingredients">
+                  <span aria-hidden="true">
+                    <i class="fas fa-trash" aria-hidden="true" style="color: white; font-size: inherit;"></i>
+                    <h6 class="text">DELETE ALL</h6>
+                  </span>
+                </button>
+                <hr>
+              </div>
+              <div class="col-6">
+                <h3 class="underlined-text">COOKING STYLE</h3>
+                <div class="row">
+                  <table id="CookingStyleTable">
+                    <tr>
+                      <td>
+                        <input name="cookingStyles" type="text" list="cookingStyleslist"
+                          placeholder="Select a category.."
+                          style="width: 90%; border-radius: 0.5rem;border-width: 0.5px;"
+                          onkeypress="return false;">
+                        <datalist id="cookingStyleslist">
+                          {{#cookingStylesList}}
+                          <option value="{{cookingStyle}}">{{cookingStyle}}</option>
+                          {{/cookingStylesList}}
+                        </datalist>
+                      </td>
+                      <td>
+                        <button id="CSy-delete-button" type="button" class="btn-delete-line"
+                          style="color: white;font-size: inherit;" onclick="delRowCookingStyle(this)">
+                          <span aria-hidden="true">
+                            <i class="fas fa-trash"></i>
+                          </span>
+                        </button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <hr>
+                <button id="CSy-add-button" type="button" class="btn-add-category">
+                  <span aria-hidden="true">
+                    <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                    <h6 class="text">ADD</h6>
+                  </span>
+                </button>
+                <button ID="CSy-delete-all-button" type="button" class="btn-delete-categories">
+                  <span aria-hidden="true">
+                    <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                    <h6 class="text">DELETE ALL</h6>
+                </button>
+                <hr>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <h3 class="underlined-text">CATEGORIES</h3>
+                <div class="row">
+                  <table id="CategoriesTable">
+                    <tr>
+                      <td>
+                        <input name="categories" type="text" list="categorieslist"
+                          placeholder="Select a category.."
+                          style="width: 90%; border-radius: 0.5rem;border-width: 0.5px;"
+                          onkeypress="return false;">
+                        <datalist id="categorieslist">
+                          {{#categoriesList}}
+                          <option value="{{category}}">{{category}}</option>
+                          {{/categoriesList}}
+                        </datalist>
+                      </td>
+                      <td>
+                        <button id="Cat-delete-button" class="btn-delete-line"
+                          style="color: white;font-size: inherit;" onclick="delRowCategory(this)">
+                          <span aria-hidden="true">
+                            <i class="fas fa-trash"></i>
+                          </span>
+                        </button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <hr>
+                <button id="Cat-add-button" type="button" class="btn-add-category">
+                  <span aria-hidden="true">
+                    <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                    <h6 class="text">ADD</h6>
+                  </span>
+                </button>
+                <button id="Cat-delete-all-button" type="button" class="btn-delete-categories">
+                  <span aria-hidden="true">
+                    <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                    <h6 class="text">DELETE ALL</h6>
+                  </span>
+                </button>
+              </div>
+              <div class="col-6">
+                <h3 class="underlined-text">FREE ALLERGENS</h3>
+                <div class="row">
+                  <table id="AllergensTable">
+                    <tr>
+                      <td>
+                        <input name="allergens" type="text" list="allergenslist"
+                          placeholder="Select an allergen.."
+                          style="width: 90%; border-radius: 0.5rem; border-width: 0.5px;"
+                          onkeypress="return false;">
+                        <datalist id="allergenslist">
+                          {{#allergensList}}
+                          <option value="{{allergen}}">{{allergen}}</option>
+                          {{/allergensList}}
+                        </datalist>
+                      </td>
+                      <td>
+                        <button id="Alg-delete-button" type="button" class="btn-delete-line"
+                          style="color: white;font-size: inherit;" onclick="delRowAllergen(this)">
+                          <span aria-hidden="true">
+                            <i class="fas fa-trash"></i>
+                          </span>
+                        </button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <hr>
+                <button id="Alg-add-button" type="button" class="btn-add-allergen">
+                  <span aria-hidden="true">
+                    <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                    <h6 class="text">ADD</h6>
+                  </span>
+                </button>
+                <button id="Alg-delete-all-button" type="button" class="btn-delete-allergens">
+                  <span aria-hidden="true">
+                    <i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                    <h6 class="text">DELETE ALL</h6>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <hr>
+            <button type="submit" class="btn btn-primary">
+              <h6 class="text">Go!</h6>
+              <img class="img-fluid rounded" src="../images/icons/pizza-go.png" alt="" width="50%"
+                style="height: 50px; width: 50px;">
+              <input type="hidden" name="_csrf" value="{{token}}" />
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+-->
