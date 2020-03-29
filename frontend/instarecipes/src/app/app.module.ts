@@ -10,6 +10,7 @@ import { TrendingComponent } from './index/trending/trending.component';
 import { RecentComponent } from './index/recent/recent.component';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './signUp/signUp.component';
 
 @NgModule({
 
@@ -19,7 +20,8 @@ import { LoginComponent } from './login/login.component';
     TrendingComponent,
     RecentComponent,
     IndexComponent,
-    LoginComponent
+    LoginComponent,
+    SignUpComponent
   ],
 
   //Aqui se deben importar los modulos

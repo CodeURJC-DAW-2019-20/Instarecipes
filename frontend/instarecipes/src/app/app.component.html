@@ -12,15 +12,17 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto" style="margin-right: 20%;">
         <li class="nav-item col-2" style="max-width: 100%;">
-          <a class="nav-link js-scroll-trigger"><i onmouseover="hover(this)"
-              onmouseout="normal(this)" class="fas fa-home"
-              style="font-size: xx-large; color: rgba(159, 193, 255, 0.726)"></i></a>
+          <a class="nav-link js-scroll-trigger">
+            <i onmouseover="hover(this)" onmouseout="normal(this)" class="fas fa-home"
+              style="font-size: xx-large; color: rgba(159, 193, 255, 0.726)" [routerLink]="['/index']">
+            </i>
+          </a>
         </li>
         <li class="nav-item col-2" style="max-width: 100%;">
           <a class="nav-link"><i class="fas fa-user" style="font-size: xx-large;"></i></a>
         </li>
         <li class="nav-item col-2" style="max-width: 100%;">
-          <a class="nav-link"><i class="fas fa-trophy" style="font-size: xx-large;"></i></a>
+          <a class="nav-link"><i class="fas fa-trophy" style="font-size: xx-large;" [routerLink]="['/ranking']"></i></a>
         </li>
         <li class="nav-item col-2" style="max-width: 100%;">
           <div class="min-search" id="min-search">
@@ -51,7 +53,7 @@
         style="color:white;font-weight: normal;font-size: 15px;">Logout</button>
       <!-- <input type="hidden" name="_csrf" value="{{token}}" /> -->
     </form>
-    <a class="nav-link nav-log" style="font-weight: normal;font-size: 15px;">Login / Sign Up</a>
+    <a class="nav-link nav-log" style="font-weight: normal;font-size: 15px;" [routerLink]="['/login']">Login / Sign Up</a>
   </div>
 </nav>
 

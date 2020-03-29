@@ -26,7 +26,7 @@
 			<div class="wrap-login100 p-l-35 p-r-35 p-t-5 p-b-14">
 				<!-- Back button -->
 				<div class="login100 p-l p-r p-t-5 p-b-35 ">
-					<a href="/" style="font-size: 32px; margin-left: 98%;color: rgba(112, 162, 255, 0.856);" class="fa fa-close"></a>
+					<a [routerLink]="['/index']" style="font-size: 32px; margin-left: 98%;color: rgba(112, 162, 255, 0.856);" class="fa fa-close"></a>
 				</div>
 				<span class="login100-form-title p-b-30">
 					Login
@@ -61,12 +61,24 @@
 						Or sign in with
 					</span>
 				</div>
+				<form action="/googleUser" method='POST'>
+					<div class="flex-c-m" style="margin-bottom: 3%">
+						<button id="google-button" class="g-signin2" data-onsuccess="onSignIn">
+						</button>							
+					
+						<button type="submit" class="signIngoogle">Go</button>
+					<!-- <input type="hidden" name="_csrf" value="{{token}}"/> -->
+					
+						<button type="submit" onclick=""></button>
+					</div>
+				
+				</form >
 				<hr>
 				<div class="flex-col-c">
 					<span class="txt1 p-b-17">
 						Don't have an account yet?
 					</span>
-					<a href="signUp" class="login100-form-btn txt2" style="color: black;">
+					<a [routerLink]="['/signup']" class="login100-form-btn txt2" style="color: black;">
 						Sign up
 					</a>
 				</div>

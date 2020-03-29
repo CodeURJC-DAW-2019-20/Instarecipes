@@ -4,12 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 //tipo: import {RecipeComponent} from './Recipe/recipe.component'
 import { IndexComponent } from './index/index.component'
 import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './signUp/signUp.component';
+import { RankingComponent } from './ranking/ranking.component';
 
 // aqui ponemos las rutas, tipo: { path: 'recipe/:id', component: RecipeComponent},{...}
 const routes: Routes = [
   { path: 'index', component: IndexComponent },
   { path: '', redirectTo: 'index', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignUpComponent },
+  { path: 'ranking', component: RankingComponent },
 ];
 
 @NgModule({
