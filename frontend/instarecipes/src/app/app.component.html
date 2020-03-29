@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
   <div class="container" style="margin-left: 30px;">
     <div id="img-navbar-container">
-      <img class="img-navbar" src="images/icons/instarecipes.png" alt="">
+      <img class="img-navbar" src="../assets/images/icons/instarecipes.png" alt="">
     </div>
     <a class="navbar-brand js-scroll-trigger" style="font-family: 'Pacifico';">&nbsp;Instarecipes</a>
     <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
@@ -56,3 +56,8 @@
 </nav>
 
 <router-outlet></router-outlet>
+<div>
+  <button (click)="search()">Buscar</button>
+  
+  <p *ngFor="let recipe of recipes">{{recipe}}</p>
+</div>

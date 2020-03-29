@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - DemoApplication",
+            "request": "launch",
+            "mainClass": "com.proyect.instarecipes.DemoApplication",
+            "projectName": "instarecipes"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-Application<instarecipes>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
