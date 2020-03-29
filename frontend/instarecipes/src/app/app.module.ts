@@ -11,6 +11,8 @@ import { RecentComponent } from './index/recent/recent.component';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './signUp/signUp.component';
+import { SearchComponent } from './search/search.component';
+import { RecipeSearchComponent } from './search/recipe-search/recipe-search.component';
 
 @NgModule({
 
@@ -21,7 +23,8 @@ import { SignUpComponent } from './signUp/signUp.component';
     RecentComponent,
     IndexComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    RecipeSearchComponent
   ],
 
   //Aqui se deben importar los modulos

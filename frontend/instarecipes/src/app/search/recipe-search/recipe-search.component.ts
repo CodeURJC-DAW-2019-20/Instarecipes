@@ -5,11 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './recipe-search.component.html',
   styleUrls: ['./recipe-search.component.css']
 })
-export class RecipeSearchComponent implements OnInit {
+export class RecipeSearchComponent  {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }
