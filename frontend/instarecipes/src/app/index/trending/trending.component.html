@@ -1,7 +1,4 @@
-<h1> {{title}} </h1>
-
 <!-- Carousel-->
-<!--
 <header id="header-section" style="margin-top: 3%;">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <div class="trending-topic-text">
@@ -13,29 +10,26 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
       </ol>
       <div class="carousel-inner" role="listbox">
-        {{#logged}}
-        {{#filteredRecipe}}
-        <div id="carruselDeportivo{{-index}}" class="carousel-item active">
-          <img src="/temp/recipes/image-{{id}}.jpg" class="img-blur" width="100%">
+        <!-- {{#logged}} -->
+        <!-- {{#filteredRecipe}} -->
+        <div class="carousel-item active">
+          <img class="img-blur" width="100%">
           <div class="trending-pub">
             <div class="row" style="height: 100%; margin-left: 0; margin-right: 0;">
-              <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2); @media only screen and (max-width: 800px){
-                    display:none;
-                    }">
-                <img class="d-flex mr-3 rounded-circle profile-border" width="50%"
-                  src="/temp/avatars/image-{{username.id}}.jpg" alt="">
+              <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2); @media only screen and (max-width: 800px){display:none;}">
+                <img class="d-flex mr-3 rounded-circle profile-border" width="50%">
               </div>
               <div class="col-md-4">
                 <h3>Introduction</h3>
-                <p>{{description}}</p>
-                <a class="btn btn-primary" href="/recipes/{{id}}">Read
+                <p>description</p>
+                <a class="btn btn-primary">Read
                   <span class="glyphicon glyphicon-chevron-right">
                   </span>
                 </a>
               </div>
               <div class="col-md-7" style="height: inherit; padding-left: 0; padding-right: 0;">
-                <a href="#">
-                  <img class="rounded mb-3 mb-md-0" src="/temp/recipes/image-{{id}}.jpg" style="object-fit: cover;"
+                <a>
+                  <img class="rounded mb-3 mb-md-0" style="object-fit: cover;"
                     height="100%" width="100%" alt="">
                 </a>
                 <div class="likes-comments-top-right">
@@ -44,13 +38,13 @@
                       <img class="icon-fluid" src="images/icons/like_pressed.png" alt="">
                     </div>
                     <div class="col-3">
-                      <p class="icon-fluid pub-date-text">{{likes}}</p>
+                      <p class="icon-fluid pub-date-text"></p>
                     </div>
                     <div class="col-3">
-                      <img class="icon-fluid" src="images/icons/dialogue.png" alt="">
+                      <img class="icon-fluid">
                     </div>
                     <div class="col-3">
-                      <p class="icon-fluid pub-date-text">{{n_comments}}</p>
+                      <p class="icon-fluid pub-date-text"></p>
                     </div>
                   </div>
                 </div>
@@ -58,35 +52,30 @@
             </div>
           </div>
           <div class="carousel-caption d-none d-md-block">
-            <h3>{{title}}</h3>
-            <p>Trending No. {{-index}}</p>
+            <h3>title</h3>
+            <p>Trending No.</p>
           </div>
         </div>
-        {{/filteredRecipe}}
-        {{/logged}}
-        {{^logged}}
-        {{#notTrending}}
-        <div id="carruselDeportivo{{-index}}" class="carousel-item active">
-          <img src="/temp/recipes/image-{{id}}.jpg" class="img-blur" width="100%">
+        <div class="carousel-item active">
+          <img class="img-blur" width="100%">
           <div class="trending-pub">
             <div class="row" style="height: 100%; margin-left: 0; margin-right: 0;">
               <div class="col-lg-1" style="align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2); @media only screen and (max-width: 800px){
                     display:none;
                     }">
-                <img class="d-flex mr-3 rounded-circle profile-border" width="50%"
-                  src="/temp/avatars/image-{{username.id}}.jpg" alt="">
+                <img class="d-flex mr-3 rounded-circle profile-border" width="50%">
               </div>
               <div class="col-md-4">
                 <h3>Introduction</h3>
-                <p>{{description}}</p>
-                <a class="btn btn-primary" href="/recipes/{{id}}">Read
+                <p>description</p>
+                <a class="btn btn-primary">Read
                   <span class="glyphicon glyphicon-chevron-right">
                   </span>
                 </a>
               </div>
               <div class="col-md-7" style="height: inherit; padding-left: 0; padding-right: 0;">
-                <a href="#">
-                  <img class="rounded mb-3 mb-md-0" src="/temp/recipes/image-{{id}}.jpg" style="object-fit: cover;"
+                <a>
+                  <img class="rounded mb-3 mb-md-0" style="object-fit: cover;"
                     height="100%" width="100%" alt="">
                 </a>
                 <div class="likes-comments-top-right">
@@ -95,13 +84,13 @@
                       <img class="icon-fluid" src="images/icons/like_pressed.png" alt="">
                     </div>
                     <div class="col-3">
-                      <p class="icon-fluid pub-date-text">{{likes}}</p>
+                      <p class="icon-fluid pub-date-text"><!--{{likes}}--></p>
                     </div>
                     <div class="col-3">
                       <img class="icon-fluid" src="images/icons/dialogue.png" alt="">
                     </div>
                     <div class="col-3">
-                      <p class="icon-fluid pub-date-text">{{n_comments}}</p>
+                      <p class="icon-fluid pub-date-text">n_comments</p>
                     </div>
                   </div>
                 </div>
@@ -109,27 +98,26 @@
             </div>
           </div>
           <div class="carousel-caption d-none d-md-block">
-            <h3>{{title}}</h3>
-            <p>Trending No. {{-index}}</p>
+            <h3>title</h3>
+            <p>Trending No. <!--{{-index}} --></p>
           </div>
         </div>
-        {{/notTrending}}
-        {{/logged}}
+        <!-- {{/notTrending}} -->
+        <!-- {{/logged}} -->
       </div>
-      <script type="text/javascript">
+      <!-- <script type="text/javascript">
         $(document).ready(function () {
           document.getElementById("carruselDeportivo2").classList.remove("active");
           document.getElementById("carruselDeportivo3").classList.remove("active");
         });
-      </script>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      </script> -->
+      <a class="carousel-control-prev" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <a class="carousel-control-next" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
     </div>
   </header>
--->

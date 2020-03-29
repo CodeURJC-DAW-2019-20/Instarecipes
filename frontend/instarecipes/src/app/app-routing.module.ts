@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 //aqui ponemos los imports de otras clases para poder utilizarlos en el ruter
 //tipo: import {RecipeComponent} from './Recipe/recipe.component'
-import { IndexComponent } from './index/index.component'
+import { IndexComponent } from './index/index.component';
 
 // aqui ponemos las rutas, tipo: { path: 'recipe/:id', component: RecipeComponent},{...}
 const routes: Routes = [

@@ -6,12 +6,18 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TrendingComponent } from './index/trending/trending.component';
+import { RecentComponent } from './index/recent/recent.component';
+import { IndexComponent } from './index/index.component';
 
 @NgModule({
 
   //Aqui se deben importar los componentes
   declarations: [
-    AppComponent
+    AppComponent,
+    TrendingComponent,
+    RecentComponent,
+    IndexComponent
   ],
 
   //Aqui se deben importar los modulos
