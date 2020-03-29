@@ -2,13 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TrendingComponent } from './index/trending/trending.component';
 import { RecentComponent } from './index/recent/recent.component';
 import { IndexComponent } from './index/index.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
 
@@ -17,7 +18,8 @@ import { IndexComponent } from './index/index.component';
     AppComponent,
     TrendingComponent,
     RecentComponent,
-    IndexComponent
+    IndexComponent,
+    LoginComponent
   ],
 
   //Aqui se deben importar los modulos

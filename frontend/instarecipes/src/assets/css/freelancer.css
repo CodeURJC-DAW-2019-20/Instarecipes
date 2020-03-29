@@ -791,13 +791,13 @@ input.remove
 }
 /* rotate and rerotate icon */
 .rotate45{
-  -webkit-animation:spin 0.2s linear normal; 
+  -webkit-animation:spin 0.2s linear normal;
   -moz-animation:spin 0.2s linear normal;
   animation:spin 0.2s linear normal;
   animation-fill-mode: forwards;
 }
 .rotate0{
-  -webkit-animation:respin 0.2s linear reverse; 
+  -webkit-animation:respin 0.2s linear reverse;
   -moz-animation:respin 0.2s linear reverse;
   animation:respin 0.2s linear reverse;
   animation-fill-mode: forwards;
@@ -966,8 +966,8 @@ input.remove
   opacity: 1;
 }
 .recipe-scrollbar{
-  width: 300px; 
-  height: 200px; 
+  width: 300px;
+  height: 200px;
   overflow: auto;
 }
 /* ---------------- */
@@ -1335,7 +1335,7 @@ input.remove
     flex: 0 0 25%;
     max-width: 25%;
   }
-  
+
   .col-md-4 {
     flex: 0 0 33.33333%;
     max-width: 33.33333%;
@@ -2633,7 +2633,7 @@ fieldset:disabled a.btn {
   color: black;
   background-color: rgba(100, 149, 237, 0.5);
   border-color: #343a40;
-  
+
   cursor: pointer;
 }
 
@@ -10100,7 +10100,7 @@ a.canvasjs-chart-credit{
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active {
     color: #fff;
-    
+
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link.active:active, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:focus, #mainNav .navbar-nav > li.nav-item > a.nav-link.active:hover {
     color: #fff;
@@ -10272,9 +10272,9 @@ color: rgba(159, 193, 255, 0.726);
 }
 
 #navbarResponsive ul{
-  
+
   float: left;
-  
+
 }
 #navbarResponsive ul li{
   float: left;
@@ -10296,7 +10296,7 @@ color: rgba(159, 193, 255, 0.726);
 .login-logo i{
   color: white;
 }
-.login-logo i:hover{ 
+.login-logo i:hover{
   color: rgba(159, 193, 255, 0.726);
 }
 .min-search i{
@@ -10321,5 +10321,5 @@ color: rgba(159, 193, 255, 0.726);
     .min-search i{display:none;}
     .login-logo a{display:none;}
     .navbar-toggler-icon i{display:block}
- 
+
   }
