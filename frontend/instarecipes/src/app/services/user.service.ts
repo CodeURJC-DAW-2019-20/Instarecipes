@@ -1,4 +1,4 @@
-/*import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { User } from '../Interfaces/user.model';
@@ -8,14 +8,14 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    //return this.http.get<User[]>(`${config.apiUrl}/users`);
+    return this.http.get<User[]>(`${config.apiUrl}/users`);
   }
-}*/
-import { Injectable } from '@angular/core';
+}
+/*import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const BASE_URL = 'https://localhost:8443/api/loginRestController';
+const BASE_URL = 'https://localhost:8443/api/LogInRestController';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -33,4 +33,4 @@ export class UserService {
 		console.error(error);
 		return Observable.throw("Server error (" + error.status + "): " + error.text())
 	}
-}
+}*/

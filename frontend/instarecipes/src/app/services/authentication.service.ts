@@ -18,28 +18,42 @@ constructor(private http: HttpClient) {
   }
 }
 
-  login(username: string, password: string){
-    console.log(username);
+  login(user: string, password: string){
+    console.log("im in authentication.service login ")
+    console.log(user);
     console.log(password);
-    let auth = window.btoa(username + ':' + password);
+    let auth = window.btoa(user + ':' + password);
     const headers = new HttpHeaders({
       Authorization: 'Basic ' + auth,
       'X-Requested-With': 'XMLHttpRequest',
     });
     console.log(headers);
-    return this.http.get<User>('/api/logInRestController', { headers }).pipe(map(user => {
-      console.log(username);
+    return this.http.get<User>('/login', { headers }).pipe(map(user => {
+      console.log(user);
       if (user) {
         this.setCurrentUser(user);
         user.authdata = auth;
-        localStorage.setItem('currentUser', JSON.stringify(username));
+        localStorage.setItem('currentUser', JSON.stringify(user));
       }
-      return username;
+      return user;
+    }));
+  }
+
+  logOut() {
+    return this.http.get('/api/logout').pipe(map(response => {
+      this.removeCurrentUser();
+      return response;
     }));
   }
 
   private setCurrentUser(user: User) {
     this.isLoggedUser = true;
     this.user = user;
+  }
+
+  removeCurrentUser() {
+    localStorage.removeItem('currentUser');
+    this.isLoggedUser = false;
+    this.isAdminUser = false;
   }
 }
