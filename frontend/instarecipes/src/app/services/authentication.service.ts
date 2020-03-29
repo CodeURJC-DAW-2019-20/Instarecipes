@@ -1,4 +1,4 @@
-/*import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { User } from '../Interfaces/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -43,5 +43,3 @@ constructor(private http: HttpClient) {
     this.user = user;
   }
 }
-
-*/

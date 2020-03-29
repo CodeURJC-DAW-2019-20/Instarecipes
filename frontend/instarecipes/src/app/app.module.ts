@@ -11,8 +11,9 @@ import { RecentComponent } from './index/recent/recent.component';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './signUp/signUp.component';
-import { SearchComponent } from './search/search.component';
 import { RecipeSearchComponent } from './search/recipe-search/recipe-search.component';
+import { AuthenticationService } from './services/authentication.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
 
@@ -32,9 +33,10 @@ import { RecipeSearchComponent } from './search/recipe-search/recipe-search.comp
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+
   ],
-  providers: [], //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
+  providers: [AuthenticationService, UserService], //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
   bootstrap: [AppComponent]
 })
 //@ts-ignore
