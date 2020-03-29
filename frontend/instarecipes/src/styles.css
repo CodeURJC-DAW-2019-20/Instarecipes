@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'assets/css/bootstrap.min.css';
+@import 'assets/css/freelancer.css';
+@import 'assets/css/freelancer.min.css';
+@import 'assets/css/main.css';
+@import 'assets/css/modern-business.css';
+@import 'assets/css/recipes.css';
+@import 'assets/css/searchfile.css';
+@import 'assets/css/style.css';
+@import 'assets/css/util.css';

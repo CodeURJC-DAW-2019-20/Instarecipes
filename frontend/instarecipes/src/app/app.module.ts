@@ -3,12 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { IndexComponent } from './index/index.component';
 
 @NgModule({
 
   //Aqui se deben importar los componentes
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    IndexComponent
   ],
 
   //Aqui se deben importar los modulos
