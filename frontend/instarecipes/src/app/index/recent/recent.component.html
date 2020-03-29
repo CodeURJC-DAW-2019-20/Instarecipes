@@ -4,11 +4,14 @@
       <source src="../../assets/images/backgrounds/index.mp4" type="video/mp4">
     </video>
     <div class="container">
-
-    <!-- Recent recipes -->
-    <div id="recipes-container">
-      <p>HOLA? {{recipes}}</p>
-    </div>
-
+      <!-- Recent recipes -->
+      <h4>{{title}}</h4>
+      <div id="recipes-container">
+        <div *ngFor="let recipe of recipes">
+          {{recipe?.title}}
+        <br>
+          {{recipe?.description}}
+        </div>
+      </div>
     </div>
 </div>

@@ -1,9 +1,7 @@
-import {Component} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
 
+import { RecipesService } from '../../services/recipes.service';
 import { Recipe } from '../../Interfaces/recipe.model';
-
-//const BASE_URL: string = "http://localhost:8443/api/recipes/?page=0&size=1";
 
 @Component({
   selector: 'recent-recipes',
@@ -11,13 +9,19 @@ import { Recipe } from '../../Interfaces/recipe.model';
   styleUrls: ['./recent.component.css']
 })
 
-export class RecentComponent{
-    recipes: Recipe[] = [];
-    // constructor(private httpClient: HttpClient) { 
-    //   this.httpClient.get(BASE_URL).subscribe(
-    //     response => this.recipes = response as any,
-    //     error => console.log("Hola mundo " + error)
-    //   )
-    // }
+export class RecentComponent implements OnInit{
     title = " Recent user's publications";
+    recipes: Recipe[] = [];
+    constructor (private recipesService: RecipesService){ }
+  
+    ngOnInit(){
+      this.refresh();
+    }
+
+    refresh() {
+      this.recipesService.refreshRecipes().subscribe(
+        recipes => this.recipes = recipes as Recipe[]
+      );
+    }
+
 }
