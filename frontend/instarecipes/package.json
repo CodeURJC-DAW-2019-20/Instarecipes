@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json",
+    "start": "ng serve --proxy-config src/proxy.config.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -23,6 +23,7 @@
     "@fortawesome/fontawesome-free": "^5.13.0",
     "@ng-bootstrap/ng-bootstrap": "^6.0.2",
     "bootstrap": "^4.4.1",
+    "cors": "^2.8.5",
     "font-awesome": "^4.7.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
