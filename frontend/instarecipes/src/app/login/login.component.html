@@ -82,7 +82,7 @@
             Login
           </span>
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
+            <!--<div class="form-group">
               <div class="wrap-input100 validate-input m-b-23">
                 <span class="label-input100" for="username">Username</span>
                 <input class="input100" type="text" formControlName="username" class="form-control" placeholder="Type your username"  [ngClass]="{ 'is-invalid': submitted && f.username.errors }"  />
@@ -92,6 +92,13 @@
                 <div *ngIf="f.username.errors.required">Username is required</div>
               </div>
             </div>
+            </div>-->
+            <div class="form-group">
+              <label class="label-input100" for="username">Username</label>
+              <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+              <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                <div *ngIf="f.username.errors.required">Username is required</div>
+              </div>
             </div>
             
             <div class="form-group">

@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit{
            .pipe(first())
            .subscribe(
                data => {
-                 console.log("jplñapowf");
                    this.router.navigate([this.returnUrl]);
                },
                error => {

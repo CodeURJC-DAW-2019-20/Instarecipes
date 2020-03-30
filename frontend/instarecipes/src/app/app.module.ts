@@ -38,14 +38,11 @@ import { AuthGuard } from './helpers/auth.guard';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    ReactiveFormsModule,
-    FormsModule
+    ReactiveFormsModule
 
   ],
   //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
-  providers: [AuthenticationService, AuthGuard, UserService, RecipesService,
-    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
-  ],
+  providers: [AuthenticationService, AuthGuard, UserService, RecipesService],
   bootstrap: [AppComponent]
 })
 //@ts-ignore
