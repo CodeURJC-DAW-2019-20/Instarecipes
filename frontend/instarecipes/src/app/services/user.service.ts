@@ -14,20 +14,21 @@ export class UserService {
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
-const BASE_URL = 'https://localhost:8443/api/loginRestController';
+const BASE_URL = '/api/user/';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
 	constructor(private httpClient: HttpClient) { }
 
-    login(username:string, password:string) {
-        return this.httpClient.post(BASE_URL, {
-          email: username,
-          password: password,
-        });
-      }
+  login(username:string, password:string) {
+    return this.httpClient.post('/api/loginRestController', {
+      email: username,
+      password: password,
+    });
+  }
 
 	private handleError(error: any) {
 		console.error(error);

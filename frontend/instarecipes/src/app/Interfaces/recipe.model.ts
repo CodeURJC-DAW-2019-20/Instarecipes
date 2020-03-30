@@ -8,7 +8,7 @@ import { Category } from './category.model';
 
 export interface Recipe{
     id?: number;
-    user: User;
+    username: User;
     title: string;
     description: string;
     likes?: number;

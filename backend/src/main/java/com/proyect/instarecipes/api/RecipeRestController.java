@@ -1,5 +1,8 @@
 package com.proyect.instarecipes.api;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,10 +22,12 @@ import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.RecipeService;
 import com.proyect.instarecipes.views.DTO.CommentDTO;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -71,6 +76,19 @@ public class RecipeRestController{
         }
         List<Recipe> recipeList = (List<Recipe>)recipes.getContent();
         return recipeList;
+    }
+
+    //SHOW THE IMAGE OF ANOTHER USER
+    @GetMapping(value = "/{id}/avatar",produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> getProfileImage(@PathVariable Long id) throws IOException {
+        User user = usersRepository.findById(id).get();
+        if(user.getImage().length > 0){
+            byte[] image = user.getImage();
+            return new ResponseEntity<>(image, HttpStatus.OK);
+        }else{
+            File file = new File("temp/avatars/image-"+user.getId()+".jpg");
+            return new ResponseEntity<>(Files.readAllBytes(file.toPath()), HttpStatus.OK);
+        }
     }
 
     //SHOW ONE RECIPE

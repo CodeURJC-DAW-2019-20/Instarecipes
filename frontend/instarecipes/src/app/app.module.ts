@@ -14,6 +14,7 @@ import { SignUpComponent } from './signUp/signUp.component';
 import { RecipeSearchComponent } from './search/recipe-search/recipe-search.component';
 import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
+import { RecipesService } from './services/recipes.service';
 
 @NgModule({
 
@@ -36,7 +37,7 @@ import { UserService } from './services/user.service';
     NgbModule,
 
   ],
-  providers: [AuthenticationService, UserService], //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
+  providers: [AuthenticationService, UserService, RecipesService], //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
   bootstrap: [AppComponent]
 })
 //@ts-ignore
