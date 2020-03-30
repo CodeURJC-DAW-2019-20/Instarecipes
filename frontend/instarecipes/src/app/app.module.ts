@@ -18,6 +18,8 @@ import { RecipesService } from './services/recipes.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BasicAuthInterceptor } from './helpers/basic-auth-interceptor';
 import { AuthGuard } from './helpers/auth.guard';
+import { LogoutComponent } from './logout/logout.component';
+import { ErrorInterceptor } from './helpers/error.interceptor';
 
 @NgModule({
 
@@ -29,7 +31,8 @@ import { AuthGuard } from './helpers/auth.guard';
     IndexComponent,
     LoginComponent,
     SignUpComponent,
-    RecipeSearchComponent
+    RecipeSearchComponent,
+    LogoutComponent
   ],
 
   //Aqui se deben importar los modulos
@@ -38,11 +41,13 @@ import { AuthGuard } from './helpers/auth.guard';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
 
   ],
   //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
-  providers: [AuthenticationService, AuthGuard, UserService, RecipesService],
+  providers: [AuthenticationService, AuthGuard, UserService, RecipesService,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 //@ts-ignore
