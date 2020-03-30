@@ -44,6 +44,16 @@
             "console": "internalConsole",
             "mainClass": "com.proyect.instarecipes.Application",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoApplication<instarecipes>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.proyect.instarecipes.DemoApplication",
+            "projectName": "instarecipes",
+            "args": ""
         }
     ]
 }

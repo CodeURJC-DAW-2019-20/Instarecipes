@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -15,6 +15,9 @@ import { RecipeSearchComponent } from './search/recipe-search/recipe-search.comp
 import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { RecipesService } from './services/recipes.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BasicAuthInterceptor } from './basic-auth-interceptor';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
 
@@ -35,9 +38,14 @@ import { RecipesService } from './services/recipes.service';
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    ReactiveFormsModule,
+    FormsModule
 
   ],
-  providers: [AuthenticationService, UserService, RecipesService], //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
+  //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
+  providers: [AuthenticationService, AuthGuard, UserService, RecipesService,
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 //@ts-ignore
