@@ -16,8 +16,8 @@ import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { RecipesService } from './services/recipes.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { BasicAuthInterceptor } from './basic-auth-interceptor';
-import { AuthGuard } from './auth.guard';
+import { BasicAuthInterceptor } from './helpers/basic-auth-interceptor';
+import { AuthGuard } from './helpers/auth.guard';
 
 @NgModule({
 

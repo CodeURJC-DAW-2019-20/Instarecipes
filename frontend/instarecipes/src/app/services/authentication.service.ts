@@ -28,7 +28,7 @@ constructor(private http: HttpClient) {
       'X-Requested-With': 'XMLHttpRequest',
     });
     console.log(headers);
-    return this.http.get<User>('/login', { headers }).pipe(map(user => {
+    return this.http.get<User>('/api/login', { headers }).pipe(map(user => {
       console.log(user);
       if (user) {
         this.setCurrentUser(user);

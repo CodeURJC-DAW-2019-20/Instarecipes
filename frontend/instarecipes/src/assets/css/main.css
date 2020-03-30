@@ -7,22 +7,22 @@
 
 @font-face {
   font-family: Poppins-Regular;
-  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+  src: url('../fonts/poppins/Poppins-Regular.ttf');
 }
 
 @font-face {
   font-family: Poppins-Medium;
-  src: url('../fonts/poppins/Poppins-Medium.ttf'); 
+  src: url('../fonts/poppins/Poppins-Medium.ttf');
 }
 
 @font-face {
   font-family: Poppins-Bold;
-  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
+  src: url('../fonts/poppins/Poppins-Bold.ttf');
 }
 
 @font-face {
   font-family: Poppins-SemiBold;
-  src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
+  src: url('../fonts/poppins/Poppins-SemiBold.ttf');
 }
 
 
@@ -32,8 +32,8 @@
 [ RESTYLE TAG ]*/
 
 * {
-	margin: 0px; 
-	padding: 0px; 
+	margin: 0px;
+	padding: 0px;
 	box-sizing: border-box;
 }
 
@@ -243,7 +243,7 @@ iframe {
 }
 
 .container-login100 {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -416,10 +416,10 @@ iframe {
   width: 300%;
   height: 100%;
   background: #a64bf4;
-  background: -webkit-linear-gradient(right, rgb(112, 162, 255), rgba(255, 105, 137, 0.658), rgb(112, 162, 255), rgba(255, 105, 137, 0.658));
-  background: -o-linear-gradient(right, rgb(112, 162, 255), rgba(255, 105, 137, 0.658), rgb(112, 162, 255), rgba(255, 105, 137, 0.658));
-  background: -moz-linear-gradient(right, rgb(112, 162, 255), rgba(255, 105, 137, 0.658), rgb(112, 162, 255), rgba(255, 105, 137, 0.658));
-  background: linear-gradient(right, rgb(112, 162, 255), rgba(255, 105, 137, 0.658), rgb(112, 162, 255), rgba(255, 105, 137, 0.658));
+  background: -webkit-linear-gradient(to left, rgb(112, 162, 255), rgba(255, 105, 137, 0.658), rgb(112, 162, 255), rgba(255, 105, 137, 0.658));
+  background: -o-linear-gradient(to left, rgb(112, 162, 255), rgba(255, 105, 137, 0.658), rgb(112, 162, 255), rgba(255, 105, 137, 0.658));
+  background: -moz-linear-gradient(to left, rgb(112, 162, 255), rgba(255, 105, 137, 0.658), rgb(112, 162, 255), rgba(255, 105, 137, 0.658));
+  background: linear-gradient(to left, rgb(112, 162, 255), rgba(255, 105, 137, 0.658), rgb(112, 162, 255), rgba(255, 105, 137, 0.658));
   top: 0;
   left: -100%;
 
@@ -554,12 +554,12 @@ iframe {
     padding-left: 15px;
     padding-right: 15px;
   }
-} 
+}
 
 #signupDiv{
   display:none;
 }
- 
+
 .validation{
   border-radius: 10px;
   color: #f44336;
