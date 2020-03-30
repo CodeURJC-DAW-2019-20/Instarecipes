@@ -1,3 +1,148 @@
-<p>
-  comments works!
-</p>
+<section id="comments-section">
+  <!-- Comments Form -->
+  <div class="coments">
+    <h5 class="card-header">Leave your comment:</h5>
+    <div class="card-body">
+      <form method="post" action="/postComment/"> <!-- id-->
+        <div id="commentCountChar"></div>
+        <div class="form-group">
+
+            <!-- THIS IS THE CONTENT -->
+            <textarea id="areaComment" onkeyup="commentCountChar(this)" class="form-control" name="content" rows="3"></textarea>
+
+            <!-- THIS IS THE CONTENT -->
+            <textarea disabled class="form-control" rows="3">You must login before comment</textarea>
+
+        </div>
+        <!-- THIS IS THE PARENT -->
+        <input id="parentComment" name="parentComment" hidden/>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+
+          <button disabled type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+
+    <!-- Comment with nested comments -->
+    <div class="media mb-4">
+      <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" src="/temp/avatars/image-.jpg" alt=""/> <!-- usercomment dps id-->
+      <div class="media-body">
+        <h5 class="mt-0"><!--{{userComment.name}}&nbsp;{{userComment.surname}}--></h5>
+        <input readonly type="text" class="mt-0" value="" style="border-width: 0px;" id="userComment"></input><!-- usercomment username y dps id-->
+        <p class="mt-0"></p><!-- content-->
+        <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
+          <div class="col-4" style="height: 100%;">
+            <p style="top: 0; align-self: center;"></p> <!--likes -->
+          </div>
+
+            <div class="col-4" style="cursor: pointer; height: 100%;">
+
+                <form action="/unlikeComment/" method="POST"><!-- id-->
+                  <button type="submit" style="width: inherit;border: 0px;">
+                    <img class="focusHeart" src="../images/icons/like_pressed.png" style="width: 20px;" alt="">
+                  </button>
+                  <input name="id_recipe" value="" hidden/>
+
+                </form>
+
+                <form action="/likeComment/" method="POST"><!-- id-->
+                  <button type="submit" style="width: inherit;border: 0px;">
+                    <img class="focusHeart" src="../images/icons/like_unpressed.png" style="width: 20px;" alt="">
+                  </button>
+                  <input name="id_recipe" value=" hidden/>
+
+                </form>
+
+            </div>
+
+          <div class="col-4" style="height: 100%;">
+            <a href="#comments-section" onclick="parentComment()"> <!-- LEAVE THIS AS AN ERROR, NOT PROBLEM--><!-- comment id y id-->
+              <img src="../images/icons/dialogue.png" height="100%" alt="">
+            </a>
+          </div>
+        </div>
+
+          <!-- Subcomment -->
+          <div class="media mt-4">
+            <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" src="/temp/avatars/image-.jpg" alt=""/><!-- usercomment id-->
+            <div class="media-body">
+              <h5 class="mt-0"></h5><!-- usercoment name y surname-->
+              <input readonly type="text" class="mt-0" value="" style="border-width: 0px;" id="userComment"></input>><!-- usercomment username y dps id-->
+              <p class="mt-0"></p>><!-- content-->
+              <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
+                <div class="col-4" style="height: 100%;">
+                  <p style="top: 0; align-self: center;"></p> ><!-- likes-->
+                </div>
+
+                  <div class="col-4" style="cursor: pointer; height: 100%;">
+
+                    <form action="/unlikeComment/" method="POST"><!-- id-->
+                      <button type="submit" style="width: inherit;border: 0px;">
+                        <img class="focusHeart" src="../images/icons/like_pressed.png" style="width: 20px;" alt="">
+                      </button>
+                      <input name="id_recipe" value="" hidden/><!-- recipe id-->
+
+                    </form>
+
+                    <form action="/likeComment/{{id}}" method="POST">
+                      <button type="submit" style="width: inherit;border: 0px;">
+                        <img class="focusHeart" src="../images/icons/like_unpressed.png" style="width: 20px;" alt="">
+                      </button>
+                      <input name="id_recipe" value="{{recipe.id}}" hidden/>
+
+                    </form>
+
+                  </div>
+
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+      <!-- Comment with nested comments -->
+      <div class="media mb-4">
+        <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" src="/temp/avatars/image-.jpg" alt=""/>><!-- usercomment id-->
+        <div class="media-body">
+          <h5 class="mt-0"><!--{{userComment.name}}&nbsp;{{userComment.surname}}--></h5>
+          <input readonly type="text" class="mt-0" value="" style="border-width: 0px;" id="userComment"></input>><!-- usercomment username e id-->
+          <p class="mt-0"></p> <!-- content-->
+          <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
+            <div class="col-4" style="height: 100%;">
+              <p style="top: 0; align-self: center;"></p> <!--likes-->
+            </div>
+
+              <div class="col-4" style="cursor: pointer; height: 100%;">
+
+                  <form action="/unlikeComment/" method="POST"> <!-- id-->
+                    <button type="submit" style="width: inherit;border: 0px;">
+                      <img class="focusHeart" src="../images/icons/like_pressed.png" style="width: 20px;" alt="">
+                    </button>
+                    <input name="id_recipe" value="" hidden/> <!--recipe id-->
+
+                  </form>
+
+                  <form action="/likeComment/" method="POST"> <!-- id-->
+                    <button type="submit" style="width: inherit;border: 0px;">
+                      <img class="focusHeart" src="../images/icons/like_unpressed.png" style="width: 20px;" alt="">
+                    </button>
+                    <input name="id_recipe" value="" hidden/>  <!--recipe id-->
+
+                  </form>
+
+              </div>
+
+            <div class="col-4" style="height: 100%;">
+              <a href="#comments-section" onclick="parentComment()"> <!-- LEAVE THIS AS AN ERROR, NOT PROBLEM--><!-- usercomment username e id-->
+                <img src="../images/icons/dialogue.png" height="100%" alt="">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<hr width="50%">
+</section>
+</div>
