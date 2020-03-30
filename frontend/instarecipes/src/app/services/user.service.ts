@@ -10,6 +10,8 @@ export class UserService {
   getAll() {
     return this.http.get<User[]>(`${config.apiUrl}/users`);
   }
+
+
 }
 /*import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';

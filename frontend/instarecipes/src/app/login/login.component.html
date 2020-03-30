@@ -81,23 +81,25 @@
           </span>
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-              <div class="wrap-input100 validate-input m-b-23">
+              <div class="wrap-input100">
                 <span class="label-input100" for="username">Username</span>
-                <input class="input100" type="text" formControlName="username" class="form-control" placeholder="Type your username"  [ngClass]="{ 'is-invalid': submitted && f.username.errors }"  />
+                <input type="text" formControlName="username" class="form-control" placeholder="Type your username"  [ngClass]="{ 'is-invalid': submitted && f.username.errors }"  />
                 <span class="focus-input100" data-symbol="&#xf206;"></span>
-
-              <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                <div *ngIf="f.username.errors.required">Username is required</div>
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                  <div *ngIf="f.username.errors.required">Username is required</div>
+                </div>
               </div>
-            </div>
             </div>
 
             <div class="form-group">
+              <div class="wrap-input100">
               <span class="label-input100" for="password">Password</span>
-                <input type="text" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <span class="focus-input100" data-symbol="&#xf206;"></span>
                   <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                     <div *ngIf="f.password.errors.required">Password is required</div>
                   </div>
+              </div>
             </div>
 
           <div class="form-group">
