@@ -17,7 +17,7 @@
           </a>
         </li>
         <li class="nav-item col-2" style="max-width: 100%;">
-          <a *ngIf="currentUser" class="nav-link"><i class="fas fa-user" style="font-size: xx-large;" ></i></a>
+          <a *ngIf="currentUser" class="nav-link"><i class="fas fa-user" style="font-size: xx-large;" [routerLink]="['/profile']" ></i></a>
         </li>
         <li class="nav-item col-2" style="max-width: 100%;">
           <a class="nav-link"><i class="fas fa-trophy" style="font-size: xx-large;" [routerLink]="['/ranking']"></i></a>

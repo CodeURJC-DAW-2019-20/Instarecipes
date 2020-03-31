@@ -6,5 +6,5 @@ import {Component} from '@angular/core';
   styleUrls: ['./ranking.component.css']
 })
 export class RankingComponent{
-
+  
 }

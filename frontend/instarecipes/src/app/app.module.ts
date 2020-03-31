@@ -21,6 +21,9 @@ import { AuthGuard } from './helpers/auth.guard';
 import { LogoutComponent } from './logout/logout.component';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { FormatTitlePipe } from './pipes/format-title.pipe';
+import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './profile/users/users.component';
+import { ItemsComponent } from './profile/items/items.component';
 
 @NgModule({
 
@@ -34,8 +37,11 @@ import { FormatTitlePipe } from './pipes/format-title.pipe';
     SignUpComponent,
     RecipeSearchComponent,
     LogoutComponent,
-    FormatTitlePipe
-    ],
+    FormatTitlePipe,
+    ProfileComponent,
+    UsersComponent,
+    ItemsComponent
+  ],
 
   //Aqui se deben importar los modulos
   imports: [
