@@ -37,22 +37,22 @@
         </li>
       </ul>
 
-      <form class="example" action="/searchBar" method="POST">
+      <!-- <form class="example" action="/searchBar" method="POST">
         <input type="text" placeholder="Search.." name="search" />
         <button type="submit" style="background-color: rgba(159, 193, 255, 0.726);">
           <i class="fa fa-search"></i>
-          <!-- <input type="hidden" name="_csrf" value="{{token}}" /> -->
+          <input type="hidden" name="_csrf" value="{{token}}" />
         </button>
-      </form>
+      </form> -->
 
     </div>
   </div>
   <div class="login-container">
-    <form action="/logout" method="post">
+    <!-- <form action="/logout" method="post">
       <button type="submit" class="nav-link nav-log btn-dark"
         style="color:white;font-weight: normal;font-size: 15px;">Logout</button>
-      <!-- <input type="hidden" name="_csrf" value="{{token}}" /> -->
-    </form>
+      <input type="hidden" name="_csrf" value="{{token}}" />
+    </form> -->
     <a class="nav-link nav-log" style="font-weight: normal;font-size: 15px;" [routerLink]="['/login']">Login / Sign Up</a>
   </div>
 </nav>

@@ -13,7 +13,7 @@
           <div class="row">
           <div class="col-md-7">
             <a href="#">
-              <img class="img-fluid rounded mb-3 mb-md-0" [src]="image[i]">
+              <img class="img-fluid rounded mb-3 mb-md-0" style="height: 200px;" [src]="image[i]">
             </a>
             <div class="likes-comments-top-left">
               <div class="row" style="margin-right: 0;margin-left: 0;">
@@ -63,7 +63,7 @@
             </div>
             <div class="col-md-7">
               <a href="#">
-                <img class="img-fluid rounded mb-3 mb-md-0" [src]="image[i]">
+                <img class="img-fluid rounded mb-3 mb-md-0" style="height: 200px;" [src]="image[i]">
               </a>
               <div class="likes-comments-top-right">
                 <div class="row" style="margin-right: 0;margin-left: 0;">
@@ -96,8 +96,8 @@
   <!-- Ajax load more button -->
   <div class="loadmore-container">
     <div>
-      <img #loadmore1 id="loadmore1" (click)="loadMore()" class="loadmore-button" src="../../assets/images/icons/loadmore_unpressed.png" alt="" />
-      <img #loadmore2 id="loadmore2" class="loadmore-button" src="../../assets/images/icons/spinner.gif" alt="" hidden />
+      <img #loadmore1 (click)="loadMore()" class="loadmore-button" src="../../assets/images/icons/loadmore_unpressed.png" alt="" />
+      <img #loadmore2 class="loadmore-button" src="../../assets/images/icons/spinner.gif" alt="" hidden />
     </div>
   </div>
 
