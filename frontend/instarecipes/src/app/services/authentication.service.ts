@@ -3,7 +3,7 @@ import { User } from '../Interfaces/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthenticationService {
 
   isLoggedUser = false;
@@ -12,7 +12,7 @@ export class AuthenticationService {
   auth: string;
 
 constructor(private http: HttpClient) {
-  let user = JSON.parse(localStorage.getItem('currentUser'));
+  const user = JSON.parse(localStorage.getItem('currentUser'));
   if (user) {
     this.setCurrentUser(user);
   }
@@ -39,8 +39,9 @@ constructor(private http: HttpClient) {
     }));
   }
 
-  logOut() {
+  logout() {
     return this.http.get('/api/logout').pipe(map(response => {
+      console.log("Logged out!")
       this.removeCurrentUser();
       return response;
     }));
@@ -55,5 +56,22 @@ constructor(private http: HttpClient) {
     localStorage.removeItem('currentUser');
     this.isLoggedUser = false;
     this.isAdminUser = false;
+  }
+
+
+  get isLogged(): boolean {
+    return this.isLoggedUser;
+  }
+
+  set isLogged(value: boolean) {
+    this.isLoggedUser;
+  }
+
+  get isLoggedAdmin(): boolean {
+    return this.isLoggedAdmin;
+  }
+
+  set isLoggedAdmin(value: boolean) {
+    this.isLoggedAdmin;
   }
 }
