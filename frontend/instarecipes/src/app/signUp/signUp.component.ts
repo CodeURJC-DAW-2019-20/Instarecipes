@@ -47,13 +47,12 @@ export class SignUpComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.formContent = STEPS;
-    this.formData = {};
     this.activeStepIndex = 0;
     this.masterForm = [];
     this.currentFormContent = [];
-    this.stepItems = this.formContent;
     this.formFields = [];
+    this.stepItems = this.formContent;
+
 
     this.stepItems.forEach((data, i) => {
       this.currentFormContent.push(this.stepItems[i]['data']); // holds name, validators, placeholder of all steps
