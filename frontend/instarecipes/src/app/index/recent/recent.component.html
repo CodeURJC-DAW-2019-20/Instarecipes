@@ -1,104 +1,121 @@
 <div>
-  <video autoplay muted loop id="myVideo"
-    style="position: fixed;z-index: -1; top: 10%; opacity:0.6; width: 100%; object-fit: cover;">
+    <video autoplay muted loop id="myVideo" style="position: fixed;z-index: -1; top: 10%; opacity:0.6; width: 100%; object-fit: cover;">
     <source src="../../assets/images/backgrounds/index.mp4" type="video/mp4">
   </video>
-  <div class="container">
-    <!-- Recent recipes -->
-    <h3 class="my-4">Recent user's recipes</h3>
-    <div #recipesContainer id="recipes-container">
-      <div *ngFor="let recipe of recipes; index as i">
-        <div *ngIf="isOdd(i); then elseBlock else thenBlock"></div>
-        <ng-template #thenBlock>
-          <div class="row">
-          <div class="col-md-7">
-            <a href="#">
-              <img class="img-fluid rounded mb-3 mb-md-0" [src]="image[i]">
-            </a>
-            <div class="likes-comments-top-left">
-              <div class="row" style="margin-right: 0;margin-left: 0;">
-                <div class="col-3">
-                  <img class="icon-fluid" src="../../assets/images/icons/like_pressed.png">
+    <div class="container">
+        <!-- Recent recipes -->
+        <h3 class="my-4">Recent user's recipes</h3>
+        <div #recipesContainer id="recipes-container">
+            <div class="windows8" *ngIf="loadingRecents" style="height: 30px;width: 30px;">
+                <div class="wBall" id="wBall_1" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
                 </div>
-                <div class="col-3">
-                  <p class="icon-fluid pub-date-text">{{recipe?.likes}}</p>
+                <div class="wBall" id="wBall_2" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
                 </div>
-                <div class="col-3">
-                  <img class="icon-fluid" src="../../assets/images/icons/dialogue.png">
+                <div class="wBall" id="wBall_3" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
                 </div>
-                <div class="col-3">
-                  <p class="icon-fluid pub-date-text">{{recipe?.n_comments}}</p>
+                <div class="wBall" id="wBall_4" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
                 </div>
-              </div>
+                <div class="wBall" id="wBall_5" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
             </div>
-            <div class="bottom-text-image rounded mb-3 mb-md-0">
-              <h3 style="word-break: break-all;">{{recipe?.title}}</h3>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <h3>Introduction</h3>
-            <p style="word-break: break-all;">{{recipe?.description}}</p>
-            <a class="btn btn-primary" href="/recipes/{{recipe?.id}}">Read
-              <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
-          </div>
-          <div class="col-lg-1" style="width:50%;align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);">
-            <img class="d-flex mr-3 rounded-circle profile-border" style="width:100%;height:60px;" [src]="avatar[i]">
-            <p>@{{recipe?.username.username}}</p>
-          </div>
-        </div>
-        </ng-template>
-        <ng-template #elseBlock>
-          <div #elseBlock class="row">
-            <div class="col-lg-1" style="width:50%;align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);">
-              <img class="d-flex mr-3 rounded-circle profile-border" style="width:100%;height:60px;" [src]="avatar[i]">
-              <p>@{{recipe?.username.username}}</p>
-            </div>
-            <div class="col-md-4">
-              <h3>Introduction</h3>
-              <p style="word-break: break-all;">{{recipe?.description}}</p>
-              <a class="btn btn-primary" href="/recipes/{{recipe?.id}}">Read
+            <div *ngFor="let recipe of recipes; index as i">
+                <div *ngIf="isOdd(i); then elseBlock else thenBlock"></div>
+                <ng-template #thenBlock>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <a href="#">
+                                <img class="img-fluid rounded mb-3 mb-md-0" style="height: 200px;" [src]="image[i]">
+                            </a>
+                            <div class="likes-comments-top-left">
+                                <div class="row" style="margin-right: 0;margin-left: 0;">
+                                    <div class="col-3">
+                                        <img class="icon-fluid" src="../../assets/images/icons/like_pressed.png">
+                                    </div>
+                                    <div class="col-3">
+                                        <p class="icon-fluid pub-date-text">{{recipe?.likes}}</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <img class="icon-fluid" src="../../assets/images/icons/dialogue.png">
+                                    </div>
+                                    <div class="col-3">
+                                        <p class="icon-fluid pub-date-text">{{recipe?.n_comments}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-text-image rounded mb-3 mb-md-0">
+                                <h3 style="word-break: break-all;">{{recipe?.title}}</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Introduction</h3>
+                            <p style="word-break: break-all;">{{recipe?.description}}</p>
+                            <a class="btn btn-primary" href="/recipes/{{recipe?.id}}">
+                              Read
+                              <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                        <div class="col-lg-1" style="width:50%;align-self: center;border-left:3px solid rgba(0, 0, 0, 0.2);">
+                            <img class="d-flex mr-3 rounded-circle profile-border" style="width:100%;height:60px;" [src]="avatar[i]">
+                            <p>@{{recipe?.username.username}}</p>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template #elseBlock>
+                    <div #elseBlock class="row">
+                        <div class="col-lg-1" style="width:50%;align-self: center;border-right:3px solid rgba(0, 0, 0, 0.2);">
+                            <img class="d-flex mr-3 rounded-circle profile-border" style="width:100%;height:60px;" [src]="avatar[i]">
+                            <p>@{{recipe?.username.username}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Introduction</h3>
+                            <p style="word-break: break-all;">{{recipe?.description}}</p>
+                            <a class="btn btn-primary" href="/recipes/{{recipe?.id}}">Read
                 <span class="glyphicon glyphicon-chevron-right\"></span>
               </a>
+                        </div>
+                        <div class="col-md-7">
+                            <a href="#">
+                                <img class="img-fluid rounded mb-3 mb-md-0" style="height: 200px;" [src]="image[i]">
+                            </a>
+                            <div class="likes-comments-top-right">
+                                <div class="row" style="margin-right: 0;margin-left: 0;">
+                                    <div class="col-3">
+                                        <img class="icon-fluid" src="../../assets/images/icons/like_pressed.png">
+                                    </div>
+                                    <div class="col-3">
+                                        <p class="icon-fluid pub-date-text">{{recipe?.likes}}</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <img class="icon-fluid" src="../../assets/images/icons/dialogue.png">
+                                    </div>
+                                    <div class="col-3">
+                                        <p class="icon-fluid pub-date-text">{{recipe?.n_comments}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-text-image rounded mb-3 mb-md-0">
+                                <h3 style="word-break: break-all">{{recipe?.title}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <hr>
             </div>
-            <div class="col-md-7">
-              <a href="#">
-                <img class="img-fluid rounded mb-3 mb-md-0" [src]="image[i]">
-              </a>
-              <div class="likes-comments-top-right">
-                <div class="row" style="margin-right: 0;margin-left: 0;">
-                  <div class="col-3">
-                    <img class="icon-fluid" src="../../assets/images/icons/like_pressed.png">
-                  </div>
-                  <div class="col-3">
-                    <p class="icon-fluid pub-date-text">{{recipe?.likes}}</p>
-                  </div>
-                  <div class="col-3">
-                    <img class="icon-fluid" src="../../assets/images/icons/dialogue.png">
-                  </div>
-                  <div class="col-3">
-                    <p class="icon-fluid pub-date-text">{{recipe?.n_comments}}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bottom-text-image rounded mb-3 mb-md-0">
-                <h3 style="word-break: break-all">{{recipe?.title}}</h3>
-              </div>
-            </div>
-          </div>
-        </ng-template>
-        <hr>
-      </div>
+        </div>
+        <hr width="100%">
     </div>
-    <hr width="100%">
-  </div>
 
-  <!-- Ajax load more button -->
-  <div class="loadmore-container">
-    <div>
-      <img #loadmore1 id="loadmore1" (click)="loadMore()" class="loadmore-button" src="../../assets/images/icons/loadmore_unpressed.png" alt="" />
-      <img #loadmore2 id="loadmore2" class="loadmore-button" src="../../assets/images/icons/spinner.gif" alt="" hidden />
+    <!-- Ajax load more button -->
+    <div class="loadmore-container">
+        <div>
+            <img #loadmore1 (click)="loadMore()" class="loadmore-button" src="../../assets/images/icons/loadmore_unpressed.png" alt="" />
+            <img #loadmore2 class="loadmore-button" src="../../assets/images/icons/spinner.gif" alt="" hidden />
+        </div>
     </div>
-  </div>
 
 </div>

@@ -45,6 +45,12 @@ export class RecipesService {
     ) as Observable<Blob>;
   }
 
+  getIndexTrendingRecipes(): Observable<Recipe[]>{
+    return this.httpClient.get("/api/trending").pipe(
+      catchError(error => this.handleError(error))
+    ) as Observable<Recipe[]>;
+  }
+
   private handleError(error: any) {
 		console.error(error);
 		return Observable.throw("Server error (" + error.status + "): " + error.text())
