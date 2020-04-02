@@ -24,6 +24,11 @@ import { FormatTitlePipe } from './pipes/format-title.pipe';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './profile/users/users.component';
 import { ItemsComponent } from './profile/items/items.component';
+import { signUpView } from './signUp/signUpView/signUpView.component';
+import { FirstComponent } from './signUp10/first/first.component';
+import { SecondComponent } from './signUp10/second/second.component';
+import { Recipe_contentComponent } from './recipe/recipe-content/recipe-content.component';
+import { RecipeComponent } from './recipe/recipe.component';
 
 @NgModule({
 
@@ -40,7 +45,12 @@ import { ItemsComponent } from './profile/items/items.component';
     FormatTitlePipe,
     ProfileComponent,
     UsersComponent,
-    ItemsComponent
+    ItemsComponent,
+    signUpView,
+    FirstComponent,
+    SecondComponent,
+    Recipe_contentComponent,
+    RecipeComponent
   ],
 
   //Aqui se deben importar los modulos
@@ -55,7 +65,8 @@ import { ItemsComponent } from './profile/items/items.component';
   ],
   //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
   providers: [AuthenticationService, AuthGuard, UserService, RecipesService,
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 //@ts-ignore

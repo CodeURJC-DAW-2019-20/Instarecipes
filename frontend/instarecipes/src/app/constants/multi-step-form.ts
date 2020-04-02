@@ -1,5 +1,6 @@
 const DATA_STEP_1 = {
   username: {
+
     type: 'text',
     validations: { required: true},
     errors: { required: "Username is required"},
@@ -39,8 +40,8 @@ const DATA_STEP_2 = {
 };
 
 const STEPS = [
-  { label: '', data: DATA_STEP_1 },
-  { label: '', data: DATA_STEP_2 },
+  { label: 'first', data: DATA_STEP_1 },
+  { label: 'second', data: DATA_STEP_2 },
   { label: 'Review & Submit', data: {} }
 ];
 
