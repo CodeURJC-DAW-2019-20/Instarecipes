@@ -1,23 +1,26 @@
 <!-- Carousel-->
 <header id="header-section">
     <div class="windows8" *ngIf="loadingTrending" style="height: 30px;width: 30px;">
-        <div class="wBall" id="wBall_1" style="margin-top: 100px;">
+        <div class="wBall" id="wBall_1" style="margin-top: 150px;">
             <div class="wInnerBall"></div>
         </div>
-        <div class="wBall" id="wBall_2" style="margin-top: 100px;">
+        <div class="wBall" id="wBall_2" style="margin-top: 150px;">
             <div class="wInnerBall"></div>
         </div>
-        <div class="wBall" id="wBall_3" style="margin-top: 100px;">
+        <div class="wBall" id="wBall_3" style="margin-top: 150px;">
             <div class="wInnerBall"></div>
         </div>
-        <div class="wBall" id="wBall_4" style="margin-top: 100px;">
+        <div class="wBall" id="wBall_4" style="margin-top: 150px;">
             <div class="wInnerBall"></div>
         </div>
-        <div class="wBall" id="wBall_5" style="margin-top: 100px;">
+        <div class="wBall" id="wBall_5" style="margin-top: 150px;">
             <div class="wInnerBall"></div>
         </div>
     </div>
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <div class="trending-topic-text">
+            <h1 class="page-section-heading text-center text-uppercase mb-0">Trending</h1>
+        </div>
         <ol *ngIf="!loadingTrending" class="carousel-indicators">
             <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleCaptions" data-slide-to="1" class=""></li>
