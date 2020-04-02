@@ -56,6 +56,7 @@ export class SignUpComponent implements OnInit{
 
     this.stepItems.forEach((data, i) => {
       this.currentFormContent.push(this.stepItems[i]['data']); // holds name, validators, placeholder of all steps
+      this.formFields.push(Object.keys(this.currentFormContent[i])); // holds string values for each field of all steps
       this.masterForm.push(this.buildForm(this.currentFormContent[i])); // holds all form groups
     });
 

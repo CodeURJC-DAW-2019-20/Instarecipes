@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
-import { AlertService } from 'src/app/services/alert.service';
 import { MustMatch } from '../../helpers/password-match';
+import { SecondComponent } from '../second/second.component';
+import { UserService } from 'src/app/services/user.service';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Component({templateUrl: 'first.component.html'})
@@ -11,6 +12,7 @@ export class FirstComponent implements OnInit {
     registerForm: FormGroup;
     submitted = false;
     returnUrl: string;
+    userService: UserService;
 
     constructor(
       private formBuilder: FormBuilder,
@@ -38,6 +40,10 @@ export class FirstComponent implements OnInit {
         if (this.registerForm.invalid) {
             return;
         }
-        alert(JSON.stringify(this.registerForm.value));
+        else {
+            this.router.navigate(['/second']);
+            alert(JSON.stringify(this.registerForm.value));
+        }
+
     }
 }
