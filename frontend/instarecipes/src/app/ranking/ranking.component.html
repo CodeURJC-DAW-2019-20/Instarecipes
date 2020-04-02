@@ -1,8 +1,9 @@
-  <video autoplay muted loop id="myVideo" style="position: fixed;z-index: -1; top: 9%; width: 100%; object-fit: cover;">
-    <source src="../../assets/images/backgrounds/ranking.mov" type="video/webm">
-  </video>
+  
 
   <div>
+    <video autoplay muted loop id="myVideo" style="position: fixed;z-index: -1; top: 9%; width: 100%; object-fit: cover;">
+      <source src="../../assets/images/backgrounds/ranking.mov" type="video/webm">
+    </video>
     <div class="container" style="height: 100%;width: 100%;top: 20px;left: 0;right: 0; margin-top: 5%;">
       <div style="position: relative;width: 100%;">
         <img src="../../assets/images/backgrounds/frameRanking.png" style="position: absolute;object-fit: cover;z-index: -1;width: fit-content;height: fit-content;display: block;left: 0;"/>
@@ -22,14 +23,15 @@
           </tr>
         </thead>
         <tbody id="rankingBody" style="margin: 50px;text-align: center;">
-          <!-- {{#rankingList}} -->
+          <div *ngFor="let recipe of rankrecipes; index as i">
+            {{recipe?.likes}}
             <tr>
-            <!-- <th scope="row"><h4>{{-index}}º</h4></th>
-            {{#.}}
-            <td> <strong>{{.}} </strong> </td>
-            {{/.}} -->
-          </tr>
-          <!-- {{/rankingList}} -->
+            <th scope="row"><h4>iº</h4></th>
+            {{recipe?.likes}}
+            <td> <strong>{{recipe?.Username}} </strong> </td>
+            {{recipe?.likes}}
+            </tr>
+          </div>
         </tbody>
       </table>
       </div>
