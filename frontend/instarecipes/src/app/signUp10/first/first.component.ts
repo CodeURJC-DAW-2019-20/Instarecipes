@@ -2,21 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../../helpers/password-match';
-import { SecondComponent } from '../second/second.component';
 import { UserService } from 'src/app/services/user.service';
-import { BehaviorSubject } from 'rxjs';
-
 
 @Component({templateUrl: 'first.component.html'})
 export class FirstComponent implements OnInit {
     registerForm: FormGroup;
     submitted = false;
     returnUrl: string;
-    userService: UserService;
 
     constructor(
       private formBuilder: FormBuilder,
-      private router: Router,
+      private userService: UserService,
+      private router: Router
       ) { }
 
     ngOnInit() {
@@ -41,9 +38,19 @@ export class FirstComponent implements OnInit {
             return;
         }
         else {
+            //this.userService.onFormSubmit(this.registerForm.value);
+
+           // console.log(JSON.stringify(this.registerForm.value));
+            this.userService.setJSONData(this.registerForm.value);
             this.router.navigate(['/second']);
-            alert(JSON.stringify(this.registerForm.value));
+           // alert(JSON.stringify(this.registerForm.value));
         }
 
     }
+
+    json() {
+     console.log(this.userService.getJSONData());
+
+    }
+
 }
