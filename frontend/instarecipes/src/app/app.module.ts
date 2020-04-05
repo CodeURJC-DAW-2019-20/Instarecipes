@@ -29,6 +29,8 @@ import { FirstComponent } from './signUp10/first/first.component';
 import { SecondComponent } from './signUp10/second/second.component';
 import { Recipe_contentComponent } from './recipe/recipe-content/recipe-content.component';
 import { RecipeComponent } from './recipe/recipe.component';
+import { AddRecipeComponent } from './index/popup/add/addRecipe.component';
+import { FilterRecipeComponent } from './index/popup/filter/filterRecipe.component';
 
 @NgModule({
 
@@ -50,7 +52,9 @@ import { RecipeComponent } from './recipe/recipe.component';
     FirstComponent,
     SecondComponent,
     Recipe_contentComponent,
-    RecipeComponent
+    RecipeComponent,
+    AddRecipeComponent,
+    FilterRecipeComponent
   ],
 
   //Aqui se deben importar los modulos
