@@ -22,6 +22,18 @@
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Plugin JavaScript -->
     <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="assets/js/admin_profile.js"></script>
+
+
+    <script src="assets/js/filter_search_btn.js"></script>
+
+    <script src="assets/js/google_login.js"></script>
+    <script src="assets/js/statistics.js"></script>
+    <script src="assets/js/verify.js"></script>
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/profile.js"></script>
+    <script src="assets/js/post_comment.js"></script>
+    <script src="assets/js/like_dislike.js"></script>
 </head>
 
 <body>
@@ -50,6 +62,38 @@
       <img src="assets/img/forbg.svg" style="width:220px;">
     </center> -->
     </app-root>
+
+    <script type="text/javascript">
+        var image_val = document.getElementById("image-validation");
+        var ingredient_val = document.getElementById("ingredient-val");
+
+        image_val.style.display = "none";
+        $(document).ready(function() {
+
+            $('#post-recipe').bind("click", function() {
+                var imgVal = $('#file-input').val();
+                var ingredient = $('#ingredientsString').val();
+                if ((imgVal == '') && (ingredient == '')) {
+                    image_val.style.display = "block";
+                    ingredient_val.style.display = "block";
+                } else if (imgVal == '') {
+                    image_val.style.display = "block";
+                    if (ingredient != '')
+                        ingredient_val.style.display = "none";
+                    else if (ingredient == '') {
+                        ingredient_val.style.display = "block";
+                    }
+                } else if (imgVal != '') {
+                    image_val.style.display = "none";
+                    if (ingredient != '') {
+                        ingredient_val.style.display = "none";
+                    } else if (ingredient == '') {
+                        ingredient_val.style.display = "block";
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

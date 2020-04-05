@@ -283,7 +283,22 @@ public class ProfileRestController {
 	}
 
 	@GetMapping("/allAllergens")
-public List<Allergen> getAllAllergens() {
-	return profileservice.getAllAllergens();
+	public ResponseEntity<List<Allergen>> getAllAllergens() {
+		return new ResponseEntity<>(profileservice.getAllAllergens(), HttpStatus.OK);
+	}
+
+	@GetMapping("/allCookingStyles")
+	public ResponseEntity<List<CookingStyle>> getAllCookingStyles(){
+		return new ResponseEntity<>(profileservice.getAllCookingStyles(), HttpStatus.OK);
+	}
+
+	@GetMapping("/allCategories")
+	public ResponseEntity<List<Category>> getAllCategories(){
+		return new ResponseEntity<>(profileservice.getAllCategories(), HttpStatus.OK);
+	}
+
+	@GetMapping("/allIngredients")
+	public ResponseEntity<List<Ingredient>> getAllIngredients(){
+		return new ResponseEntity<>(profileservice.getAllIngredients(), HttpStatus.OK);
 	}
 }
