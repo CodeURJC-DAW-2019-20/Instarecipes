@@ -31,6 +31,7 @@ import { Recipe_contentComponent } from './recipe/recipe-content/recipe-content.
 import { RecipeComponent } from './recipe/recipe.component';
 import { AddRecipeComponent } from './index/popup/add/addRecipe.component';
 import { FilterRecipeComponent } from './index/popup/filter/filterRecipe.component';
+import { RankingComponent } from './ranking/ranking.component';
 
 @NgModule({
 
@@ -54,7 +55,8 @@ import { FilterRecipeComponent } from './index/popup/filter/filterRecipe.compone
     Recipe_contentComponent,
     RecipeComponent,
     AddRecipeComponent,
-    FilterRecipeComponent
+    FilterRecipeComponent,
+    RankingComponent
   ],
 
   //Aqui se deben importar los modulos

@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { RankingRecipe } from '../Interfaces/rankRecipe.model';
 import { RankService } from '../services/ranking.service';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -9,16 +7,18 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./ranking.component.css']
 })
 export class RankingComponent implements OnInit {
-  recipes: RankingRecipe[] = [];
-  constructor (private RankService: RankService, 
-    private domSanitizer: DomSanitizer){ }
+  rankRecipes: any[] = [];
+  
+  constructor (private rankService: RankService){ }
+  
   ngOnInit(){
       this.get_Ranking();
-    }
+  }
+
   get_Ranking(){
-    this.RankService.get().subscribe(
+    this.rankService.getRanking().subscribe(
       recipes => {
-          this.recipes = recipes;
+          this.rankRecipes = recipes;
         });
       }
 }
