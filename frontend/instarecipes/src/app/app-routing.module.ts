@@ -13,6 +13,7 @@ import { SecondComponent } from './signUp10/second/second.component';
 import { SignUp10Component } from './signUp10/signUp10.component';
 import { Recipe_contentComponent } from './recipe/recipe-content/recipe-content.component';
 import { RecipeComponent } from './recipe/recipe.component';
+import { UserSearchComponent } from './search/user-search/user-search.component';
 
 // aqui ponemos las rutas, tipo: { path: 'recipe/:id', component: RecipeComponent},{...}
 const routes: Routes = [
@@ -24,9 +25,9 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'signupview', component: signUpView },
   { path: 'first', component: FirstComponent },
-  { path: 'second', component: SecondComponent},
-  { path: 'recipe', component: RecipeComponent}
-
+  { path: 'second', component: SecondComponent },
+  { path: 'recipe', component: RecipeComponent },
+  { path: 'users', component: UserSearchComponent }
 ];
 
 @NgModule({

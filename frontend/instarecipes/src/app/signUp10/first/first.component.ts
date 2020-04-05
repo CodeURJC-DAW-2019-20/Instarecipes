@@ -48,9 +48,4 @@ export class FirstComponent implements OnInit {
 
     }
 
-    json() {
-     console.log(this.userService.getJSONData());
-
-    }
-
 }

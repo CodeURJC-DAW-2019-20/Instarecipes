@@ -66,7 +66,9 @@
                 placeholder="Select an allergen.." onkeypress="return false;">
               <datalist id="allergenslist">
                 <!--List of allergens-->
-                <option *ngFor="let allergen of allergens; let i=index" value="{{allergen.allergen}}" (change)="saveAllergen(allergen.allergen)">{{allergen.allergen}}</option>
+                <option *ngFor="let allergen of allergens; let i=index" value="{{allergen.allergen}}" (change)="saveAllergen(allergen.allergen)">
+                  {{allergen.allergen}}
+                </option>
               </datalist>
             </div>
 
@@ -80,15 +82,5 @@
 
         </div>
         </form>
-
-        <div class="form-group">
-          <div class="container-login100-form-btn m-t-55">
-            <div class="wrap-login100-form-btn">
-              <div class="login100-form-bgbtn"></div>
-              <button type="submit" (click) = "json2()" class="login100-form-btn">JSON</button>
-            </div>
-          </div>
-        </div>
-
       </div>
 </div>
