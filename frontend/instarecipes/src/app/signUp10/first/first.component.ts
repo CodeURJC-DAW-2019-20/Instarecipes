@@ -17,14 +17,14 @@ export class FirstComponent implements OnInit {
       ) { }
 
     ngOnInit() {
-        this.registerForm = this.formBuilder.group({
-            username: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]],
-            password: ['', Validators.required],
-            confPassword: ['', Validators.required]
-        }, {
-            validator: MustMatch('password', 'confPassword')
-        });
+      this.registerForm = this.formBuilder.group({
+          username: ['', Validators.required],
+          email: ['', [Validators.required, Validators.email]],
+          password: ['', Validators.required],
+          confPassword: ['', Validators.required]
+      }, {
+          validator: MustMatch('password', 'confPassword')
+      });
     }
 
     // convenience getter for easy access to form fields

@@ -35,6 +35,8 @@
             </div>
           </div>
 
+
+
           <div class="flex-col-c">
             <p>Complete your profile</p>
             <label class="switch">
@@ -53,7 +55,7 @@
                   style="width:125px; height:125px; border-radius:50%; object-fit: cover; margin-left: 30%;" src="../../../assets/images/icons/avatar.jpg" />
                 <div style="position: absolute;width: 100%;">
                   <label for="file-input" class="btn-outline-secondary" style="border-radius:0.5rem;margin-left:34% ; border:1px solid rgb(197, 49, 202); text-align:center; padding:0; right:0; width:30%; cursor:pointer">
-                  <input id="file-input" class="form-control" value="../../../images/icons/avatar.jpg" hidden type="file" for="fileAvatar" accept=".jpg, .jpeg" />
+                  <input id="file-input"  formControlName= "fileAvatar" class="form-control" value="../../../images/icons/avatar.jpg" hidden type="file" for="fileAvatar" accept=".jpg, .jpeg" />
                   <i class="fa fa-camera" styles="object-fit:cover; padding:5px"></i>
                   </label>
                 </div>
@@ -61,16 +63,28 @@
             </div>
           </div>
 
-            <div class="wrap-input100">
+            <!--
               <input for="allergens" list="allergenslist" class="form-control" type="text"
-                placeholder="Select an allergen.." onkeypress="return false;">
-              <datalist id="allergenslist">
-                <!--List of allergens-->
-                <option *ngFor="let allergen of allergens; let i=index" value="{{allergen.allergen}}" (change)="saveAllergen(allergen.allergen)">
+                placeholder="Select an allergen.." onkeypress="return false;"  (change) = "saveAllergen(allergenSelected)">
+              <datalist id="allergenslist" [(ngModel)]="allergenSelected">
+                List of allergens
+                <option *ngFor="let allergen of allergens;" value="{{allergen?.allergen}}">
                   {{allergen.allergen}}
                 </option>
               </datalist>
-            </div>
+            </div>-->
+
+          <div class="wrap-input100">
+            <select formControlName="allergenSelected" class="form-control">
+              <option>-- Select --</option>
+              <option *ngFor="let a of allergens" value="{{a?.allergen}}">
+                {{a?.allergen}}
+              </option>
+            </select>
+          </div>
+
+
+        </div>
 
           <!-- Submit button -->
 						<div class="container-login100-form-btn m-t-55">
@@ -80,7 +94,7 @@
 							</div>
             </div>
 
-        </div>
+
         </form>
       </div>
 </div>
