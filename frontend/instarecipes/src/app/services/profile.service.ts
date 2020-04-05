@@ -15,7 +15,7 @@ export class ProfileService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllAllergens() {
+  getAllAllergens() : Observable<Allergen[]> {
     return this.httpClient.get(BASE_URL + "allAllergens").pipe(
       catchError(error => this.handleError(error))
     ) as Observable<Allergen[]>;

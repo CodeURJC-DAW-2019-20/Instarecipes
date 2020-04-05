@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Allergen } from 'src/app/Interfaces/allergen.model';
 import { ProfileService } from 'src/app/services/profile.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-second',
@@ -13,11 +16,15 @@ export class SecondComponent implements OnInit {
   activate: boolean;
   allergens: Allergen [];
   allergenSelected: Allergen;
+  returnUrl: string;
+  error: '';
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private profileService: ProfileService,
+    private router: Router,
+    private authenticationService: AuthenticationService,
     ) { }
 
   ngOnInit() {
@@ -33,8 +40,19 @@ export class SecondComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.userService.getJSONData());
-    console.log(this.registerForm2.value);
+    this.userService.setFinalData(this.registerForm2.value);
+    console.log("final data " , this.userService.getFinalData());
+    console.log("selected allergen: ", this.allergenSelected?.allergen);
+
+   // this.authenticationService.login(data[1], data[1])
+    //.pipe(first())
+    //.subscribe(
+      //  data => {
+      //      this.router.navigate([this.returnUrl]);
+      //  },
+     //   error => {
+      //      this.error = error;
+      //  });
   }
 
   onSwitch() {
@@ -45,10 +63,6 @@ export class SecondComponent implements OnInit {
       this.activate = false;
     }
 
-  }
-
-  json2() {
-    console.log(this.userService.getJSONData());
   }
 
   getAllergens(){

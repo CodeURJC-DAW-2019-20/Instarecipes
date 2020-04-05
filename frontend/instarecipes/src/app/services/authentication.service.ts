@@ -72,4 +72,34 @@ constructor(private http: HttpClient) {
     return this.isLoggedAdmin;
   }
 
+  set isLoggedAdmin(value: boolean) {
+    this.isLoggedAdmin;
+  }
+
+  register(user: User ){
+    console.log("im in authentication.service register ")
+    console.log(user.username);
+    console.log(user.email)
+    console.log(user.passwordHash);
+    console.log(user.name);
+    console.log(user.surname);
+
+    let auth = window.btoa(user + ':');
+    const headers = new HttpHeaders({
+      Authorization: 'Basic ' + auth,
+      'X-Requested-With': 'XMLHttpRequest',
+    });
+    console.log(headers);
+    return this.http.get<User>('/api/signup', { headers }).pipe(map(user => {
+      console.log(user);
+      if (user) {
+        this.setCurrentUser(user);
+        user.authdata = auth;
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }
+      return user;
+    }));
+  }
+
+
 }

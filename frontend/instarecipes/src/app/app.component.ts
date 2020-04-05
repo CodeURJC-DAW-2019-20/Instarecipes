@@ -22,5 +22,4 @@ export class AppComponent {
       (error) => console.log('Error when trying to log out: ' + error),
     );
   }
-
 }
