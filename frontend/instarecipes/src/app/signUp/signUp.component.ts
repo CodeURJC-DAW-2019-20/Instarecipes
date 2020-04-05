@@ -128,13 +128,10 @@ export class SignUpComponent implements OnInit{
   }
 
   goToStep(step: string): void {
-    console.log("my step is: ", step);
-    this.activeStepIndex =
-      step === 'prev' ? this.activeStepIndex - 1 : this.activeStepIndex + 1;
+    this.activeStepIndex = this.activeStepIndex + 1;
     this.setFormPreview();
     console.log("my step is: ", step);
     }
-
 
   setFormPreview(): void {
     this.formData = this.masterForm.reduce(
