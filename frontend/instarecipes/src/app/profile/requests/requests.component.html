@@ -1,3 +1,35 @@
-<p>
-  requests works!
-</p>
+<div style="margin-top: 5%">
+  <nav id="sidebar" style="margin-top:2%;background-color:rgba(0, 0, 0, 0.6)">
+    <div class="custom-menu">
+      <button type="button" id="sidebarCollapse" class="btn btn-primary">
+        <i class="fa fa-bars"></i>
+        <span class="sr-only">Toggle Menu</span>
+      </button>
+    </div>
+    <div class="p-4">
+      <h1><a [routerLink]="['/index']" class="logo">Manage</a></h1>
+      <ul class="list-unstyled components mb-5">
+        <li id="text-content" class="active">
+          <a onclick="contentDiv()" [routerLink]="['/profile']"><span class="fa fa-user mr-3"
+              style="width: 20px;text-align: center;"></span>Profile</a>
+        </li>
+        <li id="text-request">
+          <a onclick="requestDiv()" href="#"><span class="fa fa-bell mr-3"
+              style="width: 20px;text-align: center;"></span>Requests</a>
+        </li>
+        <li id="text-users">
+          <a onclick="usersDiv()" href="#"><span class="fa fa-users mr-3"
+              style="width: 20px;text-align: center;"></span>Users</a>
+        </li>
+        <li id="text-recipes">
+          <a onclick="recipesDiv()" href="#"><span class="fa fa-book mr-3"
+              style="width: 20px;text-align: center;"></span>Items</a>
+        </li>
+        <!-- <li id="text-reports">
+        <a onclick="reportsDiv()" href="#"><span class="fa fa-exclamation mr-3"
+            style="width: 20px;text-align: center;"></span>Reports</a>
+      </li> -->
+      </ul>
+    </div>
+  </nav>
+</div>
