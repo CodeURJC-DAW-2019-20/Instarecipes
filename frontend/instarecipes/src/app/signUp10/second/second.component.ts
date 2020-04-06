@@ -15,7 +15,6 @@ export class SecondComponent implements OnInit {
   registerForm2: FormGroup;
   activate: boolean;
   allergens: Allergen [];
-  allergenSelected: Allergen;
   returnUrl: string;
   error: '';
 
@@ -35,24 +34,30 @@ export class SecondComponent implements OnInit {
     name: ['', Validators.required],
     surname: ['', Validators.required],
     fileAvatar: [''],
-    allergens: ['']
+    allergen: ['']
     });
   }
 
   onSubmit() {
     this.userService.setFinalData(this.registerForm2.value);
     console.log("final data " , this.userService.getFinalData());
-    console.log("selected allergen: ", this.allergenSelected?.allergen);
+    //this.userService.setUser();
+    delete this.userService.getFinalData()['confPassword'];
+    delete this.userService.getFinalData()['fileAvatar'];
 
-   // this.authenticationService.login(data[1], data[1])
-    //.pipe(first())
-    //.subscribe(
-      //  data => {
-      //      this.router.navigate([this.returnUrl]);
-      //  },
-     //   error => {
-      //      this.error = error;
-      //  });
+    console.log("nuevo ", this.userService.getFinalData());
+
+    this.authenticationService.register(this.userService.getFinalData())
+    .pipe(first())
+    .subscribe(
+      data => {
+          alert("YES!");
+          this.router.navigate(['/login']);
+      },
+      error => {
+          alert("NO!");
+          this.error = error;
+      });
   }
 
   onSwitch() {
@@ -72,7 +77,4 @@ export class SecondComponent implements OnInit {
         });
       }
 
-  saveAllergen(allergen: Allergen) {
-    console.log("hola"  + allergen.allergen);
-  }
 }

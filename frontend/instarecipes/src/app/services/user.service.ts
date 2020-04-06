@@ -6,7 +6,8 @@ import { User } from '../Interfaces/user.model';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   jsonData;
-  finalData: any;
+  finalData;
+  user: User;
 
   constructor(
     private http: HttpClient,
@@ -32,4 +33,5 @@ export class UserService {
   getFinalData() {
     return this.finalData;
   }
+
 }

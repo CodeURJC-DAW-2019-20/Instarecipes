@@ -83,22 +83,9 @@ constructor(private http: HttpClient) {
     console.log(user.passwordHash);
     console.log(user.name);
     console.log(user.surname);
+    console.log(user.allergen);
 
-    let auth = window.btoa(user + ':');
-    const headers = new HttpHeaders({
-      Authorization: 'Basic ' + auth,
-      'X-Requested-With': 'XMLHttpRequest',
-    });
-    console.log(headers);
-    return this.http.get<User>('/api/signup', { headers }).pipe(map(user => {
-      console.log(user);
-      if (user) {
-        this.setCurrentUser(user);
-        user.authdata = auth;
-        localStorage.setItem('currentUser', JSON.stringify(user));
-      }
-      return user;
-    }));
+    return this.http.post('/api/signup', user);
   }
 
 
