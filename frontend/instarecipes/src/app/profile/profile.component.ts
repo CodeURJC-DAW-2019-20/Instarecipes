@@ -1,4 +1,9 @@
-import {Component} from '@angular/core';
+import {Component,OnInit} from '@angular/core';
+import { UserService } from '../services/user.service';
+import { User } from '../Interfaces/user.model';
+import { DomSanitizer } from '@angular/platform-browser';
+
+
 
 @Component({
   selector: 'app-home',
@@ -6,5 +11,22 @@ import {Component} from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent{
-  title = "PRUEBA"
+  users: User[] = []
+  user: User;
+  constructor(private usersService: UserService, 
+    private domSanitizer: DomSanitizer){
+
+  }
+
+  ngOnInit(){
+    this.refresh();
+  }
+
+  refresh(){
+    
+  }
+
+ 
+
+
 }
