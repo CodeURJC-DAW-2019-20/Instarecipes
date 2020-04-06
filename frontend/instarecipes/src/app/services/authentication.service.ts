@@ -28,28 +28,33 @@ constructor(private http: HttpClient) {
       'X-Requested-With': 'XMLHttpRequest',
     });
     console.log(headers);
-    return this.http.get<User>('/api/login', { headers }).pipe(map(user => {
-      console.log(user);
-      if (user) {
-        this.setCurrentUser(user);
-        user.authdata = auth;
-        localStorage.setItem('currentUser', JSON.stringify(user));
-      }
-      return user;
-    }));
+    return this.http.get<User>('/api/login', { headers }).pipe(
+      map(user => {
+        console.log(user);
+        if (user) {
+          this.setCurrentUser(user);
+          user.authdata = auth;
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+        return user;
+      }),
+    );
   }
 
   logout() {
-    return this.http.get('/api/logout').pipe(map(response => {
-      console.log("Logged out!")
-      this.removeCurrentUser();
-      return response;
-    }));
+    return this.http.get('/api/logout').pipe(
+      map(response => {
+        console.log("Logged out!")
+        this.removeCurrentUser();
+        return response;
+      }),
+    );
   }
 
   private setCurrentUser(user: User) {
     this.isLoggedUser = true;
     this.user = user;
+    this.isAdminUser = this.user.roles.indexOf('ROLE_ADMIN') !== -1;
   }
 
   removeCurrentUser() {
@@ -63,10 +68,6 @@ constructor(private http: HttpClient) {
     return this.isLoggedUser;
   }
 
-  set isLogged(value: boolean) {
-    this.isLoggedUser;
-  }
-
   get isLoggedAdmin(): boolean {
     return this.isLoggedAdmin;
   }
@@ -74,4 +75,31 @@ constructor(private http: HttpClient) {
   set isLoggedAdmin(value: boolean) {
     this.isLoggedAdmin;
   }
+
+  register(user: User ){
+    console.log("im in authentication.service register ")
+    console.log(user.username);
+    console.log(user.email)
+    console.log(user.passwordHash);
+    console.log(user.name);
+    console.log(user.surname);
+
+    let auth = window.btoa(user + ':');
+    const headers = new HttpHeaders({
+      Authorization: 'Basic ' + auth,
+      'X-Requested-With': 'XMLHttpRequest',
+    });
+    console.log(headers);
+    return this.http.get<User>('/api/signup', { headers }).pipe(map(user => {
+      console.log(user);
+      if (user) {
+        this.setCurrentUser(user);
+        user.authdata = auth;
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }
+      return user;
+    }));
+  }
+
+
 }

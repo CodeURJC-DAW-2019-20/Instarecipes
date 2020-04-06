@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-home',
+  selector: 'popup-filter',
   templateUrl: './filterRecipe.component.html',
   styleUrls: ['./filterRecipe.component.css']
 })

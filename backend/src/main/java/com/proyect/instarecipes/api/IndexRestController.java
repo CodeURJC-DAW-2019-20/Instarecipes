@@ -33,7 +33,7 @@ import com.proyect.instarecipes.views.DTO.RecipeDTO;
 @RestController
 @RequestMapping("/api")
 public class IndexRestController {
-	public interface Main extends User.Username, Recipe.RecipeBasic, Recipe.RecipePlus {}
+	public interface Main extends Recipe.IDRecipe, User.IDUser, User.Username, Recipe.RecipeBasic, Recipe.RecipePlus {}
 	public interface PostRecipe extends User.Username, RecipeDTO.PostRecipeView {}
 
 	@Autowired

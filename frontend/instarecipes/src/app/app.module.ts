@@ -10,19 +10,25 @@ import { TrendingComponent } from './index/trending/trending.component';
 import { RecentComponent } from './index/recent/recent.component';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
-import { SignUpComponent } from './signUp/signUp.component';
 import { RecipeSearchComponent } from './search/recipe-search/recipe-search.component';
 import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { RecipesService } from './services/recipes.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { BasicAuthInterceptor } from './helpers/basic-auth-interceptor';
 import { AuthGuard } from './helpers/auth.guard';
 import { LogoutComponent } from './logout/logout.component';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './profile/users/users.component';
 import { ItemsComponent } from './profile/items/items.component';
+import { FirstComponent } from './signUp10/first/first.component';
+import { SecondComponent } from './signUp10/second/second.component';
+import { Recipe_contentComponent } from './recipe/recipe-content/recipe-content.component';
+import { RecipeComponent } from './recipe/recipe.component';
+import { AddRecipeComponent } from './index/popup/add/addRecipe.component';
+import { FilterRecipeComponent } from './index/popup/filter/filterRecipe.component';
+import { RankingComponent } from './ranking/ranking.component';
+import { ProfileService } from './services/profile.service';
 
 @NgModule({
 
@@ -33,12 +39,18 @@ import { ItemsComponent } from './profile/items/items.component';
     RecentComponent,
     IndexComponent,
     LoginComponent,
-    SignUpComponent,
     RecipeSearchComponent,
     LogoutComponent,
     ProfileComponent,
     UsersComponent,
-    ItemsComponent
+    ItemsComponent,
+    FirstComponent,
+    SecondComponent,
+    Recipe_contentComponent,
+    RecipeComponent,
+    AddRecipeComponent,
+    FilterRecipeComponent,
+    RankingComponent
   ],
 
   //Aqui se deben importar los modulos
@@ -52,8 +64,9 @@ import { ItemsComponent } from './profile/items/items.component';
 
   ],
   //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
-  providers: [AuthenticationService, AuthGuard, UserService, RecipesService,
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
+  providers: [AuthenticationService, AuthGuard, UserService, RecipesService, ProfileService,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 //@ts-ignore

@@ -1,167 +1,57 @@
-<!--<h2>Login</h2>
-<div>
-  <body>
-    <div class="limiter">
-      <div class="container-login100">
-        <div class="wrap-login100 p-l-35 p-r-35 p-t-5 p-b-14">
-          <div class="login100 p-l p-r p-t-5 p-b-35 ">
-            <a [routerLink]="['/index']" style="font-size: 32px; margin-left: 98%;color: rgba(112, 162, 255, 0.856);" class="fa fa-close"></a>
-          </div>
-          <span class="login100-form-title p-b-30">
-            Login
-          </span>
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-              <div class="form-group">
-                <div class="wrap-input100 validate-input m-b-23">
-                  <span class="label-input100">Username</span>
-                  <input class="input100" type="text" name="username" placeholder="Type your username" required/>
-                  <span class="focus-input100" data-symbol="&#xf206;"></span>
-                </div>
-                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                  <div *ngIf="f.username.errors.required">Username is required</div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="wrap-input100 validate-input">
-                  <span class="label-input100">Password</span>
-                  <input class="input100" type="password" name="password" placeholder="Type your password" required/>
-                  <span class="focus-input100" data-symbol="&#xf190;"></span>
-                </div>
-                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                  <div *ngIf="f.password.errors.required">Password is required</div>
-                </div>
-              </div>
-              <div class="container-login100-form-btn">
-                <div class="wrap-login100-form-btn">
-                  <div class="login100-form-bgbtn"></div>
-                  <button class="login100-form-btn" type="submit">
-                    Login
-                  </button>
-                </div>
-              </div>
-            </form>
-            <div class="txt1 text-center p-t-54 p-b-20">
-              <span>
-                Or sign in with
-              </span>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-l-35 p-r-35 p-t-5 p-b-14" style="margin-top: 50px;">
+            <div class="login100 p-l p-r p-t-5 p-b-35 ">
+                <a [routerLink]="['/index']" style="font-size: 32px; margin-left: 98%;color: rgba(112, 162, 255, 0.856);" class="fa fa-close"></a>
             </div>
-            <form action="/googleUser" method='POST'>
-              <div class="flex-c-m" style="margin-bottom: 3%">
-                <button id="google-button" class="g-signin2" data-onsuccess="onSignIn">
+            <span class="login100-form-title p-b-30">Login</span>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                <div class="wrap-input100 validate-input m-b-23" data-validate="Username is required">
+                    <span class="label-input100">Username</span>
+                    <input class="input100" formControlName="username" type="text" name="username" placeholder="Type your username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    <span class="focus-input100" data-symbol="&#xf206;"></span>
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
+                    </div>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-lvaidate="Password is required">
+                    <span class="label-input100">Password</span>
+                    <input class="input100" formControlName="password" type="password" name="password" placeholder="Type your password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <span class="focus-input100" data-symbol="&#xf190;"></span>
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                </div>
+
+                <div class="container-login100-form-btn" style="margin-top: 20px;">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn" type="submit">Login</button>
+                    </div>
+                </div>
+
+            </form>
+
+            <div class="txt1 text-center p-t-54 p-b-20"><span>Or sign in with</span></div>
+            <div>
+                <div class="flex-c-m" style="margin-bottom: 3%">
+                    <button id="google-button" class="g-signin2" data-onsuccess="onSignIn">
                 </button>
-                <button type="submit" class="signIngoogle">Go</button>
-                <button type="submit" onclick=""></button>
-              </div>
-            </form >
+                    <button type="submit" class="signIngoogle">Go</button>
+                    <button type="submit" onclick=""></button>
+                </div>
+            </div>
             <hr>
             <div class="flex-col-c">
-              <span class="txt1 p-b-17">
-                Don't have an account yet?
-              </span>
-              <a [routerLink]="['/signup']" class="login100-form-btn txt2" style="color: black;">
-                Sign up
-              </a>
-            </div>
-          </div>
-      </div>
-    </div>
-  </body>
-</div>-->
-
-<div>
-  <body>
-    <div class="limiter">
-      <div class="container-login100">
-        <div class="wrap-login100 p-l-35 p-r-35 p-t-5 p-b-14">
-          <div class="login100 p-l p-r p-t-5 p-b-35 ">
-            <a [routerLink]="['/index']" style="font-size: 32px; margin-left: 98%;color: rgba(112, 162, 255, 0.856);" class="fa fa-close"></a>
-          </div>
-          <span class="login100-form-title p-b-30">
-            Login
-          </span>
-          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-              <div class="wrap-input100">
-                <span class="label-input100" for="username">Username</span>
-                <input type="text" formControlName="username" class="form-control" placeholder="Type your username"  [ngClass]="{ 'is-invalid': submitted && f.username.errors }"  />
-                <span class="focus-input100" data-symbol="&#xf206;"></span>
-                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                  <div *ngIf="f.username.errors.required">Username is required</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="wrap-input100">
-              <span class="label-input100" for="password">Password</span>
-                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                <span class="focus-input100" data-symbol="&#xf206;"></span>
-                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                    <div *ngIf="f.password.errors.required">Password is required</div>
-                  </div>
-              </div>
-            </div>
-
-          <div class="form-group">
-            <div class="container-login100-form-btn">
-              <div class="wrap-login100-form-btn">
-                <div class="login100-form-bgbtn"></div>
-                <button class="login100-form-btn" type="submit">
-                  Login
-                </button>
-              </div>
-            </div>
-          </div>
-
-          </form>
-
-          <div class="txt1 text-center p-t-54 p-b-20">
-            <span>
-                Or sign in with
-            </span>
-          </div>
-          <div>
-            <div class="flex-c-m" style="margin-bottom: 3%">
-              <button id="google-button" class="g-signin2" data-onsuccess="onSignIn">
-              </button>
-
-              <button type="submit" class="signIngoogle">Go</button>
-
-              <button type="submit" onclick=""></button>
-            </div>
-          </div >
-          <hr>
-          <div class="flex-col-c">
-            <span class="txt1 p-b-17">
+                <span class="txt1 p-b-17">
               Don't have an account yet?
             </span>
-            <a [routerLink]="['/signup']" class="login100-form-btn txt2" style="color: black;">
+                <a [routerLink]="['/first']" class="login100-form-btn txt2" style="color: black;">
               Sign up
             </a>
-          </div>
+            </div>
         </div>
-      </div>
     </div>
-  </body>
 </div>
-
-
-<!--<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-      <div *ngIf="f.username.errors.required">Username is required</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="text" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-      <div *ngIf="f.password.errors.required">Password is required</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <button class="btn btn-primary">Login</button>
-  </div>
-</form>-->

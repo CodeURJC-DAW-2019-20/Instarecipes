@@ -24,6 +24,7 @@ import com.proyect.instarecipes.models.Request;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.CookingStyle;
+import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
@@ -281,4 +282,23 @@ public class ProfileRestController {
 		}
 	}
 
+	@GetMapping("/allAllergens")
+	public ResponseEntity<List<Allergen>> getAllAllergens() {
+		return new ResponseEntity<>(profileservice.getAllAllergens(), HttpStatus.OK);
+	}
+
+	@GetMapping("/allCookingStyles")
+	public ResponseEntity<List<CookingStyle>> getAllCookingStyles(){
+		return new ResponseEntity<>(profileservice.getAllCookingStyles(), HttpStatus.OK);
+	}
+
+	@GetMapping("/allCategories")
+	public ResponseEntity<List<Category>> getAllCategories(){
+		return new ResponseEntity<>(profileservice.getAllCategories(), HttpStatus.OK);
+	}
+
+	@GetMapping("/allIngredients")
+	public ResponseEntity<List<Ingredient>> getAllIngredients(){
+		return new ResponseEntity<>(profileservice.getAllIngredients(), HttpStatus.OK);
+	}
 }

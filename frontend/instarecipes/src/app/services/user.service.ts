@@ -5,35 +5,31 @@ import { User } from '../Interfaces/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  constructor(private http: HttpClient) { }
+  jsonData;
+  finalData: any;
+
+  constructor(
+    private http: HttpClient,
+    ) { }
 
   getAll() {
     return this.http.get<User[]>(`${config.apiUrl}/users`);
   }
 
-
-}
-/*import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-
-const BASE_URL = '/api/user/';
-
-@Injectable({ providedIn: 'root' })
-export class UserService {
-
-	constructor(private httpClient: HttpClient) { }
-
-  login(username:string, password:string) {
-    return this.httpClient.post('/api/loginRestController', {
-      email: username,
-      password: password,
-    });
+  setJSONData(val: object) {
+    this.jsonData = val;
   }
 
-	private handleError(error: any) {
-		console.error(error);
-		return Observable.throw("Server error (" + error.status + "): " + error.text())
-	}
-}*/
+  getJSONData() {
+    return this.jsonData;
+  }
+
+  setFinalData(val: object) {
+    this.finalData = Object.assign(this.getJSONData(), val);
+
+  }
+
+  getFinalData() {
+    return this.finalData;
+  }
+}
