@@ -12,7 +12,9 @@ export class AppComponent {
   title : "Instarecipes";
   currentUser: User;
 
-  constructor(private router: Router, public authService: AuthenticationService) { }
+  constructor(
+    private router: Router,
+    public authService: AuthenticationService) { }
 
   logout() {
     this.authService.logout().subscribe(
@@ -22,4 +24,5 @@ export class AppComponent {
       (error) => console.log('Error when trying to log out: ' + error),
     );
   }
+
 }

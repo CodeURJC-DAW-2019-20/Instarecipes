@@ -20,10 +20,10 @@ export class FirstComponent implements OnInit {
       this.registerForm = this.formBuilder.group({
           username: ['', Validators.required],
           email: ['', [Validators.required, Validators.email]],
-          passwordHash: ['', Validators.required],
+          password: ['', Validators.required],
           confPassword: ['', Validators.required]
       }, {
-          validator: MustMatch('passwordHash', 'confPassword')
+          validator: MustMatch('password', 'confPassword')
       });
     }
 

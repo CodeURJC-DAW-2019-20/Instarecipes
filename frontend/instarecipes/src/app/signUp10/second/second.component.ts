@@ -6,6 +6,7 @@ import { ProfileService } from 'src/app/services/profile.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { User } from 'src/app/Interfaces/user.model';
 
 @Component({
   selector: 'app-second',
@@ -17,6 +18,7 @@ export class SecondComponent implements OnInit {
   allergens: Allergen [];
   returnUrl: string;
   error: '';
+  user: User;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,7 +26,9 @@ export class SecondComponent implements OnInit {
     private profileService: ProfileService,
     private router: Router,
     private authenticationService: AuthenticationService,
-    ) { }
+    ) {
+      this.user = {username: null, email: '', password: '', name: '', surname: '', info: 'Hello world!', allergens: null};
+    }
 
   ngOnInit() {
    this.getAllergens();
@@ -34,28 +38,28 @@ export class SecondComponent implements OnInit {
     name: ['', Validators.required],
     surname: ['', Validators.required],
     fileAvatar: [''],
-    allergen: ['']
+    allergen: [''],
     });
   }
 
   onSubmit() {
     this.userService.setFinalData(this.registerForm2.value);
     console.log("final data " , this.userService.getFinalData());
-    //this.userService.setUser();
+    this.setUser();
     delete this.userService.getFinalData()['confPassword'];
     delete this.userService.getFinalData()['fileAvatar'];
 
     console.log("nuevo ", this.userService.getFinalData());
 
-    this.authenticationService.register(this.userService.getFinalData())
+    this.authenticationService.register(this.user)
     .pipe(first())
     .subscribe(
       data => {
-          alert("YES!");
+          alert("User created!");
           this.router.navigate(['/login']);
       },
       error => {
-          alert("NO!");
+          alert("Try again");
           this.error = error;
       });
   }
@@ -76,5 +80,19 @@ export class SecondComponent implements OnInit {
         this.allergens = allergens as Allergen[];
         });
       }
+
+
+   setUser () {
+     console.log("Im in setuser()");
+     this.user["username"] = this.userService.getFinalData()['username'];
+     this.user['email'] = this.userService.getFinalData()['email'];
+     this.user['password'] = this.userService.getFinalData()['password'];
+     this.user['name'] = this.userService.getFinalData()['name'];
+     this.user['surname'] = this.userService.getFinalData()['surname'];
+     this.user['allergens'] = this.userService.getFinalData()['allergen'];
+
+     console.log("set user ", this.user);
+
+   }
 
 }

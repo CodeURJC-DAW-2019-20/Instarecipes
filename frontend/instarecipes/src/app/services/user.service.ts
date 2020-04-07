@@ -7,7 +7,6 @@ import { User } from '../Interfaces/user.model';
 export class UserService {
   jsonData;
   finalData;
-  user: User;
 
   constructor(
     private http: HttpClient,
