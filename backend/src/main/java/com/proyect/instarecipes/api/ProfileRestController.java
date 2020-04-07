@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.proyect.instarecipes.models.Request;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.models.Ingredient;
+import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;
@@ -280,6 +281,10 @@ public class ProfileRestController {
 		}else{
 			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
 		}
+	}
+	@GetMapping("/{id}/recipes")
+	public ResponseEntity<List<Recipe>> getAllRecipes( @PathVariable Long id) {
+		return new ResponseEntity<>(profileservice.getByUsernameId(id), HttpStatus.OK);
 	}
 
 	@GetMapping("/allAllergens")
