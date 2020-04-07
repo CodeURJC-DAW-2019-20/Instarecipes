@@ -1,43 +1,43 @@
 <video autoplay muted loop id="myVideo" style="position: fixed;z-index: -1; top: 9%; width: 100%; object-fit: cover;">
-      <source src="../../assets/images/backgrounds/ranking.mov" type="video/webm">
+  <source src="../../assets/images/backgrounds/ranking.mov" type="video/webm">
 </video>
 <div style="margin-left: 12.5%;">
-    <div class="container" style="height: 100%;width: 100%;top: 20px; margin-top: 5%;">
-        <div style="position: relative;width: 100%;">
-            <img src="../../assets/images/backgrounds/frameRanking.png" style="position: absolute;object-fit: cover;z-index: -1;width: fit-content;height: fit-content;display: block;left: 0;" />
-            <div style="width: 100%;">
-                <img src="../../assets/images/backgrounds/top10.gif" style="margin-left: 37.5%;margin-top: 15%;" />
-            </div>
-        </div>
+<div class="container" style="height: 100%;width: 100%;top: 20px; margin-top: 5%;">
+    <div style="position: relative;width: 100%;">
+        <img src="../../assets/images/backgrounds/frameRanking.png" style="position: absolute;object-fit: cover;z-index: -1;width: fit-content;height: fit-content;display: block;left: 0;" />
         <div style="width: 100%;">
-            <table class="table" id="table-ranking" style="margin-left: 9.7%;background-color: transparent;">
-                <thead style="background-color: transparent;text-align: center;">
-                    <tr>
-                        <th scope="col">
-                            <i class="fa fa-trophy" style="font-size:30px;color:silver;border-radius: 1.8rem;"></i>
-                        </th>
-                        <th scope="col">
-                            <h5 style="color: darkblue;"> Username </h5>
-                        </th>
-                        <th scope="col">
-                            <h5 style="color: orangered;"> Likes </h5>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody *ngFor="let recipe of rankRecipes; index as i" id="rankingBody" style="margin: 50px;text-align: center;">
-                    <tr>
-                        <th scope="row">
-                            <h4> {{i+1}}º </h4>
-                        </th>
-                        <td *ngFor="let rAux of recipe"> <strong>{{rAux}} </strong> </td>
-                    </tr>
-                </tbody>
-            </table>
+            <img src="../../assets/images/backgrounds/top10.gif" style="margin-left: 37.5%;margin-top: 15%;" />
         </div>
     </div>
+    <div style="width: 100%;">
+        <table class="table" id="table-ranking" style="margin-left: 9.7%;background-color: transparent;">
+            <thead style="background-color: transparent;text-align: center;">
+                <tr>
+                    <th scope="col">
+                        <i class="fa fa-trophy" style="font-size:30px;color:silver;border-radius: 1.8rem;"></i>
+                    </th>
+                    <th scope="col">
+                        <h5 style="color: darkblue;"> Username </h5>
+                    </th>
+                    <th scope="col">
+                        <h5 style="color: orangered;"> Likes </h5>
+                    </th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let recipe of rankRecipes; index as i" id="rankingBody" style="margin: 50px;text-align: center;">
+                <tr>
+                    <th scope="row">
+                        <h4> {{i+1}}º </h4>
+                    </th>
+                    <td *ngFor="let rAux of recipe"> <strong>{{rAux}} </strong> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </div>
 <div class="scroll-to-top d-lg-none position-fixed ">
-    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
-        <i class="fa fa-chevron-up"></i>
-    </a>
+<a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+    <i class="fa fa-chevron-up"></i>
+</a>
 </div>
