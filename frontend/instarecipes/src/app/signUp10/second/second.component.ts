@@ -6,6 +6,7 @@ import { ProfileService } from 'src/app/services/profile.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { User } from 'src/app/Interfaces/user.model';
 
 @Component({
   selector: 'app-second',
@@ -15,9 +16,9 @@ export class SecondComponent implements OnInit {
   registerForm2: FormGroup;
   activate: boolean;
   allergens: Allergen [];
-  allergenSelected: Allergen;
   returnUrl: string;
   error: '';
+  user: User;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,7 +26,9 @@ export class SecondComponent implements OnInit {
     private profileService: ProfileService,
     private router: Router,
     private authenticationService: AuthenticationService,
-    ) { }
+    ) {
+      this.user = {username: null, email: '', password: '', name: '', surname: '', info: 'Hello world!', allergens: null};
+    }
 
   ngOnInit() {
    this.getAllergens();
@@ -35,24 +38,30 @@ export class SecondComponent implements OnInit {
     name: ['', Validators.required],
     surname: ['', Validators.required],
     fileAvatar: [''],
-    allergens: ['']
+    allergen: [''],
     });
   }
 
   onSubmit() {
     this.userService.setFinalData(this.registerForm2.value);
     console.log("final data " , this.userService.getFinalData());
-    console.log("selected allergen: ", this.allergenSelected?.allergen);
+    this.setUser();
+    delete this.userService.getFinalData()['confPassword'];
+    delete this.userService.getFinalData()['fileAvatar'];
 
-   // this.authenticationService.login(data[1], data[1])
-    //.pipe(first())
-    //.subscribe(
-      //  data => {
-      //      this.router.navigate([this.returnUrl]);
-      //  },
-     //   error => {
-      //      this.error = error;
-      //  });
+    console.log("nuevo ", this.userService.getFinalData());
+
+    this.authenticationService.register(this.user)
+    .pipe(first())
+    .subscribe(
+      data => {
+          alert("User created!");
+          this.router.navigate(['/login']);
+      },
+      error => {
+          alert("Try again");
+          this.error = error;
+      });
   }
 
   onSwitch() {
@@ -72,7 +81,18 @@ export class SecondComponent implements OnInit {
         });
       }
 
-  saveAllergen(allergen: Allergen) {
-    console.log("hola"  + allergen.allergen);
-  }
+
+   setUser () {
+     console.log("Im in setuser()");
+     this.user["username"] = this.userService.getFinalData()['username'];
+     this.user['email'] = this.userService.getFinalData()['email'];
+     this.user['password'] = this.userService.getFinalData()['password'];
+     this.user['name'] = this.userService.getFinalData()['name'];
+     this.user['surname'] = this.userService.getFinalData()['surname'];
+     this.user['allergens'] = this.userService.getFinalData()['allergen'];
+
+     console.log("set user ", this.user);
+
+   }
+
 }

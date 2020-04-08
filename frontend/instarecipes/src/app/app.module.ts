@@ -29,6 +29,10 @@ import { AddRecipeComponent } from './index/popup/add/addRecipe.component';
 import { FilterRecipeComponent } from './index/popup/filter/filterRecipe.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { ProfileService } from './services/profile.service';
+import { RequestsComponent } from './profile/requests/requests.component';
+import { EditProfileComponent } from './profile/popup/editProfile/editProfile.component';
+import { SendItemRequestComponent } from './profile/popup/sendItemRequest/sendItemRequest.component';
+import { StatisticsComponent } from './profile/popup/statistics/statistics.component';
 
 @NgModule({
 
@@ -50,7 +54,11 @@ import { ProfileService } from './services/profile.service';
     RecipeComponent,
     AddRecipeComponent,
     FilterRecipeComponent,
-    RankingComponent
+    RankingComponent,
+    RequestsComponent,
+    EditProfileComponent,
+    SendItemRequestComponent,
+    StatisticsComponent
   ],
 
   //Aqui se deben importar los modulos

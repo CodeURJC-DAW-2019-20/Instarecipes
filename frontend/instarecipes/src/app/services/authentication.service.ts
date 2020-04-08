@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from '../Interfaces/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -78,28 +79,16 @@ constructor(private http: HttpClient) {
 
   register(user: User ){
     console.log("im in authentication.service register ")
-    console.log(user.username);
-    console.log(user.email)
-    console.log(user.passwordHash);
-    console.log(user.name);
-    console.log(user.surname);
+    console.log(user);
 
-    let auth = window.btoa(user + ':');
-    const headers = new HttpHeaders({
-      Authorization: 'Basic ' + auth,
-      'X-Requested-With': 'XMLHttpRequest',
-    });
-    console.log(headers);
-    return this.http.get<User>('/api/signup', { headers }).pipe(map(user => {
-      console.log(user);
-      if (user) {
-        this.setCurrentUser(user);
-        user.authdata = auth;
-        localStorage.setItem('currentUser', JSON.stringify(user));
-      }
-      return user;
-    }));
+    return this.http.post('/api/signup', user);
+
   }
+
+  private handleError(error: any) {
+		console.error(error);
+		return Observable.throw("Server error (" + error.status + "): " + error.text())
+	}
 
 
 }

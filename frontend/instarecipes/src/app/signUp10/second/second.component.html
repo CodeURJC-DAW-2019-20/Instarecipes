@@ -35,8 +35,6 @@
             </div>
           </div>
 
-
-
           <div class="flex-col-c">
             <p>Complete your profile</p>
             <label class="switch">
@@ -63,20 +61,10 @@
             </div>
           </div>
 
-            <!--
-              <input for="allergens" list="allergenslist" class="form-control" type="text"
-                placeholder="Select an allergen.." onkeypress="return false;"  (change) = "saveAllergen(allergenSelected)">
-              <datalist id="allergenslist" [(ngModel)]="allergenSelected">
-                List of allergens
-                <option *ngFor="let allergen of allergens;" value="{{allergen?.allergen}}">
-                  {{allergen.allergen}}
-                </option>
-              </datalist>
-            </div>-->
 
           <div class="wrap-input100">
-            <select formControlName="allergenSelected" class="form-control">
-              <option>-- Select --</option>
+            <select formControlName="allergen" class="form-control">
+              <option>Select an allergen..</option>
               <option *ngFor="let a of allergens" value="{{a?.allergen}}">
                 {{a?.allergen}}
               </option>
@@ -93,7 +81,6 @@
 								<button class="login100-form-btn" type="submit">Register</button>
 							</div>
             </div>
-
 
         </form>
       </div>
