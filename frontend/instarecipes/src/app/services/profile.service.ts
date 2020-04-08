@@ -63,6 +63,14 @@ export class ProfileService {
     ) as Observable<Blob>;
   }
 
+  updateProfileAvatar(selectedFile: File) {
+    this.httpClient.post(BASE_URL +  "/update", selectedFile).pipe(
+      catchError(
+        error => this.handleError(error)
+      )
+    );
+  }
+
   private handleError(error: any) {
 		console.error(error);
 		return Observable.throw("Server error (" + error.status + "): " + error.text())

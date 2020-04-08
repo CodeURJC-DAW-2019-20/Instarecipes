@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User } from '../../Interfaces/user.model';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'user-info',
@@ -11,10 +12,10 @@ export class UsersComponent implements OnInit {
 
   user: User;
 
-  constructor() { }
+  constructor(public authService: AuthenticationService) { }
 
   ngOnInit() {
-    
+
   }
 
 }
