@@ -13,7 +13,7 @@
                         </div>
                         <div class="divider-custom-line"></div>
                     </div>
-                    <form #data="ngForm" (ngSubmit)="postRecipe(data)" novalidate method="post" action="/" enctype="multipart/form-data">
+                    <form #postRecipeForm="ngForm" (ngSubmit)="postRecipe(postRecipeForm)" novalidate enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-8" style="justify-content: center; height: 100%;">
                                 <div class="wrap-input50 m-b-23" style="text-align: initial;">
@@ -32,37 +32,22 @@
                                 <div>
                                     <p id="no-such-image">No such image selected yet</p>
                                     <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem;border:1px solid rgb(23, 162, 184); align-self:center;z-index: 1050;text-align:center;padding:0;right:0;width:25%;position:absolute;cursor:pointer">
-                                      <input id="file-input" hidden type="file" name="imageFile" accept=".jpg, .jpeg" required /><i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
+                                      <input #mainImage (change)="handleFileInput($event.target.files)" id="file-input" hidden type="file" name="imageFile" accept=".jpg, .jpeg" required /><i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                                     </label>
                                 </div>
-                                <script type="text/javascript">
-                                    document.getElementById('file-input').onchange = function(evt) {
-                                        var tgt = evt.target || window.event.srcElement,
-                                            files = tgt.files;
-                                        // FileReader support
-                                        if (FileReader && files && files.length) {
-                                            var fr = new FileReader();
-                                            fr.onload = function() {
-                                                document.getElementById("no-such-image").setAttribute("hidden", "");
-                                                document.getElementById("preview-img-file").removeAttribute("hidden");
-                                                document.getElementById("preview-img-file").src = fr.result;
-                                            }
-                                            fr.readAsDataURL(files[0]);
-                                        }
-                                    }
-                                </script>
                                 <div class="validation" id="image-validation" role="alert" style="border-radius: 3px; color:red;">
                                     <i class="fa fa-exclamation-triangle"></i><i class="fa fa-exclamation-triangle"></i>
                                     <h6>Please enter a photo of your recipe!!</h6>
                                 </div>
                                 <div id="divImageSteps" hidden></div>
-                                <input id="withImage" value="" name="withImage" hidden />
-                                <input type="text" id="stepsString" name="stepsString" hidden />
+                                <input #otherImages id="withImage" value="" name="withImage" hidden />
+                                <input #otherSteps type="text" id="stepsString" name="stepsString" hidden />
                                 <fieldset id="steps-form" class="nav-item dropdown wrap-input50 m-b-23" style="text-align: initial;">
                                     <h3>Step 1*</h3>
                                     <hr/>
                                     <div id="stepCountChar"></div>
-                                    <textarea wrap="soft" id="firstStep" name="firstStepString" onkeyup="stepCountChar(this)" placeholder="A recipe must have at least 1 step :D" style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" required></textarea>
+                                    <textarea [(ngModel)]="recipe.firstStep" required #firstStep="ngModel" wrap="soft" id="firstStep" name="firstStepString" onkeyup="stepCountChar(this)" placeholder="A recipe must have at least 1 step :D" style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
+                                        required></textarea>
                                     <span class="focus-input100"></span>
                                 </fieldset>
                                 <hr/>
@@ -77,7 +62,7 @@
                                     <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                                 </div>
                                 <input #ingredientsList id="ingredientsList" value="" hidden />
-                                <input [(ngModel)]="recipe.ingredients" #ingredients="ngModel" id="ingredientsString" name="ingredientsString" hidden required/>
+                                <input #ingredientsString id="ingredientsString" name="ingredientsString" hidden required/>
                                 <div class="validation" id="ingredient-val" role="alert" style="display: none; margin-top:5px; margin-bottom: 5px; border-radius: 3px; color: red;">
                                     <i class="fa fa-exclamation-triangle"></i><i class="fa fa-exclamation-triangle"></i>
                                     <h6>Please select one ingredient at least</h6>
@@ -92,19 +77,19 @@
                                     <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
                                 </div>
                                 <input #categoriesList id="categoriesList" value="" hidden />
-                                <input [(ngModel)]="recipe.categories" #categories="ngModel" id="categoriesString" name="categoriesString" hidden />
+                                <input #categoriesString id="categoriesString" name="categoriesString" hidden />
                                 <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;" name="categories">
                                 </fieldset>
 
                                 <hr/>
                                 <h3 class="underlined-text">Cooking Style</h3>
-                                <select [(ngModel)]="recipe.cookingStyles" required #cookingStyles="ngModel" name="cookingStyle" class="form-control" id="exampleFormControlSelect3">
+                                <select [(ngModel)]="cookingStylesAux" required #cookingStyles="ngModel" name="cookingStyle" class="form-control" id="exampleFormControlSelect3">
                                   <option>-- Select --</option>
                                   <option *ngFor="let cS of allCookingStyles" value="{{cS?.cookingStyle}}">{{cS?.cookingStyle}}</option>
                                 </select>
                                 <hr>
                                 <h3 class="underlined-text">Allergen</h3>
-                                <select [(ngModel)]="recipe.allergens" required #allergens="ngModel" name="allergen" class="form-control" id="exampleFormControlSelect2">
+                                <select [(ngModel)]="recipe.allergen" required #allergens="ngModel" name="allergen" class="form-control" id="exampleFormControlSelect2">
                                   <option>-- Select --</option>
                                   <option *ngFor="let a of allAllergens" value="{{a?.allergen}}">{{a?.allergen}}</option>
                                 </select>

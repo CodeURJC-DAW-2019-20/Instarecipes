@@ -1,4 +1,49 @@
 $(document).ready(function() {
+    document.getElementById('file-input').onchange = function(evt) {
+        var tgt = evt.target || window.event.srcElement,
+            files = tgt.files;
+        // FileReader support
+        if (FileReader && files && files.length) {
+            var fr = new FileReader();
+            fr.onload = function() {
+                document.getElementById("no-such-image").setAttribute("hidden", "");
+                document.getElementById("preview-img-file").removeAttribute("hidden");
+                document.getElementById("preview-img-file").src = fr.result;
+            }
+            fr.readAsDataURL(files[0]);
+        }
+    }
+    var image_val = document.getElementById("image-validation");
+    var ingredient_val = document.getElementById("ingredient-val");
+
+    image_val.style.display = "none";
+    $(document).ready(function() {
+
+        $('#post-recipe').bind("click", function() {
+            var imgVal = $('#file-input').val();
+            var ingredient = $('#ingredientsString').val();
+            if ((imgVal == '') && (ingredient == '')) {
+                image_val.style.display = "block";
+                ingredient_val.style.display = "block";
+            } else if (imgVal == '') {
+                image_val.style.display = "block";
+                if (ingredient != '')
+                    ingredient_val.style.display = "none";
+                else if (ingredient == '') {
+                    ingredient_val.style.display = "block";
+                }
+            } else if (imgVal != '') {
+                image_val.style.display = "none";
+                if (ingredient != '') {
+                    ingredient_val.style.display = "none";
+                } else if (ingredient == '') {
+                    ingredient_val.style.display = "block";
+                }
+            }
+        });
+    });
+
+
     var iList = document.getElementById("ingredientsList").value;
     var arrayOfIngredients = iList.split(",");
 
@@ -140,10 +185,10 @@ $(document).ready(function() {
             if (valor1 != null) {
                 arrayIngredients.push(valor1.value);
             }
-            console.log("ARRAY: " + arrayIngredients);
         }
         var ings = document.getElementById("ingredientsString");
         ings.setAttribute("value", arrayIngredients);
+        arrayIngredients = [];
         console.log("Definitive Ings: " + ings.value);
         //CATEGORIES
         for (var i = 0; i < catCounter; i++) {
@@ -152,10 +197,10 @@ $(document).ready(function() {
             if (valor2 != null) {
                 arrayCategories.push(valor2.value);
             }
-            console.log("ARRAY CATEGORIES: " + arrayCategories);
         }
         var cats = document.getElementById("categoriesString");
         cats.setAttribute("value", arrayCategories);
+        arrayCategories = [];
         console.log("Definitive Cat: " + cats.value);
         //STEPS
         var div = $("#divImageSteps");
@@ -180,6 +225,7 @@ $(document).ready(function() {
         contain.setAttribute("value", cadena);
         var steps = document.getElementById("stepsString");
         steps.setAttribute("value", arraySteps);
+        arraySteps = [];
     });
     //--------------------------------------------------------//
 });
