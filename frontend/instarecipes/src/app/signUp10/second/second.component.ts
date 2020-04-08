@@ -60,14 +60,19 @@ export class SecondComponent implements OnInit {
           .pipe(first())
            .subscribe(
                data => {
-                   this.profileService.updateProfileAvatar(this.selectedFile);
-                   this.router.navigate(["/index"]);
+                 this.profileService.updateProfileAvatar(this.selectedFile).subscribe(
+                  imagen=>{
+                    console.log("Imagen subida" + imagen);
+                  },
+                    (error: Error) => console.error('Error creating user pic: ' + error)
+                 );
+
+                this.router.navigate(["/index"]);
                },
                error => {
                    this.error = error;
                });
 
-          //console.log("photo ", this.selectedFile);
       },
       error => {
           alert("Try again");

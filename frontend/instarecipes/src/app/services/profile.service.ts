@@ -63,12 +63,14 @@ export class ProfileService {
     ) as Observable<Blob>;
   }
 
-  updateProfileAvatar(selectedFile: File) {
-    this.httpClient.post(BASE_URL +  "/update", selectedFile).pipe(
+  updateProfileAvatar(selectedFile: File): Observable<boolean> {
+    const data: FormData = new FormData();
+    data.append('avatar', selectedFile);
+    return this.httpClient.post(BASE_URL +  "update/avatar", data).pipe(
       catchError(
         error => this.handleError(error)
       )
-    );
+    ) as Observable<boolean>;
   }
 
   private handleError(error: any) {
