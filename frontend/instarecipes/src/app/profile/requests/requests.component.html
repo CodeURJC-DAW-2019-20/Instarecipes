@@ -1,12 +1,12 @@
-<div style="margin-top: 5%">
+<div *ngIf="isAdmin" >
   <nav id="sidebar" style="margin-top:2%;background-color:rgba(0, 0, 0, 0.6)">
-    <div class="custom-menu">
-      <button type="button" id="sidebarCollapse" class="btn btn-primary">
+    <div class="custom-menu" style="margin-top: 5%;">
+      <button type="button" id="sidebarCollapse" class="btn btn-primary" (click)="onSelect()">
         <i class="fa fa-bars"></i>
         <span class="sr-only">Toggle Menu</span>
       </button>
     </div>
-    <div class="p-4">
+    <div class="p-4" [hidden]="IsHidden">
       <h1><a [routerLink]="['/index']" class="logo">Manage</a></h1>
       <ul class="list-unstyled components mb-5">
         <li id="text-content" class="active">

@@ -16,4 +16,11 @@ export class RequestsComponent implements OnInit {
   pushed(){
     
   }
+  //Metodo que compruebe que es admin
+  isAdmin: boolean=true;
+  IsHidden= true;
+
+  onSelect(){
+  this.IsHidden= !this.IsHidden;
+  }
 }
