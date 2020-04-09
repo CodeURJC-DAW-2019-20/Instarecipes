@@ -23,12 +23,13 @@
                 </span>
               </button>
             </div>
-       
+
           </div>
           <!-- Masthead Heading -->
-          <h3 class="text-uppercase mb-0">actualUser.name&nbsp;actualUser.surname</h3>
-          <h6>@actualUser.username</h6>
-
+          <a *ngIf="authService.isLogged">
+          <h3 class="text-uppercase mb-0">{{authService.user.name}}&nbsp;{{authService.user.surname}}</h3>
+          <h6>@{{authService.user.username}}</h6>
+          </a>
           <!-- Icon Divider -->
           <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
@@ -39,9 +40,9 @@
           </div>
           <!-- Masthead Subheading -->
           <div>
-            <p class="masthead-subheading font-weight-light mb-0">actualUser.info</p>
+            <p class="masthead-subheading font-weight-light mb-0">{{authService.user.info}}</p>
           </div>
-   
+
           <div class="unfollow-div-button" style="background-color: transparent;">
             <form action="/unfollowAction/id" method="post">
               <button type="submit" class="btn btn-primary"
@@ -59,7 +60,7 @@
           </div>
 
           <!-- Statistics button pannel -->
-          
+
         </div>
         <table style="margin-top: 5%;">
           <tr>
@@ -105,6 +106,6 @@
             </td>
           </tr>
         </table>
-        
+        <!-- Request button pannel -->
         
       </header>

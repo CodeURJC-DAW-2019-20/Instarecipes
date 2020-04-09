@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Recipe } from '../Interfaces/recipe.model';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { CookingStyle } from '../Interfaces/cookingStyle.model';
+import { RecipeDTO } from '../Interfaces/recipeDTO.model';
 
 const BASE_URL: string = "/api/recipes/";
 
@@ -52,15 +52,27 @@ export class RecipesService {
     ) as Observable<Recipe[]>;
   }
 
-  postRecipe(recipe: Recipe) {
+  postRecipe(recipe: RecipeDTO): Observable<RecipeDTO> {
     const body = JSON.stringify(recipe);
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
     });
-    this.httpClient
-        .post<Recipe>("/api/index", body, { headers })
-        .pipe(catchError((error) => this.handleError(error)));
-}
+    return this.httpClient.post<RecipeDTO>("/api/index", body, { headers }).pipe(
+      catchError(
+        error => this.handleError(error)
+      )
+    ) as Observable<RecipeDTO>;
+  }
+
+  postImageStep(fileToUpload: File, recipe_id: number, step: number): Observable<boolean> {
+    const data: FormData = new FormData();
+    data.append('imageFile', fileToUpload);
+    return this.httpClient.post("/api/index/"+recipe_id+"/image/"+step, data).pipe(
+      catchError(
+        error => this.handleError(error)
+      )
+    ) as Observable<boolean>;
+  }
 
   private handleError(error: any) {
 		console.error(error);

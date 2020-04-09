@@ -19,6 +19,7 @@ export class SecondComponent implements OnInit {
   returnUrl: string;
   error: '';
   user: User;
+  selectedFile: File;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,19 +45,34 @@ export class SecondComponent implements OnInit {
 
   onSubmit() {
     this.userService.setFinalData(this.registerForm2.value);
-    console.log("final data " , this.userService.getFinalData());
     this.setUser();
     delete this.userService.getFinalData()['confPassword'];
     delete this.userService.getFinalData()['fileAvatar'];
 
-    console.log("nuevo ", this.userService.getFinalData());
+    console.log("new ", this.userService.getFinalData());
 
     this.authenticationService.register(this.user)
     .pipe(first())
     .subscribe(
       data => {
           alert("User created!");
-          this.router.navigate(['/login']);
+          this.authenticationService.login(this.user.username, this.user.password)
+          .pipe(first())
+           .subscribe(
+               data => {
+                 this.profileService.updateProfileAvatar(this.selectedFile).subscribe(
+                  imagen=>{
+                    console.log("Imagen subida" + imagen);
+                  },
+                    (error: Error) => console.error('Error creating user pic: ' + error)
+                 );
+
+                this.router.navigate(["/index"]);
+               },
+               error => {
+                   this.error = error;
+               });
+
       },
       error => {
           alert("Try again");
@@ -83,16 +99,17 @@ export class SecondComponent implements OnInit {
 
 
    setUser () {
-     console.log("Im in setuser()");
      this.user["username"] = this.userService.getFinalData()['username'];
      this.user['email'] = this.userService.getFinalData()['email'];
      this.user['password'] = this.userService.getFinalData()['password'];
      this.user['name'] = this.userService.getFinalData()['name'];
      this.user['surname'] = this.userService.getFinalData()['surname'];
      this.user['allergens'] = this.userService.getFinalData()['allergen'];
-
-     console.log("set user ", this.user);
-
    }
 
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile);
+
+  }
 }
