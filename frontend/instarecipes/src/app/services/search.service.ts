@@ -20,7 +20,8 @@ export class SearchService {
     ) as Observable<Recipe[]>;
   }
 
-  getUsers(): Observable<User[]> {
+  getUsers() {
+    console.log("im in search service getUsers ", this.search);
     return this.httpClient.get(BASE_URL + "/navbar/users?search=" + this.search).pipe(
       catchError(error => this.handleError(error))
     ) as Observable<User[]>;

@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { User } from 'src/app/Interfaces/user.model';
 import { SearchService } from 'src/app/services/search.service';
-import { UserService } from 'src/app/services/user.service';
-import { ProfileService } from 'src/app/services/profile.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RecipesService } from 'src/app/services/recipes.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-user-search',
@@ -20,6 +19,7 @@ export class UserSearchComponent implements OnInit {
     private searchService: SearchService,
     private recipesService: RecipesService,
     private domSanitizer: DomSanitizer,
+    public authService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -35,7 +35,10 @@ export class UserSearchComponent implements OnInit {
         });
       }
     );
-    if (this.users.length != 0) {
+
+    if (this.users.length === 0) {
+      this.usersFounded = false;
+    } else {
       this.usersFounded = true;
     }
   }

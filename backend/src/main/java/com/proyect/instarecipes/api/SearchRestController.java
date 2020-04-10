@@ -29,7 +29,7 @@ import com.proyect.instarecipes.views.DTO.FilteredSearchDTO;
 @RequestMapping("/api/search")
 public class SearchRestController {
 
-	public interface SearchInfo extends Recipe.IDRecipe, Recipe.RecipeBasic, Recipe.RecipeView, Recipe.RecipeACS, User.IDUser, User.Username, User.NameSurname,
+	public interface SearchInfo extends Recipe.IDRecipe, Recipe.RecipeBasic, Recipe.RecipeView, Recipe.RecipeACS, User.IDUser, User.UserExtraInfo, User.Username, User.NameSurname,
 	Ingredient.Item, Category.Item, Allergen.Item, CookingStyle.Item{}
 
 	@Autowired

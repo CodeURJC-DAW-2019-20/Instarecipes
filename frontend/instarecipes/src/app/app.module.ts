@@ -34,6 +34,8 @@ import { EditProfileComponent } from './profile/popup/editProfile/editProfile.co
 import { SendItemRequestComponent } from './profile/popup/sendItemRequest/sendItemRequest.component';
 import { StatisticsComponent } from './profile/popup/statistics/statistics.component';
 import { RecipePreviewComponent } from './profile/popup/recipePreview/recipePreview.component';
+import { SearchComponent } from './search/search.component';
+import { UserSearchComponent } from './search/user-search/user-search.component';
 
 @NgModule({
 
@@ -60,7 +62,8 @@ import { RecipePreviewComponent } from './profile/popup/recipePreview/recipePrev
     EditProfileComponent,
     SendItemRequestComponent,
     StatisticsComponent,
-    RecipePreviewComponent
+    RecipePreviewComponent,
+    UserSearchComponent
   ],
 
   //Aqui se deben importar los modulos

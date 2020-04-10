@@ -12,6 +12,7 @@ import { Recipe_contentComponent } from './recipe/recipe-content/recipe-content.
 import { RecipeComponent } from './recipe/recipe.component';
 import { UserSearchComponent } from './search/user-search/user-search.component';
 import { RecipeSearchComponent } from './search/recipe-search/recipe-search.component';
+import { SearchComponent } from './search/search.component';
 
 // aqui ponemos las rutas, tipo: { path: 'recipe/:id', component: RecipeComponent},{...}
 const routes: Routes = [
