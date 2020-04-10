@@ -141,7 +141,7 @@ $(document).ready(function() {
             "width:25%;" +
             "position:absolute;" +
             "cursor:pointer\">" +
-            "<input id=\"file-input" + stepCounter + "\" name=\"allImages\" hidden type=\"file\" accept=\".jpg, .jpeg\">" +
+            "<input id=\"file-input" + stepCounter + "\" name=\"allImages\" type=\"file\" accept=\".jpg, .jpeg\">" +
             "<i class=\"fa fa-camera\" aria-hidden=\"true\" styles=\"object-fit:cover;padding:5px\"></i>" +
             "</input>" +
             "</label>" +

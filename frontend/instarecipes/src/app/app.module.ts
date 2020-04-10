@@ -33,7 +33,7 @@ import { RequestsComponent } from './profile/requests/requests.component';
 import { EditProfileComponent } from './profile/popup/editProfile/editProfile.component';
 import { SendItemRequestComponent } from './profile/popup/sendItemRequest/sendItemRequest.component';
 import { StatisticsComponent } from './profile/popup/statistics/statistics.component';
-import { CommonModule } from '@angular/common';
+import { RecipePreviewComponent } from './profile/popup/recipePreview/recipePreview.component';
 
 @NgModule({
 
@@ -59,7 +59,8 @@ import { CommonModule } from '@angular/common';
     RequestsComponent,
     EditProfileComponent,
     SendItemRequestComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    RecipePreviewComponent
   ],
 
   //Aqui se deben importar los modulos

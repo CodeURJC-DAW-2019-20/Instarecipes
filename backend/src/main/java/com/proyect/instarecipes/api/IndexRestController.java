@@ -139,7 +139,7 @@ public class IndexRestController {
 	@JsonView(IndexRestController.PostRecipe.class)
 	@PostMapping(value = "/index/{id}/image/{step}", produces = MediaType.IMAGE_JPEG_VALUE)
 	public ResponseEntity<byte[]> postRecipeImage(@PathVariable Long id, @PathVariable int step, 
-	@RequestParam("imageFile") MultipartFile imageFile)throws IOException {
+	@RequestParam MultipartFile imageFile)throws IOException {
 		if(userSession.isLoggedUser()){
 			byte[] image = indexService.postRecipeImages(userSession.getLoggedUser(), id, step, imageFile);
 			if(image != null){

@@ -64,10 +64,13 @@ export class RecipesService {
     ) as Observable<RecipeDTO>;
   }
 
-  postImageStep(fileToUpload: File, recipe_id: number, step: number): Observable<boolean> {
+  postImageStep(imageFile: File, recipe_id: number, step: number): Observable<boolean> {
     const data: FormData = new FormData();
-    data.append('imageFile', fileToUpload);
-    return this.httpClient.post("/api/index/"+recipe_id+"/image/"+step, data).pipe(
+    const headers = new HttpHeaders({
+      'Content-Type': undefined,
+  });
+    data.append("imageFile", imageFile);
+    return this.httpClient.post("/api/index/"+recipe_id+"/image/"+step, data, {headers}).pipe(
       catchError(
         error => this.handleError(error)
       )
