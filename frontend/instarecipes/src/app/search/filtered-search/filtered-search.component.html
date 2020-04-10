@@ -1,3 +1,89 @@
-<p>
-  filtered-search works!
-</p>
+<!--<div class="col-4">
+   Categories and Cooking Style Widget
+  <div class="card my-4">
+    <h6 class="card-header">Ingredients</h6>
+    <div class="containersearch">
+      <ul class="ks-cboxtags">
+        {{#ingredients}}
+          <li><input  class="toCheck" type="checkbox" value="{{.}}"><label>{{.}}</label></li>
+        {{/ingredients}}
+        {{#allIngredients}}
+          <li><input type="checkbox" value="{{ingredient}}"><label>{{ingredient}}</label></li>
+        {{/allIngredients}}
+      </ul>
+    </div>
+  </div>
+  <div class="card my-4">
+    <h6 class="card-header">Free allergens</h6>
+    <div class="containersearch">
+      <ul class="ks-cboxtags">
+        {{#allergens}}
+          <li><input  class="toCheck" type="checkbox" value="{{.}}"><label>{{.}}</label></li>
+        {{/allergens}}
+        {{#allAllergens}}
+          <li><input type="checkbox" value="{{allergen}}"><label>{{allergen}}</label></li>
+        {{/allAllergens}}
+      </ul>
+    </div>
+  </div>
+  <div class="card my-4">
+    <h5 class="card-header">Cooking Style</h5>
+      <div class="containersearch">
+        <ul class="ks-cboxtags">
+          {{#cookingStyles}}
+            <li><input class="toCheck" type="checkbox" value="{{.}}"><label>{{.}}</label></li>
+          {{/cookingStyles}}
+          {{#allCookingStyles}}
+            <li><input type="checkbox" value="{{cookingStyle}}"><label>{{cookingStyle}}</label></li>
+          {{/allCookingStyles}}
+      </ul>
+    </div>
+  </div>
+  <div class="card my-4">
+    <h5 class="card-header">Categories</h5>
+    <div class="containersearch">
+      <ul class="ks-cboxtags">
+        {{#categories}}
+          <li><input class="toCheck" type="checkbox" value="{{.}}"><label>{{.}}</label></li>
+        {{/categories}}
+        {{#allCategories}}
+          <li><input type="checkbox" value="{{category}}"><label>{{category}}</label></li>
+        {{/allCategories}}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-8">
+    <div>
+      <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match any recipes.</h1>
+      <h3>Try it with another filters!</h3>
+    </div>
+      <div class="card mb-4" style="width: 100%;">
+        <img class="card-img-top" src="/temp/recipes/image-{{id}}.jpg" alt="Card image cap">
+        <div class="card-body">
+          <h2 class="card-title">{{title}}</h2>
+          <p class="card-text">{{description}}</p>
+          <div class="row">
+            <div class="col-2" style="align-self: flex-end;">
+              <img class="d-flex mr-3 rounded-circle profile-border" style="align-self: center; width: 100px; height: 100px;" src="/temp/avatars/image-{{username.id}}.jpg">
+            </div>
+            <div class="col-4" style="align-self: flex-end;">
+              <h5>{{username.name}}&nbsp;{{username.surname}}</h5>
+              <p>@{{username.username}}</p>
+            </div>
+            <div class="col-4 scrolling" style="align-self: flex-end;height: 100px;">
+              <p style="background-color: rgba(127, 255, 212, 0.2);border-radius: 0.8rem;"><strong>Ingredients:</strong>&nbsp;{{#ingredients}}{{ingredient}}, {{/ingredients}}..</p>
+              <p style="background-color: rgba(171, 255, 46, 0.2);border-radius: 0.8rem;"><strong>Allergens:</strong>&nbsp;{{#allergens}}{{allergen}}, {{/allergens}}..</p>
+              <p style="background-color: rgba(191, 191, 191, 0.3);border-radius: 0.8rem;"><strong>Cooking Styles:</strong>&nbsp;{{#cookingStyles}}{{cookingStyle}}, {{/cookingStyles}}..</p>
+              <p style="background-color: rgba(255, 185, 127, 0.3);border-radius: 0.8rem;"><strong>Categories:</strong>&nbsp;{{#categories}}{{category}}, {{/categories}}..</p>
+            </div>
+            <div class="col-2" style="align-self: flex-end;">
+              <a href="/recipes/{{id}}" class="btn btn-primary">Try &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>>
+</div>-->

@@ -13,6 +13,7 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { UserSearchComponent } from './search/user-search/user-search.component';
 import { RecipeSearchComponent } from './search/recipe-search/recipe-search.component';
 import { SearchComponent } from './search/search.component';
+import { FilteredSearchComponent } from './search/filtered-search/filtered-search.component';
 
 // aqui ponemos las rutas, tipo: { path: 'recipe/:id', component: RecipeComponent},{...}
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'users', component: UserSearchComponent },
   { path: 'recipe-search', component: RecipeSearchComponent },
   { path: 'user-search', component: UserSearchComponent },
+  { path: 'filtered-search', component: FilteredSearchComponent },
 
 ];
 
