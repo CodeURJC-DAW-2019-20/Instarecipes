@@ -1,32 +1,41 @@
 <p>
   user-search works!
 </p>
-<!--<div class="col-md-12">
+<div class="container" style="margin-top: 10%;">
 
-      <div>
-        <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match any users.</h1>
-        <h3>Try it with another one!</h3>
-      </div>
+<div class="col-md-12">
+  <h4 class="mt-4 mb-3">Search
+    <small>results</small>
+  </h4>
 
-        <div class="card mb-2">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/index']">Home</a>
+    </li>
+    <li class="breadcrumb-item active">Search</li>
+  </ol>
+
+    <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match any users.</h1>
+    <h3>Try it with another one!</h3>
+
+    <div *ngFor="let user of users; index as i">
+      <div class="card mb-2" >
           <div class="row" style="margin: 20px;">
             <div class="col-4" style="text-align: center; align-self: center; overflow-wrap: break-word;">
-              <h5>{{info}}&nbsp;</h5>
+              <h5>{{user?.info}}&nbsp;</h5>
             </div>
             <div class="col-4" style="text-align: center; align-self: center;">
-              <h5>{{name}}&nbsp;{{surname}}</h5>
-              <p><a href="/users/{{id}}">@{{username}}</a></p>
+              <h5>{{user?.name}}&nbsp;{{user?.surname}}</h5>
+              <p><a>@{{user?.username}}</a></p>
             </div>
-            <img class="d-flex mr-3 rounded-circle profile-border\" src="/temp/avatars/image-{{id}}.jpg" style="align-self: center; width: 100px; height: 100px;">
+              <img class="d-flex mr-3 rounded-circle profile-border\" [src]= "avatar[i]" style="align-self: center; width: 100px; height: 100px;">
           </div>
-        </div>
+       </div>
+    </div>
 
-      <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match any users.</h1>
+      <h1 style="color: rgba(0, 0, 0, 0.7);">Users found, but..</h1>
       <h3>Try it after logging in!</h3>
 
-          <h1 style="color: rgba(0, 0, 0, 0.7);">Users found, but..</h1>
-          <h3>Try it after logging in!</h3>
-
-
 </div>
- /.row -->
+</div>
+

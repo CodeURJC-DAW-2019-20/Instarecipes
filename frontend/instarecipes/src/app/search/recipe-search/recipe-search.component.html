@@ -22,27 +22,26 @@
     </a>
         <!-- Recipe Post -->
       <a *ngIf="!recipesFounded">
-      <div *ngFor="let recipe of recipes; index as i">
+      <div *ngFor="let recipe of recipes; index as i ">
         <div class="row" style="margin: 5px;width: 100%;">
         <div class="card mb-4" style="width: 100%;">
-          <img class="card-img-top"  alt="Card image cap">
+          <img class="card-img-top" [src]="image[i]" alt="Card image cap">
           <div class="card-body">
             <h2 class="card-title">{{recipe?.title}}</h2>
             <p class="card-text">{{recipe?.description}}</p>
             <div class="row">
               <div class="col-2" style="align-self: flex-end;">
-                <img class="d-flex mr-3 rounded-circle profile-border" style="align-self: center; width: 100px; height: 100px;" >
+                <img class="d-flex mr-3 rounded-circle profile-border" [src]="avatar[i]" style="align-self: center; width: 100px; height: 100px;" >
               </div>
               <div class="col-4" style="align-self: flex-end;">
-                <h5> user name </h5>
-                <h5>{{recipe.username.name}}&nbsp;{{recipe.username.surname}}</h5>
-                <p>@{{recipe.username.username}}</p>
+                <h5>{{recipe?.username.name}}&nbsp;{{recipe?.username.surname}}</h5>
+                <p>@{{recipe?.username.username}}</p>
               </div>
               <div class="col-4 scrolling" style="align-self: flex-end;height: 100px;">
-                <p style="background-color: rgba(127, 255, 212, 0.2);border-radius: 0.8rem;"><strong>Ingredients:</strong>&nbsp;{{recipe.ingredients}}</p>
-                <p style="background-color: rgba(171, 255, 46, 0.2);border-radius: 0.8rem;"><strong>Allergens:</strong>&nbsp;{{recipe.allergens}}</p>
-                <p style="background-color: rgba(191, 191, 191, 0.3);border-radius: 0.8rem;"><strong>Cooking Styles:</strong>&nbsp;</p>
-                <p style="background-color: rgba(255, 185, 127, 0.3);border-radius: 0.8rem;"><strong>Categories:</strong>&nbsp;</p>
+                <p style="background-color: rgba(127, 255, 212, 0.2);border-radius: 0.8rem;"><strong>Ingredients:</strong><a *ngFor="let ing of recipes[i].ingredients; index as i ">&nbsp;{{recipe?.ingredients[i].ingredient}},</a></p>
+                <p style="background-color: rgba(171, 255, 46, 0.2);border-radius: 0.8rem;"><strong>Allergens:</strong><a *ngFor="let ing of recipes[i].allergens; index as i ">&nbsp;{{recipe?.allergens[i].allergen}},</a></p>
+                <p style="background-color: rgba(191, 191, 191, 0.3);border-radius: 0.8rem;"><strong>Cooking Styles:</strong><a *ngFor="let ing of recipes[i].cookingStyles; index as i ">&nbsp;{{recipe?.cookingStyles[i].cookingStyle}},</a></p>
+                <p style="background-color: rgba(255, 185, 127, 0.3);border-radius: 0.8rem;"><strong>Categories:</strong><a *ngFor="let ing of recipes[i].categories; index as i ">&nbsp;{{recipe?.categories[i].category}},</a></p>
               </div>
               <div class="col-2" style="align-self: flex-end;">
                 <a class="btn btn-primary">Try &rarr;</a>

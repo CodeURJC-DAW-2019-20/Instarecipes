@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Recipe } from '../Interfaces/recipe.model';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { User } from '../Interfaces/user.model';
 
 const BASE_URL: string = "/api/search";
 
@@ -17,6 +18,12 @@ export class SearchService {
     return this.httpClient.get(BASE_URL + "/navbar/recipes?search=" + this.search).pipe(
       catchError(error => this.handleError(error))
     ) as Observable<Recipe[]>;
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.httpClient.get(BASE_URL + "/navbar/users?search=" + this.search).pipe(
+      catchError(error => this.handleError(error))
+    ) as Observable<User[]>;
   }
 
   private handleError(error: any) {

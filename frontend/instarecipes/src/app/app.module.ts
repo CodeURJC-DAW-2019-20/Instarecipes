@@ -33,6 +33,7 @@ import { RequestsComponent } from './profile/requests/requests.component';
 import { EditProfileComponent } from './profile/popup/editProfile/editProfile.component';
 import { SendItemRequestComponent } from './profile/popup/sendItemRequest/sendItemRequest.component';
 import { StatisticsComponent } from './profile/popup/statistics/statistics.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
 
@@ -68,8 +69,7 @@ import { StatisticsComponent } from './profile/popup/statistics/statistics.compo
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    FormsModule
-
+    FormsModule,
   ],
   //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
   providers: [AuthenticationService, AuthGuard, UserService, RecipesService, ProfileService,
