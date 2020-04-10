@@ -42,6 +42,7 @@ export class AddRecipeComponent implements OnInit{
   categoriesAux: string[] = [];
   cookingStylesAux: string = '';
   fileToUpload: File = null;
+  stepsFiles: File[] = [];
 
   constructor (private router: Router, private profileService: ProfileService, 
                 private recipeService: RecipesService, public authService: AuthenticationService) {
@@ -51,6 +52,8 @@ export class AddRecipeComponent implements OnInit{
   initConstructor(){
     this.recipe = { user: null, title: '', description: '', duration: '', difficulty: '', firstStep: '', 
     allergen:'', withImage: [], steps: [], ingredients: [], categories: [], cookingStyles: [] };
+    this.fileToUpload = null;
+    this.stepsFiles = [];
   }
 
   ngOnInit(){
@@ -105,14 +108,29 @@ export class AddRecipeComponent implements OnInit{
     this.fileToUpload = files.item(0);
   }
 
+  fillImageSteps(){
+    let data = new Blob([this.mainImage.nativeElement.value], { type: 'image/jpeg' });
+    let arrayOfBlob = new Array<Blob>();
+    arrayOfBlob.push(data);
+    let applicationZip = new File(arrayOfBlob, "Mock.zip", { type: 'image/jpeg' });
+    console.log(applicationZip);
+    this.fileToUpload = applicationZip;
+    var aux = new String(this.recipe.withImage[0]);
+    for (var i = 0; i < aux.length/2; i++) {
+      console.log("Bueno"+ i);
+
+      // this.stepsFiles.push();
+    }
+  }
+
   postRecipe(data: NgForm){
     this.recipe.user = this.authService.user;
-    console.log("what:"+this.ingredientsString.nativeElement.value+".")
     this.recipe.ingredients.push(this.ingredientsString.nativeElement.value);
     this.recipe.categories.push(this.categoriesString.nativeElement.value);
     this.recipe.cookingStyles.push(this.cookingStylesAux);
     this.recipe.steps.push(this.otherSteps.nativeElement.value);
     this.recipe.withImage.push(this.otherImages.nativeElement.value);
+    this.fillImageSteps();
     console.log(this.recipe);
     let totalRecipes = [];
     this.recipeService.postRecipe(this.recipe).subscribe(
@@ -122,7 +140,7 @@ export class AddRecipeComponent implements OnInit{
             totalRecipes = recipes;
             console.log("Tamanio: " + totalRecipes.length);
             this.recipeService.postImageStep(this.fileToUpload, totalRecipes.length+2, 1).subscribe(
-              imagen=>{
+              imagen => {
                 console.log("Imagen subida" + imagen);
               },
               (error: Error) => console.error('Error creating recipe step image: ' + error),
