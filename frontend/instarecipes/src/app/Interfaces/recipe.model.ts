@@ -15,7 +15,7 @@ export interface Recipe{
     n_comments?: number;
     duration: string;
     difficulty: string;
-    
+
     cookingStyles?: CookingStyle [];
     allergens?: Allergen [];
     ingredients: Ingredient [];

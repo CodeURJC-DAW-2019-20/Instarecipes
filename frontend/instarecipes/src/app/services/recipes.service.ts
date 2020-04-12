@@ -5,6 +5,7 @@ import { Recipe } from '../Interfaces/recipe.model';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Step } from '../Interfaces/step.model';
+import { RecipeDTO } from '../Interfaces/recipeDTO.model';
 
 const BASE_URL: string = "/api/recipes/";
 
@@ -55,6 +56,37 @@ export class RecipesService {
     return this.httpClient.get(BASE_URL + id_recipe + '/steps').pipe(
       catchError(error => this.handleError(error))
     ) as Observable<Step[]>;
+  }
+
+  getIndexTrendingRecipes(): Observable<Recipe[]>{
+    return this.httpClient.get("/api/trending").pipe(
+      catchError(error => this.handleError(error))
+    ) as Observable<Recipe[]>;
+  }
+
+  postRecipe(recipe: RecipeDTO): Observable<RecipeDTO> {
+    const body = JSON.stringify(recipe);
+    const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+    });
+    return this.httpClient.post<RecipeDTO>("/api/index", body, { headers }).pipe(
+      catchError(
+        error => this.handleError(error)
+      )
+    ) as Observable<RecipeDTO>;
+  }
+
+  postImageStep(imageFile: File, recipe_id: number, step: number): Observable<boolean> {
+    const data: FormData = new FormData();
+    const headers = new HttpHeaders({
+      'Content-Type': undefined,
+  });
+    data.append("imageFile", imageFile);
+    return this.httpClient.post("/api/index/"+recipe_id+"/image/"+step, data, {headers}).pipe(
+      catchError(
+        error => this.handleError(error)
+      )
+    ) as Observable<boolean>;
   }
 
   private handleError(error: any) {

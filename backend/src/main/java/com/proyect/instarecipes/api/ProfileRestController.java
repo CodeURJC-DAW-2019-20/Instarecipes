@@ -23,7 +23,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.proyect.instarecipes.models.Request;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.models.Ingredient;
+import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.CookingStyle;
+import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
@@ -280,5 +282,28 @@ public class ProfileRestController {
 			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
 		}
 	}
+	@GetMapping("/{id}/recipes")
+	public ResponseEntity<List<Recipe>> getAllRecipes( @PathVariable Long id) {
+		return new ResponseEntity<>(profileservice.getByUsernameId(id), HttpStatus.OK);
+	}
 
+	@GetMapping("/allAllergens")
+	public ResponseEntity<List<Allergen>> getAllAllergens() {
+		return new ResponseEntity<>(profileservice.getAllAllergens(), HttpStatus.OK);
+	}
+
+	@GetMapping("/allCookingStyles")
+	public ResponseEntity<List<CookingStyle>> getAllCookingStyles(){
+		return new ResponseEntity<>(profileservice.getAllCookingStyles(), HttpStatus.OK);
+	}
+
+	@GetMapping("/allCategories")
+	public ResponseEntity<List<Category>> getAllCategories(){
+		return new ResponseEntity<>(profileservice.getAllCategories(), HttpStatus.OK);
+	}
+
+	@GetMapping("/allIngredients")
+	public ResponseEntity<List<Ingredient>> getAllIngredients(){
+		return new ResponseEntity<>(profileservice.getAllIngredients(), HttpStatus.OK);
+	}
 }

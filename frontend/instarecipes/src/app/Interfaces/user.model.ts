@@ -3,10 +3,11 @@ export interface User{
     id?: number;
     username: string;
     email: string;
-    passwordHash?: string;
-    roles: string[];
+    password?: string;
+    roles?: string[];
     authdata?: string;
     name: string;
     surname: string;
-    allergen: string;
+    allergens: string;
+    info: string;
 }

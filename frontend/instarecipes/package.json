@@ -25,6 +25,7 @@
     "bootstrap": "^4.4.1",
     "cors": "^2.8.5",
     "font-awesome": "^4.7.0",
+    "jquery": "^3.4.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -51,12 +52,10 @@
     "typescript": "~3.7.5"
   },
   "styles": [
-    "node_modules/bootstrap/dist/css/bootstrap.css",
     "node_modules/font-awesome/css/font-awesome.css",
     "styles.css",
     "assets/css/bootstrap.min.css",
     "assets/css/freelancer.css",
-    "assets/css/freelancer.min.css",
     "assets/css/main.css",
     "assets/css/modern-bussines.css",
     "assets/css/recipes.css",

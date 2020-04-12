@@ -10,7 +10,6 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class LoginComponent implements OnInit{
    loginForm: FormGroup;
-   loading = false;
    submitted = false;
    returnUrl: string;
    error: '';
@@ -53,6 +52,5 @@ export class LoginComponent implements OnInit{
                    this.error = error;
                });
    }
-
 
 }

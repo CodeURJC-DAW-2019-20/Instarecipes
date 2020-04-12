@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-sendItemRequest',
+  selector: 'sendItemRequest',
   templateUrl: './sendItemRequest.component.html',
   styleUrls: ['./sendItemRequest.component.css']
 })
