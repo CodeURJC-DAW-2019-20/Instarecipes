@@ -6,6 +6,9 @@ import { IndexComponent } from './index/index.component'
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './signUp/signUp.component';
 import { RankingComponent } from './ranking/ranking.component';
+import { RecipeComponent } from './recipe/recipe.component';
+import { FilteredSearchComponent } from './search/filtered-search/filtered-search.component';
+import { RecipeContentComponent } from './recipe/recipe-content/recipe-content.component';
 
 // aqui ponemos las rutas, tipo: { path: 'recipe/:id', component: RecipeComponent},{...}
 const routes: Routes = [
@@ -14,6 +17,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'ranking', component: RankingComponent },
+  { path: 'recipe', component: RecipeComponent },
+  { path: 'filtered-search', component: FilteredSearchComponent }
 ];
 
 @NgModule({

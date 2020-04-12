@@ -29,7 +29,7 @@
       <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" src="/temp/avatars/image-.jpg" alt=""/> <!-- usercomment dps id-->
       <div class="media-body">
         <h5 class="mt-0"><!--{{userComment.name}}&nbsp;{{userComment.surname}}--></h5>
-        <input readonly type="text" class="mt-0" value="" style="border-width: 0px;" id="userComment"></input><!-- usercomment username y dps id-->
+        <input readonly type="text" class="mt-0" value="" style="border-width: 0px;" id="userComment"><!-- usercomment username y dps id-->
         <p class="mt-0"></p><!-- content-->
         <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
           <div class="col-4" style="height: 100%;">
@@ -50,8 +50,7 @@
                   <button type="submit" style="width: inherit;border: 0px;">
                     <img class="focusHeart" src="../images/icons/like_unpressed.png" style="width: 20px;" alt="">
                   </button>
-                  <input name="id_recipe" value=" hidden/>
-
+                  <input name="id_recipe" value="" hidden/>
                 </form>
 
             </div>
@@ -68,8 +67,8 @@
             <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" src="/temp/avatars/image-.jpg" alt=""/><!-- usercomment id-->
             <div class="media-body">
               <h5 class="mt-0"></h5><!-- usercoment name y surname-->
-              <input readonly type="text" class="mt-0" value="" style="border-width: 0px;" id="userComment"></input>><!-- usercomment username y dps id-->
-              <p class="mt-0"></p>><!-- content-->
+              <input readonly type="text" class="mt-0" value="" style="border-width: 0px;" id="userComment"><!-- usercomment username y dps id-->
+              <p class="mt-0"></p><!-- content-->
               <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
                 <div class="col-4" style="height: 100%;">
                   <p style="top: 0; align-self: center;"></p> ><!-- likes-->
@@ -85,11 +84,11 @@
 
                     </form>
 
-                    <form action="/likeComment/{{id}}" method="POST">
+                    <form action="/likeComment/" method="POST">
                       <button type="submit" style="width: inherit;border: 0px;">
                         <img class="focusHeart" src="../images/icons/like_unpressed.png" style="width: 20px;" alt="">
                       </button>
-                      <input name="id_recipe" value="{{recipe.id}}" hidden/>
+                      <input name="id_recipe" value="" hidden/>
 
                     </form>
 
@@ -104,10 +103,10 @@
 
       <!-- Comment with nested comments -->
       <div class="media mb-4">
-        <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" src="/temp/avatars/image-.jpg" alt=""/>><!-- usercomment id-->
+        <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" src="/temp/avatars/image-.jpg" alt=""/><!-- usercomment id-->
         <div class="media-body">
           <h5 class="mt-0"><!--{{userComment.name}}&nbsp;{{userComment.surname}}--></h5>
-          <input readonly type="text" class="mt-0" value="" style="border-width: 0px;" id="userComment"></input>><!-- usercomment username e id-->
+          <input readonly type="text" class="mt-0" value="" style="border-width: 0px;" id="userComment"><!-- usercomment username e id-->
           <p class="mt-0"></p> <!-- content-->
           <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
             <div class="col-4" style="height: 100%;">
@@ -145,4 +144,4 @@
 
 <hr width="50%">
 </section>
-</div>
+

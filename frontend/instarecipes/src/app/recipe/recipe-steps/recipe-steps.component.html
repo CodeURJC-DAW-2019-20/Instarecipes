@@ -1,3 +1,29 @@
-<p>
-  recipe-steps works!
-</p>
+<section>
+  <h1 class="mb-0 font-weight-normal">Introduction</h1>
+  <p class="mb-0 font-weight-normal">{{recipe?.description}}</p>
+  <hr class="separator1">
+  <!-- STEPS sections -->
+    <div *ngFor="let step of step; index as i;">
+        <h1>Step {{i}}</h1>
+        <!-- Post Content -->
+        <div class="row">
+          <div class="col-8">
+            <p class="lead">{{step?.content}}</p>
+          </div>
+          <div class="col-4">
+              <p>{{i}}</p>
+              <img class="img-fluid rounded-lg prev-img"  [src] = "image[i]" alt="" style="cursor: pointer;">
+          </div>
+        </div>
+    </div>
+  <hr>
+  <!-- Gallery section -->
+  <section>
+    <div class="row" style="text-align: center;">
+          <div class="col-md-3 col-sm-6 mb-4 centered-img">
+            <!--<img class="img-fluid rounded-lg prev-img" src="/temp/recipes/steps/{{recipe.id}}/image-{{number}}.jpg" alt="" style="cursor: pointer;"> -->
+          </div>
+
+    </div>
+  </section>
+</section>

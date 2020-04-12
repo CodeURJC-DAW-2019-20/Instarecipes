@@ -77,7 +77,6 @@ public class RecipeRestController{
         List<Recipe> recipeList = (List<Recipe>)recipes.getContent();
         return recipeList;
     }
-
     //SHOW THE IMAGE OF ANOTHER USER
     @GetMapping(value = "/{id}/avatar",produces = MediaType.IMAGE_JPEG_VALUE)
     public ResponseEntity<byte[]> getProfileImage(@PathVariable Long id) throws IOException {

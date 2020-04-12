@@ -11,6 +11,7 @@ import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.User;
+import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.UsersService;
@@ -39,6 +40,8 @@ public class UsersRestController {
     private UserSession userSession;
     @Autowired
     private UsersRepository usersRepository;
+    @Autowired
+    private RecipesRepository recipesRepository;
 
     // SHOW ANOTHER USER PROFILE
     @JsonView(UsersRestController.AnotherUserProfile.class)
@@ -135,6 +138,28 @@ public class UsersRestController {
         }else{
           return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
         }
+    }
+    public List<Recipe> getAllRecipes(Long id){
+      List<Recipe> recipe = recipesRepository.findByUsernameId(id);
+      return recipe;
+    }
+    @GetMapping("/publications/{id}")
+    public int publicationsUser(@PathVariable Long id){
+      List<Recipe> recipe = getAllRecipes(id);
+      int publications = recipe.size();
+      System.out.println(publications);
+      return publications;
+    }
+    @GetMapping("/likes/{id}")
+    public int likesUser(@PathVariable Long id){
+      List<Recipe> recipe = getAllRecipes(id);
+      int likes= 0;
+      for(int i = 0; i<recipe.size();i++){
+        likes += recipe.get(i).getLikes();
+        System.out.println(recipe.get(i).getLikes());
+      }
+      System.out.println(likes);
+      return likes;
     }
     
 }

@@ -6,8 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comments.component.css']
 })
 export class CommentsComponent implements OnInit {
-
-  constructor() { }
+  comments: Comment[] = [];
+  avatar: any[] = [];
+  constructor() {}
 
   ngOnInit() {
   }

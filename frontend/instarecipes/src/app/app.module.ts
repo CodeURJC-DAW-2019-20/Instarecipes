@@ -20,6 +20,10 @@ import { BasicAuthInterceptor } from './helpers/basic-auth-interceptor';
 import { AuthGuard } from './helpers/auth.guard';
 import { LogoutComponent } from './logout/logout.component';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { CommentsComponent } from './recipe/comments/comments.component';
+import { RecipeComponent } from './recipe/recipe.component';
+import { RecipeContentComponent } from './recipe/recipe-content/recipe-content.component';
+import { RecipeStepsComponent } from './recipe/recipe-steps/recipe-steps.component';
 
 @NgModule({
 
@@ -32,7 +36,11 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
     LoginComponent,
     SignUpComponent,
     RecipeSearchComponent,
-    LogoutComponent
+    LogoutComponent,
+    RecipeComponent,
+    CommentsComponent,
+    RecipeContentComponent,
+    RecipeStepsComponent
   ],
 
   //Aqui se deben importar los modulos
