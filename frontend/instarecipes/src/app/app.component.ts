@@ -38,7 +38,7 @@ export class AppComponent {
 
     const firstLetter = this.search.substring(0,1);
     if (firstLetter === "@"){
-      this.router.navigate(['/user-search']);
+      this.router.navigate(['/users']);
     } else {
       this.router.navigate(['/recipe-search']);
     }

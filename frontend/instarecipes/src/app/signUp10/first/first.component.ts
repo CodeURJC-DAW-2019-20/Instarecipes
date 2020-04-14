@@ -42,7 +42,7 @@ export class FirstComponent implements OnInit {
 
            // console.log(JSON.stringify(this.registerForm.value));
             this.userService.setJSONData(this.registerForm.value);
-            this.router.navigate(['/second']);
+            this.router.navigate(['/signUpExtended']);
            // alert(JSON.stringify(this.registerForm.value));
         }
 

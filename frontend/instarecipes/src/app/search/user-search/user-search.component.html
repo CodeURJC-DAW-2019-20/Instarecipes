@@ -17,7 +17,7 @@
   </div>
 
   <!-- Users entries column -->
-  <div class="col-md-12">
+  <div class="col-md-12" *ngIf="authService.isLogged">
     <a *ngIf="!usersFounded">
     <div *ngFor="let user of users; index as i">
       <div class="card mb-2" >
@@ -35,14 +35,15 @@
       </div>
     </a>
   </div>
+
   <a *ngIf="usersFounded">
     <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match any users.</h1>
     <h3>Try it with another one!</h3>
   </a>
 
   <a *ngIf="!authService.isLogged">
-      <h1 style="color: rgba(0, 0, 0, 0.7);">Users found, but..</h1>
-      <h3>Try it after logging in!</h3>
+    <h1 style="color: rgba(0, 0, 0, 0.7);">Users found, but..</h1>
+    <h3>Try it after logging in!</h3>
   </a>
 </div>
 

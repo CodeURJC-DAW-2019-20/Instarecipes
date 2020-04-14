@@ -27,7 +27,8 @@ public interface RecipesRepository extends JpaRepository<Recipe, Long> {
     Page<Recipe> findAllRecipes(Pageable page); 
 
     @Query("SELECT r.username.username, SUM(r.likes) AS total FROM Recipe r GROUP BY r.username.username ORDER BY total DESC")
-	Page<Recipe> findTopTen(Pageable page);
+    Page<Recipe> findTopTen(Pageable page);
+    
     
     @Query("SELECT DISTINCT r FROM Recipe r "
     + "LEFT OUTER JOIN r.ingredients ing "
