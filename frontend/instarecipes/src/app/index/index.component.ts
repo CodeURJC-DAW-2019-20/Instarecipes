@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,6 @@ import { Component } from '@angular/core';
 })
 
 export class IndexComponent{
-    title = " I N S T A R E C I P E S "
+    constructor(public authService: AuthenticationService){ }
 
 }

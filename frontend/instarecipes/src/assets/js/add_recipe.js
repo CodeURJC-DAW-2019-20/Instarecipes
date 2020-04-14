@@ -124,47 +124,17 @@ $(document).ready(function() {
             stepCounter + "\">" +
             "<h3>Step " + stepNumber + "</h3><hr></div>");
         fieldWrapper.data("idx", intId);
-        var fStep = $("<div style=\"width: 100%;height:250\">" +
-            "<div id=\"stepsCountChar" + stepNumber + "\"></div>" +
-            "<textarea id=\"step" + stepCounter + "\" name=\"step" + stepCounter + "\" onkeyup=\"stepsCountChar(this)\" class=\"\"" +
-            "placeholder=\"Type how to do this step\" style=\"width: 100%;" +
-            "height: 150px;border-radius: 0.5rem;" +
-            "border:1px solid rgba(0, 0, 0, 0.3);" +
-            "padding:10px;\">" +
-            "</textarea>" +
-            "<div style=\"width:100%;height:100%;display:flex;flex-wrap:wrap;right:0\">" +
-            "<label for=\"file-input" + stepCounter + "\" class=\"btn-outline-primary\" style=\"border-radius:0.5rem;border:1px solid rgb(23, 162, 184);background-color:white" +
-            "align-self:center;" +
-            "text-align:center;" +
-            "padding:0;" +
-            "right:0;" +
-            "width:25%;" +
-            "position:absolute;" +
-            "cursor:pointer\">" +
-            "<input id=\"file-input" + stepCounter + "\" name=\"allImages\" type=\"file\" accept=\".jpg, .jpeg\">" +
-            "<i class=\"fa fa-camera\" aria-hidden=\"true\" styles=\"object-fit:cover;padding:5px\"></i>" +
-            "</input>" +
-            "</label>" +
-            "</div>"
-        );
-        var removeButton = $("<div id=\"removeB" + stepCounter + "\" class=\"btn-danger\" style=\"border-radius:0.5rem;" +
-            "align-self:center;" +
-            "text-align:center;" +
-            "width:10%;" +
-            "cursor:pointer\">" +
-            "<i class=\"fa fa-trash\" aria-hidden=\"true\" styles=\"object-fit:cover;" +
-            "padding:5px\"></i>" +
-            "</div>"
-        );
-        fieldWrapper.append(fStep);
-        fieldWrapper.append(removeButton);
+
+        var removeButton = $('#removeB');
+        // fieldWrapper.append(fStep);
+        // fieldWrapper.append(removeButton);
         stepNumber++;
-        $("#steps-form").append(fieldWrapper); //add to the bottom of the form
-        if (stepCounter > 0) {
-            var au = stepCounter - 1;
-            var asdf = $("#removeB" + au);
-            asdf.hide();
-        }
+        // $("#steps-form").append(fieldWrapper); //add to the bottom of the form
+        // if (stepCounter > 0) {
+        //     var au = stepCounter - 1;
+        //     var asdf = $("#removeB" + au);
+        //     asdf.hide();
+        // }
         removeButton.click(function() {
             if (stepNumber > 3) {
                 asdf.show();
@@ -229,97 +199,3 @@ $(document).ready(function() {
     });
     //--------------------------------------------------------//
 });
-
-function stepCountChar(val) {
-    var len = val.value.length;
-    if (len > 500) {
-        val.value = val.value.substring(0, 500);
-    } else {
-        $('#stepCountChar').text(500 - len);
-    }
-};
-
-function introCountChar(val) {
-    var len = val.value.length;
-    if (len > 200) {
-        val.value = val.value.substring(0, 200);
-    } else {
-        $('#introCountChar').text(200 - len);
-    }
-};
-
-function titleCountChar(val) {
-    var len = val.value.length;
-    if (len > 50) {
-        val.value = val.value.substring(0, 50);
-    } else {
-        $('#titleCountChar').text(50 - len);
-    }
-};
-
-function stepsCountChar(val) {
-    var len = val.value.length;
-    if (len > 500) {
-        val.value = val.value.substring(0, 500);
-    } else {
-        $('#stepsCountChar' + counter).text(500 - len);
-    }
-};
-var easy = $("#easy-star");
-var medium = $("#medium-star");
-var hard = $("#hard-star");
-var extreme = $("#extreme-star");
-
-function starClick(input) {
-    switch (input) {
-        case 1:
-            $("#easy-text").removeAttr("hidden");
-            $("#medium-text").attr("hidden", true);
-            $("#hard-text").attr("hidden", true);
-            $("#extreme-text").attr("hidden", true);
-
-            easy.attr("name", "difficulty");
-            medium.removeAttr("name");
-            hard.removeAttr("name");
-            extreme.removeAttr("name");
-            break;
-        case 2:
-            $("#easy-text").attr("hidden", true);
-            $("#medium-text").removeAttr("hidden");
-            $("#hard-text").attr("hidden", true);
-            $("#extreme-text").attr("hidden", true);
-
-            easy.removeAttr("name");
-            medium.attr("name", "difficulty");
-            hard.removeAttr("name");
-            extreme.removeAttr("name");
-            break;
-        case 3:
-            $("#easy-text").attr("hidden", true);
-            $("#medium-text").attr("hidden", true);
-            $("#hard-text").removeAttr("hidden");
-            $("#extreme-text").attr("hidden", true);
-
-            easy.removeAttr("name");
-            medium.removeAttr("name");
-            hard.attr("name", "difficulty");
-            extreme.removeAttr("name");
-            break;
-        case 4:
-            $("#easy-text").attr("hidden", true);
-            $("#medium-text").attr("hidden", true);
-            $("#hard-text").attr("hidden", true);
-            $("#extreme-text").removeAttr("hidden");
-
-            easy.removeAttr("name");
-            medium.removeAttr("name");
-            hard.removeAttr("name");
-            extreme.attr("name", "difficulty");
-            break;
-        default:
-            $("#easy-text").attr("hidden", true);
-            $("#medium-text").attr("hidden", true);
-            $("#hard-text").attr("hidden", true);
-            $("#extreme-text").attr("hidden", true);
-    }
-};

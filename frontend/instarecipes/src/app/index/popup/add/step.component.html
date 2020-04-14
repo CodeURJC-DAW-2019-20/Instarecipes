@@ -1,0 +1,17 @@
+<div id="steps-field">
+    <h3>Step {{i+2}}</h3>
+    <hr>
+</div>
+<div style="width: 100%;height:250">
+    <div id="stepsCountCharstep{{i}}"></div>
+    <div style="width:100%;height:100%;display:flex;flex-wrap:wrap;right:0">
+        <textarea onkeyup="stepsCountChar(this)" id="step{{i}}" name="step{{i}}" style="width: 70%;padding:10px;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;" wrap="soft">{{step.content}}</textarea>
+        <hr>
+        <img *ngIf="URL" [src]="URL" id="image{{i}}" style="object-fit:cover;border-radius: 0.8rem;width: 30%;" alt="">
+        <label for="file-input{{i}}" class="btn-outline-primary" style="border-radius:0.5rem;border:1px solid rgb(23, 162, 184);background-color:white;
+            align-self:center;text-align:center;padding:0;right:4%;width:10%;position:absolute;cursor:pointer">
+        <input (change)="useImage($event)" id="file-input{{i}}" type="file" accept=".jpg, .jpeg" hidden>
+        <i class="fa fa-camera" aria-hidden="true" styles="object-fit:cover;padding:5px"></i>
+        </label>
+    </div>
+</div>

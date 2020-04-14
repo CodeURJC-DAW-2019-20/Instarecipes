@@ -1,9 +1,10 @@
 import { Recipe } from './recipe.model';
 
-export interface Step {
-  id?: number;
-  number: number;
-  recipe: Recipe;
-  content: string;
-  image: boolean;
+export interface Step{
+    id_step?: number;
+    recipe?: Recipe;
+    number: number;
+    content: string;
+    image?: boolean;
+    stepImage?: any[];
 }

@@ -17,6 +17,7 @@ export class RecipesService {
   recipes: Recipe[] = [];
 
   constructor(private httpClient: HttpClient) { }
+  
 
   refreshRecipes(page_size: number): Observable<Recipe[]> {
     return this.httpClient.get(BASE_URL + "?page=0&size=" + page_size).pipe(
@@ -78,12 +79,9 @@ export class RecipesService {
   }
 
   postImageStep(imageFile: File, recipe_id: number, step: number): Observable<boolean> {
-    const data: FormData = new FormData();
-    const headers = new HttpHeaders({
-      'Content-Type': undefined,
-  });
-    data.append("imageFile", imageFile);
-    return this.httpClient.post("/api/index/"+recipe_id+"/image/"+step, data, {headers}).pipe(
+    let data: FormData = new FormData();
+    data.append('imageFile', imageFile, imageFile.name);
+    return this.httpClient.post("/api/index/"+recipe_id+"/image/"+step, data).pipe(
       catchError(
         error => this.handleError(error)
       )
