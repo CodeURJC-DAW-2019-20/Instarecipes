@@ -28,6 +28,7 @@ Search button pannel
                               <input #ingredientsList id="ingredientsSList" value="" hidden />
                               <input #ingredientsSSearch id="ingredientsSSearch" name="ingredientsSSearch" hidden />
                               <select class="form-control">
+                                <option>Select an ingredient..</option>
                                 <option *ngFor="let ing of ingredients" value="{{ing?.ingredient}}">
                                   {{ing?.ingredient}}
                                 </option>
@@ -51,6 +52,7 @@ Search button pannel
                             <tr>
                               <td>
                                 <select class="form-control">
+                                  <option>Select a cooking style..</option>
                                   <option *ngFor="let cks of cookingStyles" value="{{cks?.cookingStyle}}">
                                     {{cks?.cookingStyle}}
                                   </option>
@@ -76,6 +78,7 @@ Search button pannel
                           <tr>
                             <td>
                               <select class="form-control">
+                                <option>Select a category..</option>
                                 <option *ngFor="let cat of categories" value="{{cat?.category}}">
                                   {{cat?.category}}
                                 </option>

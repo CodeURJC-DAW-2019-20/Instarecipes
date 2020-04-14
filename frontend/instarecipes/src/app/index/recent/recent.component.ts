@@ -3,6 +3,7 @@ import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import { RecipesService } from '../../services/recipes.service';
 import { Recipe } from '../../Interfaces/recipe.model';
 import { DomSanitizer } from '@angular/platform-browser';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'recent-recipes',
@@ -22,8 +23,9 @@ export class RecentComponent implements OnInit{
     @ViewChild('loadmore1') button1: ElementRef;
     @ViewChild('loadmore2') button2: ElementRef;
 
-    constructor (private recipesService: RecipesService, 
-      private domSanitizer: DomSanitizer){ }
+    constructor (private recipesService: RecipesService,
+      private domSanitizer: DomSanitizer,
+      public recipeService: RecipeService){ }
 
     ngOnInit(){
       this.refresh(this.page_size);

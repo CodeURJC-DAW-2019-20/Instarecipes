@@ -5,5 +5,5 @@ export interface Step {
   number: number;
   recipe: Recipe;
   content: string;
-
+  image: boolean;
 }
