@@ -170,7 +170,8 @@ public class IndexService {
                         Step step_n = new Step(recipe, i, steps);
                         if(listOfBools.get(j).equalsIgnoreCase("1")){
                             imageService.saveImage("recipes/steps/"+recipe.getId(), j+2, allImages[j]);
-                           step_n.setImage(true);
+                            step_n.setImage(true);
+                            step_n.setStepImage(allImages[j].getBytes());
                         }else{
                            step_n.setImage(false);
                         }
