@@ -35,12 +35,6 @@ export class UserSearchComponent implements OnInit {
         });
       }
     );
-
-    if (this.users.length === 0) {
-      this.usersFounded = false;
-    } else {
-      this.usersFounded = true;
-    }
   }
 
   userAvatar(user: User) {
