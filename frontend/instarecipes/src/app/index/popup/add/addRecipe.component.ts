@@ -9,6 +9,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { RecipeDTO } from 'src/app/Interfaces/recipeDTO.model.js';
 import { RecipesService } from 'src/app/services/recipes.service.js';
 import { Router } from '@angular/router';
+import { Step } from 'src/app/Interfaces/step.model.js';
 
 @Component({
   selector: 'popup-add',
@@ -16,6 +17,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./addRecipe.component.css']
 })
 export class AddRecipeComponent implements OnInit{
+
+  stepsList: Step[] = [];
 
   recipe: RecipeDTO;
   allCookingStyles: CookingStyle[] = [];
@@ -42,22 +45,30 @@ export class AddRecipeComponent implements OnInit{
   categoriesAux: string[] = [];
   cookingStylesAux: string = '';
   fileToUpload: File = null;
-  stepsFiles: File[] = [];
+  stepsFiles: Map<number,File> = new Map();
 
-  constructor (private router: Router, private profileService: ProfileService, 
-                private recipeService: RecipesService, public authService: AuthenticationService) {
-    this.initConstructor();
+  constructor (private profileService: ProfileService, private recipeService: RecipesService,
+    public authService: AuthenticationService) {
+      this.initConstructor();
   }
 
   initConstructor(){
     this.recipe = { user: null, title: '', description: '', duration: '', difficulty: '', firstStep: '', 
     allergen:'', withImage: [], steps: [], ingredients: [], categories: [], cookingStyles: [] };
     this.fileToUpload = null;
-    this.stepsFiles = [];
+    this.stepsFiles = new Map();
+    this.stepsList = [];
   }
 
   ngOnInit(){
     this.loadStuff();
+  }
+
+  receiveMap($event) {
+    $event.forEach((value, key) => {
+      console.log("Value: " + value + " Key: " + key);
+      this.stepsFiles.set(key, value);
+    });
   }
 
   loadStuff(){
@@ -104,34 +115,30 @@ export class AddRecipeComponent implements OnInit{
     }
   }
 
+  addStep(description: string) {
+    let s = {content: description, number: this.stepsList.length+1};
+    this.stepsList.push(s);
+    console.log("Added new step");
+	}
+
+	removeStep() {
+    this.stepsList.pop();
+    console.log("Removed last step");
+	}
+
   handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
+    this.fileToUpload = files[0];
   }
 
-  fillImageSteps(){
-    let data = new Blob([this.mainImage.nativeElement.value], { type: 'image/jpeg' });
-    let arrayOfBlob = new Array<Blob>();
-    arrayOfBlob.push(data);
-    let applicationZip = new File(arrayOfBlob, "Mock.zip", { type: 'image/jpeg' });
-    console.log(applicationZip);
-    this.fileToUpload = applicationZip;
-    var aux = new String(this.recipe.withImage[0]);
-    for (var i = 0; i < aux.length/2; i++) {
-      console.log("Bueno"+ i);
-
-      // this.stepsFiles.push();
-    }
-  }
-
-  postRecipe(data: NgForm){
+  postRecipe(){
     this.recipe.user = this.authService.user;
     this.recipe.ingredients.push(this.ingredientsString.nativeElement.value);
     this.recipe.categories.push(this.categoriesString.nativeElement.value);
     this.recipe.cookingStyles.push(this.cookingStylesAux);
     this.recipe.steps.push(this.otherSteps.nativeElement.value);
     this.recipe.withImage.push(this.otherImages.nativeElement.value);
-    this.fillImageSteps();
     console.log(this.recipe);
+    console.log(this.fileToUpload);
     let totalRecipes = [];
     this.recipeService.postRecipe(this.recipe).subscribe(
       _ => {
@@ -142,17 +149,18 @@ export class AddRecipeComponent implements OnInit{
             this.recipeService.postImageStep(this.fileToUpload, totalRecipes.length+2, 1).subscribe(
               imagen => {
                 console.log("Imagen subida" + imagen);
+                this.stepsFiles.forEach((value, key) => {
+                  this.recipeService.postImageStep(value, totalRecipes.length+2, key).subscribe(
+                    file => {
+                      console.log("Imagen del paso " + key + " subida exitosamente: " + file);
+                    })
+                });
+                this.initConstructor();
               },
               (error: Error) => console.error('Error creating recipe step image: ' + error),
             );
           }
         );
-        this.initConstructor();
-        this.recipe.withImage = [];
-        this.recipe.steps = [];
-        this.recipe.ingredients = [];
-        this.recipe.categories = [];
-        this.recipe.cookingStyles = [];
       },
       (error: Error) => console.error('Error creating new recipe: ' + error),
     );

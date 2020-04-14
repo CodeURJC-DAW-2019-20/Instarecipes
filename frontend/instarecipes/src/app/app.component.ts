@@ -34,7 +34,7 @@ export class AppComponent {
 
   goSearch(data: NgForm) {
     console.log(this.search);
-    this.searchService.search = this.search;
+    // this.searchService.search = this.search;
 
     const firstLetter = this.search.substring(0,1);
     if (firstLetter === "@"){

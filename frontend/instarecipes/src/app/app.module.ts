@@ -37,6 +37,7 @@ import { RecipePreviewComponent } from './profile/popup/recipePreview/recipePrev
 import { SearchComponent } from './search/search.component';
 import { UserSearchComponent } from './search/user-search/user-search.component';
 import { FilteredSearchComponent } from './search/filtered-search/filtered-search.component';
+import { StepComponent } from './index/popup/add/step.component';
 
 @NgModule({
 
@@ -65,7 +66,8 @@ import { FilteredSearchComponent } from './search/filtered-search/filtered-searc
     StatisticsComponent,
     RecipePreviewComponent,
     UserSearchComponent,
-    FilteredSearchComponent
+    FilteredSearchComponent,
+    StepComponent
   ],
 
   //Aqui se deben importar los modulos

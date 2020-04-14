@@ -1,5 +1,3 @@
-<!-- HEADER (in app.component.html better)-->
-
 <!-- Trending Section -->
 <div style="width: 100%;height: 500px;">
     <trending-recipes></trending-recipes>
@@ -9,7 +7,7 @@
 <recent-recipes></recent-recipes>
 
 <!-- search button-->
-<div id="open-add-button" class='flotating-button'>
+<div *ngIf="authService.isLogged" id="open-add-button" class='flotating-button'>
     <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-add-button" id="load-recipe-btn" style="cursor: pointer;">
         <img src='../../assets/images/icons/flotating_button2.png' width="50%" style="height: 50px; width: 50px;" />
     </div>
@@ -24,4 +22,4 @@
 
 <!-- Buttons Add, Search and Ajax -->
 <popup-filter></popup-filter>
-<popup-add></popup-add>
+<popup-add *ngIf="authService.isLogged"></popup-add>

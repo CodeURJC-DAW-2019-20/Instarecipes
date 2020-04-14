@@ -197,8 +197,8 @@ public class IndexService {
                 }else{
                     s.setStepImage(image.getBytes());
                     imageService.saveImage("recipes/steps/"+recipe.getId(), n_step, image);
+                    s.setImage(true);
                 }
-                s.setImage(true);
                 stepsRepository.flush();
                 return img;
             }else{
