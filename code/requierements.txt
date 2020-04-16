@@ -1,4 +1,0 @@
-javax
-org
-com
-java
