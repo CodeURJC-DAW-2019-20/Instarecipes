@@ -27,6 +27,7 @@ export class RecipeSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSearch();
+
   }
 
   getSearch() {
@@ -39,6 +40,7 @@ export class RecipeSearchComponent implements OnInit {
         });
       }
     );
+    this.isEmpty();
   }
 
   userRecipeAvatar(r: Recipe) {
@@ -61,4 +63,8 @@ export class RecipeSearchComponent implements OnInit {
     );
   }
 
+  isEmpty() {
+    console.log('recetitas : ', this.recipes.length);
+    console.log('recetitas : ', this.recipes.push);
+  }
 }

@@ -35,7 +35,7 @@ export class SearchService {
   }
 
   getSearchRecipes() {
-    console.log("im in search service ", this?.search);
+    console.log("im in search service ", this.search);
     return this.httpClient.get(BASE_URL + "/navbar/recipes?search=" + this.search).pipe(
       catchError(error => this.handleError(error))
     ) as Observable<Recipe[]>;

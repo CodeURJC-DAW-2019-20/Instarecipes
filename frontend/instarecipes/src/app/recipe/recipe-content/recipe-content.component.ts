@@ -39,6 +39,7 @@ export class RecipeContentComponent implements OnInit {
       }
     );
   }
+
   getPublications() {
     this.userService.getPublications(this.recipeService.actualRecipeID).subscribe(
       publications => {
@@ -46,6 +47,7 @@ export class RecipeContentComponent implements OnInit {
       }
     );
   }
+
   getAllLikes() {
     this.userService.getAllLikes(this.recipeService.actualRecipeID).subscribe(
       likes => {
@@ -53,6 +55,7 @@ export class RecipeContentComponent implements OnInit {
       }
     );
   }
+
   getStepImage(r: number, n_step: number) {
     this.recipesService.getRecipeStepImage(r, n_step).subscribe(
       data => {

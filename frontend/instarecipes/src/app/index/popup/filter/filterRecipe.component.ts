@@ -66,15 +66,6 @@ export class FilterRecipeComponent implements OnInit{
   }
 
   insRowIngredient() {
-    //var table = document.getElementById("IngredientsTable");
-    // var totalRows = table.rows.length;
-    // var new_row = table.rows[0].cloneNode(true);
-    // var inp1 = new_row.cells[0].getElementsByTagName('input')[0]; //ingredient
-
-    // inp1.id += totalRows;
-    // inp1.value = ''; //new slot empty!
-
-    // table.appendChild(new_row);
     this.fieldArray.push(this.newAttribute)
     this.newAttribute = {};
   }
