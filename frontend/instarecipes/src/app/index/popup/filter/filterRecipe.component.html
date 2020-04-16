@@ -17,7 +17,7 @@ Search button pannel
               </div>
               <button type="button" (click)="seeJSON()">json mirarlo</button>
 
-              <form>
+              <form #postFilterRecipeForm="ngForm" (ngSubmit)="postFilterRecipe()">
                   <div class="row">
                       <div class="col-6">
                           <h3 class="underlined-text">INGREDIENTS</h3>
@@ -51,6 +51,8 @@ Search button pannel
                           <table id="CookingStyleTable">
                             <tr>
                               <td>
+                                <input #cookStylesSList id="cookStylesSList" value="" hidden />
+                                <input #cookStylesSSearch id="cookStylesSSearch" name="cookStylesSSearch" hidden />
                                 <select class="form-control">
                                   <option>Select a cooking style..</option>
                                   <option *ngFor="let cks of cookingStyles" value="{{cks?.cookingStyle}}">
@@ -65,7 +67,7 @@ Search button pannel
                           </table>
                           </div>
                           <hr>
-                          <button type="button" class="btn-add-category" (click)="insRowIngredient()"><span aria-hidden="true"><i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i><h6 class="text">ADD</h6></span></button>
+                          <button id="CSy-add-button" type="button" class="btn-add-category"><span aria-hidden="true"><i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i><h6 class="text">ADD</h6></span></button>
                           <button id="CSy-delete-all-button" type="button" class="btn-delete-categories"><span aria-hidden="true"><i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i><h6 class="text">DELETE ALL</h6></span></button>
                           <hr>
                       </div>
@@ -77,6 +79,8 @@ Search button pannel
                         <table id="CategoriesTable">
                           <tr>
                             <td>
+                              <input #categoriesSList id="categoriesSList" value="" hidden />
+                              <input #categoriesSSearch id="categoriesSSearch" name="categoriesSSearch" hidden />
                               <select class="form-control">
                                 <option>Select a category..</option>
                                 <option *ngFor="let cat of categories" value="{{cat?.category}}">
@@ -100,6 +104,8 @@ Search button pannel
                           <table id="AllergensTable">
                             <tr>
                               <td>
+                                <input #allergensSList id="allergensSList" value="" hidden />
+                                <input #allergensSSearch id="allergensSSearch" name="allergensSSearch" hidden />
                                 <select class="form-control">
                                   <option>Select an allergen..</option>
                                   <option *ngFor="let a of allergens" value="{{a?.allergen}}">
