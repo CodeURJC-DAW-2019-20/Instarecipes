@@ -26,7 +26,7 @@ export class RecentComponent implements OnInit{
       private domSanitizer: DomSanitizer){ }
 
     ngOnInit(){
-      this.refresh(this.page_size);
+      setInterval(()=> { this.refresh(this.page_size) }, 10 * 1000); //cada 10 segundos se actualiza
     }
 
     refresh(pS: number) {

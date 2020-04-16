@@ -58,6 +58,12 @@ public class RecipeRestController{
     @Autowired
     private UsersRepository usersRepository;
 
+    @GetMapping("/last")
+	public ResponseEntity<Integer> getLastRecipeId() {
+		Integer allRecipes = recipesRepository.findAll().size();
+		return new ResponseEntity<>(allRecipes, HttpStatus.OK);
+    }
+    
     // AJAX PAGEABLE RECIPES
     @JsonView(RecipeRestController.Main.class)
     @GetMapping("/")
