@@ -5,6 +5,9 @@ import { UserService } from 'src/app/services/user.service';
 import { Ingredient } from 'src/app/Interfaces/ingredient.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { Step } from 'src/app/Interfaces/step.model';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { User } from 'src/app/Interfaces/user.model';
 
 @Component({
   selector: 'recipe-content',
@@ -14,21 +17,24 @@ import { RecipeService } from 'src/app/services/recipe.service';
 export class RecipeContentComponent implements OnInit {
   recipe: Recipe;
   publications: number;
+  allLikes: number;
   likes: number;
   ingredients: Ingredient[];
   image: any[] = [];
+  step: Step[] = [];
+  liked: boolean = false;
+  likesUsers: User[] = [];
 
   constructor(
     private recipesService: RecipesService,
-    private recipeService: RecipeService,
+    public recipeService: RecipeService,
     private userService: UserService,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    public authService: AuthenticationService
     ) { }
 
   ngOnInit() {
     this.getRecipeContent();
-    this.getPublications();
-    this.getAllLikes();
     this.getStepImage(this.recipeService.actualRecipeID,1);
   }
 
@@ -36,20 +42,26 @@ export class RecipeContentComponent implements OnInit {
     this.recipesService.getRecipeById(this.recipeService.actualRecipeID).subscribe(
       recipe => {
         this.recipe = recipe as Recipe;
+        console.log(recipe);
+        this.didHeLiked();
+        this.getAllLikes();
+        this.getPublications();
+        this.likes = recipe.likes;
       }
     );
   }
   getPublications() {
-    this.userService.getPublications(this.recipeService.actualRecipeID).subscribe(
+    this.userService.getPublications(this.recipe.username.id).subscribe(
       publications => {
         this.publications = publications as number;
       }
     );
   }
   getAllLikes() {
-    this.userService.getAllLikes(this.recipeService.actualRecipeID).subscribe(
+    this.userService.getAllLikes(this.recipe.username.id).subscribe(
       likes => {
-        this.likes = likes as number;
+        this.allLikes = likes as number;
+        console.log(likes);
       }
     );
   }
@@ -60,5 +72,38 @@ export class RecipeContentComponent implements OnInit {
         this.image.push(this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(data)));
       }
     );
+  }
+  didHeLiked() {
+    this.likesUsers = this.recipe.likesUsers;
+    const n = this.likesUsers.length;
+    if (this.authService.isLogged) {
+      for (let i = 0 ; i < n; i++) {
+        if (this.authService.user.username === this.likesUsers[i].username) {
+          this.liked = true;
+        }
+      }
+    }
+  }
+  unlikeToRecipe() {
+    this.recipesService.pressUnlikeRecipe(this.recipeService.actualRecipeID).subscribe(
+      _ => {
+        this.getAllLikes();
+      }
+    );
+    console.log('disliked');
+    this.liked = false;
+    this.likes -= 1;
+    this.allLikes -= 1;
+  }
+  likeToRecipe() {
+    this.recipesService.pressLikeRecipe(this.recipeService.actualRecipeID).subscribe(
+      _ => {
+        this.getAllLikes();
+      }
+    );
+    console.log('liked');
+    this.liked = true;
+    this.likes += 1;
+    this.allLikes += 1;
   }
 }

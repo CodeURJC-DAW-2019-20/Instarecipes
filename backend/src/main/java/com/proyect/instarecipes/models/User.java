@@ -35,7 +35,7 @@ public class User{
 	public interface FFSets{} 
 	public interface UserRanking{}
 
-	@JsonView(IDUser.class)
+	@JsonView({Username.class, IDUser.class})
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

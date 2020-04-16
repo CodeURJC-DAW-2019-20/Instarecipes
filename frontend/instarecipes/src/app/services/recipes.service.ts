@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Step } from '../Interfaces/step.model';
 import { RecipeDTO } from '../Interfaces/recipeDTO.model';
+import { User } from '../Interfaces/user.model';
 
 const BASE_URL: string = "/api/recipes/";
 
@@ -13,11 +14,10 @@ const BASE_URL: string = "/api/recipes/";
   providedIn: 'root'
 })
 export class RecipesService {
-
   recipes: Recipe[] = [];
 
   constructor(private httpClient: HttpClient) { }
-  
+
 
   refreshRecipes(page_size: number): Observable<Recipe[]> {
     return this.httpClient.get(BASE_URL + "?page=0&size=" + page_size).pipe(
@@ -86,6 +86,27 @@ export class RecipesService {
         error => this.handleError(error)
       )
     ) as Observable<boolean>;
+  }
+
+  pressUnlikeRecipe(id_recipe: number) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+  });
+    return this.httpClient.post(BASE_URL + id_recipe + '/recipeUnpressLike', {headers}).pipe(
+      catchError(
+        error => this.handleError(error)
+      )
+    );
+  }
+  pressLikeRecipe(id_recipe: number) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+  });
+    return this.httpClient.post(BASE_URL + id_recipe + '/recipePressLike', {headers}).pipe(
+      catchError(
+        error => this.handleError(error)
+      )
+    );
   }
 
   private handleError(error: any) {

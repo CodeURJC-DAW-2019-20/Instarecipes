@@ -11,9 +11,10 @@ import { RecipeService } from 'src/app/services/recipe.service';
   styleUrls: ['./recipe-steps.component.css']
 })
 export class RecipeStepsComponent implements OnInit {
-  step: Step[] = [];
+  steps: Step[] = [];
   recipe: Recipe;
   image: any[] = [];
+  imagee: any[] = [];
 
   constructor(
     private recipesService: RecipesService,
@@ -24,6 +25,7 @@ export class RecipeStepsComponent implements OnInit {
   ngOnInit() {
     this.getAllSteps(this.recipeService.actualRecipeID);
     this.getRecipeContent();
+
   }
   getRecipeContent() {
     this.recipesService.getRecipeById(this.recipeService.actualRecipeID).subscribe(
@@ -36,28 +38,33 @@ export class RecipeStepsComponent implements OnInit {
   getAllSteps(id: number) {
     this.recipesService.getSteps(id).subscribe(
     step => {
-      this.step = step as Step[];
-      this.getAllimage(id, this.step);
+      this.steps = step as Step[];
+      this.getAllimage(id, this.steps);
     }
     );
 
   }
 
-  getStepImage(r: number, n_step: number) {
+  getStepImage(r: number, n_step: number, n: number) {
     this.recipesService.getRecipeStepImage(r, n_step).subscribe(
       data => {
         var urlCreator = window.URL;
-        this.image.push(this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(data)));
+        if (data.size !== 0) {
+          this.image.push(this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(data)));
+          this.imagee.push(this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(data)));
+          if (n_step === n) {
+            this.image[0] = null;
+          }
+        }
       }
     );
   }
 
   getAllimage(id_recipe: number, step: Step[]) {
     const n = step.length;
+    this.recipeService.setNsteps(n);
     for (let i = 1; i <= n; i++) {
-      this.getStepImage(id_recipe, i);
+       this.getStepImage(id_recipe, i, n);
     }
-    console.log(this.image);
-    console.log(this.step);
   }
 }

@@ -42,7 +42,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RecipeRestController{
 
     public interface SimpleRecipe extends Recipe.RecipeView, 
-    Recipe.RecipeBasic, Recipe.RecipePlus, Recipe.RecipeExtra, Ingredient.Item, Category.Item, User.Username, User.NameSurname{}
+    Recipe.RecipeBasic, Recipe.RecipePlus, Recipe.RecipeExtra, Ingredient.Item, Category.Item, User.Username, User.NameSurname, Recipe.Rankinglikes{}
     public interface CommentsRecipe extends Comment.RecipeView, User.NameSurname, User.Username, Recipe.RecipeView{}
     public interface RecipeSteps extends Step.StepsView{}
     public interface Main extends User.Username, Recipe.RecipeBasic, Recipe.RecipePlus, Recipe.IDRecipe, User.IDUser{}
@@ -118,7 +118,8 @@ public class RecipeRestController{
     public ResponseEntity<Recipe> unlikeRecipe(@PathVariable Long id_recipe){
         if(userSession.isLoggedUser()){
             if (id_recipe != null){
-                return new ResponseEntity<>(recipeService.pressRecipeUnlike(id_recipe,userSession.getLoggedUser()), HttpStatus.OK);
+                User u = usersRepository.findByUsername(userSession.getLoggedUser().getUsername());
+                return new ResponseEntity<>(recipeService.pressRecipeUnlike(id_recipe,u), HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -133,7 +134,8 @@ public class RecipeRestController{
     public ResponseEntity<Recipe> likeRecipe(@PathVariable Long id_recipe){
         if(userSession.isLoggedUser()){
             if (id_recipe != null){
-                return new ResponseEntity<>(recipeService.pressRecipeLike(id_recipe,userSession.getLoggedUser()),HttpStatus.OK);
+                User u = usersRepository.findByUsername(userSession.getLoggedUser().getUsername());
+                return new ResponseEntity<>(recipeService.pressRecipeLike(id_recipe,u),HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -149,8 +151,9 @@ public class RecipeRestController{
     @PostMapping("/{id_recipe}/comments/")
     public ResponseEntity<Comment> setComments(@PathVariable Long id_recipe, @RequestBody CommentDTO commentdto){
         if(userSession.isLoggedUser()){
+            User u = usersRepository.findByUsername(userSession.getLoggedUser().getUsername());
             if (commentdto.getContent() != null){
-                return new ResponseEntity<>(recipeService.postComment(id_recipe, commentdto.getContent(), commentdto.getParentComment(), userSession.getLoggedUser()), HttpStatus.OK);
+                return new ResponseEntity<>(recipeService.postComment(id_recipe, commentdto.getContent(), commentdto.getParentComment(),u), HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -177,7 +180,8 @@ public class RecipeRestController{
     public ResponseEntity<Comment> likeComment(@PathVariable Long id_comment){
         if(userSession.isLoggedUser()){
             if (id_comment != null){
-                return new ResponseEntity<>(recipeService.likeComment(id_comment,userSession.getLoggedUser()),HttpStatus.OK);
+                User u = usersRepository.findByUsername(userSession.getLoggedUser().getUsername());
+                return new ResponseEntity<>(recipeService.likeComment(id_comment,u),HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -192,7 +196,8 @@ public class RecipeRestController{
     public ResponseEntity<Comment> unlikeComment(@PathVariable Long id_comment){
         if(userSession.isLoggedUser()){
             if (id_comment != null){
-                return new ResponseEntity<>(recipeService.unlikeComment(id_comment,userSession.getLoggedUser()),HttpStatus.OK);
+                User u = usersRepository.findByUsername(userSession.getLoggedUser().getUsername());
+                return new ResponseEntity<>(recipeService.unlikeComment(id_comment,u),HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }

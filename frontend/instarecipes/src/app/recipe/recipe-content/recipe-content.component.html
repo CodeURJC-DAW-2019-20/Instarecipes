@@ -28,25 +28,23 @@
         </div>
         <div class="col-4">
           <ol class="likes-comments-simple-recipe">
-            <li><h3 class="font-weight-light"> {{recipe?.likes}}</h3></li>
+            <li><h3 class="font-weight-light"> {{likes}}</h3></li>
 
-            <li style="cursor: pointer;">
-              <form action="/actionUnpressLike/{{recipe?.id}}">
-                <button type="submit" style="width: inherit;border: 0px;">
-                  <img class="focusHeart" src="../../../assets/images/icons/like_pressed.png" width= "85%" alt="">
-                </button>
-
-              </form>
-            </li>
-
-            <li style="cursor: pointer;">
-              <form action="/actionPressLike/{{recipe?.id}}">
-                <button type="submit" style="width: inherit;border: 0px;">
-                  <img class="focusHeart" src="../../../assets/images/icons/like_unpressed.png" width= "85%" alt="">
-                </button>
-
-              </form>
-            </li>
+            <li *ngIf="liked; then thenblock else elseblock" style="cursor: pointer;"></li>
+              <ng-template #thenblock>
+                <form >
+                  <button (click)="unlikeToRecipe()" type="submit" style="width: inherit;border: 0px;">
+                    <img class="focusHeart" src="../../../assets/images/icons/like_pressed.png" width= "85%" alt="">
+                  </button>
+                </form>
+              </ng-template>
+              <ng-template #elseblock>
+                <form >
+                  <button (click)="likeToRecipe()" type="submit" style="width: inherit;border: 0px;">
+                    <img class="focusHeart" src="../../../assets/images/icons/like_unpressed.png" width= "85%" alt="">
+                  </button>
+                </form>
+              </ng-template>
 
             <li><h3 class="font-weight-light">{{recipe?.n_comments}}</h3></li>
             <li><a class="js-scroll-trigger rounded" href="#comments-section"><img src="../../../assets/images/icons/dialogue.png" height="80%" alt=""></a></li>
@@ -67,8 +65,8 @@
               <th><h5 class="text-uppercase mb-0 font-weight-light">Publications</h5></th>
             </tr>
             <tr>
-              <td><div class="profile-border"><h3 class="font-weight-light"><a >@{{recipe?.username.username}}</a></h3></div></td>
-                <td><div class="profile-border"><h3 class="font-weight-dark">{{likes?.toString()}}</h3></div></td>
+              <td><div class="profile-border"><h3 class="font-weight-light"><a [routerLink]= "['/user-profile/']" [state]= "{data: {a:recipe?.username.id}}" >@{{recipe?.username.username}}</a></h3></div></td>
+                <td><div class="profile-border"><h3 class="font-weight-dark">{{allLikes?.toString()}}</h3></div></td>
                 <td><div class="profile-border"><h3 class="font-weight-light">{{publications?.toString()}}</h3></div></td>
             </tr>
           </table >
@@ -113,7 +111,7 @@
           </tr>
           <tr>
             <td><div class="profile-border"><h3 class="font-weight-light">{{recipe?.difficulty}}</h3></div></td>
-            <!--<td><div class="profile-border"><h3 class="font-weight-light">{{n_steps}}</h3></div></td>-->
+            <td><div class="profile-border"><h3 class="font-weight-light">{{recipeService.nSteps}}</h3></div></td>
             <td><div class="profile-border"><h3 class="font-weight-light">{{recipe?.duration}}</h3></div></td>
           </tr>
         </table>
