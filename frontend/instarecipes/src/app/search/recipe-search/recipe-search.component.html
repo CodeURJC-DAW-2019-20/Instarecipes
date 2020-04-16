@@ -14,14 +14,14 @@
         <li class="breadcrumb-item active">Search</li>
       </ol>
 
-    <a *ngIf="recipesFounded">
+    <a *ngIf="!recipesFounded">
       <div>
         <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match any recipes.</h1>
-        <h3>Try it with another filters!</h3>
+        <h3>Try it with another one!</h3>
       </div>
     </a>
         <!-- Recipe Post -->
-      <a *ngIf="!recipesFounded">
+      <a *ngIf="recipesFounded">
       <div *ngFor="let recipe of recipes; index as i ">
         <div class="row" style="margin: 5px;width: 100%;">
         <div class="card mb-4" style="width: 100%;">
@@ -48,14 +48,9 @@
               </div>
             </div>
           </div>
-          <!-- <div class="card-footer text-muted">
-            Posted on 17/01/2020
-          </div> -->
         </div>
         </div>
       </div>
       </a>
-        <!-- {{/recipesFound}}
-      {{/notFound}} -->
   </div>
   </div>
