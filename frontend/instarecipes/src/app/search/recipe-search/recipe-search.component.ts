@@ -22,8 +22,9 @@ export class RecipeSearchComponent implements OnInit {
     private searchService: SearchService,
     private recipesService: RecipesService,
     private domSanitizer: DomSanitizer,
-    public authService: AuthenticationService
-    ) { }
+    public authService: AuthenticationService,
+    ) {
+      }
 
   ngOnInit(): void {
     this.getSearch();
@@ -33,6 +34,9 @@ export class RecipeSearchComponent implements OnInit {
     this.searchService.getSearchRecipes().subscribe(
       recipes => {
         this.recipes = recipes as Recipe[];
+        if (recipes.length !== 0) {
+          this.recipesFounded = true;
+        }
         this.recipes.forEach(element => {
           this.userRecipeAvatar(element);
           this.recipeStepImage(element, 1);
@@ -60,5 +64,4 @@ export class RecipeSearchComponent implements OnInit {
       }
     );
   }
-
 }

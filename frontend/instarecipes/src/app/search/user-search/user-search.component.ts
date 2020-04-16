@@ -30,6 +30,9 @@ export class UserSearchComponent implements OnInit {
     this.searchService.getUsers().subscribe(
       users => {
         this.users = users as User[];
+        if (users.length !== 0) {
+          this.usersFounded = true;
+        }
         this.users.forEach(element => {
           this.userAvatar(element);
         });

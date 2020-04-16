@@ -3,6 +3,7 @@ import { RecipesService } from 'src/app/services/recipes.service';
 import { Step } from 'src/app/Interfaces/step.model';
 import { Recipe } from 'src/app/Interfaces/recipe.model';
 import { DomSanitizer } from '@angular/platform-browser';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'recipe-steps',
@@ -16,15 +17,16 @@ export class RecipeStepsComponent implements OnInit {
 
   constructor(
     private recipesService: RecipesService,
+    private recipeService: RecipeService,
     private domSanitizer: DomSanitizer,
     ) { }
 
   ngOnInit() {
-    this.getAllSteps(9);
+    this.getAllSteps(this.recipeService.actualRecipeID);
     this.getRecipeContent();
   }
   getRecipeContent() {
-    this.recipesService.getRecipeById(9).subscribe(
+    this.recipesService.getRecipeById(this.recipeService.actualRecipeID).subscribe(
       recipe => {
         this.recipe = recipe as Recipe;
       }
@@ -52,10 +54,10 @@ export class RecipeStepsComponent implements OnInit {
 
   getAllimage(id_recipe: number, step: Step[]) {
     const n = step.length;
-    console.log(n);
-    for (let i = 0; i <= n; i++) {
+    for (let i = 1; i <= n; i++) {
       this.getStepImage(id_recipe, i);
     }
     console.log(this.image);
+    console.log(this.step);
   }
 }

@@ -39,6 +39,7 @@ import { RecipePreviewComponent } from './profile/popup/recipePreview/recipePrev
 import { SearchComponent } from './search/search.component';
 import { UserSearchComponent } from './search/user-search/user-search.component';
 import { FilteredSearchComponent } from './search/filtered-search/filtered-search.component';
+import { RecipeService } from './services/recipe.service';
 import { StepComponent } from './index/popup/add/step.component';
 
 @NgModule({
@@ -85,7 +86,7 @@ import { StepComponent } from './index/popup/add/step.component';
     FormsModule,
   ],
   //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
-  providers: [AuthenticationService, AuthGuard, UserService, RecipesService, ProfileService,
+  providers: [AuthenticationService, AuthGuard, UserService, RecipesService, ProfileService, RecipeService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
