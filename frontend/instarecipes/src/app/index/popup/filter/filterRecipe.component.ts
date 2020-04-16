@@ -23,11 +23,17 @@ export class FilterRecipeComponent implements OnInit{
 
     @ViewChild('ingredientsSSearch') ingredientsString: ElementRef;
     @ViewChild('ingredientsSList') ingList: ElementRef;
+    @ViewChild('categoriesSSearch') categoriesString: ElementRef;
+    @ViewChild('categoriesSList') catList: ElementRef;
+    @ViewChild('cookStylesSSearch') cookStyString: ElementRef;
+    @ViewChild('cookStylesSList') cksList: ElementRef;
+    @ViewChild('allergensSSearch') allergensString: ElementRef;
+    @ViewChild('allergensSList') allgList: ElementRef;
 
   constructor(
     private profileService: ProfileService,
     ) {
-      this.filteredSearchDTO = { ingredients: "", categories: "", cookingStyles: "", allergens: "" }
+      this.filteredSearchDTO = { ingredients: [], categories: [], cookingStyles: [], allergens: [] }
     }
 
   ngOnInit() {
@@ -35,57 +41,43 @@ export class FilterRecipeComponent implements OnInit{
     this.getIngredients();
     this.getCookingStyles();
     this.getCategories();
+    import('../../../../assets/js/filter_search_btn.js');
   }
 
   getAllergens(){
     this.profileService.getAllAllergens().subscribe(
       allergens => {
-        this.allergens = allergens as Allergen[];
+        this.allergens = allergens;
         });
   }
 
   getIngredients(){
     this.profileService.getAllIngredients().subscribe(
       ingredients => {
-        this.ingredients = ingredients as Ingredient[];
+        this.ingredients = ingredients;
         });
   }
 
   getCategories(){
     this.profileService.getAllCategories().subscribe(
       categories => {
-        this.categories = categories as Category[];
+        this.categories = categories;
         });
   }
 
   getCookingStyles(){
     this.profileService.getAllCookingStyles().subscribe(
       cookingStyles => {
-        this.cookingStyles = cookingStyles as CookingStyle[];
+        this.cookingStyles = cookingStyles;
         });
   }
 
-  insRowIngredient() {
-    //var table = document.getElementById("IngredientsTable");
-    // var totalRows = table.rows.length;
-    // var new_row = table.rows[0].cloneNode(true);
-    // var inp1 = new_row.cells[0].getElementsByTagName('input')[0]; //ingredient
-
-    // inp1.id += totalRows;
-    // inp1.value = ''; //new slot empty!
-
-    // table.appendChild(new_row);
-    this.fieldArray.push(this.newAttribute)
-    this.newAttribute = {};
-  }
-
-  postFilterRecipe(data: NgForm) {
-
+  postFilterRecipe() {
+    this.filteredSearchDTO.ingredients.push(this.ingredientsString.nativeElement.value);
+    console.log(this.filteredSearchDTO);
   }
 
   seeJSON() {
-    console.log(this.ingredientsString);
-    console.log(this.ingList);
     console.log(this.filteredSearchDTO);
   }
 }

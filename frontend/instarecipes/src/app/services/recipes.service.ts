@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Recipe } from '../Interfaces/recipe.model';
-import { catchError } from 'rxjs/operators';
+import { catchError, map, retry, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Step } from '../Interfaces/step.model';
 import { RecipeDTO } from '../Interfaces/recipeDTO.model';
 import { User } from '../Interfaces/user.model';
+import { throwError } from 'rxjs';
 
 const BASE_URL: string = "/api/recipes/";
 
@@ -23,6 +24,12 @@ export class RecipesService {
     return this.httpClient.get(BASE_URL + "?page=0&size=" + page_size).pipe(
       catchError(error => this.handleError(error))
     ) as Observable<Recipe[]>;
+  }
+
+  getLastRecipeId(): Observable<number>{
+    return this.httpClient.get(BASE_URL + "last").pipe(
+      catchError(error => this.handleError(error)) 
+    ) as Observable<number>;
   }
 
   getRecipeAvatar(id_user: number): Observable<Blob> {
@@ -66,26 +73,22 @@ export class RecipesService {
     ) as Observable<Recipe[]>;
   }
 
-  postRecipe(recipe: RecipeDTO): Observable<RecipeDTO> {
+  postRecipe(recipe: RecipeDTO) {
     const body = JSON.stringify(recipe);
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
     });
     return this.httpClient.post<RecipeDTO>("/api/index", body, { headers }).pipe(
-      catchError(
-        error => this.handleError(error)
-      )
-    ) as Observable<RecipeDTO>;
+      catchError(error => this.handleError(error))
+    );
   }
 
-  postImageStep(imageFile: File, recipe_id: number, step: number): Observable<boolean> {
+  postImageStep(imageFile: File, recipe_id: number, step: number): Observable<any[]> {
     let data: FormData = new FormData();
-    data.append('imageFile', imageFile, imageFile.name);
-    return this.httpClient.post("/api/index/"+recipe_id+"/image/"+step, data).pipe(
-      catchError(
-        error => this.handleError(error)
-      )
-    ) as Observable<boolean>;
+    data.append('imageFile', imageFile);
+    return this.httpClient.post<any>("/api/index/"+recipe_id+"/image/"+step, data).pipe(
+      catchError(error => this.handleError(error))
+    ) as Observable<any[]>;
   }
 
   pressUnlikeRecipe(id_recipe: number) {
@@ -111,6 +114,6 @@ export class RecipesService {
 
   private handleError(error: any) {
 		console.error(error);
-		return Observable.throw("Server error (" + error.status + '): ' + error.text());
+		return Observable.throw("Server error (" + error.status + "): " + error.text())
 	}
 }

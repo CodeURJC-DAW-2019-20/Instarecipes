@@ -20,7 +20,7 @@ export class FilteredSearchComponent implements OnInit {
   getRecipes() {
     this.searchService.getFilteredRecipes().subscribe(
       recipe => {
-        console.log("Recipe catched" + recipe);
+        console.log("Recipe catched" + JSON.stringify(recipe));
       },
       (error: Error) => console.error('Error creating recipe step image: ' + error),
     );

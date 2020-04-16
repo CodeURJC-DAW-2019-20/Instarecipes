@@ -21,7 +21,7 @@ export class SearchService {
     }
 
 
-  getFilteredRecipes(): Observable<FilteredSearchDTO> {
+  getFilteredRecipes(): Observable<Recipe> {
     const body = JSON.stringify(this.filteredSearchDTO);
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -31,11 +31,11 @@ export class SearchService {
       catchError(
         error => this.handleError(error)
       )
-    ) as Observable<FilteredSearchDTO>;
+    ) as Observable<Recipe>;
   }
 
   getSearchRecipes() {
-    console.log("im in search service ", this?.search);
+    console.log("im in search service ", this.search);
     return this.httpClient.get(BASE_URL + "/navbar/recipes?search=" + this.search).pipe(
       catchError(error => this.handleError(error))
     ) as Observable<Recipe[]>;

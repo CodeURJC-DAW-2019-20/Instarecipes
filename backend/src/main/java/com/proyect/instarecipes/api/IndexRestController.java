@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.ResponseEntity;
@@ -125,7 +126,7 @@ public class IndexRestController {
 			Recipe r = indexService.postRecipe(userSession.getLoggedUser(),recipe, ingredientsString, categoriesString,
 				cookingStyle, recipeDTO.getAllergen(), recipeDTO.getFirstStep(), stepsString, withImage, null, null);
 			if (r != null) {
-				return new ResponseEntity<>(recipeDTO, HttpStatus.OK);
+				return new ResponseEntity<>(recipeDTO, HttpStatus.CREATED);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
@@ -136,14 +137,13 @@ public class IndexRestController {
 	}
 
 	// POST AN IMAGE OF ONE STEP OF ONE RECIPE
-	@JsonView(IndexRestController.PostRecipe.class)
-	@PostMapping(value = "/index/{id}/image/{step}", produces = MediaType.IMAGE_JPEG_VALUE)
+	@PostMapping(value = "/index/{id}/image/{step}")
 	public ResponseEntity<byte[]> postRecipeImage(@PathVariable Long id, @PathVariable int step, 
 	@RequestParam MultipartFile imageFile)throws IOException {
 		if(userSession.isLoggedUser()){
 			byte[] image = indexService.postRecipeImages(userSession.getLoggedUser(), id, step, imageFile);
 			if(image != null){
-				return new ResponseEntity<>(image, HttpStatus.OK);
+				return new ResponseEntity<>(image, HttpStatus.CREATED);
 			}else{
 				return new ResponseEntity<>(HttpStatus.CONFLICT);
 			}
