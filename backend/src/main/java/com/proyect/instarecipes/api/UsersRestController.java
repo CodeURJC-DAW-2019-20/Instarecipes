@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
 
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.models.CookingStyle;
@@ -140,8 +143,10 @@ public class UsersRestController {
         }
     }
     public List<Recipe> getAllRecipes(Long id){
-      List<Recipe> recipe = recipesRepository.findByUsernameId(id);
-      return recipe;
+      
+      Page<Recipe> recipeList= recipesRepository.findByUsernameId(id,PageRequest.of(0,10));
+      List<Recipe> recipes = (List<Recipe>)recipeList.getContent();
+      return recipes;
     }
     @GetMapping("/publications/{id}")
     public int publicationsUser(@PathVariable Long id){

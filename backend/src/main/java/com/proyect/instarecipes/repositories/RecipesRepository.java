@@ -15,7 +15,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RecipesRepository extends JpaRepository<Recipe, Long> {
-    List<Recipe> findByUsernameId(Long username);
+  @Query("SELECT DISTINCT r FROM Recipe r WHERE r.username.id = :id_user ORDER BY r.id DESC") 
+  Page<Recipe> findByUsernameId(Long id_user,Pageable page);
 
     @Query("SELECT username FROM Recipe r WHERE r.id = :id_recipe") 
 	User findUsernameByRecipeId(Long id_recipe);
