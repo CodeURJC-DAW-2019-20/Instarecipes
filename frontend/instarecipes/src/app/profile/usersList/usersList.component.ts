@@ -4,11 +4,11 @@ import { User } from '../../Interfaces/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
-  selector: 'user-profile',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'user-list',
+  templateUrl: './usersList.component.html',
+  styleUrls: ['./usersList.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UsersListComponent implements OnInit {
 
   user: User;
   a = history.state.data.a;

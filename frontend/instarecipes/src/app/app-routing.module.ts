@@ -13,7 +13,7 @@ import { UserSearchComponent } from './search/user-search/user-search.component'
 import { RecipeSearchComponent } from './search/recipe-search/recipe-search.component';
 import { FirstComponent } from './signUp10/first/first.component';
 import { SecondComponent } from './signUp10/second/second.component';
-import { UsersComponent } from './profile/users/users.component';
+import { UserComponent } from './profile/user/user.component';
 
 // aqui ponemos las rutas, tipo: { path: 'recipe/:id', component: RecipeComponent},{...}
 const routes: Routes = [
@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'signUpExtended', component: SecondComponent },
   { path: 'users', component: UserSearchComponent },
   { path: 'recipe-search', component: RecipeSearchComponent },
-  { path: 'user-profile', component: UsersComponent}
+  { path: 'user-profile', component: UserComponent}
 
 ];
 
