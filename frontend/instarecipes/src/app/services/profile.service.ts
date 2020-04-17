@@ -16,12 +16,7 @@ const BASE_URL: string = "/api/profile/";
 export class ProfileService {
 
   constructor(private httpClient: HttpClient) { }
-  getActualUser() : Observable<any>{
-    return this.httpClient.get(BASE_URL).pipe(
-      catchError(error => this.handleError(error))
-    ) as Observable<any>;
-  
-  }
+
   getAllAllergens() : Observable<Allergen[]> {
     return this.httpClient.get(BASE_URL + "allAllergens").pipe(
       catchError(error => this.handleError(error))

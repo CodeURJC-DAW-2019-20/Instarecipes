@@ -9,7 +9,5 @@ export interface User{
     name: string;
     surname: string;
     allergens: string;
-    followingNum:number;
-    followersNum:number;
     info: string;
 }
