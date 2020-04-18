@@ -25,6 +25,9 @@ export class UserComponent implements OnInit {
   n_likes: number;
   @Input()
   user: User;
+
+  @Input()
+  infoLoaded: number;
   
 /*   a = history.state.data.a;
  */  constructor(public authService: AuthenticationService) { }

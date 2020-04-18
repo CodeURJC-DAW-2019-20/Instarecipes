@@ -13,7 +13,23 @@
         </div>
         <!-- publications Grid Items -->
         <div class="row">
-            <!-- {{#publications}} -->
+            <div *ngIf="this.user_recipes.length == 0" class="windows8" style="margin-bottom: 100px; margin-right: 42.5%;">
+                <div class="wBall" id="wBall_1" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_2" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_3" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_4" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_5" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
+            </div>
             <!-- publications Item 1 -->
             <div class="col-md-6 col-lg-4" *ngFor="let recipe of user_recipes;index as i">
                 <div class="publications-item mx-auto" data-toggle="modal" [attr.data-target]="'#publicationsModal'+ i">
@@ -48,7 +64,6 @@
         </div>
         <!-- /.row -->
     </div>
-    <hr width="50%">
     <!-- {{^disable}} -->
     <!-- {{^followButton}} -->
     <div id="open-add-button" class='flotating-button'>

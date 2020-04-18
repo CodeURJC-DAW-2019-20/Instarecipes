@@ -6,7 +6,7 @@
         <!-- Recent recipes -->
         <h3 class="my-4">Recent user's recipes</h3>
         <div #recipesContainer id="recipes-container">
-            <div class="windows8" *ngIf="loadingRecents" style="height: 30px;width: 30px;">
+            <div class="windows8" *ngIf="loadingRecents" style="margin-right: 41.5%;">
                 <div class="wBall" id="wBall_1" style="margin-top: 100px;">
                     <div class="wInnerBall"></div>
                 </div>
@@ -54,7 +54,7 @@
                         <div class="col-md-4">
                             <h3>Introduction</h3>
                             <p style="word-break: break-all;">{{recipe?.description}}</p>
-                            <a class="btn btn-primary" (click) = "recipeService.setRecipeID(recipe?.id)" [routerLink]="['/recipe']" >
+                            <a class="btn btn-primary" (click)="recipeService.setRecipeID(recipe?.id)" [routerLink]="['/recipe']">
                               Read
                               <span class="glyphicon glyphicon-chevron-right"></span>
                             </a>
@@ -74,7 +74,7 @@
                         <div class="col-md-4">
                             <h3>Introduction</h3>
                             <p style="word-break: break-all;">{{recipe?.description}}</p>
-                            <a class="btn btn-primary" (click) = "recipeService.setRecipeID(recipe?.id)" [routerLink]="['/recipe']">Read
+                            <a class="btn btn-primary" (click)="recipeService.setRecipeID(recipe?.id)" [routerLink]="['/recipe']">Read
                 <span class="glyphicon glyphicon-chevron-right\"></span>
               </a>
                         </div>
@@ -107,9 +107,8 @@
                 <hr>
             </div>
         </div>
-        <hr width="100%">
+        <hr width="100%" style="margin-top: 80px;">
     </div>
-
     <!-- Ajax load more button -->
     <div class="loadmore-container">
         <div>

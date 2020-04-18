@@ -25,6 +25,9 @@ export class ProfileComponent implements OnInit, AfterViewInit{
   id_user: number;
   n_likes: number = 0;
 
+  infoLoaded: number = 0; //this one i need to load the 6 methods (info, avatar, background, likes, following and followers)
+  pubsLoaded: boolean = false;
+
   constructor(private profileService: ProfileService, private domSanitizer: DomSanitizer,
               public authService: AuthenticationService, private userService: UserService,
               private router: ActivatedRoute){ }
@@ -56,6 +59,7 @@ export class ProfileComponent implements OnInit, AfterViewInit{
     this.profileService.getUser(this.id_user).subscribe(
       user => {
         this.user = user as User;
+        this.infoLoaded++;
       }
     );
   }
@@ -65,6 +69,7 @@ export class ProfileComponent implements OnInit, AfterViewInit{
       avatar => {
         var urlCreator = window.URL;
         this.avatar = this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(avatar));
+        this.infoLoaded++;
       }
     );
   }
@@ -74,6 +79,7 @@ export class ProfileComponent implements OnInit, AfterViewInit{
       background => {
         var urlCreator = window.URL;
         this.background = this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(background));
+        this.infoLoaded++;
       }
     );
   }
@@ -82,16 +88,23 @@ export class ProfileComponent implements OnInit, AfterViewInit{
     this.profileService.getUserRecipes(this.id_user).subscribe(
       recipes => {
         this.user_recipes = recipes as Recipe[];
+        this.pubsLoaded = true;
       }
     );
   }
 
   get_followers_and_following(){
     this.profileService.getUserFollowing(this.id_user).subscribe(
-      following => this.following_users = following as User[]
+      following => {
+        this.following_users = following as User[];
+        this.infoLoaded++;
+      }
     );
     this.profileService.getUserFollowers(this.id_user).subscribe(
-      followers => this.followers_users = followers as User[]
+      followers => {
+        this.followers_users = followers as User[];
+        this.infoLoaded++;
+      }
     );
   }
 
@@ -99,6 +112,7 @@ export class ProfileComponent implements OnInit, AfterViewInit{
     this.userService.getAllLikes(this.id_user).subscribe(
       likes => {
         this.n_likes = likes as number;
+        this.infoLoaded++;
       }
     );
   }

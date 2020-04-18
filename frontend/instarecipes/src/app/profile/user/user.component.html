@@ -1,6 +1,25 @@
 <div id="content" class="p-4 p-md-5 pt-5" style="padding:0 !important;width: 100%;">
     <header class="masthead bg-primary text-white text-center" style="background-image: url(/assets/images/backgrounds/background2.jpg); background-repeat: no-repeat; background-size: cover;">
         <div class="container d-flex align-items-center flex-column">
+            <div *ngIf="infoLoaded !== 6" class="windows8" style="margin-bottom: 100px; margin-right: 42.5%;">
+                <div class="wBall" id="wBall_1" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_2" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_3" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_4" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_5" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="infoLoaded === 6" class="container d-flex align-items-center flex-column">
             <!-- Masthead Avatar Image -->
             <div class="rounded-circle">
                 <img class="masthead-avatar mb-5 d-flex mr-3" [src]="avatar" alt="Show profile photo" data-toggle="modal" data-target="#showAvatar" style="object-fit: cover; border-radius: 50%; height: 220px;width: 220px;">
