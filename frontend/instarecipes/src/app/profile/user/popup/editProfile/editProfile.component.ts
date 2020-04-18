@@ -3,7 +3,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 
 
 @Component({
-  selector: 'editProfile',
+  selector: 'popup-edit-profile',
   templateUrl: './editProfile.component.html',
   styleUrls: ['./editProfile.component.css']
 })

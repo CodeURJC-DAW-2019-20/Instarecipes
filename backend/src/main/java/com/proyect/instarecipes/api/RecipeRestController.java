@@ -41,7 +41,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/recipes")
 public class RecipeRestController{
 
-    public interface SimpleRecipe extends Recipe.RecipeView, 
+    public interface SimpleRecipe extends Recipe.RecipeView, Recipe.IDRecipe,
     Recipe.RecipeBasic, Recipe.RecipePlus, Recipe.RecipeExtra, Ingredient.Item, Category.Item, User.Username, User.NameSurname, Recipe.Rankinglikes{}
     public interface CommentsRecipe extends Comment.RecipeView, User.NameSurname, User.Username, Recipe.RecipeView{}
     public interface RecipeSteps extends Step.StepsView{}

@@ -14,6 +14,7 @@ import { RecipeSearchComponent } from './search/recipe-search/recipe-search.comp
 import { FirstComponent } from './signUp10/first/first.component';
 import { SecondComponent } from './signUp10/second/second.component';
 import { UserComponent } from './profile/user/user.component';
+import { ErrorComponent } from './error/error.component';
 
 // aqui ponemos las rutas, tipo: { path: 'recipe/:id', component: RecipeComponent},{...}
 const routes: Routes = [
@@ -28,7 +29,10 @@ const routes: Routes = [
   { path: 'signUpExtended', component: SecondComponent },
   { path: 'users', component: UserSearchComponent },
   { path: 'recipe-search', component: RecipeSearchComponent },
-  { path: 'user-profile', component: UserComponent}
+  { path: 'user-profile', component: UserComponent},
+  { path: 'users/:id', redirectTo: 'profile'},
+  { path: 'error', component: ErrorComponent },
+  { path: '**', redirectTo: 'error' }  // Wildcard route for a 404 page
 
 ];
 

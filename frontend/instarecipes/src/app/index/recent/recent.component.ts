@@ -28,7 +28,7 @@ export class RecentComponent implements OnInit{
       public recipeService: RecipeService){ }
 
     ngOnInit(){
-      setInterval(()=> { this.refresh(this.page_size) }, 10 * 1000); //cada 10 segundos se actualiza
+      setInterval(()=> { this.refresh(this.page_size) }, 30 * 1000); //cada 10 segundos se actualiza
     }
 
     refresh(pS: number) {
@@ -36,10 +36,10 @@ export class RecentComponent implements OnInit{
         recipes => {
           this.recipes = recipes as Recipe[];
           if(recipes.length <= 2) {
-            this.userRecipeAvatar(recipes[recipes.length-2]);
+            this.userAvatar(recipes[recipes.length-2]);
             this.recipeStepImage(recipes[recipes.length-2], 1)
           };
-          this.userRecipeAvatar(recipes[recipes.length-1]);
+          this.userAvatar(recipes[recipes.length-1]);
           this.recipeStepImage(recipes[recipes.length-1], 1);
           this.button1.nativeElement.removeAttribute("hidden");
           this.button2.nativeElement.setAttribute("hidden", "");
@@ -60,7 +60,7 @@ export class RecentComponent implements OnInit{
       return m;
     }
 
-    userRecipeAvatar(r: Recipe) {
+    userAvatar(r: Recipe) {
       let id_user = r.username.id;
       this.recipesService.getRecipeAvatar(id_user).subscribe(
         data => {

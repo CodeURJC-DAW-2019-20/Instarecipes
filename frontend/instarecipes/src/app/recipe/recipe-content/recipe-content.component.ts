@@ -8,6 +8,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
 import { Step } from 'src/app/Interfaces/step.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { User } from 'src/app/Interfaces/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'recipe-content',
@@ -30,7 +31,8 @@ export class RecipeContentComponent implements OnInit {
     public recipeService: RecipeService,
     private userService: UserService,
     private domSanitizer: DomSanitizer,
-    public authService: AuthenticationService
+    public authService: AuthenticationService,
+    public router: Router
     ) { }
 
   ngOnInit() {

@@ -37,6 +37,8 @@ import com.proyect.instarecipes.service.RequestService;
 public class ProfileRestController {
 	public interface UserProfile extends User.NameSurname, User.Username, User.UserExtraInfo, User.Email, User.Allergen,
 	User.FF, Ingredient.Item, CookingStyle.Item, Category.Item {}
+	public interface SimpleRecipe extends Recipe.RecipeView, Recipe.IDRecipe,
+	Recipe.RecipeBasic, Recipe.RecipePlus, Recipe.RecipeExtra, Ingredient.Item, Category.Item, User.Username, User.NameSurname, Recipe.Rankinglikes{}
 	public interface RequestItemView extends User.NameSurname, User.Username, Request.RequestItems {}
 	public interface AdminProfile extends User.NameSurname, User.Username, User.UserExtraInfo, User.Email,
 	User.Allergen, User.FF, Request.RequestItems, Ingredient.Item, CookingStyle.Item, Category.Item {}
@@ -282,6 +284,8 @@ public class ProfileRestController {
 			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
 		}
 	}
+	
+	@JsonView(ProfileRestController.SimpleRecipe.class)
 	@GetMapping("/{id}/recipes")
 	public ResponseEntity<List<Recipe>> getAllRecipes( @PathVariable Long id) {
 		return new ResponseEntity<>(profileservice.getByUsernameId(id), HttpStatus.OK);
