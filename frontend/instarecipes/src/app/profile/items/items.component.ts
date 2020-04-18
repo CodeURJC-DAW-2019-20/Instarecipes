@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RecipesService } from 'src/app/services/recipes.service';
 
 @Component({
   selector: 'items',
@@ -6,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit {
+  
+  constructor(private recipesService: RecipesService){
 
-  constructor() { }
-
-  ngOnInit() {
   }
 
-  editProfile(){
-    //this.dialog.open(EditProfileComponent);
+  ngOnInit(){
+   
   }
+  
 }

@@ -1,11 +1,10 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnChanges } from '@angular/core';
+import { UserService } from '../services/user.service';
 import { ProfileService } from '../services/profile.service';
 import { User } from '../Interfaces/user.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthenticationService } from '../services/authentication.service';
 import { Recipe } from '../Interfaces/recipe.model';
-import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'profile',
@@ -13,7 +12,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./profile.component.css']
 })
 
-export class ProfileComponent implements OnInit,AfterViewInit{
+export class ProfileComponent implements OnInit, AfterViewInit{
   
   followers_users: User[] = [];
   following_users: User[] = [];

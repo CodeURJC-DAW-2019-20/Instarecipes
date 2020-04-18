@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/authentication.service';
-
 
 @Component({
   selector: 'popup-edit-profile',
@@ -9,10 +7,9 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class EditProfileComponent implements OnInit {
 
-  constructor(public authService: AuthenticationService) { }
+  constructor() { }
 
   ngOnInit() {
-    
   }
 
 
