@@ -32,12 +32,10 @@
           </li>
         </ul>
 
-        <!-- <form class="example" action="/searchBar" method="POST"> -->
         <form class="example" #searchForm="ngForm" (ngSubmit)="goSearch(searchForm)">
           <input type="text" placeholder="Search.." name="search" [(ngModel)]="search" />
           <button type="submit" style="background-color: rgba(159, 193, 255, 0.726);">
             <i class="fa fa-search"></i>
-          <!-- <input type="hidden" name="_csrf" value="{{token}}" /> -->
           </button>
         </form>
 

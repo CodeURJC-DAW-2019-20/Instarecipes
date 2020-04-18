@@ -3,8 +3,6 @@ import { Recipe } from 'src/app/Interfaces/recipe.model';
 import { SearchService } from 'src/app/services/search.service';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({

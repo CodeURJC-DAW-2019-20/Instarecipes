@@ -16,9 +16,9 @@ export class FilteredSearchComponent implements OnInit {
   avatars: any[] = [];
   recipesFounded: boolean = false;
 
-  constructor(private searchService: SearchService, 
-              private domSanitizer: DomSanitizer, 
-              private recipesService: RecipesService, 
+  constructor(private searchService: SearchService,
+              private domSanitizer: DomSanitizer,
+              private recipesService: RecipesService,
               public recipeService: RecipeService) { }
 
   ngOnInit() {
@@ -40,7 +40,6 @@ export class FilteredSearchComponent implements OnInit {
       },
     );
   }
-
 
   userRecipeAvatar(r: Recipe) {
     let id_user = r.username.id;
