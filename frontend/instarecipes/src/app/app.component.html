@@ -14,10 +14,10 @@
               <i class="fas fa-home" style="font-size: xx-large; color: rgba(159, 193, 255, 0.726)" [routerLink]="['/index']"></i>
             </a>
           </li>
-          <li class="nav-item col-2" style="max-width: 100%;" style="cursor:pointer;">
+          <li class="nav-item col-2" style="max-width: 100%; cursor:pointer;">
             <a *ngIf="authService.isLogged" class="nav-link"><i class="fas fa-user" style="font-size: xx-large;" [routerLink]="['/profile']" ></i></a>
           </li>
-          <li class="nav-item col-2" style="max-width: 100%;" style="cursor:pointer;">
+          <li class="nav-item col-2" style="max-width: 100%; cursor:pointer;">
               <a class="nav-link"><i class="fas fa-trophy" style="font-size: xx-large;" [routerLink]="['/ranking']"></i></a>
           </li>
           <li class="nav-item col-2" style="max-width: 100%;">

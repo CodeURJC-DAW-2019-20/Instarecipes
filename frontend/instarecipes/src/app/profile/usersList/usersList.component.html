@@ -67,7 +67,7 @@
             <th>
               <a style="text-align:left; text-justify: auto;">{{user?.name}}&nbsp;{{user?.surname}}</a>
               <br>
-              <a style="text-align:left;">@{{user?.username}}</a>
+              <a style="text-align:left; cursor: pointer;" (click)="visitProfile(user?.id)">@{{user?.username}}</a>
             </th>
             <th>
               <p style="text-align:center; color: green;">Active</p>

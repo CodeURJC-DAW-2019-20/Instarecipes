@@ -64,4 +64,8 @@ export class UsersListComponent implements OnInit {
     }
   }
 
+  visitProfile(id: number){
+    this.router.navigateByUrl('/users/'+id);
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ViewChild, ElementRef } from '@angular/core';
 import { User } from 'src/app/Interfaces/user.model';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -16,8 +16,14 @@ export class FollowingComponent implements OnInit, OnChanges {
 
   avatars: any[] = [];
 
+  @ViewChild('closebutton') closebutton: ElementRef;
+
   constructor(private recipesService: RecipesService, private domSanitizer: DomSanitizer,
-    private router: Router) { }
+    private router: Router) {
+      this.router.routeReuseStrategy.shouldReuseRoute = function () {
+        return false;
+      };
+    }
 
   ngOnInit() {
   }
@@ -40,6 +46,7 @@ export class FollowingComponent implements OnInit, OnChanges {
   }
 
   visitProfile(id: number){
+    this.closebutton.nativeElement.click();
     this.router.navigateByUrl('/users/'+id);
   }
 
