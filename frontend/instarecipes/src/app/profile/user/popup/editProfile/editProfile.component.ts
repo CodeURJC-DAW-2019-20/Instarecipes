@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -7,6 +7,11 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./editProfile.component.css']
 })
 export class EditProfileComponent implements OnInit {
+
+  @Input()
+  avatar: any;
+  @Input()
+  background: any;
 
   constructor(public authService: AuthenticationService) { }
 
