@@ -114,14 +114,20 @@ public class ProfileService {
     
     public byte[] updateUserAvatar(@RequestParam MultipartFile avatar) throws IOException{
         if(!avatar.isEmpty()){
+            User u = usersRepository.findByUsername(userSession.getLoggedUser().getUsername());
+            u.setImage(avatar.getBytes());
             imageService.saveImage("avatars", userSession.getLoggedUser().getId(), avatar);
+            usersRepository.flush();
             return avatar.getBytes();
         }else return null;
     }
 
     public byte[] updateUserBackground(@RequestParam MultipartFile background) throws IOException{
         if(!background.isEmpty()){
+            User u = usersRepository.findByUsername(userSession.getLoggedUser().getUsername());
+            u.setImageBackground(background.getBytes());
             imageService.saveImage("backgrounds", userSession.getLoggedUser().getId(), background);
+            usersRepository.flush();
             return background.getBytes();
         }else return null;
     }

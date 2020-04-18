@@ -12,6 +12,7 @@ import { FirstComponent } from './signUp10/first/first.component';
 import { SecondComponent } from './signUp10/second/second.component';
 import { UserComponent } from './profile/user/user.component';
 import { ErrorComponent } from './error/error.component';
+import { ItemsComponent } from './profile/items/items.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full'},
@@ -28,6 +29,8 @@ const routes: Routes = [
   { path: 'user-profile', component: UserComponent},
   { path: 'users/:id', redirectTo: 'profile'},
   { path: 'error', component: ErrorComponent },
+  { path: 'hola', component:   ItemsComponent },
+
   { path: '**', redirectTo: 'error' }  // Wildcard route for a 404 page
 
 ];

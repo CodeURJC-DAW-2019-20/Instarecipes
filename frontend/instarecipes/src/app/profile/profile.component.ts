@@ -13,7 +13,7 @@ import { Recipe } from '../Interfaces/recipe.model';
 })
 
 export class ProfileComponent implements OnInit, AfterViewInit{
-  
+
   followers_users: User[] = [];
   following_users: User[] = [];
   avatar: any = null;
@@ -24,11 +24,11 @@ export class ProfileComponent implements OnInit, AfterViewInit{
   n_likes: number = 0;
 
   constructor(private profileService: ProfileService, private domSanitizer: DomSanitizer,
-    public authService: AuthenticationService, private userService: UserService){ }
+              public authService: AuthenticationService, private userService: UserService){ }
 
   ngOnInit(){
     // if(!this.a){
-      this.id_user = this.authService.user.id;
+    this.id_user = this.authService.user.id;
     // }else{
       // this.id_user = history.state.data.a;
     // }

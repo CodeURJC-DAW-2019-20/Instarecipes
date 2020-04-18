@@ -20,7 +20,7 @@ export class ProfileService {
     return this.httpClient.get(BASE_URL).pipe(
       catchError(error => this.handleError(error))
     ) as Observable<any>;
-  
+
   }
   getAllAllergens() : Observable<Allergen[]> {
     return this.httpClient.get(BASE_URL + "/allAllergens").pipe(
@@ -81,7 +81,8 @@ export class ProfileService {
   updateProfileAvatar(selectedFile: File): Observable<boolean> {
     const data: FormData = new FormData();
     data.append('avatar', selectedFile);
-    return this.httpClient.post(BASE_URL +  "/update/avatar", data).pipe(
+
+    return this.httpClient.put(BASE_URL +  "/update/avatar", data).pipe(
       catchError(
         error => this.handleError(error)
       )

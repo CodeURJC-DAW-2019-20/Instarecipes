@@ -1,7 +1,9 @@
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import {Component, OnInit} from '@angular/core';
 import { Recipe } from 'src/app/Interfaces/recipe.model';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'trending-recipes',
@@ -16,10 +18,14 @@ export class TrendingComponent implements OnInit{
     image: any[] = [];
     loadingTrending: boolean = true;
 
-    constructor(private recipesService: RecipesService, 
-      private domSanitizer: DomSanitizer){ }
+    constructor(private recipesService: RecipesService,
+                private domSanitizer: DomSanitizer, private authService: AuthenticationService,
+                public recipeService: RecipeService) { }
 
     ngOnInit(){
+      console.log('actual user ', this.authService.user);
+      console.log('am i logged? ', this.authService.isLogged);
+      console.log('is actual user admin?', this.authService.isLoggedAdmin);
       this.refreshTrending();
     }
 
