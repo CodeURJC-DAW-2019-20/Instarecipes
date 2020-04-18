@@ -23,8 +23,8 @@
             </div>
             <!-- Masthead Heading -->
             <a *ngIf="authService.isLogged">
-                <h3 class="text-uppercase mb-0">{{authService.user.name}}&nbsp;{{authService.user.surname}}</h3>
-                <h6>@{{authService.user.username}}</h6>
+                <h3 class="text-uppercase mb-0">{{user?.name}}&nbsp;{{user?.surname}}</h3>
+                <h6>@{{user?.username}}</h6>
             </a>
             <!-- Icon Divider -->
             <div class="divider-custom divider-light">
@@ -36,20 +36,18 @@
             </div>
             <!-- Masthead Subheading -->
             <div>
-                <p class="masthead-subheading font-weight-light mb-0">{{authService.user.info}}</p>
+                <p class="masthead-subheading font-weight-light mb-0">{{user?.info}}</p>
             </div>
 
             <div class="unfollow-div-button" style="background-color: transparent;">
                 <form action="/unfollowAction/id" method="post">
                     <button type="submit" class="btn btn-primary" style="background-color: white; color: rgba(255, 105, 137, 0.658);">Following</button>
-                    <input type="hidden" name="_csrf" value="token" />
                 </form>
             </div>
 
             <div class="follow-div-button" style="background-color: transparent;">
                 <form action="/followAction/id" method="post">
                     <button type="submit" class="btn btn-primary" style="background-color: rgba(255, 105, 137, 0.658); color: white;">Follow</button>
-                    <input type="hidden" name="_csrf" value="token" />
                 </form>
             </div>
 

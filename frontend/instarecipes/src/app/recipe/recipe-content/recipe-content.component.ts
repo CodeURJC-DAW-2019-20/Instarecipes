@@ -111,4 +111,13 @@ export class RecipeContentComponent implements OnInit {
     this.likes += 1;
     this.allLikes += 1;
   }
+
+  visitProfile(){
+    if(this.authService.user.id === this.recipe.username.id){
+      this.router.navigateByUrl('/profile');
+    }else{
+      this.router.navigateByUrl('/users/'+this.recipe.username.id);
+    }
+  }
+
 }

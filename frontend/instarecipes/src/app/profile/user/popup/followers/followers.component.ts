@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/Interfaces/user.model';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'popup-followers',
@@ -15,7 +16,8 @@ export class FollowersComponent implements OnInit {
 
   avatars: any[] = [];
 
-  constructor(private recipesService: RecipesService, private domSanitizer: DomSanitizer) { }
+  constructor(private recipesService: RecipesService, private domSanitizer: DomSanitizer,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -35,6 +37,10 @@ export class FollowersComponent implements OnInit {
         }
       );
     });
+  }
+
+  visitProfile(id: number){
+    this.router.navigateByUrl('/users/'+id);
   }
 
 }

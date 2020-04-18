@@ -36,7 +36,6 @@ export class TrendingComponent implements OnInit{
           this.loadingTrending = false;
           this.trendingRecipes.forEach(element => {
             this.userRecipeAvatar(element);
-            this.recipeStepImage(element, 1);
           });
         }
       );
@@ -47,6 +46,7 @@ export class TrendingComponent implements OnInit{
         data => {
           var urlCreator = window.URL;
           this.avatar.push(this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(data)));
+          this.recipeStepImage(r, 1);
         }
       );
     }

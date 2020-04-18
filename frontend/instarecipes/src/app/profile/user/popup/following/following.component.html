@@ -35,10 +35,10 @@
                                 </div>
                                 <div class="col-6">
                                     <h6 style="text-align:left;">{{user?.name}}&nbsp;{{user?.surname}}</h6>
-                                    <p style="text-align:left;">@{{user.username}}</p>
+                                    <p style="text-align:left;">@{{user?.username}}</p>
                                 </div>
                                 <div class="col-4">
-                                    <a href="/users/id" class="btn btn-primary" style="background-color: white; color: #1abc9c ;">View profile</a>
+                                    <a (click)="visitProfile(user?.id)" class="btn btn-primary" style="background-color: white; color: #1abc9c ;">View profile</a>
                                 </div>
                             </div>
                             <!-- {{/following}} -->
