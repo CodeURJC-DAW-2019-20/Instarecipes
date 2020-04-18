@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'sendItemRequest',
+  selector: 'popup-send-item-request',
   templateUrl: './sendItemRequest.component.html',
   styleUrls: ['./sendItemRequest.component.css']
 })

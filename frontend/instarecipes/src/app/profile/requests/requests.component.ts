@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'admin-requests',
+  selector: 'requests',
   templateUrl: './requests.component.html',
   styleUrls: ['./requests.component.css']
 })
@@ -18,9 +18,9 @@ export class RequestsComponent implements OnInit {
   }
   //Metodo que compruebe que es admin
   isAdmin: boolean=true;
-  IsHidden= true;
+  isHidden= true;
 
   onSelect(){
-  this.IsHidden= !this.IsHidden;
+  this.isHidden= !this.isHidden;
   }
 }

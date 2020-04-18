@@ -1,0 +1,63 @@
+<!-- Publications Section -->
+<section class="page-section publications" id="publications">
+    <div class="container">
+        <!-- publications Section Heading -->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Publications</h2>
+        <!-- Icon Divider -->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon">
+                <i class="fas fa-star"></i>
+            </div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- publications Grid Items -->
+        <div class="row">
+            <!-- {{#publications}} -->
+            <!-- publications Item 1 -->
+            <div class="col-md-6 col-lg-4" *ngFor="let recipe of user_recipes;index as i">
+                <div class="publications-item mx-auto" data-toggle="modal" [attr.data-target]="'#publicationsModal'+ i">
+                    <div class="likes-comments">
+                        <div class="row" style="margin-right: 0;margin-left: 0;">
+                            <div class="col-3">
+                                <img class="icon-fluid" src="../../../../assets/images/icons/like_pressed.png" alt="">
+                            </div>
+                            <div class="col-3">
+                                <p class="icon-fluid pub-date-text">{{recipe?.likes}}</p>
+                            </div>
+                            <div class="col-3">
+                                <img class="icon-fluid" src="../../../../assets/images/icons/dialogue.png" alt="">
+                            </div>
+                            <div class="col-3">
+                                <p class="icon-fluid pub-date-text">{{recipe?.n_comments}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="publications-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                        <div class="publications-item-caption-content text-center text-white">
+                            <img src="../../../../assets/images/icons/eye.png" />
+                        </div>
+                    </div>
+                    <img class="img-fluid" [src]="images[i]" alt="">
+                    <!-- <p class="pub-date-text">27 min. ago</p> -->
+                </div>
+            </div>
+            <!-- publications Modals -->
+            <popup-recipe-preview *ngFor="let recipe of user_recipes;index as i" [recipe]="recipe" [i]="i" [image]="images[i]"></popup-recipe-preview>
+            <!-- {{/publications}} -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <hr width="50%">
+    <!-- {{^disable}} -->
+    <!-- {{^followButton}} -->
+    <div id="open-add-button" class='flotating-button'>
+        <div class="publications-item mx-auto" data-toggle="modal" data-target="#opened-settings-button" id="load-image-form" style="width: max-content">
+            <i class="fas fa-users-cog fa-5x"></i>
+        </div>
+    </div>
+    <!-- {{/followButton}} -->
+    <!-- {{/disable}} -->
+    <!-- Pop up settings(add avatar, background, bio and allergens) -->
+    <popup-edit-profile [avatar]="this.avatar" [background]="this.background"></popup-edit-profile>
+</section>

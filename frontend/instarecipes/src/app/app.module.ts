@@ -23,7 +23,6 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeContentComponent } from './recipe/recipe-content/recipe-content.component';
 import { RecipeStepsComponent } from './recipe/recipe-steps/recipe-steps.component';
 import { ProfileComponent } from './profile/profile.component';
-import { UsersComponent } from './profile/users/users.component';
 import { ItemsComponent } from './profile/items/items.component';
 import { FirstComponent } from './signUp10/first/first.component';
 import { SecondComponent } from './signUp10/second/second.component';
@@ -32,15 +31,19 @@ import { FilterRecipeComponent } from './index/popup/filter/filterRecipe.compone
 import { RankingComponent } from './ranking/ranking.component';
 import { ProfileService } from './services/profile.service';
 import { RequestsComponent } from './profile/requests/requests.component';
-import { EditProfileComponent } from './profile/popup/editProfile/editProfile.component';
-import { SendItemRequestComponent } from './profile/popup/sendItemRequest/sendItemRequest.component';
-import { StatisticsComponent } from './profile/popup/statistics/statistics.component';
-import { RecipePreviewComponent } from './profile/popup/recipePreview/recipePreview.component';
-import { SearchComponent } from './search/search.component';
 import { UserSearchComponent } from './search/user-search/user-search.component';
 import { FilteredSearchComponent } from './search/filtered-search/filtered-search.component';
 import { RecipeService } from './services/recipe.service';
 import { StepComponent } from './index/popup/add/step.component';
+import { PublicationsComponent } from './profile/user/publications/publications.component';
+import { UsersListComponent } from './profile/usersList/usersList.component';
+import { RecipePreviewComponent } from './profile/user/popup/recipePreview/recipePreview.component';
+import { StatisticsComponent } from './profile/user/popup/statistics/statistics.component';
+import { EditProfileComponent } from './profile/user/popup/editProfile/editProfile.component';
+import { SendItemRequestComponent } from './profile/user/popup/sendItemRequest/sendItemRequest.component';
+import { FollowersComponent } from './profile/user/popup/followers/followers.component';
+import { FollowingComponent } from './profile/user/popup/following/following.component';
+import { UserComponent } from './profile/user/user.component';
 
 @NgModule({
 
@@ -58,7 +61,6 @@ import { StepComponent } from './index/popup/add/step.component';
     RecipeContentComponent,
     RecipeStepsComponent,
     ProfileComponent,
-    UsersComponent,
     ItemsComponent,
     FirstComponent,
     SecondComponent,
@@ -73,7 +75,12 @@ import { StepComponent } from './index/popup/add/step.component';
     RecipePreviewComponent,
     UserSearchComponent,
     FilteredSearchComponent,
-    StepComponent
+    StepComponent,
+    PublicationsComponent,
+    UsersListComponent,
+    FollowersComponent,
+    FollowingComponent,
+    UserComponent,
   ],
 
   //Aqui se deben importar los modulos

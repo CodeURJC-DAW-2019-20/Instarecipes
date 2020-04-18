@@ -1,35 +1,98 @@
-<div *ngIf="isAdmin" >
-  <nav id="sidebar" style="margin-top:2%;background-color:rgba(0, 0, 0, 0.6)">
-    <div class="custom-menu" style="margin-top: 5%;">
-      <button type="button" id="sidebarCollapse" class="btn btn-primary" (click)="onSelect()">
-        <i class="fa fa-bars"></i>
-        <span class="sr-only">Toggle Menu</span>
-      </button>
-    </div>
-    <div class="p-4" [hidden]="IsHidden">
-      <h1><a [routerLink]="['/index']" class="logo">Manage</a></h1>
-      <ul class="list-unstyled components mb-5">
-        <li id="text-content" class="active">
-          <a onclick="contentDiv()" [routerLink]="['/profile']"><span class="fa fa-user mr-3"
-              style="width: 20px;text-align: center;"></span>Profile</a>
-        </li>
-        <li id="text-request">
-          <a onclick="requestDiv()" href="#"><span class="fa fa-bell mr-3"
-              style="width: 20px;text-align: center;"></span>Requests</a>
-        </li>
-        <li id="text-users">
-          <a onclick="usersDiv()" href="#"><span class="fa fa-users mr-3"
-              style="width: 20px;text-align: center;"></span>Users</a>
-        </li>
-        <li id="text-recipes">
-          <a onclick="recipesDiv()" href="#"><span class="fa fa-book mr-3"
-              style="width: 20px;text-align: center;"></span>Items</a>
-        </li>
-        <!-- <li id="text-reports">
-        <a onclick="reportsDiv()" href="#"><span class="fa fa-exclamation mr-3"
-            style="width: 20px;text-align: center;"></span>Reports</a>
-      </li> -->
-      </ul>
-    </div>
-  </nav>
+<!-- Page Request  -->
+<div id="request-div" class="p-4 p-md-5 pt-5" style="padding:0 !important;width:100%;height:100%;" hidden>
+    <!-- Masthead -->
+    <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+            <!-- Masthead Subheading -->
+            <div class="profile-about-separator">
+                <!-- publications Section Heading -->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">User's requests</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line" style="background-color: black;"></div>
+                    <div class="divider-custom-icon">
+                        <i class="fas fa-star" style="color: black;"></i>
+                    </div>
+                    <div class="divider-custom-line" style="background-color: black;"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Publications Section -->
+    <section class="page-section publications" id="publications">
+        <div class="container">
+            <!-- <p class="masthead-subheading font-weight-light mb-0">Search type of item</p>
+        <select id="typeOfRequests" style="height: 50px;width: 300px;">
+          <option value="allRequests">All</option>
+          <option value="ingredientsRequestsOrders">Ingredients</option>
+          <option value="categoriesRequestsOrders">Categories</option>
+          <option value="cookingStylesRequests">Cooking style</option>
+        </select> -->
+            <!-- Icon Divider -->
+            <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <div class="scrolling container" style="height: 100%; width: 100%;background-color: rgba(0, 0, 0, 0.2);">
+                <table style="text-align: center;">
+                    <tr style="line-break: auto;">
+                        <th>
+                            <p class="text-center text-uppercase text-secondary mb-0">User</p>
+                        </th>
+                        <th>
+                            <p class="text-center text-uppercase text-secondary mb-0">Type</p>
+                        </th>
+                        <th>
+                            <p class="text-center text-uppercase text-secondary mb-0">Value</p>
+                        </th>
+                        <th>
+                            <p class="text-center text-uppercase text-secondary mb-0">Action</p>
+                        </th>
+                    </tr>
+                </table>
+                <hr>
+                <!-- {{#allRequests}} -->
+                <!-- Request x -->
+                <form class="row" style="align-items: center;" id="formItemRequest-index">
+                    <div class="col-2">
+                        <img class="d-flex mr-3 rounded-circle profile-border" src="" alt="" style="width:100px; height: 100px; object-fit: cover;">
+                    </div>
+                    <div class="col-2">
+                        <h6 style="text-align:left;">username.name&nbsp;username.surname</h6>
+                        <a style="text-align:left;" href="/users/username.id">@username.username</a>
+
+                    </div>
+                    <div class="col-3">
+                        <h6 class="btn-xl" type="text" style="text-align:left;">typeOfRequest</h6>
+                        <input name="typeOfItemRequest" value="typeOfRequest" hidden />
+                    </div>
+                    <div class="col-3">
+                        <!-- {{#itemExists}} -->
+                        <h6 class="btn-xl" style="text-align:left; color: red;">
+                            ingredientContentcategoryContentcookingStyleContent</h6>
+                        <input name="itemContent" value="ingredientContentcategoryContentcookingStyleContent" hidden />
+                        <p>typeOfRequest&nbsp;"ingredientContentcategoryContentcookingStyleContent"&nbsp;already exists!
+                        </p>
+                        <!-- {{/itemExists}} -->
+                        <!-- {{^itemExists}} -->
+                        <h6 class="btn-xl" style="text-align:left; color: green;">
+                            ingredientContentcategoryContentcookingStyleContent</h6>
+                        <input name="itemContent" value="ingredientContentcategoryContentcookingStyleContent" hidden />
+                        <!-- {{/itemExists}} -->
+                    </div>
+                    <div class="col-2" style="display: flex; height:fit-content;">
+                        <button type="submit" name="action" value="accept" class="btn btn-outline-primary fa fa-check" style="margin-right: 5%;border-radius: 50%;"></button>
+                        <button type="submit" name="action" value="decline" class="btn btn-outline-danger fa fa-remove" style="border-radius: 50%;"></button>
+                        <input name="id_request" value="id" type="hidden">
+                    </div>
+                </form>
+                <hr>
+                <!-- {{/allRequests}} -->
+            </div>
+            <hr>
+        </div>
+    </section>
 </div>

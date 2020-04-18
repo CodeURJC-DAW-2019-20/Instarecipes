@@ -6,9 +6,8 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-
   isLoggedUser = false;
-  isAdminUser = false;
+  isLoggedAdmin = false;
   user: User;
   auth: string;
 
@@ -23,6 +22,7 @@ constructor(private http: HttpClient) {
     console.log("im in authentication.service login ")
     console.log(user);
     console.log(password);
+
     let auth = window.btoa(user + ':' + password);
     const headers = new HttpHeaders({
       Authorization: 'Basic ' + auth,
@@ -55,13 +55,13 @@ constructor(private http: HttpClient) {
   private setCurrentUser(user: User) {
     this.isLoggedUser = true;
     this.user = user;
-    this.isAdminUser = this.user.roles.indexOf('ROLE_ADMIN') !== -1;
+    this.isLoggedAdmin = this.user.roles.indexOf('ROLE_ADMIN') !== -1;
   }
 
   removeCurrentUser() {
     localStorage.removeItem('currentUser');
     this.isLoggedUser = false;
-    this.isAdminUser = false;
+    this.isLoggedAdmin = false;
   }
 
 
@@ -69,25 +69,23 @@ constructor(private http: HttpClient) {
     return this.isLoggedUser;
   }
 
-  get isLoggedAdmin(): boolean {
+  get isAdmin(): boolean {
     return this.isLoggedAdmin;
   }
 
-  set isLoggedAdmin(value: boolean) {
-    this.isLoggedAdmin;
-  }
-
-  register(user: User ){
-    console.log("im in authentication.service register ")
+  register(user: User ): Observable<User> {
+    console.log('im in authentication.service register ');
     console.log(user);
-
-    return this.http.post('/api/signup', user);
-
+    return this.http.post('/api/signup', user).pipe(
+      catchError(
+        error => this.handleError(error)
+      )
+    ) as Observable<User>
   }
 
   private handleError(error: any) {
 		console.error(error);
-		return Observable.throw("Server error (" + error.status + "): " + error.text())
+		return Observable.throw('Server error (' + error.status + '): ' + error.text());
 	}
 
 

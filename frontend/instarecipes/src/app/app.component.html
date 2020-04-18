@@ -10,14 +10,14 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto" style="margin-right: 20%;">
           <li class="nav-item col-2" style="max-width: 100%;">
-            <a class="nav-link js-scroll-trigger">
+            <a class="nav-link js-scroll-trigger" style="cursor:pointer;">
               <i class="fas fa-home" style="font-size: xx-large; color: rgba(159, 193, 255, 0.726)" [routerLink]="['/index']"></i>
             </a>
           </li>
-          <li class="nav-item col-2" style="max-width: 100%;">
+          <li class="nav-item col-2" style="max-width: 100%; cursor:pointer;">
             <a *ngIf="authService.isLogged" class="nav-link"><i class="fas fa-user" style="font-size: xx-large;" [routerLink]="['/profile']" ></i></a>
           </li>
-          <li class="nav-item col-2" style="max-width: 100%;">
+          <li class="nav-item col-2" style="max-width: 100%; cursor:pointer;">
               <a class="nav-link"><i class="fas fa-trophy" style="font-size: xx-large;" [routerLink]="['/ranking']"></i></a>
           </li>
           <li class="nav-item col-2" style="max-width: 100%;">
@@ -32,12 +32,10 @@
           </li>
         </ul>
 
-        <!-- <form class="example" action="/searchBar" method="POST"> -->
         <form class="example" #searchForm="ngForm" (ngSubmit)="goSearch(searchForm)">
           <input type="text" placeholder="Search.." name="search" [(ngModel)]="search" />
           <button type="submit" style="background-color: rgba(159, 193, 255, 0.726);">
             <i class="fa fa-search"></i>
-          <!-- <input type="hidden" name="_csrf" value="{{token}}" /> -->
           </button>
         </form>
 

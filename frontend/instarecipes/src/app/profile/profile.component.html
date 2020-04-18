@@ -1,13 +1,57 @@
+<div class="wrapper d-flex align-items-stretch" style="margin-top: 2%;">
+    <!-- para añadir la restriccion de quitar el popup del admin: *ngIf = "authService.isAdmin" -->
+    <nav id="sidebar" class="active" style="background-color:rgba(0, 0, 0, 0.6)">
+        <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+          <i class="fa fa-bars"></i>
+          <span class="sr-only">Toggle Menu</span>
+        </button>
+        </div>
+        <div class="p-4">
+            <h1><a class="logo">Manage</a></h1>
+            <ul class="list-unstyled components mb-5">
+                <li id="text-content" class="active">
+                    <a id="contentDiv" style="cursor:pointer;"><span class="fa fa-user mr-3"
+                style="width: 20px;text-align: center;"></span>Profile</a>
+                </li>
+                <li id="text-request">
+                    <a id="requestDiv" style="cursor:pointer;"><span class="fa fa-bell mr-3"
+                style="width: 20px;text-align: center;"></span>Requests</a>
+                </li>
+                <li id="text-users">
+                    <a id="usersDiv" style="cursor:pointer;"><span class="fa fa-users mr-3"
+                style="width: 20px;text-align: center;"></span>Users</a>
+                </li>
+                <li id="text-recipes">
+                    <a id="recipesDiv" style="cursor:pointer;"><span class="fa fa-book mr-3"
+                style="width: 20px;text-align: center;"></span>Items</a>
+                </li>
+                <!-- <li id="text-reports">
+            <a onclick="reportsDiv()" href="#"><span class="fa fa-exclamation mr-3"
+                style="width: 20px;text-align: center;"></span>Reports</a>
+          </li> -->
+            </ul>
+        </div>
+    </nav>
+    <user [user]="user" [n_likes]="n_likes" [user_recipes]="user_recipes" [avatar]="avatar" [background]="background" [followers_users]="followers_users" [following_users]="following_users"></user>
+    <popup-edit-profile></popup-edit-profile>
+    <!-- Navigations -->
+    <div style="height: 100%;  width: 100%;">
+        <requests style="height: 100%;  width: 100%;"></requests>
+        <users-list style="height: 100%;  width: 100%;"></users-list>
+        <items style="height: 100%;  width: 100%;"></items>
+    </div>
+</div>
+<!-- Copyright Section -->
+<section class="copyright py-4 text-center text-white">
+    <div class="container">
+        <small>Copyright &copy; Instarecipes 2020</small>
+    </div>
+</section>
 
-
-      <!--Pop-up-->
-<editProfile></editProfile>
-<statistics></statistics>
-<sendItemRequest></sendItemRequest>
-<recipePreview></recipePreview>
-      <!--Panel-->
-<admin-requests></admin-requests>
-<user-profile></user-profile>
-<user-items></user-items>
-
-
+<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+<div class="scroll-to-top d-lg-none position-fixed ">
+    <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+    </a>
+</div>

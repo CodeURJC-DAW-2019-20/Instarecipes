@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { EditProfileComponent } from '../popup/editProfile/editProfile.component';
-//import { MatDialog, MatDialogConfig } from "@angular/material";
+import { RecipesService } from 'src/app/services/recipes.service';
 
 @Component({
-  selector: 'user-items',
+  selector: 'items',
   templateUrl: './items.component.html',
   styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit {
+  
+  constructor(private recipesService: RecipesService){
 
-  constructor() { }
-
-  ngOnInit() {
   }
 
-  editProfile(){
-    //this.dialog.open(EditProfileComponent);
+  ngOnInit(){
+   
   }
+  
 }

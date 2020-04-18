@@ -1,0 +1,88 @@
+<!-- Page Users  -->
+<div id="users-div" class="p-4 p-md-5 pt-5" style="padding:0 !important;width:100% !important;" hidden>
+  <header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+      <!-- Masthead Subheading -->
+      <div class="profile-about-separator">
+        <!-- publications Section Heading -->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">User's details</h2>
+        <!-- Icon Divider -->
+        <div class="divider-custom divider-light">
+          <div class="divider-custom-line" style="background-color: black;"></div>
+            <div class="divider-custom-icon">
+                <i class="fas fa-star" style="color: black;"></i>
+            </div>
+          <div class="divider-custom-line" style="background-color: black;"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+    <!-- Users Section -->
+  <section class="page-section publications" id="publications">
+    <div class="container">
+      <form class="example" #searchForm="ngForm" (ngSubmit)="goSearch(searchForm)">
+        <input type="text" placeholder="Search.." name="search" [(ngModel)]="search" />
+        <button type="submit" style="background-color: rgba(159, 193, 255, 0.726);">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    <!-- Icon Divider -->
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+      </div>
+      <div class="divider-custom-line"></div>
+    </div>
+    <form>
+      <div style="text-align: center;margin: 10px;">
+        <!-- <button class="btn btn-danger" type="submit">Apply changes</button> -->
+      </div>
+      <div class="scrolling container" style="height: 100%; width: 100%;background-color: rgba(0, 0, 0, 0.2);">
+        <table style="text-align: center;">
+          <tr style="line-break: auto;">
+            <th>
+              <p class="text-center text-uppercase text-secondary mb-0">User</p>
+            </th>
+            <th>
+              <p class="text-center text-uppercase text-secondary mb-0">Username</p>
+            </th>
+            <th>
+              <p class="text-center text-uppercase text-secondary mb-0">Date</p>
+            </th>
+            <th>
+                <p class="text-center text-uppercase text-secondary mb-0">Followers</p>
+            </th>
+            <th>
+                <p class="text-center text-uppercase text-secondary mb-0">Follows</p>
+            </th>
+          </tr>
+        </table>
+        <table style="text-align: center;">
+          <tr *ngFor="let user of users; index as i">
+            <th>
+              <img class="d-flex mr-3 rounded-circle profile-border" [src] = "avatars[i]" alt="" style="width:100px; height: 100px; object-fit: cover;">
+            <hr>
+            </th>
+            <th>
+              <a style="text-align:left; text-justify: auto;">{{user?.name}}&nbsp;{{user?.surname}}</a>
+              <br>
+              <a style="text-align:left; cursor: pointer;" (click)="visitProfile(user?.id)">@{{user?.username}}</a>
+            </th>
+            <th>
+              <p style="text-align:center; color: green;">Active</p>
+            </th>
+            <th>
+              <p>{{user?.followersNum}}</p>
+            </th>
+            <th>
+              <p>{{user?.followingNum}}</p>
+            </th>
+          </tr>
+        </table>
+      </div>
+    </form>
+    <hr>
+    </div>
+  </section>
+</div>

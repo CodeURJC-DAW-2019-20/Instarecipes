@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Recipe } from '../Interfaces/recipe.model';
-import { catchError, map, retry, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Step } from '../Interfaces/step.model';
 import { RecipeDTO } from '../Interfaces/recipeDTO.model';
-import { User } from '../Interfaces/user.model';
-import { throwError } from 'rxjs';
 
 const BASE_URL: string = "/api/recipes/";
 
@@ -58,7 +56,7 @@ export class RecipesService {
   getRecipeById(id_recipe: number): Observable<Recipe>{
     return this.httpClient.get(BASE_URL + id_recipe).pipe(
       catchError(error => this.handleError(error))
-      ) as Observable<Recipe>;
+    ) as Observable<Recipe>;
   }
 
   getSteps(id_recipe: number): Observable<Step[]>{
@@ -94,7 +92,7 @@ export class RecipesService {
   pressUnlikeRecipe(id_recipe: number) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-  });
+    });
     return this.httpClient.post(BASE_URL + id_recipe + '/recipeUnpressLike', {headers}).pipe(
       catchError(
         error => this.handleError(error)
@@ -104,7 +102,7 @@ export class RecipesService {
   pressLikeRecipe(id_recipe: number) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-  });
+    });
     return this.httpClient.post(BASE_URL + id_recipe + '/recipePressLike', {headers}).pipe(
       catchError(
         error => this.handleError(error)
