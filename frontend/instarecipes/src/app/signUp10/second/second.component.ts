@@ -28,8 +28,7 @@ export class SecondComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     ) {
-      this.user = {username: null, email: '', password: '', name: '', surname: '',followingNum:0,
-      followersNum:0, info: 'Hello world!', allergens: null};
+      this.user = {username: null, email: '', password: '', name: '', surname: '', info: 'Hello world!', allergens: null};
     }
 
   ngOnInit() {

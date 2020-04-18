@@ -17,7 +17,6 @@ import { isNumber } from 'util';
 })
 export class ItemsComponent implements OnInit {
   users: User[] = []
-  avatar: any[] = [];
   image: any[] = [];
   user: User;
   recipes: any[]=[];
@@ -59,7 +58,6 @@ export class ItemsComponent implements OnInit {
         this.get_Recipes(this.id_user);
         for(var recipe of this.recipes){
           this.recipeMainImage(recipe);
-          this.recipeStepImage(recipe)
         }   
       }
     )
@@ -81,16 +79,6 @@ export class ItemsComponent implements OnInit {
       }
     );
     
-  }
-
-  
-  recipeStepImage(r: Recipe) {
-    this.recipesService.getRecipeStepImage(r.id, 0).subscribe(
-      data => {
-        var urlCreator = window.URL;
-        this.avatar.push(this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(data)));
-      }
-    );
   }
   
 

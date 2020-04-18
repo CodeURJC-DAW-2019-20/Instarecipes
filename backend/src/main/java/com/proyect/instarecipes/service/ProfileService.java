@@ -9,9 +9,6 @@ import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Ingredient;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.AllergensRepository;
@@ -68,10 +65,7 @@ public class ProfileService {
     }
 
     public List<Integer> getUserRecipeDetails(Long id){
-        
-        Page<Recipe> recipeList= recipesRepository.findByUsernameId(id,PageRequest.of(0,10));
-        List<Recipe> recipes = (List<Recipe>)recipeList.getContent();
-
+        List<Recipe> recipes = recipesRepository.findByUsernameId(id);
         int likes = 0;
         int pubs;
         for (pubs = 0; pubs < recipes.size(); pubs++) {
@@ -149,9 +143,7 @@ public class ProfileService {
     }
 
     public List<Recipe> getByUsernameId(Long id){
-        Page<Recipe> recipes= recipesRepository.findByUsernameId(id,PageRequest.of(0,2));
-        List<Recipe> recipeList = (List<Recipe>)recipes.getContent();
-        return recipeList;
+        return recipesRepository.findByUsernameId(id);
     }
 }
 

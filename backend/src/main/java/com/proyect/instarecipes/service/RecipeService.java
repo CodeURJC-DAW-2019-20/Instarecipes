@@ -6,9 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import com.proyect.instarecipes.models.Comment;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.Step;
@@ -43,9 +40,7 @@ public class RecipeService{
     }
 
     public List<Integer> getRecipeLikesAndPublications(Long id){
-        
-        Page<Recipe> recipeList= recipesRepository.findByUsernameId(id,PageRequest.of(0,10));
-        List<Recipe> recipes = (List<Recipe>)recipeList.getContent();
+        List<Recipe> recipes = recipesRepository.findByUsernameId(id);
         int n_likes = 0;
         int n_publications;
         for (n_publications = 0; n_publications < recipes.size(); n_publications++) {

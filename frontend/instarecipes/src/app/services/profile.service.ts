@@ -55,7 +55,7 @@ export class ProfileService {
       catchError(error => this.handleError(error))
     ) as Observable<Recipe[]>;
   }
- // http://localhost:8443/api/profile/admin/requests
+
   getProfileAvatar(id_user: number): Observable<Blob> {
     let head = new HttpHeaders();
     head = head.set('Content-Type', 'image/jpeg');
