@@ -29,16 +29,16 @@
                                 <li *ngIf="liked; then thenblock else elseblock" style="cursor: pointer;"></li>
                                 <ng-template #thenblock>
                                     <form>
-                                        <button (click)="unlikeToRecipe()" type="submit" style="width: inherit;border: 0px;">
-                    <img class="focusHeart" src="../../../assets/images/icons/like_pressed.png" width= "85%" alt="">
-                  </button>
+                                      <button (click)="unlikeToRecipe()" type="submit" style="width: inherit;border: 0px;">
+                                        <img class="focusHeart" src="../../../assets/images/icons/like_pressed.png" width= "85%" alt="">
+                                      </button>
                                     </form>
                                 </ng-template>
                                 <ng-template #elseblock>
                                     <form>
-                                        <button (click)="likeToRecipe()" type="submit" style="width: inherit;border: 0px;">
-                    <img class="focusHeart" src="../../../assets/images/icons/like_unpressed.png" width= "85%" alt="">
-                  </button>
+                                      <button (click)="likeToRecipe()" type="submit" style="width: inherit;border: 0px;">
+                                        <img class="focusHeart" src="../../../assets/images/icons/like_unpressed.png" width= "85%" alt="">
+                                      </button>
                                     </form>
                                 </ng-template>
 
@@ -54,7 +54,7 @@
                     <!-- User details -->
                     <div class="row" style="border-bottom: 1px solid rgba(0, 0, 0, 0.6); border-top: 1px solid rgba(0, 0, 0, 0.6);">
                         <div class="col-4" style="align-self: center; justify-content: center;">
-                            <img class="userimg d-flex mr-3 rounded-circle" style="width: 200px;height: 200px;object-fit: cover;" alt="">
+                            <img class="userimg d-flex mr-3 rounded-circle" [src]="avatar" style="width: 200px;height: 200px;object-fit: cover;" alt="">
                         </div>
                         <div class="col-8">
                             <table class="card-body">
