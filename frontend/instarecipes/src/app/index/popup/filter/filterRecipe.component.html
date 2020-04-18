@@ -13,19 +13,19 @@
                   </div>
                   <div class="divider-custom-line"></div>
               </div>
-              <button type="button" (click)="seeJSON()">json mirarlo</button>
+              <!-- <button type="button" (click)="seeJSON($event)">json mirarlo</button> -->
 
               <form #postFilterRecipeForm="ngForm" (ngSubmit)="postFilterRecipe()">
                 <div class="row">
                   <div class="col-6">
                     <h3 class="underlined-text">INGREDIENTS</h3>
                       <div class="row">
-                        <table id="IngredientsTable">
+                        <table id="IngredientsTable" #selectedOption>
                         <tr>
                           <td>
-                          <input #ingredientsList id="ingredientsSList" value="" hidden />
+                          <input #ingredientsSList id="ingredientsSList" value="" hidden />
                           <input #ingredientsSSearch id="ingredientsSSearch" name="ingredientsSSearch" hidden />
-                          <select class="form-control">
+                          <select class="form-control" (change) = "seeJSON($event)">
                             <option>Select an ingredient..</option>
                             <option *ngFor="let ing of ingredients" value="{{ing?.ingredient}}">
                               {{ing?.ingredient}}

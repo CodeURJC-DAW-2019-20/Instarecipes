@@ -80,7 +80,7 @@ import { UserComponent } from './profile/user/user.component';
     UsersListComponent,
     FollowersComponent,
     FollowingComponent,
-    UserComponent
+    UserComponent,
   ],
 
   //Aqui se deben importar los modulos

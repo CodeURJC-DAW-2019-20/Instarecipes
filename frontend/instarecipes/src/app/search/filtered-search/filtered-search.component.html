@@ -1,3 +1,4 @@
+<div style="margin-top: 10%;">
 <!--<div class="col-4">
    Categories and Cooking Style Widget
   <div class="card my-4">
@@ -52,38 +53,39 @@
       </ul>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="col-md-8">
-    <div>
+    <div *ngIf = "!recipesFounded">
       <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match any recipes.</h1>
       <h3>Try it with another filters!</h3>
     </div>
-      <div class="card mb-4" style="width: 100%;">
-        <img class="card-img-top" src="/temp/recipes/image-{{id}}.jpg" alt="Card image cap">
+      <div *ngFor="let recipe of recipes; index as i" class="card mb-4" style="width: 100%;">
+        <img class="card-img-top" [src] = "images[i]" alt="Card image cap">
         <div class="card-body">
-          <h2 class="card-title">{{title}}</h2>
-          <p class="card-text">{{description}}</p>
+          <h2 class="card-title">{{recipe?.title}}</h2>
+          <p class="card-text">{{recipe?.description}}</p>
           <div class="row">
             <div class="col-2" style="align-self: flex-end;">
-              <img class="d-flex mr-3 rounded-circle profile-border" style="align-self: center; width: 100px; height: 100px;" src="/temp/avatars/image-{{username.id}}.jpg">
+              <img class="d-flex mr-3 rounded-circle profile-border" [src] = "avatars[i]" style="align-self: center; width: 100px; height: 100px;">
             </div>
             <div class="col-4" style="align-self: flex-end;">
-              <h5>{{username.name}}&nbsp;{{username.surname}}</h5>
-              <p>@{{username.username}}</p>
+              <h5>{{recipe?.username.name}}&nbsp;{{recipe?.username.surname}}</h5>
+              <p>@{{recipe?.username.username}}</p>
             </div>
             <div class="col-4 scrolling" style="align-self: flex-end;height: 100px;">
-              <p style="background-color: rgba(127, 255, 212, 0.2);border-radius: 0.8rem;"><strong>Ingredients:</strong>&nbsp;{{#ingredients}}{{ingredient}}, {{/ingredients}}..</p>
-              <p style="background-color: rgba(171, 255, 46, 0.2);border-radius: 0.8rem;"><strong>Allergens:</strong>&nbsp;{{#allergens}}{{allergen}}, {{/allergens}}..</p>
-              <p style="background-color: rgba(191, 191, 191, 0.3);border-radius: 0.8rem;"><strong>Cooking Styles:</strong>&nbsp;{{#cookingStyles}}{{cookingStyle}}, {{/cookingStyles}}..</p>
-              <p style="background-color: rgba(255, 185, 127, 0.3);border-radius: 0.8rem;"><strong>Categories:</strong>&nbsp;{{#categories}}{{category}}, {{/categories}}..</p>
+              <p style="background-color: rgba(127, 255, 212, 0.2);border-radius: 0.8rem;"><strong>Ingredients:</strong><a *ngFor="let ing of recipes[i].ingredients; index as i ">&nbsp;{{recipe?.ingredients[i].ingredient}},</a></p>
+              <p style="background-color: rgba(171, 255, 46, 0.2);border-radius: 0.8rem;"><strong>Allergens:</strong><a *ngFor="let ing of recipes[i].allergens; index as i ">&nbsp;{{recipe?.allergens[i].allergen}},</a></p>
+              <p style="background-color: rgba(191, 191, 191, 0.3);border-radius: 0.8rem;"><strong>Cooking Styles:</strong><a *ngFor="let ing of recipes[i].cookingStyles; index as i ">&nbsp;{{recipe?.cookingStyles[i].cookingStyle}},</a></p>
+              <p style="background-color: rgba(255, 185, 127, 0.3);border-radius: 0.8rem;"><strong>Categories:</strong><a *ngFor="let ing of recipes[i].categories; index as i ">&nbsp;{{recipe?.categories[i].category}},</a></p>
             </div>
             <div class="col-2" style="align-self: flex-end;">
-              <a href="/recipes/{{id}}" class="btn btn-primary">Try &rarr;</a>
+               <a class="btn btn-primary" (click) = 'recipeService.setRecipeID(recipe?.id)' [routerLink] = "['/recipe']" >Try &rarr;</a>
             </div>
           </div>
         </div>
       </div>
   </div>
-  </div>>
-</div>-->
+  <!-- </div> -->
+<!-- </div> -->
+</div>

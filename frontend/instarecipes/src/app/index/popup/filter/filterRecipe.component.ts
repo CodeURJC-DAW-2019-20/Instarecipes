@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ViewChildren } from '@angular/core';
 import { Allergen } from 'src/app/Interfaces/allergen.model';
 import { Ingredient } from 'src/app/Interfaces/ingredient.model';
 import { ProfileService } from 'src/app/services/profile.service';
@@ -31,13 +31,16 @@ export class FilterRecipeComponent implements OnInit, AfterViewInit{
     @ViewChild('allergensSSearch') allergensString: ElementRef;
     @ViewChild('allergensSList') allgList: ElementRef;
 
+    @ViewChild('selectedOption') selectedOption: ElementRef;
+    //@ViewChildren('selectedOption') selectedOption: ElementRef;
+
   constructor(
     private profileService: ProfileService,
     ) {
       this.filteredSearchDTO = { ingredients: [], categories: [], cookingStyles: [], allergens: [] }
     }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
    // console.log("afterinit");
    // console.log(this.ingredientsString.nativeElement.value);
    import('../../../../assets/js/filter_search_btn.js');
@@ -62,8 +65,8 @@ export class FilterRecipeComponent implements OnInit, AfterViewInit{
     this.profileService.getAllIngredients().subscribe(
       ingredients => {
         this.ingredients = ingredients;
-        this.ingredients.forEach(element => this.ingString = this.ingString + element.ingredient + ",");
-        //this.ingList.nativeElement.setAttribute("value",this.ingString);
+      //  this.ingredients.forEach(element => this.ingString = this.ingString + element.ingredient + ",");
+       // this.ingList.nativeElement.setAttribute("value",this.ingString);
       });
   }
 
@@ -82,11 +85,22 @@ export class FilterRecipeComponent implements OnInit, AfterViewInit{
   }
 
   postFilterRecipe() {
-    // this.filteredSearchDTO.ingredients.push(this.ingredientsString.nativeElement.value);
+    let ings = this.selectedOption.nativeElement.querySelectorAll("tr td:first-child select");
+    console.log(ings.length);
+
+    ings.forEach(element => {
+      this.filteredSearchDTO.ingredients.push(element.value);
+      console.log(element.value);
+    });
+
     console.log(this.filteredSearchDTO);
+
   }
 
-  seeJSON() {
+  seeJSON(data: any) {
+   // console.log(this.selectedOption.nativeElement.value);
+   // console.log(data);
+    //this.getIngredients();
     console.log(this.filteredSearchDTO);
   }
 }
