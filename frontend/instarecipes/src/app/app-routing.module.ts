@@ -26,8 +26,8 @@ const routes: Routes = [
   { path: 'signUpExtended', component: SecondComponent },
   { path: 'users', component: UserSearchComponent },
   { path: 'recipe-search', component: RecipeSearchComponent },
-  { path: 'user-profile', component: UserComponent},
-  { path: 'users/:id', redirectTo: 'profile'},
+  { path: 'user-profile', component: UserComponent },
+  { path: 'users/:id', component: ProfileComponent },
   { path: 'error', component: ErrorComponent },
   { path: 'hola', component:   ItemsComponent },
 

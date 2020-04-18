@@ -5,6 +5,8 @@ import { User } from '../Interfaces/user.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthenticationService } from '../services/authentication.service';
 import { Recipe } from '../Interfaces/recipe.model';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'profile',
@@ -24,14 +26,18 @@ export class ProfileComponent implements OnInit, AfterViewInit{
   n_likes: number = 0;
 
   constructor(private profileService: ProfileService, private domSanitizer: DomSanitizer,
-              public authService: AuthenticationService, private userService: UserService){ }
+              public authService: AuthenticationService, private userService: UserService,
+              private router: ActivatedRoute){ }
 
   ngOnInit(){
-    // if(!this.a){
-    this.id_user = this.authService.user.id;
-    // }else{
-      // this.id_user = history.state.data.a;
-    // }
+    console.log("ID: " + this.router.snapshot.paramMap.get('id'));
+    if(!this.router.snapshot.paramMap.get('id')){
+      this.id_user = this.authService.user.id;
+      console.log("Welcome to your profile");
+    }else{
+      this.id_user = +(this.router.snapshot.paramMap.get('id'));
+      console.log("Welcome to jurasic park");
+    }
     this.get_user_info();
     this.get_avatar();
     this.get_background();

@@ -1,5 +1,5 @@
 <div class="wrapper d-flex align-items-stretch" style="margin-top: 2%;">
-  <!-- para añadir la restriccion de quitar el popup del admin: *ngIf = "authService.isAdmin" -->
+    <!-- para añadir la restriccion de quitar el popup del admin: *ngIf = "authService.isAdmin" -->
     <nav id="sidebar" class="active" style="background-color:rgba(0, 0, 0, 0.6)">
         <div class="custom-menu">
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
@@ -33,13 +33,13 @@
             </ul>
         </div>
     </nav>
-    <user [n_likes]="n_likes" [user_recipes]="user_recipes" [avatar]="avatar" [background]="background" [followers_users]="followers_users" [following_users]="following_users"></user>
+    <user [user]="user" [n_likes]="n_likes" [user_recipes]="user_recipes" [avatar]="avatar" [background]="background" [followers_users]="followers_users" [following_users]="following_users"></user>
     <popup-edit-profile></popup-edit-profile>
     <!-- Navigations -->
-    <div style = "height: 100%;  width: 100%;">
-      <requests style = "height: 100%;  width: 100%;" ></requests>
-      <users-list style = "height: 100%;  width: 100%;" ></users-list>
-      <items style = "height: 100%;  width: 100%;" ></items>
+    <div style="height: 100%;  width: 100%;">
+        <requests style="height: 100%;  width: 100%;"></requests>
+        <users-list style="height: 100%;  width: 100%;"></users-list>
+        <items style="height: 100%;  width: 100%;"></items>
     </div>
 </div>
 <!-- Copyright Section -->

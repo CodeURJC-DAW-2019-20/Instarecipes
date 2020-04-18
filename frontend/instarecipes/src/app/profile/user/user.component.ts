@@ -11,8 +11,6 @@ import { Recipe } from 'src/app/Interfaces/recipe.model';
 })
 export class UserComponent implements OnInit {
 
-  user: User;
-
   @Input()
   avatar: any;
   @Input()
@@ -25,6 +23,8 @@ export class UserComponent implements OnInit {
   user_recipes: Recipe[];
   @Input()
   n_likes: number;
+  @Input()
+  user: User;
   
 /*   a = history.state.data.a;
  */  constructor(public authService: AuthenticationService) { }

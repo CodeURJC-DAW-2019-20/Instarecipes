@@ -36,10 +36,8 @@ export class RecentComponent implements OnInit{
         recipes => {
           this.recipes = recipes as Recipe[];
           if(recipes.length <= 2) {
-            this.userAvatar(recipes[recipes.length-2]);
             this.recipeStepImage(recipes[recipes.length-2], 1)
           };
-          this.userAvatar(recipes[recipes.length-1]);
           this.recipeStepImage(recipes[recipes.length-1], 1);
           this.button1.nativeElement.removeAttribute("hidden");
           this.button2.nativeElement.setAttribute("hidden", "");
@@ -75,6 +73,7 @@ export class RecentComponent implements OnInit{
         data => {
           var urlCreator = window.URL;
           this.image.push(this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(data)));
+          this.userAvatar(r);
         }
       );
     }
