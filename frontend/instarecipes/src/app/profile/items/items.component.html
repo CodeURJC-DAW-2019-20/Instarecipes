@@ -24,13 +24,12 @@
         <div class="container">
             <p class="masthead-subheading font-weight-light mb-0">Select type</p>
             <div class="row">
-                <select id="filter-item" class="col-5" style="height: 50px;">
-            <!-- <option>Recipes</option> -->
-            <option value="All">All</option>
-            <option value="Ingredients">Ingredients</option>
-            <option value="Categories">Categories</option>
-            <option value="Cooking style">Cooking style</option>
-          </select>
+              <select id="filter-item" class="col-5" style="height: 50px;">
+                <option value="All">All</option>
+                <option value="Ingredients">Ingredients</option>
+                <option value="Categories">Categories</option>
+                <option value="Cooking style">Cooking style</option>
+              </select>
             </div>
             <!-- Icon Divider -->
             <div class="divider-custom">
@@ -52,56 +51,50 @@
                 </div>
             </div>
             <div class="scrolling container" style="height: 100%;background-color: rgba(0, 0, 0, 0.2);">
-                <div id="itemsIng">
-                    <!-- {{#ingredientsList}} -->
+                <div *ngFor="let ingredient of ingredients; index as i" id="itemsIng">
                     <!-- Type x -->
                     <div class="row" style="align-items: center;">
                         <div class="col-4">
-                            <h3 style="text-align:center;"># -index</h3>
+                            <h3 style="text-align:center;"># {{i+1}}</h3>
                         </div>
                         <div class="col-4">
                             <h6 style="text-align:center;">Ingredient</h6>
                         </div>
                         <div class="col-4">
-                            <p style="text-align:center;">ingredient</p>
+                            <p style="text-align:center;">{{ingredient.ingredient}}</p>
                         </div>
                     </div>
                     <hr>
-                    <!-- {{/ingredientsList}} -->
                 </div>
-                <div id="itemsCat">
-                    <!-- {{#categoriesList}} -->
+                <div *ngFor="let category of categories; index as i" id="itemsCat">
                     <!-- Type x -->
                     <div class="row" style="align-items: center;">
                         <div class="col-4">
-                            <h3 style="text-align:center;"># -index</h3>
+                            <h3 style="text-align:center;"># {{i+1}}</h3>
                         </div>
                         <div class="col-4">
                             <h6 style="text-align:center;">Category</h6>
                         </div>
                         <div class="col-4">
-                            <p style="text-align:center;">category</p>
+                            <p style="text-align:center;">{{category.category}}</p>
                         </div>
                     </div>
                     <hr>
-                    <!-- {{/categoriesList}} -->
                 </div>
-                <div id="itemsCS">
-                    <!-- {{#cookingStylesList}} -->
+                <div *ngFor="let cookingStyle of cookingStyles; index as i" id="itemsCS">
                     <!-- Type x -->
                     <div class="row" style="align-items: center;">
                         <div class="col-4">
-                            <h3 style="text-align:center;"># -index</h3>
+                            <h3 style="text-align:center;"># {{i+1}}</h3>
                         </div>
                         <div class="col-4">
                             <h6 style="text-align:center;">Cooking Style</h6>
                         </div>
                         <div class="col-4">
-                            <p style="text-align:center;">cookingStyle</p>
+                            <p style="text-align:center;">{{cookingStyle.cookingStyle}}</p>
                         </div>
                     </div>
                     <hr>
-                    <!-- {{/cookingStylesList}} -->
                 </div>
             </div>
             <hr>

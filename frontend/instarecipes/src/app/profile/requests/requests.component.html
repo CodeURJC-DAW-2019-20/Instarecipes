@@ -19,80 +19,73 @@
         </div>
     </header>
     <!-- Publications Section -->
-    <section class="page-section publications" id="publications">
-        <div class="container">
-            <!-- <p class="masthead-subheading font-weight-light mb-0">Search type of item</p>
-        <select id="typeOfRequests" style="height: 50px;width: 300px;">
-          <option value="allRequests">All</option>
-          <option value="ingredientsRequestsOrders">Ingredients</option>
-          <option value="categoriesRequestsOrders">Categories</option>
-          <option value="cookingStylesRequests">Cooking style</option>
-        </select> -->
-            <!-- Icon Divider -->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon">
-                    <i class="fas fa-star"></i>
+  <section class="page-section publications" id="publications">
+    <div class="container">
+      <!-- Icon Divider -->
+      <div class="divider-custom">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon">
+              <i class="fas fa-star"></i>
+          </div>
+          <div class="divider-custom-line"></div>
+      </div>
+      <div class="scrolling container" style="height: 100%; width: 100%;background-color: rgba(0, 0, 0, 0.2);">
+          <table style="text-align: center;">
+              <tr style="line-break: auto;">
+                  <th>
+                      <p class="text-center text-uppercase text-secondary mb-0">User</p>
+                  </th>
+                  <th>
+                      <p class="text-center text-uppercase text-secondary mb-0">Type</p>
+                  </th>
+                  <th>
+                      <p class="text-center text-uppercase text-secondary mb-0">Value</p>
+                  </th>
+                  <th>
+                      <p class="text-center text-uppercase text-secondary mb-0">Action</p>
+                  </th>
+              </tr>
+          </table>
+          <hr>
+          <!-- Request x -->
+          <div *ngFor="let request of requests; index as i">
+          <form class="row" style="align-items: center;" id="formItemRequest-index">
+              <div class="col-2">
+                  <img class="d-flex mr-3 rounded-circle profile-border" [src]="avatars[i]" alt="" style="width:100px; height: 100px; object-fit: cover;">
+              </div>
+              <div class="col-2">
+                  <h6 style="text-align:left;">{{request?.username.name}}&nbsp;{{request?.username.surname}}</h6>
+                  <a style="text-align:left; cursor:pointer;" (click) = "visitProfile(request?.username.id)">@{{request?.username.username}}</a>
+              </div>
+              <div class="col-3">
+                  <h6 class="btn-xl" type="text" style="text-align:left;">{{request?.typeOfRequest}}</h6>
+                  <input name="typeOfItemRequest" value="typeOfRequest" hidden />
+              </div>
+              <div class="col-3">
+                <div *ngIf = "request?.itemExists">
+                  <h6 class="btn-xl" style="text-align:left; color: red;">
+                    {{request?.ingredientContent}}{{request?.categoryContent}}{{request?.cookingStyleContent}}</h6>
+                  <input #itemContent name="itemContent" value="{{request?.ingredientContent}}{{request?.categoryContent}}{{request?.cookingStyleContent}}" hidden />
+                  <p>{{request?.typeOfRequest}}&nbsp;"{{request?.ingredientContent}}{{request?.categoryContent}}{{request?.cookingStyleContent}}"&nbsp;already exists!
+                  </p>
                 </div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <div class="scrolling container" style="height: 100%; width: 100%;background-color: rgba(0, 0, 0, 0.2);">
-                <table style="text-align: center;">
-                    <tr style="line-break: auto;">
-                        <th>
-                            <p class="text-center text-uppercase text-secondary mb-0">User</p>
-                        </th>
-                        <th>
-                            <p class="text-center text-uppercase text-secondary mb-0">Type</p>
-                        </th>
-                        <th>
-                            <p class="text-center text-uppercase text-secondary mb-0">Value</p>
-                        </th>
-                        <th>
-                            <p class="text-center text-uppercase text-secondary mb-0">Action</p>
-                        </th>
-                    </tr>
-                </table>
-                <hr>
-                <!-- {{#allRequests}} -->
-                <!-- Request x -->
-                <form class="row" style="align-items: center;" id="formItemRequest-index">
-                    <div class="col-2">
-                        <img class="d-flex mr-3 rounded-circle profile-border" src="" alt="" style="width:100px; height: 100px; object-fit: cover;">
-                    </div>
-                    <div class="col-2">
-                        <h6 style="text-align:left;">username.name&nbsp;username.surname</h6>
-                        <a style="text-align:left;" href="/users/username.id">@username.username</a>
-
-                    </div>
-                    <div class="col-3">
-                        <h6 class="btn-xl" type="text" style="text-align:left;">typeOfRequest</h6>
-                        <input name="typeOfItemRequest" value="typeOfRequest" hidden />
-                    </div>
-                    <div class="col-3">
-                        <!-- {{#itemExists}} -->
-                        <h6 class="btn-xl" style="text-align:left; color: red;">
-                            ingredientContentcategoryContentcookingStyleContent</h6>
-                        <input name="itemContent" value="ingredientContentcategoryContentcookingStyleContent" hidden />
-                        <p>typeOfRequest&nbsp;"ingredientContentcategoryContentcookingStyleContent"&nbsp;already exists!
-                        </p>
-                        <!-- {{/itemExists}} -->
-                        <!-- {{^itemExists}} -->
-                        <h6 class="btn-xl" style="text-align:left; color: green;">
-                            ingredientContentcategoryContentcookingStyleContent</h6>
-                        <input name="itemContent" value="ingredientContentcategoryContentcookingStyleContent" hidden />
-                        <!-- {{/itemExists}} -->
-                    </div>
-                    <div class="col-2" style="display: flex; height:fit-content;">
-                        <button type="submit" name="action" value="accept" class="btn btn-outline-primary fa fa-check" style="margin-right: 5%;border-radius: 50%;"></button>
-                        <button type="submit" name="action" value="decline" class="btn btn-outline-danger fa fa-remove" style="border-radius: 50%;"></button>
-                        <input name="id_request" value="id" type="hidden">
-                    </div>
-                </form>
-                <hr>
-                <!-- {{/allRequests}} -->
-            </div>
-            <hr>
-        </div>
-    </section>
+                <div *ngIf = "!request?.itemExists">
+                  <h6 class="btn-xl" style="text-align:left; color: green;">
+                    {{request?.ingredientContent}}{{request?.categoryContent}}{{request?.cookingStyleContent}}</h6>
+                <input #itemContent name="itemContent" value="{{request?.ingredientContent}}{{request?.categoryContent}}{{request?.cookingStyleContent}}" hidden />
+                </div>
+              </div>
+              <div class="col-2" style="display: flex; height:fit-content;">
+                <!-- No soy capaz de coger más que el primer valor solo!!!!!!!!!!!!!!! -->
+                  <button type="submit" value="accept" class="btn btn-outline-primary fa fa-check" (click) = "acceptRequest();" style="margin-right: 5%;border-radius: 50%;"></button>
+                  <button type="submit" name="action" value="decline" class="btn btn-outline-danger fa fa-remove" style="border-radius: 50%;"></button>
+                  <input name="id_request" value="id" type="hidden">
+              </div>
+          </form>
+          <hr>
+          </div>
+      </div>
+      <hr>
+    </div>
+  </section>
 </div>

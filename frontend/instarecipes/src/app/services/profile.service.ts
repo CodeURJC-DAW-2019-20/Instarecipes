@@ -9,6 +9,7 @@ import { Ingredient } from '../Interfaces/ingredient.model';
 import { CookingStyle } from '../Interfaces/cookingStyle.model';
 import { User } from '../Interfaces/user.model';
 import { Recipe } from '../Interfaces/recipe.model';
+import { Request } from '../Interfaces/request.model';
 
 const BASE_URL: string = "/api/profile";
 
@@ -50,6 +51,24 @@ export class ProfileService {
     return this.httpClient.get(BASE_URL + "/admin/users").pipe(
       catchError(error => this.handleError(error))
     ) as Observable<User[]>;
+  }
+
+  getRequestList(): Observable<Request[]> {
+    return this.httpClient.get(BASE_URL + "/admin/requests").pipe(
+      catchError(error => this.handleError(error))
+    ) as Observable<Request[]>;
+  }
+
+  ActionItemRequest(typeOfRequest: string, itemContent: string, action: string, id_request: string): Observable<Request[]> {
+    const body = JSON.stringify(action);
+    const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+    });
+    console.log(action);
+    return this.httpClient.get(BASE_URL + "actionItemRequest?typeOfRequest=" + typeOfRequest + "&itemContent=" + itemContent +
+     "&action" + action + "&id_request=" + id_request).pipe(
+        catchError(error => this.handleError(error))
+      ) as Observable<Request[]>
   }
 
   getUser(id_user: number): Observable<User> {
