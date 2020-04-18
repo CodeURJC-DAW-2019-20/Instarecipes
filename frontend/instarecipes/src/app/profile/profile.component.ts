@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import {Component,OnInit} from '@angular/core';
 import { UserService } from '../services/user.service';
 import { ProfileService } from '../services/profile.service';
 import { Router } from '@angular/router';
@@ -8,11 +8,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
-  selector: 'profile',
+  selector: 'app-home',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit,AfterViewInit{
+export class ProfileComponent{
   users: User[] = []
   avatar: any[] = [];
   user: User;
@@ -30,14 +30,6 @@ export class ProfileComponent implements OnInit,AfterViewInit{
     this.parts=this.href.split('/');
     this.id_user=Number(this.parts[-1]);
     this.refresh(this.id_user);
-
-
-
-  }
-
-  ngAfterViewInit(){
-    import ('../../assets/js/main2.js')
-
   }
 
   refresh(id_user : number){

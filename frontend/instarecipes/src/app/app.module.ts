@@ -23,7 +23,7 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeContentComponent } from './recipe/recipe-content/recipe-content.component';
 import { RecipeStepsComponent } from './recipe/recipe-steps/recipe-steps.component';
 import { ProfileComponent } from './profile/profile.component';
-import { UserComponent } from './profile/user/user.component';
+import { UsersComponent } from './profile/users/users.component';
 import { ItemsComponent } from './profile/items/items.component';
 import { FirstComponent } from './signUp10/first/first.component';
 import { SecondComponent } from './signUp10/second/second.component';
@@ -58,7 +58,7 @@ import { StepComponent } from './index/popup/add/step.component';
     RecipeContentComponent,
     RecipeStepsComponent,
     ProfileComponent,
-    UserComponent,
+    UsersComponent,
     ItemsComponent,
     FirstComponent,
     SecondComponent,
