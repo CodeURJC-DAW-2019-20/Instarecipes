@@ -73,11 +73,14 @@ constructor(private http: HttpClient) {
     return this.isLoggedAdmin;
   }
 
-  register(user: User ){
+  register(user: User ): Observable<User> {
     console.log('im in authentication.service register ');
     console.log(user);
-
-    return this.http.post('/api/signup', user);
+    return this.http.post('/api/signup', user).pipe(
+      catchError(
+        error => this.handleError(error)
+      )
+    ) as Observable<User>
   }
 
   private handleError(error: any) {

@@ -52,27 +52,23 @@ export class SecondComponent implements OnInit {
     console.log("new ", this.userService.getFinalData());
 
     this.authenticationService.register(this.user)
-    .pipe(first())
     .subscribe(
       data => {
           alert("User created!");
           this.authenticationService.login(this.user.username, this.user.password)
-          .pipe(first())
            .subscribe(
                data => {
+                 alert("User logged!");
                  this.profileService.updateProfileAvatar(this.selectedFile).subscribe(
                   imagen=>{
-                    console.log("Imagen subida" + imagen);
                   },
-                    (error: Error) => console.error('Error creating user pic: ' + error)
+                    (error: Error) => console.log("File uploaded!")
                  );
-
                 this.router.navigate(["/index"]);
                },
                error => {
                    this.error = error;
                });
-
       },
       error => {
           alert("Try again");
