@@ -31,11 +31,17 @@ export class UserService {
     ) as Observable<number>;
   }
 
+  getAvatarProfile(id: number): Observable<Blob> {
+    return this.http.get(BASE_URL + id + '/image').pipe(
+      catchError(error => this.handleError(error))
+     ) as Observable<Blob>;
+  }
+
   private handleError(error: any) {
 		console.error(error);
 		return Observable.throw("Server error (" + error.status + "): " + error.text())
   }
-  
+
   setJSONData(val: object) {
     this.jsonData = val;
   }

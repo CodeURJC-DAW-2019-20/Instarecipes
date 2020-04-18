@@ -24,6 +24,7 @@ export class RecipeContentComponent implements OnInit {
   step: Step[] = [];
   liked: boolean = false;
   likesUsers: User[] = [];
+  avatar: any;
 
   constructor(
     private recipesService: RecipesService,
@@ -46,6 +47,7 @@ export class RecipeContentComponent implements OnInit {
         this.didHeLiked();
         this.getAllLikes();
         this.getPublications();
+        this.getAvatar(this.recipe.username.id);
         this.likes = recipe.likes;
       }
     );
@@ -108,5 +110,13 @@ export class RecipeContentComponent implements OnInit {
     this.liked = true;
     this.likes += 1;
     this.allLikes += 1;
+  }
+  getAvatar(id_user: number) {
+      this.recipesService.getRecipeAvatar(id_user).subscribe(
+        data => {
+          var urlCreator = window.URL;
+          this.avatar = this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(data));
+        }
+      );
   }
 }

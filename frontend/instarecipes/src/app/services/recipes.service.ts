@@ -28,7 +28,7 @@ export class RecipesService {
 
   getLastRecipeId(): Observable<number>{
     return this.httpClient.get(BASE_URL + "last").pipe(
-      catchError(error => this.handleError(error)) 
+      catchError(error => this.handleError(error))
     ) as Observable<number>;
   }
 
@@ -106,6 +106,16 @@ export class RecipesService {
       'Content-Type': 'application/json',
   });
     return this.httpClient.post(BASE_URL + id_recipe + '/recipePressLike', {headers}).pipe(
+      catchError(
+        error => this.handleError(error)
+      )
+    );
+  }
+  getComments(id_recipe: number) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+  });
+    return this.httpClient.get(BASE_URL + id_recipe + '/comments', {headers}).pipe(
       catchError(
         error => this.handleError(error)
       )
