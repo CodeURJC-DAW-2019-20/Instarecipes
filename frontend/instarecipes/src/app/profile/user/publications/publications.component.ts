@@ -13,6 +13,10 @@ export class PublicationsComponent implements OnInit, OnChanges {
 
   @Input()
   user_recipes: Recipe[];
+  @Input()
+  avatar: any;
+  @Input()
+  background: any;
 
   images: any[] = [];
 

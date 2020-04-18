@@ -20,16 +20,16 @@
                         <div class="divider-custom-line"></div>
                     </div>
                     <!-- Form -->
-                    <form method="post" action="/settings" enctype="multipart/form-data">
+                    <form enctype="multipart/form-data">
                         <div class="row" style="position: relative;">
                             <div class="col-6" style="position: absolute; z-index: 1050;left: 25%;top: 15%;">
                                 <!--Avatar-->
                                 <div style="position: relative;">
-                                    <img id="preview-img-file" style="width:125px;height:125px;border-radius:50%;object-fit: cover;" src="" />
+                                    <img id="preview-img-file" style="width:125px;height:125px;border-radius:50%;object-fit: cover;" [src]="avatar" />
                                     <div style="position: absolute;width: 100%;">
                                         <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem; 
                             border:1px solid rgb(23, 162, 184); text-align:center;padding:0;right:0;width:30%;cursor:pointer">
-                              <input id="file-input" value="/temp/avatars/image-actualUser.id.jpg" hidden type="file" name="avatarFile" accept=".jpg, .jpeg" />
+                              <!-- <input id="file-input" value="" hidden type="file" name="avatarFile" accept=".jpg, .jpeg" /> -->
                               <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                             </label>
                                     </div>
@@ -38,11 +38,11 @@
                             <div class="col-12">
                                 <!--Background-->
                                 <div style="position: relative;">
-                                    <img id="preview-bg-file" src="" class="img-blur2" style="object-fit:cover;height:200px;width:100%;border-radius: 0.5rem;" />
+                                    <img id="preview-bg-file" [src]="background" class="img-blur2" style="object-fit:cover;height:200px;width:100%;border-radius: 0.5rem;" />
                                     <div style="position: absolute;width: 25%;right:1%;bottom: 0;">
                                         <label for="bg-input" class="btn-outline-primary" style="border-radius:0.5rem;
                             border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:100%;cursor:pointer">
-                              <input id="bg-input" value="/temp/backgrounds/image-actualUser.id.jpg" hidden type="file" name="backgroundFile" accept=".jpg, .jpeg" />
+                              <!-- <input id="bg-input" value="" hidden type="file" name="backgroundFile" accept=".jpg, .jpeg" /> -->
                               <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
                             </label>
                                     </div>

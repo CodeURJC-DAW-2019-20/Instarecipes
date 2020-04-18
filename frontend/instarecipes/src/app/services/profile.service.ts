@@ -62,7 +62,17 @@ export class ProfileService {
     let head = new HttpHeaders();
     head = head.set('Content-Type', 'image/jpeg');
 
-    return this.httpClient.get("/api/users" + "/" + id_user + "/image", {
+    return this.httpClient.get("/api/users/" + id_user + "/image", {
+      headers: head, responseType: "blob"}).pipe(
+        catchError(error => this.handleError(error))
+    ) as Observable<Blob>;
+  }
+
+  getProfileBackground(id_user: number): Observable<Blob> {
+    let head = new HttpHeaders();
+    head = head.set('Content-Type', 'image/jpeg');
+
+    return this.httpClient.get("/api/users/" + id_user + "/background", {
       headers: head, responseType: "blob"}).pipe(
         catchError(error => this.handleError(error))
     ) as Observable<Blob>;

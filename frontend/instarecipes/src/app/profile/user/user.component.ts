@@ -16,6 +16,8 @@ export class UserComponent implements OnInit {
   @Input()
   avatar: any;
   @Input()
+  background: any;
+  @Input()
   following_users: User[];
   @Input()
   followers_users: User[];

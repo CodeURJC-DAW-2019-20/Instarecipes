@@ -108,6 +108,23 @@ public class UsersRestController {
       }
     }
 
+    //SHOW OTHERS BACKGROUND
+	@GetMapping(value = "{id}/background", produces = MediaType.IMAGE_JPEG_VALUE)
+	public ResponseEntity<byte[]> getBackgroundImage(@PathVariable Long id) throws IOException {
+		if(userSession.isLoggedUser()){
+			User user = usersRepository.findById(id).get();
+			if(user.getImageBackground().length > 0){
+				byte[] image = user.getImageBackground();
+				return new ResponseEntity<>(image, HttpStatus.OK);
+			}else{
+				File file = new File("temp/backgrounds/image-"+user.getId()+".jpg");
+				return new ResponseEntity<>(Files.readAllBytes(file.toPath()), HttpStatus.OK);
+			}
+		}else{
+			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+		}
+	}
+
     // LIST OF THE USER'S FOLLOWERS AFTER PRESS UNFOLLOW ACTION
     @JsonView(UsersRestController.UsersFF.class)
     @PutMapping("/{id}/unfollowAction")

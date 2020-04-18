@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit, AfterViewInit{
   followers_users: User[] = [];
   following_users: User[] = [];
   avatar: any = null;
+  background: any = null;
   user: User = null;
   user_recipes: any[] = [];
   id_user: number;
@@ -33,6 +34,7 @@ export class ProfileComponent implements OnInit, AfterViewInit{
     // }
     this.get_user_info();
     this.get_avatar();
+    this.get_background();
     this.get_publications();
     this.get_followers_and_following();
     this.get_total_likes();
@@ -57,6 +59,15 @@ export class ProfileComponent implements OnInit, AfterViewInit{
       avatar => {
         var urlCreator = window.URL;
         this.avatar = this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(avatar));
+      }
+    );
+  }
+
+  get_background() {
+    this.profileService.getProfileBackground(this.id_user).subscribe(
+      background => {
+        var urlCreator = window.URL;
+        this.background = this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(background));
       }
     );
   }
