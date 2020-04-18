@@ -23,7 +23,6 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { RecipeContentComponent } from './recipe/recipe-content/recipe-content.component';
 import { RecipeStepsComponent } from './recipe/recipe-steps/recipe-steps.component';
 import { ProfileComponent } from './profile/profile.component';
-import { UsersComponent } from './profile/users/users.component';
 import { ItemsComponent } from './profile/items/items.component';
 import { FirstComponent } from './signUp10/first/first.component';
 import { SecondComponent } from './signUp10/second/second.component';
@@ -32,7 +31,6 @@ import { FilterRecipeComponent } from './index/popup/filter/filterRecipe.compone
 import { RankingComponent } from './ranking/ranking.component';
 import { ProfileService } from './services/profile.service';
 import { RequestsComponent } from './profile/requests/requests.component';
-import { SearchComponent } from './search/search.component';
 import { UserSearchComponent } from './search/user-search/user-search.component';
 import { FilteredSearchComponent } from './search/filtered-search/filtered-search.component';
 import { RecipeService } from './services/recipe.service';
@@ -45,6 +43,7 @@ import { EditProfileComponent } from './profile/user/popup/editProfile/editProfi
 import { SendItemRequestComponent } from './profile/user/popup/sendItemRequest/sendItemRequest.component';
 import { FollowersComponent } from './profile/user/popup/followers/followers.component';
 import { FollowingComponent } from './profile/user/popup/following/following.component';
+import { UserComponent } from './profile/user/user.component';
 
 @NgModule({
 
@@ -62,7 +61,6 @@ import { FollowingComponent } from './profile/user/popup/following/following.com
     RecipeContentComponent,
     RecipeStepsComponent,
     ProfileComponent,
-    UsersComponent,
     ItemsComponent,
     FirstComponent,
     SecondComponent,
@@ -81,7 +79,8 @@ import { FollowingComponent } from './profile/user/popup/following/following.com
     PublicationsComponent,
     UsersListComponent,
     FollowersComponent,
-    FollowingComponent
+    FollowingComponent,
+    UserComponent
   ],
 
   //Aqui se deben importar los modulos
