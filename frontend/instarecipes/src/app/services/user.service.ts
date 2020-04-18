@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { User } from '../Interfaces/user.model';
 import { catchError } from 'rxjs/operators';
@@ -35,6 +35,22 @@ export class UserService {
     return this.http.get(BASE_URL + id + '/image').pipe(
       catchError(error => this.handleError(error))
      ) as Observable<Blob>;
+  }
+
+  followUser(id: number): Observable<User[]>{
+    const body = JSON.stringify(id);
+    const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+    });
+    return this.http.put(BASE_URL + id + '/followAction', {}).pipe(
+      catchError(error => this.handleError(error))
+     ) as Observable<User[]>;
+  }
+
+  unfollowUser(id: number): Observable<User[]>{
+    return this.http.put(BASE_URL + id + '/unfollowAction', {}).pipe(
+      catchError(error => this.handleError(error))
+     ) as Observable<User[]>;
   }
 
   private handleError(error: any) {

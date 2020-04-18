@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { User } from '../../Interfaces/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Recipe } from 'src/app/Interfaces/recipe.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'user',
@@ -28,12 +29,31 @@ export class UserComponent implements OnInit {
 
   @Input()
   infoLoaded: number;
+
+  @Output()
+  new_followers = new EventEmitter<User[]>();
+  @Output()
+  new_following = new EventEmitter<User[]>();
   
-/*   a = history.state.data.a;
- */  constructor(public authService: AuthenticationService) { }
+  constructor(public authService: AuthenticationService, private userService: UserService) { }
 
   ngOnInit() {
-/*     console.log('heeeeeeeello ', this.a);
- */  }
+  }
+
+  followUser(){
+    this.userService.followUser(this.authService.user.id).subscribe(
+      users =>{
+        this.new_following.emit(users);
+      }
+    );
+  }
+
+  unfollowUser(){
+    this.userService.unfollowUser(this.authService.user.id).subscribe(
+      users =>{
+        this.new_followers.emit(users);
+      }
+    );
+  }
 
 }

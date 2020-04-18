@@ -25,7 +25,7 @@ export class StepComponent {
 		if (event.target.files && event.target.files[0]) {
 		  const reader = new FileReader();
 		  this.imageStepMap.set(this.i+2, event.target.files[0]);
-		  this.mapEvent.emit(this.imageStepMap)
+		  this.mapEvent.emit(this.imageStepMap);
 		  reader.readAsDataURL(event.target.files[0]); // Read file as data url
 		  reader.onloadend = (e) => { // function call once readAsDataUrl is completed
 			this.URL = e.target['result']; // Set image in element

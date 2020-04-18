@@ -5,7 +5,7 @@ import { User } from '../Interfaces/user.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthenticationService } from '../services/authentication.service';
 import { Recipe } from '../Interfaces/recipe.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -26,11 +26,14 @@ export class ProfileComponent implements OnInit, AfterViewInit{
   n_likes: number = 0;
 
   infoLoaded: number = 0; //this one i need to load the 6 methods (info, avatar, background, likes, following and followers)
-  pubsLoaded: boolean = false;
 
   constructor(private profileService: ProfileService, private domSanitizer: DomSanitizer,
-              public authService: AuthenticationService, private userService: UserService,
-              private router: ActivatedRoute){ }
+                public authService: AuthenticationService, private userService: UserService,
+                  private router: ActivatedRoute, private route: Router) {
+      this.route.routeReuseStrategy.shouldReuseRoute = function () {
+        return false;
+      };
+  }
 
   ngOnInit(){
     console.log("ID: " + this.router.snapshot.paramMap.get('id'));
@@ -41,6 +44,18 @@ export class ProfileComponent implements OnInit, AfterViewInit{
       this.id_user = +(this.router.snapshot.paramMap.get('id'));
       console.log("Welcome to jurasic park");
     }
+    this.refresh();
+  }
+
+  refresh(){
+    this.followers_users = [];
+    this.following_users = [];
+    this.avatar = null;
+    this.background = null;
+    this.user = null;
+    this.user_recipes = [];
+    this.n_likes = 0;
+
     this.get_user_info();
     this.get_avatar();
     this.get_background();
@@ -88,7 +103,6 @@ export class ProfileComponent implements OnInit, AfterViewInit{
     this.profileService.getUserRecipes(this.id_user).subscribe(
       recipes => {
         this.user_recipes = recipes as Recipe[];
-        this.pubsLoaded = true;
       }
     );
   }
@@ -115,6 +129,14 @@ export class ProfileComponent implements OnInit, AfterViewInit{
         this.infoLoaded++;
       }
     );
+  }
+
+  receive_new_followers() {
+    this.get_followers_and_following();
+  }
+
+  receive_new_following() {
+    this.get_followers_and_following();
   }
 
 }

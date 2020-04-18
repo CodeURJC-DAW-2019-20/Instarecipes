@@ -59,15 +59,11 @@
             </div>
 
             <div class="unfollow-div-button" style="background-color: transparent;">
-                <form action="/unfollowAction/id" method="post">
-                    <button type="submit" class="btn btn-primary" style="background-color: white; color: rgba(255, 105, 137, 0.658);">Following</button>
-                </form>
+                <button (click)="unfollowUser()" type="submit" class="btn btn-primary" style="background-color: white; color: rgba(255, 105, 137, 0.658);">Following</button>
             </div>
 
             <div class="follow-div-button" style="background-color: transparent;">
-                <form action="/followAction/id" method="post">
-                    <button type="submit" class="btn btn-primary" style="background-color: rgba(255, 105, 137, 0.658); color: white;">Follow</button>
-                </form>
+                <button (click)="followUser()" type="submit" class="btn btn-primary" style="background-color: rgba(255, 105, 137, 0.658); color: white;">Follow</button>
             </div>
 
             <!-- Statistics button pannel -->
