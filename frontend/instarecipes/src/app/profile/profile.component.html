@@ -1,6 +1,6 @@
 <div class="wrapper d-flex align-items-stretch" style="margin-top: 2%;">
     <!-- para añadir la restriccion de quitar el popup del admin: *ngIf = "authService.isAdmin" -->
-    <nav id="sidebar" class="active" style="background-color:rgba(0, 0, 0, 0.6)">
+    <nav *ngIf="(authService.isAdmin)" id="sidebar" class="active" style="background-color:rgba(0, 0, 0, 0.6)">
         <div class="custom-menu">
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
           <i class="fa fa-bars"></i>

@@ -28,7 +28,7 @@ export class RecentComponent implements OnInit{
       public recipeService: RecipeService){ }
 
     ngOnInit(){
-      setInterval(()=> { this.refresh(this.page_size) }, 30 * 1000); //cada 10 segundos se actualiza
+      setInterval(()=> { this.refresh(this.page_size) }, 120 * 1000); //cada 120 segundos se actualiza
     }
 
     refresh(pS: number) {

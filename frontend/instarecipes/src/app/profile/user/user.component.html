@@ -1,7 +1,7 @@
 <div id="content" class="p-4 p-md-5 pt-5" style="padding:0 !important;width: 100%;">
     <header class="masthead bg-primary text-white text-center" style="background-image: url(/assets/images/backgrounds/background2.jpg); background-repeat: no-repeat; background-size: cover;">
         <div class="container d-flex align-items-center flex-column">
-            <div *ngIf="infoLoaded !== 6" class="windows8" style="margin-bottom: 100px; margin-right: 42.5%;">
+            <div *ngIf="infoLoaded < 6" class="windows8" style="margin-bottom: 100px; margin-right: 42.5%;">
                 <div class="wBall" id="wBall_1" style="margin-top: 100px;">
                     <div class="wInnerBall"></div>
                 </div>
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </div>
-        <div *ngIf="infoLoaded === 6" class="container d-flex align-items-center flex-column">
+        <div *ngIf="infoLoaded >= 6" class="container d-flex align-items-center flex-column">
             <!-- Masthead Avatar Image -->
             <div class="rounded-circle">
                 <img class="masthead-avatar mb-5 d-flex mr-3" [src]="avatar" alt="Show profile photo" data-toggle="modal" data-target="#showAvatar" style="object-fit: cover; border-radius: 50%; height: 220px;width: 220px;">
@@ -58,11 +58,11 @@
                 <p class="masthead-subheading font-weight-light mb-0">{{user?.info}}</p>
             </div>
 
-            <div class="unfollow-div-button" style="background-color: transparent;">
+            <div *ngIf="followed_user && (authService.user.id != user.id)" class="unfollow-div-button" style="background-color: transparent;">
                 <button (click)="unfollowUser()" type="submit" class="btn btn-primary" style="background-color: white; color: rgba(255, 105, 137, 0.658);">Following</button>
             </div>
 
-            <div class="follow-div-button" style="background-color: transparent;">
+            <div *ngIf="!followed_user && (authService.user.id != user.id)" class="follow-div-button" style="background-color: transparent;">
                 <button (click)="followUser()" type="submit" class="btn btn-primary" style="background-color: rgba(255, 105, 137, 0.658); color: white;">Follow</button>
             </div>
 
@@ -115,7 +115,7 @@
         </table>
         <!-- Request button pannel -->
     </header>
-    <publications [avatar]="avatar" [background]="background" [user_recipes]="user_recipes"></publications>
+    <publications [user_id]="user?.id" [avatar]="avatar" [background]="background" [user_recipes]="user_recipes"></publications>
     <!--Pop-up-->
     <!-- <popup-edit-profile></popup-edit-profile> ESTA EN EL publications.component.html, donde debe estar-->
     <popup-statistics></popup-statistics>
