@@ -49,8 +49,6 @@ export class SecondComponent implements OnInit {
     delete this.userService.getFinalData()['confPassword'];
     delete this.userService.getFinalData()['fileAvatar'];
 
-    console.log("new ", this.userService.getFinalData());
-
     this.authenticationService.register(this.user)
     .subscribe(
       data => {
@@ -58,12 +56,13 @@ export class SecondComponent implements OnInit {
           this.authenticationService.login(this.user.username, this.user.password)
            .subscribe(
                data => {
-                 alert("User logged!");
-                 this.profileService.updateProfileAvatar(this.selectedFile).subscribe(
-                  imagen=>{
-                  },
-                    (error: Error) => console.log("File uploaded!")
-                 );
+                 if (this.selectedFile != null){
+                  this.profileService.updateProfileAvatar(this.selectedFile).subscribe(
+                    imagen=>{
+                    },
+                      (error: Error) => console.log("File uploaded!")
+                   );
+                 }
                 this.router.navigate(["/index"]);
                },
                error => {
@@ -106,6 +105,5 @@ export class SecondComponent implements OnInit {
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
     console.log(this.selectedFile);
-
   }
 }

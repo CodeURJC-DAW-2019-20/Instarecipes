@@ -116,6 +116,5 @@ public class LoginWebController {
         }
         String saltStr = jump.toString();
         return saltStr;
-
     }
 }
