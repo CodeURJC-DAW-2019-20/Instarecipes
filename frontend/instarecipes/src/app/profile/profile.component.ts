@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit, AfterViewInit{
       this.id_user = +(this.router.snapshot.paramMap.get('id'));
     }
     this.refresh();
+
   }
 
   public loadScript(url: any) {

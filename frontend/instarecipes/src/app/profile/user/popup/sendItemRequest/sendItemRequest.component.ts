@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {Request} from '../../../../Interfaces/request.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ProfileService } from 'src/app/services/profile.service';
@@ -15,15 +15,17 @@ export class SendItemRequestComponent implements OnInit {
   request_:Request=null;
   type: string='';
   content: String='';
+
+  @ViewChild('closebutton') closebutton: ElementRef;
+
   constructor (private profileService: ProfileService,
     public authService: AuthenticationService,private formBuilder: FormBuilder,) {
       this.initConstructor();
   }
   initConstructor(){
-    this.request_ = { username: null, typeOfRequest: '', ingredientContent: '', cookingStyleContent: '',
-    categoryContent: '', itemExists: false, 
-    };
-    
+    this.request_ = {typeOfRequest: '', ingredientContent: '', cookingStyleContent: '',
+    categoryContent: ''};
+
   }
 
 
@@ -36,20 +38,17 @@ export class SendItemRequestComponent implements OnInit {
 
 
   sendRequest(){
-    console.log(this.request_)
-    console.log(this.registerForm.value.content)
-    console.log(this.registerForm.value)
-    console.log(this.type)
-    this.request_.username = this.authService.user;
+    console.log("tipo de request ",this.type);
+    //this.request_.username = this.authService.user;
+    this.typeClick();
+    console.log("I made this request ", this.request_);
+    this.profileService.getRequest(this.request_).subscribe(
+       response => {
+         console.log("request hecha");
+       }
+    );
 
-    //if(this.registerForm.invalid){
-      //return;
-    //}
-    //else{
-      this.typeClick();
-      console.log(this.request_)
-      this.profileService.getRequest(this.request_);
-    //}
+    this.closebutton.nativeElement.click();
   }
 
 

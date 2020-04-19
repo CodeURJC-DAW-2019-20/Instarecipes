@@ -60,11 +60,6 @@ export class ProfileService {
   }
 
   ActionItemRequest(typeOfRequest: string, itemContent: string, action: string, id_request: number): Observable<Request[]> {
-    const body = JSON.stringify(action);
-    const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-    });
-    //actionItemRequest?typeOfRequest=Ingredient&itemContent=Apple&actionaccept&id_request=1
     console.log("SERVICE type of request: ", typeOfRequest," itemContent: ", itemContent," action : ", action, " id request: ", id_request);
     return this.httpClient.get(BASE_URL + "/" + "actionItemRequest?typeOfRequest=" + typeOfRequest + "&itemContent=" + itemContent +
      "&action=" + action + "&id_request=" + id_request).pipe(
@@ -95,9 +90,15 @@ export class ProfileService {
   }
 
   getRequest(request: Request): Observable<Request>{
-    return this.httpClient.get(BASE_URL +"/sendItemRequest" ).pipe(
+    const body = JSON.stringify(request);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    console.log(request);
+    console.log(body);
+    return this.httpClient.post(BASE_URL +"/sendItemRequest", body, {headers}).pipe(
       catchError(error => this.handleError(error))
-    )
+    ) as Observable<Request>
   }
 
   getProfileBackground(id_user: number): Observable<Blob> {
