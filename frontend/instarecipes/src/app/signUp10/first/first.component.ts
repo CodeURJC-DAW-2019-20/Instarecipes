@@ -38,12 +38,8 @@ export class FirstComponent implements OnInit {
             return;
         }
         else {
-            //this.userService.onFormSubmit(this.registerForm.value);
-
-           // console.log(JSON.stringify(this.registerForm.value));
             this.userService.setJSONData(this.registerForm.value);
             this.router.navigate(['/signUpExtended']);
-           // alert(JSON.stringify(this.registerForm.value));
         }
 
     }

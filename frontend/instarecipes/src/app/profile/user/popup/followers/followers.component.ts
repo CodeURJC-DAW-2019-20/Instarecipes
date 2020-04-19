@@ -3,6 +3,7 @@ import { User } from 'src/app/Interfaces/user.model';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'popup-followers',
@@ -18,7 +19,7 @@ export class FollowersComponent implements OnInit {
 
   @ViewChild('closebutton') closebutton: ElementRef;
 
-  constructor(private recipesService: RecipesService, private domSanitizer: DomSanitizer,
+  constructor(private recipesService: RecipesService, private domSanitizer: DomSanitizer, public authService: AuthenticationService,
     private router: Router) {
       this.router.routeReuseStrategy.shouldReuseRoute = function () {
         return false;
@@ -46,8 +47,12 @@ export class FollowersComponent implements OnInit {
   }
 
   visitProfile(id: number){
+    if(this.authService.user.id === id){
+      this.router.navigateByUrl('/profile');
+    }else{
+      this.router.navigateByUrl('/users/'+id);
+    }
     this.closebutton.nativeElement.click();
-    this.router.navigateByUrl('/users/'+id);
   }
 
 }

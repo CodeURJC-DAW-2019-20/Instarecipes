@@ -4,7 +4,7 @@ import { Recipe } from '../Interfaces/recipe.model';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User } from '../Interfaces/user.model';
-import { FilteredSearchDTO } from '../Interfaces/filteredSearchDTO.model';
+import { Router } from '@angular/router';
 
 const BASE_URL: string = "/api/search";
 
@@ -13,20 +13,26 @@ export class SearchService {
   search: String;
   filteredSearchDTO;
 
+
   constructor(
-    private httpClient: HttpClient,
+    private httpClient: HttpClient, private router: Router,
+  ) {  }
 
-  ) {
-      this.filteredSearchDTO = { ingredients: "Potatoes", categories: "", cookingStyles: "", allergens: "" }
-    }
+  setJSONData(val: object) {
+    this.filteredSearchDTO = val;
 
+  }
+
+  getJSONData() {
+    return this.filteredSearchDTO;
+  }
 
   getFilteredRecipes(): Observable<Recipe[]> {
     const body = JSON.stringify(this.filteredSearchDTO);
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
     });
-    console.log(this.filteredSearchDTO);
+    console.log("at search service ", this.filteredSearchDTO);
     return this.httpClient.post(BASE_URL + "/filtered", body , { headers }).pipe(
       catchError(
         error => this.handleError(error)

@@ -1,16 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 import { User } from '../../Interfaces/user.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Recipe } from 'src/app/Interfaces/recipe.model';
-import { UserService } from 'src/app/services/user.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit {
+export class UserComponent implements OnInit, OnChanges {
 
   @Input()
   avatar: any;
@@ -26,34 +26,48 @@ export class UserComponent implements OnInit {
   n_likes: number;
   @Input()
   user: User;
-
   @Input()
   infoLoaded: number;
 
-  @Output()
-  new_followers = new EventEmitter<User[]>();
-  @Output()
-  new_following = new EventEmitter<User[]>();
-  
-  constructor(public authService: AuthenticationService, private userService: UserService) { }
+  user_list_aux: User[] = [];
 
-  ngOnInit() {
+  @Output()
+  new_followers = new EventEmitter<any>();
+  @Output()
+  new_following = new EventEmitter<any>();
+
+  followed_user: boolean = false;
+  
+  constructor(public authService: AuthenticationService, private profileService: ProfileService) { }
+
+  ngOnInit(){
+    this.loadFollowingList();
+  }
+
+  ngOnChanges(){
+  }
+
+  loadFollowingList(){
+    this.profileService.getUserFollowing(this.authService.user.id).subscribe(
+      following => {
+        this.user_list_aux = following as User[];
+        this.user_list_aux.forEach(element => {
+          if(this.user.id === element.id){
+            this.followed_user = true;
+          }
+        });
+      }
+    );
   }
 
   followUser(){
-    this.userService.followUser(this.authService.user.id).subscribe(
-      users =>{
-        this.new_following.emit(users);
-      }
-    );
+    this.followed_user = true;
+    this.new_following.emit(null);
   }
 
   unfollowUser(){
-    this.userService.unfollowUser(this.authService.user.id).subscribe(
-      users =>{
-        this.new_followers.emit(users);
-      }
-    );
+    this.followed_user = false;
+    this.new_followers.emit(null);
   }
 
 }

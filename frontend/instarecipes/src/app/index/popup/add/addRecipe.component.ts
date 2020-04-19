@@ -47,6 +47,8 @@ export class AddRecipeComponent implements OnInit{
   fileToUpload: File = null;
   stepsFiles: Map<number,File> = new Map();
 
+  loadAPI: any;
+
   constructor (private profileService: ProfileService, private recipeService: RecipesService,
     public authService: AuthenticationService) {
       this.initConstructor();
@@ -85,7 +87,10 @@ export class AddRecipeComponent implements OnInit{
             this.allCategories = categories;
             this.allCategories.forEach(element => this.catString = this.catString + element.category + ",");
             this.catList.nativeElement.setAttribute("value",this.catString);
-            import('../../../../assets/js/add_recipe.js');
+            this.loadAPI = new Promise(resolve => {
+              console.log("resolving promise...");
+              this.loadScript();
+            });
           }
         );
       }
@@ -94,6 +99,16 @@ export class AddRecipeComponent implements OnInit{
       allergens => this.allAllergens = allergens
     );
   }
+
+  public loadScript() {
+    console.log("preparing to load...");
+    let node = document.createElement("script");
+    node.src = 'assets/js/add_recipe.js';
+    node.type = "text/javascript";
+    node.async = true;
+    node.charset = "utf-8";
+    document.getElementsByTagName("head")[0].appendChild(node);
+}
 
   starClick(i: number){
     switch (i) {

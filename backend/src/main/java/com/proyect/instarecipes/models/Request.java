@@ -13,7 +13,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class Request{
 
     public interface RequestItems  {}
-
+    
+    @JsonView(RequestItems.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
