@@ -41,7 +41,6 @@ export class RequestsComponent implements OnInit {
          this.requests.forEach(element =>
           this.avatarUsers(element)
          )
-        console.log(request);
       }
     );
   }
@@ -66,16 +65,18 @@ export class RequestsComponent implements OnInit {
   acceptRequest(typeOfRequest: string, itemContent: string, id_request: number) {
   this.profileService.ActionItemRequest(typeOfRequest, itemContent, "accept", id_request).subscribe(
     response => {
-      alert("Petition accepted");
-      location.reload();
+      console.log("Petition accepted");
+      //alert("Petition accepted");
+      this.getRequests();
     });
   }
 
   denyRequest(typeOfRequest: string, itemContent: string, id_request: number) {
     this.profileService.ActionItemRequest(typeOfRequest, itemContent, "decline", id_request).subscribe(
       response => {
-        alert("Petition denied");
-        location.reload();
+        console.log("Petition denied");
+        //alert("Petition denied");
+        this.getRequests();
       });
     }
 }
