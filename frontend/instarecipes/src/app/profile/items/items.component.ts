@@ -16,6 +16,8 @@ export class ItemsComponent implements OnInit {
   categories: Category[] = [];
   cookingStyles: CookingStyle[] = [];
 
+  loadAPI: any;
+
   constructor(private recipesService: RecipesService, private profileService: ProfileService){
   }
 
@@ -27,7 +29,21 @@ export class ItemsComponent implements OnInit {
    this.getAllIngredients();
    this.getAllCategories();
    this.getAllCookingStyles();
-   import("../../../assets/js/admin_profile.js");
+  //  import("../../../assets/js/admin_profile.js");
+    this.loadAPI = new Promise(resolve => {
+      console.log("resolving promise...");
+      this.loadScript();
+    });
+  }
+
+  public loadScript() {
+    console.log("preparing to load...");
+    let node = document.createElement("script");
+    node.src = 'assets/js/admin_profile.js';
+    node.type = "text/javascript";
+    node.async = true;
+    node.charset = "utf-8";
+    document.getElementsByTagName("head")[0].appendChild(node);
   }
 
   getAllIngredients() {

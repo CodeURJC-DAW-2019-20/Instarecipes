@@ -23,8 +23,8 @@ import { RecipeContentComponent } from './recipe/recipe-content/recipe-content.c
 import { RecipeStepsComponent } from './recipe/recipe-steps/recipe-steps.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ItemsComponent } from './profile/items/items.component';
-import { SignUpComponent } from './signUp10/first/signUp.component';
-import { SignUpExtendedComponent } from './signUp10/second/signUpExtended.component';
+import { SignUpComponent } from './signUp/first/signUp.component';
+import { SignUpExtendedComponent } from './signUp/second/signUpExtended.component';
 import { AddRecipeComponent } from './index/popup/add/addRecipe.component';
 import { FilterRecipeComponent } from './index/popup/filter/filterRecipe.component';
 import { RankingComponent } from './ranking/ranking.component';
