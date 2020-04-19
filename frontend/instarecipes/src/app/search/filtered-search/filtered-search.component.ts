@@ -15,14 +15,18 @@ export class FilteredSearchComponent implements OnInit {
   images: any[] = [];
   avatars: any[] = [];
   recipesFounded: boolean = false;
+  filteredSearchDTO;
 
-  constructor(private searchService: SearchService,
-              private domSanitizer: DomSanitizer,
-              private recipesService: RecipesService,
-              public recipeService: RecipeService) { }
+  constructor(
+    private searchService: SearchService,
+    private domSanitizer: DomSanitizer,
+    private recipesService: RecipesService,
+    public recipeService: RecipeService) {
+
+    }
 
   ngOnInit() {
-    console.log("at search component ", this.searchService.getJSON());
+    console.log("second component ", this.searchService.getJSONData());
     this.getRecipes();
   }
 
