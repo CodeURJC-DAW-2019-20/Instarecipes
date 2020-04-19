@@ -4,7 +4,7 @@ import { Recipe } from '../Interfaces/recipe.model';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User } from '../Interfaces/user.model';
-import { FilteredSearchDTO } from '../Interfaces/filteredSearchDTO.model';
+import { Router } from '@angular/router';
 
 const BASE_URL: string = "/api/search";
 
@@ -13,16 +13,17 @@ export class SearchService {
   search: String;
   filteredSearchDTO;
 
+
   constructor(
-    private httpClient: HttpClient,
-  ) { }
+    private httpClient: HttpClient, private router: Router,
+  ) {  }
 
-
-  setJSON(val : object) {
+  setJSONData(val: object) {
     this.filteredSearchDTO = val;
+
   }
 
-  getJSON() {
+  getJSONData() {
     return this.filteredSearchDTO;
   }
 

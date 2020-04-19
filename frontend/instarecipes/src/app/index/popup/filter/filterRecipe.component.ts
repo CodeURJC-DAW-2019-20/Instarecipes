@@ -8,6 +8,7 @@ import { Category } from 'src/app/Interfaces/category.model';
 import { NgForm } from '@angular/forms';
 import { SearchService } from 'src/app/services/search.service.js';
 import { Router } from '@angular/router';
+import { Recipe } from 'src/app/Interfaces/recipe.model.js';
 
 @Component({
   selector: 'popup-filter',
@@ -24,6 +25,7 @@ export class FilterRecipeComponent implements OnInit, AfterViewInit{
     filteredSearchDTO;
     filtersFinal;
     ingString: string = "";
+    recipes: Recipe[] = [];
 
     @ViewChild('ingredientsSSearch') ingredientsString: ElementRef;
     @ViewChild('ingredientsSList') ingList: ElementRef;
@@ -50,8 +52,6 @@ export class FilterRecipeComponent implements OnInit, AfterViewInit{
     }
 
   ngAfterViewInit() {
-   // console.log("afterinit");
-   // console.log(this.ingredientsString.nativeElement.value);
    import('../../../../assets/js/filter_search_btn.js');
   }
 
@@ -118,8 +118,8 @@ export class FilterRecipeComponent implements OnInit, AfterViewInit{
     this.filtersFinal.cookingStyles = this.filteredSearchDTO.cookingStyles.toString();
     this.filtersFinal.allergens = this.filteredSearchDTO.allergens.toString();
 
-    this.searchService.setJSON(this.filtersFinal.value);
-    console.log("the final, este tiiene que ir al search service! ", this.filtersFinal);
+    this.searchService.setJSONData(this.filtersFinal);
+    console.log("the final, este tiene que ir al search service! ", this.filtersFinal);
     this.router.navigate(['/filtered-search']);
   }
 

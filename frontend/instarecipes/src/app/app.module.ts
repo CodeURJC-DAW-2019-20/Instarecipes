@@ -44,6 +44,7 @@ import { SendItemRequestComponent } from './profile/user/popup/sendItemRequest/s
 import { FollowersComponent } from './profile/user/popup/followers/followers.component';
 import { FollowingComponent } from './profile/user/popup/following/following.component';
 import { UserComponent } from './profile/user/user.component';
+import { SearchService } from './services/search.service';
 
 @NgModule({
 
@@ -93,7 +94,7 @@ import { UserComponent } from './profile/user/user.component';
     FormsModule,
   ],
   //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
-  providers: [AuthenticationService, AuthGuard, UserService, RecipesService, ProfileService, RecipeService,
+  providers: [AuthenticationService, AuthGuard, UserService, RecipesService, ProfileService, RecipeService, SearchService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]

@@ -1,21 +1,14 @@
 $(document).ready(function() {
-    var titles1 = document.getElementById("titlesArray").value.slice(1);
-    var likes1 = document.getElementById("likesArray").value.slice(1);
+    var titles1 = document.getElementById("titlesArray").value;
+    var likes1 = document.getElementById("likesArray").value;
 
-    console.log("Titles: " + titles1);
-    console.log("Likes: " + likes1);
-    var lastC = titles1.indexOf("]");
-    var lastE = likes1.indexOf("]");
+    var titles = titles1.split(",");
 
-    var titles2 = titles1.slice(titles1, lastC);
-    var titles = titles2.split(",");
-
-    var likes2 = likes1.slice(likes1, lastE);
-    var likes = likes2.split(",");
+    var likes = likes1.split(",");
 
     var dataPoints = [];
     for (var i = 0; i < likes.length; i++) {
-        var valuePoints = { label: titles[i], y: likes[i] };
+        var valuePoints = { label: titles[i], y: likes[i]};
         dataPoints.push(valuePoints);
     }
 
