@@ -11,9 +11,10 @@ function renderButton() {
 }
 
 function onSignIn(googleUser) {
+  console.log("me ejecuto");
   var profile = googleUser.getBasicProfile();
 
-    //THIS IS ONLY TO VERIFY!! 
+    //THIS IS ONLY TO VERIFY!!
   console.log("ID: " + profile.getId()); // Don't send this directly to your server!
   console.log('Full Name: ' + profile.getName());
   console.log('Given Name: ' + profile.getGivenName());
@@ -24,7 +25,7 @@ function onSignIn(googleUser) {
   console.log("auth", profile.getAuthInstance);
     // The ID token we need to pass to your backend but we won't lol:
   var id_token = googleUser.getAuthResponse().id_token;
-  console.log("ID Token: " + id_token);  
+  console.log("ID Token: " + id_token);
 
     fullName = profile.getName();
     givenName = profile.getGivenName();
@@ -47,7 +48,7 @@ function onSignIn(googleUser) {
     isGUON.setAttribute("value", "yes");
 
   }
- 
+
   function signOut() {
     auth2.signOut().then(function () {
       console.log('User signed out.');

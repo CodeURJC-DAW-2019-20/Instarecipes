@@ -94,6 +94,12 @@ export class ProfileService {
     ) as Observable<Blob>;
   }
 
+  getRequest(request: Request): Observable<Request>{
+    return this.httpClient.get(BASE_URL +"/sendItemRequest" ).pipe(
+      catchError(error => this.handleError(error))
+    )
+  }
+
   getProfileBackground(id_user: number): Observable<Blob> {
     let head = new HttpHeaders();
     head = head.set('Content-Type', 'image/jpeg');
@@ -130,5 +136,15 @@ export class ProfileService {
   private handleError(error: any) {
 		console.error(error);
 		return Observable.throw("Server error (" + error.status + "): " + error.text())
-	}
+  }
+  
+  editProfile(user: User) {
+    const body = JSON.stringify(user);
+    const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+    });
+    return this.httpClient.post<User>("/api/profile", body, { headers }).pipe(
+      catchError(error => this.handleError(error))
+    );
+  }
 }

@@ -1,3 +1,4 @@
+
 <div class="publications-modal modal fade" id="opened-settings-button" tabindex="-1" role="dialog"
     aria-labelledby="publicationsModal6Label" aria-hidden="true">
     <!--change id-->
@@ -21,7 +22,7 @@
                         <div class="divider-custom-line"></div>
                     </div>
                     <!-- Form -->
-                    <form enctype="multipart/form-data">
+                    <form #settingsForm="ngForm" (submit)="editProfile()" novalidate enctype="multipart/form-data">
                         <div class="row" style="position: relative;">
                             <div class="col-6" style="position: absolute; z-index: 1050;left: 25%;top: 15%;">
                                 <!--Avatar-->
@@ -75,7 +76,7 @@
                                     </td>
                                     <td>
                                         <!-- Name -->
-                                        <input type="text" name="name" class="text-secondary"
+                                        <input [(ngModel)]="name" type="text" name="name" class="text-secondary"
                                             style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;"
                                             value="{{authService.user.name}}" required />
                                     </td>
@@ -86,7 +87,7 @@
                                     </td>
                                     <td>
                                         <!-- Surname -->
-                                        <input type="text" name="surname" class="text-secondary"
+                                        <input [(ngModel)]="surname" type="text" name="surname" class="text-secondary"
                                             style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;"
                                             value="{{authService.user.surname}}" required />
                                     </td>
@@ -97,7 +98,7 @@
                                     </td>
                                     <td>
                                         <!-- Bio -->
-                                        <textarea type="text" name="info" style="margin-top:10px;padding:5px;width: 100%;height: 100px;
+                                        <textarea [(ngModel)]="info" type="text" name="info" style="margin-top:10px;padding:5px;width: 100%;height: 100px;
                             border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
                                             onKeyDown="limitText(this.form.info,this.form.countdown,100)"
                                             onKeyUp="limitText(this.form.info,this.form.countdown,100);"
@@ -114,7 +115,7 @@
                                     </td>
                                     <td>
                                         <!--Allergens-->
-                                        <input name="allergens" list="allergenslist" class="form-control" type="text"
+                                        <input [(ngModel)]="allergens" name="allergens" list="allergenslist" class="form-control" type="text"
                                             placeholder="Select an allergen.." onkeypress="return false;">
                                         <datalist id="allergenslist">
                                             <option *ngFor="let a of allAllergens" value="{{a?.allergen}}">
@@ -127,11 +128,13 @@
                             </table>
                         </div>
                         <div style="width: 100%;">
+                          
                             <button type='submit' class="btn btn-primary"
                                 style="margin-top: 20px; height: 50px;border: 1px solid rgb(23, 162, 184);">
                                 Save changes
                             </button>
-                            <input type="hidden" name="_csrf" value="token" />
+                            <button type="button" #closebutton class="close" data-dismiss="modal" hidden></button>
+
                         </div>
                     </form>
                 </div>
