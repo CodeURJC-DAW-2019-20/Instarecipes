@@ -45,6 +45,7 @@ import { FollowersComponent } from './profile/user/popup/followers/followers.com
 import { FollowingComponent } from './profile/user/popup/following/following.component';
 import { UserComponent } from './profile/user/user.component';
 import { SearchService } from './services/search.service';
+import { RankService } from './services/ranking.service';
 
 @NgModule({
 
@@ -67,7 +68,6 @@ import { SearchService } from './services/search.service';
     SecondComponent,
     RecipeComponent,
     AddRecipeComponent,
-    FilterRecipeComponent,
     RankingComponent,
     RequestsComponent,
     EditProfileComponent,
@@ -76,12 +76,13 @@ import { SearchService } from './services/search.service';
     RecipePreviewComponent,
     UserSearchComponent,
     FilteredSearchComponent,
+    FilterRecipeComponent,
     StepComponent,
     PublicationsComponent,
     UsersListComponent,
     FollowersComponent,
     FollowingComponent,
-    UserComponent,
+    UserComponent
   ],
 
   //Aqui se deben importar los modulos
@@ -91,10 +92,10 @@ import { SearchService } from './services/search.service';
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    FormsModule,
+    FormsModule
   ],
   //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
-  providers: [AuthenticationService, AuthGuard, UserService, RecipesService, ProfileService, RecipeService, SearchService,
+  providers: [AuthenticationService, AuthGuard, UserService, RecipesService, ProfileService, RecipeService, SearchService, RankService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]

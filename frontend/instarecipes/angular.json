@@ -36,7 +36,9 @@
                             "src/assets/js/count_chars.js",
                             "src/assets/js/filter_search_btn.js",
                             "src/assets/js/post_comment.js",
-                            "src/assets/js/statistics.js"
+                            "src/assets/js/statistics.js",
+                            "src/assets/js/search.js",
+                            "src/assets/js/filter_search_btn.js"
                         ]
                     },
                     "configurations": {

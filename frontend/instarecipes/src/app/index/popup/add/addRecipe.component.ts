@@ -108,7 +108,7 @@ export class AddRecipeComponent implements OnInit{
     node.async = true;
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
-}
+  }
 
   starClick(i: number){
     switch (i) {
