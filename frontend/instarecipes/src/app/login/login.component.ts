@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit{
        }
 
    ngOnInit() {
-     this.hola();
     this.googleSDK();
 
       this.loginForm = this.formBuilder.group({
@@ -164,14 +163,5 @@ export class LoginComponent implements OnInit{
         (error: Error) => console.log("File uploaded!")
       );
   }
-
-  hola() {
-    this.urlAvatar = "https://lh3.googleusercontent.com/a-/AOh14Gj5UPW3SXm9ywa3uaqwsV0FWH0qz1pRY5xDtlUiPA=s96-c";
-    var blob = new Blob([this.urlAvatar], {type: 'image/jpg'});
-    var file = new File([blob], 'googleAvatar.jpg');
-    console.log(file);
-  }
-
-
 
 }

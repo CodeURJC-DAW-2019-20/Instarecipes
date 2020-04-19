@@ -15,7 +15,7 @@ export class SearchService {
 
 
   constructor(
-    private httpClient: HttpClient, private router: Router,
+    private httpClient: HttpClient,
   ) {  }
 
   setJSONData(val: object) {

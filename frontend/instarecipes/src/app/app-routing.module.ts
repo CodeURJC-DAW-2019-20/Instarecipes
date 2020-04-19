@@ -8,8 +8,8 @@ import { FilteredSearchComponent } from './search/filtered-search/filtered-searc
 import { ProfileComponent } from './profile/profile.component';
 import { UserSearchComponent } from './search/user-search/user-search.component';
 import { RecipeSearchComponent } from './search/recipe-search/recipe-search.component';
-import { FirstComponent } from './signUp10/first/first.component';
-import { SecondComponent } from './signUp10/second/second.component';
+import { SignUpComponent } from './signUp10/first/signUp.component';
+import { SignUpExtendedComponent } from './signUp10/second/signUpExtended.component';
 import { UserComponent } from './profile/user/user.component';
 import { ErrorComponent } from './error/error.component';
 import { ItemsComponent } from './profile/items/items.component';
@@ -22,8 +22,8 @@ const routes: Routes = [
   { path: 'recipe', component: RecipeComponent },
   { path: 'filtered-search', component: FilteredSearchComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'signUp', component: FirstComponent },
-  { path: 'signUpExtended', component: SecondComponent },
+  { path: 'signUp', component: SignUpComponent },
+  { path: 'signUpExtended', component: SignUpExtendedComponent },
   { path: 'users', component: UserSearchComponent },
   { path: 'recipe-search', component: RecipeSearchComponent },
   { path: 'user-profile', component: UserComponent },

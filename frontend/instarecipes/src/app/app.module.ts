@@ -16,7 +16,6 @@ import { UserService } from './services/user.service';
 import { RecipesService } from './services/recipes.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthGuard } from './helpers/auth.guard';
-import { LogoutComponent } from './logout/logout.component';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { CommentsComponent } from './recipe/comments/comments.component';
 import { RecipeComponent } from './recipe/recipe.component';
@@ -24,8 +23,8 @@ import { RecipeContentComponent } from './recipe/recipe-content/recipe-content.c
 import { RecipeStepsComponent } from './recipe/recipe-steps/recipe-steps.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ItemsComponent } from './profile/items/items.component';
-import { FirstComponent } from './signUp10/first/first.component';
-import { SecondComponent } from './signUp10/second/second.component';
+import { SignUpComponent } from './signUp10/first/signUp.component';
+import { SignUpExtendedComponent } from './signUp10/second/signUpExtended.component';
 import { AddRecipeComponent } from './index/popup/add/addRecipe.component';
 import { FilterRecipeComponent } from './index/popup/filter/filterRecipe.component';
 import { RankingComponent } from './ranking/ranking.component';
@@ -56,15 +55,14 @@ import { SearchService } from './services/search.service';
     IndexComponent,
     LoginComponent,
     RecipeSearchComponent,
-    LogoutComponent,
     RecipeComponent,
     CommentsComponent,
     RecipeContentComponent,
     RecipeStepsComponent,
     ProfileComponent,
     ItemsComponent,
-    FirstComponent,
-    SecondComponent,
+    SignUpComponent,
+    SignUpExtendedComponent,
     RecipeComponent,
     AddRecipeComponent,
     FilterRecipeComponent,

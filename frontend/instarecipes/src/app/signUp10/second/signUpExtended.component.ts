@@ -4,15 +4,14 @@ import { UserService } from 'src/app/services/user.service';
 import { Allergen } from 'src/app/Interfaces/allergen.model';
 import { ProfileService } from 'src/app/services/profile.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs/operators';
 import { User } from 'src/app/Interfaces/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-second',
-  templateUrl: './second.component.html',
+  templateUrl: './signUpExtended.component.html',
 })
-export class SecondComponent implements OnInit {
+export class SignUpExtendedComponent implements OnInit {
   registerForm2: FormGroup;
   activate: boolean;
   allergens: Allergen [];
