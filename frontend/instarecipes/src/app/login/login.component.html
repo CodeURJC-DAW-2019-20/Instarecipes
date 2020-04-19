@@ -39,28 +39,11 @@
               <div class="flex-c-m" style="margin-bottom: 3%">
                 <!-- <button id="google-button" data-onsuccess="onSignIn" >
                 </button> -->
-                <div class="container mt-5">
-                  <div class="row mt-5">
-                    <div class="col-md-4 mt-2 m-auto ">
-                      <button class="loginBtn loginBtn--google" #loginRef>
-                          Login with Google
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-              <input type="text" id="fullNameGoogleUser"   value="" name="fullNameGU" 	hidden/> 	<!-- FULL NAME GOOGLE USER -->
-              <input type="text" id="givenNameGoogleUser"  value="" name="givenNameGU"    hidden/> 	<!-- GIVEN NAME GOOGLE USER -->
-              <input type="text" id="familyNameUser"       value="" name="familyNameGU"  	hidden/>	<!-- FAMILY NAME GOOGLE USER -->
-              <input type="text" id="profileImgGoogleUser" value="" name="profileImgGU"	hidden/>  	<!-- PROFILE IMAGE GOOGLE USER -->
-              <input type="text" id="emailGoogleUser"      value="" name="emailGU" 	  	hidden/>	<!-- EMAIL GOOGLE USER -->
-              <input type="text" id="googleUserON"		     value="" name="isgoogleuserON" hidden/>
-
-              <button type="submit" class="signIngoogle">Go</button>
-
+                <button id="loginBtn" class="loginBtn loginBtn--google" #loginRef>
+                  Google
+                </button>
               <button type="submit" onclick=""></button>
               </div>
-
             </form >
             <hr>
             <div class="flex-col-c">
@@ -74,3 +57,48 @@
         </div>
     </div>
 </div>
+
+<style type="text/css">
+
+/* I need to put this here, if I put it in login.component.css it won't work */
+.loginBtn {
+  box-sizing: border-box;
+  position: relative;
+  margin: 0.2em;
+  padding: 0 15px 0 46px;
+  border: none;
+  text-align: left;
+  line-height: 34px;
+  white-space: nowrap;
+  border-radius: 0.2em;
+  font-size: 16px;
+  color: #FFF;
+}
+.loginBtn:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 100%;
+}
+.loginBtn:focus {
+  outline: none;
+}
+.loginBtn:active {
+  box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+}
+.loginBtn {
+  background: #DD4B39;
+}
+.loginBtn:before {
+  border-right: #BB3F30 1px solid;
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+}
+.loginBtn:hover,
+.loginBtn:focus {
+  background: #E74B37;
+}
+
+</style>

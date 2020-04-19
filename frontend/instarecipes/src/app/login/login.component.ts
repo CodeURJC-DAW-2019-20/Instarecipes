@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
+import {Component, OnInit, ElementRef, ViewChild, ɵConsole} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
@@ -8,6 +8,7 @@ import { ProfileService } from '../services/profile.service';
 
 
 @Component({
+  // styleUrls: ['./login.component.css'],
   templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit{
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit{
    error: '';
    auth2: any;
    user: User;
+   urlAvatar;
 
    password: string;
    @ViewChild('loginRef', {static: true }) loginElement: ElementRef;
@@ -25,13 +27,14 @@ export class LoginComponent implements OnInit{
        private formBuilder: FormBuilder,
        private route: ActivatedRoute,
        private router: Router,
-       private profileService: ProfileService,
        private authenticationService: AuthenticationService,
+       private profileService: ProfileService,
        ) {
         this.user = {username: null, email: '', password: '', name: '', surname: '', info: 'Hello world!', allergens: null};
        }
 
    ngOnInit() {
+     this.hola();
     this.googleSDK();
 
       this.loginForm = this.formBuilder.group({
@@ -126,11 +129,12 @@ export class LoginComponent implements OnInit{
     this.authenticationService.register(this.user)
     .subscribe(
       data => {
-          alert("User created!");
+        console.log("User created!");
           this.authenticationService.login(this.user.username, this.user.password)
            .subscribe(
                data => {
-                 alert("User logged!");
+                 console.log("User logged!");
+                 this.googleAvatar(profilePic);
                 //  this.profileService.updateProfileAvatar(profilePic).subscribe(
                 //   imagen=>{
                 //   },
@@ -148,5 +152,26 @@ export class LoginComponent implements OnInit{
       });
 
   }
+
+
+  googleAvatar(profilePic: any) {
+    var blob = new Blob([profilePic], {type: 'image/jpeg'});
+    var file = new File([blob], 'googleAvatar.jpeg');
+    console.log(file);
+    this.profileService.updateProfileAvatar(file).subscribe(
+      imagen=>{
+      },
+        (error: Error) => console.log("File uploaded!")
+      );
+  }
+
+  hola() {
+    this.urlAvatar = "https://lh3.googleusercontent.com/a-/AOh14Gj5UPW3SXm9ywa3uaqwsV0FWH0qz1pRY5xDtlUiPA=s96-c";
+    var blob = new Blob([this.urlAvatar], {type: 'image/jpg'});
+    var file = new File([blob], 'googleAvatar.jpg');
+    console.log(file);
+  }
+
+
 
 }

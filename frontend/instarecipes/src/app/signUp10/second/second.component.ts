@@ -52,7 +52,7 @@ export class SecondComponent implements OnInit {
     this.authenticationService.register(this.user)
     .subscribe(
       data => {
-          alert("User created!");
+        console.log("User created!");
           this.authenticationService.login(this.user.username, this.user.password)
            .subscribe(
                data => {
