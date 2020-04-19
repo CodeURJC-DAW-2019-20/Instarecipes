@@ -93,6 +93,12 @@ export class ProfileService {
     ) as Observable<Blob>;
   }
 
+  getRequest(request: Request): Observable<Request>{
+    return this.httpClient.get(BASE_URL +"/sendItemRequest" ).pipe(
+      catchError(error => this.handleError(error))
+    )
+  }
+
   getProfileBackground(id_user: number): Observable<Blob> {
     let head = new HttpHeaders();
     head = head.set('Content-Type', 'image/jpeg');
