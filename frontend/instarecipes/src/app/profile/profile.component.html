@@ -1,5 +1,5 @@
 <div class="wrapper d-flex align-items-stretch" style="margin-top: 2%;">
-    <nav *ngIf = "authService.isAdmin" id="sidebar" class="active" style="background-color:rgba(0, 0, 0, 0.6)">
+    <nav *ngIf="(authService.isAdmin)" id="sidebar" class="active" style="background-color:rgba(0, 0, 0, 0.6)">
         <div class="custom-menu">
             <button type="button" id="sidebarCollapse" class="btn btn-primary">
           <i class="fa fa-bars"></i>
@@ -32,7 +32,8 @@
             </ul>
         </div>
     </nav>
-    <user [user]="user" [n_likes]="n_likes" [user_recipes]="user_recipes" [avatar]="avatar" [background]="background" [followers_users]="followers_users" [following_users]="following_users"></user>
+    <user (new_followers)="receive_new_followers()" (new_following)="receive_new_following()" [infoLoaded]="this.infoLoaded" [user]="user" [n_likes]="n_likes" [user_recipes]="user_recipes" [avatar]="avatar" [background]="background" [followers_users]="followers_users"
+        [following_users]="following_users"></user>
     <popup-edit-profile></popup-edit-profile>
     <!-- Navigations -->
     <div style="height: 100%;  width: 100%;">
