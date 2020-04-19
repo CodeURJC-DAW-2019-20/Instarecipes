@@ -13,7 +13,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class SendItemRequestComponent implements OnInit {
   registerForm: FormGroup;
   request_:Request=null;
-  
+  type: string='';
   content: String='';
   constructor (private profileService: ProfileService,
     public authService: AuthenticationService,private formBuilder: FormBuilder,) {
@@ -36,16 +36,20 @@ export class SendItemRequestComponent implements OnInit {
 
 
   sendRequest(){
+    console.log(this.request_)
     console.log(this.registerForm.value.content)
+    console.log(this.registerForm.value)
+    console.log(this.type)
     this.request_.username = this.authService.user;
 
-    if(this.registerForm.invalid){
-      return;
-    }
-    else{
+    //if(this.registerForm.invalid){
+      //return;
+    //}
+    //else{
       this.typeClick();
+      console.log(this.request_)
       this.profileService.getRequest(this.request_);
-    }
+    //}
   }
 
 
@@ -53,15 +57,15 @@ export class SendItemRequestComponent implements OnInit {
     switch (this.request_.typeOfRequest) {
       case "Ingredient":
         this.request_.typeOfRequest = "Ingredient";
-        this.request_.ingredientContent=this.registerForm.value.content
+        this.request_.ingredientContent=this.type
         break;
       case "Cooking Style":
         this.request_.typeOfRequest = "Cooking Style";
-        this.request_.cookingStyleContent=this.registerForm.value.content
+        this.request_.cookingStyleContent=this.type
         break;
       case "Category":
         this.request_.typeOfRequest = "Category";
-        this.request_.categoryContent=this.registerForm.value.content
+        this.request_.categoryContent=this.type
 
         break;
       default:
