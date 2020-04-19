@@ -1,12 +1,13 @@
-<div class="publications-modal modal fade" id="opened-settings-button" tabindex="-1" role="dialog" aria-labelledby="publicationsModal6Label" aria-hidden="true">
+<div class="publications-modal modal fade" id="opened-settings-button" tabindex="-1" role="dialog"
+    aria-labelledby="publicationsModal6Label" aria-hidden="true">
     <!--change id-->
     <div id="example" class="modal-dialog modal-xl" style="width: 60%;" role="document">
         <div class="modal-content" style="width: inherit;left: 20%;">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">
-                  <i class="fas fa-times"></i>
+                    <i class="fas fa-times"></i>
                 </span>
-              </button>
+            </button>
             <div class="modal-body text-center">
                 <div class="container">
                     <!-- publications Modal - Title -->
@@ -25,26 +26,31 @@
                             <div class="col-6" style="position: absolute; z-index: 1050;left: 25%;top: 15%;">
                                 <!--Avatar-->
                                 <div style="position: relative;">
-                                    <img id="preview-img-file" style="width:125px;height:125px;border-radius:50%;object-fit: cover;" [src]="avatar" />
+                                    <img id="preview-img-file"
+                                        style="width:125px;height:125px;border-radius:50%;object-fit: cover;"
+                                        [src]="avatar" />
                                     <div style="position: absolute;width: 100%;">
-                                        <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem; 
+                                        <label for="file-input" class="btn-outline-primary"
+                                            style="border-radius:0.5rem; 
                             border:1px solid rgb(23, 162, 184); text-align:center;padding:0;right:0;width:30%;cursor:pointer">
-                              <!-- <input id="file-input" value="" hidden type="file" name="avatarFile" accept=".jpg, .jpeg" /> -->
-                              <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
-                            </label>
+                                            <input id="file-input" value="" hidden type="file" name="avatarFile" accept=".jpg, .jpeg" /> 
+                                            <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <!--Background-->
                                 <div style="position: relative;">
-                                    <img id="preview-bg-file" [src]="background" class="img-blur2" style="object-fit:cover;height:200px;width:100%;border-radius: 0.5rem;" />
+                                    <img id="preview-bg-file" [src]="background" class="img-blur2"
+                                        style="object-fit:cover;height:200px;width:100%;border-radius: 0.5rem;" />
                                     <div style="position: absolute;width: 25%;right:1%;bottom: 0;">
-                                        <label for="bg-input" class="btn-outline-primary" style="border-radius:0.5rem;
+                                        <label for="bg-input" class="btn-outline-primary"
+                                            style="border-radius:0.5rem;
                             border:1px solid rgb(23, 162, 184);text-align:center;padding:0;right:0;width:100%;cursor:pointer">
-                              <!-- <input id="bg-input" value="" hidden type="file" name="backgroundFile" accept=".jpg, .jpeg" /> -->
-                              <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
-                            </label>
+                                             <input id="bg-input" value="" hidden type="file" name="backgroundFile" accept=".jpg, .jpeg" /> 
+                                            <i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -53,11 +59,13 @@
                             <hr>
                             <!-- Username -->
                             <div class="wrap-input50 m-b-23" style="text-align: initial;">
-                                <p class="text-secondary"> <i class="fas fa-user" style="size: 50px;  margin-right: 20px;"></i>{{authService.user.name}}</p>
+                                <p class="text-secondary"> <i class="fas fa-user"
+                                        style="size: 50px;  margin-right: 20px;"></i>{{authService.user.name}}</p>
                             </div>
                             <!-- Email -->
                             <div class="wrap-input50 m-b-23" style="text-align: initial;">
-                                <p class="text-secondary"><i class="fas fa-mail-bulk" style="size: 50px; margin-right: 15px;"></i>{{authService.user.email}}</p>
+                                <p class="text-secondary"><i class="fas fa-mail-bulk"
+                                        style="size: 50px; margin-right: 15px;"></i>{{authService.user.email}}</p>
                             </div>
                             <hr>
                             <table>
@@ -67,7 +75,9 @@
                                     </td>
                                     <td>
                                         <!-- Name -->
-                                        <input type="text" name="name" class="text-secondary" style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;" value="{{authService.user.name}}" required/>
+                                        <input type="text" name="name" class="text-secondary"
+                                            style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;"
+                                            value="{{authService.user.name}}" required />
                                     </td>
                                 </tr>
                                 <tr>
@@ -76,7 +86,9 @@
                                     </td>
                                     <td>
                                         <!-- Surname -->
-                                        <input type="text" name="surname" class="text-secondary" style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;" value="{{authService.user.surname}}" required/>
+                                        <input type="text" name="surname" class="text-secondary"
+                                            style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;"
+                                            value="{{authService.user.surname}}" required />
                                     </td>
                                 </tr>
                                 <tr>
@@ -86,8 +98,13 @@
                                     <td>
                                         <!-- Bio -->
                                         <textarea type="text" name="info" style="margin-top:10px;padding:5px;width: 100%;height: 100px;
-                            border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" onKeyDown="limitText(this.form.info,this.form.countdown,100)" onKeyUp="limitText(this.form.info,this.form.countdown,100);" placeholder="Type your bio here..">{{authService.user.info}}</textarea>
-                                        <p size="1">(Maximum characters: 100)<br> You have <input readonly type="text" name="countdown" size="3" value="100" style="margin-bottom: 10px;"> characters left.
+                            border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
+                                            onKeyDown="limitText(this.form.info,this.form.countdown,100)"
+                                            onKeyUp="limitText(this.form.info,this.form.countdown,100);"
+                                            placeholder="Type your bio here..">{{authService.user.info}}</textarea>
+                                        <p size="1">(Maximum characters: 100)<br> You have <input readonly type="text"
+                                                name="countdown" size="3" value="100" style="margin-bottom: 10px;">
+                                            characters left.
                                         </p>
                                     </td>
                                 </tr>
@@ -97,21 +114,23 @@
                                     </td>
                                     <td>
                                         <!--Allergens-->
-                                        <input name="allergens" list="allergenslist" class="form-control" type="text" placeholder="Select an allergen.." onkeypress="return false;">
+                                        <input name="allergens" list="allergenslist" class="form-control" type="text"
+                                            placeholder="Select an allergen.." onkeypress="return false;">
                                         <datalist id="allergenslist">
-                              <option>actualUser.allergens</option>
-                          
-                              <option value="allergen">{{authService.user.allergens}}</option>
-                     
-                            </datalist>
+                                            <option *ngFor="let a of allAllergens" value="{{a?.allergen}}">
+                                                {{a?.allergen}}</option>
+                                            <option value="allergen">{{authService.user.allergens}}</option>
+
+                                        </datalist>
                                     </td>
                                 </tr>
                             </table>
                         </div>
                         <div style="width: 100%;">
-                            <button type='submit' class="btn btn-primary" style="margin-top: 20px; height: 50px;border: 1px solid rgb(23, 162, 184);">
-                        Save changes
-                      </button>
+                            <button type='submit' class="btn btn-primary"
+                                style="margin-top: 20px; height: 50px;border: 1px solid rgb(23, 162, 184);">
+                                Save changes
+                            </button>
                             <input type="hidden" name="_csrf" value="token" />
                         </div>
                     </form>
