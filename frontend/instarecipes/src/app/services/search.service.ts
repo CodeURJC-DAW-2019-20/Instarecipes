@@ -15,18 +15,23 @@ export class SearchService {
 
   constructor(
     private httpClient: HttpClient,
+  ) { }
 
-  ) {
-      this.filteredSearchDTO = { ingredients: "Potatoes", categories: "", cookingStyles: "", allergens: "" }
-    }
 
+  setJSON(val : object) {
+    this.filteredSearchDTO = val;
+  }
+
+  getJSON() {
+    return this.filteredSearchDTO;
+  }
 
   getFilteredRecipes(): Observable<Recipe[]> {
     const body = JSON.stringify(this.filteredSearchDTO);
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
     });
-    console.log(this.filteredSearchDTO);
+    console.log("at search service ", this.filteredSearchDTO);
     return this.httpClient.post(BASE_URL + "/filtered", body , { headers }).pipe(
       catchError(
         error => this.handleError(error)

@@ -22,6 +22,7 @@ export class FilteredSearchComponent implements OnInit {
               public recipeService: RecipeService) { }
 
   ngOnInit() {
+    console.log("at search component ", this.searchService.getJSON());
     this.getRecipes();
   }
 
