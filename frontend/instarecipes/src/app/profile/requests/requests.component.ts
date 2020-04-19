@@ -67,7 +67,7 @@ export class RequestsComponent implements OnInit {
   this.profileService.ActionItemRequest(typeOfRequest, itemContent, "accept", id_request).subscribe(
     response => {
       alert("Petition accepted");
-      this.router.navigateByUrl('/profile');
+      location.reload();
     });
   }
 
@@ -75,7 +75,7 @@ export class RequestsComponent implements OnInit {
     this.profileService.ActionItemRequest(typeOfRequest, itemContent, "decline", id_request).subscribe(
       response => {
         alert("Petition denied");
-        this.router.navigateByUrl('/profile');
+        location.reload();
       });
     }
 }
