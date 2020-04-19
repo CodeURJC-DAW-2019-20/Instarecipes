@@ -137,5 +137,15 @@ export class ProfileService {
   private handleError(error: any) {
 		console.error(error);
 		return Observable.throw("Server error (" + error.status + "): " + error.text())
-	}
+  }
+  
+  editProfile(user: User) {
+    const body = JSON.stringify(user);
+    const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+    });
+    return this.httpClient.post<User>("/api/profile", body, { headers }).pipe(
+      catchError(error => this.handleError(error))
+    );
+  }
 }

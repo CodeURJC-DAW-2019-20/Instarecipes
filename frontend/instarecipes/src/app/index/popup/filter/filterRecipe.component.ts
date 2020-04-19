@@ -1,11 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ViewChildren } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Allergen } from 'src/app/Interfaces/allergen.model';
 import { Ingredient } from 'src/app/Interfaces/ingredient.model';
 import { ProfileService } from 'src/app/services/profile.service';
-import { registerLocaleData } from '@angular/common';
 import { CookingStyle } from 'src/app/Interfaces/cookingStyle.model';
 import { Category } from 'src/app/Interfaces/category.model';
-import { NgForm } from '@angular/forms';
 import { SearchService } from 'src/app/services/search.service.js';
 import { Router } from '@angular/router';
 import { Recipe } from 'src/app/Interfaces/recipe.model.js';
@@ -16,8 +14,7 @@ import { Recipe } from 'src/app/Interfaces/recipe.model.js';
   styleUrls: ['./filterRecipe.component.css']
 })
 export class FilterRecipeComponent implements OnInit, AfterViewInit{
-    private newAttribute: any = {};
-    private fieldArray: Array<any> = [];
+
     allergens: Allergen [];
     ingredients: Ingredient [];
     cookingStyles: CookingStyle [];
@@ -26,6 +23,8 @@ export class FilterRecipeComponent implements OnInit, AfterViewInit{
     filtersFinal;
     ingString: string = "";
     recipes: Recipe[] = [];
+
+    loadAPI: any;
 
     @ViewChild('ingredientsSSearch') ingredientsString: ElementRef;
     @ViewChild('ingredientsSList') ingList: ElementRef;
@@ -42,17 +41,27 @@ export class FilterRecipeComponent implements OnInit, AfterViewInit{
     @ViewChild('selectedAll') selectedAll: ElementRef;
     @ViewChild('closebutton') closebutton: ElementRef;
 
-  constructor(
-    private profileService: ProfileService,
-    private searchService: SearchService,
-    private router: Router,
-    ) {
+  constructor(private profileService: ProfileService, private searchService: SearchService,
+              private router: Router) {
       this.filteredSearchDTO = { ingredients: [], categories: [], cookingStyles: [], allergens: [] },
       this.filtersFinal = { ingredients: "", categories: "", cookingStyles: "", allergens: "" }
-    }
+  }
 
   ngAfterViewInit() {
-   import('../../../../assets/js/filter_search_btn.js');
+    this.loadAPI = new Promise(resolve => {
+      console.log("resolving promise...");
+      this.loadScript();
+    });
+  }
+
+  public loadScript() {
+    console.log("preparing to load...");
+    let node = document.createElement("script");
+    node.src = 'assets/js/filter_search_btn.js';
+    node.type = "text/javascript";
+    node.async = true;
+    node.charset = "utf-8";
+    document.getElementsByTagName("head")[0].appendChild(node);
   }
 
   ngOnInit() {
@@ -60,35 +69,30 @@ export class FilterRecipeComponent implements OnInit, AfterViewInit{
     this.getIngredients();
     this.getCookingStyles();
     this.getCategories();
-
   }
 
   getAllergens(){
     this.profileService.getAllAllergens().subscribe(
-      allergens => {
-        this.allergens = allergens;
-        });
+      allergens => this.allergens = allergens
+    );
   }
 
   getIngredients(){
     this.profileService.getAllIngredients().subscribe(
-      ingredients => {
-        this.ingredients = ingredients;
-      });
+      ingredients => this.ingredients = ingredients
+    );
   }
 
   getCategories(){
     this.profileService.getAllCategories().subscribe(
-      categories => {
-        this.categories = categories;
-        });
+      categories => this.categories = categories
+    );
   }
 
   getCookingStyles(){
     this.profileService.getAllCookingStyles().subscribe(
-      cookingStyles => {
-        this.cookingStyles = cookingStyles;
-        });
+      cookingStyles => this.cookingStyles = cookingStyles
+    );
   }
 
   postFilterRecipe() {
@@ -118,9 +122,7 @@ export class FilterRecipeComponent implements OnInit, AfterViewInit{
     this.filtersFinal.cookingStyles = this.filteredSearchDTO.cookingStyles.toString();
     this.filtersFinal.allergens = this.filteredSearchDTO.allergens.toString();
 
-    this.searchService.setJSONData(this.filtersFinal);
-    console.log("the final, este tiene que ir al search service! ", this.filtersFinal);
-    this.router.navigate(['/filtered-search']);
+    this.router.navigate(['filtered-search'], { state: { result: this.filtersFinal, aux: this.filteredSearchDTO } });
   }
 
 }

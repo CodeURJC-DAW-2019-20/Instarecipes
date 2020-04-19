@@ -4,35 +4,23 @@ import { Recipe } from '../Interfaces/recipe.model';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User } from '../Interfaces/user.model';
-import { Router } from '@angular/router';
 
 const BASE_URL: string = "/api/search";
 
 @Injectable({ providedIn: 'root' })
 export class SearchService {
+
   search: String;
   filteredSearchDTO;
 
+  constructor(private httpClient: HttpClient) {  }
 
-  constructor(
-    private httpClient: HttpClient,
-  ) {  }
-
-  setJSONData(val: object) {
-    this.filteredSearchDTO = val;
-
-  }
-
-  getJSONData() {
-    return this.filteredSearchDTO;
-  }
-
-  getFilteredRecipes(): Observable<Recipe[]> {
-    const body = JSON.stringify(this.filteredSearchDTO);
+  getFilteredRecipes(data: any): Observable<Recipe[]> {
+    const body = JSON.stringify(data);
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
     });
-    console.log("at search service ", this.filteredSearchDTO);
+    console.log("at search service ", data);
     return this.httpClient.post(BASE_URL + "/filtered", body , { headers }).pipe(
       catchError(
         error => this.handleError(error)

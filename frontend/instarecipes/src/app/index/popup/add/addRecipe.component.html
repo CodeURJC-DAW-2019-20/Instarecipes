@@ -54,7 +54,7 @@
                                         <i class="fa fa-trash" aria-hidden="true" styles="object-fit:cover;padding:5px"></i>
                                     </div>
                                     <h3 style="color: gray;">{{stepsList.length+2}}º step</h3>
-                                    <textarea #desc disabled onkeyup="stepsCountChar(this)" type='text' id="step" name="step" placeholder="Type how to do this step" style="width: 100%;height: 20px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3);padding:10px;"></textarea>
+                                    <textarea #desc disabled onkeyup="stepsCountChar(this)" type='text' id="step" name="step" placeholder="Type how to do this step" style="width: 100%;height: 20px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3);padding:10px;" hidden></textarea>
                                 </fieldset>
                                 <hr/>
                                 <div (click)="addStep(desc.value); desc.value=''" id="add-step" class="btn btn-dark" style="width: 100%; border-radius: 0.8rem;background-color: teal;cursor: pointer;">
