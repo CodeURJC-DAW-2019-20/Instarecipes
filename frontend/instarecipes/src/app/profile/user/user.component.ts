@@ -28,6 +28,8 @@ export class UserComponent implements OnInit, OnChanges {
   user: User;
   @Input()
   infoLoaded: number;
+  @Input()
+  id_user: number;
 
   user_list_aux: User[] = [];
 

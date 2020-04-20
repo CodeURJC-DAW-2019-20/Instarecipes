@@ -30,7 +30,6 @@ export class RecentComponent implements OnInit{
                 private router: Router){ }
 
     ngOnInit(){
-      // setInterval(()=> { this.refresh(this.page_size) }, 300 * 1000); //cada 5 min se actualiza
       this.refresh(this.page_size);
     }
 

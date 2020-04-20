@@ -1,6 +1,5 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProfileService } from 'src/app/services/profile.service';
-import { AuthenticationService } from 'src/app/services/authentication.service.js';
 import { Recipe } from 'src/app/Interfaces/recipe.model.js';
 
 @Component({
@@ -8,45 +7,52 @@ import { Recipe } from 'src/app/Interfaces/recipe.model.js';
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.css']
 })
-export class StatisticsComponent implements OnInit, AfterViewInit {
+export class StatisticsComponent implements OnInit {
   likes: number[] = [];
   recipesTitles: string[] = [];
   recipesLikes: number[] = [];
   recipes: Recipe[] = [];
   loadAPI: any;
 
-  constructor( private profileService: ProfileService, private authService: AuthenticationService) { }
+  @Input()
+  id_user: number;
 
-  ngAfterViewInit() {
-    this.loadAPI = new Promise(resolve => {
-      console.log("resolving promise...");
-      this.loadScript();
-    });
-  }
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
     this.getAllRecipes();
   }
 
-  public loadScript() {
-    console.log("preparing to load...");
-    let node = document.createElement("script");
-    node.src = 'assets/js/statistics.js';
-    node.type = "text/javascript";
-    node.async = true;
-    node.charset = "utf-8";
-    document.getElementsByTagName("head")[0].appendChild(node);
-  }
-
   getAllRecipes() {
-    this.profileService.getUserRecipes(this.authService.user.id).subscribe(
+    console.log("ID de statistics: " + this.id_user);
+    this.profileService.getUserRecipes(this.id_user).subscribe(
       recipe => {
+        console.log("llego a statistics, deberia mostrarse el grafico");
         this.recipes = recipe as Recipe[];
         this.recipes.forEach(element => {
           this.getTheTitle(element);
           this.getTheLikes(element);
-        })
+        });
+        this.loadAPI = new Promise(resolve => {
+          console.log("resolving promise...");
+          this.loadScript('assets/js/statistics.js');
+        });
       });
+  }
+
+  public loadScript(url: any) {
+    console.log("loading script...");
+    let prev_node = document.getElementById(url);
+    if(prev_node != null){
+      prev_node.parentNode.removeChild(prev_node);
+    }
+    let node = document.createElement("script");
+    node.src = url;
+    node.id = url;
+    node.type = "text/javascript";
+    node.async = true;
+    node.charset = "utf-8";
+    document.getElementsByTagName("head")[0].appendChild(node);
   }
 
   getTheLikes(r: Recipe) {
