@@ -22,15 +22,15 @@ export class EditProfileComponent implements OnInit {
   user: User;
   allAllergens: Allergen[] = [];
   settingsForm : FormGroup
-  userUpdate;
+  userUpdate : User;
 
   @ViewChild('closebutton') closebutton: ElementRef;
 
-  allergenAux: String = '';
-  name : String;
-  surname: String;
-  info : String;
-  allergens: String;
+  allergenAux: string = '';
+  name : string;
+  surname: string;
+  info : string;
+  allergens: string;
   newAvatar: File;
   newBackground: File;
 
@@ -45,10 +45,16 @@ export class EditProfileComponent implements OnInit {
   }
 
   initConstructor(){
-    this.userUpdate = { name: '', surname: '', info: '', allergens: '' }
+    //no se si inicializarlo con user o authservice, en teoria debería ser con auth pero si cambiamos algo no se cambia en el authservice,
+    //probar a cambiar nombre e ir a la consola en el index! si te log con pepe sigue saliendo de nombre pepe (al igual que en el popup) pero en el profile cambia.
+    //this.userUpdate = { name: this.user?.name, surname: this.user?.surname, info: this.user?.info, allergens: this.user?.allergens }
+    //this.userUpdate = { name: '', surname: '', info: '', allergens: '' }
+
+    this.userUpdate = { name: this.user?.name, surname: this.authService.user.surname, info: this.authService.user.info, allergens: this.authService.user.allergens }
   }
 
   editProfile(){
+    console.log(this.userUpdate);
     if (this.name != null) {
        this.userUpdate.name = this.name;
     }
@@ -61,9 +67,12 @@ export class EditProfileComponent implements OnInit {
     if (this.allergens != null) {
       this.userUpdate.allergens = this.allergens;
     }
-
+    console.log("after ", this.userUpdate);
     this.profileService.editProfile(this.userUpdate).subscribe(
     _ =>{
+      this.user = _ as User;
+      console.log(_);
+      console.log(this.user);
       if (this.newAvatar != null){
         this.profileService.updateProfileAvatar(this.newAvatar).subscribe(
           imagen=>{
@@ -71,10 +80,10 @@ export class EditProfileComponent implements OnInit {
             (error: Error) => console.log("File uploaded!")
          );
        }
-      
+
     });
 
-    this.initConstructor();
+   // this.initConstructor();
     this.closebutton.nativeElement.click();
   }
 

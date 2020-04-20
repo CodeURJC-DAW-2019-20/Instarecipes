@@ -138,14 +138,14 @@ export class ProfileService {
 		console.error(error);
 		return Observable.throw("Server error (" + error.status + "): " + error.text())
   }
-  
-  editProfile(userUpdate: any) {
+
+  editProfile(userUpdate: User): Observable<User> {
     const body = JSON.stringify(userUpdate);
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
     });
     return this.httpClient.put<User>("/api/profile/update", body, { headers }).pipe(
       catchError(error => this.handleError(error))
-    );
-  } 
+    ) as Observable<User>;
+  }
 }
