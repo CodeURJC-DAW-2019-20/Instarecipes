@@ -4,6 +4,7 @@ import { SearchService } from 'src/app/services/search.service';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-search',
@@ -21,6 +22,7 @@ export class RecipeSearchComponent implements OnInit {
     private recipesService: RecipesService,
     private domSanitizer: DomSanitizer,
     public authService: AuthenticationService,
+    private router: Router,
     ) {
       }
 
@@ -61,5 +63,9 @@ export class RecipeSearchComponent implements OnInit {
         this.image.push(this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(data)));
       }
     );
+  }
+
+  seeRecipe(idRecipe: number) {
+    this.router.navigateByUrl('/recipe/' + idRecipe);
   }
 }

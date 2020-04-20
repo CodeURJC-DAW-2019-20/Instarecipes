@@ -4,6 +4,7 @@ import { User } from 'src/app/Interfaces/user.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'publications',
@@ -27,7 +28,7 @@ export class PublicationsComponent implements OnInit, OnChanges {
   images: any[] = [];
 
   constructor(private recipesService: RecipesService, private domSanitizer: DomSanitizer,
-              public authService: AuthenticationService) { }
+              public authService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
   }

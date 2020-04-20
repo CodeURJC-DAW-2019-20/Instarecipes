@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Recipe } from 'src/app/Interfaces/recipe.model';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'popup-recipe-preview',
@@ -18,12 +19,12 @@ export class RecipePreviewComponent implements OnInit {
 
   @ViewChild('closebutton') closebutton: ElementRef;
 
-  constructor( public recipeService: RecipeService){ }
+  constructor( public recipeService: RecipeService, private router: Router){ }
 
   ngOnInit(){ }
 
-  seeRecipe() {    
+  seeRecipe(idRecipe: number) {
     this.closebutton.nativeElement.click();
-    this.recipeService.setRecipeID(this.recipe.id);
+    this.router.navigateByUrl('/recipe/' + idRecipe);
   }
 }

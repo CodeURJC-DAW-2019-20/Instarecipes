@@ -174,4 +174,8 @@ export class FilteredSearchComponent implements OnInit {
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
   }
+
+  seeRecipe(idRecipe: number) {
+    this.router.navigateByUrl('/recipe/' + idRecipe);
+  }
 }

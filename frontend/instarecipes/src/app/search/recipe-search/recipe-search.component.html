@@ -44,7 +44,7 @@
                 <p style="background-color: rgba(255, 185, 127, 0.3);border-radius: 0.8rem;"><strong>Categories:</strong><a *ngFor="let ing of recipes[i].categories; index as i ">&nbsp;{{recipe?.categories[i].category}},</a></p>
               </div>
               <div class="col-2" style="align-self: flex-end;">
-                <a class="btn btn-primary">Try &rarr;</a>
+                <a class="btn btn-primary" (click)='seeRecipe(recipe?.id);'>Try &rarr;</a>
               </div>
             </div>
           </div>

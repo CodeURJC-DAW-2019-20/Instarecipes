@@ -37,7 +37,7 @@
                         <div class="col-md-4">
                             <h3>Introduction</h3>
                             <p>{{recipe?.description}}</p>
-                            <a class="btn btn-primary" (click)='recipeService.setRecipeID(recipe?.id)' [routerLink]="['/recipe']">Read
+                            <a class="btn btn-primary" (click)='seeRecipe(recipe?.id);'>Read
                     <span class="glyphicon glyphicon-chevron-right"></span>
                   </a>
                         </div>
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div class="carousel-caption d-none d-md-block">
-                    <h3>{{recipe?.title}}</h3>
+                    <h3 style = "-webkit-text-stroke: 1px black;">{{recipe?.title}}</h3>
                     <p>Trending No. {{i+1}}</p>
                 </div>
             </div>
