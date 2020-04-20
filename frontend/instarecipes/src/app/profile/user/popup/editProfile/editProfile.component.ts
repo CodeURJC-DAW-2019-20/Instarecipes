@@ -3,9 +3,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Allergen } from 'src/app/Interfaces/allergen.model';
 import { ProfileService } from 'src/app/services/profile.service';
 import { User } from '../../../../Interfaces/user.model';
-import { UserService } from '../../../../services/user.service';
-import { FormBuilder, FormGroup} from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormGroup} from '@angular/forms';
 
 
 @Component({
@@ -28,25 +26,25 @@ export class EditProfileComponent implements OnInit {
   allAllergens: Allergen[] = [];
   userUpdate: any;
   allergenAux: string = '';
-  name : String;
-  surname: String;
-  info : String;
-  allergens: String;
-  avatarFile: File;
-  backgroundFile: File;
+  settingsForm : FormGroup
+  name : string;
+  surname: string;
+  info : string;
+  allergens: string;
   loadAPI: any;
+  newAvatar: File;
+  newBackground: File;
 
   @ViewChild('closebutton') closebutton: ElementRef;
 
-  constructor(private profileService: ProfileService,
-     public authService: AuthenticationService) {   
-       this.userUpdate = { 
-        name: authService.user.name,
-        surname: authService.user.surname,
-        info: authService.user.info,
-        allergens: authService.user.allergens
-      }
-    }  
+  constructor(private profileService: ProfileService, public authService: AuthenticationService) {   
+    this.userUpdate = { 
+      name: authService.user.name,
+      surname: authService.user.surname,
+      info: authService.user.info,
+      allergens: authService.user.allergens
+    }
+  }  
 
   ngOnInit() {
     this.loadAPI = new Promise(resolve => {
@@ -65,20 +63,35 @@ export class EditProfileComponent implements OnInit {
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
   }
-   
+
   editProfile(){
-    this.userUpdate.name = this.name;
-    this.userUpdate.surname = this.surname;
-    this.userUpdate.info = this.info;
-    this.userUpdate.allergens = this.allergens;
-    this.profileService.editProfile(this.userUpdate).subscribe(
-       _ =>{
-          this.update_profile();
-          this.closebutton.nativeElement.click();  
-       }
-    );
-  }
   
+    if (this.name != null) {
+       this.userUpdate.name = this.name;
+    }
+    if (this.surname != null) {
+      this.userUpdate.surname = this.surname;
+    }
+    if (this.info != null) {
+      this.userUpdate.info = this.info;
+    }
+    if (this.allergens != null) {
+      this.userUpdate.allergens = this.allergens;
+    }
+
+    this.profileService.editProfile(this.userUpdate).subscribe(
+    _ =>{
+      if (this.newAvatar != null){
+        this.profileService.updateProfileAvatar(this.newAvatar).subscribe(
+          imagen=>{ },
+          (error: Error) => console.log("File uploaded!")
+         );
+       }
+    });
+    this.closebutton.nativeElement.click();
+  }
+
+
   loadAllergens(){
     this.profileService.getAllAllergens().subscribe(
       allergens => this.allAllergens = allergens
@@ -89,4 +102,14 @@ export class EditProfileComponent implements OnInit {
     this.refresh_profile.emit(null);
   }
   
+  onFileChanged(event) {
+    this.newAvatar = event.target.files[0];
+    console.log(this.newAvatar);
+  }
+
+  onBackgroundChanged(event) {
+    this.newBackground = event.target.files[0];
+    console.log(this.newBackground);
+  }
+
 }

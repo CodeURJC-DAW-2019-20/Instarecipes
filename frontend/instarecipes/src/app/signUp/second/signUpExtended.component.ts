@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class SignUpExtendedComponent implements OnInit {
   registerForm2: FormGroup;
   activate: boolean;
-  allergens: Allergen [];
+  allergens: Allergen [] = [];
   returnUrl: string;
   error: '';
   user: User;
