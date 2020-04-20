@@ -15,7 +15,6 @@ export class RecipeService {
   nSteps: number;
 
   constructor(
-    private httpClient: HttpClient,
     private recipesService: RecipesService,
   ) { }
 

@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MustMatch } from '../../helpers/password-match';
 import { UserService } from 'src/app/services/user.service';
 
-@Component({templateUrl: 'first.component.html'})
-export class FirstComponent implements OnInit {
+@Component({templateUrl: 'signUp.component.html'})
+export class SignUpComponent implements OnInit {
     registerForm: FormGroup;
     submitted = false;
     returnUrl: string;
@@ -38,12 +38,8 @@ export class FirstComponent implements OnInit {
             return;
         }
         else {
-            //this.userService.onFormSubmit(this.registerForm.value);
-
-           // console.log(JSON.stringify(this.registerForm.value));
             this.userService.setJSONData(this.registerForm.value);
             this.router.navigate(['/signUpExtended']);
-           // alert(JSON.stringify(this.registerForm.value));
         }
 
     }

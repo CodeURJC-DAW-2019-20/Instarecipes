@@ -19,13 +19,12 @@
                   <div class="col-6">
                     <h3 class="underlined-text">INGREDIENTS</h3>
                       <div class="row">
-                        <table id="IngredientsTable" #selectedOption>
+                        <table id="IngredientsTable" #selectedIng>
                         <tr>
                           <td>
-                          <input #ingredientsSList id="ingredientsSList" value="" hidden />
                           <input #ingredientsSSearch id="ingredientsSSearch" name="ingredientsSSearch" hidden />
-                          <select class="form-control" (change) = "seeJSON($event)">
-                            <option>Select an ingredient..</option>
+                          <select class="form-control">
+                            <option></option>
                             <option *ngFor="let ing of ingredients" value="{{ing?.ingredient}}">
                               {{ing?.ingredient}}
                             </option>
@@ -45,13 +44,12 @@
                   <div class="col-6">
                     <h3 class="underlined-text">COOKING STYLE</h3>
                     <div class="row">
-                      <table id="CookingStyleTable">
+                      <table id="CookingStyleTable" #selectedCookS>
                         <tr>
                           <td>
-                            <input #cookStylesSList id="cookStylesSList" value="" hidden />
                             <input #cookStylesSSearch id="cookStylesSSearch" name="cookStylesSSearch" hidden />
                             <select class="form-control">
-                              <option>Select a cooking style..</option>
+                              <option></option>
                               <option *ngFor="let cks of cookingStyles" value="{{cks?.cookingStyle}}">
                                 {{cks?.cookingStyle}}
                               </option>
@@ -73,13 +71,12 @@
                   <div class="col-6">
                     <h3 class="underlined-text">CATEGORIES</h3>
                     <div class="row">
-                      <table id="CategoriesTable">
+                      <table id="CategoriesTable" #selectedCat>
                         <tr>
                           <td>
-                            <input #categoriesSList id="categoriesSList" value="" hidden />
                             <input #categoriesSSearch id="categoriesSSearch" name="categoriesSSearch" hidden />
                             <select class="form-control">
-                              <option>Select a category..</option>
+                              <option></option>
                               <option *ngFor="let cat of categories" value="{{cat?.category}}">
                                 {{cat?.category}}
                               </option>
@@ -98,13 +95,12 @@
                   <div class="col-6">
                       <h3 class="underlined-text">FREE ALLERGENS</h3>
                       <div class="row">
-                        <table id="AllergensTable">
+                        <table id="AllergensTable" #selectedAll>
                           <tr>
                             <td>
-                              <input #allergensSList id="allergensSList" value="" hidden />
                               <input #allergensSSearch id="allergensSSearch" name="allergensSSearch" hidden />
                               <select class="form-control">
-                                <option>Select an allergen..</option>
+                                <option></option>
                                 <option *ngFor="let a of allergens" value="{{a?.allergen}}">
                                   {{a?.allergen}}
                                 </option>
@@ -123,6 +119,7 @@
                 </div>
                 <hr>
                 <button type="submit" class="btn btn-primary"><h6 class="text">Go!</h6><img class="img-fluid rounded" src="../../../../assets/images/icons/pizza-go.png" alt="" width="50%" style="height: 50px; width: 50px;"></button>
+                <button type="button" #closebutton class="close" data-dismiss="modal" hidden></button>
               </form>
             </div>
         </div>

@@ -59,14 +59,10 @@ export class ProfileService {
     ) as Observable<Request[]>;
   }
 
-  ActionItemRequest(typeOfRequest: string, itemContent: string, action: string, id_request: string): Observable<Request[]> {
-    const body = JSON.stringify(action);
-    const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-    });
-    console.log(action);
-    return this.httpClient.get(BASE_URL + "actionItemRequest?typeOfRequest=" + typeOfRequest + "&itemContent=" + itemContent +
-     "&action" + action + "&id_request=" + id_request).pipe(
+  ActionItemRequest(typeOfRequest: string, itemContent: string, action: string, id_request: number): Observable<Request[]> {
+    console.log("SERVICE type of request: ", typeOfRequest," itemContent: ", itemContent," action : ", action, " id request: ", id_request);
+    return this.httpClient.get(BASE_URL + "/" + "actionItemRequest?typeOfRequest=" + typeOfRequest + "&itemContent=" + itemContent +
+     "&action=" + action + "&id_request=" + id_request).pipe(
         catchError(error => this.handleError(error))
       ) as Observable<Request[]>
   }
@@ -91,6 +87,18 @@ export class ProfileService {
       headers: head, responseType: "blob"}).pipe(
         catchError(error => this.handleError(error))
     ) as Observable<Blob>;
+  }
+
+  getRequest(request: Request): Observable<Request>{
+    const body = JSON.stringify(request);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    console.log(request);
+    console.log(body);
+    return this.httpClient.post(BASE_URL +"/sendItemRequest", body, {headers}).pipe(
+      catchError(error => this.handleError(error))
+    ) as Observable<Request>
   }
 
   getProfileBackground(id_user: number): Observable<Blob> {
@@ -129,5 +137,15 @@ export class ProfileService {
   private handleError(error: any) {
 		console.error(error);
 		return Observable.throw("Server error (" + error.status + "): " + error.text())
-	}
+  }
+
+  editProfile(userUpdate: User): Observable<User> {
+    const body = JSON.stringify(userUpdate);
+    const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+    });
+    return this.httpClient.put<User>("/api/profile/update", body, { headers }).pipe(
+      catchError(error => this.handleError(error))
+    ) as Observable<User>;
+  }
 }

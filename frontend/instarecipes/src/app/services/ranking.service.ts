@@ -12,7 +12,7 @@ const BASE_URL: string = "/api/ranking/";
 export class RankService {
 
   constructor(private httpClient: HttpClient) { }
-  
+
   getRanking(): Observable<any[]> {
     return this.httpClient.get(BASE_URL).pipe(
       catchError(error => this.handleError(error))

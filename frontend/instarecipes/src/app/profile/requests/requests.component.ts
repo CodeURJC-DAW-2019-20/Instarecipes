@@ -3,7 +3,6 @@ import { ProfileService } from 'src/app/services/profile.service';
 import { Request } from 'src/app/Interfaces/request.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
-import { User } from 'src/app/Interfaces/user.model';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -16,13 +15,19 @@ export class RequestsComponent implements OnInit {
   requests: Request[] = [];
   avatars: any[] = [];
   itemExists: boolean = false;
-  action;
   itemContent: string;
 
   @ViewChild('itemContent') itemCont: ElementRef;
 
-  constructor(private profileService: ProfileService, private authService: AuthenticationService, private router: Router, private domSanitizer: DomSanitizer) {
-    this.action = { typeOfRequest: "", itemContent: "", action: "", id_request: "" }
+  constructor(
+    private profileService: ProfileService,
+    private authService: AuthenticationService,
+    private router: Router,
+    private domSanitizer: DomSanitizer) {
+
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
    }
 
   ngOnInit() {
@@ -56,11 +61,22 @@ export class RequestsComponent implements OnInit {
       this.router.navigateByUrl('/users/'+id);
     }
   }
-// typeOfRequest: string, itemContent: string, action: string, id_request: string
-  acceptRequest() {
-  let item = document.querySelectorAll('.row col-3:first-child div:first-child ');
-  console.log(item.length);
-  this.itemContent = this.itemCont.nativeElement.value;
-  console.log("item ", this.itemContent);
+
+  acceptRequest(typeOfRequest: string, itemContent: string, id_request: number) {
+  this.profileService.ActionItemRequest(typeOfRequest, itemContent, "accept", id_request).subscribe(
+    response => {
+      console.log("Petition accepted");
+      //alert("Petition accepted");
+      this.getRequests();
+    });
   }
+
+  denyRequest(typeOfRequest: string, itemContent: string, id_request: number) {
+    this.profileService.ActionItemRequest(typeOfRequest, itemContent, "decline", id_request).subscribe(
+      response => {
+        console.log("Petition denied");
+        //alert("Petition denied");
+        this.getRequests();
+      });
+    }
 }

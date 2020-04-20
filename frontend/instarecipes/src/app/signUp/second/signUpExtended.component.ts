@@ -4,18 +4,17 @@ import { UserService } from 'src/app/services/user.service';
 import { Allergen } from 'src/app/Interfaces/allergen.model';
 import { ProfileService } from 'src/app/services/profile.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs/operators';
 import { User } from 'src/app/Interfaces/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-second',
-  templateUrl: './second.component.html',
+  templateUrl: './signUpExtended.component.html',
 })
-export class SecondComponent implements OnInit {
+export class SignUpExtendedComponent implements OnInit {
   registerForm2: FormGroup;
   activate: boolean;
-  allergens: Allergen [];
+  allergens: Allergen [] = [];
   returnUrl: string;
   error: '';
   user: User;
@@ -49,21 +48,20 @@ export class SecondComponent implements OnInit {
     delete this.userService.getFinalData()['confPassword'];
     delete this.userService.getFinalData()['fileAvatar'];
 
-    console.log("new ", this.userService.getFinalData());
-
     this.authenticationService.register(this.user)
     .subscribe(
       data => {
-          alert("User created!");
+        console.log("User created!");
           this.authenticationService.login(this.user.username, this.user.password)
            .subscribe(
                data => {
-                 alert("User logged!");
-                 this.profileService.updateProfileAvatar(this.selectedFile).subscribe(
-                  imagen=>{
-                  },
-                    (error: Error) => console.log("File uploaded!")
-                 );
+                 if (this.selectedFile != null){
+                  this.profileService.updateProfileAvatar(this.selectedFile).subscribe(
+                    imagen=>{
+                    },
+                      (error: Error) => console.log("File uploaded!")
+                   );
+                 }
                 this.router.navigate(["/index"]);
                },
                error => {
@@ -106,6 +104,5 @@ export class SecondComponent implements OnInit {
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
     console.log(this.selectedFile);
-
   }
 }

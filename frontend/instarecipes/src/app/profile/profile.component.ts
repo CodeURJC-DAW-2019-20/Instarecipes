@@ -8,6 +8,11 @@ import { Recipe } from '../Interfaces/recipe.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
+const urls = [
+  'assets/js/main2.js',
+  'assets/js/admin_profile.js'
+]
+
 @Component({
   selector: 'profile',
   templateUrl: './profile.component.html',
@@ -24,6 +29,7 @@ export class ProfileComponent implements OnInit, AfterViewInit{
   user_recipes: any[] = [];
   id_user: number;
   n_likes: number = 0;
+  loadAPI: any;
 
   infoLoaded: number = 0; //this one i need to load the 6 methods (info, avatar, background, likes, following and followers)
 
@@ -39,23 +45,23 @@ export class ProfileComponent implements OnInit, AfterViewInit{
     console.log("ID: " + this.router.snapshot.paramMap.get('id'));
     if(!this.router.snapshot.paramMap.get('id')){
       this.id_user = this.authService.user.id;
-      console.log("Welcome to your profile");
     }else{
       this.id_user = +(this.router.snapshot.paramMap.get('id'));
-      console.log("Welcome to jurasic park");
     }
     this.refresh();
   }
 
-  refresh(){
-    this.followers_users = [];
-    this.following_users = [];
-    this.avatar = null;
-    this.background = null;
-    this.user = null;
-    this.user_recipes = [];
-    this.n_likes = 0;
+  public loadScript(url: any) {
+    console.log("preparing to load...");
+    let node = document.createElement("script");
+    node.src = url;
+    node.type = "text/javascript";
+    node.async = true;
+    node.charset = "utf-8";
+    document.getElementsByTagName("head")[0].appendChild(node);
+  }
 
+  refresh(){
     this.get_user_info();
     this.get_avatar();
     this.get_background();
@@ -65,9 +71,12 @@ export class ProfileComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit(){
-    import('../../assets/js/main2.js');
-    import('../../assets/js/admin_profile.js');
-    import('../../assets/js/statistics.js');
+    urls.forEach(element => {
+      this.loadAPI = new Promise(resolve => {
+        console.log("resolving promise...");
+        this.loadScript(element);
+      });
+    });
   }
 
   get_user_info(){
@@ -132,11 +141,19 @@ export class ProfileComponent implements OnInit, AfterViewInit{
   }
 
   receive_new_followers() {
-    this.get_followers_and_following();
+    this.userService.unfollowUser(this.id_user).subscribe(
+      users =>{
+        this.get_followers_and_following();
+      }
+    );
   }
 
   receive_new_following() {
-    this.get_followers_and_following();
+    this.userService.followUser(this.id_user).subscribe(
+      users =>{
+        this.get_followers_and_following();
+      }
+    );
   }
 
 }

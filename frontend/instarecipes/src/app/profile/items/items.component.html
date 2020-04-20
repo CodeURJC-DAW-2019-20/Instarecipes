@@ -51,7 +51,8 @@
                 </div>
             </div>
             <div class="scrolling container" style="height: 100%;background-color: rgba(0, 0, 0, 0.2);">
-                <div *ngFor="let ingredient of ingredients; index as i" id="itemsIng">
+            <a id="itemsIng">
+              <div *ngFor="let ingredient of ingredients; index as i" >
                     <!-- Type x -->
                     <div class="row" style="align-items: center;">
                         <div class="col-4">
@@ -66,7 +67,9 @@
                     </div>
                     <hr>
                 </div>
-                <div *ngFor="let category of categories; index as i" id="itemsCat">
+              </a>
+              <a id="itemsCat">
+                <div *ngFor="let category of categories; index as i" >
                     <!-- Type x -->
                     <div class="row" style="align-items: center;">
                         <div class="col-4">
@@ -81,21 +84,25 @@
                     </div>
                     <hr>
                 </div>
-                <div *ngFor="let cookingStyle of cookingStyles; index as i" id="itemsCS">
-                    <!-- Type x -->
-                    <div class="row" style="align-items: center;">
-                        <div class="col-4">
-                            <h3 style="text-align:center;"># {{i+1}}</h3>
-                        </div>
-                        <div class="col-4">
-                            <h6 style="text-align:center;">Cooking Style</h6>
-                        </div>
-                        <div class="col-4">
-                            <p style="text-align:center;">{{cookingStyle.cookingStyle}}</p>
-                        </div>
-                    </div>
-                    <hr>
-                </div>
+              </a>
+              <a id="itemsCS">
+              <div *ngFor="let cookingStyle of cookingStyles; index as i" >
+                  <!-- Type x -->
+                  <div class="row" style="align-items: center;">
+                      <div class="col-4">
+                          <h3 style="text-align:center;"># {{i+1}}</h3>
+                      </div>
+                      <div class="col-4">
+                          <h6 style="text-align:center;">Cooking Style</h6>
+                      </div>
+                      <div class="col-4">
+                          <p style="text-align:center;">{{cookingStyle.cookingStyle}}</p>
+                      </div>
+                  </div>
+                  <hr>
+              </div>
+              </a>
+
             </div>
             <hr>
         </div>
