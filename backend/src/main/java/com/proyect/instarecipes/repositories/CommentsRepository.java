@@ -37,6 +37,6 @@ public interface CommentsRepository extends JpaRepository<Comment, Long> {
 	Set<User> findLikeUsersList(Long id);
 
     @Query("UPDATE Comment c SET c.usersLiked = :new_list WHERE c.id = :id_comment")
-	void updateLikesUsersList(Long id_comment, Set<User> new_list);
+    void updateLikesUsersList(Long id_comment, Set<User> new_list);
 
 }

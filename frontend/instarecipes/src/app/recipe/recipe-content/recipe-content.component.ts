@@ -102,6 +102,7 @@ export class RecipeContentComponent implements OnInit {
       }
     );
   }
+
   didHeLiked() {
     this.likesUsers = this.recipe.likesUsers;
     const n = this.likesUsers.length;
@@ -113,6 +114,7 @@ export class RecipeContentComponent implements OnInit {
       }
     }
   }
+
   unlikeToRecipe() {
     this.recipesService.pressUnlikeRecipe(this.recipeService.actualRecipeID).subscribe(
       _ => {
@@ -123,6 +125,7 @@ export class RecipeContentComponent implements OnInit {
     this.likes -= 1;
     this.allLikes -= 1;
   }
+
   likeToRecipe() {
     this.recipesService.pressLikeRecipe(this.recipeService.actualRecipeID).subscribe(
       _ => {
@@ -133,6 +136,7 @@ export class RecipeContentComponent implements OnInit {
     this.likes += 1;
     this.allLikes += 1;
   }
+
   getAvatar(id_user: number) {
       this.recipesService.getRecipeAvatar(id_user).subscribe(
         data => {

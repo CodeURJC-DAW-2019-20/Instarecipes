@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 import { Step } from '../Interfaces/step.model';
 import { RecipeDTO } from '../Interfaces/recipeDTO.model';
 import { User } from '../Interfaces/user.model';
-import { userLikeCommentDTO } from '../Interfaces/userLikeCommentDTO.model';
 
 const BASE_URL: string = "/api/recipes/";
 
@@ -121,14 +120,6 @@ export class RecipesService {
       )
     ) as Observable<Comment[]>;
   }
-  getListUserComment(id_comment: number): Observable<userLikeCommentDTO[]> {
-    return this.httpClient.get(BASE_URL + 'comments/' + id_comment).pipe(
-      catchError(
-        error => this.handleError(error)
-      )
-    ) as Observable<userLikeCommentDTO[]>;
-  }
-
   private handleError(error: any) {
 		console.error(error);
 		return Observable.throw("Server error (" + error.status + "): " + error.text())

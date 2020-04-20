@@ -36,17 +36,18 @@ export class EditProfileComponent implements OnInit {
   loadAPI: any;
   newAvatar: File;
   newBackground: File;
+  error: '';
 
   @ViewChild('closebutton') closebutton: ElementRef;
 
-  constructor(private profileService: ProfileService, public authService: AuthenticationService) {   
-    this.userUpdate = { 
+  constructor(private profileService: ProfileService, public authService: AuthenticationService) {
+    this.userUpdate = {
       name: authService.user.name,
       surname: authService.user.surname,
       info: authService.user.info,
       allergens: authService.user.allergens
     }
-  }  
+  }
 
   ngOnInit() {
     if(this.id_user === this.authService.user.id){
@@ -56,7 +57,7 @@ export class EditProfileComponent implements OnInit {
       });
       this.loadAllergens();
     }
-    
+
   }
 
   public loadScript() {
@@ -68,7 +69,7 @@ export class EditProfileComponent implements OnInit {
     node.charset = "utf-8";
     document.getElementsByTagName("head")[0].appendChild(node);
   }
-  
+
   initConstructor(){
     this.userUpdate = { name: this.user?.name, surname: this.authService.user.surname, info: this.authService.user.info, allergens: this.authService.user.allergens }
   }
@@ -95,12 +96,20 @@ export class EditProfileComponent implements OnInit {
       console.log(this.user);
       if (this.newAvatar != null){
         this.profileService.updateProfileAvatar(this.newAvatar).subscribe(
-          imagen=>{ },
-          (error: Error) => console.log("File uploaded!")
+          imagen=>{
+          },
+            (error: Error) => console.log("File uploaded!")
          );
        }
-    });
+       this.update_profile();
     this.closebutton.nativeElement.click();
+
+  },
+    error => {
+        alert("Try again");
+        this.error = error;
+    });
+
   }
 
 
@@ -111,9 +120,11 @@ export class EditProfileComponent implements OnInit {
   }
 
   update_profile(){
+    console.log('me ejecuto');
+   // window.location.reload();
     this.refresh_profile.emit(null);
   }
-  
+
   onFileChanged(event) {
     this.newAvatar = event.target.files[0];
     console.log(this.newAvatar);

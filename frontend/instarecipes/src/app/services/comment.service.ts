@@ -20,7 +20,6 @@ export class CommentsService {
   }
 
   postCommentToRecipe(id_recipe: number, commentDTO: any) {
-    console.log(commentDTO);
     const body = JSON.stringify(commentDTO);
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -30,27 +29,27 @@ export class CommentsService {
     );
   }
 
-  dislikeComment(id_recipe: number, id_comment: number){
+  dislikeComment(id_recipe: number, id_comment: number): Observable<Comment> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.httpClient.post(BASE_URL + id_recipe + '/comments/'+ id_comment + '/commentUnpressLike', {headers}).pipe(
+    return this.httpClient.post(BASE_URL + id_recipe + '/comments/' + id_comment + '/commentUnpressLike', {headers}).pipe(
       catchError(error => this.handleError(error))
-    );
+    )as Observable<Comment>;
   }
 
-  likeComment(id_recipe: number, id_comment: number){
+  likeComment(id_recipe: number, id_comment: number): Observable<Comment> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.httpClient.post(BASE_URL + id_recipe + '/comments/'+ id_comment + '/commentPressLike', {headers}).pipe(
+    return this.httpClient.post(BASE_URL + id_recipe + '/comments/' + id_comment + '/commentPressLike', {headers}).pipe(
       catchError(error => this.handleError(error))
-    );
+    )as Observable<Comment>;
   }
 
   handleError(error: any) {
     console.error(error);
 
-    return Observable.throw("Server error (" + error.status + "): " + error.text())
+    return Observable.throw('Server error (' + error.status + '):' + error.text())
   }
 }
