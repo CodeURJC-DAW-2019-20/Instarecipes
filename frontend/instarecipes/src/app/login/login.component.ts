@@ -43,13 +43,13 @@ export class LoginComponent implements OnInit{
    ngOnInit() {
     this.googleSDK();
 
-      this.loginForm = this.formBuilder.group({
+    this.loginForm = this.formBuilder.group({
            username: ['', Validators.required],
            password: ['', Validators.required]
        });
 
        // get return url from route parameters or default to '/'
-       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/index';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/index';
    }
 
   // // convenience getter for easy access to form fields
@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit{
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) {return;}
       js = d.createElement(s); js.id = id;
-      js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
+      js.src = 'https://apis.google.com/js/platform.js?onload=googleSDKLoaded';
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'google-jssdk'));
 
@@ -136,8 +136,8 @@ export class LoginComponent implements OnInit{
     this.authenticationService.register(this.user)
     .subscribe(
       data => {
-        console.log("User created!");
-          this.authenticationService.login(this.user.username, this.user.password)
+        console.log('User created!');
+        this.authenticationService.login(this.user.username, this.user.password)
            .subscribe(
                data => {
                  console.log("User logged!");
