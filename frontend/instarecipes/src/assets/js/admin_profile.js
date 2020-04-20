@@ -66,9 +66,9 @@ $(document).ready(function() {
         $("#text-reports").attr("class", "active");
     });
 
-    var itemCS = document.getElementById("#itemsCS");
-    var itemIng = document.getElementById("#itemsIng");
-    var itemCat = document.getElementById("#itemsCat");
+    var itemCS = document.getElementById("itemsCS");
+    var itemIng = document.getElementById("itemsIng");
+    var itemCat = document.getElementById("itemsCat");
 
     $('#filter-item').on('change', function() {
         switch ($('#filter-item option:selected').val()) {
@@ -93,8 +93,8 @@ $(document).ready(function() {
                 itemCat.removeAttribute("hidden");
                 break;
             case 'Cooking style':
-            console.log(itemCS);
-              console.log("cooking style");
+                console.log(itemCS);
+                console.log("cooking style");
                 itemCS.removeAttribute("hidden");
                 itemIng.setAttribute("hidden", "true");
                 itemCat.setAttribute("hidden", "true");

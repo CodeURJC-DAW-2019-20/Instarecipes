@@ -14,20 +14,20 @@
                         <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Statistics</h2>
 
                         <div *ngIf="recipesTitles">
-                        <div *ngIf="recipesLikes">
-                        <!-- <div *ngFor="let r of recipesTitles; index as i">
+                            <div *ngIf="recipesLikes">
+                                <!-- <div *ngFor="let r of recipesTitles; index as i">
                         <h2>Hola {{r}}</h2>
                         </div> -->
-                        <!-- Icon Divider -->
-                        <div class="divider-custom"></div>
-                        <!-- LIKES Divider -->
-                        <h2 class="underlined-texts">LIKES</h2>
-                        <div id="canvasLikes" style="width: 100%;height: auto; align-items: center;justify-self: center;">
+                                <!-- Icon Divider -->
+                                <div class="divider-custom"></div>
+                                <!-- LIKES Divider -->
+                                <h2 class="underlined-texts">LIKES</h2>
+                                <div id="canvasLikes" style="width: 100%;height: auto; align-items: center;justify-self: center;">
 
-                            <input value="{{recipesLikes.toString()}}" id="likesArray" hidden />
-                            <input value="{{recipesTitles.toString()}}" id="titlesArray" hidden />
-                          </div>
-                          </div>
+                                    <input value="{{recipesLikes?.toString()}}" id="likesArray" hidden />
+                                    <input value="{{recipesTitles?.toString()}}" id="titlesArray" hidden />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

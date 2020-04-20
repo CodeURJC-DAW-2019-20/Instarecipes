@@ -10,8 +10,7 @@ import { Observable } from 'rxjs';
 
 const urls = [
   'assets/js/main2.js',
-  'assets/js/admin_profile.js',
-  'assets/js/statistics.js'
+  'assets/js/admin_profile.js'
 ]
 
 @Component({
@@ -50,7 +49,6 @@ export class ProfileComponent implements OnInit, AfterViewInit{
       this.id_user = +(this.router.snapshot.paramMap.get('id'));
     }
     this.refresh();
-
   }
 
   public loadScript(url: any) {

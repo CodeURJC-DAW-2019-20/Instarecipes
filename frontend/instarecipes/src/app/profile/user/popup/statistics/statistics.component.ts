@@ -13,14 +13,29 @@ export class StatisticsComponent implements OnInit, AfterViewInit {
   recipesTitles: string[] = [];
   recipesLikes: number[] = [];
   recipes: Recipe[] = [];
+  loadAPI: any;
+
   constructor( private profileService: ProfileService, private authService: AuthenticationService) { }
 
   ngAfterViewInit() {
-    import("../../../../../assets/js/statistics.js");
+    this.loadAPI = new Promise(resolve => {
+      console.log("resolving promise...");
+      this.loadScript();
+    });
   }
 
   ngOnInit() {
     this.getAllRecipes();
+  }
+
+  public loadScript() {
+    console.log("preparing to load...");
+    let node = document.createElement("script");
+    node.src = 'assets/js/statistics.js';
+    node.type = "text/javascript";
+    node.async = true;
+    node.charset = "utf-8";
+    document.getElementsByTagName("head")[0].appendChild(node);
   }
 
   getAllRecipes() {
