@@ -494,4 +494,18 @@ To set more conffortable, we should create the *docker-compose.yml* and finally,
 > * []()
 
 ## Most worked files <a name="workedFiles4"></a>
+
+## Most worked files :newspaper: <a name="workedFiles3"></a> 
+|                           |                                 |                                 |
+|---------------------------|---------------------------------|---------------------------------|
+| Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  |                           |
+| Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       | ProfileComponent, FilteredComponent, TrendingComponent, RecentComponent and Interfaces                                |
+| Manuel León Briz          | m.leon.2016@alumnos.urjc.es     | RecipeComponent, CommentsService, ContentComponent, Interfaces and Services                               |
+| José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  |                               |
+| Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es | SearchUserComponent, SearchRecipeComponent, LoginComponent, SignUpComponent and  AuthenticationService                               |
+|                           |                                 |                                 |  
+
 ## Classes and templates diagrams <a name="CTdiagrams4"></a>
+<p align="center">
+<img src="https://github.com/CodeURJC-DAW-2019-20/Instarecipes/blob/master/Images/Diagrams/DiagramPhase4.png"
+</p> 
