@@ -47,7 +47,7 @@ public class SignUpRestController{
         if(!exist){
             User user = new User(user1.getUsername(), user1.getEmail(),user1.getPassword(),user1.getName(),user1.getSurname(), user1.getInfo(), user1.getAllergens(), follow, follow, "ROLE_USER");
             if (user1.getImage() == null) {
-                File defaultAvatar = new File("src/main/resources/static/images/backgrounds/profile_background_example.jpeg");
+                File defaultAvatar = new File("src/main/resources/static/images/backgrounds/profile_avatar_example.jpeg");
                 FileInputStream bBotsAvatar = new FileInputStream(defaultAvatar);
                 MultipartFile userAvatar = new MockMultipartFile("file3", defaultAvatar.getName(), "image/jpeg", IOUtils.toByteArray(bBotsAvatar));
                 user.setAvatar(false);

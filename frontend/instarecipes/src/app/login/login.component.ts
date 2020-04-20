@@ -5,6 +5,8 @@ import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
 import { User } from '../Interfaces/user.model';
 import { ProfileService } from '../services/profile.service';
+import { FilterRecipeComponent } from '../index/popup/filter/filterRecipe.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -19,6 +21,9 @@ export class LoginComponent implements OnInit{
    auth2: any;
    user: User;
    urlAvatar;
+  //  profilePic;
+  //  googleAv;
+  //  profilePic = new File('../../assets/images/profileimage/googleAvatar.jpg');
 
    password: string;
    @ViewChild('loginRef', {static: true }) loginElement: ElementRef;
@@ -29,8 +34,10 @@ export class LoginComponent implements OnInit{
        private router: Router,
        private authenticationService: AuthenticationService,
        private profileService: ProfileService,
+       private domSanitizer: DomSanitizer,
        ) {
         this.user = {username: null, email: '', password: '', name: '', surname: '', info: 'Hello world!', allergens: null};
+        //this.profilePic = '../../assets/images/profileimage/image-7.jpg';
        }
 
    ngOnInit() {
@@ -105,13 +112,13 @@ export class LoginComponent implements OnInit{
         console.log('Full Name: ' + profile.getName());
         console.log('Given Name: ' + profile.getGivenName());
         console.log('Family Name: ' + profile.getFamilyName())
-        this.setUser(profile.getGivenName()+profile.getFamilyName(), profile.getEmail(), "googlepass",  profile.getGivenName(),  profile.getFamilyName(), null, profile.getImageUrl());
+        this.setUser(profile.getGivenName()+profile.getFamilyName(), profile.getEmail(), "googlepass",  profile.getGivenName(),  profile.getFamilyName(), null);
       }, (error) => {
         alert(JSON.stringify(error, undefined, 2));
       });
   }
 
-  setUser (username: string, email: string, password:string, name: string, surname: string, allergen: string, image: any) {
+  setUser (username: string, email: string, password:string, name: string, surname: string, allergen: string) {
     this.user["username"] = username;
     this.user['email'] = email;
     this.user['password'] = password;
@@ -120,11 +127,12 @@ export class LoginComponent implements OnInit{
     this.user['allergens'] = allergen;
 
     console.log("este es mi usuario : ", this.user);
-    this.onGoogleLogin(image);
+    this.onGoogleLogin();
   }
 
-  onGoogleLogin(profilePic: any){
+  onGoogleLogin(){
     console.log("entro en ongooglelogin");
+
     this.authenticationService.register(this.user)
     .subscribe(
       data => {
@@ -133,13 +141,7 @@ export class LoginComponent implements OnInit{
            .subscribe(
                data => {
                  console.log("User logged!");
-                 this.googleAvatar(profilePic);
-                //  this.profileService.updateProfileAvatar(profilePic).subscribe(
-                //   imagen=>{
-                //   },
-                //     (error: Error) => console.log("File uploaded!")
-                //  );
-                this.router.navigate(["/index"]);
+
                },
                error => {
                    this.error = error;
@@ -149,19 +151,21 @@ export class LoginComponent implements OnInit{
           alert("Try again");
           this.error = error;
       });
-
+  this.router.navigate(["/index"]);
   }
 
 
-  googleAvatar(profilePic: any) {
-    var blob = new Blob([profilePic], {type: 'image/jpeg'});
-    var file = new File([blob], 'googleAvatar.jpeg');
-    console.log(file);
-    this.profileService.updateProfileAvatar(file).subscribe(
-      imagen=>{
-      },
-        (error: Error) => console.log("File uploaded!")
-      );
-  }
+  // googleAvatar() {
+  //   var blob = new Blob([this.profilePic], {type: 'image/jpg'});
+  //   var file = new File([this.profilePic], 'googleAvatar.jpg');
+  //   var urlCreator = window.URL;
+  //   var googleAv = (this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(file)));
+  //   console.log(file);
+  //   this.profileService.updateProfileAvatar(file).subscribe(
+  //     imagen=>{
+  //     },
+  //       (error: Error) => console.log("File uploaded!")
+  //     );
+  // }
 
 }
