@@ -69,5 +69,5 @@
         </div>
     </div>
     <!-- Pop up settings(add avatar, background, bio and allergens) -->
-    <popup-edit-profile [avatar]="this.avatar" [background]="this.background"></popup-edit-profile>
+    <popup-edit-profile (refresh_profile)="update_profile()" [avatar]="this.avatar" [background]="this.background"></popup-edit-profile>
 </section>

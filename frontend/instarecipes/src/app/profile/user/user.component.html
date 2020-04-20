@@ -115,7 +115,7 @@
         </table>
         <!-- Request button pannel -->
     </header>
-    <publications [user_id]="user?.id" [avatar]="avatar" [background]="background" [user_recipes]="user_recipes"></publications>
+    <publications (refresh_profile)="update_profile()" [user_id]="user?.id" [avatar]="avatar" [background]="background" [user_recipes]="user_recipes"></publications>
     <!--Pop-up-->
     <!-- <popup-edit-profile></popup-edit-profile> ESTA EN EL publications.component.html, donde debe estar-->
     <popup-statistics></popup-statistics>

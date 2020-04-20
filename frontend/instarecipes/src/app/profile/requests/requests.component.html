@@ -77,8 +77,8 @@
             </div>
             <div class="col-2" style="display: flex; height:fit-content;">
               <!-- No soy capaz de coger más que el primer valor solo!!!!!!!!!!!!!!! -->
-                <button type="submit" value="accept" class="btn btn-outline-primary fa fa-check" (click) = "acceptRequest(request?.typeOfRequest, request?.ingredientContent, request?.id);" style="margin-right: 5%;border-radius: 50%;"></button>
-                <button type="submit" name="action" value="decline" class="btn btn-outline-danger fa fa-remove" (click) = "denyRequest(request?.typeOfRequest, request?.ingredientContent, request?.id);" style="border-radius: 50%;"></button>
+                <button type="submit" value="accept" class="btn btn-outline-primary" (click) = "acceptRequest(request?.typeOfRequest, request?.ingredientContent, request?.id);" style="margin-right: 5%;border-radius: 50%;"><i class="fas fa-check"></i></button>
+                <button type="submit" name="action" value="decline" class="btn btn-outline-danger " (click) = "denyRequest(request?.typeOfRequest, request?.ingredientContent, request?.id);" style="border-radius: 50%;"><i class="fa fa-remove"></i></button>
                 <input name="id_request" value="{id_request}" hidden />
             </div>
         </form>

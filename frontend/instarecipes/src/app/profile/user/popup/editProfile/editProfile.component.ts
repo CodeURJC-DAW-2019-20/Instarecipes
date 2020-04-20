@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Allergen } from 'src/app/Interfaces/allergen.model';
 import { ProfileService } from 'src/app/services/profile.service';
 import { User } from '../../../../Interfaces/user.model';
-import { UserService } from '../../../../services/user.service';
-import { FormBuilder, FormGroup} from '@angular/forms';
+import { FormGroup} from '@angular/forms';
 
 
 @Component({
@@ -20,30 +19,51 @@ export class EditProfileComponent implements OnInit {
   background: any;
   @Input()
   user: User;
+
+  @Output()
+  refresh_profile = new EventEmitter<any>();
+
   allAllergens: Allergen[] = [];
-  settingsForm : FormGroup
-  userUpdate : User;
-
-  @ViewChild('closebutton') closebutton: ElementRef;
-
+  userUpdate: any;
   allergenAux: string = '';
+  settingsForm : FormGroup
   name : string;
   surname: string;
   info : string;
   allergens: string;
+  loadAPI: any;
   newAvatar: File;
   newBackground: File;
 
-  constructor(private profileService: ProfileService,
-     public authService: AuthenticationService, private userService: UserService) {
-       this.initConstructor();
+  @ViewChild('closebutton') closebutton: ElementRef;
+
+  constructor(private profileService: ProfileService, public authService: AuthenticationService) {   
+    this.userUpdate = { 
+      name: authService.user.name,
+      surname: authService.user.surname,
+      info: authService.user.info,
+      allergens: authService.user.allergens
     }
+  }  
 
   ngOnInit() {
-    import('../../../../../assets/js/image_preview.js')
-    this.loadAllergens();
+    this.loadAPI = new Promise(resolve => {
+      console.log("resolving promise...");
+      this.loadScript();
+    });
+    this.loadAllergens();  
   }
 
+  public loadScript() {
+    console.log("preparing to load...");
+    let node = document.createElement("script");
+    node.src = 'assets/js/image_preview.js';
+    node.type = "text/javascript";
+    node.async = true;
+    node.charset = "utf-8";
+    document.getElementsByTagName("head")[0].appendChild(node);
+  }
+  
   initConstructor(){
     //no se si inicializarlo con user o authservice, en teoria debería ser con auth pero si cambiamos algo no se cambia en el authservice,
     //probar a cambiar nombre e ir a la consola en el index! si te log con pepe sigue saliendo de nombre pepe (al igual que en el popup) pero en el profile cambia.
@@ -75,15 +95,11 @@ export class EditProfileComponent implements OnInit {
       console.log(this.user);
       if (this.newAvatar != null){
         this.profileService.updateProfileAvatar(this.newAvatar).subscribe(
-          imagen=>{
-          },
-            (error: Error) => console.log("File uploaded!")
+          imagen=>{ },
+          (error: Error) => console.log("File uploaded!")
          );
        }
-
     });
-
-   // this.initConstructor();
     this.closebutton.nativeElement.click();
   }
 
@@ -94,6 +110,10 @@ export class EditProfileComponent implements OnInit {
     )
   }
 
+  update_profile(){
+    this.refresh_profile.emit(null);
+  }
+  
   onFileChanged(event) {
     this.newAvatar = event.target.files[0];
     console.log(this.newAvatar);
