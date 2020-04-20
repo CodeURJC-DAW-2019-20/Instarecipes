@@ -39,7 +39,8 @@ export class SendItemRequestComponent implements OnInit, OnChanges {
     if(this.type !== "" && this.content !== ""){
       this.profileService.getRequest(this.request).subscribe(
         response => {
-          console.log("request done");
+          console.log("Request done.");
+          this.profileService.triggerSomeEvent(Date());
           this.initConstructor();
         }
      );

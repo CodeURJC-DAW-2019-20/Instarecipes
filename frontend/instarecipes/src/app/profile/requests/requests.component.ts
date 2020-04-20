@@ -32,6 +32,11 @@ export class RequestsComponent implements OnInit {
 
   ngOnInit() {
     this.getRequests();
+    this.profileService.getEventSubject().subscribe((param: any) => {
+      if (param !== undefined) {
+        this.getRequests();
+      }
+    });
   }
 
   getRequests() {
@@ -64,7 +69,7 @@ export class RequestsComponent implements OnInit {
 
   acceptRequest(request: Request) {
     let itemContent = request.ingredientContent + request.categoryContent + request.cookingStyleContent;
-  this.profileService.actionItemRequest(request.typeOfRequest, itemContent, "accept", request.id).subscribe(
+    this.profileService.actionItemRequest(request.typeOfRequest, itemContent, "accept", request.id).subscribe(
     response => {
       console.log("Petition accepted");
       this.getRequests();

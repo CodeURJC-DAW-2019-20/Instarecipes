@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Allergen } from '../Interfaces/allergen.model';
@@ -15,6 +15,16 @@ const BASE_URL: string = "/api/profile";
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
+
+  private eventSubject = new BehaviorSubject<any>(undefined);
+
+  triggerSomeEvent(param: any) {
+      this.eventSubject.next(param);
+  }
+
+  getEventSubject(): BehaviorSubject<any> {
+      return this.eventSubject;
+  }
 
   constructor(private httpClient: HttpClient) { }
   getActualUser() : Observable<any>{
