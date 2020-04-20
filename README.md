@@ -31,7 +31,7 @@ This is the main project's repository, where you can found folders like **Code**
  * [Docker steps](#dockersteps)
  * [Classes and templates diagrams](#CTdiagrams3)  
  
-  **PHASE 4** 
+  **PHASE 4**
  * [Most important commits](#importantComm4)  
  * [Most worked files](#workedFiles4)   
  * [Classes and templates diagrams](#CTdiagrams4)  
@@ -458,6 +458,7 @@ To set more conffortable, we should create the *docker-compose.yml* and finally,
 <img src="https://github.com/CodeURJC-DAW-2019-20/Instarecipes/blob/master/Images/Diagrams/TemplatesModelDiagram.png"
 </p> 
 
+# Implementation of the web with SPA architecture
 
 ## Most important commits <a name="importantComm4"></a> 
 |                           |                                 |                                           |
