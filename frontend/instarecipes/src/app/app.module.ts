@@ -45,6 +45,7 @@ import { FollowingComponent } from './profile/user/popup/following/following.com
 import { UserComponent } from './profile/user/user.component';
 import { SearchService } from './services/search.service';
 import { RankService } from './services/ranking.service';
+import { CommentsService } from './services/comment.service';
 
 @NgModule({
 
@@ -80,7 +81,7 @@ import { RankService } from './services/ranking.service';
     UsersListComponent,
     FollowersComponent,
     FollowingComponent,
-    UserComponent
+    UserComponent,
   ],
 
   //Aqui se deben importar los modulos
@@ -93,7 +94,8 @@ import { RankService } from './services/ranking.service';
     FormsModule
   ],
   //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
-  providers: [AuthenticationService, AuthGuard, UserService, RecipesService, ProfileService, RecipeService, SearchService, RankService,
+  // tslint:disable-next-line: max-line-length
+  providers: [AuthenticationService, AuthGuard, UserService, RecipesService, ProfileService, RecipeService, SearchService, RankService, CommentsService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]

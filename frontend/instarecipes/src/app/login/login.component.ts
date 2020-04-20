@@ -5,6 +5,8 @@ import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
 import { User } from '../Interfaces/user.model';
 import { ProfileService } from '../services/profile.service';
+import { saveAs } from 'file-saver';
+
 
 
 @Component({
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit{
    error: '';
    auth2: any;
    user: User;
-   urlAvatar;
+   profilePic: File;
 
    password: string;
    @ViewChild('loginRef', {static: true }) loginElement: ElementRef;
@@ -29,20 +31,22 @@ export class LoginComponent implements OnInit{
        private router: Router,
        private authenticationService: AuthenticationService,
        private profileService: ProfileService,
+       //private urlAvatar = '(../../assets/images/profileimage/googleAvatar.jpg)',
        ) {
         this.user = {username: null, email: '', password: '', name: '', surname: '', info: 'Hello world!', allergens: null};
+        //this.profilePic = new File('(../../assets/images/profileimage/googleAvatar.jpg', 'googleAvatar.jpg');
        }
 
    ngOnInit() {
     this.googleSDK();
 
-      this.loginForm = this.formBuilder.group({
+    this.loginForm = this.formBuilder.group({
            username: ['', Validators.required],
            password: ['', Validators.required]
        });
 
        // get return url from route parameters or default to '/'
-       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/index';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/index';
    }
 
   // // convenience getter for easy access to form fields
@@ -85,7 +89,7 @@ export class LoginComponent implements OnInit{
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) {return;}
       js = d.createElement(s); js.id = id;
-      js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
+      js.src = 'https://apis.google.com/js/platform.js?onload=googleSDKLoaded';
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'google-jssdk'));
 
@@ -105,41 +109,42 @@ export class LoginComponent implements OnInit{
         console.log('Full Name: ' + profile.getName());
         console.log('Given Name: ' + profile.getGivenName());
         console.log('Family Name: ' + profile.getFamilyName())
-        this.setUser(profile.getGivenName()+profile.getFamilyName(), profile.getEmail(), "googlepass",  profile.getGivenName(),  profile.getFamilyName(), null, profile.getImageUrl());
+        // tslint:disable-next-line: max-line-length
+        this.setUser(profile.getGivenName() + profile.getFamilyName(), profile.getEmail(), 'googlepass',  profile.getGivenName(),  profile.getFamilyName(), null);
       }, (error) => {
         alert(JSON.stringify(error, undefined, 2));
       });
   }
 
-  setUser (username: string, email: string, password:string, name: string, surname: string, allergen: string, image: any) {
-    this.user["username"] = username;
+  setUser(username: string, email: string, password: string, name: string, surname: string, allergen: string) {
+    this.user['username'] = username;
     this.user['email'] = email;
     this.user['password'] = password;
     this.user['name'] = name;
     this.user['surname'] = surname;
     this.user['allergens'] = allergen;
 
-    console.log("este es mi usuario : ", this.user);
-    this.onGoogleLogin(image);
+    console.log('este es mi usuario : ', this.user);
+    this.onGoogleLogin();
   }
 
-  onGoogleLogin(profilePic: any){
-    console.log("entro en ongooglelogin");
+  onGoogleLogin(){
+    console.log('entro en ongooglelogin');
     this.authenticationService.register(this.user)
     .subscribe(
       data => {
-        console.log("User created!");
-          this.authenticationService.login(this.user.username, this.user.password)
+        console.log('User created!');
+        this.authenticationService.login(this.user.username, this.user.password)
            .subscribe(
-               data => {
-                 console.log("User logged!");
-                 this.googleAvatar(profilePic);
-                //  this.profileService.updateProfileAvatar(profilePic).subscribe(
-                //   imagen=>{
-                //   },
-                //     (error: Error) => console.log("File uploaded!")
-                //  );
-                this.router.navigate(["/index"]);
+               () => {
+                 console.log('User logged!');
+                 // this.googleAvatar(profilePic);
+                 this.profileService.updateProfileAvatar(this.profilePic).subscribe(
+                    image => {
+                    },
+                    (error: Error) => console.log('File uploaded!')
+                 );
+                 this.router.navigate(["/index"]);
                },
                error => {
                    this.error = error;
@@ -153,15 +158,20 @@ export class LoginComponent implements OnInit{
   }
 
 
-  googleAvatar(profilePic: any) {
-    var blob = new Blob([profilePic], {type: 'image/jpeg'});
-    var file = new File([blob], 'googleAvatar.jpeg');
-    console.log(file);
-    this.profileService.updateProfileAvatar(file).subscribe(
-      imagen=>{
-      },
-        (error: Error) => console.log("File uploaded!")
-      );
+  googleAvatar() {
+    // var blob = new Blob([profilePic], {type: 'image/jpeg'});
+    // var file = new File([blob], 'googleAvatar.jpeg');
+    var img = new Image();
+    img.onload = function(){
+    };
+    img.src = '(../../assets/images/profileimage/googleAvatar.jpg)';
+
+    // console.log(file);
+    // this.profileService.updateProfileAvatar(file).subscribe(
+    //   imagen=>{
+    //   },
+    //     (error: Error) => console.log("File uploaded!")
+    //   );
   }
 
 }

@@ -45,31 +45,31 @@ export class SignUpExtendedComponent implements OnInit {
   onSubmit() {
     this.userService.setFinalData(this.registerForm2.value);
     this.setUser();
-    delete this.userService.getFinalData()['confPassword'];
-    delete this.userService.getFinalData()['fileAvatar'];
+    delete this.userService.getFinalData().confPassword;
+    delete this.userService.getFinalData().fileAvatar;
 
     this.authenticationService.register(this.user)
     .subscribe(
       data => {
-        console.log("User created!");
-          this.authenticationService.login(this.user.username, this.user.password)
+        console.log('User created!');
+        this.authenticationService.login(this.user.username, this.user.password)
            .subscribe(
                data => {
                  if (this.selectedFile != null){
                   this.profileService.updateProfileAvatar(this.selectedFile).subscribe(
                     imagen=>{
                     },
-                      (error: Error) => console.log("File uploaded!")
+                      (error: Error) => console.log('File uploaded!')
                    );
                  }
-                this.router.navigate(["/index"]);
+                 this.router.navigate(['/index']);
                },
                error => {
                    this.error = error;
                });
       },
       error => {
-          alert("Try again");
+          alert('Try again');
           this.error = error;
       });
   }
@@ -90,12 +90,12 @@ export class SignUpExtendedComponent implements OnInit {
       }
 
    setUser () {
-     this.user["username"] = this.userService.getFinalData()['username'];
-     this.user['email'] = this.userService.getFinalData()['email'];
-     this.user['password'] = this.userService.getFinalData()['password'];
-     this.user['name'] = this.userService.getFinalData()['name'];
-     this.user['surname'] = this.userService.getFinalData()['surname'];
-     this.user['allergens'] = this.userService.getFinalData()['allergen'];
+     this.user["username"] = this.userService.getFinalData().username;
+     this.user.email = this.userService.getFinalData().email;
+     this.user.password = this.userService.getFinalData().password;
+     this.user.name = this.userService.getFinalData().name;
+     this.user.surname = this.userService.getFinalData().surname;
+     this.user.allergens = this.userService.getFinalData().allergen;
    }
 
   onFileChanged(event) {
