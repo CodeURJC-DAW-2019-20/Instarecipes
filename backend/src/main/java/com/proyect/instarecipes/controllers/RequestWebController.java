@@ -33,21 +33,17 @@ public class RequestWebController {
         List<Category> categoriesList = requestsService.getCategories();
         List<CookingStyle> cookingStylesList = requestsService.getCookingStyles();
         //funcion extraer ingredientes,categorias y cookingStyle user request
-        if (requestsService.isIngredient(typeOfItem)) {
+        if (typeOfItem.equals("Ingredient")) {
             request = requestsService.getNewRequest(user, typeOfItem,content,0);
-            exists=requestsService.existIngredient(ingredientsList,request);
-            //funcion comprobando si existe la receta colocarla en service
+            exists=requestsService.existIngredient(ingredientsList,content);
             requestsService.saveItem(request,exists);
-        }else if (requestsService.isCookingStyle(typeOfItem)) {
+        }else if (typeOfItem.equals("Cooking style")) {
             request = requestsService.getNewRequest(user, typeOfItem, content,1);
-            exists=requestsService.existCookingStyle(cookingStylesList,request);
-
-            //funcion comprobando si existe la cookingStyle colocarla en servic
+            exists=requestsService.existCookingStyle(cookingStylesList,content);
             requestsService.saveItem(request,exists);
-        }else if (typeOfItem.contains("Category")) {
+        }else if (typeOfItem.equals("Category")) {
             request = requestsService.getNewRequest(user, typeOfItem, content,2);
-            exists=requestsService.existCategory(categoriesList,request);
-
+            exists=requestsService.existCategory(categoriesList,content);
             requestsService.saveItem(request,exists);
         }else {
             System.out.println("SELECT A TYPE OF REQUEST ITEM !!");

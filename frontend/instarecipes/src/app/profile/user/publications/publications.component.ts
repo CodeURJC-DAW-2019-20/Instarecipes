@@ -21,6 +21,8 @@ export class PublicationsComponent implements OnInit, OnChanges {
   background: any;
   @Input()
   user_id: number;
+  @Input()
+  id_user: number;
 
   @Output()
   refresh_profile = new EventEmitter<any>();

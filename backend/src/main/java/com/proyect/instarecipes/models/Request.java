@@ -38,11 +38,6 @@ public class Request{
     @JsonView(RequestItems.class)
     private boolean itemExists;
 
-    // @Column(nullable = true)
-    // private Recipe recipeReport;
-    // @Column(nullable = true)
-    // private User userReport;
-
     public Request() {
     }
 
@@ -50,24 +45,10 @@ public class Request{
             String categoryContent, boolean itemExists) {
         this.username = username;
         this.typeOfRequest = typeOfRequest;
-        if(ingredientContent == null){
-            this.ingredientContent = "";
-        }else{
-            this.ingredientContent = ingredientContent;
-        }
-        if(cookingStyleContent == null){
-            this.cookingStyleContent = "";
-        }else{
-            this.cookingStyleContent = cookingStyleContent;
-        }
-        if(categoryContent == null){
-            this.categoryContent = "";
-        }else{
-            this.categoryContent = categoryContent;
-        }
+        this.ingredientContent = ingredientContent;
+        this.cookingStyleContent = cookingStyleContent;
+        this.categoryContent = categoryContent;
         this.itemExists = itemExists;
-        // this.recipeReport = recipeReport;
-        // this.userReport = userReport;
     }
 
     public Long getId() {
@@ -118,16 +99,6 @@ public class Request{
         this.categoryContent = categoryContent;
     }
 
-    // public Request(User username, String typeOfRequest, String ingredientContent, String cookingStyleContent,
-    //         String categoryContent, boolean itemExists) {
-    //     this.username = username;
-    //     this.typeOfRequest = typeOfRequest;
-    //     this.ingredientContent = ingredientContent;
-    //     this.cookingStyleContent = cookingStyleContent;
-    //     this.categoryContent = categoryContent;
-    //     this.itemExists = itemExists;
-    // }
-
     public boolean isItemExists() {
         return itemExists;
     }
@@ -135,22 +106,5 @@ public class Request{
     public void setItemExists(boolean itemExists) {
         this.itemExists = itemExists;
     }
-
-    // public Recipe getRecipeReport() {
-    //     return recipeReport;
-    // }
-
-    // public void setRecipeReport(Recipe recipeReport) {
-    //     this.recipeReport = recipeReport;
-    // }
-
-    // public User getUserReport() {
-    //     return userReport;
-    // }
-
-    // public void setUserReport(User userReport) {
-    //     this.userReport = userReport;
-    // }
-
     
 }

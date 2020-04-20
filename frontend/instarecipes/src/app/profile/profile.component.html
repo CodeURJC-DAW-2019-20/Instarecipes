@@ -32,8 +32,8 @@
             </ul>
         </div>
     </nav>
-    <user (refresh_profile)="refresh()" (new_followers)="receive_new_followers()" (new_following)="receive_new_following()" [infoLoaded]="this.infoLoaded" [user]="user" [n_likes]="n_likes" [user_recipes]="user_recipes" [avatar]="avatar" [background]="background"
-        [followers_users]="followers_users" [following_users]="following_users"></user>
+    <user [id_user]="id_user" (refresh_profile)="refresh()" (new_followers)="receive_new_followers()" (new_following)="receive_new_following()" [infoLoaded]="this.infoLoaded" [user]="user" [n_likes]="n_likes" [user_recipes]="user_recipes" [avatar]="avatar"
+        [background]="background" [followers_users]="followers_users" [following_users]="following_users"></user>
     <popup-edit-profile></popup-edit-profile>
     <!-- Navigations -->
     <div style="height: 100%;  width: 100%;">

@@ -19,6 +19,8 @@ export class EditProfileComponent implements OnInit {
   background: any;
   @Input()
   user: User;
+  @Input()
+  id_user: number;
 
   @Output()
   refresh_profile = new EventEmitter<any>();
@@ -26,10 +28,10 @@ export class EditProfileComponent implements OnInit {
   allAllergens: Allergen[] = [];
   userUpdate: any;
   allergenAux: string = '';
-  settingsForm : FormGroup
-  name : string;
+  settingsForm : FormGroup;
+  name: string;
   surname: string;
-  info : string;
+  info: string;
   allergens: string;
   loadAPI: any;
   newAvatar: File;
@@ -47,11 +49,14 @@ export class EditProfileComponent implements OnInit {
   }  
 
   ngOnInit() {
-    this.loadAPI = new Promise(resolve => {
-      console.log("resolving promise...");
-      this.loadScript();
-    });
-    this.loadAllergens();  
+    if(this.id_user === this.authService.user.id){
+      this.loadAPI = new Promise(resolve => {
+        console.log("resolving promise...");
+        this.loadScript();
+      });
+      this.loadAllergens();
+    }
+    
   }
 
   public loadScript() {
@@ -65,11 +70,6 @@ export class EditProfileComponent implements OnInit {
   }
   
   initConstructor(){
-    //no se si inicializarlo con user o authservice, en teoria debería ser con auth pero si cambiamos algo no se cambia en el authservice,
-    //probar a cambiar nombre e ir a la consola en el index! si te log con pepe sigue saliendo de nombre pepe (al igual que en el popup) pero en el profile cambia.
-    //this.userUpdate = { name: this.user?.name, surname: this.user?.surname, info: this.user?.info, allergens: this.user?.allergens }
-    //this.userUpdate = { name: '', surname: '', info: '', allergens: '' }
-
     this.userUpdate = { name: this.user?.name, surname: this.authService.user.surname, info: this.authService.user.info, allergens: this.authService.user.allergens }
   }
 

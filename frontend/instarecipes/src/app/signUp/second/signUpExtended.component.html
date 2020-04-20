@@ -22,7 +22,7 @@
           <div class="form-group">
             <div class="wrap-input100">
               <span class="label-input100" for="name">Name</span>
-              <input class="input100" type="text" formControlName="name" class="form-control" placeholder="Name" />
+              <input class="input100" type="text" formControlName="name" class="form-control" placeholder="Name" style="padding-left: 33px;" />
               <span class="focus-input100" data-symbol="&#xf206;"></span>
             </div>
           </div>
@@ -30,7 +30,7 @@
           <div class="form-group">
             <div class="wrap-input100">
               <span class="label-input100" for="surname">Surname</span>
-              <input class="input100" type="text" formControlName="surname" class="form-control" placeholder="Surname" />
+              <input class="input100" type="text" formControlName="surname" class="form-control" placeholder="Surname" style="padding-left: 35px;"/>
               <span class="focus-input100" data-symbol="&#xf206;"></span>
             </div>
           </div>
@@ -61,8 +61,9 @@
             </div>
           </div>
 
-
-          <div class="wrap-input100">
+          
+          <div class="wrap-input100" style="margin-top: 10%;">
+            <label style="margin-left: 10px;">Allergens</label>
             <select formControlName="allergen" class="form-control">
               <option>Select an allergen..</option>
               <option *ngFor="let a of allergens" value="{{a?.allergen}}">

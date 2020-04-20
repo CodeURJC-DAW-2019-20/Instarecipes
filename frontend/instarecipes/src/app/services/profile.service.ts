@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Allergen } from '../Interfaces/allergen.model';
@@ -15,6 +15,16 @@ const BASE_URL: string = "/api/profile";
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
+
+  private eventSubject = new BehaviorSubject<any>(undefined);
+
+  triggerSomeEvent(param: any) {
+      this.eventSubject.next(param);
+  }
+
+  getEventSubject(): BehaviorSubject<any> {
+      return this.eventSubject;
+  }
 
   constructor(private httpClient: HttpClient) { }
   getActualUser() : Observable<any>{
@@ -59,8 +69,7 @@ export class ProfileService {
     ) as Observable<Request[]>;
   }
 
-  ActionItemRequest(typeOfRequest: string, itemContent: string, action: string, id_request: number): Observable<Request[]> {
-    console.log("SERVICE type of request: ", typeOfRequest," itemContent: ", itemContent," action : ", action, " id request: ", id_request);
+  actionItemRequest(typeOfRequest: string, itemContent: string, action: string, id_request: number): Observable<Request[]> {
     return this.httpClient.get(BASE_URL + "/" + "actionItemRequest?typeOfRequest=" + typeOfRequest + "&itemContent=" + itemContent +
      "&action=" + action + "&id_request=" + id_request).pipe(
         catchError(error => this.handleError(error))
@@ -94,8 +103,6 @@ export class ProfileService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    console.log(request);
-    console.log(body);
     return this.httpClient.post(BASE_URL +"/sendItemRequest", body, {headers}).pipe(
       catchError(error => this.handleError(error))
     ) as Observable<Request>
