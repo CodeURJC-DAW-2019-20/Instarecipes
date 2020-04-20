@@ -22,49 +22,77 @@ export class EditProfileComponent implements OnInit {
   user: User;
   allAllergens: Allergen[] = [];
   settingsForm : FormGroup
-  userUpdate 
+  userUpdate;
+
   @ViewChild('closebutton') closebutton: ElementRef;
 
-  allergenAux: string = '';
+  allergenAux: String = '';
   name : String;
   surname: String;
   info : String;
-  allergens: String
+  allergens: String;
+  newAvatar: File;
+  newBackground: File;
 
   constructor(private profileService: ProfileService,
-     public authService: AuthenticationService, private userService: UserService) {   
+     public authService: AuthenticationService, private userService: UserService) {
        this.initConstructor();
-    }  
+    }
 
   ngOnInit() {
     import('../../../../../assets/js/image_preview.js')
-    this.loadAllergens();  
+    this.loadAllergens();
   }
 
   initConstructor(){
     this.userUpdate = { name: '', surname: '', info: '', allergens: '' }
   }
-   
-  editProfile(){
-    this.userUpdate.name = this.name;
-    this.userUpdate.surname = this.surname;
-    this.userUpdate.info = this.info;
-    this.userUpdate.allergens = this.allergens;
-    console.log(JSON.stringify(this.userUpdate));
-    this.profileService.editProfile(this.userUpdate).subscribe(
 
-       _ =>{
-                this.initConstructor();
-                this.closebutton.nativeElement.click();  
+  editProfile(){
+    if (this.name != null) {
+       this.userUpdate.name = this.name;
+    }
+    if (this.surname != null) {
+      this.userUpdate.surname = this.surname;
+    }
+    if (this.info != null) {
+      this.userUpdate.info = this.info;
+    }
+    if (this.allergens != null) {
+      this.userUpdate.allergens = this.allergens;
+    }
+
+    this.profileService.editProfile(this.userUpdate).subscribe(
+    _ =>{
+      if (this.newAvatar != null){
+        this.profileService.updateProfileAvatar(this.newAvatar).subscribe(
+          imagen=>{
+          },
+            (error: Error) => console.log("File uploaded!")
+         );
        }
-    )  
+      
+    });
+
+    this.initConstructor();
+    this.closebutton.nativeElement.click();
   }
 
-  
+
   loadAllergens(){
     this.profileService.getAllAllergens().subscribe(
       allergens => this.allAllergens = allergens
     )
   }
-  
+
+  onFileChanged(event) {
+    this.newAvatar = event.target.files[0];
+    console.log(this.newAvatar);
+  }
+
+  onBackgroundChanged(event) {
+    this.newBackground = event.target.files[0];
+    console.log(this.newBackground);
+  }
+
 }
