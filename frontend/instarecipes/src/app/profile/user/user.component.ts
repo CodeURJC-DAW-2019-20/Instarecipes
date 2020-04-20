@@ -35,6 +35,8 @@ export class UserComponent implements OnInit, OnChanges {
   new_followers = new EventEmitter<any>();
   @Output()
   new_following = new EventEmitter<any>();
+  @Output()
+  refresh_profile = new EventEmitter<any>();
 
   followed_user: boolean = false;
   
@@ -70,4 +72,7 @@ export class UserComponent implements OnInit, OnChanges {
     this.new_followers.emit(null);
   }
 
+  update_profile(){
+    this.refresh_profile.emit(null);
+  }
 }

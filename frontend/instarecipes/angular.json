@@ -38,7 +38,8 @@
                             "src/assets/js/post_comment.js",
                             "src/assets/js/statistics.js",
                             "src/assets/js/search.js",
-                            "src/assets/js/filter_search_btn.js"
+                            "src/assets/js/filter_search_btn.js",
+                            "src/assets/js/image_preview.js"
                         ]
                     },
                     "configurations": {

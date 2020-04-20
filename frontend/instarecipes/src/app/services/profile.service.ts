@@ -122,6 +122,17 @@ export class ProfileService {
     ) as Observable<boolean>;
   }
 
+  updateProfileBackground(selectedFile: File): Observable<boolean> {
+    const data: FormData = new FormData();
+    data.append('background', selectedFile);
+
+    return this.httpClient.put(BASE_URL +  "/update/background", data).pipe(
+      catchError(
+        error => this.handleError(error)
+      )
+    ) as Observable<boolean>;
+  }
+
   getUserFollowing(id_user: number): Observable<User[]> {
     return this.httpClient.get("/api/users/" + id_user + "/following").pipe(
         catchError(error => this.handleError(error))

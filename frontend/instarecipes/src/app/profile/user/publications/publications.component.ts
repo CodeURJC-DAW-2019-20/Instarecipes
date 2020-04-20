@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, SimpleChanges, OnChanges, EventEmitter, Output } from '@angular/core';
 import { Recipe } from 'src/app/Interfaces/recipe.model';
 import { User } from 'src/app/Interfaces/user.model';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -20,6 +20,9 @@ export class PublicationsComponent implements OnInit, OnChanges {
   background: any;
   @Input()
   user_id: number;
+
+  @Output()
+  refresh_profile = new EventEmitter<any>();
 
   images: any[] = [];
 
@@ -44,5 +47,9 @@ export class PublicationsComponent implements OnInit, OnChanges {
         }
       );
     });
+  }
+
+  update_profile(){
+    this.refresh_profile.emit(null);
   }
 }
