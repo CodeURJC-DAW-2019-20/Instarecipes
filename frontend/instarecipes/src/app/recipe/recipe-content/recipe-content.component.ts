@@ -9,6 +9,8 @@ import { Step } from 'src/app/Interfaces/step.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { User } from 'src/app/Interfaces/user.model';
 import { Router } from '@angular/router';
+import { CommentsService } from 'src/app/services/comment.service';
+import { Comment } from 'src/app/Interfaces/comment.model';
 
 @Component({
   selector: 'recipe-content',
@@ -25,6 +27,8 @@ export class RecipeContentComponent implements OnInit {
   step: Step[] = [];
   liked: boolean = false;
   likesUsers: User[] = [];
+  commentsArr: Comment[] = [];
+  comments: number;
   avatar: any;
 
   constructor(
@@ -33,7 +37,8 @@ export class RecipeContentComponent implements OnInit {
     private userService: UserService,
     private domSanitizer: DomSanitizer,
     public authService: AuthenticationService,
-    public router: Router
+    public router: Router,
+    private commentService: CommentsService
     ) { }
 
   ngOnInit() {
@@ -51,6 +56,12 @@ export class RecipeContentComponent implements OnInit {
         this.getPublications();
         this.getAvatar(this.recipe.username.id);
         this.likes = recipe.likes;
+        this.commentService.getCommentsFromRecipe(this.recipeService.actualRecipeID).subscribe(
+          comment => {
+            this.commentsArr = comment as Comment[];
+            this.comments = comment.length;
+          }
+        );
       }
     );
   }
@@ -67,7 +78,6 @@ export class RecipeContentComponent implements OnInit {
     this.userService.getAllLikes(this.recipe.username.id).subscribe(
       likes => {
         this.allLikes = likes as number;
-        console.log(likes);
       }
     );
   }
@@ -97,7 +107,6 @@ export class RecipeContentComponent implements OnInit {
         this.getAllLikes();
       }
     );
-    console.log('disliked');
     this.liked = false;
     this.likes -= 1;
     this.allLikes -= 1;
@@ -108,7 +117,6 @@ export class RecipeContentComponent implements OnInit {
         this.getAllLikes();
       }
     );
-    console.log('liked');
     this.liked = true;
     this.likes += 1;
     this.allLikes += 1;

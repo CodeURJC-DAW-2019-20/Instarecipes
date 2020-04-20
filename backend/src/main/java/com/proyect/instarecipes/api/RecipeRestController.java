@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.proyect.instarecipes.models.Ingredient;
@@ -21,7 +22,7 @@ import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.RecipeService;
 import com.proyect.instarecipes.views.DTO.CommentDTO;
-
+import com.proyect.instarecipes.views.DTO.UserLikeCommentDTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -46,7 +47,7 @@ public class RecipeRestController{
     public interface CommentsRecipe extends Comment.RecipeView, User.NameSurname, User.Username, Recipe.RecipeView{}
     public interface RecipeSteps extends Step.StepsView{}
     public interface Main extends User.Username, Recipe.RecipeBasic, Recipe.RecipePlus, Recipe.IDRecipe, User.IDUser{}
-
+    public interface LikeComment extends UserLikeCommentDTO.UserLikeView{}
     @Autowired
     private RecipesRepository recipesRepository;
     @Autowired
@@ -178,6 +179,27 @@ public class RecipeRestController{
         } else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    // SHOW LIST OF USERS WHO LIKED A COMMENT
+    @JsonView(RecipeRestController.LikeComment.class)
+    @GetMapping("/comments/{id_comment}")
+    public ResponseEntity<List<UserLikeCommentDTO>> usersLiked(@PathVariable Long id_comment){
+        List<User> users = commentsRepository.findLikeUsersList(id_comment).stream().collect(Collectors.toList());
+        Comment comments = commentsRepository.findById(id_comment).get();
+        List<UserLikeCommentDTO> listUsers = new ArrayList<UserLikeCommentDTO>();
+        int i =0;
+        while(i < users.size() || listUsers.size() == 0){
+            if(!users.isEmpty()){     
+                UserLikeCommentDTO user = new UserLikeCommentDTO(users.get(i).getId(), comments.isSubcomment());
+                listUsers.add(user);
+            } else{
+                UserLikeCommentDTO user = new UserLikeCommentDTO(comments.isSubcomment());
+                listUsers.add(user);
+            }
+            i++;
+        }
+        return new ResponseEntity<>(listUsers, HttpStatus.OK);
     }
 
     // PRESS LIKE TO ONE COMMENT 

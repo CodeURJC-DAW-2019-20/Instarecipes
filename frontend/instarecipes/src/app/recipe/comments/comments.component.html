@@ -4,143 +4,100 @@
   <div class="coments">
     <h5 class="card-header">Leave your comment:</h5>
     <div class="card-body">
-      <form> <!-- id-->
+      <form #commentForm= "ngForm" (ngSubmit)="postComment(commentForm)">
         <div id="commentCountChar"></div>
         <div class="form-group">
-
             <!-- THIS IS THE CONTENT -->
-            <textarea id="areaComment" onkeyup="commentCountChar(this)" class="form-control" name="content" rows="3"></textarea>
-
+              <textarea *ngIf="authService.isLogged" id="areaComment" onkeyup="commentCountChar(this)" class="form-control" name="content" rows="3" [(ngModel)]="content"></textarea>
             <!-- THIS IS THE CONTENT -->
-            <textarea disabled class="form-control" rows="3">You must login before comment</textarea>
-
+              <textarea *ngIf="!authService.isLogged" disabled class="form-control" rows="3">You must login before comment</textarea>
         </div>
         <!-- THIS IS THE PARENT -->
         <input id="parentComment" name="parentComment" hidden/>
-
-          <button type="submit" class="btn btn-primary">Submit</button>
-
-          <button disabled type="submit" class="btn btn-primary">Submit</button>
+          <button *ngIf="authService.isLogged" type="submit" class="btn btn-primary">Submit</button>
+          <button *ngIf="!authService.isLogged" disabled type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
   </div>
 
     <!-- Comment with nested comments -->
-    <div class="media mb-4">
-      <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" src="/temp/avatars/image-.jpg" alt=""/> <!-- usercomment dps id-->
+    <div *ngFor="let comment of finalsComments; index as i" class="media mb-4">
+      <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" [src]="avatar[i]" alt=""/>
       <div class="media-body">
-        <h5 class="mt-0"><!--{{userComment.name}}&nbsp;{{userComment.surname}}--></h5>
-        <input readonly type="text" class="mt-0" value="" style="border-width: 0px;" id="userComment"><!-- usercomment username y dps id-->
-        <p class="mt-0"></p><!-- content-->
+        <h5 class="mt-0">{{comment.userComment.name}}&nbsp;{{comment.userComment.surname}}</h5>
+        <input readonly type="text" class="mt-0" value="@{{comment.userComment.username}}" style="border-width: 0px;" id="userComment">
+        <p class="mt-0">{{comment?.content}}</p><!-- content-->
         <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
           <div class="col-4" style="height: 100%;">
-            <p style="top: 0; align-self: center;"></p> <!--likes -->
+            <p style="top: 0; align-self: center;">{{comment?.likes}}</p> <!--likes -->
           </div>
 
             <div class="col-4" style="cursor: pointer; height: 100%;">
 
-                <form ><!-- id-->
-                  <button type="submit" style="width: inherit;border: 0px;">
+                <form #likeForm= "ngForm" (ngSubmit)="dislikeComment()">
+                  <button  type="submit" style="width: inherit;border: 0px;">
                     <img class="focusHeart" src="../../../assets/images/icons/like_pressed.png" style="width: 20px;" alt="">
                   </button>
-                  <input name="id_recipe" value="" hidden/>
+                  <input name="id_recipe" value="{{comment?.id}}" [(ngModel)]="id_comment" hidden/>
 
                 </form>
 
-                <form><!-- id-->
+                <form #likeForm= "ngForm" (ngSubmit)="likeComment()">
                   <button type="submit" style="width: inherit;border: 0px;">
                     <img class="focusHeart" src="../../../assets/images/icons/like_unpressed.png" style="width: 20px;" alt="">
                   </button>
-                  <input name="id_recipe" value="" hidden/>
+                  <input name="id_recipe" value="{{comment?.id}}" [(ngModel)]="id_comment" hidden/>
                 </form>
 
             </div>
 
           <div class="col-4" style="height: 100%;">
-            <a href="#comments-section" onclick="parentComment()"> <!-- LEAVE THIS AS AN ERROR, NOT PROBLEM--><!-- comment id y id-->
+            <a> <!-- LEAVE THIS AS AN ERROR, NOT PROBLEM--><!-- comment id y id-->
               <img src="../../../assets/images/icons/dialogue.png" height="100%" alt="">
             </a>
           </div>
         </div>
 
           <!-- Subcomment -->
-          <div class="media mt-4">
-            <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" src="/temp/avatars/image-.jpg" alt=""/><!-- usercomment id-->
-            <div class="media-body">
-              <h5 class="mt-0"></h5><!-- usercoment name y surname-->
-              <input readonly type="text" class="mt-0" value="" style="border-width: 0px;" id="userComment"><!-- usercomment username y dps id-->
-              <p class="mt-0"></p><!-- content-->
-              <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
-                <div class="col-4" style="height: 100%;">
-                  <p style="top: 0; align-self: center;"></p> ><!-- likes-->
-                </div>
-
-                  <div class="col-4" style="cursor: pointer; height: 100%;">
-
-                    <form><!-- id-->
-                      <button type="submit" style="width: inherit;border: 0px;">
-                        <img class="focusHeart" src="../images/icons/like_pressed.png" style="width: 20px;" alt="">
-                      </button>
-                      <input name="id_recipe" value="" hidden/><!-- recipe id-->
-
-                    </form>
-
-                    <form>
-                      <button type="submit" style="width: inherit;border: 0px;">
-                        <img class="focusHeart" src="../images/icons/like_unpressed.png" style="width: 20px;" alt="">
-                      </button>
-                      <input name="id_recipe" value="" hidden/>
-
-                    </form>
-
+          <div *ngIf="comment?.hasSubcomments">
+          <div *ngFor="let subcomment of comment.subComments; index as j"  class="media mt-4">
+              <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" [src]="avatar[j]" alt=""/><!-- usercomment id-->
+              <div class="media-body">
+                <h5 class="mt-0">{{subcomment?.userComment.name}}&nbsp;{{subcomment?.userComment.surname}} </h5><!-- usercoment name y surname-->
+                <input readonly type="text" class="mt-0" value="@{{subcomment.userComment.username}}" style="border-width: 0px;" id="userComment"><!-- usercomment username y dps id-->
+                <p class="mt-0">{{subcomment?.content}}</p><!-- content-->
+                <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
+                  <div class="col-4" style="height: 100%;">
+                    <p style="top: 0; align-self: center;"> {{subcomment?.likes}}</p><!-- likes-->
                   </div>
+                    <div class="col-4" style="cursor: pointer; height: 100%;">
+                      <form #likeForm= "ngForm" (ngSubmit)="dislikeComment()">
+                        <button *ngIf="subcomment?.liked" type="submit" style="width: inherit;border: 0px;">
+                          <img class="focusHeart" src="../../../assets/images/icons/like_pressed.png" style="width: 20px;" alt="">
+                        </button>
+                        <input name="id_recipe" value="{{subcomment?.id}}" [(ngModel)]="id_comment" hidden/><!-- recipe id-->
 
+                      </form>
+
+                      <form #likeForm= "ngForm" (ngSubmit)="likeComment()">
+                        <button *ngIf="!subcomment?.liked" type="submit" style="width: inherit;border: 0px;">
+                          <img class="focusHeart" src="../../../assets/images/icons/like_unpressed.png" style="width: 20px;" alt="">
+                        </button>
+                        <input name="id_recipe" value="{{subcomment?.id}}" [(ngModel)]="id_comment"hidden/>
+
+                      </form>
+
+                    </div>
+
+                </div>
               </div>
-            </div>
           </div>
-
+        </div>
       </div>
     </div>
 
       <!-- Comment with nested comments -->
       <div class="media mb-4">
-        <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" src="/temp/avatars/image-.jpg" alt=""/><!-- usercomment id-->
-        <div class="media-body">
-          <h5 class="mt-0"><!--{{userComment.name}}&nbsp;{{userComment.surname}}--></h5>
-          <input readonly type="text" class="mt-0" value="" style="border-width: 0px;" id="userComment"><!-- usercomment username e id-->
-          <p class="mt-0"></p> <!-- content-->
-          <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
-            <div class="col-4" style="height: 100%;">
-              <p style="top: 0; align-self: center;"></p> <!--likes-->
-            </div>
-
-              <div class="col-4" style="cursor: pointer; height: 100%;">
-
-                  <form > <!-- id-->
-                    <button type="submit" style="width: inherit;border: 0px;">
-                      <img class="focusHeart" src="../images/icons/like_pressed.png" style="width: 20px;" alt="">
-                    </button>
-                    <input name="id_recipe" value="" hidden/> <!--recipe id-->
-
-                  </form>
-
-                  <form> <!-- id-->
-                    <button type="submit" style="width: inherit;border: 0px;">
-                      <img class="focusHeart" src="../images/icons/like_unpressed.png" style="width: 20px;" alt="">
-                    </button>
-                    <input name="id_recipe" value="" hidden/>  <!--recipe id-->
-
-                  </form>
-
-              </div>
-
-            <div class="col-4" style="height: 100%;">
-              <a href="#comments-section" onclick="parentComment()"> <!-- LEAVE THIS AS AN ERROR, NOT PROBLEM--><!-- usercomment username e id-->
-                <img src="../images/icons/dialogue.png" height="100%" alt="">
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
 
 <hr width="50%">
