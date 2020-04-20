@@ -16,6 +16,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 public class Comment{
     public interface RecipeView{}
+    public interface UserLikeView{}
+
+    @JsonView(RecipeView.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,7 +34,7 @@ public class Comment{
     @JsonView(RecipeView.class)
     private boolean hasSubcomments;
     
-    @JsonView(RecipeView.class)
+    @JsonView({RecipeView.class, UserLikeView.class})
     private boolean isSubcomment;
 
     @JsonView(RecipeView.class)

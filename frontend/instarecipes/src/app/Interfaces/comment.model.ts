@@ -3,14 +3,15 @@ import { Recipe } from './recipe.model';
 
 export interface Comment{
   id?: number;
-  username: User;
-  content: string;
-  hasSubcomments: boolean;
-  isSubcomment: boolean;
+  userComment?: User;
+  content?: string;
+  hasSubcomments?: boolean;
+  isSubcomment?: boolean;
   likes?: number;
-  recipe: Recipe;
+  recipe?: Recipe;
+  liked?: boolean;
 
 
-  subComment: Comment [];
-  usersLiked: User [];
+  subComments?: Comment [];
+  usersLiked?: User [];
 }

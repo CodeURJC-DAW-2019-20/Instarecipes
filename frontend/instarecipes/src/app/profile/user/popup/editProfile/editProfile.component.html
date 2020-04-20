@@ -62,11 +62,11 @@
                 <hr>
                 <!-- Username -->
                 <div class="wrap-input50 m-b-23" style="text-align: initial;">
-                  <p class="text-secondary"> <i class="fas fa-user" style="size: 50px;  margin-right: 20px;"></i>{{authService.user.name}}</p>
+                  <p class="text-secondary"> <i class="fas fa-user" style="size: 50px;  margin-right: 20px;"></i>{{authService?.user.username}}</p>
                 </div>
                   <!-- Email -->
                 <div class="wrap-input50 m-b-23" style="text-align: initial;">
-                  <p class="text-secondary"><i class="fas fa-mail-bulk" style="size: 50px; margin-right: 15px;"></i>{{authService.user.email}}</p>
+                  <p class="text-secondary"><i class="fas fa-mail-bulk" style="size: 50px; margin-right: 15px;"></i>{{authService?.user.email}}</p>
                 </div>
                 <hr>
                 <table>
@@ -77,7 +77,7 @@
                   <td>
                     <!-- Name -->
                     <input [(ngModel)]="name" type="text" name="name" class="text-secondary" style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;"
-                       value="{{authService.user.name}}" />
+                       value="{{authService?.user.name}}" placeholder="{{authService?.user?.name}}"/>
                   </td>
                   </tr>
                   <tr>
@@ -87,7 +87,7 @@
                   <td>
                     <!-- Surname -->
                     <input [(ngModel)]="surname" type="text" name="surname" class="text-secondary" style="margin-top:10px;padding:5px;width: 100%;border:1px solid rgba(0, 0, 0, 0.3);border-radius: 0.5rem;"
-                      value="{{authService.user.surname}}" />
+                      value="{{authService?.user.surname}}" placeholder="{{authService?.user.surname}}"/>
                   </td>
                   </tr>
                   <tr>
@@ -97,7 +97,7 @@
                     <td>
                       <!-- Bio -->
                       <textarea [(ngModel)]="info" type="text" name="info" style="margin-top:10px;padding:5px;width: 100%;height: 100px;  border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
-                        onKeyDown="limitText(this.form.info,this.form.countdown,100)" onKeyUp="limitText(this.form.info,this.form.countdown,100);" placeholder="Type your bio here..">{{authService.user.info}}</textarea>
+                        onKeyDown="limitText(this.form.info,this.form.countdown,100)" onKeyUp="limitText(this.form.info,this.form.countdown,100);" placeholder="{{authService?.user.info}}"></textarea>
                           <font size="1">(Maximum characters: 100)<br>
                             You have <input readonly type="text" name="countdown" size="3" value="100" style="margin-bottom: 10px;"> characters
                               left.
@@ -115,7 +115,7 @@
                       <datalist id="allergenslist">
                           <option *ngFor="let a of allAllergens" value="{{a?.allergen}}">
                               {{a?.allergen}}</option>
-                          <option value="allergen">{{authService.user.allergens}}</option>
+                          <option value="allergen">{{authService?.user.allergens}}</option>
 
                       </datalist>
                   </td>

@@ -30,7 +30,6 @@ export class RecipeService {
         this.recipe = recipe as Recipe;
       }
     );
-    console.log(this.recipe);
   }
   setNsteps(n: number){
     this.nSteps = n;
