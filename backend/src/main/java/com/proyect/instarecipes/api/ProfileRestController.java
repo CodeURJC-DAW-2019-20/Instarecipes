@@ -136,34 +136,29 @@ public class ProfileRestController {
 		boolean status = false;
 		User user = requestService.getUser();
 		boolean exists = false;
+		Request r = null;
 		if (userSession.isLoggedUser()) {
 			List<Ingredient> ingredientsList = requestService.getIngredients();
 			List<Category> categoriesList = requestService.getCategories();
 			List<CookingStyle> cookingStylesList = requestService.getCookingStyles();
-			// function to get ingredients, categories and cookingstyles (user request)
-			if (requestService.isIngredient(request.getTypeOfRequest())) {
-				request = requestService.getNewRequest(user, request.getTypeOfRequest(), 
-						request.getIngredientContent(), 0);
-				exists = requestService.existIngredient(ingredientsList, request);
+			if (requestService.isEqualIngredient(request.getTypeOfRequest())) {
+				r = requestService.getNewRequest(user, request.getTypeOfRequest(), request.getIngredientContent(), 0);
+				exists = requestService.existIngredient(ingredientsList, request.getIngredientContent());
 				status = true;
-				// function to verify if the ingredient already exists.
-				requestService.saveItem(request, exists);
-			} else if (requestService.isCookingStyle(request.getTypeOfRequest())) {
-				request = requestService.getNewRequest(user, request.getTypeOfRequest(),
-						request.getCookingStyleContent(), 1);
-				exists = requestService.existCookingStyle(cookingStylesList, request);
+				requestService.saveItem(r, exists);
+			} else if (requestService.isEqualCookingStyle(request.getTypeOfRequest())) {
+				r = requestService.getNewRequest(user, request.getTypeOfRequest(), request.getCookingStyleContent(), 1);
+				exists = requestService.existCookingStyle(cookingStylesList, request.getCookingStyleContent());
 				status = true;
-				// function to verify if the cookingstyle already exists.
-				requestService.saveItem(request, exists);
-			} else if (requestService.isCategory(request.getTypeOfRequest())) {
-				request = requestService.getNewRequest(user, request.getTypeOfRequest(),
-						request.getCategoryContent(), 2);
-				exists = requestService.existCategory(categoriesList, request);
+				requestService.saveItem(r, exists);
+			} else if (requestService.isEqualCategory(request.getTypeOfRequest())) {
+				r = requestService.getNewRequest(user, request.getTypeOfRequest(), request.getCategoryContent(), 2);
+				exists = requestService.existCategory(categoriesList, request.getCategoryContent());
 				status = true;
-				requestService.saveItem(request, exists);
+				requestService.saveItem(r, exists);
 			}
 			if (status) {
-				return new ResponseEntity<>(request, HttpStatus.OK);
+				return new ResponseEntity<>(r, HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}

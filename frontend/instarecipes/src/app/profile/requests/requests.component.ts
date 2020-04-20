@@ -62,20 +62,20 @@ export class RequestsComponent implements OnInit {
     }
   }
 
-  acceptRequest(typeOfRequest: string, itemContent: string, id_request: number) {
-  this.profileService.ActionItemRequest(typeOfRequest, itemContent, "accept", id_request).subscribe(
+  acceptRequest(request: Request) {
+    let itemContent = request.ingredientContent + request.categoryContent + request.cookingStyleContent;
+  this.profileService.actionItemRequest(request.typeOfRequest, itemContent, "accept", request.id).subscribe(
     response => {
       console.log("Petition accepted");
-      //alert("Petition accepted");
       this.getRequests();
     });
   }
 
-  denyRequest(typeOfRequest: string, itemContent: string, id_request: number) {
-    this.profileService.ActionItemRequest(typeOfRequest, itemContent, "decline", id_request).subscribe(
+  denyRequest(request: Request) {
+    let itemContent = request.ingredientContent + request.categoryContent + request.cookingStyleContent;
+    this.profileService.actionItemRequest(request.typeOfRequest, itemContent, "decline", request.id).subscribe(
       response => {
         console.log("Petition denied");
-        //alert("Petition denied");
         this.getRequests();
       });
     }

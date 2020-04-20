@@ -26,10 +26,10 @@ export class EditProfileComponent implements OnInit {
   allAllergens: Allergen[] = [];
   userUpdate: any;
   allergenAux: string = '';
-  settingsForm : FormGroup
-  name : string;
+  settingsForm : FormGroup;
+  name: string;
   surname: string;
-  info : string;
+  info: string;
   allergens: string;
   loadAPI: any;
   newAvatar: File;

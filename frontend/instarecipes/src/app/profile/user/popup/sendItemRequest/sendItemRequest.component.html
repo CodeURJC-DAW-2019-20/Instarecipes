@@ -14,18 +14,15 @@
                     <div class="divider-custom">
                         <div class="divider-custom-line"></div>
                     </div>
-                    <form  (ngSubmit)="sendRequest()" #registerForm="ngForm">
-                        <select [(ngModel)]="request_.typeOfRequest" required #typeOfRequest="ngModel" name="typeOfRequest" class="form-control" id="request_">
+                    <form (ngSubmit)="sendRequest()">
+                        <select [(ngModel)]="this.type" required #typeOfRequest="ngModel" name="typeOfRequest" class="form-control" id="request">
                             <option>-- Select one --</option>
                             <option value="Ingredient">Ingredient</option>
                             <option value="Category">Category</option>
                             <option value="Cooking style">Cooking style</option>
                           </select>
-
-                          <input type='text' placeholder="type.." name="type" [(ngModel)]="type"  class="btn btn-outline-primary" style="margin-top: 20px;width: 80%;height: 80px;font-size: 50px;">
-
-
-                        <button id="Send" type='submit'  class="btn btn-primary" style="margin-top: 40px;width: 50%;height: 60%;">SEND</button>
+                        <input type='text' placeholder="type.." name="type" [(ngModel)]="this.content" class="btn btn-outline-primary" style="margin-top: 20px;width: 80%;height: 80px;font-size: 50px;">
+                        <button id="send" type='submit' class="btn btn-primary" style="margin-top: 40px;width: 50%;height: 60%;">SEND</button>
                         <button type="button" #closebutton class="close" data-dismiss="modal" hidden></button>
                     </form>
                 </div>
