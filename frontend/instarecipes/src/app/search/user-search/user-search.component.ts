@@ -4,6 +4,7 @@ import { SearchService } from 'src/app/services/search.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-search',
@@ -19,7 +20,8 @@ export class UserSearchComponent implements OnInit {
     private searchService: SearchService,
     private recipesService: RecipesService,
     private domSanitizer: DomSanitizer,
-    public authService: AuthenticationService
+    public authService: AuthenticationService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -48,6 +50,13 @@ export class UserSearchComponent implements OnInit {
         this.avatar.push(this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(data)));
       }
     );
+  }
 
+  visitProfile(id: number){
+    if(this.authService.user.id === id){
+      this.router.navigateByUrl('/profile');
+    }else{
+      this.router.navigateByUrl('/users/'+id);
+    }
   }
 }

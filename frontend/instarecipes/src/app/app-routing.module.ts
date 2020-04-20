@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'ranking', component: RankingComponent },
   { path: 'recipe', component: RecipeComponent },
+  { path: 'recipe/:id', component: RecipeComponent },
   { path: 'filtered-search', component: FilteredSearchComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'signUp', component: SignUpComponent },

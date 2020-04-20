@@ -77,11 +77,9 @@ export class SignUpExtendedComponent implements OnInit {
   onSwitch() {
     if (this.activate === false) {
       this.activate = true;
-    }
-    else if (this.activate === true) {
+    } else if (this.activate === true) {
       this.activate = false;
     }
-
   }
 
   getAllergens(){
@@ -90,7 +88,6 @@ export class SignUpExtendedComponent implements OnInit {
         this.allergens = allergens as Allergen[];
         });
       }
-
 
    setUser () {
      this.user["username"] = this.userService.getFinalData()['username'];

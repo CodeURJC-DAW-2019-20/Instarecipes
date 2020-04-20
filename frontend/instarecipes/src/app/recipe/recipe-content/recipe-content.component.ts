@@ -8,9 +8,10 @@ import { RecipeService } from 'src/app/services/recipe.service';
 import { Step } from 'src/app/Interfaces/step.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { User } from 'src/app/Interfaces/user.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CommentsService } from 'src/app/services/comment.service';
 import { Comment } from 'src/app/Interfaces/comment.model';
+import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Component({
   selector: 'recipe-content',
@@ -38,12 +39,23 @@ export class RecipeContentComponent implements OnInit {
     private domSanitizer: DomSanitizer,
     public authService: AuthenticationService,
     public router: Router,
+    private route: ActivatedRoute,
     private commentService: CommentsService
     ) { }
 
   ngOnInit() {
+    console.log('ID RECIPE: ' + this.route.snapshot.paramMap.get('id'));
+    if (!this.route.snapshot.paramMap.get('id')) {
+      this.recipeService.actualRecipeID = this.recipeService.actualRecipeID;
+    } else {
+      this.recipeService.actualRecipeID = +(this.route.snapshot.paramMap.get('id'));
+    }
+    this.refresh();
+  }
+
+  refresh() {
     this.getRecipeContent();
-    this.getStepImage(this.recipeService.actualRecipeID,1);
+    this.getStepImage(this.recipeService.actualRecipeID, 1);
   }
 
   getRecipeContent() {

@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { RankService } from '../services/ranking.service';
+import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +10,9 @@ import { RankService } from '../services/ranking.service';
 })
 export class RankingComponent implements OnInit {
   rankRecipes: any[] = [];
-  
+
   constructor (private rankService: RankService){ }
-  
+
   ngOnInit(){
       this.get_Ranking();
   }
@@ -21,4 +23,5 @@ export class RankingComponent implements OnInit {
           this.rankRecipes = recipes;
         });
       }
+
 }

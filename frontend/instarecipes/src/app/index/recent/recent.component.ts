@@ -4,6 +4,7 @@ import { RecipesService } from '../../services/recipes.service';
 import { Recipe } from '../../Interfaces/recipe.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'recent-recipes',
@@ -23,9 +24,10 @@ export class RecentComponent implements OnInit{
     @ViewChild('loadmore1') button1: ElementRef;
     @ViewChild('loadmore2') button2: ElementRef;
 
-    constructor (private recipesService: RecipesService,
-      private domSanitizer: DomSanitizer,
-      public recipeService: RecipeService){ }
+    constructor(private recipesService: RecipesService,
+                private domSanitizer: DomSanitizer,
+                public recipeService: RecipeService,
+                private router: Router){ }
 
     ngOnInit(){
       // setInterval(()=> { this.refresh(this.page_size) }, 300 * 1000); //cada 5 min se actualiza
@@ -79,4 +81,7 @@ export class RecentComponent implements OnInit{
       );
     }
 
+    seeRecipe(idRecipe: number) {
+      this.router.navigateByUrl('/recipe/' + idRecipe);
+    }
 }

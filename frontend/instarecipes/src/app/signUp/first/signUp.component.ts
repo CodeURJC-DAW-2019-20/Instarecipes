@@ -36,12 +36,9 @@ export class SignUpComponent implements OnInit {
         // stop here if form is invalid
         if (this.registerForm.invalid) {
             return;
-        }
-        else {
+        } else {
             this.userService.setJSONData(this.registerForm.value);
             this.router.navigate(['/signUpExtended']);
         }
-
     }
-
 }

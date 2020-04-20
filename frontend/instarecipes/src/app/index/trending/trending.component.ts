@@ -4,6 +4,7 @@ import { Recipe } from 'src/app/Interfaces/recipe.model';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RecipeService } from 'src/app/services/recipe.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'trending-recipes',
@@ -20,7 +21,7 @@ export class TrendingComponent implements OnInit{
 
     constructor(private recipesService: RecipesService,
                 private domSanitizer: DomSanitizer, private authService: AuthenticationService,
-                public recipeService: RecipeService) { }
+                public recipeService: RecipeService, private router: Router) { }
 
     ngOnInit(){
       console.log('actual user ', this.authService.user);
@@ -60,4 +61,7 @@ export class TrendingComponent implements OnInit{
       );
     }
 
+    seeRecipe(idRecipe: number) {
+      this.router.navigateByUrl('/recipe/' + idRecipe);
+    }
 }
