@@ -31,6 +31,12 @@ This is the main project's repository, where you can found folders like **Code**
  * [Docker steps](#dockersteps)
  * [Classes and templates diagrams](#CTdiagrams3)  
  
+  **PHASE 4** 
+ * [Most important commits](#importantComm4)  
+ * [Most worked files](#workedFiles4)   
+ * [Classes and templates diagrams](#CTdiagrams4)  
+ 
+ 
 # Page layout with HTML and CSS <a name="phase1"></a>
 
 ## Members :busts_in_silhouette: <a name="members"></a>
@@ -451,3 +457,41 @@ To set more conffortable, we should create the *docker-compose.yml* and finally,
 <p align="center">
 <img src="https://github.com/CodeURJC-DAW-2019-20/Instarecipes/blob/master/Images/Diagrams/TemplatesModelDiagram.png"
 </p> 
+
+
+## Most important commits <a name="importantComm4"></a> 
+|                           |                                 |                                           |
+|---------------------------|---------------------------------|-------------------------------------------|
+| Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       |[@lordkener](https://github.com/lordkener) |
+|                           |                                 |                                           |
+
+> * [Add new recipe](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/40a468ef822bd72289c37af48c80e02a62322a82)
+> * [Follow and unfollow](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/830d8692966a673eda151a122767589b5ecbac4c)
+> * [Super profile commit](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/ce24cba0eb4f90a1098dc5678118baaaae88aa71)
+> * [Recent publications (AJAX)](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/27797bfa4db87d7ecc2a5643b3ae27779b379ab9)
+> * [Trending and more of index page](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/8ad57ea2293df358978066575b908e6d028cc9f4)
+
+|                           |                                 |                                            |
+|---------------------------|---------------------------------|--------------------------------------------|
+| Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es | [@Muffinous](https://github.com/Muffinous) |
+|                           |                                 |                                            |
+
+> * [Filter recipe](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/96984346b20a14b3a6844f88c5e332619326db10)
+> * [Users search & recipe search](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/564dc5078322b5ed19a28c7f3d94f343193a1f71)
+> * [Sign up](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/6842a6f5fd1e79e4f628af3c5a321e034981ac95)
+> * [Login](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/75648c6777efe8bda6b06f519dd98b554a138d01)
+> * [Google login](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/aeadb20060783abe8e092ecac3fa9a09497e5a21)
+
+|                           |                                 |                                             |
+|---------------------------|---------------------------------|---------------------------------------------|
+| Manuel León Briz          | m.leon.2016@alumnos.urjc.es     | [@manuellb97](https://github.com/manuellb97)|
+|                           |                                 |                                             |
+
+> * [Typescripts and initialization](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/73d347362a56a6522481814dbe45f5bdd0652fcc)
+> * [Avatars and images done](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/ac2d986a5cf7323d34a813da43579dc0e77315ef)
+> * [Recipe comments and almost finished](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/8ee254d3a9656e099499de0ee79df3fda2d364b3)
+> * []()
+> * []()
+
+## Most worked files <a name="workedFiles4"></a>
+## Classes and templates diagrams <a name="CTdiagrams4"></a>
