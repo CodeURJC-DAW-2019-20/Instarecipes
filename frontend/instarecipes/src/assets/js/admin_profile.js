@@ -73,28 +73,21 @@ $(document).ready(function() {
     $('#filter-item').on('change', function() {
         switch ($('#filter-item option:selected').val()) {
             case 'All':
-                console.log("all");
                 itemCS.removeAttribute("hidden");
                 itemIng.removeAttribute("hidden");
                 itemCat.removeAttribute("hidden");
                 break;
             case 'Ingredients':
-                console.log(itemIng);
-                console.log("ingredients");
                 itemCS.setAttribute("hidden", "true");
                 itemIng.removeAttribute("hidden");
                 itemCat.setAttribute("hidden", "true");
                 break;
             case 'Categories':
-                console.log(itemCat);
-                console.log("categories");
                 itemCS.setAttribute("hidden", "true");
                 itemIng.setAttribute("hidden", "true");
                 itemCat.removeAttribute("hidden");
                 break;
             case 'Cooking style':
-                console.log(itemCS);
-                console.log("cooking style");
                 itemCS.removeAttribute("hidden");
                 itemIng.setAttribute("hidden", "true");
                 itemCat.setAttribute("hidden", "true");

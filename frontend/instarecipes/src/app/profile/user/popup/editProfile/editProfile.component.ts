@@ -4,7 +4,7 @@ import { Allergen } from 'src/app/Interfaces/allergen.model';
 import { ProfileService } from 'src/app/services/profile.service';
 import { User } from '../../../../Interfaces/user.model';
 import { UserService } from '../../../../services/user.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup} from '@angular/forms';
 
 
 @Component({
@@ -23,46 +23,44 @@ export class EditProfileComponent implements OnInit {
   allAllergens: Allergen[] = [];
   settingsForm : FormGroup
   userUpdate 
+  @ViewChild('closebutton') closebutton: ElementRef;
 
   allergenAux: string = '';
+  name : String;
+  surname: String;
+  info : String;
+  allergens: String
 
   constructor(private profileService: ProfileService,
-     public authService: AuthenticationService,) { 
-      this.userUpdate = { name: '', surname: '', info: '', allergens: '' }
-    }
-
-
-    initConstructor(){
-
-     }
+     public authService: AuthenticationService, private userService: UserService) {   
+       this.initConstructor();
+    }  
 
   ngOnInit() {
     import('../../../../../assets/js/image_preview.js')
-    
-    this.loadAllergens();
-
+    this.loadAllergens();  
   }
-  @ViewChild('closebutton') closebutton: ElementRef;
 
-    name : String;
-    surname: String;
-    info : String;
-    allergens: String
-
-    
-
+  initConstructor(){
+    this.userUpdate = { name: '', surname: '', info: '', allergens: '' }
+  }
+   
   editProfile(){
-    this.closebutton.nativeElement.click();
     this.userUpdate.name = this.name;
     this.userUpdate.surname = this.surname;
     this.userUpdate.info = this.info;
     this.userUpdate.allergens = this.allergens;
     console.log(JSON.stringify(this.userUpdate));
+    this.profileService.editProfile(this.userUpdate).subscribe(
 
-
-    
+       _ =>{
+                this.initConstructor();
+                this.closebutton.nativeElement.click();  
+       }
+    )  
   }
 
+  
   loadAllergens(){
     this.profileService.getAllAllergens().subscribe(
       allergens => this.allAllergens = allergens
