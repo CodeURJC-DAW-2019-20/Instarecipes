@@ -478,7 +478,7 @@ Finally, we used bootstrap material to make our aplication look better!
 > ng add @angular/localize  
 
 
-## Most important commits <a name="importantComm4"></a> 
+## Most important commits :newspaper: <a name="importantComm4"></a> 
 |                           |                                 |                                           |
 |---------------------------|---------------------------------|-------------------------------------------|
 | Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       |[@lordkener](https://github.com/lordkener) |
@@ -512,9 +512,8 @@ Finally, we used bootstrap material to make our aplication look better!
 > * [Funcionality of comments done](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/2d9e9dac03cb3d868e49e4aec726fb29c92a9107)
 > * [Recipe page is dynamic and some funcionalities are done](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/e3da6f6158c621b423e7721b57047ea93c32c2f8)
 
-## Most worked files <a name="workedFiles4"></a>
+## Most worked files :newspaper: <a name="workedFiles4"></a>
 
-## Most worked files :newspaper: <a name="workedFiles3"></a> 
 |                           |                                 |                                 |
 |---------------------------|---------------------------------|---------------------------------|
 | Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  |                           |
