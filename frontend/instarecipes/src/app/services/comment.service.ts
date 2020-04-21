@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Comment } from 'src/app/Interfaces/comment.model';
 
 const BASE_URL: string = "/api/recipes/";
@@ -12,6 +12,16 @@ const BASE_URL: string = "/api/recipes/";
 export class CommentsService {
   comments: Comment[] = [];
   constructor(private httpClient: HttpClient) { }
+
+  private eventSubject = new BehaviorSubject<any>(undefined);
+
+  triggerSomeEvent(param: any) {
+      this.eventSubject.next(param);
+  }
+
+  getEventSubject(): BehaviorSubject<any> {
+      return this.eventSubject;
+  }
 
   getCommentsFromRecipe(id_recipe: number) {
     return this.httpClient.get(BASE_URL + id_recipe + "/comments/").pipe(

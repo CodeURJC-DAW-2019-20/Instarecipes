@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.css']
 })
-export class CommentsComponent implements OnInit {
+export class CommentsComponent implements OnInit, OnChanges {
   comments: Comment[] = [];
   finalsComments: Comment[] = [];
   comentario: Comment;
@@ -36,6 +36,11 @@ export class CommentsComponent implements OnInit {
   ngOnInit() {
     this.getComments();
   }
+
+  ngOnChanges() {
+    this.getComments();
+  }
+
   getComments() {
     this.recipesService.getComments(this.recipeService.actualRecipeID).subscribe(
       comment => {
@@ -46,7 +51,6 @@ export class CommentsComponent implements OnInit {
             this.finalsComments.push(this.comments[i]);
           }
         }
-        console.log(this.finalsComments);
         this.finalsComments.forEach(element => {
           this.getAvatar(element);
         });
@@ -60,6 +64,7 @@ export class CommentsComponent implements OnInit {
 
     this.commentService.postCommentToRecipe(this.recipeService.actualRecipeID, this.commentDTO).subscribe(
       _ => {
+        this.commentService.triggerSomeEvent(Date());
         this.getComments();
         this.content = '';
       }
@@ -67,18 +72,20 @@ export class CommentsComponent implements OnInit {
   }
 
   dislikeComment(id_comment: number) {
-    console.log(id_comment);
     this.commentService.dislikeComment(this.recipeService.actualRecipeID, id_comment).subscribe(
       _ => {
+        this.finalsComments = [];
         this.getComments();
       }
+
     );
   }
-  
+
   likeComment(id_comment: number) {
-    console.log(id_comment);
     this.commentService.likeComment(this.recipeService.actualRecipeID, id_comment).subscribe(
       _ => {
+        this.finalsComments = [];
+
         this.getComments();
       }
     );

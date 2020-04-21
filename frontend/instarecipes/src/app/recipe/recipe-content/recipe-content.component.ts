@@ -51,6 +51,11 @@ export class RecipeContentComponent implements OnInit {
       this.recipeService.actualRecipeID = +(this.route.snapshot.paramMap.get('id'));
     }
     this.refresh();
+    this.commentService.getEventSubject().subscribe((param: any) => {
+      if (param !== undefined) {
+        this.refresh();
+      }
+    });
   }
 
   refresh() {
