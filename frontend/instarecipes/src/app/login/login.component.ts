@@ -5,8 +5,8 @@ import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
 import { User } from '../Interfaces/user.model';
 import { ProfileService } from '../services/profile.service';
-import { saveAs } from 'file-saver';
-
+import { FilterRecipeComponent } from '../index/popup/filter/filterRecipe.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -20,7 +20,10 @@ export class LoginComponent implements OnInit{
    error: '';
    auth2: any;
    user: User;
-   profilePic: File;
+   urlAvatar;
+  //  profilePic;
+  //  googleAv;
+  //  profilePic = new File('../../assets/images/profileimage/googleAvatar.jpg');
 
    password: string;
    @ViewChild('loginRef', {static: true }) loginElement: ElementRef;
@@ -31,10 +34,10 @@ export class LoginComponent implements OnInit{
        private router: Router,
        private authenticationService: AuthenticationService,
        private profileService: ProfileService,
-       //private urlAvatar = '(../../assets/images/profileimage/googleAvatar.jpg)',
+       private domSanitizer: DomSanitizer,
        ) {
         this.user = {username: null, email: '', password: '', name: '', surname: '', info: 'Hello world!', allergens: null};
-        //this.profilePic = new File('(../../assets/images/profileimage/googleAvatar.jpg', 'googleAvatar.jpg');
+        //this.profilePic = '../../assets/images/profileimage/image-7.jpg';
        }
 
    ngOnInit() {
@@ -109,42 +112,36 @@ export class LoginComponent implements OnInit{
         console.log('Full Name: ' + profile.getName());
         console.log('Given Name: ' + profile.getGivenName());
         console.log('Family Name: ' + profile.getFamilyName())
-        // tslint:disable-next-line: max-line-length
-        this.setUser(profile.getGivenName() + profile.getFamilyName(), profile.getEmail(), 'googlepass',  profile.getGivenName(),  profile.getFamilyName(), null);
+        this.setUser(profile.getGivenName()+profile.getFamilyName(), profile.getEmail(), "googlepass",  profile.getGivenName(),  profile.getFamilyName(), null);
       }, (error) => {
         alert(JSON.stringify(error, undefined, 2));
       });
   }
 
-  setUser(username: string, email: string, password: string, name: string, surname: string, allergen: string) {
-    this.user['username'] = username;
+  setUser (username: string, email: string, password:string, name: string, surname: string, allergen: string) {
+    this.user["username"] = username;
     this.user['email'] = email;
     this.user['password'] = password;
     this.user['name'] = name;
     this.user['surname'] = surname;
     this.user['allergens'] = allergen;
 
-    console.log('este es mi usuario : ', this.user);
+    console.log("este es mi usuario : ", this.user);
     this.onGoogleLogin();
   }
 
   onGoogleLogin(){
-    console.log('entro en ongooglelogin');
+    console.log("entro en ongooglelogin");
+
     this.authenticationService.register(this.user)
     .subscribe(
       data => {
         console.log('User created!');
         this.authenticationService.login(this.user.username, this.user.password)
            .subscribe(
-               () => {
-                 console.log('User logged!');
-                 // this.googleAvatar(profilePic);
-                 this.profileService.updateProfileAvatar(this.profilePic).subscribe(
-                    image => {
-                    },
-                    (error: Error) => console.log('File uploaded!')
-                 );
-                 this.router.navigate(["/index"]);
+               data => {
+                 console.log("User logged!");
+
                },
                error => {
                    this.error = error;
@@ -154,24 +151,21 @@ export class LoginComponent implements OnInit{
           alert("Try again");
           this.error = error;
       });
-
+  this.router.navigate(["/index"]);
   }
 
 
-  googleAvatar() {
-    // var blob = new Blob([profilePic], {type: 'image/jpeg'});
-    // var file = new File([blob], 'googleAvatar.jpeg');
-    var img = new Image();
-    img.onload = function(){
-    };
-    img.src = '(../../assets/images/profileimage/googleAvatar.jpg)';
-
-    // console.log(file);
-    // this.profileService.updateProfileAvatar(file).subscribe(
-    //   imagen=>{
-    //   },
-    //     (error: Error) => console.log("File uploaded!")
-    //   );
-  }
+  // googleAvatar() {
+  //   var blob = new Blob([this.profilePic], {type: 'image/jpg'});
+  //   var file = new File([this.profilePic], 'googleAvatar.jpg');
+  //   var urlCreator = window.URL;
+  //   var googleAv = (this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(file)));
+  //   console.log(file);
+  //   this.profileService.updateProfileAvatar(file).subscribe(
+  //     imagen=>{
+  //     },
+  //       (error: Error) => console.log("File uploaded!")
+  //     );
+  // }
 
 }
