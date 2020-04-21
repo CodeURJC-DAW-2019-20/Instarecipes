@@ -32,6 +32,7 @@ This is the main project's repository, where you can found folders like **Code**
  * [Classes and templates diagrams](#CTdiagrams3)  
  
   **PHASE 4**
+ * [Introduction(#intro4)
  * [Most important commits](#importantComm4)  
  * [Most worked files](#workedFiles4)   
  * [Classes and templates diagrams](#CTdiagrams4)  
@@ -459,6 +460,23 @@ To set more conffortable, we should create the *docker-compose.yml* and finally,
 </p> 
 
 # Implementation of the web with SPA architecture
+
+## Introduction <a name="intro4"></a>
+
+The purpose of this last phase is to have our **angular aplication** connected with the api rest that we created in the previous phase 3.   
+To do this, the first thing we will do is install angular and node.js.  
+> Install node 13.3.0 : https://nodejs.org/download/release/v13.3.0/  
+> npm install -g @angular/cli   
+
+Once you have run the commands and everything is installed correctly, we can create a new angular project (we've created it in our instarecipes folder).
+In addition, in Angular we work with modules, so each part of the application has its components (which contain typed files, html and css). 
+In the typescript files you will be able to make the requests (*post, put, get...*) to the API Rest. 
+
+Finally, we used bootstrap material to make our aplication look better!
+> npm install --save bootstrap  
+> npm install --save @ng-bootstrap/ng-bootstrap  
+> ng add @angular/localize  
+
 
 ## Most important commits <a name="importantComm4"></a> 
 |                           |                                 |                                           |
