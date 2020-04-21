@@ -32,7 +32,7 @@ This is the main project's repository, where you can found folders like **Code**
  * [Classes and templates diagrams](#CTdiagrams3)  
  
   **PHASE 4**
- * [Introduction(#intro4)
+ * [Introduction](#intro4)
  * [Most important commits](#importantComm4)  
  * [Most worked files](#workedFiles4)   
  * [Classes and templates diagrams](#CTdiagrams4)  
