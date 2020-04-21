@@ -90,7 +90,7 @@ export class SignUpExtendedComponent implements OnInit {
       }
 
    setUser () {
-     this.user["username"] = this.userService.getFinalData().username;
+     this.user.username = this.userService.getFinalData().username;
      this.user.email = this.userService.getFinalData().email;
      this.user.password = this.userService.getFinalData().password;
      this.user.name = this.userService.getFinalData().name;

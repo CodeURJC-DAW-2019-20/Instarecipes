@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, OnChanges} from '@angular/core';
 import { CookingStyle } from 'src/app/Interfaces/cookingStyle.model';
 import { ProfileService } from 'src/app/services/profile.service';
 import { Ingredient } from 'src/app/Interfaces/ingredient.model';
@@ -14,7 +14,7 @@ import { Step } from 'src/app/Interfaces/step.model.js';
   templateUrl: './addRecipe.component.html',
   styleUrls: ['./addRecipe.component.css']
 })
-export class AddRecipeComponent implements OnInit{
+export class AddRecipeComponent implements OnInit, OnChanges{
 
   stepsList: Step[] = [];
 
@@ -24,9 +24,9 @@ export class AddRecipeComponent implements OnInit{
   allCategories: Category[] = [];
   allAllergens: Allergen[] = [];
 
-  catString: string = "";
-  ingString: string = "";
-  
+  catString: string = '';
+  ingString: string = '';
+
   @ViewChild('ingredientsString') ingredientsString: ElementRef;
   @ViewChild('categoriesString') categoriesString: ElementRef;
   @ViewChild('ingredientsList') ingList: ElementRef;
@@ -49,26 +49,34 @@ export class AddRecipeComponent implements OnInit{
 
   loadAPI: any;
 
-  constructor (private profileService: ProfileService, private recipeService: RecipesService,
+  constructor (private profileService: ProfileService, private recipesService: RecipesService,
     public authService: AuthenticationService) {
       this.initConstructor();
   }
 
   initConstructor(){
-    this.recipe = { user: null, title: '', description: '', duration: '', difficulty: '', firstStep: '', 
+    this.recipe = { user: null, title: '', description: '', duration: '', difficulty: '', firstStep: '',
     allergen:'', withImage: [], steps: [], ingredients: [], categories: [], cookingStyles: [] };
     this.fileToUpload = null;
     this.stepsFiles = new Map();
     this.stepsList = [];
   }
 
-  ngOnInit(){
+  ngOnChanges() {
+    this.recipesService.refreshRecipes(2).subscribe(
+      _ => {
+        console.log('hola refresh');
+      });
+    console.log('chjanges 2');
+  }
+
+  ngOnInit() {
     this.loadStuff();
   }
 
   receiveMap($event) {
     $event.forEach((value, key) => {
-      console.log("Value: " + value + " Key: " + key);
+      console.log('Value: ' + value + ' Key: ' + key);
       this.stepsFiles.set(key, value);
     });
   }
@@ -80,15 +88,15 @@ export class AddRecipeComponent implements OnInit{
     this.profileService.getAllIngredients().subscribe(
       ingredients => {
         this.allIngredients = ingredients;
-        this.allIngredients.forEach(element => this.ingString = this.ingString + element.ingredient + ",");
-        this.ingList.nativeElement.setAttribute("value",this.ingString);
+        this.allIngredients.forEach(element => this.ingString = this.ingString + element.ingredient + ',');
+        this.ingList.nativeElement.setAttribute('value', this.ingString);
         this.profileService.getAllCategories().subscribe(
           categories => {
             this.allCategories = categories;
-            this.allCategories.forEach(element => this.catString = this.catString + element.category + ",");
-            this.catList.nativeElement.setAttribute("value",this.catString);
+            this.allCategories.forEach(element => this.catString = this.catString + element.category + ',');
+            this.catList.nativeElement.setAttribute('value', this.catString);
             this.loadAPI = new Promise(resolve => {
-              console.log("resolving promise...");
+              console.log('resolving promise...');
               this.loadScript();
             });
           }
@@ -101,31 +109,31 @@ export class AddRecipeComponent implements OnInit{
   }
 
   public loadScript() {
-    console.log("preparing to load...");
-    let node = document.createElement("script");
+    console.log('preparing to load...');
+    let node = document.createElement('script');
     node.src = 'assets/js/add_recipe.js';
-    node.type = "text/javascript";
+    node.type = 'text/javascript';
     node.async = true;
-    node.charset = "utf-8";
-    document.getElementsByTagName("head")[0].appendChild(node);
+    node.charset = 'utf-8';
+    document.getElementsByTagName('head')[0].appendChild(node);
   }
 
   starClick(i: number){
     switch (i) {
       case 1:
-        this.recipe.difficulty = "Easy";
+        this.recipe.difficulty = 'Easy';
         break;
       case 2:
-        this.recipe.difficulty = "Medium";
+        this.recipe.difficulty = 'Medium';
         break;
       case 3:
-        this.recipe.difficulty = "Hard";
+        this.recipe.difficulty = 'Hard';
         break;
       case 4:
-        this.recipe.difficulty = "Extreme";
+        this.recipe.difficulty = 'Extreme';
         break;
       default:
-        this.recipe.difficulty = "";
+        this.recipe.difficulty = '';
         break;
     }
   }
@@ -133,12 +141,12 @@ export class AddRecipeComponent implements OnInit{
   addStep(description: string) {
     let s = {content: description, number: this.stepsList.length+1};
     this.stepsList.push(s);
-    console.log("Added new step");
+    console.log('Added new step');
 	}
 
 	removeStep() {
     this.stepsList.pop();
-    console.log("Removed last step");
+    console.log('Removed last step');
 	}
 
   handleFileInput(files: FileList) {
@@ -154,40 +162,48 @@ export class AddRecipeComponent implements OnInit{
     this.recipe.withImage.push(this.otherImages.nativeElement.value);
     console.log(this.recipe);
     console.log(this.fileToUpload);
-    this.recipeService.postRecipe(this.recipe).subscribe(
+    this.recipesService.postRecipe(this.recipe).subscribe(
       _ =>{
-        console.log("Posted recipe: "+JSON.stringify(_));
-        this.recipeService.getLastRecipeId().subscribe(
+        console.log('Posted recipe: '+ JSON.stringify(_));
+        this.recipesService.getLastRecipeId().subscribe(
           lastId => {
-            console.log("Last id: " + lastId);
-            this.recipeService.postImageStep(this.fileToUpload, lastId, 1).subscribe(
-              _ => { },
+            console.log('Last id: ' + lastId);
+            this.recipesService.postImageStep(this.fileToUpload, lastId, 1).subscribe(
+              _ => {  },
               error => {
-                console.log("Tamanio de stepsFiles: " + this.stepsFiles.size);
-                if(this.stepsFiles.size<1){
+                if (this.stepsFiles.size < 1){
                   this.initConstructor();
+                  this.recipesService.refreshRecipes(2).subscribe(
+                    _ => {
+                    });
+                  this.recipesService.triggerSomeEvent(Date());
                   this.closebutton.nativeElement.click();
-                }else{
+                } else {
                   this.stepsFiles.forEach((value, key) => {
-                  this.recipeService.postImageStep(value, lastId, key).subscribe(
-                    what=> console.log("Imagen del paso " + key + " subida exitosamente: " + value.name),
-                    error3 => {
-                      console.error('Error creating others recipe steps images');
-                      if(key === this.stepsFiles.size){
-                        this.initConstructor();
-                        this.closebutton.nativeElement.click();
-                        this.mainImage.nativeElement.setAttribute("src","");
+                    this.recipesService.postImageStep(value, lastId, key).subscribe(
+                      what=> console.log('Imagen del paso ' + key + 2 + ' subida exitosamente: ' + value),
+                      error3 => {
+                        console.error('Error creating others recipe steps images');
+                        let aux = key - 1;
+                        if (aux  === this.stepsFiles.size) {
+                          this.initConstructor();
+                          this.closebutton.nativeElement.click();
+                          this.recipesService.refreshRecipes(2).subscribe(
+                            _ => {
+                            });
+                          this.recipesService.triggerSomeEvent(Date());
+                          this.mainImage.nativeElement.setAttribute('src', '');
+                        }
                       }
-                    }
-                  )});
+                    );
+                  });
                 }
-              },
-            );
+              });
           },
-          error => {console.log("Error getting last id of recipe")}
+          error => {console.log('Error getting last id of recipe')}
         );
       },
-      error => {console.log("Error posting a recipe")}
+      error => {console.log('Error posting a recipe')}
     );
   }
 }

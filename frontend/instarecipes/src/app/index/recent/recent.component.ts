@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, OnChanges} from '@angular/core';
 
 import { RecipesService } from '../../services/recipes.service';
 import { Recipe } from '../../Interfaces/recipe.model';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./recent.component.css']
 })
 
-export class RecentComponent implements OnInit{
+export class RecentComponent implements OnInit {
     recipes: Recipe[] = [];
     page_size: number = 2;
     recipe_counter: number = 0;
@@ -27,23 +27,29 @@ export class RecentComponent implements OnInit{
     constructor(private recipesService: RecipesService,
                 private domSanitizer: DomSanitizer,
                 public recipeService: RecipeService,
-                private router: Router){ }
+                private router: Router) { }
 
-    ngOnInit(){
+    ngOnInit() {
       this.refresh(this.page_size);
+      this.recipesService.getEventSubject().subscribe((param: any) => {
+        console.log('SOY LA RESPUESTA');
+        if (param !== undefined) {
+          this.refresh(2);
+        }
+      });
     }
 
     refresh(pS: number) {
       this.recipesService.refreshRecipes(pS).subscribe(
         recipes => {
           this.recipes = recipes as Recipe[];
-          if(recipes.length <= 2) {
-            this.recipeStepImage(recipes[recipes.length-2], 1)
-          };
+          if (recipes.length <= 2) {
+            this.recipeStepImage(recipes[recipes.length - 2], 1);
+          }
           this.recipeStepImage(recipes[recipes.length-1], 1);
           this.button1.nativeElement.removeAttribute("hidden");
           this.button2.nativeElement.setAttribute("hidden", "");
-          if(this.recipes.length > 1) this.loadingRecents = false;
+          if (this.recipes.length > 1) { this.loadingRecents = false; }
         }
       );
     }

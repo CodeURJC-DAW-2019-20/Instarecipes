@@ -24,7 +24,7 @@ export class CommentsService {
   }
 
   getCommentsFromRecipe(id_recipe: number) {
-    return this.httpClient.get(BASE_URL + id_recipe + "/comments/").pipe(
+    return this.httpClient.get(BASE_URL + id_recipe + '/comments/').pipe(
       catchError(error => this.handleError(error))
     ) as Observable<Comment[]>;
   }

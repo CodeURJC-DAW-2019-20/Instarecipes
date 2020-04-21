@@ -11,7 +11,6 @@ import { User } from 'src/app/Interfaces/user.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CommentsService } from 'src/app/services/comment.service';
 import { Comment } from 'src/app/Interfaces/comment.model';
-import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Component({
   selector: 'recipe-content',

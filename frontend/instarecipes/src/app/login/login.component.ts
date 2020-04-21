@@ -90,7 +90,7 @@ export class LoginComponent implements OnInit{
 
     (function(d, s, id){
       var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
+      if (d.getElementById(id)) {return; }
       js = d.createElement(s); js.id = id;
       js.src = 'https://apis.google.com/js/platform.js?onload=googleSDKLoaded';
       fjs.parentNode.insertBefore(js, fjs);
@@ -112,14 +112,15 @@ export class LoginComponent implements OnInit{
         console.log('Full Name: ' + profile.getName());
         console.log('Given Name: ' + profile.getGivenName());
         console.log('Family Name: ' + profile.getFamilyName())
-        this.setUser(profile.getGivenName()+profile.getFamilyName(), profile.getEmail(), "googlepass",  profile.getGivenName(),  profile.getFamilyName(), null);
+        // tslint:disable-next-line: max-line-length
+        this.setUser(profile.getGivenName() + profile.getFamilyName(), profile.getEmail(), 'googlepass',  profile.getGivenName(),  profile.getFamilyName(), null);
       }, (error) => {
         alert(JSON.stringify(error, undefined, 2));
       });
   }
 
-  setUser (username: string, email: string, password:string, name: string, surname: string, allergen: string) {
-    this.user["username"] = username;
+  setUser (username: string, email: string, password: string, name: string, surname: string, allergen: string) {
+    this.user['username'] = username;
     this.user['email'] = email;
     this.user['password'] = password;
     this.user['name'] = name;
