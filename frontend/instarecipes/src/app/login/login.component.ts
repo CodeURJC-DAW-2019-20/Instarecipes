@@ -119,7 +119,7 @@ export class LoginComponent implements OnInit{
   }
 
   setUser (username: string, email: string, password:string, name: string, surname: string, allergen: string) {
-    this.user["username"] = username.trim().split("\\s+")[0];
+    this.user["username"] = username;
     this.user['email'] = email;
     this.user['password'] = password;
     this.user['name'] = name;
