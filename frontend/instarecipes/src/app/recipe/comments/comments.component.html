@@ -34,12 +34,12 @@
 
             <div class="col-4" style="cursor: pointer; height: 100%;">
 
-                  <button *ngIf="comment?.liked" type="submit" (click)="dislikeComment(comment?.id)" style="width: inherit;border: 0px;">
+                  <button *ngIf="finalsComments[i]?.liked" type="submit" (click)="dislikeComment(comment?.id)" style="width: inherit;border: 0px;">
                     <img class="focusHeart" src="../../../assets/images/icons/like_pressed.png" style="width: 20px;" alt="">
                   </button>
                   <input name="id_recipe" value="{{comment?.id}}" hidden/>
 
-                  <button *ngIf="!comment.liked" type="submit" (click)="likeComment(comment?.id)" style="width: inherit;border: 0px;">
+                  <button *ngIf="!finalsComments[i]?.liked" type="submit" (click)="likeComment(comment?.id)" style="width: inherit;border: 0px;">
                     <img class="focusHeart" src="../../../assets/images/icons/like_unpressed.png" style="width: 20px;" alt="">
                   </button>
                   <input name="id_recipe" value="{{comment?.id}}" hidden/>
@@ -68,13 +68,13 @@
                   </div>
                     <div class="col-4" style="cursor: pointer; height: 100%;">
 
-                        <button *ngIf="subcomment?.liked" type="submit" (click)="dislikeComment(subcomment?.id)"  style="width: inherit;border: 0px;">
+                        <button *ngIf="comment.subComments[j]?.liked" type="submit" (click)="dislikeComment(subcomment?.id)"  style="width: inherit;border: 0px;">
                           <img class="focusHeart" src="../../../assets/images/icons/like_pressed.png" style="width: 20px;" alt="">
                         </button>
                         <input name="id_recipe" value="{{subcomment?.id}}"  hidden/><!-- recipe id-->
 
 
-                        <button *ngIf="!subcomment?.liked" type="submit" (click)="likeComment(subcomment?.id)" style="width: inherit;border: 0px;">
+                        <button *ngIf="!comment.subComments[j]?.liked" type="submit" (click)="likeComment(subcomment?.id)" style="width: inherit;border: 0px;">
                           <img class="focusHeart" src="../../../assets/images/icons/like_unpressed.png" style="width: 20px;" alt="">
                         </button>
                         <input name="id_recipe" value="{{subcomment?.id}}" hidden/>
