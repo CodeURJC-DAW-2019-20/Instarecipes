@@ -491,8 +491,8 @@ To set more conffortable, we should create the *docker-compose.yml* and finally,
 > * [Typescripts and initialization](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/73d347362a56a6522481814dbe45f5bdd0652fcc)
 > * [Avatars and images done](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/ac2d986a5cf7323d34a813da43579dc0e77315ef)
 > * [Recipe comments and almost finished](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/8ee254d3a9656e099499de0ee79df3fda2d364b3)
-> * []()
-> * []()
+> * [Funcionality of comments done](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/2d9e9dac03cb3d868e49e4aec726fb29c92a9107)
+> * [Recipe page is dynamic and some funcionalities are done](https://github.com/CodeURJC-DAW-2019-20/Instarecipes/commit/e3da6f6158c621b423e7721b57047ea93c32c2f8)
 
 ## Most worked files <a name="workedFiles4"></a>
 
