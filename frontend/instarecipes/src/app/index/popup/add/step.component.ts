@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Step } from '../../../Interfaces/step.model';
-import { RecipesService } from 'src/app/services/recipes.service';
 
 @Component({
 	selector: 'step',

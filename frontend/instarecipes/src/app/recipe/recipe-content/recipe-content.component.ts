@@ -43,11 +43,11 @@ export class RecipeContentComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    console.log('ID RECIPE: ' + this.route.snapshot.paramMap.get('id'));
-    if (!this.route.snapshot.paramMap.get('id')) {
+    console.log('ID RECIPE: ' + this.route.snapshot.params.id);
+    if (!this.route.snapshot.params.id) {
       this.recipeService.actualRecipeID = this.recipeService.actualRecipeID;
     } else {
-      this.recipeService.actualRecipeID = +(this.route.snapshot.paramMap.get('id'));
+      this.recipeService.actualRecipeID = +(this.route.snapshot.params.id);
     }
     this.refresh();
     this.commentService.getEventSubject().subscribe((param: any) => {

@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { RankService } from '../services/ranking.service';
-import { AuthenticationService } from '../services/authentication.service';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
+  selector: 'ranking',
   templateUrl: './ranking.component.html',
   styleUrls: ['./ranking.component.css']
 })

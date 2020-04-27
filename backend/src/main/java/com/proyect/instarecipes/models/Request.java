@@ -45,9 +45,21 @@ public class Request{
             String categoryContent, boolean itemExists) {
         this.username = username;
         this.typeOfRequest = typeOfRequest;
-        this.ingredientContent = ingredientContent;
-        this.cookingStyleContent = cookingStyleContent;
-        this.categoryContent = categoryContent;
+        if(ingredientContent == null){
+            this.ingredientContent = "";
+        }else{
+            this.ingredientContent = ingredientContent;
+        }
+        if(cookingStyleContent == null){
+            this.cookingStyleContent = "";
+        }else{
+            this.cookingStyleContent = cookingStyleContent;
+        }
+        if(categoryContent == null){
+            this.categoryContent = "";
+        }else{
+            this.categoryContent = categoryContent;
+        }
         this.itemExists = itemExists;
     }
 

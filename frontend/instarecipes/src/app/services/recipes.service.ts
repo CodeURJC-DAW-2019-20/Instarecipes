@@ -6,7 +6,6 @@ import { catchError } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Step } from '../Interfaces/step.model';
 import { RecipeDTO } from '../Interfaces/recipeDTO.model';
-import { User } from '../Interfaces/user.model';
 
 const BASE_URL: string = '/api/recipes/';
 

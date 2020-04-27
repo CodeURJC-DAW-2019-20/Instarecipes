@@ -1,10 +1,8 @@
-import { Component, OnInit, Input, AfterViewInit, SimpleChanges, OnChanges, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, EventEmitter, Output } from '@angular/core';
 import { Recipe } from 'src/app/Interfaces/recipe.model';
-import { User } from 'src/app/Interfaces/user.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'publications',
@@ -29,8 +27,11 @@ export class PublicationsComponent implements OnInit, OnChanges {
 
   images: any[] = [];
 
-  constructor(private recipesService: RecipesService, private domSanitizer: DomSanitizer,
-              public authService: AuthenticationService, private router: Router) { }
+  constructor(
+    private recipesService: RecipesService,
+    private domSanitizer: DomSanitizer,
+    public authService: AuthenticationService
+  ) { }
 
   ngOnInit() {
   }

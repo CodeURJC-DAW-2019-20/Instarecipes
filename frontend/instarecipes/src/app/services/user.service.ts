@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { User } from '../Interfaces/user.model';
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-const BASE_URL: string = "api/users/"
+const BASE_URL: string = "/api/users/"
 @Injectable({ providedIn: 'root' })
 export class UserService {
   jsonData;
   finalData;
 
-  constructor(
-    private http: HttpClient,
-    ) { }
+  constructor(private http: HttpClient) { }
 
   getAll() {
     return this.http.get<User[]>(`${config.apiUrl}/users`);
@@ -38,10 +36,6 @@ export class UserService {
   }
 
   followUser(id: number): Observable<User[]>{
-    const body = JSON.stringify(id);
-    const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-    });
     return this.http.put(BASE_URL + id + '/followAction', {}).pipe(
       catchError(error => this.handleError(error))
      ) as Observable<User[]>;

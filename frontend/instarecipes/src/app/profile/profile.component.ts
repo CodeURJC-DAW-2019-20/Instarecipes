@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { ProfileService } from '../services/profile.service';
 import { User } from '../Interfaces/user.model';
@@ -18,39 +18,52 @@ const urls = [
   styleUrls: ['./profile.component.css']
 })
 
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnChanges {
 
   followers_users: User[] = [];
   following_users: User[] = [];
-  avatar: any = null;
-  background: any = null;
   user: User = null;
   user_recipes: any[] = [];
   id_user: number;
   n_likes: number = 0;
   loadAPI: any;
+  
+  avatarSrc: any = null;
+  backgroundSrc: any = null;
+  avatarUrl: any;
+  backgroundUrl: any;
 
   id_script: string = "id_script";
 
   infoLoaded: number = 0; //this one i need to load the 6 methods (info, avatar, background, likes, following and followers)
 
-  constructor(private profileService: ProfileService, private domSanitizer: DomSanitizer,
-                public authService: AuthenticationService, private userService: UserService,
-                  private router: ActivatedRoute, private route: Router) {
+  constructor(
+    private profileService: ProfileService,
+    private domSanitizer: DomSanitizer,
+    public authService: AuthenticationService,
+    private userService: UserService,
+    private router: ActivatedRoute,
+    private route: Router
+  ) {
       this.route.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
-      };
+    };
   }
 
   ngOnInit(){
     this.infoLoaded = 0;
-    console.log("ID: " + this.router.snapshot.paramMap.get('id'));
-    if(!this.router.snapshot.paramMap.get('id')){
+    console.log("ID: " + this.router.snapshot.params.id);
+    if(!this.router.snapshot.params.id){
       this.id_user = this.authService.user.id;
     }else{
-      this.id_user = +(this.router.snapshot.paramMap.get('id'));
+      this.id_user = +(this.router.snapshot.params.id);
     }
     this.refresh();
+  }
+
+  ngOnChanges(){
+    this.avatarSrc = this.domSanitizer.bypassSecurityTrustUrl(this.avatarUrl);
+    this.backgroundSrc = this.domSanitizer.bypassSecurityTrustUrl(this.backgroundUrl);
   }
 
   check_js_aviability(){
@@ -102,7 +115,8 @@ export class ProfileComponent implements OnInit {
     this.profileService.getProfileAvatar(this.id_user).subscribe(
       avatar => {
         var urlCreator = window.URL;
-        this.avatar = this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(avatar));
+        this.avatarUrl = urlCreator.createObjectURL(avatar);
+        this.avatarSrc = this.domSanitizer.bypassSecurityTrustUrl(this.avatarUrl);
         this.infoLoaded++;
         this.check_js_aviability();
       }
@@ -113,7 +127,9 @@ export class ProfileComponent implements OnInit {
     this.profileService.getProfileBackground(this.id_user).subscribe(
       background => {
         var urlCreator = window.URL;
-        this.background = this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(background));
+        //I only need the url, not the source
+        this.backgroundUrl = urlCreator.createObjectURL(background);
+        this.backgroundSrc = this.domSanitizer.bypassSecurityTrustUrl(this.backgroundUrl);
         this.infoLoaded++;
         this.check_js_aviability();
       }

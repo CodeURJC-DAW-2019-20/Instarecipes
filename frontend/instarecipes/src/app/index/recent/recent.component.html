@@ -1,8 +1,8 @@
 <div>
     <video autoplay muted loop id="myVideo" style="position: fixed;z-index: -1; top: 10%; opacity:0.6; width: 100%; object-fit: cover;">
-    <source src="../../assets/images/backgrounds/index.mp4" type="video/mp4">
+    <source src="assets/images/backgrounds/index.mp4" type="video/mp4">
   </video>
-    <div class="container" >
+    <div class="container">
         <!-- Recent recipes -->
         <h3 class="my-4">Recent user's recipes</h3>
         <div #recipesContainer id="recipes-container">
@@ -27,20 +27,20 @@
                 <div *ngIf="isOdd(i); then elseBlock else thenBlock"></div>
                 <ng-template #thenBlock>
                     <div class="row">
-                        <div class="col-md-7">      
-                           <!--  <a href="">    -->                   
-                                <img class="img-fluid rounded mb-3 mb-md-0" style="height: 200px;" [src]="image[i]">      
-                          <!--   </a>  -->                
+                        <div class="col-md-7">
+                            <!--  <a href="">    -->
+                            <img class="img-fluid rounded mb-3 mb-md-0" style="height: 200px;" [src]="image[i]">
+                            <!--   </a>  -->
                             <div class="likes-comments-top-left">
                                 <div class="row" style="margin-right: 0;margin-left: 0;">
                                     <div class="col-3">
-                                        <img class="icon-fluid" src="../../assets/images/icons/like_pressed.png">
+                                        <img class="icon-fluid" src="assets/images/icons/like_pressed.png">
                                     </div>
                                     <div class="col-3">
                                         <p class="icon-fluid pub-date-text">{{recipe?.likes}}</p>
                                     </div>
                                     <div class="col-3">
-                                        <img class="icon-fluid" src="../../assets/images/icons/dialogue.png">
+                                        <img class="icon-fluid" src="assets/images/icons/dialogue.png">
                                     </div>
                                     <div class="col-3">
                                         <p class="icon-fluid pub-date-text">{{recipe?.n_comments}}</p>
@@ -79,19 +79,19 @@
               </a>
                         </div>
                         <div class="col-md-7">
-                          <!--  <a href="#"> -->
-                                <img class="img-fluid rounded mb-3 mb-md-0" style="height: 200px;" [src]="image[i]">
-                        <!--    </a> -->
+                            <!--  <a href="#"> -->
+                            <img class="img-fluid rounded mb-3 mb-md-0" style="height: 200px;" [src]="image[i]">
+                            <!--    </a> -->
                             <div class="likes-comments-top-right">
                                 <div class="row" style="margin-right: 0;margin-left: 0;">
                                     <div class="col-3">
-                                        <img class="icon-fluid" src="../../assets/images/icons/like_pressed.png">
+                                        <img class="icon-fluid" src="assets/images/icons/like_pressed.png">
                                     </div>
                                     <div class="col-3">
                                         <p class="icon-fluid pub-date-text">{{recipe?.likes}}</p>
                                     </div>
                                     <div class="col-3">
-                                        <img class="icon-fluid" src="../../assets/images/icons/dialogue.png">
+                                        <img class="icon-fluid" src="assets/images/icons/dialogue.png">
                                     </div>
                                     <div class="col-3">
                                         <p class="icon-fluid pub-date-text">{{recipe?.n_comments}}</p>
@@ -112,8 +112,8 @@
     <!-- Ajax load more button -->
     <div class="loadmore-container">
         <div>
-            <img #loadmore1 (click)="loadMore()" class="loadmore-button" src="../../assets/images/icons/loadmore_unpressed.png" alt="" />
-            <img #loadmore2 class="loadmore-button" src="../../assets/images/icons/spinner.gif" alt="" hidden />
+            <img #loadmore1 (click)="loadMore()" class="loadmore-button" src="assets/images/icons/loadmore_unpressed.png" alt="" />
+            <img #loadmore2 class="loadmore-button" src="assets/images/icons/spinner.gif" alt="" hidden />
         </div>
     </div>
 

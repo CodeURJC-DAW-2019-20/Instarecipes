@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter, OnChanges } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Allergen } from 'src/app/Interfaces/allergen.model';
 import { ProfileService } from 'src/app/services/profile.service';
 import { User } from '../../../../Interfaces/user.model';
 import { FormGroup} from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { FormGroup} from '@angular/forms';
   templateUrl: './editProfile.component.html',
   styleUrls: ['./editProfile.component.css']
 })
-export class EditProfileComponent implements OnInit {
+export class EditProfileComponent implements OnInit, OnChanges {
 
   @Input()
   avatar: any;
@@ -36,17 +37,30 @@ export class EditProfileComponent implements OnInit {
   loadAPI: any;
   newAvatar: File;
   newBackground: File;
-  error: '';
+
+  realBackground: any;
+  cont_aux: number;
 
   @ViewChild('closebutton') closebutton: ElementRef;
 
-  constructor(private profileService: ProfileService, public authService: AuthenticationService) {
+  constructor(
+    private profileService: ProfileService,
+    public authService: AuthenticationService,
+    private domSanitizer: DomSanitizer
+  ) {
+    this.initConstructor();
+  }
+
+  initConstructor(){
     this.userUpdate = {
-      name: authService.user.name,
-      surname: authService.user.surname,
-      info: authService.user.info,
-      allergens: authService.user.allergens
+      name: this.authService.user.name,
+      surname: this.authService.user.surname,
+      info: this.authService.user.info,
+      allergens: this.authService.user.allergens
     }
+    this.newBackground = null;
+    this.newAvatar = null;
+    this.cont_aux = 0;
   }
 
   ngOnInit() {
@@ -57,7 +71,11 @@ export class EditProfileComponent implements OnInit {
       });
       this.loadAllergens();
     }
+    this.realBackground = this.domSanitizer.bypassSecurityTrustUrl(this.background);
+  }
 
+  ngOnChanges(){
+    this.realBackground = this.domSanitizer.bypassSecurityTrustUrl(this.background);
   }
 
   public loadScript() {
@@ -70,9 +88,6 @@ export class EditProfileComponent implements OnInit {
     document.getElementsByTagName("head")[0].appendChild(node);
   }
 
-  initConstructor(){
-    this.userUpdate = { name: this.user?.name, surname: this.authService.user.surname, info: this.authService.user.info, allergens: this.authService.user.allergens }
-  }
 
   editProfile(){
     console.log(this.userUpdate);
@@ -88,30 +103,47 @@ export class EditProfileComponent implements OnInit {
     if (this.allergens != null) {
       this.userUpdate.allergens = this.allergens;
     }
-    console.log("after ", this.userUpdate);
     this.profileService.editProfile(this.userUpdate).subscribe(
-    _ =>{
-      this.user = _ as User;
-      console.log(_);
-      console.log(this.user);
-      if (this.newAvatar != null){
-        this.profileService.updateProfileAvatar(this.newAvatar).subscribe(
-          imagen=>{
-          },
-            (error: Error) => console.log("File uploaded!")
-         );
-       }
-       this.update_profile();
-    this.closebutton.nativeElement.click();
-
-  },
-    error => {
-        alert("Try again");
-        this.error = error;
-    });
-
+      _ => {
+        this.user = _ as User;
+        this.cont_aux++;
+        if (this.newBackground != null){
+          this.profileService.updateProfileBackground(this.newBackground).subscribe(
+            __ => { },
+            error => {
+              console.log("Background file uploaded!");
+              this.cont_aux++;
+              this.checkChanges();
+            }
+          );
+        }else{
+          this.cont_aux++;
+          this.checkChanges();
+        }
+        if (this.newAvatar != null){
+          this.profileService.updateProfileAvatar(this.newAvatar).subscribe(
+            __ => { },
+            error => {
+              console.log("Avatar file uploaded!");
+              this.cont_aux++;
+              this.checkChanges();
+            }
+          );
+        }else{
+          this.cont_aux++;
+          this.checkChanges();
+        }
+    },
+    error => alert("Try again"));
   }
 
+  checkChanges(){
+    if(this.cont_aux == 3){
+      this.update_profile();
+      this.initConstructor();
+      this.closebutton.nativeElement.click();
+    }
+  }
 
   loadAllergens(){
     this.profileService.getAllAllergens().subscribe(
@@ -121,7 +153,6 @@ export class EditProfileComponent implements OnInit {
 
   update_profile(){
     console.log('me ejecuto');
-   // window.location.reload();
     this.refresh_profile.emit(null);
   }
 

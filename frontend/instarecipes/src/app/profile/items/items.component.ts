@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipesService } from 'src/app/services/recipes.service';
 import { ProfileService } from 'src/app/services/profile.service';
 import { Ingredient } from 'src/app/Interfaces/ingredient.model';
 import { Category } from 'src/app/Interfaces/category.model';
@@ -18,18 +17,17 @@ export class ItemsComponent implements OnInit {
 
   loadAPI: any;
 
-  constructor(private recipesService: RecipesService, private profileService: ProfileService){
+  constructor(private profileService: ProfileService){
   }
 
   ngOnInit(){
-   this.loadItems();
+    this.loadItems();
   }
 
   loadItems() {
-   this.getAllIngredients();
-   this.getAllCategories();
-   this.getAllCookingStyles();
-  //  import("../../../assets/js/admin_profile.js");
+    this.getAllIngredients();
+    this.getAllCategories();
+    this.getAllCookingStyles();
     this.loadAPI = new Promise(resolve => {
       console.log("resolving promise...");
       this.loadScript();

@@ -1,129 +1,129 @@
 <div class="publications-modal modal fade" id="opened-search-button" tabindex="-1" role="dialog" aria-labelledby="publicationsModal6Label" aria-hidden="true">
-  <div id="filtered-search" class="modal-dialog modal-xl" role="document" style="width: 90%;">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
-          <div class="modal-body text-center">
-            <div class="container">
-              <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Filtered Search</h2>
-              <div class="divider-custom">
-                  <div class="divider-custom-line"></div>
-                  <div class="divider-custom-icon">
-                      <img src='../../../../assets/images/icons/orange-search.png' width="50%" style="height: 50px; width: 50px;" />
-                  </div>
-                  <div class="divider-custom-line"></div>
-              </div>
+    <div id="filtered-search" class="modal-dialog modal-xl" role="document" style="width: 90%;">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+                <div class="modal-body text-center">
+                    <div class="container">
+                        <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Filtered Search</h2>
+                        <div class="divider-custom">
+                            <div class="divider-custom-line"></div>
+                            <div class="divider-custom-icon">
+                                <img src='assets/images/icons/orange-search.png' width="50%" style="height: 50px; width: 50px;" />
+                            </div>
+                            <div class="divider-custom-line"></div>
+                        </div>
 
-              <form #postFilterRecipeForm="ngForm" (ngSubmit)="postFilterRecipe()">
-                <div class="row">
-                  <div class="col-6">
-                    <h3 class="underlined-text">INGREDIENTS</h3>
-                      <div class="row">
-                        <table id="IngredientsTable" #selectedIng>
-                        <tr>
-                          <td>
-                          <input #ingredientsSSearch id="ingredientsSSearch" name="ingredientsSSearch" hidden />
-                          <select class="form-control">
+                        <form #postFilterRecipeForm="ngForm" (ngSubmit)="postFilterRecipe()">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h3 class="underlined-text">INGREDIENTS</h3>
+                                    <div class="row">
+                                        <table id="IngredientsTable" #selectedIng>
+                                            <tr>
+                                                <td>
+                                                    <input #ingredientsSSearch id="ingredientsSSearch" name="ingredientsSSearch" hidden />
+                                                    <select class="form-control">
                             <option></option>
                             <option *ngFor="let ing of ingredients" value="{{ing?.ingredient}}">
                               {{ing?.ingredient}}
                             </option>
                           </select>
-                          </td>
-                          <td>
-                            <button id="Ing-delete-button" type="button" class="btn-delete-line" style="color: white; font-size: inherit;" onclick="delRowIngredient(this)"><span aria-hidden="true"><i class="fas fa-trash"></i></span></button>
-                          </td>
-                        </tr>
-                        </table>
-                      </div>
-                    <hr>
-                    <button id="Ing-add-button" type="button" class="btn-add-ingredient"><span aria-hidden="true"><i class="fa fa-plus add" aria-hidden="true" style="color: white; font-size: inherit;"></i><h6 class="text">ADD</h6></span></button>
-                    <button id="Ing-delete-all-button" type="button" class="btn-delete-ingredients"><span aria-hidden="true"><i class="fas fa-trash" aria-hidden="true" style="color: white; font-size: inherit;"></i><h6 class="text">DELETE ALL</h6></span></button>
-                    <hr>
-                  </div>
-                  <div class="col-6">
-                    <h3 class="underlined-text">COOKING STYLE</h3>
-                    <div class="row">
-                      <table id="CookingStyleTable" #selectedCookS>
-                        <tr>
-                          <td>
-                            <input #cookStylesSSearch id="cookStylesSSearch" name="cookStylesSSearch" hidden />
-                            <select class="form-control">
+                                                </td>
+                                                <td>
+                                                    <button id="Ing-delete-button" type="button" class="btn-delete-line" style="color: white; font-size: inherit;" onclick="delRowIngredient(this)"><span aria-hidden="true"><i class="fas fa-trash"></i></span></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <hr>
+                                    <button id="Ing-add-button" type="button" class="btn-add-ingredient"><span aria-hidden="true"><i class="fa fa-plus add" aria-hidden="true" style="color: white; font-size: inherit;"></i><h6 class="text">ADD</h6></span></button>
+                                    <button id="Ing-delete-all-button" type="button" class="btn-delete-ingredients"><span aria-hidden="true"><i class="fas fa-trash" aria-hidden="true" style="color: white; font-size: inherit;"></i><h6 class="text">DELETE ALL</h6></span></button>
+                                    <hr>
+                                </div>
+                                <div class="col-6">
+                                    <h3 class="underlined-text">COOKING STYLE</h3>
+                                    <div class="row">
+                                        <table id="CookingStyleTable" #selectedCookS>
+                                            <tr>
+                                                <td>
+                                                    <input #cookStylesSSearch id="cookStylesSSearch" name="cookStylesSSearch" hidden />
+                                                    <select class="form-control">
                               <option></option>
                               <option *ngFor="let cks of cookingStyles" value="{{cks?.cookingStyle}}">
                                 {{cks?.cookingStyle}}
                               </option>
                             </select>
-                          </td>
-                          <td>
-                            <button id="CSy-delete-button" type="button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCookingStyle(this)"><span aria-hidden="true"><i class="fas fa-trash"></i></span></button>
-                          </td>
-                        </tr>
-                      </table>
-                      </div>
-                      <hr>
-                      <button id="CSy-add-button" type="button" class="btn-add-category"><span aria-hidden="true"><i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i><h6 class="text">ADD</h6></span></button>
-                      <button id="CSy-delete-all-button" type="button" class="btn-delete-categories"><span aria-hidden="true"><i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i><h6 class="text">DELETE ALL</h6></span></button>
-                      <hr>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-6">
-                    <h3 class="underlined-text">CATEGORIES</h3>
-                    <div class="row">
-                      <table id="CategoriesTable" #selectedCat>
-                        <tr>
-                          <td>
-                            <input #categoriesSSearch id="categoriesSSearch" name="categoriesSSearch" hidden />
-                            <select class="form-control">
+                                                </td>
+                                                <td>
+                                                    <button id="CSy-delete-button" type="button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCookingStyle(this)"><span aria-hidden="true"><i class="fas fa-trash"></i></span></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <hr>
+                                    <button id="CSy-add-button" type="button" class="btn-add-category"><span aria-hidden="true"><i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i><h6 class="text">ADD</h6></span></button>
+                                    <button id="CSy-delete-all-button" type="button" class="btn-delete-categories"><span aria-hidden="true"><i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i><h6 class="text">DELETE ALL</h6></span></button>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h3 class="underlined-text">CATEGORIES</h3>
+                                    <div class="row">
+                                        <table id="CategoriesTable" #selectedCat>
+                                            <tr>
+                                                <td>
+                                                    <input #categoriesSSearch id="categoriesSSearch" name="categoriesSSearch" hidden />
+                                                    <select class="form-control">
                               <option></option>
                               <option *ngFor="let cat of categories" value="{{cat?.category}}">
                                 {{cat?.category}}
                               </option>
                             </select>
-                          </td>
-                          <td>
-                            <button id="Cat-delete-button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCategory(this)"><span aria-hidden="true"><i class="fas fa-trash"></i></span></button>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                    <hr>
-                    <button id="Cat-add-button" type="button" class="btn-add-category"><span aria-hidden="true"><i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i><h6 class="text">ADD</h6></span></button>
-                    <button id="Cat-delete-all-button" type="button" class="btn-delete-categories"><span aria-hidden="true"><i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i><h6 class="text">DELETE ALL</h6></span></button>
-                  </div>
-                  <div class="col-6">
-                      <h3 class="underlined-text">FREE ALLERGENS</h3>
-                      <div class="row">
-                        <table id="AllergensTable" #selectedAll>
-                          <tr>
-                            <td>
-                              <input #allergensSSearch id="allergensSSearch" name="allergensSSearch" hidden />
-                              <select class="form-control">
+                                                </td>
+                                                <td>
+                                                    <button id="Cat-delete-button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowCategory(this)"><span aria-hidden="true"><i class="fas fa-trash"></i></span></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <hr>
+                                    <button id="Cat-add-button" type="button" class="btn-add-category"><span aria-hidden="true"><i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i><h6 class="text">ADD</h6></span></button>
+                                    <button id="Cat-delete-all-button" type="button" class="btn-delete-categories"><span aria-hidden="true"><i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i><h6 class="text">DELETE ALL</h6></span></button>
+                                </div>
+                                <div class="col-6">
+                                    <h3 class="underlined-text">FREE ALLERGENS</h3>
+                                    <div class="row">
+                                        <table id="AllergensTable" #selectedAll>
+                                            <tr>
+                                                <td>
+                                                    <input #allergensSSearch id="allergensSSearch" name="allergensSSearch" hidden />
+                                                    <select class="form-control">
                                 <option></option>
                                 <option *ngFor="let a of allergens" value="{{a?.allergen}}">
                                   {{a?.allergen}}
                                 </option>
                               </select>
-                            </td>
-                            <td>
-                              <button id="Alg-delete-button" type="button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowAllergen(this)"><span aria-hidden="true"><i class="fas fa-trash"></i></span></button>
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                      <hr>
-                      <button id="Alg-add-button" type="button" class="btn-add-allergen"><span aria-hidden="true"><i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i><h6 class="text">ADD</h6></span></button>
-                      <button id="Alg-delete-all-button" type="button" class="btn-delete-allergens"><span aria-hidden="true"><i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i><h6 class="text">DELETE ALL</h6></span></button>
-                  </div>
+                                                </td>
+                                                <td>
+                                                    <button id="Alg-delete-button" type="button" class="btn-delete-line" style="color: white;font-size: inherit;" onclick="delRowAllergen(this)"><span aria-hidden="true"><i class="fas fa-trash"></i></span></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <hr>
+                                    <button id="Alg-add-button" type="button" class="btn-add-allergen"><span aria-hidden="true"><i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i><h6 class="text">ADD</h6></span></button>
+                                    <button id="Alg-delete-all-button" type="button" class="btn-delete-allergens"><span aria-hidden="true"><i class="fas fa-trash" aria-hidden="true" style="color: white;font-size: inherit;"></i><h6 class="text">DELETE ALL</h6></span></button>
+                                </div>
+                            </div>
+                            <hr>
+                            <button type="submit" class="btn btn-primary"><h6 class="text">Go!</h6><img class="img-fluid rounded" src="assets/images/icons/pizza-go.png" alt="" width="50%" style="height: 50px; width: 50px;"></button>
+                            <button type="button" #closebutton class="close" data-dismiss="modal" hidden></button>
+                        </form>
+                    </div>
                 </div>
-                <hr>
-                <button type="submit" class="btn btn-primary"><h6 class="text">Go!</h6><img class="img-fluid rounded" src="../../../../assets/images/icons/pizza-go.png" alt="" width="50%" style="height: 50px; width: 50px;"></button>
-                <button type="button" #closebutton class="close" data-dismiss="modal" hidden></button>
-              </form>
             </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

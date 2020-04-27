@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from '../Interfaces/recipe.model';
 import { RecipesService } from './recipes.service';
-import { User } from '../Interfaces/user.model';
-import { HttpClient } from '@angular/common/http';
-
-const BASE_URL: string = "/api/recipes/";
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +10,7 @@ export class RecipeService {
   recipe: Recipe;
   nSteps: number;
 
-  constructor(
-    private recipesService: RecipesService,
-  ) { }
+  constructor(private recipesService: RecipesService) { }
 
   setRecipeID(id: number){
     this.actualRecipeID = id;
