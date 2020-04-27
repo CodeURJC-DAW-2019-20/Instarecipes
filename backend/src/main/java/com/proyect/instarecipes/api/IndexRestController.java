@@ -33,7 +33,7 @@ import com.proyect.instarecipes.views.DTO.RecipeDTO;
 @RestController
 @RequestMapping("/api")
 public class IndexRestController {
-	public interface Main extends User.Username, Recipe.RecipeBasic, Recipe.RecipePlus {}
+	public interface Main extends Recipe.IDRecipe, User.IDUser, User.Username, Recipe.RecipeBasic, Recipe.RecipePlus {}
 	public interface PostRecipe extends User.Username, RecipeDTO.PostRecipeView {}
 
 	@Autowired
@@ -125,7 +125,7 @@ public class IndexRestController {
 			Recipe r = indexService.postRecipe(userSession.getLoggedUser(),recipe, ingredientsString, categoriesString,
 				cookingStyle, recipeDTO.getAllergen(), recipeDTO.getFirstStep(), stepsString, withImage, null, null);
 			if (r != null) {
-				return new ResponseEntity<>(recipeDTO, HttpStatus.OK);
+				return new ResponseEntity<>(recipeDTO, HttpStatus.CREATED);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
@@ -136,14 +136,13 @@ public class IndexRestController {
 	}
 
 	// POST AN IMAGE OF ONE STEP OF ONE RECIPE
-	@JsonView(IndexRestController.PostRecipe.class)
-	@PostMapping(value = "/index/{id}/image/{step}", produces = MediaType.IMAGE_JPEG_VALUE)
+	@PostMapping(value = "/index/{id}/image/{step}")
 	public ResponseEntity<byte[]> postRecipeImage(@PathVariable Long id, @PathVariable int step, 
 	@RequestParam MultipartFile imageFile)throws IOException {
 		if(userSession.isLoggedUser()){
 			byte[] image = indexService.postRecipeImages(userSession.getLoggedUser(), id, step, imageFile);
 			if(image != null){
-				return new ResponseEntity<>(image, HttpStatus.OK);
+				return new ResponseEntity<>(image, HttpStatus.CREATED);
 			}else{
 				return new ResponseEntity<>(HttpStatus.CONFLICT);
 			}

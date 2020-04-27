@@ -1,0 +1,69 @@
+<div class="publications-modal modal fade" id="publicationsModal{{i}}" tabindex="-1" role="dialog" aria-labelledby="publicationsModal1Label" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">
+                  <i class="fas fa-times"></i>
+                </span>
+              </button>
+            <div class="modal-body text-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <!-- publications Modal - Title -->
+                            <h2 class="publications-modal-title text-secondary text-uppercase mb-0">{{recipe?.title}}</h2>
+                            <!-- Icon Divider -->
+                            <div class="divider-custom">
+                                <div class="divider-custom-line"></div>
+                                <div class="divider-custom-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="divider-custom-line"></div>
+                            </div>
+                            <div style="width: 33.44443%; height: auto; margin-left: 66.66667%;">
+                                <h3 class="underlined-text" style="color:rgba(0, 0, 0, 0.8)">INGREDIENTS</h3>
+                            </div>
+                            <div class="row" style="height: 300px;">
+                                <!-- publications Modal - Image -->
+                                <div class="col-8" style="align-items: center; justify-content: center; height: 100%;">
+                                    <img class="img-fluid-preview rounded mb-5" [src]="image" alt="">
+                                </div>
+                                <div class="col-4" style="height: 300px;">
+                                    <div class="nav-item dropdown scrolling">
+                                        <!-- {{#ingredients}} -->
+                                        <p class="dropdown-item" *ngFor="let ingredient of recipe?.ingredients">{{ingredient.ingredient}}</p>
+                                        <!-- {{/ingredients}} -->
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="underlined-text" style="margin-top: 10px;color:rgba(0, 0, 0, 0.8)">INTRODUCTION
+                            </h3>
+                            <!-- publications Modal - Text -->
+                            <p class="mb-5" style="text-align:left;">{{recipe?.description}}</p>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h3 class="underlined-text" style="color:rgba(0, 0, 0, 0.8)">CATEGORY</h3>
+                                    <!-- {{#categories}} -->
+                                    <p class="mb-5" *ngFor="let category of recipe?.categories">{{category.category}}</p>
+                                    <!-- {{/categories}} -->
+                                </div>
+                                <div class="col-4">
+                                    <h3 class="underlined-text" style="color:rgba(0, 0, 0, 0.8)">DIFICULTY</h3>
+                                    <p class="mb-5">{{recipe?.difficulty}}</p>
+                                </div>
+                                <div class="col-4">
+                                    <h3 class="underlined-text" style="color:rgba(0, 0, 0, 0.8)">APROXIMATED TIME</h3>
+                                    <p class="mb-5">{{recipe?.duration}}</p>
+                                </div>
+                            </div>
+                            <a class="btn btn-primary" (click)='seeRecipe(recipe?.id);'>
+                                <img class="rounded" src="assets/images/icons/go.png" alt="">
+                            </a>
+                            <button type="button" #closebutton class="close" data-dismiss="modal" hidden></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

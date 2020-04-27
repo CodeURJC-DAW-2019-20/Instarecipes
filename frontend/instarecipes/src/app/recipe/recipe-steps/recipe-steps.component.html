@@ -1,0 +1,33 @@
+<div class="container" style="margin-top: 5%;">
+<section>
+  <h1 class="mb-0 font-weight-normal">Introduction</h1>
+  <p class="mb-0 font-weight-normal">{{recipe?.description}}</p>
+  <hr class="separator1">
+  <!-- STEPS sections -->
+
+
+    <div *ngFor="let step of steps; index as i;">
+        <h1>Step {{i + 1}}</h1>
+        <!-- Post Content -->
+        <div class="row">
+          <div class="col-8">
+            <p class="lead">{{step?.content}}</p>
+          </div>
+          <div *ngIf= "step?.image" class="col-4" >
+              <img *ngIf="step?.image" class="img-fluid rounded-lg prev-img"  [src] = "image[i]" alt="" style="cursor: pointer;">
+          </div>
+        </div>
+    </div>
+  <hr>
+  <!-- Gallery section -->
+  <section>
+    <div>
+      <div class="row" style="text-align: center;" >
+        <div *ngFor="let img of image; index as i" class="col-md-3 col-sm-6 mb-4 centered-img" >
+          <img class="img-fluid rounded-lg prev-img" [src] = "imagee[i]" alt="" style="cursor: pointer;">
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+</div>

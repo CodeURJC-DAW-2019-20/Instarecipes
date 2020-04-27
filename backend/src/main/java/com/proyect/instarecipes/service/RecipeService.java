@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.proyect.instarecipes.models.Comment;
 import com.proyect.instarecipes.models.Recipe;
@@ -13,6 +14,7 @@ import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.repositories.CommentsRepository;
 import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.StepsRepository;
+import com.proyect.instarecipes.security.UserSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,8 @@ public class RecipeService{
     private CommentsRepository commentsRepository;
     @Autowired
     private StepsRepository stepsRepository;
+    @Autowired
+    private UserSession userSession;
     
     public List<Comment> getRecipeComments(Recipe recipe){
         return commentsRepository.findAllByRecipeOrderByLikes(recipe);
@@ -86,6 +90,27 @@ public class RecipeService{
             recipesRepository.flush();
         }
         return recipe;
+    }
+    public List<Comment> likedcomment(Long id_recipe,User user){
+        Recipe recipe = recipesRepository.findRecipeById(id_recipe);
+        List<Comment> comments = commentsRepository.findAllByRecipeOrderByLikes(recipe);
+        User me = userSession.getLoggedUser();
+       
+        for(int i = 0; i< comments.size();i++){
+            Comment comment = comments.get(i);
+            List<User> users = comments.get(i).getUsersLiked().stream().collect(Collectors.toList());
+            System.out.println("this is the comment" +comment.getContent());
+            
+            for(int j = 0; j< users.size();j++){
+                System.out.println("estoy aqui? "+ users.get(j).getId());
+                System.out.println("este soy yo "+ me.getId());
+                if( users.get(j).getId() == me.getId()){
+                    comment.setLiked(true);
+                    commentsRepository.flush();
+                } else if( comment.isLiked()){ }
+            }        
+        }
+        return comments;
     }
 
     public Comment likeComment(Long id_comment, User user){

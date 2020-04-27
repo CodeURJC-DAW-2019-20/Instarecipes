@@ -1,5 +1,8 @@
 package com.proyect.instarecipes.api;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,10 +22,12 @@ import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.RecipeService;
 import com.proyect.instarecipes.views.DTO.CommentDTO;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,12 +41,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/recipes")
 public class RecipeRestController{
 
-    public interface SimpleRecipe extends Recipe.RecipeView, 
-    Recipe.RecipeBasic, Recipe.RecipePlus, Recipe.RecipeExtra, Ingredient.Item, Category.Item, User.Username, User.NameSurname{}
+    public interface SimpleRecipe extends Recipe.RecipeView, Recipe.IDRecipe,
+    Recipe.RecipeBasic, Recipe.RecipePlus, Recipe.RecipeExtra, Ingredient.Item, Category.Item, User.Username, User.NameSurname, Recipe.Rankinglikes{}
     public interface CommentsRecipe extends Comment.RecipeView, User.NameSurname, User.Username, Recipe.RecipeView{}
     public interface RecipeSteps extends Step.StepsView{}
     public interface Main extends User.Username, Recipe.RecipeBasic, Recipe.RecipePlus, Recipe.IDRecipe, User.IDUser{}
-
     @Autowired
     private RecipesRepository recipesRepository;
     @Autowired
@@ -53,6 +57,12 @@ public class RecipeRestController{
     @Autowired
     private UsersRepository usersRepository;
 
+    @GetMapping("/last")
+	public ResponseEntity<Integer> getLastRecipeId() {
+		Integer allRecipes = recipesRepository.findAll().size();
+		return new ResponseEntity<>(allRecipes, HttpStatus.OK);
+    }
+    
     // AJAX PAGEABLE RECIPES
     @JsonView(RecipeRestController.Main.class)
     @GetMapping("/")
@@ -71,6 +81,19 @@ public class RecipeRestController{
         }
         List<Recipe> recipeList = (List<Recipe>)recipes.getContent();
         return recipeList;
+    }
+    
+    //SHOW THE IMAGE OF ANOTHER USER
+    @GetMapping(value = "/{id}/avatar",produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> getProfileImage(@PathVariable Long id) throws IOException {
+        User user = usersRepository.findById(id).get();
+        if(user.getImage().length > 0){
+            byte[] image = user.getImage();
+            return new ResponseEntity<>(image, HttpStatus.OK);
+        }else{
+            File file = new File("temp/avatars/image-"+user.getId()+".jpg");
+            return new ResponseEntity<>(Files.readAllBytes(file.toPath()), HttpStatus.OK);
+        }
     }
 
     //SHOW ONE RECIPE
@@ -101,7 +124,8 @@ public class RecipeRestController{
     public ResponseEntity<Recipe> unlikeRecipe(@PathVariable Long id_recipe){
         if(userSession.isLoggedUser()){
             if (id_recipe != null){
-                return new ResponseEntity<>(recipeService.pressRecipeUnlike(id_recipe,userSession.getLoggedUser()), HttpStatus.OK);
+                User u = usersRepository.findByUsername(userSession.getLoggedUser().getUsername());
+                return new ResponseEntity<>(recipeService.pressRecipeUnlike(id_recipe,u), HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -116,7 +140,8 @@ public class RecipeRestController{
     public ResponseEntity<Recipe> likeRecipe(@PathVariable Long id_recipe){
         if(userSession.isLoggedUser()){
             if (id_recipe != null){
-                return new ResponseEntity<>(recipeService.pressRecipeLike(id_recipe,userSession.getLoggedUser()),HttpStatus.OK);
+                User u = usersRepository.findByUsername(userSession.getLoggedUser().getUsername());
+                return new ResponseEntity<>(recipeService.pressRecipeLike(id_recipe,u),HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -132,8 +157,9 @@ public class RecipeRestController{
     @PostMapping("/{id_recipe}/comments/")
     public ResponseEntity<Comment> setComments(@PathVariable Long id_recipe, @RequestBody CommentDTO commentdto){
         if(userSession.isLoggedUser()){
+            User u = usersRepository.findByUsername(userSession.getLoggedUser().getUsername());
             if (commentdto.getContent() != null){
-                return new ResponseEntity<>(recipeService.postComment(id_recipe, commentdto.getContent(), commentdto.getParentComment(), userSession.getLoggedUser()), HttpStatus.OK);
+                return new ResponseEntity<>(recipeService.postComment(id_recipe, commentdto.getContent(), commentdto.getParentComment(),u), HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -147,6 +173,15 @@ public class RecipeRestController{
     @GetMapping("/{id_recipe}/comments/")
     public ResponseEntity<List<Comment>> getComments(@PathVariable Long id_recipe){
         Optional<Recipe> recipe = recipesRepository.findById(id_recipe);
+        if(userSession.isLoggedUser()){
+            User user = userSession.getLoggedUser();
+            List<Comment> comments = recipeService.likedcomment(id_recipe, user);
+            if (recipe != null){
+                return new ResponseEntity<>(comments, HttpStatus.OK);
+            } else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
         if (recipe != null){
             return new ResponseEntity<>(commentsRepository.findAllByRecipe(recipe.get()), HttpStatus.OK);
         } else{
@@ -160,7 +195,8 @@ public class RecipeRestController{
     public ResponseEntity<Comment> likeComment(@PathVariable Long id_comment){
         if(userSession.isLoggedUser()){
             if (id_comment != null){
-                return new ResponseEntity<>(recipeService.likeComment(id_comment,userSession.getLoggedUser()),HttpStatus.OK);
+                User u = usersRepository.findByUsername(userSession.getLoggedUser().getUsername());
+                return new ResponseEntity<>(recipeService.likeComment(id_comment,u),HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -175,7 +211,8 @@ public class RecipeRestController{
     public ResponseEntity<Comment> unlikeComment(@PathVariable Long id_comment){
         if(userSession.isLoggedUser()){
             if (id_comment != null){
-                return new ResponseEntity<>(recipeService.unlikeComment(id_comment,userSession.getLoggedUser()),HttpStatus.OK);
+                User u = usersRepository.findByUsername(userSession.getLoggedUser().getUsername());
+                return new ResponseEntity<>(recipeService.unlikeComment(id_comment,u),HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }

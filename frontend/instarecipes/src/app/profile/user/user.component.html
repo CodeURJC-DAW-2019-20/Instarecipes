@@ -1,0 +1,121 @@
+<div id="content" class="p-4 p-md-5 pt-5" style="padding:0 !important;width: 100%;">
+    <header class="masthead bg-primary text-white text-center" [ngStyle]="{ 'background-image': 'url(' + background + ')', 'background-repeat': 'no-repeat', 'background-size': 'cover'}">
+        <div class="container d-flex align-items-center flex-column">
+            <div *ngIf="infoLoaded < 6" class="windows8" style="margin-bottom: 100px; margin-right: 42.5%;">
+                <div class="wBall" id="wBall_1" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_2" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_3" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_4" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_5" style="margin-top: 100px;">
+                    <div class="wInnerBall"></div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="infoLoaded >= 6" class="container d-flex align-items-center flex-column">
+            <!-- Masthead Avatar Image -->
+            <div class="rounded-circle">
+                <img class="masthead-avatar mb-5 d-flex mr-3" [src]="avatar" alt="" data-toggle="modal" data-target="#showAvatar" style="object-fit: cover; border-radius: 50%; height: 220px;width: 220px;">
+            </div>
+            <div style="position: relative;width: 100%;height: fit-content;">
+
+                <!-- Request ingredient/category button -->
+                <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;right: 3%;">
+                    <img src='assets/images/icons/request_icon.png' data-toggle="modal" data-target="#opened-request-button" width="50%" style="height: 50px; width: 50px;cursor: pointer;" />
+                </div>
+                <!-- Statistics button-->
+                <div id="open-request-button" style="position: absolute;width: 10%;height: 10%;bottom: 25%;left: 3%;">
+                    <button id="open-stadistics-button" type="button" class="stadistics-button" data-toggle="modal" data-target="#opened-stadistics-button" style="background-color: transparent;">
+                    <span aria-hidden="true">
+                    <img src='assets/images/icons/stadistics-button.png' width="50%" style="height: 50px; width: 50px;" />
+                    </span>
+                </button>
+                </div>
+            </div>
+            <!-- Masthead Heading -->
+            <a *ngIf="authService.isLogged">
+                <h3 class="text-uppercase mb-0">{{user?.name}}&nbsp;{{user?.surname}}</h3>
+                <h6>@{{user?.username}}</h6>
+            </a>
+            <!-- Icon Divider -->
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Masthead Subheading -->
+            <div>
+                <p class="masthead-subheading font-weight-light mb-0">{{user?.info}}</p>
+            </div>
+            <div *ngIf="followed_user && (authService.user.id != user.id)" class="unfollow-div-button" style="background-color: transparent;">
+                <button (click)="unfollowUser()" type="submit" class="btn btn-primary" style="background-color: white; color: rgba(255, 105, 137, 0.658);">Following</button>
+            </div>
+            <div *ngIf="!followed_user && (authService.user.id != user.id)" class="follow-div-button" style="background-color: transparent;">
+                <button (click)="followUser()" type="submit" class="btn btn-primary" style="background-color: rgba(255, 105, 137, 0.658); color: white;">Follow</button>
+            </div>
+            <!-- Statistics button pannel -->
+        </div>
+        <table style="margin-top: 5%;">
+            <tr>
+                <th>
+                    <h5 class="text-uppercase mb-0 font-weight-light">Publications</h5>
+                    <hr class="profile-separator">
+                </th>
+                <th>
+                    <h5 class="text-uppercase mb-0 font-weight-light">Followers</h5>
+                    <hr class="profile-separator">
+                </th>
+                <th>
+                    <h5 class="text-uppercase mb-0 font-weight-light">Following</h5>
+                    <hr class="profile-separator">
+                </th>
+                <th>
+                    <h5 class="text-uppercase mb-0 font-weight-light">Likes</h5>
+                    <hr class="profile-separator">
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="profile-border">
+                        <h3 class="font-weight-light">{{user_recipes?.length}}</h3>
+                    </div>
+                </td>
+                <td>
+                    <div class="profile-border">
+                        <div class="mx-auto" data-toggle="modal" data-target="#followers" style="width: fit-content;">
+                            <h3 class="font-weight-light" style="cursor: pointer;">{{followers_users?.length}}</h3>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="profile-border">
+                        <div class="mx-auto" data-toggle="modal" data-target="#following" style="width: fit-content;">
+                            <h3 class="font-weight-light" style="cursor: pointer; width: auto;">{{following_users?.length}}</h3>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <h3 class="font-weight-light">{{n_likes}}</h3>
+                </td>
+            </tr>
+        </table>
+        <!-- Request button pannel -->
+    </header>
+    <publications [id_user]="id_user" (refresh_profile)="update_profile()" [user_id]="user?.id" [avatar]="avatar" [background]="background" [user_recipes]="user_recipes"></publications>
+    <!--Pop-up-->
+    <!-- <popup-edit-profile></popup-edit-profile> ESTA EN EL publications.component.html, donde debe estar-->
+    <popup-statistics [id_user]="id_user"></popup-statistics>
+    <popup-send-item-request></popup-send-item-request>
+    <!-- <popup-recipe-preview></popup-recipe-preview> ESTE TAMBIEN -->
+    <popup-following [following_users]="following_users"></popup-following>
+    <popup-followers [followers_users]="followers_users"></popup-followers>
+</div>

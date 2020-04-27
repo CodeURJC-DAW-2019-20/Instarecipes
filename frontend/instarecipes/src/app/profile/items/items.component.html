@@ -1,0 +1,110 @@
+<!-- Page Items  -->
+<div id="recipes-div" class="p-4 p-md-5 pt-5" style="padding:0 !important;width:100%;height:100%;" hidden>
+    <!-- Masthead -->
+    <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+            <!-- Masthead Subheading -->
+            <div class="profile-about-separator">
+                <!-- publications Section Heading -->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">
+                    Ingredients, categories and cooking styles</h2>
+                <!-- Icon Divider -->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line" style="background-color: black;"></div>
+                    <div class="divider-custom-icon">
+                        <i class="fas fa-star" style="color: black;"></i>
+                    </div>
+                    <div class="divider-custom-line" style="background-color: black;"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Publications Section -->
+    <section class="page-section publications" id="publications">
+        <div class="container">
+            <p class="masthead-subheading font-weight-light mb-0">Select type</p>
+            <div class="row">
+              <select id="filter-item" class="col-5" style="height: 50px;">
+                <option value="All">All</option>
+                <option value="Ingredients">Ingredients</option>
+                <option value="Categories">Categories</option>
+                <option value="Cooking style">Cooking style</option>
+              </select>
+            </div>
+            <!-- Icon Divider -->
+            <div class="divider-custom">
+                <div class="divider-custom-line" style="background-color: black;"></div>
+                <div class="divider-custom-icon">
+                    <i class="fas fa-star" style="color: black;"></i>
+                </div>
+                <div class="divider-custom-line" style="background-color: black;"></div>
+            </div>
+            <div class="row container" style="margin-bottom: 10px;margin-right: 0;margin-left: 0;">
+                <div class="col-4">
+                    <p class="page-section-heading text-center text-uppercase text-secondary mb-0">No.</p>
+                </div>
+                <div class="col-4">
+                    <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Type</p>
+                </div>
+                <div class="col-4">
+                    <p class="page-section-heading text-center text-uppercase text-secondary mb-0">Item</p>
+                </div>
+            </div>
+            <div class="scrolling container" style="height: 100%;background-color: rgba(0, 0, 0, 0.2);">
+            <a id="itemsIng">
+              <div *ngFor="let ingredient of ingredients; index as i" >
+                    <!-- Type x -->
+                    <div class="row" style="align-items: center;">
+                        <div class="col-4">
+                            <h3 style="text-align:center;"># {{i+1}}</h3>
+                        </div>
+                        <div class="col-4">
+                            <h6 style="text-align:center;">Ingredient</h6>
+                        </div>
+                        <div class="col-4">
+                            <p style="text-align:center;">{{ingredient.ingredient}}</p>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+              </a>
+              <a id="itemsCat">
+                <div *ngFor="let category of categories; index as i" >
+                    <!-- Type x -->
+                    <div class="row" style="align-items: center;">
+                        <div class="col-4">
+                            <h3 style="text-align:center;"># {{i+1}}</h3>
+                        </div>
+                        <div class="col-4">
+                            <h6 style="text-align:center;">Category</h6>
+                        </div>
+                        <div class="col-4">
+                            <p style="text-align:center;">{{category.category}}</p>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+              </a>
+              <a id="itemsCS">
+              <div *ngFor="let cookingStyle of cookingStyles; index as i" >
+                  <!-- Type x -->
+                  <div class="row" style="align-items: center;">
+                      <div class="col-4">
+                          <h3 style="text-align:center;"># {{i+1}}</h3>
+                      </div>
+                      <div class="col-4">
+                          <h6 style="text-align:center;">Cooking Style</h6>
+                      </div>
+                      <div class="col-4">
+                          <p style="text-align:center;">{{cookingStyle.cookingStyle}}</p>
+                      </div>
+                  </div>
+                  <hr>
+              </div>
+              </a>
+
+            </div>
+            <hr>
+        </div>
+    </section>
+</div>

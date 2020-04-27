@@ -1,6 +1,7 @@
 package com.proyect.instarecipes.controllers;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.repositories.RecipesRepository;
+import com.proyect.instarecipes.repositories.UsersRepository;
 
 import java.io.IOException;
 
@@ -32,6 +33,8 @@ public class RecipeWebController {
     private RecipesRepository recipesRepository;
     @Autowired
     private RecipeService recipeService;
+    @Autowired
+    private UsersRepository userRepository;
 
     @GetMapping("/recipes/{id}")
     public String searchPage(Model model, @PathVariable Long id) {
@@ -86,34 +89,35 @@ public class RecipeWebController {
     @PostMapping("/postComment/{id}")
     public void postComment(@PathVariable Long id, Model model, @RequestParam String content, HttpServletResponse response,
             @RequestParam(required = false, value = "parentComment") Long parentComment) throws IOException {
-        recipeService.postComment(id, content, parentComment, userSession.getLoggedUser());
+                User user = userRepository.findByUsername(userSession.getLoggedUser().getUsername()); 
+        recipeService.postComment(id, content, parentComment,user);
         response.sendRedirect("../recipes/"+id);
     }
 
     @PostMapping("/actionUnpressLike/{id}")
     public void disLikedRecipe(Model model, @PathVariable Long id,HttpServletResponse response) throws IOException{
-        User user = userSession.getLoggedUser();       
+        User user = userRepository.findByUsername(userSession.getLoggedUser().getUsername());       
         recipeService.pressRecipeUnlike(id, user);
         response.sendRedirect("../recipes/"+id);
     }
 
     @PostMapping("/actionPressLike/{id}")
     public void likedRecipe(Model model, @PathVariable Long id,HttpServletResponse response)throws IOException{
-        User user = userSession.getLoggedUser();       
+        User user = userRepository.findByUsername(userSession.getLoggedUser().getUsername());        
         recipeService.pressRecipeLike(id, user);
         response.sendRedirect("../recipes/"+id);
     }
     
     @PostMapping("/likeComment/{id}")
     public void likeComment(@PathVariable Long id, @RequestParam Long id_recipe, HttpServletResponse response) throws IOException {
-        User user = userSession.getLoggedUser();
+        User user = userRepository.findByUsername(userSession.getLoggedUser().getUsername()); 
         recipeService.likeComment(id, user);
         response.sendRedirect("../recipes/"+id_recipe);
     }
 
     @PostMapping("/unlikeComment/{id}")
     public void unlikeComment(@PathVariable Long id, @RequestParam Long id_recipe, HttpServletResponse response) throws IOException {
-        User user = userSession.getLoggedUser();
+        User user = userRepository.findByUsername(userSession.getLoggedUser().getUsername()); 
         recipeService.unlikeComment(id, user);
         response.sendRedirect("../recipes/"+id_recipe);
     }

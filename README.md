@@ -257,7 +257,7 @@ All of them can access to their recipes, the recipes pages, go back to home... (
 | Daniel Murillo Garzón     | d.murillo.2018@alumnos.urjc.es  |profile.html, login.js, ProfilePageController.java, index.html, login.html                                 |
 | Hamsa Aldrobi Elharti     | h.aldrobi@alumnos.urjc.es       |security folder, initDatabase.java, add_recipe.js, profile.html, RequestController.java                                |
 | Manuel León Briz          | m.leon.2016@alumnos.urjc.es     |statistics.js, initDatabase.java,  indexController.java, profile.html, recipe.html                              |
-| José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  |                                 |
+| José María Melero Gimenez | jm.melero.2016@alumnos.urjc.es  |recipe.html, RecipeController.java,         recipes.css ,add_recipe.js                        |
 | Raquel Alonso Fernández   | r.alonsofe.2017@alumnos.urjc.es |search.html, index.html, filter_search_btn.js, SearchPageController.java, login.html                                                           |
 |                           |                                 |      |  
 

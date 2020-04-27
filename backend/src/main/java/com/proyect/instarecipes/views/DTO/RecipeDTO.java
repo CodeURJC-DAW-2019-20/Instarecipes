@@ -33,6 +33,8 @@ public class RecipeDTO {
     @JsonView(PostRecipeView.class)
     private ArrayList<String> cookingStyles;
 
+    public RecipeDTO(){}
+
     public RecipeDTO(User user, String title, String description, String duration, String difficulty, String firstStep,
             String allergen, ArrayList<String> withImage, ArrayList<String> steps, ArrayList<String> ingredients,
             ArrayList<String> categories, ArrayList<String> cookingStyles) {

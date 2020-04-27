@@ -1,0 +1,37 @@
+<!-- Statistics button pannel -->
+<div class="publications-modal modal fade" id="opened-stadistics-button" tabindex="-1" role="dialog" aria-labelledby="publicationsModal6Label" aria-hidden="true">
+    <div id="graphics-canvas" class="modal-dialog modal-xl" role="document">
+        <div class="modal-dialog modal-xl" role="document" style="width: 50%;">
+            <div class="modal-content" style="width: 100%;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+          <i class="fas fa-times"></i>
+        </span>
+      </button>
+                <div class="modal-body text-center">
+                    <div class="container" style="height: 500px;">
+                        <!-- publications Modal - Title -->
+                        <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Statistics</h2>
+
+                        <div *ngIf="recipesTitles">
+                            <div *ngIf="recipesLikes">
+                                <!-- <div *ngFor="let r of recipesTitles; index as i">
+                        <h2>Hola {{r}}</h2>
+                        </div> -->
+                                <!-- Icon Divider -->
+                                <div class="divider-custom"></div>
+                                <!-- LIKES Divider -->
+                                <h2 class="underlined-texts">LIKES</h2>
+                                <div id="canvasLikes" style="width: 100%;height: auto; align-items: center;justify-self: center;">
+
+                                    <input value="{{recipesLikes?.toString()}}" id="likesArray" hidden />
+                                    <input value="{{recipesTitles?.toString()}}" id="titlesArray" hidden />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

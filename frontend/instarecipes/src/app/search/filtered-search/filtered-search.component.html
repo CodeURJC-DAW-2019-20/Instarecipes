@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-3" style="margin-top: 5%; margin-left: 30px;">
+        <!-- Categories and Cooking Style Widget -->
+        <div class="card my-4">
+            <h6 class="card-header">Ingredients</h6>
+            <div class="containersearch">
+                <ul class="ks-cboxtags">
+                    <ng-template ngFor let-ingredient [ngForOf]="selected_ings">
+                        <li *ngIf="ingredient?.length"><input class="toCheck" type="checkbox" value="{{ingredient}}"><label>{{ingredient}}</label></li>
+                    </ng-template>
+                    <li *ngFor="let ingredient of all_ingredients"><input type="checkbox" value="{{ingredient.ingredient}}"><label>{{ingredient.ingredient}}</label></li>
+                </ul>
+            </div>
+        </div>
+        <div class="card my-4">
+            <h6 class="card-header">Free allergens</h6>
+            <div class="containersearch">
+                <ul class="ks-cboxtags">
+                    <ng-template ngFor let-allergen [ngForOf]="selected_alls">
+                        <li *ngIf="allergen?.length"><input class="toCheck" type="checkbox" value="{{allergen}}"><label>{{allergen}}</label></li>
+                    </ng-template>
+                    <li *ngFor="let allergen of all_allergens"><input type="checkbox" value="{{allergen.allergen}}"><label>{{allergen.allergen}}</label></li>
+                </ul>
+            </div>
+        </div>
+        <div class="card my-4">
+            <h5 class="card-header">Cooking Style</h5>
+            <div class="containersearch">
+                <ul class="ks-cboxtags">
+                    <ng-template ngFor let-cookingStyle [ngForOf]="selected_cSs">
+                        <li *ngIf="cookingStyle?.length"><input class="toCheck" type="checkbox" value="{{cookingStyle}}"><label>{{cookingStyle}}</label></li>
+                    </ng-template>
+                    <li *ngFor="let cookingStyle of all_cookingStyles"><input type="checkbox" value="{{cookingStyle.cookingStyle}}"><label>{{cookingStyle.cookingStyle}}</label></li>
+                </ul>
+            </div>
+        </div>
+        <div class="card my-4">
+            <h5 class="card-header">Categories</h5>
+            <div class="containersearch">
+                <ul class="ks-cboxtags">
+                    <ng-template ngFor let-category [ngForOf]="selected_cats">
+                        <li *ngIf="category?.length"><input class="toCheck" type="checkbox" value="{{category}}"><label>{{category}}</label></li>
+                    </ng-template>
+                    <li *ngFor="let category of all_categories"><input type="checkbox" value="{{category.category}}"><label>{{category.category}}</label></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-8" style="margin-top: 5%;">
+        <div *ngIf="!recipesFounded">
+            <h1 style="color: rgba(0, 0, 0, 0.7);">Your search did not match any recipes.</h1>
+            <h3>Try it with another filters!</h3>
+        </div>
+        <div *ngFor="let recipe of recipes; index as i" class="card mb-4" style="width: 100%;">
+            <img class="card-img-top" [src]="images[i]" alt="Card image cap">
+            <div class="card-body">
+                <h2 class="card-title">{{recipe?.title}}</h2>
+                <p class="card-text">{{recipe?.description}}</p>
+                <div class="row">
+                    <div class="col-2" style="align-self: flex-end;">
+                        <img class="d-flex mr-3 rounded-circle profile-border" [src]="avatars[i]" style="align-self: center; width: 100px; height: 100px;">
+                    </div>
+                    <div class="col-4" style="align-self: flex-end;">
+                        <h5>{{recipe?.username.name}}&nbsp;{{recipe?.username.surname}}</h5>
+                        <p>@{{recipe?.username.username}}</p>
+                    </div>
+                    <div class="col-4 scrolling" style="align-self: flex-end;height: 100px;">
+                        <p style="background-color: rgba(127, 255, 212, 0.2);border-radius: 0.8rem;"><strong>Ingredients:</strong><a *ngFor="let ing of recipes[i].ingredients; index as i ">&nbsp;{{recipe?.ingredients[i].ingredient}},</a></p>
+                        <p style="background-color: rgba(171, 255, 46, 0.2);border-radius: 0.8rem;"><strong>Allergens:</strong><a *ngFor="let ing of recipes[i].allergens; index as i ">&nbsp;{{recipe?.allergens[i].allergen}},</a></p>
+                        <p style="background-color: rgba(191, 191, 191, 0.3);border-radius: 0.8rem;"><strong>Cooking Styles:</strong><a *ngFor="let ing of recipes[i].cookingStyles; index as i ">&nbsp;{{recipe?.cookingStyles[i].cookingStyle}},</a></p>
+                        <p style="background-color: rgba(255, 185, 127, 0.3);border-radius: 0.8rem;"><strong>Categories:</strong><a *ngFor="let ing of recipes[i].categories; index as i ">&nbsp;{{recipe?.categories[i].category}},</a></p>
+                    </div>
+                    <div class="col-2" style="align-self: flex-end;">
+                        <a class="btn btn-primary" (click)='seeRecipe(recipe?.id);'>Try &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

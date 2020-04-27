@@ -1,0 +1,142 @@
+<!-- Add button pannel -->
+<div class="publications-modal modal fade" id="opened-add-button" tabindex="-1" role="dialog" aria-labelledby="publicationsModal6Label" aria-hidden="true">
+    <div id="example" class="modal-dialog modal-xl" style="width: 70%;" role="document">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fas fa-times"></i></span></button>
+            <div class="modal-body text-center">
+                <div class="container">
+                    <h2 class="publications-modal-title text-secondary text-uppercase mb-0">Add Recipe</h2>
+                    <div class="divider-custom">
+                        <div class="divider-custom-line"></div>
+                        <div class="divider-custom-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="divider-custom-line"></div>
+                    </div>
+                    <form #postRecipeForm="ngForm" (ngSubmit)="postRecipe()" novalidate enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-8" style="justify-content: center; height: 100%;">
+                                <div class="wrap-input50 m-b-23" style="text-align: initial;">
+                                    <h3 class="underlined-text">Recipe name*</h3>
+                                    <div id="titleCountChar"></div>
+                                    <input [(ngModel)]="recipe.title" required #title="ngModel" onkeyup="titleCountChar(this)" class="input100" type="text" name="title" placeholder="Recipe name" style="padding:10px;width: 100%;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" required>
+                                </div>
+                                <hr/>
+                                <div class="wrap-input50 m-b-23" style="text-align: initial;">
+                                    <h3 class="underlined-text">Introduction*</h3>
+                                    <div id="introCountChar"></div>
+                                    <textarea [(ngModel)]="recipe.description" required #description="ngModel" onkeyup="introCountChar(this)" type="text" name="description" style="padding:10px;width: 100%;height: 100px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)" placeholder="Type a introduction here.."
+                                        required></textarea>
+                                </div>
+                                <img id="preview-img-file" src="" class="img-blur2" style="object-fit:cover;height:100px;width:100%;border-radius: 0.5rem;" hidden />
+                                <div>
+                                    <p id="no-such-image">No such image selected yet</p>
+                                    <label for="file-input" class="btn-outline-primary" style="border-radius:0.5rem;border:1px solid rgb(23, 162, 184); align-self:center;z-index: 1050;text-align:center;padding:0;right:0;width:25%;position:absolute;cursor:pointer">
+                                      <input #mainImage (change)="handleFileInput($event.target.files)" id="file-input" hidden type="file" name="imageFile" accept=".jpg, .jpeg" required /><i class="fa fa-camera" styles="object-fit:cover;padding:5px"></i>
+                                    </label>
+                                </div>
+                                <div class="validation" id="image-validation" role="alert" style="border-radius: 3px; color:red;">
+                                    <i class="fa fa-exclamation-triangle"></i><i class="fa fa-exclamation-triangle"></i>
+                                    <h6>Please enter a photo of your recipe!!</h6>
+                                </div>
+                                <div id="divImageSteps" hidden></div>
+                                <input #otherImages id="withImage" value="" name="withImage" hidden />
+                                <input #otherSteps type="text" id="stepsString" name="stepsString" hidden />
+                                <fieldset id="steps-form" class="nav-item dropdown wrap-input50 m-b-23" style="text-align: initial;">
+                                    <h3>Step 1*</h3>
+                                    <hr/>
+                                    <div id="stepCountChar"></div>
+                                    <textarea [(ngModel)]="recipe.firstStep" required #firstStep="ngModel" wrap="soft" id="firstStep" name="firstStepString" onkeyup="stepCountChar(this)" placeholder="A recipe must have at least 1 step :D" style="padding:10px;width: 100%;height: 150px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3)"
+                                        required></textarea>
+                                    <span class="focus-input100"></span>
+                                    <step *ngFor="let step of stepsList; index as i" [step]="step" [i]="i" (mapEvent)="receiveMap($event)"></step>
+                                    <div (click)="removeStep()" id="removeB" class="btn-danger" style="border-radius:0.5rem;align-self:center;text-align:center;width:10%;cursor:pointer">
+                                        <i class="fa fa-trash" aria-hidden="true" styles="object-fit:cover;padding:5px"></i>
+                                    </div>
+                                    <h3 style="color: gray;">{{stepsList.length+2}}º step</h3>
+                                    <textarea #desc disabled onkeyup="stepsCountChar(this)" type='text' id="step" name="step" placeholder="Type how to do this step" style="width: 100%;height: 20px;border-radius: 0.5rem;border:1px solid rgba(0, 0, 0, 0.3);padding:10px;" hidden></textarea>
+                                </fieldset>
+                                <hr/>
+                                <div (click)="addStep(desc.value); desc.value=''" id="add-step" class="btn btn-dark" style="width: 100%; border-radius: 0.8rem;background-color: teal;cursor: pointer;">
+                                    <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                                </div>
+                            </div>
+                            <div class="col-4" style="height: 100%;">
+                                <h3 class="underlined-text">Ingredients*</h3>
+                                <p>Select ingredients:</p>
+                                <div id="add-ingredient" class="btn btn-primary" style="width: 100%; border-radius: 0.8rem; cursor: pointer;">
+                                    <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                                </div>
+                                <input #ingredientsList id="ingredientsList" value="" hidden />
+                                <input #ingredientsString id="ingredientsString" name="ingredientsString" hidden required/>
+                                <div class="validation" id="ingredient-val" role="alert" style="display: none; margin-top:5px; margin-bottom: 5px; border-radius: 3px; color: red;">
+                                    <i class="fa fa-exclamation-triangle"></i><i class="fa fa-exclamation-triangle"></i>
+                                    <h6>Please select one ingredient at least</h6>
+                                </div>
+                                <fieldset id="ingredients-form" class="nav-item dropdown scrolling" style="height: 300px;">
+                                </fieldset>
+
+                                <hr/>
+                                <h3 class="underlined-text">Categories</h3>
+                                <p>Select categories:</p>
+                                <div id="add-category" class="btn btn-secondary" style="width: 100%; border-radius: 0.8rem;background-color: #343a40; cursor: pointer;">
+                                    <i class="fa fa-plus add" aria-hidden="true" style="color: white;font-size: inherit;"></i>
+                                </div>
+                                <input #categoriesList id="categoriesList" value="" hidden />
+                                <input #categoriesString id="categoriesString" name="categoriesString" hidden />
+                                <fieldset id="category-form" class="nav-item dropdown scrolling" style="height: 100px;" name="categories">
+                                </fieldset>
+
+                                <hr/>
+                                <h3 class="underlined-text">Cooking Style</h3>
+                                <select [(ngModel)]="cookingStylesAux" required #cookingStyles="ngModel" name="cookingStyle" class="form-control" id="exampleFormControlSelect3">
+                                  <option>-- Select --</option>
+                                  <option *ngFor="let cS of allCookingStyles" value="{{cS?.cookingStyle}}">{{cS?.cookingStyle}}</option>
+                                </select>
+                                <hr>
+                                <h3 class="underlined-text">Allergen</h3>
+                                <select [(ngModel)]="recipe.allergen" required #allergens="ngModel" name="allergen" class="form-control" id="exampleFormControlSelect2">
+                                  <option>-- Select --</option>
+                                  <option *ngFor="let a of allAllergens" value="{{a?.allergen}}">{{a?.allergen}}</option>
+                                </select>
+                                <hr/>
+                                <h3 class="underlined-text">Difficulty</h3>
+                                <p>Select difficulty:</p>
+                                <div class="rating" style="text-align: center;">
+                                    <input name="rating" type="radio" id="extreme-star" (click)="starClick(4)" onclick="starClick(4)" value="extreme" on="change:rating.submit">
+                                    <label for="rating4" title="4 stars">☆</label>
+                                    <input name="rating" type="radio" id="hard-star" (click)="starClick(3)" onclick="starClick(3)" value="hard" on="change:rating.submit">
+                                    <label for="rating3" title="4 stars">☆</label>
+                                    <input name="rating" type="radio" id="medium-star" (click)="starClick(2)" onclick="starClick(2)" value="medium" on="change:rating.submit">
+                                    <label for="rating2" title="4 stars">☆</label>
+                                    <input name="rating" type="radio" id="easy-star" (click)="starClick(1)" onclick="starClick(1)" value="easy" on="change:rating.submit">
+                                    <label for="rating1" title="4 stars">☆</label>
+                                </div>
+                                <div>
+                                    <p id="extreme-text" hidden>Extreme</p>
+                                    <p id="hard-text" hidden>Hard</p>
+                                    <p id="medium-text" hidden>Medium</p>
+                                    <p id="easy-text" hidden>Easy</p>
+                                </div>
+                                <h3 class="underlined-text">Aproximated time</h3>
+                                <select [(ngModel)]="recipe.duration" required #duration="ngModel" name="duration" class="form-control" id="exampleFormControlSelect1">
+                                  <option value="15m">15m</option>
+                                  <option value="30m">30m</option>
+                                  <option value="45m">45m</option>
+                                  <option value="1h">1h</option>
+                                  <option value="1h 30m">1h 30m</option>
+                                  <option value="2h">2h</option>
+                                  <option value="2h 30m">2h 30m</option>
+                                  <option value="3h">3h</option>
+                                  <option value="4h or more">4h or more</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button id="post-recipe" type='submit' class="btn btn-primary" style="margin-top: 20px; height: 50px;width: 10%;">Post</button>
+                        <button type="button" #closebutton class="close" data-dismiss="modal" hidden></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

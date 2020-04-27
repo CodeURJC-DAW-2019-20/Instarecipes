@@ -23,7 +23,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.proyect.instarecipes.models.Request;
 import com.proyect.instarecipes.models.User;
 import com.proyect.instarecipes.models.Ingredient;
+import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.CookingStyle;
+import com.proyect.instarecipes.models.Allergen;
 import com.proyect.instarecipes.models.Category;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
@@ -35,6 +37,8 @@ import com.proyect.instarecipes.service.RequestService;
 public class ProfileRestController {
 	public interface UserProfile extends User.NameSurname, User.Username, User.UserExtraInfo, User.Email, User.Allergen,
 	User.FF, Ingredient.Item, CookingStyle.Item, Category.Item {}
+	public interface SimpleRecipe extends Recipe.RecipeView, Recipe.IDRecipe,
+	Recipe.RecipeBasic, Recipe.RecipePlus, Recipe.RecipeExtra, Ingredient.Item, Category.Item, User.Username, User.NameSurname, Recipe.Rankinglikes{}
 	public interface RequestItemView extends User.NameSurname, User.Username, Request.RequestItems {}
 	public interface AdminProfile extends User.NameSurname, User.Username, User.UserExtraInfo, User.Email,
 	User.Allergen, User.FF, Request.RequestItems, Ingredient.Item, CookingStyle.Item, Category.Item {}
@@ -78,6 +82,23 @@ public class ProfileRestController {
 		}
 	}
 
+	//SHOW OWN BACKGROUND
+	@GetMapping(value = "/background", produces = MediaType.IMAGE_JPEG_VALUE)
+	public ResponseEntity<byte[]> getBackgroundImage() throws IOException {
+		if(userSession.isLoggedUser()){
+			User user = userSession.getLoggedUser();
+			if(user.getImageBackground().length > 0){
+				byte[] image = user.getImageBackground();
+				return new ResponseEntity<>(image, HttpStatus.OK);
+			}else{
+				File file = new File("temp/backgrounds/image-"+user.getId()+".jpg");
+				return new ResponseEntity<>(Files.readAllBytes(file.toPath()), HttpStatus.OK);
+			}
+		}else{
+			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+		}
+	}
+
 	// UPDATE OWN USER
 	@JsonView(ProfileRestController.UserProfile.class)
 	@PutMapping("/update")
@@ -99,27 +120,6 @@ public class ProfileRestController {
 		}
 	}
 
-	/*
-	// UPDATE OWN USER'S PROFILE IMAGE
-	@PostMapping(value = "/{id}/image", produces = MediaType.IMAGE_JPEG_VALUE)
-	public ResponseEntity<byte[]> setProfileImage(@PathVariable Long id, @RequestParam MultipartFile image)
-			throws IOException {
-		Optional<User> User = usersRepository.findById(id);
-		if (!User.isPresent()) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}else{
-			User profile = User.get();
-			User u = userSession.getLoggedUser();
-			if (u != null && u.getId() == id) {
-				profile.setImage(image.getBytes());
-				usersRepository.save(profile);
-				return new ResponseEntity<>(profile.getImage(), HttpStatus.OK);
-			} else {
-				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-			}
-		}
-	}*/
-
 	// UPDATE OWN USER PROFILE BACKGROUND
 	@PutMapping(value = "/update/background", produces = MediaType.IMAGE_JPEG_VALUE)
 	public ResponseEntity<byte[]> updateProfileBackground(@RequestParam MultipartFile background) throws IOException {
@@ -137,35 +137,29 @@ public class ProfileRestController {
 		boolean status = false;
 		User user = usersRepository.findByUsername(requestService.getUser().getUsername());
 		boolean exists = false;
-		request.setUsername(user);
+		Request r = null;
 		if (userSession.isLoggedUser()) {
 			List<Ingredient> ingredientsList = requestService.getIngredients();
 			List<Category> categoriesList = requestService.getCategories();
 			List<CookingStyle> cookingStylesList = requestService.getCookingStyles();
-			Request r = new Request();
-			// function to get ingredients, categories and cookingstyles (user request)
-			if (requestService.isIngredient(request.getTypeOfRequest())) {
-				r = requestService.getNewRequest(user, request.getTypeOfRequest(), 
-						request.getIngredientContent(), 0);
-				exists = requestService.existIngredient(ingredientsList, request);
+			if (requestService.isEqualIngredient(request.getTypeOfRequest())) {
+				r = requestService.getNewRequest(user, request.getTypeOfRequest(), request.getIngredientContent(), 0);
+				exists = requestService.existIngredient(ingredientsList, request.getIngredientContent());
 				status = true;
-				// function to verify if the ingredient already exists.
-			} else if (requestService.isCookingStyle(request.getTypeOfRequest())) {
-				r = requestService.getNewRequest(user, request.getTypeOfRequest(),
-						request.getCookingStyleContent(), 1);
-				exists = requestService.existCookingStyle(cookingStylesList, request);
+				requestService.saveItem(r, exists);
+			} else if (requestService.isEqualCookingStyle(request.getTypeOfRequest())) {
+				r = requestService.getNewRequest(user, request.getTypeOfRequest(), request.getCookingStyleContent(), 1);
+				exists = requestService.existCookingStyle(cookingStylesList, request.getCookingStyleContent());
 				status = true;
-				// function to verify if the cookingstyle already exists.
-			} else if (requestService.isCategory(request.getTypeOfRequest())) {
-				r = requestService.getNewRequest(user, request.getTypeOfRequest(),
-						request.getCategoryContent(), 2);
-				exists = requestService.existCategory(categoriesList, request);
+				requestService.saveItem(r, exists);
+			} else if (requestService.isEqualCategory(request.getTypeOfRequest())) {
+				r = requestService.getNewRequest(user, request.getTypeOfRequest(), request.getCategoryContent(), 2);
+				exists = requestService.existCategory(categoriesList, request.getCategoryContent());
 				status = true;
+				requestService.saveItem(r, exists);
 			}
 			if (status) {
-				request.setItemExists(exists);
-				requestService.saveItem(r, exists);
-				return new ResponseEntity<>(request, HttpStatus.OK);
+				return new ResponseEntity<>(r, HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
@@ -286,5 +280,30 @@ public class ProfileRestController {
 			return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
 		}
 	}
+	
+	@JsonView(ProfileRestController.SimpleRecipe.class)
+	@GetMapping("/{id}/recipes")
+	public ResponseEntity<List<Recipe>> getAllRecipes( @PathVariable Long id) {
+		return new ResponseEntity<>(profileservice.getByUsernameId(id), HttpStatus.OK);
+	}
 
+	@GetMapping("/allAllergens")
+	public ResponseEntity<List<Allergen>> getAllAllergens() {
+		return new ResponseEntity<>(profileservice.getAllAllergens(), HttpStatus.OK);
+	}
+
+	@GetMapping("/allCookingStyles")
+	public ResponseEntity<List<CookingStyle>> getAllCookingStyles(){
+		return new ResponseEntity<>(profileservice.getAllCookingStyles(), HttpStatus.OK);
+	}
+
+	@GetMapping("/allCategories")
+	public ResponseEntity<List<Category>> getAllCategories(){
+		return new ResponseEntity<>(profileservice.getAllCategories(), HttpStatus.OK);
+	}
+
+	@GetMapping("/allIngredients")
+	public ResponseEntity<List<Ingredient>> getAllIngredients(){
+		return new ResponseEntity<>(profileservice.getAllIngredients(), HttpStatus.OK);
+	}
 }

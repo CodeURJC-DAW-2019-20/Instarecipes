@@ -6,6 +6,8 @@ public class FilteredSearchDTO {
     private String cookingStyles;
     private String allergens;
 
+    public FilteredSearchDTO(){}
+
     public FilteredSearchDTO(String ingredients, String categories, String cookingStyles, String allergens) {
         this.ingredients = ingredients;
         this.categories = categories;

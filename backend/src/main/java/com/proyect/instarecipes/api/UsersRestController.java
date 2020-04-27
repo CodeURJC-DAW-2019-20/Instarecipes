@@ -11,6 +11,7 @@ import com.proyect.instarecipes.models.CookingStyle;
 import com.proyect.instarecipes.models.Ingredient;
 import com.proyect.instarecipes.models.Recipe;
 import com.proyect.instarecipes.models.User;
+import com.proyect.instarecipes.repositories.RecipesRepository;
 import com.proyect.instarecipes.repositories.UsersRepository;
 import com.proyect.instarecipes.security.UserSession;
 import com.proyect.instarecipes.service.UsersService;
@@ -39,6 +40,8 @@ public class UsersRestController {
     private UserSession userSession;
     @Autowired
     private UsersRepository usersRepository;
+    @Autowired
+    private RecipesRepository recipesRepository;
 
     // SHOW ANOTHER USER PROFILE
     @JsonView(UsersRestController.AnotherUserProfile.class)
@@ -105,6 +108,23 @@ public class UsersRestController {
       }
     }
 
+    //SHOW OTHERS BACKGROUND
+    @GetMapping(value = "/{id}/background", produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> getBackgroundImage(@PathVariable Long id) throws IOException {
+      if(userSession.isLoggedUser()){
+        User user = usersRepository.findById(id).get();
+        if(user.getImageBackground().length > 0){
+          byte[] image = user.getImageBackground();
+          return new ResponseEntity<>(image, HttpStatus.OK);
+        }else{
+          File file = new File("temp/backgrounds/image-"+user.getId()+".jpg");
+          return new ResponseEntity<>(Files.readAllBytes(file.toPath()), HttpStatus.OK);
+        }
+      }else{
+        return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
+      }
+    }
+
     // LIST OF THE USER'S FOLLOWERS AFTER PRESS UNFOLLOW ACTION
     @JsonView(UsersRestController.UsersFF.class)
     @PutMapping("/{id}/unfollowAction")
@@ -135,6 +155,30 @@ public class UsersRestController {
         }else{
           return new ResponseEntity<>(HttpStatus.NETWORK_AUTHENTICATION_REQUIRED);
         }
+    }
+    
+    public List<Recipe> getAllRecipes(Long id){
+      List<Recipe> recipe = recipesRepository.findByUsernameId(id);
+      return recipe;
+    }
+
+    @GetMapping("/publications/{id}")
+    public ResponseEntity<Integer> publicationsUser(@PathVariable Long id) throws IOException{
+      List<Recipe> recipe = getAllRecipes(id);
+      Integer publications = recipe.size();
+      System.out.println(publications);
+      return new ResponseEntity<>(publications, HttpStatus.OK);
+    }
+    
+    @GetMapping("/likes/{id}")
+    public ResponseEntity<Integer> likesUser(@PathVariable Long id) throws IOException{
+      List<Recipe> recipe = getAllRecipes(id);
+      Integer likes = 0;
+      for(int i = 0; i<recipe.size();i++){
+        likes += recipe.get(i).getLikes();
+        System.out.println(recipe.get(i).getLikes());
+      }
+      return new ResponseEntity<>(likes, HttpStatus.OK);
     }
     
 }

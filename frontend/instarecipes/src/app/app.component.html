@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+    <div class="container" style="margin-left: 30px;">
+        <div id="img-navbar-container">
+            <img class="img-navbar" src="assets/images/icons/instarecipes.png" alt="">
+        </div>
+        <a class="navbar-brand js-scroll-trigger" style="font-family: 'Pacifico';">&nbsp;Instarecipes</a>
+        <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"><i class="fa fa-bars" style="font-size: x-large;"></i></span>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto" style="margin-right: 20%;">
+                <li class="nav-item col-2" style="max-width: 100%;">
+                    <a class="nav-link js-scroll-trigger" style="cursor:pointer;">
+                        <i class="fas fa-home" style="font-size: xx-large; color: rgba(159, 193, 255, 0.726)" [routerLink]="['/index']"></i>
+                    </a>
+                </li>
+                <li class="nav-item col-2" style="max-width: 100%; cursor:pointer;">
+                    <a *ngIf="authService.isLogged" class="nav-link"><i class="fas fa-user" style="font-size: xx-large;" [routerLink]="['/profile']" ></i></a>
+                </li>
+                <li class="nav-item col-2" style="max-width: 100%; cursor:pointer;">
+                    <a class="nav-link"><i class="fas fa-trophy" style="font-size: xx-large;" [routerLink]="['/ranking']"></i></a>
+                </li>
+                <li class="nav-item col-2" style="max-width: 100%;">
+                    <div class="min-search" id="min-search">
+                        <a class="nav-link"><i class="fa fa-search" style="font-size: xx-large;"></i></a>
+                    </div>
+                </li>
+                <li class="nav-item col-2" style="max-width: 100%;">
+                    <div class="login-logo" style="color: black; position: relative;">
+                        <a class="nav-link"><i class="fa fa-user-circle" style="font-size: xx-large; margin-left: 7%;"></i></a>
+                    </div>
+                </li>
+            </ul>
+
+            <form class="example" #searchForm="ngForm" (ngSubmit)="goSearch(searchForm)">
+                <input type="text" placeholder="Search.." name="search" [(ngModel)]="search" />
+                <button type="submit" style="background-color: rgba(159, 193, 255, 0.726);">
+            <i class="fa fa-search"></i>
+          </button>
+            </form>
+
+        </div>
+    </div>
+    <div class="login-container">
+        <button *ngIf="authService.isLogged" type="submit" class="nav-link nav-log btn-dark" style="color:white;font-weight: normal;font-size: 15px;" (click)="logout()">Logout</button>
+        <!-- <input type="hidden" name="_csrf" value="{{token}}" /> -->
+        <a *ngIf="!authService.isLogged" class="nav-link nav-log" style="font-weight: normal;font-size: 15px;" [routerLink]="['/login']">Login / Sign Up</a>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>
