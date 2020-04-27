@@ -48,7 +48,8 @@ export class RecipeStepsComponent implements OnInit {
   getStepImage(r: number, n_step: number, n: number) {
     this.recipesService.getRecipeStepImage(r, n_step).subscribe(
       data => {
-        var urlCreator = window.URL;
+        // tslint:disable-next-line: prefer-const
+        let urlCreator = window.URL;
         if (data.size !== 0) {
           this.image.push(this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(data)));
           this.imagee.push(this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(data)));

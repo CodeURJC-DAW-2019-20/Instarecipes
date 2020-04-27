@@ -48,7 +48,7 @@ export class RecentComponent implements OnInit {
           }
           this.recipeStepImage(recipes[recipes.length-1], 1);
           this.button1.nativeElement.removeAttribute("hidden");
-          this.button2.nativeElement.setAttribute("hidden", "");
+          this.button2.nativeElement.setAttribute('hidden', "");
           if (this.recipes.length > 1) { this.loadingRecents = false; }
         }
       );

@@ -25,7 +25,7 @@ export class RecipeContentComponent implements OnInit {
   ingredients: Ingredient[];
   image: any[] = [];
   step: Step[] = [];
-  liked: boolean = false;
+  liked = false;
   likesUsers: User[] = [];
   commentsArr: Comment[] = [];
   comments: number;
@@ -101,7 +101,7 @@ export class RecipeContentComponent implements OnInit {
   getStepImage(r: number, n_step: number) {
     this.recipesService.getRecipeStepImage(r, n_step).subscribe(
       data => {
-        var urlCreator = window.URL;
+        const urlCreator = window.URL;
         this.image.push(this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(data)));
       }
     );
@@ -144,17 +144,17 @@ export class RecipeContentComponent implements OnInit {
   getAvatar(id_user: number) {
       this.recipesService.getRecipeAvatar(id_user).subscribe(
         data => {
-          var urlCreator = window.URL;
+          const urlCreator = window.URL;
           this.avatar = this.domSanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(data));
         }
       );
   }
 
   visitProfile(){
-    if(this.authService.user.id === this.recipe.username.id){
+    if (this.authService.user.id === this.recipe.username.id){
       this.router.navigateByUrl('/profile');
-    }else{
-      this.router.navigateByUrl('/users/'+this.recipe.username.id);
+    } else {
+      this.router.navigateByUrl('/users/' + this.recipe.username.id);
     }
   }
 
