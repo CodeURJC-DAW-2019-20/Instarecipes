@@ -46,6 +46,8 @@ import { UserComponent } from './profile/user/user.component';
 import { SearchService } from './services/search.service';
 import { RankService } from './services/ranking.service';
 import { CommentsService } from './services/comment.service';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { BasicAuthInterceptor } from './helpers/basic-auth-interceptor';
 
 @NgModule({
 
@@ -96,7 +98,9 @@ import { CommentsService } from './services/comment.service';
   //Aqui se deberia poner los interceptors, como el del login y register, y tambien los services
   // tslint:disable-next-line: max-line-length
   providers: [AuthenticationService, AuthGuard, UserService, RecipesService, ProfileService, RecipeService, SearchService, RankService, CommentsService,
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })

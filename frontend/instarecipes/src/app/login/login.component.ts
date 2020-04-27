@@ -1,15 +1,12 @@
-import {Component, OnInit, ElementRef, ViewChild, ɵConsole} from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
 import { User } from '../Interfaces/user.model';
-import { ProfileService } from '../services/profile.service';
-import { FilterRecipeComponent } from '../index/popup/filter/filterRecipe.component';
-import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
+  selector: 'login',
   // styleUrls: ['./login.component.css'],
   templateUrl: './login.component.html',
 })
@@ -21,10 +18,6 @@ export class LoginComponent implements OnInit{
    auth2: any;
    user: User;
    urlAvatar;
-  //  profilePic;
-  //  googleAv;
-  //  profilePic = new File('../../assets/images/profileimage/googleAvatar.jpg');
-
    password: string;
    @ViewChild('loginRef', {static: true }) loginElement: ElementRef;
 
@@ -33,11 +26,8 @@ export class LoginComponent implements OnInit{
        private route: ActivatedRoute,
        private router: Router,
        private authenticationService: AuthenticationService,
-       private profileService: ProfileService,
-       private domSanitizer: DomSanitizer,
        ) {
         this.user = {username: null, email: '', password: '', name: '', surname: '', info: 'Hello world!', allergens: null};
-        //this.profilePic = '../../assets/images/profileimage/image-7.jpg';
        }
 
    ngOnInit() {
@@ -64,16 +54,16 @@ export class LoginComponent implements OnInit{
        }
 
        this.authenticationService.login(this.f.username.value, this.f.password.value)
-           .pipe(first())
-           .subscribe(
-               data => {
-                   this.router.navigate([this.returnUrl]);
-               },
-               error => {
-                   this.error = error;
-               });
+        .subscribe(
+          data => {
+            this.authenticationService.user = data;
+            this.router.navigate(['/index']);
+          },
+          error => {
+            this.error = error;
+          }
+        );
    }
-
 
    googleSDK() {
     window['googleSDKLoaded'] = () => {
@@ -97,8 +87,6 @@ export class LoginComponent implements OnInit{
     }(document, 'script', 'google-jssdk'));
 
   }
-
-
 
   prepareLoginButton() {
     this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
@@ -142,7 +130,6 @@ export class LoginComponent implements OnInit{
            .subscribe(
                data => {
                  console.log("User logged!");
-
                },
                error => {
                    this.error = error;

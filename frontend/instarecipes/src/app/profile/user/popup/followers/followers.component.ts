@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { User } from 'src/app/Interfaces/user.model';
 import { RecipesService } from 'src/app/services/recipes.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -19,12 +19,16 @@ export class FollowersComponent implements OnInit {
 
   @ViewChild('closebutton') closebutton: ElementRef;
 
-  constructor(private recipesService: RecipesService, private domSanitizer: DomSanitizer, public authService: AuthenticationService,
-    private router: Router) {
-      this.router.routeReuseStrategy.shouldReuseRoute = function () {
-        return false;
-      };
-    }
+  constructor(
+    private recipesService: RecipesService,
+    private domSanitizer: DomSanitizer,
+    public authService: AuthenticationService,
+    private router: Router
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+  }
 
   ngOnInit() {
   }

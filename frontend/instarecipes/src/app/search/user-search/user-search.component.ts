@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/Interfaces/user.model';
 import { SearchService } from 'src/app/services/search.service';
 import { DomSanitizer } from '@angular/platform-browser';

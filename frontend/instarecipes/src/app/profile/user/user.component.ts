@@ -10,7 +10,7 @@ import { ProfileService } from 'src/app/services/profile.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent implements OnInit, OnChanges {
+export class UserComponent implements OnInit {
 
   @Input()
   avatar: any;
@@ -42,13 +42,13 @@ export class UserComponent implements OnInit, OnChanges {
 
   followed_user: boolean = false;
   
-  constructor(public authService: AuthenticationService, private profileService: ProfileService) { }
+  constructor(
+    public authService: AuthenticationService,
+    private profileService: ProfileService
+  ) { }
 
   ngOnInit(){
     this.loadFollowingList();
-  }
-
-  ngOnChanges(){
   }
 
   loadFollowingList(){
@@ -77,4 +77,5 @@ export class UserComponent implements OnInit, OnChanges {
   update_profile(){
     this.refresh_profile.emit(null);
   }
+
 }

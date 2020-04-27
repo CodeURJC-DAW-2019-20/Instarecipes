@@ -27,12 +27,14 @@ export class ProfileService {
   }
 
   constructor(private httpClient: HttpClient) { }
+  
   getActualUser() : Observable<any>{
     return this.httpClient.get(BASE_URL).pipe(
       catchError(error => this.handleError(error))
     ) as Observable<any>;
 
   }
+  
   getAllAllergens() : Observable<Allergen[]> {
     return this.httpClient.get(BASE_URL + "/allAllergens").pipe(
       catchError(error => this.handleError(error))
@@ -92,8 +94,8 @@ export class ProfileService {
     let head = new HttpHeaders();
     head = head.set('Content-Type', 'image/jpeg');
 
-    return this.httpClient.get("/api/users/" + id_user + "/image", {
-      headers: head, responseType: "blob"}).pipe(
+    return this.httpClient.get("/api/users/" + id_user + '/image', {
+      headers: head, responseType: 'blob'}).pipe(
         catchError(error => this.handleError(error))
     ) as Observable<Blob>;
   }
@@ -112,8 +114,8 @@ export class ProfileService {
     let head = new HttpHeaders();
     head = head.set('Content-Type', 'image/jpeg');
 
-    return this.httpClient.get("/api/users/" + id_user + "/background", {
-      headers: head, responseType: "blob"}).pipe(
+    return this.httpClient.get("/api/users/" + id_user + '/background', {
+      headers: head, responseType: 'blob'}).pipe(
         catchError(error => this.handleError(error))
     ) as Observable<Blob>;
   }

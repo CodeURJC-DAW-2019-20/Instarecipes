@@ -1,97 +1,107 @@
 <div class="container">
-<section id="comments-section">
-  <!-- Comments Form -->
-  <div class="coments">
-    <h5 class="card-header">Leave your comment:</h5>
-    <div class="card-body">
-      <form #commentForm= "ngForm" (ngSubmit)="postComment(commentForm)">
-        <div id="commentCountChar"></div>
-        <div class="form-group">
-            <!-- THIS IS THE CONTENT -->
-              <textarea *ngIf="authService?.isLogged" id="areaComment" onkeyup="commentCountChar(this)" class="form-control" name="content" rows="3" [(ngModel)]="content"></textarea>
-            <!-- THIS IS THE CONTENT -->
-              <textarea *ngIf="!authService?.isLogged" disabled class="form-control" rows="3">You must login before comment</textarea>
-        </div>
-        <!-- THIS IS THE PARENT -->
-        <input id="parentComment" name="parentComment" hidden/>
-          <button *ngIf="authService?.isLogged" type="submit" class="btn btn-primary">Submit</button>
-          <button *ngIf="!authService?.isLogged" disabled type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
-  </div>
-
-    <!-- Comment with nested comments -->
-    <div *ngFor="let comment of finalsComments; index as i" class="media mb-4">
-      <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" [src]="avatar[i]" alt=""/>
-      <div class="media-body">
-        <h5 class="mt-0">{{comment?.userComment.name}}&nbsp;{{comment?.userComment.surname}}</h5>
-        <input readonly type="text" class="mt-0" value="@{{comment.userComment.username}}" style="border-width: 0px;" id="userComment">
-        <p class="mt-0">{{comment?.content}}</p><!-- content-->
-        <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
-          <div class="col-4" style="height: 100%;">
-            <p style="top: 0; align-self: center;">{{comment?.likes}}</p> <!--likes -->
-          </div>
-
-            <div class="col-4" style="cursor: pointer; height: 100%;">
-
-                  <button *ngIf="finalsComments[i]?.liked" type="submit" (click)="dislikeComment(comment?.id)" style="width: inherit;border: 0px;">
-                    <img class="focusHeart" src="../../../assets/images/icons/like_pressed.png" style="width: 20px;" alt="">
-                  </button>
-                  <input name="id_recipe" value="{{comment?.id}}" hidden/>
-
-                  <button *ngIf="!finalsComments[i]?.liked" type="submit" (click)="likeComment(comment?.id)" style="width: inherit;border: 0px;">
-                    <img class="focusHeart" src="../../../assets/images/icons/like_unpressed.png" style="width: 20px;" alt="">
-                  </button>
-                  <input name="id_recipe" value="{{comment?.id}}" hidden/>
-
-
+    <section id="comments-section">
+        <!-- Comments Form -->
+        <div class="coments">
+            <h5 class="card-header">Leave your comment:</h5>
+            <div class="card-body">
+                <form #commentForm="ngForm" (ngSubmit)="postComment(commentForm)">
+                    <div id="commentCountChar"></div>
+                    <div class="form-group">
+                        <!-- THIS IS THE CONTENT -->
+                        <textarea *ngIf="authService?.isLogged" id="areaComment" onkeyup="commentCountChar(this)" class="form-control" name="content" rows="3" [(ngModel)]="content"></textarea>
+                        <!-- THIS IS THE CONTENT -->
+                        <textarea *ngIf="!authService?.isLogged" disabled class="form-control" rows="3">You must login before comment</textarea>
+                    </div>
+                    <!-- THIS IS THE PARENT -->
+                    <input id="parentComment" name="parentComment" hidden/>
+                    <button *ngIf="authService?.isLogged" type="submit" class="btn btn-primary">Submit</button>
+                    <button *ngIf="!authService?.isLogged" disabled type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
-
-          <div class="col-4" style="height: 100%;">
-            <a> <!-- LEAVE THIS AS AN ERROR, NOT PROBLEM--><!-- comment id y id-->
-              <img src="../../../assets/images/icons/dialogue.png" height="100%" alt="">
-            </a>
-          </div>
         </div>
 
-          <!-- Subcomment -->
-          <div *ngIf="comment?.hasSubcomments">
-          <div *ngFor="let subcomment of comment.subComments; index as j"  class="media mt-4">
-              <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" [src]="avatar[j]" alt=""/><!-- usercomment id-->
-              <div class="media-body">
-                <h5 class="mt-0">{{subcomment?.userComment.name}}&nbsp;{{subcomment?.userComment.surname}} </h5><!-- usercoment name y surname-->
-                <input readonly type="text" class="mt-0" value="@{{subcomment.userComment.username}}" style="border-width: 0px;" id="userComment"><!-- usercomment username y dps id-->
-                <p class="mt-0">{{subcomment?.content}}</p><!-- content-->
+        <!-- Comment with nested comments -->
+        <div *ngFor="let comment of finalsComments; index as i" class="media mb-4">
+            <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" [src]="avatar[i]" alt="" />
+            <div class="media-body">
+                <h5 class="mt-0">{{comment?.userComment.name}}&nbsp;{{comment?.userComment.surname}}</h5>
+                <input readonly type="text" class="mt-0" value="@{{comment.userComment.username}}" style="border-width: 0px;" id="userComment">
+                <p class="mt-0">{{comment?.content}}</p>
+                <!-- content-->
                 <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
-                  <div class="col-4" style="height: 100%;">
-                    <p style="top: 0; align-self: center;"> {{subcomment?.likes}}</p><!-- likes-->
-                  </div>
+                    <div class="col-4" style="height: 100%;">
+                        <p style="top: 0; align-self: center;">{{comment?.likes}}</p>
+                        <!--likes -->
+                    </div>
+
                     <div class="col-4" style="cursor: pointer; height: 100%;">
 
-                        <button *ngIf="comment.subComments[j]?.liked" type="submit" (click)="dislikeComment(subcomment?.id)"  style="width: inherit;border: 0px;">
-                          <img class="focusHeart" src="../../../assets/images/icons/like_pressed.png" style="width: 20px;" alt="">
-                        </button>
-                        <input name="id_recipe" value="{{subcomment?.id}}"  hidden/><!-- recipe id-->
+                        <button *ngIf="finalsComments[i]?.liked" type="submit" (click)="dislikeComment(comment?.id)" style="width: inherit;border: 0px;">
+                    <img class="focusHeart" src="assets/images/icons/like_pressed.png" style="width: 20px;" alt="">
+                  </button>
+                        <input name="id_recipe" value="{{comment?.id}}" hidden/>
 
+                        <button *ngIf="!finalsComments[i]?.liked" type="submit" (click)="likeComment(comment?.id)" style="width: inherit;border: 0px;">
+                    <img class="focusHeart" src="assets/images/icons/like_unpressed.png" style="width: 20px;" alt="">
+                  </button>
+                        <input name="id_recipe" value="{{comment?.id}}" hidden/>
 
-                        <button *ngIf="!comment.subComments[j]?.liked" type="submit" (click)="likeComment(subcomment?.id)" style="width: inherit;border: 0px;">
-                          <img class="focusHeart" src="../../../assets/images/icons/like_unpressed.png" style="width: 20px;" alt="">
-                        </button>
-                        <input name="id_recipe" value="{{subcomment?.id}}" hidden/>
 
                     </div>
 
+                    <div class="col-4" style="height: 100%;">
+                        <a>
+                            <!-- LEAVE THIS AS AN ERROR, NOT PROBLEM-->
+                            <!-- comment id y id-->
+                            <img src="assets/images/icons/dialogue.png" height="100%" alt="">
+                        </a>
+                    </div>
                 </div>
-              </div>
-          </div>
+
+                <!-- Subcomment -->
+                <div *ngIf="comment?.hasSubcomments">
+                    <div *ngFor="let subcomment of comment.subComments; index as j" class="media mt-4">
+                        <img class="d-flex mr-2 rounded-circle" style="height: 100px;width: 100px;" [src]="avatar[j]" alt="" />
+                        <!-- usercomment id-->
+                        <div class="media-body">
+                            <h5 class="mt-0">{{subcomment?.userComment.name}}&nbsp;{{subcomment?.userComment.surname}} </h5>
+                            <!-- usercoment name y surname-->
+                            <input readonly type="text" class="mt-0" value="@{{subcomment.userComment.username}}" style="border-width: 0px;" id="userComment">
+                            <!-- usercomment username y dps id-->
+                            <p class="mt-0">{{subcomment?.content}}</p>
+                            <!-- content-->
+                            <div class="row" style="margin-left: 90%; right: 0; height: 20px;">
+                                <div class="col-4" style="height: 100%;">
+                                    <p style="top: 0; align-self: center;"> {{subcomment?.likes}}</p>
+                                    <!-- likes-->
+                                </div>
+                                <div class="col-4" style="cursor: pointer; height: 100%;">
+
+                                    <button *ngIf="comment.subComments[j]?.liked" type="submit" (click)="dislikeComment(subcomment?.id)" style="width: inherit;border: 0px;">
+                          <img class="focusHeart" src="assets/images/icons/like_pressed.png" style="width: 20px;" alt="">
+                        </button>
+                                    <input name="id_recipe" value="{{subcomment?.id}}" hidden/>
+                                    <!-- recipe id-->
+
+
+                                    <button *ngIf="!comment.subComments[j]?.liked" type="submit" (click)="likeComment(subcomment?.id)" style="width: inherit;border: 0px;">
+                          <img class="focusHeart" src="assets/images/icons/like_unpressed.png" style="width: 20px;" alt="">
+                        </button>
+                                    <input name="id_recipe" value="{{subcomment?.id}}" hidden/>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-      <!-- Comment with nested comments -->
-      <div class="media mb-4">
-      </div>
+        <!-- Comment with nested comments -->
+        <div class="media mb-4">
+        </div>
 
-<hr width="50%">
-</section>
+        <hr width="50%">
+    </section>
 </div>

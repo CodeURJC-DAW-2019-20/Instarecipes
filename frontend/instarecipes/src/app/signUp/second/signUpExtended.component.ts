@@ -19,6 +19,7 @@ export class SignUpExtendedComponent implements OnInit {
   error: '';
   user: User;
   selectedFile: File;
+  URL: any = 'src/assets/images/icons/avatar.jpg';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,6 +56,7 @@ export class SignUpExtendedComponent implements OnInit {
         this.authenticationService.login(this.user.username, this.user.password)
            .subscribe(
                data => {
+                 this.authenticationService.user = data;
                  if (this.selectedFile != null){
                   this.profileService.updateProfileAvatar(this.selectedFile).subscribe(
                     imagen=>{
@@ -99,7 +101,13 @@ export class SignUpExtendedComponent implements OnInit {
    }
 
   onFileChanged(event) {
+    const reader = new FileReader();
     this.selectedFile = event.target.files[0];
     console.log(this.selectedFile);
+    reader.readAsDataURL(event.target.files[0]); // Read file as data url
+		  reader.onloadend = (e) => { // function call once readAsDataUrl is completed
+			this.URL = e.target['result']; // Set image in element
+		  };
   }
+
 }
