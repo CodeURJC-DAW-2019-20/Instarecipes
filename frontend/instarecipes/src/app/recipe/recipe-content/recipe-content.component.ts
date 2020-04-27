@@ -13,6 +13,7 @@ import { CommentsService } from 'src/app/services/comment.service';
 import { Comment } from 'src/app/Interfaces/comment.model';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'recipe-content',
   templateUrl: './recipe-content.component.html',
   styleUrls: ['./recipe-content.component.css']
@@ -98,6 +99,7 @@ export class RecipeContentComponent implements OnInit {
     );
   }
 
+  // tslint:disable-next-line: variable-name
   getStepImage(r: number, n_step: number) {
     this.recipesService.getRecipeStepImage(r, n_step).subscribe(
       data => {
@@ -141,6 +143,7 @@ export class RecipeContentComponent implements OnInit {
     this.allLikes += 1;
   }
 
+  // tslint:disable-next-line: variable-name
   getAvatar(id_user: number) {
       this.recipesService.getRecipeAvatar(id_user).subscribe(
         data => {
@@ -150,8 +153,8 @@ export class RecipeContentComponent implements OnInit {
       );
   }
 
-  visitProfile(){
-    if (this.authService.user.id === this.recipe.username.id){
+  visitProfile() {
+    if (this.authService.user.id === this.recipe.username.id) {
       this.router.navigateByUrl('/profile');
     } else {
       this.router.navigateByUrl('/users/' + this.recipe.username.id);

@@ -4,6 +4,7 @@ cd ..
 cd ./frontend/instarecipes
 
 docker run -it --rm --name insta-angular -v "$PWD":/usr/src/app -w /usr/src/app node:12.16.1 /bin/bash -c "cd /usr/src/app && npm install > /dev/null && npm i -g @angular/cli > /dev/null && ng build --baseHref=/new/"
+
 mv -v "$PWD"/dist/instarecipes ../../backend/src/main/resources/static/new
 
 cd ../../backend

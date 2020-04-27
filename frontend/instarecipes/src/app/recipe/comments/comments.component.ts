@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'recipe-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.css']
@@ -19,7 +20,7 @@ export class CommentsComponent implements OnInit, OnChanges {
   comentario: Comment;
   content: string;
   commentDTO;
-  liked: boolean = false;
+  liked = false;
   avatar: any[] = [];
 
   constructor(

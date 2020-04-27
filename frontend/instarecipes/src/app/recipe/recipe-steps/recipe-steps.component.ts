@@ -6,6 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'recipe-steps',
   templateUrl: './recipe-steps.component.html',
   styleUrls: ['./recipe-steps.component.css']
@@ -45,6 +46,7 @@ export class RecipeStepsComponent implements OnInit {
 
   }
 
+  // tslint:disable-next-line: variable-name
   getStepImage(r: number, n_step: number, n: number) {
     this.recipesService.getRecipeStepImage(r, n_step).subscribe(
       data => {
@@ -61,6 +63,7 @@ export class RecipeStepsComponent implements OnInit {
     );
   }
 
+  // tslint:disable-next-line: variable-name
   getAllimage(id_recipe: number, step: Step[]) {
     const n = step.length;
     this.recipeService.setNsteps(n);
